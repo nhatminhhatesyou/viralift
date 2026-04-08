@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Dict, List, Tuple
 import argparse
 import csv
 
@@ -18,7 +19,38 @@ from src.minimap_runner import run_minimap2
 from src.sam_lifter import get_primary_alignment, build_ref_to_query_map
 
 
-def parse_args():
+"""
+Module: main.py
+
+Purpose:
+    CLI entry point for reference-guided viral CDS transfer using minimap2.
+
+Workflow:
+    1. Load reference and query GenBank records
+    2. Parse reference CDS features
+    3. Align each query genome to the reference
+    4. Lift CDS coordinates from reference to query
+    5. Extract transferred sequences
+    6. Write FASTA and TSV outputs
+
+Notes:
+    - This version uses minimap-based transfer only.
+    - Alias-based gene name normalization is not applied here yet,
+      but this file is a good future integration point for it.
+"""
+
+
+# ---------------------------------------------------------------------
+# CLI
+# ---------------------------------------------------------------------
+
+def parse_args() -> argparse.Namespace:
+    """
+    Parse command-line arguments.
+
+    Returns:
+        Parsed CLI arguments
+    """
     parser = argparse.ArgumentParser(
         prog="viralift",
         description="Reference-guided viral CDS transfer using minimap2.",
@@ -40,7 +72,7 @@ def parse_args():
     parser.add_argument(
         "--query",
         required=True,
-        help="Query GenBank file (multi-record).",
+        help="Query GenBank file (one or more records).",
     )
     parser.add_argument(
         "--output",
@@ -57,7 +89,7 @@ def parse_args():
         "--min-coverage",
         type=float,
         default=0.8,
-        help="Minimum coverage for lifted features. Default: 0.8",
+        help="Minimum coverage threshold for lifted features. Default: 0.8",
     )
     parser.add_argument(
         "--keep-temp",
@@ -73,27 +105,50 @@ def parse_args():
     return parser.parse_args()
 
 
-def write_results_fasta(all_results, out_path: Path) -> None:
-    """Write extracted results from all query records to one FASTA file."""
-    records = []
+# ---------------------------------------------------------------------
+# Output writers
+# ---------------------------------------------------------------------
+
+def write_results_fasta(all_results: List[Tuple[str, List[Dict]]], out_path: Path) -> None:
+    """
+    Write successfully extracted CDS sequences from all query records to a FASTA file.
+
+    Args:
+        all_results: List of (query_id, feature_results)
+        out_path: Output FASTA path
+    """
+    records: List[SeqRecord] = []
 
     for query_id, results in all_results:
         for item in results:
-            if item["status"] != "ok":
+            if item.get("status") != "ok":
                 continue
-            if not item.get("sequence"):
+
+            sequence = item.get("sequence")
+            if not sequence:
                 continue
 
             record_id = f"{query_id}|{item['name']}|{item['method']}"
-            record = SeqRecord(Seq(item["sequence"]), id=record_id, description="")
-            records.append(record)
+            records.append(
+                SeqRecord(
+                    Seq(sequence),
+                    id=record_id,
+                    description="",
+                )
+            )
 
     SeqIO.write(records, str(out_path), "fasta")
 
 
-def write_results_tsv(all_results, out_path: Path) -> None:
-    """Write extracted results from all query records to one TSV file."""
-    rows = []
+def write_results_tsv(all_results: List[Tuple[str, List[Dict]]], out_path: Path) -> None:
+    """
+    Write extracted feature results from all query records to a TSV file.
+
+    Args:
+        all_results: List of (query_id, feature_results)
+        out_path: Output TSV path
+    """
+    rows: List[Dict] = []
 
     for query_id, results in all_results:
         for item in results:
@@ -117,43 +172,102 @@ def write_results_tsv(all_results, out_path: Path) -> None:
         return
 
     with open(out_path, "w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=rows[0].keys(), delimiter="\t")
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()), delimiter="\t")
         writer.writeheader()
         writer.writerows(rows)
 
 
-def summarize_counts(all_results):
-    """Summarize output status counts."""
-    ok = 0
-    no_alignment = 0
-    low_coverage = 0
-    unmapped = 0
+# ---------------------------------------------------------------------
+# Summary utilities
+# ---------------------------------------------------------------------
+
+def summarize_counts(all_results: List[Tuple[str, List[Dict]]]) -> Dict[str, int]:
+    """
+    Summarize result statuses across all processed records.
+
+    Args:
+        all_results: List of (query_id, feature_results)
+
+    Returns:
+        Dictionary with counts by status
+    """
+    summary = {
+        "ok": 0,
+        "no_alignment": 0,
+        "low_coverage": 0,
+        "unmapped": 0,
+    }
 
     for _, results in all_results:
         for item in results:
             status = item.get("status")
-            if status == "ok":
-                ok += 1
-            elif status == "no_alignment":
-                no_alignment += 1
-            elif status == "low_coverage":
-                low_coverage += 1
-            elif status == "unmapped":
-                unmapped += 1
+            if status in summary:
+                summary[status] += 1
 
-    return ok, no_alignment, low_coverage, unmapped
+    return summary
+
+
+# ---------------------------------------------------------------------
+# Core processing
+# ---------------------------------------------------------------------
+
+def _build_no_alignment_results(ref_cds: List[Dict]) -> List[Dict]:
+    """
+    Build fallback results when no valid alignment is available.
+
+    Args:
+        ref_cds: Reference CDS feature list
+
+    Returns:
+        List of failed feature results with status='no_alignment'
+    """
+    return [
+        {
+            "name": feature["name"],
+            "gene": feature.get("gene"),
+            "product": feature.get("product"),
+            "start": None,
+            "end": None,
+            "strand": feature["strand"],
+            "sequence": None,
+            "method": "minimap_transfer",
+            "status": "no_alignment",
+            "coverage": 0.0,
+        }
+        for feature in ref_cds
+    ]
 
 
 def process_one_query_record(
-    ref_record,
-    query_record,
-    ref_cds,
+    ref_record: SeqRecord,
+    query_record: SeqRecord,
+    ref_cds: List[Dict],
     outdir: Path,
     min_coverage: float,
     keep_temp: bool = False,
     quiet: bool = False,
-):
-    """Process one query record using minimap2 only."""
+) -> List[Dict]:
+    """
+    Process one query genome using reference-guided minimap transfer.
+
+    Steps:
+        1. Write temporary FASTA files
+        2. Run minimap2 alignment
+        3. Build reference-to-query coordinate map
+        4. Lift and extract CDS features
+
+    Args:
+        ref_record: Reference genome record
+        query_record: Query genome record
+        ref_cds: Parsed reference CDS features
+        outdir: Output directory
+        min_coverage: Minimum accepted feature coverage
+        keep_temp: Whether to retain temp files
+        quiet: Whether to reduce console output
+
+    Returns:
+        List of extracted/lifted feature dictionaries
+    """
     tmp_dir = outdir / "tmp"
     tmp_dir.mkdir(parents=True, exist_ok=True)
 
@@ -164,11 +278,11 @@ def process_one_query_record(
     write_record_to_fasta(ref_record, ref_fa)
     write_record_to_fasta(query_record, query_fa)
 
-    run_minimap2(ref_fa, query_fa, sam_path, quiet=quiet)
-
     try:
-        aln = get_primary_alignment(sam_path)
-        ref_to_query = build_ref_to_query_map(aln)
+        run_minimap2(ref_fa, query_fa, sam_path, quiet=quiet)
+
+        alignment = get_primary_alignment(sam_path)
+        ref_to_query = build_ref_to_query_map(alignment)
 
         results = extract_all_lifted(
             ref_cds=ref_cds,
@@ -178,31 +292,23 @@ def process_one_query_record(
         )
 
     except ValueError:
-        results = [
-            {
-                "name": feature["name"],
-                "gene": feature.get("gene"),
-                "product": feature.get("product"),
-                "start": None,
-                "end": None,
-                "strand": feature["strand"],
-                "sequence": None,
-                "method": "minimap_transfer",
-                "status": "no_alignment",
-                "coverage": 0.0,
-            }
-            for feature in ref_cds
-        ]
+        results = _build_no_alignment_results(ref_cds)
 
-    if not keep_temp:
-        ref_fa.unlink(missing_ok=True)
-        query_fa.unlink(missing_ok=True)
-        sam_path.unlink(missing_ok=True)
+    finally:
+        if not keep_temp:
+            ref_fa.unlink(missing_ok=True)
+            query_fa.unlink(missing_ok=True)
+            sam_path.unlink(missing_ok=True)
 
     return results
 
 
-def main():
+# ---------------------------------------------------------------------
+# Main entry point
+# ---------------------------------------------------------------------
+
+def main() -> None:
+    """Run the viral CDS transfer pipeline."""
     args = parse_args()
 
     outdir = Path(args.output)
@@ -226,8 +332,7 @@ def main():
     print(f"  Query records    : {len(query_records)}")
     print(f"  Output folder    : {outdir}")
 
-    all_results = []
-    total = len(query_records)
+    all_results: List[Tuple[str, List[Dict]]] = []
 
     iterator = tqdm(
         query_records,
@@ -257,14 +362,14 @@ def main():
     write_results_fasta(all_results, fasta_out)
     write_results_tsv(all_results, tsv_out)
 
-    ok, no_alignment, low_coverage, unmapped = summarize_counts(all_results)
+    summary = summarize_counts(all_results)
 
     print("\nRun summary")
-    print(f"  Query records processed : {total}")
-    print(f"  OK                      : {ok}")
-    print(f"  No alignment            : {no_alignment}")
-    print(f"  Low coverage            : {low_coverage}")
-    print(f"  Unmapped                : {unmapped}")
+    print(f"  Query records processed : {len(query_records)}")
+    print(f"  OK                      : {summary['ok']}")
+    print(f"  No alignment            : {summary['no_alignment']}")
+    print(f"  Low coverage            : {summary['low_coverage']}")
+    print(f"  Unmapped                : {summary['unmapped']}")
 
     print("\nOutput files")
     print(f"  FASTA : {fasta_out}")
