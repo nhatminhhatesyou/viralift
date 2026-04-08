@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 import argparse
 import csv
 
@@ -8,7 +8,15 @@ from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from tqdm import tqdm
 
+from app.src.annotation.alias_registry import (
+    detect_alias_config_for_record,
+    get_detected_virus_name,
+)
 from app.src.annotation.extractor import extract_all_lifted
+from app.src.annotation.gene_alias import (
+    apply_alias_to_features,
+    load_alias_lookup,
+)
 from app.src.io.fasta_writer import write_record_to_fasta
 from app.src.io.genbank_parser import (
     load_single_genbank,
@@ -28,15 +36,17 @@ Purpose:
 Workflow:
     1. Load reference and query GenBank records
     2. Parse reference CDS features
-    3. Align each query genome to the reference
-    4. Lift CDS coordinates from reference to query
-    5. Extract transferred sequences
-    6. Write FASTA and TSV outputs
+    3. Optionally normalize feature names using alias config
+    4. Align each query genome to the reference
+    5. Lift CDS coordinates from reference to query
+    6. Extract transferred sequences
+    7. Write FASTA and TSV outputs
 
-Notes:
-    - This version uses minimap-based transfer only.
-    - Alias-based gene name normalization is not applied here yet,
-      but this file is a good future integration point for it.
+Alias behavior:
+    - If --alias-config is provided, that config is used directly
+    - Otherwise, the program tries to auto-detect the correct alias config
+      using config/virus_alias_registry.json
+    - If no alias config is found, raw feature names are preserved
 """
 
 
@@ -55,11 +65,16 @@ def parse_args() -> argparse.Namespace:
         prog="viralift",
         description="Reference-guided viral CDS transfer using minimap2.",
         epilog=(
-            "Example:\n"
-            "  python -m src.main "
+            "Examples:\n"
+            "  python -m app.src.main "
             "--reference data/PRRS_ref_test.gb "
             "--query data/PRRSV_test.gb "
-            "--output output/prrsv_multi\n"
+            "--output output/prrsv_multi\n\n"
+            "  python -m app.src.main "
+            "--reference data/PRRS_ref_test.gb "
+            "--query data/PRRSV_test.gb "
+            "--output output/prrsv_multi "
+            "--alias-config config/prrsv_alias.json\n"
         ),
         formatter_class=argparse.RawTextHelpFormatter,
     )
@@ -92,6 +107,16 @@ def parse_args() -> argparse.Namespace:
         help="Minimum coverage threshold for lifted features. Default: 0.8",
     )
     parser.add_argument(
+        "--alias-config",
+        required=False,
+        help="Optional path to alias JSON config file.",
+    )
+    parser.add_argument(
+        "--alias-registry",
+        default="config/virus_alias_registry.json",
+        help="Path to virus alias registry JSON file. Default: config/virus_alias_registry.json",
+    )
+    parser.add_argument(
         "--keep-temp",
         action="store_true",
         help="Keep temporary FASTA and SAM files for debugging.",
@@ -103,6 +128,69 @@ def parse_args() -> argparse.Namespace:
     )
 
     return parser.parse_args()
+
+
+# ---------------------------------------------------------------------
+# Alias utilities
+# ---------------------------------------------------------------------
+
+def prepare_reference_features(
+    ref_record: SeqRecord,
+    alias_config_arg: Optional[str],
+    alias_registry_arg: str,
+) -> Tuple[List[Dict], Optional[Path], Optional[str]]:
+    """
+    Parse reference CDS features and optionally normalize their names using alias config.
+
+    Priority:
+        1. Use user-provided alias config if available
+        2. Otherwise auto-detect config using alias registry
+        3. If detection fails, keep raw names
+
+    Args:
+        ref_record: Reference SeqRecord
+        alias_config_arg: Optional CLI value for --alias-config
+        alias_registry_arg: CLI value for --alias-registry
+
+    Returns:
+        Tuple of:
+            - ref_cds: Parsed (and optionally alias-normalized) reference features
+            - alias_config_path: Path to alias config actually used, or None
+            - detected_virus_name: Virus name detected from registry, or None
+    """
+    ref_cds = parse_cds_features(ref_record)
+
+    if not ref_cds:
+        raise ValueError("Reference record has no CDS features.")
+
+    alias_config_path: Optional[Path] = None
+    detected_virus_name: Optional[str] = None
+
+    # Case 1: user explicitly provides alias config
+    if alias_config_arg:
+        alias_config_path = Path(alias_config_arg)
+
+    # Case 2: auto-detect from registry
+    else:
+        registry_path = Path(alias_registry_arg)
+
+        try:
+            alias_config_path = detect_alias_config_for_record(ref_record, registry_path)
+
+            if alias_config_path is not None:
+                detected_virus_name = get_detected_virus_name(ref_record, registry_path)
+
+        except FileNotFoundError:
+            alias_config_path = None
+        except ValueError:
+            alias_config_path = None
+
+    # Apply alias normalization if config exists
+    if alias_config_path is not None:
+        alias_lookup = load_alias_lookup(alias_config_path)
+        ref_cds = apply_alias_to_features(ref_cds, alias_lookup)
+
+    return ref_cds, alias_config_path, detected_virus_name
 
 
 # ---------------------------------------------------------------------
@@ -155,7 +243,9 @@ def write_results_tsv(all_results: List[Tuple[str, List[Dict]]], out_path: Path)
             rows.append(
                 {
                     "query_id": query_id,
+                    "raw_name": item.get("raw_name"),
                     "name": item.get("name"),
+                    "name_source": item.get("name_source"),
                     "gene": item.get("gene"),
                     "product": item.get("product"),
                     "start": item.get("start"),
@@ -223,7 +313,9 @@ def _build_no_alignment_results(ref_cds: List[Dict]) -> List[Dict]:
     """
     return [
         {
+            "raw_name": feature.get("raw_name", feature["name"]),
             "name": feature["name"],
+            "name_source": feature.get("name_source", "raw"),
             "gene": feature.get("gene"),
             "product": feature.get("product"),
             "start": None,
@@ -320,10 +412,11 @@ def main() -> None:
     if not query_records:
         raise ValueError("No query records found.")
 
-    ref_cds = parse_cds_features(ref_record)
-
-    if not ref_cds:
-        raise ValueError("Reference record has no CDS features.")
+    ref_cds, alias_config_path, detected_virus_name = prepare_reference_features(
+        ref_record=ref_record,
+        alias_config_arg=args.alias_config,
+        alias_registry_arg=args.alias_registry,
+    )
 
     print("ViraLift")
     print(f"  Reference record : {ref_record.id}")
@@ -331,6 +424,15 @@ def main() -> None:
     print(f"  Reference CDS    : {len(ref_cds)}")
     print(f"  Query records    : {len(query_records)}")
     print(f"  Output folder    : {outdir}")
+
+    if args.alias_config:
+        print(f"  Alias config     : {alias_config_path} (user-provided)")
+    elif alias_config_path:
+        print(f"  Alias config     : {alias_config_path} (auto-detected)")
+        if detected_virus_name:
+            print(f"  Detected virus   : {detected_virus_name}")
+    else:
+        print("  Alias config     : none (using raw names)")
 
     all_results: List[Tuple[str, List[Dict]]] = []
 
