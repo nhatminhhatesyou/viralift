@@ -1,0 +1,181 @@
+query_id	name	gene	product	start	end	strand	method	status	coverage	length
+PP209408.1	polyprotein 1a		polyprotein 1a	7213	7701	+	minimap_transfer	low_coverage	0.0651	
+PP209408.1	polyprotein 1b		polyprotein 1b	7686	9818	+	minimap_transfer	low_coverage	0.4863	
+PP209408.1	glycosylated membrane protein		glycosylated membrane protein			+	minimap_transfer	unmapped	0.0	
+PP209408.1	envelope protein		envelope protein			+	minimap_transfer	unmapped	0.0	
+PP209408.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3			+	minimap_transfer	unmapped	0.0	
+PP209408.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4			+	minimap_transfer	unmapped	0.0	
+PP209408.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5			+	minimap_transfer	unmapped	0.0	
+PP209408.1	unglycosylated membrane protein M		unglycosylated membrane protein M			+	minimap_transfer	unmapped	0.0	
+PP209408.1	nucleocapsid protein N		nucleocapsid protein N			+	minimap_transfer	unmapped	0.0	
+PP209409.1	polyprotein 1a		polyprotein 1a	6176	7701	+	minimap_transfer	low_coverage	0.2031	
+PP209409.1	polyprotein 1b		polyprotein 1b	7686	11272	+	minimap_transfer	ok	0.8178	3587
+PP209409.1	glycosylated membrane protein		glycosylated membrane protein			+	minimap_transfer	unmapped	0.0	
+PP209409.1	envelope protein		envelope protein			+	minimap_transfer	unmapped	0.0	
+PP209409.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3			+	minimap_transfer	unmapped	0.0	
+PP209409.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4			+	minimap_transfer	unmapped	0.0	
+PP209409.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5			+	minimap_transfer	unmapped	0.0	
+PP209409.1	unglycosylated membrane protein M		unglycosylated membrane protein M			+	minimap_transfer	unmapped	0.0	
+PP209409.1	nucleocapsid protein N		nucleocapsid protein N			+	minimap_transfer	unmapped	0.0	
+PQ623173.1	polyprotein 1a		polyprotein 1a	191	7702	+	minimap_transfer	ok	1.0	7512
+PQ623173.1	polyprotein 1b		polyprotein 1b	7687	12072	+	minimap_transfer	ok	1.0	4386
+PQ623173.1	glycosylated membrane protein		glycosylated membrane protein	12074	12844	+	minimap_transfer	ok	1.0	771
+PQ623173.1	envelope protein		envelope protein	12079	12300	+	minimap_transfer	ok	1.0	222
+PQ623173.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3	12697	13461	+	minimap_transfer	ok	1.0	765
+PQ623173.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4	13242	13778	+	minimap_transfer	ok	1.0	537
+PQ623173.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5	13789	14391	+	minimap_transfer	ok	1.0	603
+PQ623173.1	unglycosylated membrane protein M		unglycosylated membrane protein M	14376	14900	+	minimap_transfer	ok	1.0	525
+PQ623173.1	nucleocapsid protein N		nucleocapsid protein N	14890	15261	+	minimap_transfer	ok	1.0	372
+AF176348.2	polyprotein 1a		polyprotein 1a	190	7701	+	minimap_transfer	ok	1.0	7512
+AF176348.2	polyprotein 1b		polyprotein 1b	7686	12071	+	minimap_transfer	ok	1.0	4386
+AF176348.2	glycosylated membrane protein		glycosylated membrane protein	12073	12843	+	minimap_transfer	ok	1.0	771
+AF176348.2	envelope protein		envelope protein	12078	12299	+	minimap_transfer	ok	1.0	222
+AF176348.2	glycosylated membrane protein GP3		glycosylated membrane protein GP3	12696	13460	+	minimap_transfer	ok	1.0	765
+AF176348.2	glycosylated membrane protein GP4		glycosylated membrane protein GP4	13241	13777	+	minimap_transfer	ok	1.0	537
+AF176348.2	glycosylated membrane protein GP5		glycosylated membrane protein GP5	13788	14390	+	minimap_transfer	ok	1.0	603
+AF176348.2	unglycosylated membrane protein M		unglycosylated membrane protein M	14375	14899	+	minimap_transfer	ok	1.0	525
+AF176348.2	nucleocapsid protein N		nucleocapsid protein N	14889	15260	+	minimap_transfer	ok	1.0	372
+AY545985.1	polyprotein 1a		polyprotein 1a			+	minimap_transfer	no_alignment	0.0	
+AY545985.1	polyprotein 1b		polyprotein 1b			+	minimap_transfer	no_alignment	0.0	
+AY545985.1	glycosylated membrane protein		glycosylated membrane protein			+	minimap_transfer	no_alignment	0.0	
+AY545985.1	envelope protein		envelope protein			+	minimap_transfer	no_alignment	0.0	
+AY545985.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3			+	minimap_transfer	no_alignment	0.0	
+AY545985.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4			+	minimap_transfer	no_alignment	0.0	
+AY545985.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5			+	minimap_transfer	no_alignment	0.0	
+AY545985.1	unglycosylated membrane protein M		unglycosylated membrane protein M			+	minimap_transfer	no_alignment	0.0	
+AY545985.1	nucleocapsid protein N		nucleocapsid protein N			+	minimap_transfer	no_alignment	0.0	
+DQ459471.1	polyprotein 1a		polyprotein 1a	190	7701	+	minimap_transfer	ok	1.0	7512
+DQ459471.1	polyprotein 1b		polyprotein 1b	7686	12071	+	minimap_transfer	ok	1.0	4386
+DQ459471.1	glycosylated membrane protein		glycosylated membrane protein	12073	12843	+	minimap_transfer	ok	1.0	771
+DQ459471.1	envelope protein		envelope protein	12078	12299	+	minimap_transfer	ok	1.0	222
+DQ459471.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3	12696	13460	+	minimap_transfer	ok	1.0	765
+DQ459471.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4	13241	13777	+	minimap_transfer	ok	1.0	537
+DQ459471.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5	13788	14390	+	minimap_transfer	ok	1.0	603
+DQ459471.1	unglycosylated membrane protein M		unglycosylated membrane protein M	14375	14899	+	minimap_transfer	ok	1.0	525
+DQ459471.1	nucleocapsid protein N		nucleocapsid protein N	14889	15260	+	minimap_transfer	ok	1.0	372
+JX258843.1	polyprotein 1a		polyprotein 1a	3152	7701	+	minimap_transfer	low_coverage	0.6057	
+JX258843.1	polyprotein 1b		polyprotein 1b	7686	12071	+	minimap_transfer	ok	1.0	4386
+JX258843.1	glycosylated membrane protein		glycosylated membrane protein	12073	12843	+	minimap_transfer	ok	1.0	771
+JX258843.1	envelope protein		envelope protein	12078	12299	+	minimap_transfer	ok	1.0	222
+JX258843.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3	12696	13460	+	minimap_transfer	ok	1.0	765
+JX258843.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4	13241	13777	+	minimap_transfer	ok	1.0	537
+JX258843.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5	13788	13861	+	minimap_transfer	low_coverage	0.1227	
+JX258843.1	unglycosylated membrane protein M		unglycosylated membrane protein M			+	minimap_transfer	unmapped	0.0	
+JX258843.1	nucleocapsid protein N		nucleocapsid protein N			+	minimap_transfer	unmapped	0.0	
+KC469618.1	polyprotein 1a		polyprotein 1a	191	7702	+	minimap_transfer	ok	1.0	7512
+KC469618.1	polyprotein 1b		polyprotein 1b	7687	12072	+	minimap_transfer	ok	1.0	4386
+KC469618.1	glycosylated membrane protein		glycosylated membrane protein	12074	12844	+	minimap_transfer	ok	1.0	771
+KC469618.1	envelope protein		envelope protein	12079	12300	+	minimap_transfer	ok	1.0	222
+KC469618.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3	12697	13461	+	minimap_transfer	ok	1.0	765
+KC469618.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4	13242	13778	+	minimap_transfer	ok	1.0	537
+KC469618.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5	13789	14391	+	minimap_transfer	ok	1.0	603
+KC469618.1	unglycosylated membrane protein M		unglycosylated membrane protein M	14376	14900	+	minimap_transfer	ok	1.0	525
+KC469618.1	nucleocapsid protein N		nucleocapsid protein N	14890	15261	+	minimap_transfer	ok	1.0	372
+KP704287.1	polyprotein 1a		polyprotein 1a			+	minimap_transfer	unmapped	0.0	
+KP704287.1	polyprotein 1b		polyprotein 1b	11807	12073	+	minimap_transfer	low_coverage	0.0609	
+KP704287.1	glycosylated membrane protein		glycosylated membrane protein	12075	12845	+	minimap_transfer	ok	1.0	771
+KP704287.1	envelope protein		envelope protein	12080	12301	+	minimap_transfer	ok	1.0	222
+KP704287.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3	12698	13462	+	minimap_transfer	ok	1.0	765
+KP704287.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4	13243	13779	+	minimap_transfer	ok	1.0	537
+KP704287.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5	13790	13861	+	minimap_transfer	low_coverage	0.1194	
+KP704287.1	unglycosylated membrane protein M		unglycosylated membrane protein M			+	minimap_transfer	unmapped	0.0	
+KP704287.1	nucleocapsid protein N		nucleocapsid protein N			+	minimap_transfer	unmapped	0.0	
+KU131564.1	polyprotein 1a		polyprotein 1a	193	7704	+	minimap_transfer	ok	1.0	7512
+KU131564.1	polyprotein 1b		polyprotein 1b	7689	12074	+	minimap_transfer	ok	1.0	4386
+KU131564.1	glycosylated membrane protein		glycosylated membrane protein	12076	12846	+	minimap_transfer	ok	1.0	771
+KU131564.1	envelope protein		envelope protein	12081	12302	+	minimap_transfer	ok	1.0	222
+KU131564.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3	12699	13463	+	minimap_transfer	ok	1.0	765
+KU131564.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4	13244	13780	+	minimap_transfer	ok	1.0	537
+KU131564.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5	13791	14393	+	minimap_transfer	ok	1.0	603
+KU131564.1	unglycosylated membrane protein M		unglycosylated membrane protein M	14378	14902	+	minimap_transfer	ok	1.0	525
+KU131564.1	nucleocapsid protein N		nucleocapsid protein N	14892	15263	+	minimap_transfer	ok	1.0	372
+LQ249403.1	polyprotein 1a		polyprotein 1a			+	minimap_transfer	no_alignment	0.0	
+LQ249403.1	polyprotein 1b		polyprotein 1b			+	minimap_transfer	no_alignment	0.0	
+LQ249403.1	glycosylated membrane protein		glycosylated membrane protein			+	minimap_transfer	no_alignment	0.0	
+LQ249403.1	envelope protein		envelope protein			+	minimap_transfer	no_alignment	0.0	
+LQ249403.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3			+	minimap_transfer	no_alignment	0.0	
+LQ249403.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4			+	minimap_transfer	no_alignment	0.0	
+LQ249403.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5			+	minimap_transfer	no_alignment	0.0	
+LQ249403.1	unglycosylated membrane protein M		unglycosylated membrane protein M			+	minimap_transfer	no_alignment	0.0	
+LQ249403.1	nucleocapsid protein N		nucleocapsid protein N			+	minimap_transfer	no_alignment	0.0	
+MN175678.1	polyprotein 1a		polyprotein 1a			+	minimap_transfer	no_alignment	0.0	
+MN175678.1	polyprotein 1b		polyprotein 1b			+	minimap_transfer	no_alignment	0.0	
+MN175678.1	glycosylated membrane protein		glycosylated membrane protein			+	minimap_transfer	no_alignment	0.0	
+MN175678.1	envelope protein		envelope protein			+	minimap_transfer	no_alignment	0.0	
+MN175678.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3			+	minimap_transfer	no_alignment	0.0	
+MN175678.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4			+	minimap_transfer	no_alignment	0.0	
+MN175678.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5			+	minimap_transfer	no_alignment	0.0	
+MN175678.1	unglycosylated membrane protein M		unglycosylated membrane protein M			+	minimap_transfer	no_alignment	0.0	
+MN175678.1	nucleocapsid protein N		nucleocapsid protein N			+	minimap_transfer	no_alignment	0.0	
+MN073155.1	polyprotein 1a		polyprotein 1a			+	minimap_transfer	no_alignment	0.0	
+MN073155.1	polyprotein 1b		polyprotein 1b			+	minimap_transfer	no_alignment	0.0	
+MN073155.1	glycosylated membrane protein		glycosylated membrane protein			+	minimap_transfer	no_alignment	0.0	
+MN073155.1	envelope protein		envelope protein			+	minimap_transfer	no_alignment	0.0	
+MN073155.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3			+	minimap_transfer	no_alignment	0.0	
+MN073155.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4			+	minimap_transfer	no_alignment	0.0	
+MN073155.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5			+	minimap_transfer	no_alignment	0.0	
+MN073155.1	unglycosylated membrane protein M		unglycosylated membrane protein M			+	minimap_transfer	no_alignment	0.0	
+MN073155.1	nucleocapsid protein N		nucleocapsid protein N			+	minimap_transfer	no_alignment	0.0	
+MT746146.1	polyprotein 1a		polyprotein 1a	190	7701	+	minimap_transfer	ok	1.0	7512
+MT746146.1	polyprotein 1b		polyprotein 1b	7686	12071	+	minimap_transfer	ok	1.0	4386
+MT746146.1	glycosylated membrane protein		glycosylated membrane protein	12073	12843	+	minimap_transfer	ok	1.0	771
+MT746146.1	envelope protein		envelope protein	12078	12299	+	minimap_transfer	ok	1.0	222
+MT746146.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3	12696	13460	+	minimap_transfer	ok	1.0	765
+MT746146.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4	13241	13777	+	minimap_transfer	ok	1.0	537
+MT746146.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5	13788	14390	+	minimap_transfer	ok	1.0	603
+MT746146.1	unglycosylated membrane protein M		unglycosylated membrane protein M	14375	14899	+	minimap_transfer	ok	1.0	525
+MT746146.1	nucleocapsid protein N		nucleocapsid protein N	14889	15260	+	minimap_transfer	ok	1.0	372
+PP946131.1	polyprotein 1a		polyprotein 1a			+	minimap_transfer	no_alignment	0.0	
+PP946131.1	polyprotein 1b		polyprotein 1b			+	minimap_transfer	no_alignment	0.0	
+PP946131.1	glycosylated membrane protein		glycosylated membrane protein			+	minimap_transfer	no_alignment	0.0	
+PP946131.1	envelope protein		envelope protein			+	minimap_transfer	no_alignment	0.0	
+PP946131.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3			+	minimap_transfer	no_alignment	0.0	
+PP946131.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4			+	minimap_transfer	no_alignment	0.0	
+PP946131.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5			+	minimap_transfer	no_alignment	0.0	
+PP946131.1	unglycosylated membrane protein M		unglycosylated membrane protein M			+	minimap_transfer	no_alignment	0.0	
+PP946131.1	nucleocapsid protein N		nucleocapsid protein N			+	minimap_transfer	no_alignment	0.0	
+PQ580367.1	polyprotein 1a		polyprotein 1a			+	minimap_transfer	no_alignment	0.0	
+PQ580367.1	polyprotein 1b		polyprotein 1b			+	minimap_transfer	no_alignment	0.0	
+PQ580367.1	glycosylated membrane protein		glycosylated membrane protein			+	minimap_transfer	no_alignment	0.0	
+PQ580367.1	envelope protein		envelope protein			+	minimap_transfer	no_alignment	0.0	
+PQ580367.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3			+	minimap_transfer	no_alignment	0.0	
+PQ580367.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4			+	minimap_transfer	no_alignment	0.0	
+PQ580367.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5			+	minimap_transfer	no_alignment	0.0	
+PQ580367.1	unglycosylated membrane protein M		unglycosylated membrane protein M			+	minimap_transfer	no_alignment	0.0	
+PQ580367.1	nucleocapsid protein N		nucleocapsid protein N			+	minimap_transfer	no_alignment	0.0	
+PX097596.1	polyprotein 1a		polyprotein 1a	191	7702	+	minimap_transfer	ok	1.0	7512
+PX097596.1	polyprotein 1b		polyprotein 1b	7687	12072	+	minimap_transfer	ok	1.0	4386
+PX097596.1	glycosylated membrane protein		glycosylated membrane protein	12074	12844	+	minimap_transfer	ok	1.0	771
+PX097596.1	envelope protein		envelope protein	12079	12300	+	minimap_transfer	ok	1.0	222
+PX097596.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3	12697	13461	+	minimap_transfer	ok	1.0	765
+PX097596.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4	13242	13778	+	minimap_transfer	ok	1.0	537
+PX097596.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5	13789	14391	+	minimap_transfer	ok	1.0	603
+PX097596.1	unglycosylated membrane protein M		unglycosylated membrane protein M	14376	14900	+	minimap_transfer	ok	1.0	525
+PX097596.1	nucleocapsid protein N		nucleocapsid protein N	14890	15261	+	minimap_transfer	ok	1.0	372
+DQ988080.1	polyprotein 1a		polyprotein 1a			+	minimap_transfer	no_alignment	0.0	
+DQ988080.1	polyprotein 1b		polyprotein 1b			+	minimap_transfer	no_alignment	0.0	
+DQ988080.1	glycosylated membrane protein		glycosylated membrane protein			+	minimap_transfer	no_alignment	0.0	
+DQ988080.1	envelope protein		envelope protein			+	minimap_transfer	no_alignment	0.0	
+DQ988080.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3			+	minimap_transfer	no_alignment	0.0	
+DQ988080.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4			+	minimap_transfer	no_alignment	0.0	
+DQ988080.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5			+	minimap_transfer	no_alignment	0.0	
+DQ988080.1	unglycosylated membrane protein M		unglycosylated membrane protein M			+	minimap_transfer	no_alignment	0.0	
+DQ988080.1	nucleocapsid protein N		nucleocapsid protein N			+	minimap_transfer	no_alignment	0.0	
+GM989520.1	polyprotein 1a		polyprotein 1a	6459	7811	+	minimap_transfer	low_coverage	0.1801	
+GM989520.1	polyprotein 1b		polyprotein 1b	7796	12181	+	minimap_transfer	ok	1.0	4386
+GM989520.1	glycosylated membrane protein		glycosylated membrane protein	12206	12959	+	minimap_transfer	ok	0.978	754
+GM989520.1	envelope protein		envelope protein	12211	12432	+	minimap_transfer	ok	1.0	222
+GM989520.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3	12829	12959	+	minimap_transfer	low_coverage	0.1712	
+GM989520.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4			+	minimap_transfer	unmapped	0.0	
+GM989520.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5			+	minimap_transfer	unmapped	0.0	
+GM989520.1	unglycosylated membrane protein M		unglycosylated membrane protein M			+	minimap_transfer	unmapped	0.0	
+GM989520.1	nucleocapsid protein N		nucleocapsid protein N			+	minimap_transfer	unmapped	0.0	
+JN662424.1	polyprotein 1a		polyprotein 1a	7316	7804	+	minimap_transfer	low_coverage	0.0651	
+JN662424.1	polyprotein 1b		polyprotein 1b	7789	11105	+	minimap_transfer	low_coverage	0.7563	
+JN662424.1	glycosylated membrane protein		glycosylated membrane protein			+	minimap_transfer	unmapped	0.0	
+JN662424.1	envelope protein		envelope protein			+	minimap_transfer	unmapped	0.0	
+JN662424.1	glycosylated membrane protein GP3		glycosylated membrane protein GP3			+	minimap_transfer	unmapped	0.0	
+JN662424.1	glycosylated membrane protein GP4		glycosylated membrane protein GP4			+	minimap_transfer	unmapped	0.0	
+JN662424.1	glycosylated membrane protein GP5		glycosylated membrane protein GP5			+	minimap_transfer	unmapped	0.0	
+JN662424.1	unglycosylated membrane protein M		unglycosylated membrane protein M			+	minimap_transfer	unmapped	0.0	
+JN662424.1	nucleocapsid protein N		nucleocapsid protein N			+	minimap_transfer	unmapped	0.0	

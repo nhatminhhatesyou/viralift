@@ -2,7 +2,7 @@ from pathlib import Path
 import subprocess
 
 
-def run_minimap2(ref_fasta: Path, query_fasta: Path, out_sam: Path) -> None:
+def run_minimap2(ref_fasta: Path, query_fasta: Path, out_sam: Path, quiet: bool = False) -> None:
     """Run minimap2 and write SAM output."""
     cmd = [
         "minimap2",
@@ -13,4 +13,7 @@ def run_minimap2(ref_fasta: Path, query_fasta: Path, out_sam: Path) -> None:
     ]
 
     with open(out_sam, "w", encoding="utf-8") as sam_file:
-        subprocess.run(cmd, stdout=sam_file, check=True)
+        if quiet:
+            subprocess.run(cmd, stdout=sam_file, stderr=subprocess.DEVNULL, check=True)
+        else:
+            subprocess.run(cmd, stdout=sam_file, check=True)

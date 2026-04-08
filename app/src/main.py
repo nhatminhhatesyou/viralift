@@ -2,26 +2,74 @@ from pathlib import Path
 import argparse
 import csv
 
+from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
-from Bio import SeqIO
+from tqdm import tqdm
 
-from src.annotation_strategy import choose_strategy
-from src.direct_extractor import extract_all_direct
 from src.extractor import extract_all_lifted
 from src.fasta_writer import write_record_to_fasta
-from src.feature_renamer import rename_query_cds_by_reference_order
-from src.genbank_parser import load_single_genbank, load_genbank_records, parse_cds_features
+from src.genbank_parser import (
+    load_single_genbank,
+    load_genbank_records,
+    parse_cds_features,
+)
 from src.minimap_runner import run_minimap2
 from src.sam_lifter import get_primary_alignment, build_ref_to_query_map
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Reference-guided viral CDS extraction tool.")
-    parser.add_argument("--ref-gb", required=True, help="Reference GenBank file (single record)")
-    parser.add_argument("--query-gb", required=True, help="Query GenBank file (multi-record)")
-    parser.add_argument("--outdir", required=True, help="Output directory")
-    parser.add_argument("--min-coverage", type=float, default=0.8, help="Minimum lifted CDS coverage")
+    parser = argparse.ArgumentParser(
+        prog="viralift",
+        description="Reference-guided viral CDS transfer using minimap2.",
+        epilog=(
+            "Example:\n"
+            "  python -m src.main "
+            "--reference data/PRRS_ref_test.gb "
+            "--query data/PRRSV_test.gb "
+            "--output output/prrsv_multi\n"
+        ),
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+
+    parser.add_argument(
+        "--reference",
+        required=True,
+        help="Reference GenBank file (single record).",
+    )
+    parser.add_argument(
+        "--query",
+        required=True,
+        help="Query GenBank file (multi-record).",
+    )
+    parser.add_argument(
+        "--output",
+        default="output/run",
+        help="Output directory. Default: output/run",
+    )
+    parser.add_argument(
+        "--feature-type",
+        default="CDS",
+        choices=["CDS"],
+        help="Feature type to transfer. Default: CDS",
+    )
+    parser.add_argument(
+        "--min-coverage",
+        type=float,
+        default=0.8,
+        help="Minimum coverage for lifted features. Default: 0.8",
+    )
+    parser.add_argument(
+        "--keep-temp",
+        action="store_true",
+        help="Keep temporary FASTA and SAM files for debugging.",
+    )
+    parser.add_argument(
+        "--quiet",
+        action="store_true",
+        help="Reduce console output but still show progress and final summary.",
+    )
+
     return parser.parse_args()
 
 
@@ -74,19 +122,38 @@ def write_results_tsv(all_results, out_path: Path) -> None:
         writer.writerows(rows)
 
 
-def process_one_query_record(ref_record, query_record, outdir: Path, min_coverage: float):
-    """Process one query record using either direct or minimap strategy."""
-    ref_cds = parse_cds_features(ref_record)
-    query_cds = parse_cds_features(query_record)
+def summarize_counts(all_results):
+    """Summarize output status counts."""
+    ok = 0
+    no_alignment = 0
+    low_coverage = 0
+    unmapped = 0
 
-    strategy = choose_strategy(ref_record, query_record)
-    print(f"[{query_record.id}] strategy = {strategy}")
+    for _, results in all_results:
+        for item in results:
+            status = item.get("status")
+            if status == "ok":
+                ok += 1
+            elif status == "no_alignment":
+                no_alignment += 1
+            elif status == "low_coverage":
+                low_coverage += 1
+            elif status == "unmapped":
+                unmapped += 1
 
-    if strategy == "direct":
-        renamed_query_cds = rename_query_cds_by_reference_order(ref_cds, query_cds)
-        return extract_all_direct(query_record, renamed_query_cds)
+    return ok, no_alignment, low_coverage, unmapped
 
-    # minimap fallback
+
+def process_one_query_record(
+    ref_record,
+    query_record,
+    ref_cds,
+    outdir: Path,
+    min_coverage: float,
+    keep_temp: bool = False,
+    quiet: bool = False,
+):
+    """Process one query record using minimap2 only."""
     tmp_dir = outdir / "tmp"
     tmp_dir.mkdir(parents=True, exist_ok=True)
 
@@ -97,20 +164,21 @@ def process_one_query_record(ref_record, query_record, outdir: Path, min_coverag
     write_record_to_fasta(ref_record, ref_fa)
     write_record_to_fasta(query_record, query_fa)
 
-    run_minimap2(ref_fa, query_fa, sam_path)
+    run_minimap2(ref_fa, query_fa, sam_path, quiet=quiet)
 
     try:
         aln = get_primary_alignment(sam_path)
         ref_to_query = build_ref_to_query_map(aln)
 
-        return extract_all_lifted(
+        results = extract_all_lifted(
             ref_cds=ref_cds,
             query_record=query_record,
             ref_to_query=ref_to_query,
             min_coverage=min_coverage,
         )
+
     except ValueError:
-        return [
+        results = [
             {
                 "name": feature["name"],
                 "gene": feature.get("gene"),
@@ -126,29 +194,60 @@ def process_one_query_record(ref_record, query_record, outdir: Path, min_coverag
             for feature in ref_cds
         ]
 
+    if not keep_temp:
+        ref_fa.unlink(missing_ok=True)
+        query_fa.unlink(missing_ok=True)
+        sam_path.unlink(missing_ok=True)
+
+    return results
+
+
 def main():
     args = parse_args()
 
-    outdir = Path(args.outdir)
+    outdir = Path(args.output)
     outdir.mkdir(parents=True, exist_ok=True)
 
-    ref_record = load_single_genbank(Path(args.ref_gb))
-    query_records = load_genbank_records(Path(args.query_gb))
+    ref_record = load_single_genbank(Path(args.reference))
+    query_records = load_genbank_records(Path(args.query))
 
     if not query_records:
         raise ValueError("No query records found.")
 
-    print(f"Using reference record: {ref_record.id}")
-    print(f"Total query records: {len(query_records)}")
+    ref_cds = parse_cds_features(ref_record)
+
+    if not ref_cds:
+        raise ValueError("Reference record has no CDS features.")
+
+    print("ViraLift")
+    print(f"  Reference record : {ref_record.id}")
+    print(f"  Feature type     : {args.feature_type}")
+    print(f"  Reference CDS    : {len(ref_cds)}")
+    print(f"  Query records    : {len(query_records)}")
+    print(f"  Output folder    : {outdir}")
 
     all_results = []
+    total = len(query_records)
 
-    for query_record in query_records:
+    iterator = tqdm(
+        query_records,
+        desc="Processing records",
+        unit="record",
+        ncols=90,
+    )
+
+    for query_record in iterator:
+        if not args.quiet:
+            iterator.set_postfix_str(query_record.id)
+
         results = process_one_query_record(
             ref_record=ref_record,
             query_record=query_record,
+            ref_cds=ref_cds,
             outdir=outdir,
             min_coverage=args.min_coverage,
+            keep_temp=args.keep_temp,
+            quiet=args.quiet,
         )
         all_results.append((query_record.id, results))
 
@@ -158,8 +257,18 @@ def main():
     write_results_fasta(all_results, fasta_out)
     write_results_tsv(all_results, tsv_out)
 
-    print(f"Done. FASTA: {fasta_out}")
-    print(f"Done. TSV: {tsv_out}")
+    ok, no_alignment, low_coverage, unmapped = summarize_counts(all_results)
+
+    print("\nRun summary")
+    print(f"  Query records processed : {total}")
+    print(f"  OK                      : {ok}")
+    print(f"  No alignment            : {no_alignment}")
+    print(f"  Low coverage            : {low_coverage}")
+    print(f"  Unmapped                : {unmapped}")
+
+    print("\nOutput files")
+    print(f"  FASTA : {fasta_out}")
+    print(f"  TSV   : {tsv_out}")
 
 
 if __name__ == "__main__":

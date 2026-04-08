@@ -191,3 +191,76 @@ def get_record_metadata(record: SeqRecord) -> Dict:
         "organism": organism,
         "length": len(record.seq),
     }
+
+def load_single_genbank(path):
+    records = list(SeqIO.parse(str(path), "genbank"))
+    if not records:
+        raise ValueError(f"No records found in {path}")
+    if len(records) > 1:
+        raise ValueError(f"Expected 1 record, found {len(records)}")
+    return records[0]
+
+
+def load_genbank_records(path):
+    return list(SeqIO.parse(str(path), "genbank"))
+
+
+def _get_feature_name(feature):
+    qualifiers = feature.qualifiers
+
+    for key in ["gene", "product", "label", "standard_name", "note"]:
+        values = qualifiers.get(key)
+        if values:
+            return values[0]
+
+    return "unknown"
+
+
+def _feature_to_dict(feature, genome_length, order_index):
+    start = int(feature.location.start) + 1
+    end = int(feature.location.end)
+    strand = feature.location.strand
+    length = end - start + 1
+
+    return {
+        "type": feature.type,
+        "name": _get_feature_name(feature),
+        "start": start,
+        "end": end,
+        "strand": strand,
+        "length": length,
+        "rel_start": start / genome_length,
+        "rel_end": end / genome_length,
+        "order": order_index,
+    }
+
+
+def parse_cds_features(record):
+    items = []
+    genome_length = len(record.seq)
+
+    cds_features = [f for f in record.features if f.type == "CDS"]
+
+    for i, feature in enumerate(cds_features, 1):
+        items.append(_feature_to_dict(feature, genome_length, i))
+
+    return items
+
+
+def parse_mat_peptides(record):
+    items = []
+    genome_length = len(record.seq)
+
+    mat_features = [f for f in record.features if f.type == "mat_peptide"]
+
+    for i, feature in enumerate(mat_features, 1):
+        items.append(_feature_to_dict(feature, genome_length, i))
+
+    return items
+
+
+def parse_feature_levels(record):
+    return {
+        "CDS": parse_cds_features(record),
+        "mat_peptide": parse_mat_peptides(record),
+    }
