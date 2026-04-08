@@ -1,0 +1,22 @@
+{
+  "viruses": [
+    {
+      "virus_name": "PRRSV",
+      "keywords": [
+        "porcine reproductive and respiratory syndrome virus",
+        "prrsv",
+        "prrs virus"
+      ],
+      "alias_config": "config/prrsv_alias.json"
+    },
+    {
+      "virus_name": "FMDV",
+      "keywords": [
+        "foot-and-mouth disease virus",
+        "fmdv",
+        "foot and mouth disease virus"
+      ],
+      "alias_config": "config/fmdv_alias.json"
+    }
+  ]
+}
