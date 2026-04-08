@@ -2,229 +2,202 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 from Bio import SeqIO
-from Bio.SeqRecord import SeqRecord
 from Bio.SeqFeature import SeqFeature
+from Bio.SeqRecord import SeqRecord
 
 
-def load_single_genbank(gb_path: Path) -> SeqRecord:
-    """Load a single GenBank record."""
-    return SeqIO.read(str(gb_path), "genbank")
+"""
+Module: genbank_parser.py
+
+Purpose:
+    Parse GenBank records into structured Python dictionaries for downstream use.
+
+Main responsibilities:
+    - Load one or multiple GenBank records
+    - Extract genome-level metadata
+    - Parse CDS and mat_peptide features
+    - Convert features into normalized dictionaries for matching / scoring
+
+Notes:
+    - This module is responsible for extracting raw annotation information.
+    - It does NOT perform alias resolution or canonical biological naming.
+    - Alias mapping should be added as a separate naming layer upstream or downstream.
+"""
 
 
-def get_record_sequence(record: SeqRecord) -> str:
-    """Return the full nucleotide sequence as a string."""
-    return str(record.seq)
+# ---------------------------------------------------------------------
+# File loading utilities
+# ---------------------------------------------------------------------
 
-
-def _get_first_qualifier(feature: SeqFeature, key: str) -> Optional[str]:
-    """Return the first qualifier value if it exists."""
-    values = feature.qualifiers.get(key)
-    if not values:
-        return None
-    return values[0]
-
-
-def _choose_feature_name(feature: SeqFeature, index: int) -> str:
+def load_single_genbank(path: Path) -> SeqRecord:
     """
-    Pick a stable name for a feature.
-    Priority: gene > product > locus_tag > fallback name.
+    Load exactly one GenBank record from a file.
+
+    Args:
+        path: Path to a GenBank file
+
+    Returns:
+        A single SeqRecord
+
+    Raises:
+        ValueError: If the file contains zero or multiple records
     """
-    gene = _get_first_qualifier(feature, "gene")
-    if gene:
-        return gene
-
-    product = _get_first_qualifier(feature, "product")
-    if product:
-        return product
-
-    locus_tag = _get_first_qualifier(feature, "locus_tag")
-    if locus_tag:
-        return locus_tag
-
-    return f"CDS_{index:03d}"
-
-
-def parse_cds_features(record: SeqRecord) -> List[Dict]:
-    """
-    Extract CDS features from a GenBank record.
-
-    Returns a list of dictionaries with:
-    - name
-    - gene
-    - product
-    - start
-    - end
-    - strand
-    """
-    cds_list: List[Dict] = []
-
-    cds_index = 1
-    for feature in record.features:
-        if feature.type != "CDS":
-            continue
-
-        start = int(feature.location.start) + 1
-        end = int(feature.location.end)
-        strand = "+" if feature.location.strand == 1 else "-"
-
-        gene = _get_first_qualifier(feature, "gene")
-        product = _get_first_qualifier(feature, "product")
-        name = _choose_feature_name(feature, cds_index)
-
-        cds_list.append(
-            {
-                "name": name,
-                "gene": gene,
-                "product": product,
-                "start": start,
-                "end": end,
-                "strand": strand,
-            }
-        )
-        cds_index += 1
-
-    return cds_list
-
-
-def get_record_metadata(record: SeqRecord) -> Dict:
-    """Extract simple metadata from a GenBank record."""
-    organism = None
-
-    for feature in record.features:
-        if feature.type == "source":
-            organism = _get_first_qualifier(feature, "organism")
-            break
-
-    return {
-        "id": record.id,
-        "name": record.name,
-        "description": record.description,
-        "organism": organism,
-        "length": len(record.seq),
-    }
-    
-def load_genbank_records(gb_path: Path) -> List[SeqRecord]:
-    """Load all GenBank records from a file."""
-    return list(SeqIO.parse(str(gb_path), "genbank"))
-
-
-def load_single_genbank(gb_path: Path) -> SeqRecord:
-    """Load a single GenBank record."""
-    return SeqIO.read(str(gb_path), "genbank")
-
-
-def get_record_sequence(record: SeqRecord) -> str:
-    """Return the full nucleotide sequence as a string."""
-    return str(record.seq)
-
-
-def _get_first_qualifier(feature: SeqFeature, key: str) -> Optional[str]:
-    """Return the first qualifier value if it exists."""
-    values = feature.qualifiers.get(key)
-    if not values:
-        return None
-    return values[0]
-
-
-def _choose_feature_name(feature: SeqFeature, index: int) -> str:
-    """Pick a stable name for a feature."""
-    gene = _get_first_qualifier(feature, "gene")
-    if gene:
-        return gene
-
-    product = _get_first_qualifier(feature, "product")
-    if product:
-        return product
-
-    locus_tag = _get_first_qualifier(feature, "locus_tag")
-    if locus_tag:
-        return locus_tag
-
-    return f"CDS_{index:03d}"
-
-
-def parse_cds_features(record: SeqRecord) -> List[Dict]:
-    """Extract CDS features from a GenBank record."""
-    cds_list: List[Dict] = []
-
-    cds_index = 1
-    for feature in record.features:
-        if feature.type != "CDS":
-            continue
-
-        start = int(feature.location.start) + 1
-        end = int(feature.location.end)
-        strand = "+" if feature.location.strand == 1 else "-"
-
-        gene = _get_first_qualifier(feature, "gene")
-        product = _get_first_qualifier(feature, "product")
-        name = _choose_feature_name(feature, cds_index)
-
-        cds_list.append(
-            {
-                "name": name,
-                "gene": gene,
-                "product": product,
-                "start": start,
-                "end": end,
-                "strand": strand,
-            }
-        )
-        cds_index += 1
-
-    return cds_list
-
-
-def get_record_metadata(record: SeqRecord) -> Dict:
-    """Extract simple metadata from a GenBank record."""
-    organism = None
-
-    for feature in record.features:
-        if feature.type == "source":
-            organism = _get_first_qualifier(feature, "organism")
-            break
-
-    return {
-        "id": record.id,
-        "name": record.name,
-        "description": record.description,
-        "organism": organism,
-        "length": len(record.seq),
-    }
-
-def load_single_genbank(path):
     records = list(SeqIO.parse(str(path), "genbank"))
+
     if not records:
         raise ValueError(f"No records found in {path}")
+
     if len(records) > 1:
-        raise ValueError(f"Expected 1 record, found {len(records)}")
+        raise ValueError(f"Expected 1 record, found {len(records)} in {path}")
+
     return records[0]
 
 
-def load_genbank_records(path):
+def load_genbank_records(path: Path) -> List[SeqRecord]:
+    """
+    Load all GenBank records from a file.
+
+    Args:
+        path: Path to a GenBank file
+
+    Returns:
+        List of SeqRecord objects
+    """
     return list(SeqIO.parse(str(path), "genbank"))
 
 
-def _get_feature_name(feature):
-    qualifiers = feature.qualifiers
+def get_record_sequence(record: SeqRecord) -> str:
+    """
+    Return the full nucleotide sequence of a record as a string.
 
-    for key in ["gene", "product", "label", "standard_name", "note"]:
-        values = qualifiers.get(key)
-        if values:
-            return values[0]
+    Args:
+        record: Input SeqRecord
+
+    Returns:
+        Genome sequence as string
+    """
+    return str(record.seq)
+
+
+# ---------------------------------------------------------------------
+# Qualifier helpers
+# ---------------------------------------------------------------------
+
+def _get_first_qualifier(feature: SeqFeature, key: str) -> Optional[str]:
+    """
+    Return the first qualifier value for a given key, if present.
+
+    Args:
+        feature: Biopython SeqFeature
+        key: Qualifier key (e.g. "gene", "product")
+
+    Returns:
+        First qualifier value, or None if missing
+    """
+    values = feature.qualifiers.get(key)
+    if not values:
+        return None
+    return values[0]
+
+
+def _get_feature_name(feature: SeqFeature, fallback_index: Optional[int] = None) -> str:
+    """
+    Select a stable display name for a feature.
+
+    Priority:
+        gene > product > label > standard_name > locus_tag > note > fallback
+
+    Args:
+        feature: Biopython SeqFeature
+        fallback_index: Optional index used to build a fallback name
+
+    Returns:
+        A human-readable feature name
+    """
+    for key in ["gene", "product", "label", "standard_name", "locus_tag", "note"]:
+        value = _get_first_qualifier(feature, key)
+        if value:
+            return value
+
+    if fallback_index is not None:
+        return f"{feature.type}_{fallback_index:03d}"
 
     return "unknown"
 
 
-def _feature_to_dict(feature, genome_length, order_index):
+# ---------------------------------------------------------------------
+# Feature conversion helpers
+# ---------------------------------------------------------------------
+
+def _feature_to_basic_dict(feature: SeqFeature, index: int) -> Dict:
+    """
+    Convert a feature into a minimal dictionary for extraction workflows.
+
+    Fields:
+        - name
+        - gene
+        - product
+        - start
+        - end
+        - strand
+
+    Args:
+        feature: Biopython SeqFeature
+        index: Feature index used for fallback naming
+
+    Returns:
+        Dictionary containing basic feature information
+    """
     start = int(feature.location.start) + 1
     end = int(feature.location.end)
-    strand = feature.location.strand
+
+    strand = "+"
+    if feature.location.strand == -1:
+        strand = "-"
+
+    return {
+        "name": _get_feature_name(feature, index),
+        "gene": _get_first_qualifier(feature, "gene"),
+        "product": _get_first_qualifier(feature, "product"),
+        "start": start,
+        "end": end,
+        "strand": strand,
+    }
+
+
+def _feature_to_scored_dict(feature: SeqFeature, genome_length: int, order_index: int) -> Dict:
+    """
+    Convert a feature into a richer dictionary for structural matching/scoring.
+
+    Fields:
+        - type
+        - name
+        - gene
+        - product
+        - start / end
+        - strand
+        - length
+        - rel_start / rel_end
+        - order
+
+    Args:
+        feature: Biopython SeqFeature
+        genome_length: Total genome length
+        order_index: Positional order of the feature in the genome
+
+    Returns:
+        Dictionary used for heuristic feature matching
+    """
+    start = int(feature.location.start) + 1
+    end = int(feature.location.end)
+    strand = "+" if feature.location.strand == 1 else "-"
     length = end - start + 1
 
     return {
         "type": feature.type,
-        "name": _get_feature_name(feature),
+        "name": _get_feature_name(feature, order_index),
+        "gene": _get_first_qualifier(feature, "gene"),
+        "product": _get_first_qualifier(feature, "product"),
         "start": start,
         "end": end,
         "strand": strand,
@@ -235,32 +208,116 @@ def _feature_to_dict(feature, genome_length, order_index):
     }
 
 
-def parse_cds_features(record):
-    items = []
+# ---------------------------------------------------------------------
+# Feature parsers
+# ---------------------------------------------------------------------
+
+def parse_cds_features(record: SeqRecord) -> List[Dict]:
+    """
+    Parse CDS features into dictionaries for structural comparison / matching.
+
+    Args:
+        record: Input SeqRecord
+
+    Returns:
+        List of CDS feature dictionaries
+    """
+    items: List[Dict] = []
     genome_length = len(record.seq)
 
-    cds_features = [f for f in record.features if f.type == "CDS"]
+    cds_features = [feature for feature in record.features if feature.type == "CDS"]
 
-    for i, feature in enumerate(cds_features, 1):
-        items.append(_feature_to_dict(feature, genome_length, i))
+    for i, feature in enumerate(cds_features, start=1):
+        items.append(_feature_to_scored_dict(feature, genome_length, i))
 
     return items
 
 
-def parse_mat_peptides(record):
-    items = []
+def parse_mat_peptides(record: SeqRecord) -> List[Dict]:
+    """
+    Parse mat_peptide features into dictionaries for structural comparison / matching.
+
+    Args:
+        record: Input SeqRecord
+
+    Returns:
+        List of mat_peptide feature dictionaries
+    """
+    items: List[Dict] = []
     genome_length = len(record.seq)
 
-    mat_features = [f for f in record.features if f.type == "mat_peptide"]
+    mat_features = [feature for feature in record.features if feature.type == "mat_peptide"]
 
-    for i, feature in enumerate(mat_features, 1):
-        items.append(_feature_to_dict(feature, genome_length, i))
+    for i, feature in enumerate(mat_features, start=1):
+        items.append(_feature_to_scored_dict(feature, genome_length, i))
 
     return items
 
 
-def parse_feature_levels(record):
+def parse_feature_levels(record: SeqRecord) -> Dict[str, List[Dict]]:
+    """
+    Parse multiple feature levels from a record.
+
+    Args:
+        record: Input SeqRecord
+
+    Returns:
+        Dictionary grouping parsed features by type
+    """
     return {
         "CDS": parse_cds_features(record),
         "mat_peptide": parse_mat_peptides(record),
+    }
+
+
+def parse_cds_features_basic(record: SeqRecord) -> List[Dict]:
+    """
+    Parse CDS features into minimal dictionaries for extraction workflows.
+
+    This is useful when only coordinate and naming metadata are needed,
+    without relative-position scoring fields.
+
+    Args:
+        record: Input SeqRecord
+
+    Returns:
+        List of CDS feature dictionaries
+    """
+    items: List[Dict] = []
+
+    cds_features = [feature for feature in record.features if feature.type == "CDS"]
+
+    for i, feature in enumerate(cds_features, start=1):
+        items.append(_feature_to_basic_dict(feature, i))
+
+    return items
+
+
+# ---------------------------------------------------------------------
+# Record metadata
+# ---------------------------------------------------------------------
+
+def get_record_metadata(record: SeqRecord) -> Dict:
+    """
+    Extract basic metadata from a GenBank record.
+
+    Args:
+        record: Input SeqRecord
+
+    Returns:
+        Dictionary containing high-level record metadata
+    """
+    organism = None
+
+    for feature in record.features:
+        if feature.type == "source":
+            organism = _get_first_qualifier(feature, "organism")
+            break
+
+    return {
+        "id": record.id,
+        "name": record.name,
+        "description": record.description,
+        "organism": organism,
+        "length": len(record.seq),
     }
