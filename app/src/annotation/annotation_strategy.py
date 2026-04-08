@@ -1,5 +1,5 @@
 from Bio.SeqRecord import SeqRecord
-from src.genbank_parser import parse_cds_features
+from app.src.io.genbank_parser import parse_cds_features
 
 
 """

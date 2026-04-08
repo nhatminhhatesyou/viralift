@@ -1,5 +1,5 @@
 from pathlib import Path
-from src.genbank_parser import load_genbank_records, parse_cds_features, get_record_metadata
+from app.src.io.genbank_parser import load_genbank_records, parse_cds_features, get_record_metadata
 
 
 def test_file(gb_path: Path) -> None:

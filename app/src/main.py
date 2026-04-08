@@ -8,15 +8,15 @@ from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from tqdm import tqdm
 
-from src.extractor import extract_all_lifted
-from src.fasta_writer import write_record_to_fasta
-from src.genbank_parser import (
+from app.src.annotation.extractor import extract_all_lifted
+from app.src.io.fasta_writer import write_record_to_fasta
+from app.src.io.genbank_parser import (
     load_single_genbank,
     load_genbank_records,
     parse_cds_features,
 )
-from src.minimap_runner import run_minimap2
-from src.sam_lifter import get_primary_alignment, build_ref_to_query_map
+from app.src.alignment.minimap_runner import run_minimap2
+from app.src.alignment.sam_lifter import get_primary_alignment, build_ref_to_query_map
 
 
 """

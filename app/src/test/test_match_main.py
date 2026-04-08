@@ -1,13 +1,13 @@
 from pathlib import Path
 import argparse
 
-from src.genbank_parser import (
+from app.src.io.genbank_parser import (
     load_single_genbank,
     load_genbank_records,
     parse_cds_features,
     parse_mat_peptides,
 )
-from src.feature_renamer import match_features
+from app.src.annotation.feature_matcher import match_features
 
 
 def parse_args():

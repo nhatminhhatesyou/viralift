@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from src.genbank_parser import load_genbank_records
-from src.fasta_writer import write_record_to_fasta
+from app.src.io.genbank_parser import load_genbank_records
+from app.src.io.fasta_writer import write_record_to_fasta
 
 
 if __name__ == "__main__":

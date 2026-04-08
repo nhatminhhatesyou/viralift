@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from src.sam_lifter import (
+from app.src.alignment.sam_lifter import (
     get_primary_alignment,
     build_ref_to_query_map,
     get_alignment_summary,
