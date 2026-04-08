@@ -1,0 +1,12 @@
+{
+  "virus": "PRRSV",
+  "canonical_names": {
+    "GP2": ["GP2", "ORF2", "glycoprotein 2", "minor envelope glycoprotein GP2"],
+    "E": ["E", "ORF2b", "small envelope protein E"],
+    "GP3": ["GP3", "ORF3", "glycoprotein 3"],
+    "GP4": ["GP4", "ORF4", "glycoprotein 4"],
+    "GP5": ["GP5", "ORF5", "glycoprotein 5", "major envelope glycoprotein GP5"],
+    "M": ["M", "ORF6", "membrane protein", "matrix protein"],
+    "N": ["N", "ORF7", "nucleocapsid protein"]
+  }
+}
