@@ -106,9 +106,17 @@ def main():
     input_path = Path(args.input)
     record = load_single_genbank(input_path)
 
-    raw_features = parse_cds_features(record)
+    strategy, feature_type = choose_strategy(record)
+
+    if feature_type == "mat_peptide":
+        raw_features = parse_mat_peptides(record)
+    elif feature_type == "CDS":
+        raw_features = parse_cds_features(record)
+    else:
+        raw_features = []
+
     if not raw_features:
-        raise ValueError("No CDS features found in input file.")
+        raise ValueError(f"No {feature_type or 'CDS/mat_peptide'} features found in input file.")
 
     alias_config_path, detected_virus_name, mode = resolve_alias_config(record, args)
 
@@ -143,7 +151,8 @@ def main():
         print("Alias config      : not found")
         print(f"Registry path     : {args.alias_registry}")
 
-    print(f"Total CDS         : {summary['total']}")
+    print(f"Strategy          : {strategy} ({feature_type})")
+    print(f"Total features    : {summary['total']}")
     print(f"Alias matched     : {summary['alias_count']}")
     print(f"Kept as raw       : {summary['raw_count']}")
 
