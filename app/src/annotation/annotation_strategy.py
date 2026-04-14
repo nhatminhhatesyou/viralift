@@ -1,61 +1,47 @@
+from typing import Tuple
+
 from Bio.SeqRecord import SeqRecord
-from app.src.io.genbank_parser import parse_cds_features
+from app.src.io.genbank_parser import parse_cds_features, parse_mat_peptides
 
 
 """
 Module: annotation_strategy.py
 
 Purpose:
-    Decide which extraction strategy to use for a query genome:
-    - "direct": when query and reference have matching CDS structure
-    - "minimap": fallback using alignment-based coordinate transfer
+    Decide which extraction strategy and feature type to use for a query genome:
+    - ("direct", "mat_peptide"): query has mat_peptide features (e.g. FMDV polyprotein)
+    - ("direct", "CDS"):         query has CDS features (e.g. PRRSV)
+    - ("minimap", None):         query has no annotation -> coordinate transfer from reference
 
 Notes:
+    - mat_peptide takes priority over CDS because some viruses (e.g. FMDV) have a single
+      polyprotein CDS that is not useful for naming; gene names live in mat_peptide instead.
     - This module only decides the strategy, it does NOT perform extraction.
     - Alias-based naming and feature normalization should be handled separately.
 """
 
 
-def has_matching_cds_structure(ref_record: SeqRecord, query_record: SeqRecord) -> bool:
+def choose_strategy(query_record: SeqRecord) -> Tuple[str, str]:
     """
-    Check whether the query genome has the same CDS structure as the reference.
+    Select extraction strategy and feature type for a query genome.
 
-    Criteria:
-        - Same number of CDS features
+    Priority:
+        1. mat_peptide present -> ("direct", "mat_peptide")
+        2. CDS present         -> ("direct", "CDS")
+        3. Neither             -> ("minimap", None)
 
     Args:
-        ref_record: Reference genome (GenBank record)
         query_record: Query genome (GenBank record)
 
     Returns:
-        True if structures match, False otherwise
+        Tuple of (strategy, feature_type):
+            strategy     - "direct" or "minimap"
+            feature_type - "mat_peptide", "CDS", or None
     """
-    ref_cds = parse_cds_features(ref_record)
-    query_cds = parse_cds_features(query_record)
+    if parse_mat_peptides(query_record):
+        return "direct", "mat_peptide"
 
-    # If reference has no CDS, cannot compare structure
-    if not ref_cds:
-        return False
+    if parse_cds_features(query_record):
+        return "direct", "CDS"
 
-    return len(ref_cds) == len(query_cds)
-
-
-def choose_strategy(ref_record: SeqRecord, query_record: SeqRecord) -> str:
-    """
-    Select extraction strategy based on CDS structure similarity.
-
-    Strategy:
-        - "direct": if CDS counts match (assumes similar genome structure)
-        - "minimap": otherwise, use alignment-based transfer
-
-    Args:
-        ref_record: Reference genome
-        query_record: Query genome
-
-    Returns:
-        Strategy name ("direct" or "minimap")
-    """
-    if has_matching_cds_structure(ref_record, query_record):
-        return "direct"
-
-    return "minimap"
+    return "minimap", None
