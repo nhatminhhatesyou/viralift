@@ -194,7 +194,9 @@ def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
 
     new_feature["raw_name"] = raw_name
     new_feature["name"] = canonical_name
-    new_feature["name_source"] = "alias" if canonical_name != raw_name else "raw"
+    in_lookup = normalize_text(raw_name) in alias_lookup
+
+    new_feature["name_source"] = "alias" if in_lookup else "raw"
 
     return new_feature
 
