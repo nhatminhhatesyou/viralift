@@ -7,7 +7,7 @@
         "prrsv",
         "prrs virus"
       ],
-      "alias_config": "config/prrsv_alias.json"
+      "alias_config": "app/config/prrsv_alias.json"
     },
     {
       "virus_name": "FMDV",
@@ -16,7 +16,7 @@
         "fmdv",
         "foot and mouth disease virus"
       ],
-      "alias_config": "config/fmdv_alias.json"
+      "alias_config": "app/config/fmdv_alias.json"
     }
   ]
 }

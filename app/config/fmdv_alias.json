@@ -1,7 +1,7 @@
 {
   "virus": "FMDV",
   "canonical_names": {
-    "Lpro": ["Lpro", "leader protein", "Lb", "La"],
+    "Lpro": ["Lpro", "leader protein", "Lb", "La", "Lab", "L", "leader"],
     "VP4": ["VP4", "1A", "capsid protein VP4"],
     "VP2": ["VP2", "1B", "capsid protein VP2"],
     "VP3": ["VP3", "1C", "capsid protein VP3"],
@@ -10,7 +10,7 @@
     "2B": ["2B"],
     "2C": ["2C"],
     "3A": ["3A"],
-    "3B": ["3B", "VPg"],
+    "3B": ["3B", "VPg", "3B1-3B3", "3B1", "3B2", "3B3", "VPg1", "VPg2", "VPg3"],
     "3Cpro": ["3Cpro", "3C", "protease 3C"],
     "3Dpol": ["3Dpol", "3D", "RNA dependent RNA polymerase"]
   }

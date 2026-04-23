@@ -1,12 +1,99 @@
 {
   "virus": "PRRSV",
   "canonical_names": {
-    "GP2": ["GP2", "ORF2", "glycoprotein 2", "minor envelope glycoprotein GP2"],
-    "E": ["E", "ORF2b", "small envelope protein E"],
-    "GP3": ["GP3", "ORF3", "glycoprotein 3"],
-    "GP4": ["GP4", "ORF4", "glycoprotein 4"],
-    "GP5": ["GP5", "ORF5", "glycoprotein 5", "major envelope glycoprotein GP5"],
-    "M": ["M", "ORF6", "membrane protein", "matrix protein"],
-    "N": ["N", "ORF7", "nucleocapsid protein"]
+    "ORF1ab": [
+      "orf1ab",
+      "polyprotein 1ab"
+    ],
+    "NSP1A": [
+      "polyprotein 1a",
+      "orf1a",
+      "orf1a polyprotein",
+      "nonstructural proteins orf1a",
+      "papain-like cysteine protease",
+      "polyprotein pp1a",
+      "nsp1 alpha",
+      "nsp1alpha"
+    ],
+    "NSP1B": [
+      "polyprotein 1b",
+      "orf1b",
+      "orf1b polyprotein",
+      "rna-dependent rna polymerase",
+      "polyprotein pp1ab",
+      "nsp1 beta",
+      "nsp1beta"
+    ],
+    "NSP2TF": [
+      "nsp2tf"
+    ],
+    "NSP2N": [
+      "nsp2n"
+    ],
+    "GP2": [
+      "gp2",
+      "orf2",
+      "orf2a",
+      "glycoprotein 2",
+      "minor envelope glycoprotein gp2",
+      "glycosylated membrane protein",
+      "gp2 glycosylated envelope protein",
+      "gp2 envelope protein",
+      "glycosylated protein 2a",
+      "gp2a",
+      "glycosylated membrane protein 2"
+    ],
+    "E": [
+      "e",
+      "orf2b",
+      "small envelope protein e",
+      "envelope protein"
+    ],
+    "GP3": [
+      "gp3",
+      "orf3",
+      "glycoprotein 3",
+      "glycosylated membrane protein gp3",
+      "gp3 envelope protein"
+    ],
+    "GP4": [
+      "gp4",
+      "orf4",
+      "glycoprotein 4",
+      "glycosylated membrane protein gp4",
+      "gp4 protein",
+      "gp4 envelope protein"
+    ],
+    "GP5": [
+      "gp5",
+      "orf5",
+      "glycoprotein 5",
+      "major envelope glycoprotein gp5",
+      "glycosylated membrane protein gp5",
+      "gp5 glycosylated envelope protein",
+      "gp5 envelope protein"
+    ],
+    "ORF5a": [
+      "orf5a",
+      "orf5a protein",
+      "5a",
+      "membrane protein 5a"
+    ],
+    "M": [
+      "m",
+      "orf6",
+      "membrane protein",
+      "matrix protein",
+      "unglycosylated membrane protein m",
+      "membrane protein m",
+      "m matrix protein"
+    ],
+    "N": [
+      "n",
+      "orf7",
+      "nucleocapsid protein",
+      "nucleocapsid protein n",
+      "n protein"
+    ]
   }
 }
