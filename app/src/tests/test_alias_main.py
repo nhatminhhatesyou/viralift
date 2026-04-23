@@ -1,177 +1,77 @@
-from pathlib import Path
 import argparse
+from pathlib import Path
 
-from app.src.annotation.alias_registry import (
-    detect_alias_config_for_record,
-    get_detected_virus_name,
-)
-from app.src.annotation.gene_alias import (
-    load_alias_lookup,
-    apply_alias_to_features,
-)
-from app.src.annotation.annotation_strategy import choose_strategy
-from app.src.io.genbank_parser import (
-    load_single_genbank,
-    parse_cds_features,
-    parse_mat_peptides,
-)
+from app.src.annotation.alias_payload import run_alias_pipeline, save_payload
+from app.src.io.genbank_parser import load_single_genbank, load_genbank_records
 
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Test alias normalization on a real GenBank reference record."
+        description="Test Case 1 alias normalization pipeline: reference + query -> normalized names + LLM payload."
     )
-
+    parser.add_argument("--reference", required=True, help="Reference GenBank file (single record).")
+    parser.add_argument("--query", required=True, help="Query GenBank file (single or multi-record).")
+    parser.add_argument("--alias-registry", default="app/config/virus_alias_registry.json")
+    parser.add_argument("--output-dir", default="output/alias_payloads")
     parser.add_argument(
-        "--input",
-        required=True,
-        help="Input GenBank file (single record). Example: app/data/PRRS_ref_test.gb",
+        "--canonical",
+        action="store_true",
+        help="Output canonical names instead of reference names. Default: use reference naming.",
     )
-
-    parser.add_argument(
-        "--alias-config",
-        required=False,
-        help="Optional alias JSON config file. Example: app/config/prrsv_alias.json",
-    )
-
-    parser.add_argument(
-        "--alias-registry",
-        default="app/config/virus_alias_registry.json",
-        help="Path to virus alias registry JSON file. Default: app/config/virus_alias_registry.json",
-    )
-
     return parser.parse_args()
-
-
-def summarize_alias_results(features):
-    """
-    Summarize alias normalization results.
-
-    Returns:
-        Dictionary with:
-        - total
-        - alias_count
-        - raw_count
-        - renamed_items
-    """
-    alias_count = 0
-    raw_count = 0
-    renamed_items = []
-
-    for feature in features:
-        raw_name = feature.get("raw_name")
-        final_name = feature.get("name")
-        name_source = feature.get("name_source", "raw")
-
-        if name_source == "alias":
-            alias_count += 1
-            renamed_items.append((raw_name, final_name))
-        else:
-            raw_count += 1
-
-    return {
-        "total": len(features),
-        "alias_count": alias_count,
-        "raw_count": raw_count,
-        "renamed_items": renamed_items,
-    }
-
-
-def resolve_alias_config(record, args):
-    """
-    Resolve which alias config to use.
-
-    Priority:
-        1. user-provided --alias-config
-        2. auto-detect from registry
-        3. no alias config
-    """
-    if args.alias_config:
-        return Path(args.alias_config), None, "manual"
-
-    registry_path = Path(args.alias_registry)
-
-    alias_config_path = detect_alias_config_for_record(record, registry_path)
-    detected_virus_name = get_detected_virus_name(record, registry_path)
-
-    if alias_config_path is not None:
-        return alias_config_path, detected_virus_name, "auto"
-
-    return None, None, "none"
 
 
 def main():
     args = parse_args()
 
-    input_path = Path(args.input)
-    record = load_single_genbank(input_path)
+    ref_record = load_single_genbank(Path(args.reference))
+    query_records = load_genbank_records(Path(args.query))
 
-    strategy, feature_type = choose_strategy(record)
+    print(f"Reference : {ref_record.id}")
+    print(f"Query     : {Path(args.query).name} ({len(query_records)} records)\n")
 
-    if feature_type == "mat_peptide":
-        raw_features = parse_mat_peptides(record)
-    elif feature_type == "CDS":
-        raw_features = parse_cds_features(record)
-    else:
-        raw_features = []
+    results, payload = run_alias_pipeline(
+        ref_record=ref_record,
+        query_records=query_records,
+        registry_path=Path(args.alias_registry),
+        use_ref_naming=not args.canonical,
+    )
 
-    if not raw_features:
-        raise ValueError(f"No {feature_type or 'CDS/mat_peptide'} features found in input file.")
+    # Per-record output
+    for r in results:
+        status = r["status"]
+        rid = r["record_id"]
 
-    alias_config_path, detected_virus_name, mode = resolve_alias_config(record, args)
+        if status == "no_annotation":
+            print(f"  [{rid}] no annotation -> minimap case")
+        elif status == "new_virus":
+            print(f"  [{rid}] virus not in registry -> build_alias_map ({r['feature_type']}, {r['total']} features)")
+        elif status == "all_resolved":
+            print(f"  [{rid}] {r['feature_type']} | {r['resolved']}/{r['total']} resolved | all good")
+        elif status == "has_unresolved":
+            unresolved = r["total"] - r["resolved"]
+            print(f"  [{rid}] {r['feature_type']} | resolved: {r['resolved']}/{r['total']} | unresolved: {unresolved}")
 
-    if alias_config_path is not None:
-        alias_lookup = load_alias_lookup(alias_config_path)
-        normalized_features = apply_alias_to_features(raw_features, alias_lookup)
-    else:
-        normalized_features = []
-        for feature in raw_features:
-            new_feature = feature.copy()
-            new_feature["raw_name"] = feature.get("name")
-            new_feature["name"] = feature.get("name")
-            new_feature["name_source"] = "raw"
-            normalized_features.append(new_feature)
+    # Summary
+    counts = {}
+    for r in results:
+        counts[r["status"]] = counts.get(r["status"], 0) + 1
 
-    summary = summarize_alias_results(normalized_features)
+    print(f"\n--- Summary ---")
+    print(f"All resolved    : {counts.get('all_resolved', 0)}")
+    print(f"Has unresolved  : {counts.get('has_unresolved', 0)}")
+    print(f"New virus       : {counts.get('new_virus', 0)}")
+    print(f"No annotation   : {counts.get('no_annotation', 0)}")
 
-    print("\n=== ALIAS NORMALIZATION TEST ===\n")
-    print(f"Input file        : {input_path}")
-    print(f"Record ID         : {record.id}")
-    print(f"Record description: {record.description}")
+    if payload is None:
+        print("\nAll features resolved. No payload needed.")
+        return
 
-    if mode == "manual":
-        print("Alias mode        : manual")
-        print(f"Alias config      : {alias_config_path}")
-    elif mode == "auto":
-        print("Alias mode        : auto-detect")
-        print(f"Detected virus    : {detected_virus_name}")
-        print(f"Alias config      : {alias_config_path}")
-    else:
-        print("Alias mode        : none")
-        print("Alias config      : not found")
-        print(f"Registry path     : {args.alias_registry}")
-
-    print(f"Strategy          : {strategy} ({feature_type})")
-    print(f"Total features    : {summary['total']}")
-    print(f"Alias matched     : {summary['alias_count']}")
-    print(f"Kept as raw       : {summary['raw_count']}")
-
-    print("\n=== FEATURE NAME MAPPING ===\n")
-    for i, feature in enumerate(normalized_features, start=1):
-        raw_name = feature.get("raw_name")
-        final_name = feature.get("name")
-        name_source = feature.get("name_source")
-        start = feature.get("start")
-        end = feature.get("end")
-
-        print(f"[{i}] {raw_name} -> {final_name} ({name_source}) [{start}-{end}]")
-
-    print("\n=== ALIAS-HIT FEATURES ===\n")
-    if summary["renamed_items"]:
-        for i, (raw_name, final_name) in enumerate(summary["renamed_items"], start=1):
-            print(f"[{i}] {raw_name} -> {final_name}")
-    else:
-        print("No alias matches found.")
+    output_dir = Path(args.output_dir)
+    query_stem = Path(args.query).stem
+    output_path = output_dir / f"{query_stem}_alias_payload.json"
+    save_payload(payload, output_path)
+    print(f"\nPayload saved : {output_path}")
 
 
 if __name__ == "__main__":
