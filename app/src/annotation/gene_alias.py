@@ -190,13 +190,25 @@ def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
     new_feature = feature.copy()
 
     raw_name = feature.get("name")
-    canonical_name = resolve_alias(raw_name, alias_lookup)
+    in_lookup = normalize_text(raw_name) in alias_lookup
+
+    if in_lookup:
+        canonical_name = resolve_alias(raw_name, alias_lookup)
+        name_source = "alias"
+    else:
+        # fallback: try product field
+        product = feature.get("product")
+        in_product = normalize_text(product) in alias_lookup if product else False
+        if in_product:
+            canonical_name = resolve_alias(product, alias_lookup)
+            name_source = "product_alias"
+        else:
+            canonical_name = raw_name
+            name_source = "raw"
 
     new_feature["raw_name"] = raw_name
     new_feature["name"] = canonical_name
-    in_lookup = normalize_text(raw_name) in alias_lookup
-
-    new_feature["name_source"] = "alias" if in_lookup else "raw"
+    new_feature["name_source"] = name_source
 
     return new_feature
 
@@ -241,3 +253,59 @@ def get_config_virus_name(config_path: Path) -> Optional[str]:
     """
     config_data = load_alias_config(config_path)
     return config_data.get("virus")
+
+def build_canonical_to_ref_map(ref_features: List[Dict], alias_lookup: Dict[str, str]) -> Dict[str, str]:
+    """
+    Build a reverse map from canonical name -> ref feature name.
+
+    Normalizes each ref feature name via alias lookup to get its canonical name,
+    then stores canonical -> raw ref name. Used to translate query output names
+    back to ref naming convention.
+
+    Args:
+        ref_features: Parsed features from the reference record
+        alias_lookup: normalized_alias -> canonical_name
+
+    Returns:
+        Dict mapping canonical_name -> ref raw name
+    """
+    canonical_to_ref: Dict[str, str] = {}
+
+    for feature in ref_features:
+        raw_name = feature.get("name")
+        if not raw_name:
+            continue
+        canonical = alias_lookup.get(normalize_text(raw_name), raw_name)
+        canonical_to_ref[canonical] = raw_name
+
+    return canonical_to_ref
+
+
+def apply_ref_naming(normalized_features: List[Dict], canonical_to_ref: Dict[str, str]) -> List[Dict]:
+    """
+    Translate canonical names in normalized features back to ref naming convention.
+
+    For each feature, if its canonical name exists in canonical_to_ref,
+    replace the name with the ref name. Records the canonical name in
+    'canonical_name' field for reference.
+
+    Args:
+        normalized_features: Features after apply_alias_to_features()
+        canonical_to_ref: canonical_name -> ref raw name
+
+    Returns:
+        Updated feature list with ref-convention names
+    """
+    result = []
+
+    for feature in normalized_features:
+        new_feature = feature.copy()
+        canonical = feature.get("name")
+
+        if canonical in canonical_to_ref:
+            new_feature["canonical_name"] = canonical
+            new_feature["name"] = canonical_to_ref[canonical]
+
+        result.append(new_feature)
+
+    return result
