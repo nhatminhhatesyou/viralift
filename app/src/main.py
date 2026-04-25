@@ -12,35 +12,34 @@ from app.src.annotation.alias_registry import (
     detect_alias_config_for_record,
     get_detected_virus_name,
 )
-from app.src.annotation.extractor import extract_all_lifted
+from app.src.annotation.annotation_strategy import choose_strategy
 from app.src.annotation.gene_alias import (
     apply_alias_to_features,
     load_alias_lookup,
 )
-from app.src.io.fasta_writer import write_record_to_fasta
 from app.src.io.genbank_parser import (
     load_single_genbank,
     load_genbank_records,
     parse_cds_features,
+    parse_mat_peptides,
 )
-from app.src.alignment.minimap_runner import run_minimap2
-from app.src.alignment.sam_lifter import get_primary_alignment, build_ref_to_query_map
+from app.src.lifting.tblastn_lifter import lift_all_tblastn
 
 
 """
 Module: main.py
 
 Purpose:
-    CLI entry point for reference-guided viral CDS transfer using minimap2.
+    CLI entry point for reference-guided viral CDS transfer using tblastn.
 
 Workflow:
     1. Load reference and query GenBank records
     2. Parse reference CDS features
     3. Optionally normalize feature names using alias config
-    4. Align each query genome to the reference
-    5. Lift CDS coordinates from reference to query
-    6. Extract transferred sequences
-    7. Write FASTA and TSV outputs
+    4. For each query genome: translate ref proteins and search via tblastn
+    5. Lift CDS coordinates from reference to query using protein homology
+    6. Extract transferred sequences with codon validation and rescue
+    7. Write TSV annotation output
 
 Alias behavior:
     - If --alias-config is provided, that config is used directly
@@ -63,7 +62,7 @@ def parse_args() -> argparse.Namespace:
     """
     parser = argparse.ArgumentParser(
         prog="viralift",
-        description="Reference-guided viral CDS transfer using minimap2.",
+        description="Reference-guided viral CDS transfer using tblastn.",
         epilog=(
             "Examples:\n"
             "  python -m app.src.main "
@@ -103,8 +102,26 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--min-coverage",
         type=float,
-        default=0.8,
-        help="Minimum coverage threshold for lifted features. Default: 0.8",
+        default=0.5,
+        help="Minimum protein coverage threshold for lifted features. Default: 0.5",
+    )
+    parser.add_argument(
+        "--min-identity",
+        type=float,
+        default=0.3,
+        help="Minimum protein identity threshold for lifted features. Default: 0.3",
+    )
+    parser.add_argument(
+        "--evalue",
+        type=float,
+        default=1e-5,
+        help="E-value threshold for tblastn search. Default: 1e-5",
+    )
+    parser.add_argument(
+        "--rescue-window",
+        type=int,
+        default=50,
+        help="Window size (bp) for start codon rescue. Default: 50",
     )
     parser.add_argument(
         "--alias-config",
@@ -115,11 +132,6 @@ def parse_args() -> argparse.Namespace:
         "--alias-registry",
         default="config/virus_alias_registry.json",
         help="Path to virus alias registry JSON file. Default: config/virus_alias_registry.json",
-    )
-    parser.add_argument(
-        "--keep-temp",
-        action="store_true",
-        help="Keep temporary FASTA and SAM files for debugging.",
     )
     parser.add_argument(
         "--quiet",
@@ -140,7 +152,9 @@ def prepare_reference_features(
     alias_registry_arg: str,
 ) -> Tuple[List[Dict], Optional[Path], Optional[str]]:
     """
-    Parse reference CDS features and optionally normalize their names using alias config.
+    Parse reference features and optionally normalize their names using alias config.
+
+    Uses annotation strategy to determine whether to parse CDS or mat_peptide features.
 
     Priority:
         1. Use user-provided alias config if available
@@ -154,14 +168,22 @@ def prepare_reference_features(
 
     Returns:
         Tuple of:
-            - ref_cds: Parsed (and optionally alias-normalized) reference features
+            - ref_features: Parsed (and optionally alias-normalized) reference features
             - alias_config_path: Path to alias config actually used, or None
             - detected_virus_name: Virus name detected from registry, or None
     """
-    ref_cds = parse_cds_features(ref_record)
+    # Determine feature type based on annotation strategy
+    _, feature_type = choose_strategy(ref_record)
 
-    if not ref_cds:
-        raise ValueError("Reference record has no CDS features.")
+    if feature_type == "mat_peptide":
+        ref_features = parse_mat_peptides(ref_record)
+    elif feature_type == "CDS":
+        ref_features = parse_cds_features(ref_record)
+    else:
+        raise ValueError("Reference record has no CDS or mat_peptide features.")
+
+    if not ref_features:
+        raise ValueError(f"Reference record has no {feature_type} features.")
 
     alias_config_path: Optional[Path] = None
     detected_virus_name: Optional[str] = None
@@ -188,38 +210,37 @@ def prepare_reference_features(
     # Apply alias normalization if config exists
     if alias_config_path is not None:
         alias_lookup = load_alias_lookup(alias_config_path)
-        ref_cds = apply_alias_to_features(ref_cds, alias_lookup)
+        ref_features = apply_alias_to_features(ref_features, alias_lookup)
 
-    return ref_cds, alias_config_path, detected_virus_name
+    return ref_features, alias_config_path, detected_virus_name
 
 
 # ---------------------------------------------------------------------
 # Output writers
 # ---------------------------------------------------------------------
 
-def write_results_fasta(all_results: List[Tuple[str, List[Dict]]], out_path: Path) -> None:
+def write_results_fasta(all_results: List[Tuple[str, List]], out_path: Path) -> None:
     """
     Write successfully extracted CDS sequences from all query records to a FASTA file.
 
     Args:
-        all_results: List of (query_id, feature_results)
+        all_results: List of (query_id, lifted_features)
         out_path: Output FASTA path
     """
     records: List[SeqRecord] = []
 
     for query_id, results in all_results:
-        for item in results:
-            if item.get("status") != "ok":
+        for lifted in results:
+            if lifted.status not in ("ok", "ok_rescued"):
                 continue
 
-            sequence = item.get("sequence")
-            if not sequence:
+            if not lifted.sequence:
                 continue
 
-            record_id = f"{query_id}|{item['name']}|{item['method']}"
+            record_id = f"{query_id}|{lifted.name}|{lifted.method}"
             records.append(
                 SeqRecord(
-                    Seq(sequence),
+                    Seq(lifted.sequence),
                     id=record_id,
                     description="",
                 )
@@ -228,33 +249,37 @@ def write_results_fasta(all_results: List[Tuple[str, List[Dict]]], out_path: Pat
     SeqIO.write(records, str(out_path), "fasta")
 
 
-def write_results_tsv(all_results: List[Tuple[str, List[Dict]]], out_path: Path) -> None:
+def write_results_tsv(all_results: List[Tuple[str, List]], out_path: Path) -> None:
     """
     Write extracted feature results from all query records to a TSV file.
 
     Args:
-        all_results: List of (query_id, feature_results)
+        all_results: List of (query_id, lifted_features)
         out_path: Output TSV path
     """
     rows: List[Dict] = []
 
     for query_id, results in all_results:
-        for item in results:
+        for lifted in results:
             rows.append(
                 {
                     "query_id": query_id,
-                    "raw_name": item.get("raw_name"),
-                    "name": item.get("name"),
-                    "name_source": item.get("name_source"),
-                    "gene": item.get("gene"),
-                    "product": item.get("product"),
-                    "start": item.get("start"),
-                    "end": item.get("end"),
-                    "strand": item.get("strand"),
-                    "method": item.get("method"),
-                    "status": item.get("status"),
-                    "coverage": item.get("coverage"),
-                    "length": len(item["sequence"]) if item.get("sequence") else None,
+                    "name": lifted.name,
+                    "canonical_name": lifted.canonical_name or "",
+                    "ref_start": lifted.ref_start,
+                    "ref_end": lifted.ref_end,
+                    "start": lifted.query_start,
+                    "end": lifted.query_end,
+                    "strand": lifted.strand,
+                    "method": lifted.method,
+                    "status": lifted.status,
+                    "coverage": lifted.coverage,
+                    "identity": lifted.identity,
+                    "score": lifted.score,
+                    "has_start_codon": lifted.has_start_codon,
+                    "has_stop_codon": lifted.has_stop_codon,
+                    "rescue_offset": lifted.rescue_offset,
+                    "length": len(lifted.sequence) if lifted.sequence else None,
                 }
             )
 
@@ -271,26 +296,28 @@ def write_results_tsv(all_results: List[Tuple[str, List[Dict]]], out_path: Path)
 # Summary utilities
 # ---------------------------------------------------------------------
 
-def summarize_counts(all_results: List[Tuple[str, List[Dict]]]) -> Dict[str, int]:
+def summarize_counts(all_results: List[Tuple[str, List]]) -> Dict[str, int]:
     """
     Summarize result statuses across all processed records.
 
     Args:
-        all_results: List of (query_id, feature_results)
+        all_results: List of (query_id, lifted_features)
 
     Returns:
         Dictionary with counts by status
     """
     summary = {
         "ok": 0,
-        "no_alignment": 0,
+        "ok_rescued": 0,
+        "invalid_boundaries": 0,
         "low_coverage": 0,
-        "unmapped": 0,
+        "no_hit": 0,
+        "translation_fail": 0,
     }
 
     for _, results in all_results:
-        for item in results:
-            status = item.get("status")
+        for lifted in results:
+            status = lifted.status
             if status in summary:
                 summary[status] += 1
 
@@ -301,96 +328,54 @@ def summarize_counts(all_results: List[Tuple[str, List[Dict]]]) -> Dict[str, int
 # Core processing
 # ---------------------------------------------------------------------
 
-def _build_no_alignment_results(ref_cds: List[Dict]) -> List[Dict]:
-    """
-    Build fallback results when no valid alignment is available.
-
-    Args:
-        ref_cds: Reference CDS feature list
-
-    Returns:
-        List of failed feature results with status='no_alignment'
-    """
-    return [
-        {
-            "raw_name": feature.get("raw_name", feature["name"]),
-            "name": feature["name"],
-            "name_source": feature.get("name_source", "raw"),
-            "gene": feature.get("gene"),
-            "product": feature.get("product"),
-            "start": None,
-            "end": None,
-            "strand": feature["strand"],
-            "sequence": None,
-            "method": "minimap_transfer",
-            "status": "no_alignment",
-            "coverage": 0.0,
-        }
-        for feature in ref_cds
-    ]
 
 
 def process_one_query_record(
     ref_record: SeqRecord,
     query_record: SeqRecord,
     ref_cds: List[Dict],
-    outdir: Path,
+    ref_feature_type: str,
     min_coverage: float,
-    keep_temp: bool = False,
+    min_identity: float = 0.3,
+    evalue: float = 1e-5,
+    rescue_window: int = 50,
     quiet: bool = False,
-) -> List[Dict]:
+) -> List:
     """
-    Process one query genome using reference-guided minimap transfer.
+    Process one query genome using reference-guided tblastn transfer.
 
     Steps:
-        1. Write temporary FASTA files
-        2. Run minimap2 alignment
-        3. Build reference-to-query coordinate map
-        4. Lift and extract CDS features
+        1. Determine if codon validation is needed based on feature type
+        2. Use tblastn to lift all reference features to query genome
+        3. Return LiftedFeature objects with validation results
 
     Args:
         ref_record: Reference genome record
         query_record: Query genome record
         ref_cds: Parsed reference CDS features
-        outdir: Output directory
-        min_coverage: Minimum accepted feature coverage
-        keep_temp: Whether to retain temp files
+        ref_feature_type: Type of reference features (CDS or mat_peptide)
+        min_coverage: Minimum accepted protein coverage
+        min_identity: Minimum accepted protein identity
+        evalue: E-value threshold for tblastn
+        rescue_window: Window size for start codon rescue
         quiet: Whether to reduce console output
 
     Returns:
-        List of extracted/lifted feature dictionaries
+        List of LiftedFeature objects
     """
-    tmp_dir = outdir / "tmp"
-    tmp_dir.mkdir(parents=True, exist_ok=True)
+    # mat_peptide features don't need codon validation
+    validate_codons = (ref_feature_type == "CDS")
 
-    ref_fa = tmp_dir / f"{query_record.id}_ref.fa"
-    query_fa = tmp_dir / f"{query_record.id}_query.fa"
-    sam_path = tmp_dir / f"{query_record.id}_alignment.sam"
-
-    write_record_to_fasta(ref_record, ref_fa)
-    write_record_to_fasta(query_record, query_fa)
-
-    try:
-        run_minimap2(ref_fa, query_fa, sam_path, quiet=quiet)
-
-        alignment = get_primary_alignment(sam_path)
-        ref_to_query = build_ref_to_query_map(alignment)
-
-        results = extract_all_lifted(
-            ref_cds=ref_cds,
-            query_record=query_record,
-            ref_to_query=ref_to_query,
-            min_coverage=min_coverage,
-        )
-
-    except ValueError:
-        results = _build_no_alignment_results(ref_cds)
-
-    finally:
-        if not keep_temp:
-            ref_fa.unlink(missing_ok=True)
-            query_fa.unlink(missing_ok=True)
-            sam_path.unlink(missing_ok=True)
+    results = lift_all_tblastn(
+        ref_features=ref_cds,
+        ref_record=ref_record,
+        query_record=query_record,
+        min_coverage=min_coverage,
+        min_identity=min_identity,
+        evalue=evalue,
+        rescue_window=rescue_window,
+        validate_codons=validate_codons,
+    )
 
     return results
 
@@ -412,17 +397,23 @@ def main() -> None:
     if not query_records:
         raise ValueError("No query records found.")
 
-    ref_cds, alias_config_path, detected_virus_name = prepare_reference_features(
+    ref_features, alias_config_path, detected_virus_name = prepare_reference_features(
         ref_record=ref_record,
         alias_config_arg=args.alias_config,
         alias_registry_arg=args.alias_registry,
     )
 
+    # Detect reference feature type for validation
+    _, ref_feature_type = choose_strategy(ref_record)
+
     print("ViraLift")
     print(f"  Reference record : {ref_record.id}")
-    print(f"  Feature type     : {args.feature_type}")
-    print(f"  Reference CDS    : {len(ref_cds)}")
+    print(f"  Feature type     : {ref_feature_type}")
+    print(f"  Reference features : {len(ref_features)}")
     print(f"  Query records    : {len(query_records)}")
+    print(f"  Min coverage     : {args.min_coverage}")
+    print(f"  Min identity     : {args.min_identity}")
+    print(f"  E-value          : {args.evalue}")
     print(f"  Output folder    : {outdir}")
 
     if args.alias_config:
@@ -450,18 +441,20 @@ def main() -> None:
         results = process_one_query_record(
             ref_record=ref_record,
             query_record=query_record,
-            ref_cds=ref_cds,
-            outdir=outdir,
+            ref_cds=ref_features,
+            ref_feature_type=ref_feature_type,
             min_coverage=args.min_coverage,
-            keep_temp=args.keep_temp,
+            min_identity=args.min_identity,
+            evalue=args.evalue,
+            rescue_window=args.rescue_window,
             quiet=args.quiet,
         )
         all_results.append((query_record.id, results))
 
-    fasta_out = outdir / "extracted_cds.fasta"
+    # fasta_out = outdir / "extracted_cds.fasta"
     tsv_out = outdir / "extracted_cds.tsv"
 
-    write_results_fasta(all_results, fasta_out)
+    # write_results_fasta(all_results, fasta_out)  # FASTA output not essential for gene normalization
     write_results_tsv(all_results, tsv_out)
 
     summary = summarize_counts(all_results)
@@ -469,12 +462,13 @@ def main() -> None:
     print("\nRun summary")
     print(f"  Query records processed : {len(query_records)}")
     print(f"  OK                      : {summary['ok']}")
-    print(f"  No alignment            : {summary['no_alignment']}")
+    print(f"  OK (rescued)            : {summary['ok_rescued']}")
+    print(f"  Invalid boundaries      : {summary['invalid_boundaries']}")
     print(f"  Low coverage            : {summary['low_coverage']}")
-    print(f"  Unmapped                : {summary['unmapped']}")
+    print(f"  No hit                  : {summary['no_hit']}")
+    print(f"  Translation fail        : {summary['translation_fail']}")
 
     print("\nOutput files")
-    print(f"  FASTA : {fasta_out}")
     print(f"  TSV   : {tsv_out}")
 
 
