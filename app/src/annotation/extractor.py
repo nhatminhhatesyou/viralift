@@ -3,6 +3,8 @@ from typing import Dict, List, Optional, Tuple
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 
+from app.src.annotation.validator import validate_cds_boundaries, rescue_start_codon
+
 
 """
 Module: extractor.py
@@ -83,6 +85,8 @@ def extract_all_lifted(
     query_record: SeqRecord,
     ref_to_query: Dict[int, int],
     min_coverage: float = 0.8,
+    validate_codons: bool = True,
+    rescue_window: int = 50,
 ) -> List[Dict]:
     """
     Lift all CDS features from reference to query genome and extract sequences.
@@ -109,6 +113,7 @@ def extract_all_lifted(
 
         base_result = {
             "name": feature["name"],
+            "canonical_name": feature.get("canonical_name"),  # set by apply_ref_naming
             "gene": feature.get("gene"),
             "product": feature.get("product"),
             "strand": feature["strand"],
@@ -142,20 +147,67 @@ def extract_all_lifted(
             })
             continue
 
-        # Case 3: valid feature → extract sequence
+        # Case 3: valid feature → extract sequence + optionally validate boundaries
         seq = extract_lifted_sequence(
             query_record,
             query_start,
             query_end,
             feature["strand"]
         )
+        seq_str = str(seq)
+
+        if validate_codons:
+            validation = validate_cds_boundaries(seq_str)
+
+            if validation["valid"]:
+                status = "ok"
+                extra = {
+                    "has_start_codon": True,
+                    "has_stop_codon": True,
+                    "rescue_offset": None,
+                }
+            elif not validation["has_start_codon"]:
+                # Try to find nearest ATG within expanding window
+                rescued = rescue_start_codon(
+                    query_record, query_start, query_end,
+                    feature["strand"], max_window=rescue_window,
+                )
+                if rescued:
+                    new_start, seq_str, offset = rescued
+                    query_start = new_start
+                    revalidation = validate_cds_boundaries(seq_str)
+                    status = "ok_rescued" if revalidation["has_stop_codon"] else "invalid_boundaries"
+                    extra = {
+                        "has_start_codon": True,
+                        "has_stop_codon": revalidation["has_stop_codon"],
+                        "rescue_offset": offset,
+                    }
+                else:
+                    status = "invalid_boundaries"
+                    extra = {
+                        "has_start_codon": False,
+                        "has_stop_codon": validation["has_stop_codon"],
+                        "rescue_offset": None,
+                    }
+            else:
+                # Has start but no stop — rescue not attempted (different problem)
+                status = "invalid_boundaries"
+                extra = {
+                    "has_start_codon": True,
+                    "has_stop_codon": False,
+                    "rescue_offset": None,
+                }
+        else:
+            status = "ok"
+            extra = {}
 
         results.append({
             **base_result,
             "start": query_start,
             "end": query_end,
-            "sequence": str(seq),
-            "status": "ok",
+            "sequence": seq_str,
+            "status": status,
+            **extra,
         })
 
     return results
