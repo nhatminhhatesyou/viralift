@@ -35,11 +35,77 @@
       "replicase polyprotein 1b",
       "polypeptide precursor of non-structural proteins NSP9 through NSP12"
     ],
+    "NSP2": [
+      "nsp2",
+      "NSP2"
+    ],
     "NSP2TF": [
-      "nsp2tf"
+      "nsp2tf",
+      "nsp2TF",
+      "ORF1aTF",
+      "orf1atf",
+      "polyprotein 1aTF",
+      "polyprotein 1atf"
     ],
     "NSP2N": [
-      "nsp2n"
+      "nsp2n",
+      "nsp2N",
+      "ORF1aN",
+      "orf1an",
+      "polyprotein 1aN",
+      "polyprotein 1an",
+      "putative polyprotein 1aN",
+      "putative polyprotein 1an"
+    ],
+    "NSP3": [
+      "nsp3",
+      "NSP3"
+    ],
+    "NSP4": [
+      "nsp4",
+      "NSP4"
+    ],
+    "NSP5": [
+      "nsp5",
+      "NSP5"
+    ],
+    "NSP6": [
+      "nsp6",
+      "NSP6"
+    ],
+    "NSP7A": [
+      "nsp7a",
+      "NSP7A",
+      "nsp7 alpha",
+      "nsp7alpha",
+      "NSP7alpha"
+    ],
+    "NSP7B": [
+      "nsp7b",
+      "NSP7B",
+      "nsp7 beta",
+      "nsp7beta",
+      "NSP7beta"
+    ],
+    "NSP8": [
+      "nsp8",
+      "NSP8"
+    ],
+    "NSP9": [
+      "nsp9",
+      "NSP9"
+    ],
+    "NSP10": [
+      "nsp10",
+      "NSP10"
+    ],
+    "NSP11": [
+      "nsp11",
+      "NSP11"
+    ],
+    "NSP12": [
+      "nsp12",
+      "NSP12"
     ],
     "GP2": [
       "gp2",
@@ -63,7 +129,9 @@
       "small envelope protein e",
       "envelope protein",
       "envelope protein e",
-      "2b/E membrane protein"
+      "2b/E membrane protein",
+      "E protein",
+      "small unglycosylated protein"
     ],
     "GP3": [
       "gp3",
@@ -126,7 +194,8 @@
       "nucleocapsid protein n",
       "n protein",
       "n nucleocapsid protein",
-      "nucleocapsid prtein n"
+      "nucleocapsid prtein n",
+      "nucleocapsid"
     ]
   }
 }
