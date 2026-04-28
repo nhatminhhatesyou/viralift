@@ -49,6 +49,7 @@ from app.src.lifting.base import LiftedFeature
 from app.src.io.run_logger import (
     log_alias_added,
     log_canonical_added,
+    log_session_decisions,
     log_run_start,
     log_run_complete,
     log_error,
@@ -544,6 +545,13 @@ def stage_resolve():
             )
             if written:
                 st.toast(f"💾 {written} alias(es) saved to config", icon="✅")
+
+        # log ALL decisions (session-only and saved) so there is always a trace
+        if decisions:
+            log_session_decisions(
+                decisions=decisions,
+                saved_names=list(to_save.keys()),
+            )
 
         st.session_state.resolver = decisions
         st.session_state.stage    = "running"
