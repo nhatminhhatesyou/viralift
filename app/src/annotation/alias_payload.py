@@ -231,7 +231,7 @@ def run_alias_pipeline(
 
         results.append({
             "record_id": record.id,
-            "strategy": strategy,
+            "strategy": "direct" if not needs_lifting else "tblastn",
             "feature_type": feature_type,
             "status": "has_unresolved",
             "resolved": resolved_count,
