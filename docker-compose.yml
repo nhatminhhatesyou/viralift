@@ -1,0 +1,14 @@
+services:
+  viralift:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      # alias configs are read/written at runtime — mount from host so
+      # GUI saves (new mappings, new canonicals) survive docker rebuilds
+      - ./app/config:/viralift/app/config
+      # output folder — downloaded results persist on host
+      - ./output:/viralift/output
+      # logs — persist run history and alias audit trail across rebuilds
+      - ./logs:/viralift/logs
+    restart: unless-stopped
