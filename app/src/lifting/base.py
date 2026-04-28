@@ -9,8 +9,8 @@ class LiftedFeature:
 
     Coordinates are 1-based inclusive, same convention as GenBank.
     """
-    name: str                        # normalized/ref name
-    canonical_name: Optional[str]    # canonical name if ref naming was applied
+    name: str                        # canonical / standardized gene name
+    source_name: Optional[str]       # raw original name from the annotation (before alias)
 
     ref_start: int
     ref_end: int
@@ -35,7 +35,7 @@ class LiftedFeature:
     def to_dict(self) -> dict:
         return {
             "name": self.name,
-            "canonical_name": self.canonical_name,
+            "source_name": self.source_name,
             "ref_start": self.ref_start,
             "ref_end": self.ref_end,
             "strand": self.strand,

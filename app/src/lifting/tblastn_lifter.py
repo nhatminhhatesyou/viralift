@@ -233,7 +233,7 @@ def lift_feature_tblastn(
     """
     base = dict(
         name=feature["name"],
-        canonical_name=feature.get("canonical_name"),
+        source_name=None,  # tblastn: query has no annotation, source_name not applicable
         ref_start=feature["start"],
         ref_end=feature["end"],
         strand=feature.get("strand", "+"),
@@ -350,6 +350,184 @@ def lift_feature_tblastn(
     )
 
 
+# ---------------------------------------------------------------------------
+# Batched lifter — single tblastn call for all proteins per genome
+# ---------------------------------------------------------------------------
+
+def run_tblastn_batch(
+    proteins: List[Tuple[str, str]],
+    query_genome: SeqRecord,
+    tmp_dir: Path,
+    evalue: float = 1e-5,
+) -> Dict[str, List]:
+    """
+    Run tblastn for a batch of proteins against one genome, in a single call.
+
+    Args:
+        proteins: List of (query_id, protein_seq) tuples
+        query_genome: Genome to search
+        tmp_dir: Temp directory for FASTA + XML files
+        evalue: E-value threshold
+
+    Returns:
+        Dict mapping query_id -> list of HSPs from best alignment
+        (empty list if no hits for that query)
+    """
+    if not proteins:
+        return {}
+
+    # Multi-FASTA query containing all proteins
+    prot_path = tmp_dir / "all_proteins.fa"
+    with open(prot_path, "w") as f:
+        for qid, seq in proteins:
+            f.write(f">{qid}\n{seq}\n")
+
+    # Genome FASTA written once
+    genome_path = tmp_dir / "genome.fa"
+    SeqIO.write(query_genome, str(genome_path), "fasta")
+
+    result_path = tmp_dir / "all_blast.xml"
+    cmd = [
+        "tblastn",
+        "-query", str(prot_path),
+        "-subject", str(genome_path),
+        "-evalue", str(evalue),
+        "-outfmt", "5",
+        "-out", str(result_path),
+        "-seg", "no",
+        "-soft_masking", "false",
+    ]
+
+    try:
+        subprocess.run(cmd, check=True, capture_output=True)
+    except subprocess.CalledProcessError:
+        return {qid: [] for qid, _ in proteins}
+
+    if not result_path.exists() or result_path.stat().st_size == 0:
+        return {qid: [] for qid, _ in proteins}
+
+    hsps_by_id: Dict[str, List] = {qid: [] for qid, _ in proteins}
+    with open(result_path) as f:
+        try:
+            for record in NCBIXML.parse(f):
+                # record.query is the FASTA header (without ">")
+                qid = record.query.split()[0]
+                if record.alignments:
+                    hsps_by_id[qid] = record.alignments[0].hsps
+        except Exception:
+            pass
+
+    return hsps_by_id
+
+
+def _build_lifted_from_hsps(
+    feature: Dict,
+    hsps: List,
+    query_record: SeqRecord,
+    min_coverage: float,
+    min_identity: float,
+    rescue_window: int,
+    validate_codons: bool,
+) -> LiftedFeature:
+    """
+    Build a LiftedFeature from already-computed HSPs.
+    Mirrors the post-tblastn logic of lift_feature_tblastn.
+    """
+    base = dict(
+        name=feature["name"],
+        source_name=None,  # tblastn: query has no annotation, source_name not applicable
+        ref_start=feature["start"],
+        ref_end=feature["end"],
+        strand=feature.get("strand", "+"),
+        method="tblastn",
+    )
+
+    if not hsps:
+        return LiftedFeature(
+            **base,
+            query_start=None, query_end=None,
+            sequence=None, coverage=0.0,
+            status="no_hit",
+        )
+
+    q_start, q_end, strand, coverage, identity, score = merge_hsps(hsps)
+
+    if validate_codons and q_end is not None:
+        rescued_stop = rescue_stop_codon(
+            query_record, q_start, q_end, strand, max_codons=30
+        )
+        if rescued_stop:
+            q_end, _, _ = rescued_stop
+        else:
+            q_end = min(q_end + 3, len(query_record.seq))
+
+    if coverage < min_coverage or identity < min_identity:
+        return LiftedFeature(
+            **base,
+            query_start=q_start, query_end=q_end,
+            sequence=None, coverage=round(coverage, 4),
+            status="low_coverage",
+            identity=round(identity * 100, 1),
+            score=round(score, 1),
+        )
+
+    seq_str = extract_sequence(query_record, q_start, q_end, strand)
+
+    if not validate_codons:
+        return LiftedFeature(
+            **base,
+            query_start=q_start, query_end=q_end,
+            sequence=seq_str, coverage=round(coverage, 4),
+            status="ok",
+            identity=round(identity * 100, 1),
+            score=round(score, 1),
+        )
+
+    validation = validate_cds_boundaries(seq_str)
+
+    if validation["valid"]:
+        return LiftedFeature(
+            **base,
+            query_start=q_start, query_end=q_end,
+            sequence=seq_str, coverage=round(coverage, 4),
+            status="ok",
+            has_start_codon=True, has_stop_codon=True,
+            identity=round(identity * 100, 1),
+            score=round(score, 1),
+        )
+
+    if not validation["has_start_codon"]:
+        rescued = rescue_start_codon(
+            query_record, q_start, q_end, strand, max_window=rescue_window
+        )
+        if rescued:
+            new_start, new_seq, offset = rescued
+            revalidation = validate_cds_boundaries(new_seq)
+            status = "ok_rescued" if revalidation["has_stop_codon"] else "invalid_boundaries"
+            return LiftedFeature(
+                **base,
+                query_start=new_start, query_end=q_end,
+                sequence=new_seq, coverage=round(coverage, 4),
+                status=status,
+                has_start_codon=True,
+                has_stop_codon=revalidation["has_stop_codon"],
+                rescue_offset=offset,
+                identity=round(identity * 100, 1),
+                score=round(score, 1),
+            )
+
+    return LiftedFeature(
+        **base,
+        query_start=q_start, query_end=q_end,
+        sequence=seq_str, coverage=round(coverage, 4),
+        status="invalid_boundaries",
+        has_start_codon=validation["has_start_codon"],
+        has_stop_codon=validation["has_stop_codon"],
+        identity=round(identity * 100, 1),
+        score=round(score, 1),
+    )
+
+
 def lift_all_tblastn(
     ref_features: List[Dict],
     ref_record: SeqRecord,
@@ -361,20 +539,72 @@ def lift_all_tblastn(
     validate_codons: bool = True,
 ) -> List[LiftedFeature]:
     """
-    Lift all ref features onto query using tblastn.
-    Uses a single shared temp directory per call.
+    Lift all ref features onto query using tblastn — batched implementation.
+
+    Translates all ref features to protein, runs ONE tblastn call with a
+    multi-FASTA query against the genome, then dispatches HSPs back to
+    each feature for merge + validation.
+
+    This is significantly faster than per-feature tblastn calls because:
+        - Genome FASTA written once (not N times)
+        - tblastn subprocess started once (not N times)
+        - tblastn indexes the genome once internally
     """
-    results = []
+    results: List[LiftedFeature] = []
+
+    # 1. Translate every feature; track which features were translatable.
+    proteins: List[Tuple[str, str]] = []
+    qid_to_feature: Dict[str, Dict] = {}
+    failed: List[Dict] = []  # features that failed to translate
+
+    for idx, feature in enumerate(ref_features):
+        protein = translate_feature(feature, ref_record)
+        if not protein:
+            failed.append(feature)
+            continue
+        qid = f"feat_{idx}"
+        proteins.append((qid, protein))
+        qid_to_feature[qid] = feature
+
+    # 2. Single batched tblastn call for all translated proteins.
     with tempfile.TemporaryDirectory() as tmp:
         tmp_dir = Path(tmp)
-        for feature in ref_features:
-            lifted = lift_feature_tblastn(
-                feature, ref_record, query_record, tmp_dir,
-                min_coverage=min_coverage,
-                min_identity=min_identity,
-                evalue=evalue,
-                rescue_window=rescue_window,
-                validate_codons=validate_codons,
+        hsps_by_id = run_tblastn_batch(
+            proteins, query_record, tmp_dir, evalue=evalue
+        )
+
+    # 3. Build LiftedFeature for each feature, preserving input order.
+    failed_set = {id(f) for f in failed}
+    qid_iter = iter(proteins)
+
+    for feature in ref_features:
+        if id(feature) in failed_set:
+            base = dict(
+                name=feature["name"],
+                source_name=None,  # tblastn: query has no annotation, source_name not applicable
+                ref_start=feature["start"],
+                ref_end=feature["end"],
+                strand=feature.get("strand", "+"),
+                method="tblastn",
             )
-            results.append(lifted)
+            results.append(LiftedFeature(
+                **base,
+                query_start=None, query_end=None,
+                sequence=None, coverage=0.0,
+                status="translation_fail",
+            ))
+            continue
+
+        qid, _ = next(qid_iter)
+        hsps = hsps_by_id.get(qid, [])
+        results.append(_build_lifted_from_hsps(
+            feature=feature,
+            hsps=hsps,
+            query_record=query_record,
+            min_coverage=min_coverage,
+            min_identity=min_identity,
+            rescue_window=rescue_window,
+            validate_codons=validate_codons,
+        ))
+
     return results
