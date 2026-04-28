@@ -136,7 +136,7 @@ def run_alias_pipeline(
         detect_alias_config_for_record,
         get_detected_virus_name,
     )
-    from app.src.annotation.annotation_strategy import choose_strategy
+    from app.src.annotation.annotation_strategy import get_feature_type
     from app.src.annotation.gene_alias import (
         apply_alias_to_features,
         apply_ref_naming,
@@ -153,7 +153,7 @@ def run_alias_pipeline(
     canonical_names = _unique_ordered(list(alias_lookup.values())) if alias_lookup else []
 
     # Determine expected feature type from reference
-    _, ref_feature_type = choose_strategy(ref_record)
+    ref_feature_type = get_feature_type(ref_record)
 
     # Build canonical -> ref name map for output naming
     if use_ref_naming and alias_lookup:
@@ -171,22 +171,15 @@ def run_alias_pipeline(
     payload_records = []
 
     for record in query_records:
-        _, feature_type = choose_strategy(record)
+        feature_type = get_feature_type(record)
 
-        # mat_peptide always has meaningful annotation regardless of ref type.
-        # CDS on a mat_peptide virus: only block if it's a single CDS (polyprotein shell).
-        # CDS count > 1 means real gene-level annotation even if ref uses mat_peptide.
-        if feature_type == "mat_peptide":
-            strategy = "direct"
-        elif feature_type == "CDS":
-            if ref_feature_type == "mat_peptide" and len(parse_cds_features(record)) == 1:
-                feature_type = None
-                strategy = "minimap"
-            else:
-                strategy = "direct"
-        else:
-            feature_type = None
-            strategy = "minimap"
+        # CDS on a mat_peptide virus: if the record has exactly one CDS it's just
+        # a polyprotein shell with no gene-level names — treat as unannotated.
+        if feature_type == "CDS" and ref_feature_type == "mat_peptide":
+            if len(parse_cds_features(record)) == 1:
+                feature_type = None   # force tblastn path
+
+        needs_lifting = feature_type is None or feature_type != ref_feature_type
 
         if feature_type == "mat_peptide":
             raw_features = parse_mat_peptides(record)
@@ -195,7 +188,7 @@ def run_alias_pipeline(
         else:
             results.append({
                 "record_id": record.id,
-                "strategy": "minimap",
+                "strategy": "tblastn",
                 "feature_type": None,
                 "status": "no_annotation",
                 "resolved": 0,
@@ -208,7 +201,7 @@ def run_alias_pipeline(
             # Virus not in registry — build alias map from scratch using ref
             results.append({
                 "record_id": record.id,
-                "strategy": strategy,
+                "strategy": "direct" if not needs_lifting else "tblastn",
                 "feature_type": feature_type,
                 "status": "new_virus",
                 "resolved": 0,
@@ -227,7 +220,7 @@ def run_alias_pipeline(
         if not unresolved:
             results.append({
                 "record_id": record.id,
-                "strategy": strategy,
+                "strategy": "direct" if not needs_lifting else "tblastn",
                 "feature_type": feature_type,
                 "status": "all_resolved",
                 "resolved": resolved_count,

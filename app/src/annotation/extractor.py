@@ -113,7 +113,7 @@ def extract_all_lifted(
 
         base_result = {
             "name": feature["name"],
-            "canonical_name": feature.get("canonical_name"),  # set by apply_ref_naming
+            "source_name": feature.get("raw_name"),  # original annotation name before alias
             "gene": feature.get("gene"),
             "product": feature.get("product"),
             "strand": feature["strand"],

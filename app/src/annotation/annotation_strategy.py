@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Optional
 
 from Bio.SeqRecord import SeqRecord
 from app.src.io.genbank_parser import parse_cds_features, parse_mat_peptides
@@ -8,40 +8,40 @@ from app.src.io.genbank_parser import parse_cds_features, parse_mat_peptides
 Module: annotation_strategy.py
 
 Purpose:
-    Decide which extraction strategy and feature type to use for a query genome:
-    - ("direct", "mat_peptide"): query has mat_peptide features (e.g. FMDV polyprotein)
-    - ("direct", "CDS"):         query has CDS features (e.g. PRRSV)
-    - ("minimap", None):         query has no annotation -> coordinate transfer from reference
+    Detect which feature type a GenBank record uses for gene-level annotation.
+
+Returns:
+    "mat_peptide"  — record has mat_peptide features (e.g. FMDV)
+    "CDS"          — record has CDS features (e.g. PRRSV)
+    None           — record has no annotation → needs tblastn lifting
 
 Notes:
-    - mat_peptide takes priority over CDS because some viruses (e.g. FMDV) have a single
-      polyprotein CDS that is not useful for naming; gene names live in mat_peptide instead.
-    - This module only decides the strategy, it does NOT perform extraction.
-    - Alias-based naming and feature normalization should be handled separately.
+    - mat_peptide takes priority over CDS because some viruses (e.g. FMDV) have a
+      single whole-genome polyprotein CDS that carries no gene-level names; the real
+      names live in mat_peptide sub-features.
+    - This module only detects the feature type. It does NOT perform extraction.
 """
 
 
-def choose_strategy(query_record: SeqRecord) -> Tuple[str, str]:
+def get_feature_type(record: SeqRecord) -> Optional[str]:
     """
-    Select extraction strategy and feature type for a query genome.
+    Detect the annotation feature type used by a GenBank record.
 
     Priority:
-        1. mat_peptide present -> ("direct", "mat_peptide")
-        2. CDS present         -> ("direct", "CDS")
-        3. Neither             -> ("minimap", None)
+        1. mat_peptide present → "mat_peptide"
+        2. CDS present         → "CDS"
+        3. Neither             → None  (record needs tblastn lifting)
 
     Args:
-        query_record: Query genome (GenBank record)
+        record: A Biopython SeqRecord
 
     Returns:
-        Tuple of (strategy, feature_type):
-            strategy     - "direct" or "minimap"
-            feature_type - "mat_peptide", "CDS", or None
+        "mat_peptide", "CDS", or None
     """
-    if parse_mat_peptides(query_record):
-        return "direct", "mat_peptide"
+    if parse_mat_peptides(record):
+        return "mat_peptide"
 
-    if parse_cds_features(query_record):
-        return "direct", "CDS"
+    if parse_cds_features(record):
+        return "CDS"
 
-    return "minimap", None
+    return None
