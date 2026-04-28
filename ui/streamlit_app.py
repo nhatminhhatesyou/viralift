@@ -635,10 +635,19 @@ def stage_results():
     # ── per-record expanders ──────────────────────────────────────
     st.subheader("🗂️ Per-record breakdown")
     for query_id, features in all_results:
-        ok_count    = sum(1 for f in features if f.status in GOOD_STATUSES)
-        total_count = len(features)
-        icon        = "✅" if ok_count == total_count else "⚠️"
-        label       = f"{icon} {query_id}   —   {ok_count}/{total_count} mapped"
+        ok_count     = sum(1 for f in features if f.status in GOOD_STATUSES)
+        total_count  = len(features)
+        icon         = "✅" if ok_count == total_count else "⚠️"
+
+        methods      = {f.method for f in features if f.method}
+        if methods == {"direct"}:
+            method_tag = "📋 direct"
+        elif "tblastn" in methods and "direct" not in methods:
+            method_tag = "🔬 tblastn"
+        else:
+            method_tag = "🔬 tblastn + 📋 direct"
+
+        label = f"{icon} {query_id}   —   {ok_count}/{total_count} mapped   ·   {method_tag}"
 
         with st.expander(label, expanded=False):
             rec_rows = []
