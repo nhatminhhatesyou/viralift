@@ -12,7 +12,7 @@ from app.src.annotation.alias_registry import (
     detect_alias_config_for_record,
     get_detected_virus_name,
 )
-from app.src.annotation.annotation_strategy import choose_strategy
+from app.src.annotation.annotation_strategy import get_feature_type
 from app.src.annotation.gene_alias import (
     apply_alias_to_features,
     load_alias_lookup,
@@ -24,6 +24,7 @@ from app.src.io.genbank_parser import (
     parse_mat_peptides,
 )
 from app.src.lifting.tblastn_lifter import lift_all_tblastn
+from app.src.lifting.base import LiftedFeature
 
 
 """
@@ -130,8 +131,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--alias-registry",
-        default="config/virus_alias_registry.json",
-        help="Path to virus alias registry JSON file. Default: config/virus_alias_registry.json",
+        default="app/config/virus_alias_registry.json",
+        help="Path to virus alias registry JSON file. Default: app/config/virus_alias_registry.json",
     )
     parser.add_argument(
         "--quiet",
@@ -171,9 +172,10 @@ def prepare_reference_features(
             - ref_features: Parsed (and optionally alias-normalized) reference features
             - alias_config_path: Path to alias config actually used, or None
             - detected_virus_name: Virus name detected from registry, or None
+            - alias_lookup: Lookup dict for normalizing names, or empty dict
     """
-    # Determine feature type based on annotation strategy
-    _, feature_type = choose_strategy(ref_record)
+    # Determine feature type based on annotation
+    feature_type = get_feature_type(ref_record)
 
     if feature_type == "mat_peptide":
         ref_features = parse_mat_peptides(ref_record)
@@ -187,6 +189,7 @@ def prepare_reference_features(
 
     alias_config_path: Optional[Path] = None
     detected_virus_name: Optional[str] = None
+    alias_lookup: Dict[str, str] = {}
 
     # Case 1: user explicitly provides alias config
     if alias_config_arg:
@@ -212,7 +215,7 @@ def prepare_reference_features(
         alias_lookup = load_alias_lookup(alias_config_path)
         ref_features = apply_alias_to_features(ref_features, alias_lookup)
 
-    return ref_features, alias_config_path, detected_virus_name
+    return ref_features, alias_config_path, detected_virus_name, alias_lookup
 
 
 # ---------------------------------------------------------------------
@@ -265,7 +268,7 @@ def write_results_tsv(all_results: List[Tuple[str, List]], out_path: Path) -> No
                 {
                     "query_id": query_id,
                     "name": lifted.name,
-                    "canonical_name": lifted.canonical_name or "",
+                    "source_name": lifted.source_name or "",
                     "ref_start": lifted.ref_start,
                     "ref_end": lifted.ref_end,
                     "start": lifted.query_start,
@@ -328,6 +331,73 @@ def summarize_counts(all_results: List[Tuple[str, List]]) -> Dict[str, int]:
 # Core processing
 # ---------------------------------------------------------------------
 
+
+
+def direct_extract_with_alias(
+    query_record: SeqRecord,
+    query_feature_type: str,
+    ref_features: List[Dict],
+    alias_lookup: Dict[str, str],
+) -> List[LiftedFeature]:
+    """
+    Case 1: Query already has annotation. Extract directly and normalize names.
+
+    Much faster than tblastn lift — no alignment needed, just parse and rename.
+
+    Args:
+        query_record: Query genome with existing annotation
+        query_feature_type: "CDS" or "mat_peptide"
+        ref_features: Reference features (already alias-normalized)
+                      Used to populate ref_start/ref_end by canonical name match.
+        alias_lookup: Alias normalization lookup
+
+    Returns:
+        List of LiftedFeature objects with method="direct" and status="ok"
+    """
+    if query_feature_type == "mat_peptide":
+        query_features = parse_mat_peptides(query_record)
+    else:
+        query_features = parse_cds_features(query_record)
+
+    # Apply alias normalization if available
+    if alias_lookup:
+        query_features = apply_alias_to_features(query_features, alias_lookup)
+
+    # Build lookup: canonical name -> ref feature (for ref_start/ref_end)
+    ref_by_name: Dict[str, Dict] = {f["name"]: f for f in ref_features}
+
+    results: List[LiftedFeature] = []
+    for qf in query_features:
+        name = qf["name"]
+        ref_match = ref_by_name.get(name)
+
+        ref_start = ref_match["start"] if ref_match else None
+        ref_end = ref_match["end"] if ref_match else None
+
+        # Extract sequence to populate length field
+        start = qf["start"]
+        end = qf["end"]
+        strand = qf.get("strand", "+")
+        seq = query_record.seq[start - 1: end]
+        if strand == "-":
+            seq = seq.reverse_complement()
+        seq_str = str(seq)
+
+        results.append(LiftedFeature(
+            name=name,
+            source_name=qf.get("raw_name") if qf.get("name_source") in ("alias", "product_alias") else None,
+            ref_start=ref_start,
+            ref_end=ref_end,
+            strand=strand,
+            method="direct",
+            query_start=start,
+            query_end=end,
+            sequence=seq_str,
+            coverage=1.0,
+            status="ok",
+        ))
+
+    return results
 
 
 def process_one_query_record(
@@ -397,14 +467,13 @@ def main() -> None:
     if not query_records:
         raise ValueError("No query records found.")
 
-    ref_features, alias_config_path, detected_virus_name = prepare_reference_features(
+    ref_features, alias_config_path, detected_virus_name, alias_lookup = prepare_reference_features(
         ref_record=ref_record,
         alias_config_arg=args.alias_config,
         alias_registry_arg=args.alias_registry,
     )
 
-    # Detect reference feature type for validation
-    _, ref_feature_type = choose_strategy(ref_record)
+    ref_feature_type = get_feature_type(ref_record)
 
     print("ViraLift")
     print(f"  Reference record : {ref_record.id}")
@@ -431,24 +500,47 @@ def main() -> None:
         query_records,
         desc="Processing records",
         unit="record",
-        ncols=90,
+        dynamic_ncols=True,
     )
+
+    direct_count = 0
+    lifted_count = 0
 
     for query_record in iterator:
         if not args.quiet:
             iterator.set_postfix_str(query_record.id)
 
-        results = process_one_query_record(
-            ref_record=ref_record,
-            query_record=query_record,
-            ref_cds=ref_features,
-            ref_feature_type=ref_feature_type,
-            min_coverage=args.min_coverage,
-            min_identity=args.min_identity,
-            evalue=args.evalue,
-            rescue_window=args.rescue_window,
-            quiet=args.quiet,
+        # Route per-record: direct extract only when query has the same feature type as ref.
+        # If ref uses mat_peptide but query only has CDS (or vice versa), tblastn is needed
+        # to properly extract individual gene-level features.
+        query_feature_type = get_feature_type(query_record)
+        granularity_matches = (
+            query_feature_type is not None
+            and query_feature_type == ref_feature_type
         )
+
+        if granularity_matches:
+            results = direct_extract_with_alias(
+                query_record=query_record,
+                query_feature_type=query_feature_type,
+                ref_features=ref_features,
+                alias_lookup=alias_lookup,
+            )
+            direct_count += 1
+        else:
+            results = process_one_query_record(
+                ref_record=ref_record,
+                query_record=query_record,
+                ref_cds=ref_features,
+                ref_feature_type=ref_feature_type,
+                min_coverage=args.min_coverage,
+                min_identity=args.min_identity,
+                evalue=args.evalue,
+                rescue_window=args.rescue_window,
+                quiet=args.quiet,
+            )
+            lifted_count += 1
+
         all_results.append((query_record.id, results))
 
     # fasta_out = outdir / "extracted_cds.fasta"
@@ -461,6 +553,8 @@ def main() -> None:
 
     print("\nRun summary")
     print(f"  Query records processed : {len(query_records)}")
+    print(f"    Direct (annotated)    : {direct_count}")
+    print(f"    Lifted (tblastn)      : {lifted_count}")
     print(f"  OK                      : {summary['ok']}")
     print(f"  OK (rescued)            : {summary['ok_rescued']}")
     print(f"  Invalid boundaries      : {summary['invalid_boundaries']}")

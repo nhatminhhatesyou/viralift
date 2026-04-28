@@ -10,3 +10,5 @@ output/*
 *.fa
 *.mmi
 app/data/*
+app/validation/
+app/src/tests/
