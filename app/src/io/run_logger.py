@@ -99,6 +99,39 @@ def log_alias_added(alias_config_name: str, raw_name: str, canonical: str) -> No
     )
 
 
+def log_session_decisions(
+    decisions: Dict[str, Optional[str]],
+    saved_names: List[str],
+) -> None:
+    """
+    Record every resolver decision made in the resolve stage.
+
+    Logs both session-only decisions (not saved to alias config) and
+    permanent ones (saved to alias config), so there is always a trace
+    of what was mapped in a given run regardless of whether 💾 Save
+    was checked.
+
+    Args:
+        decisions:   {raw_name: canonical_or_None} — full resolver output.
+                     None means the user chose to ignore the name.
+        saved_names: List of raw_names whose mappings were also written
+                     permanently to the alias config file.
+    """
+    saved_set = set(saved_names)
+    for raw_name, canonical in decisions.items():
+        if canonical is None:
+            _logger.info("SESSION_DECISION | %r → (ignored, session only)", raw_name)
+        elif raw_name in saved_set:
+            _logger.info(
+                "SESSION_DECISION | %r → %s  [saved to config]", raw_name, canonical
+            )
+        else:
+            _logger.info(
+                "SESSION_DECISION | %r → %s  [session only, not saved]",
+                raw_name, canonical,
+            )
+
+
 def log_canonical_added(alias_config_name: str, canonical: str) -> None:
     """
     Record that a brand-new canonical key was added to an alias config.
