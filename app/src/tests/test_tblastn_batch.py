@@ -24,9 +24,9 @@ from typing import Dict, List, Tuple
 
 from Bio.SeqRecord import SeqRecord
 
-from app.src.annotation.alias_registry import detect_alias_config_for_record, get_detected_virus_name
-from app.src.annotation.annotation_strategy import choose_strategy
-from app.src.annotation.gene_alias import (
+from app.src.alias.alias_registry import detect_alias_config_for_record, get_detected_virus_name
+from app.src.features.annotation_strategy import choose_strategy
+from app.src.alias.gene_alias import (
     apply_alias_to_features,
     apply_ref_naming,
     build_canonical_to_ref_map,

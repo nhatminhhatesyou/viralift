@@ -23,12 +23,12 @@ from Bio.SeqRecord import SeqRecord
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
-from app.src.annotation.alias_registry import (
+from app.src.alias.alias_registry import (
     detect_alias_config_for_record,
     get_detected_virus_name,
 )
-from app.src.annotation.annotation_strategy import get_feature_type, get_strategy
-from app.src.annotation.gene_alias import (
+from app.src.features.annotation_strategy import get_feature_type, get_strategy
+from app.src.alias.gene_alias import (
     apply_alias_to_features,
     load_alias_lookup,
     normalize_text,
@@ -39,12 +39,10 @@ from app.src.io.genbank_parser import (
     parse_cds_features,
     parse_mat_peptides,
 )
-from app.src.main import (
-    direct_extract_with_alias,
-    prepare_reference_features,
-    process_one_query_record,
-    summarize_counts,
-)
+from app.src.features.direct_extractor import direct_extract_with_alias
+from app.src.features.ref_loader import prepare_reference_features
+from app.src.io.result_writer import summarize_counts
+from app.src.lifting.tblastn_lifter import process_one_query_record
 from app.src.lifting.base import LiftedFeature
 from app.src.io.run_logger import (
     log_alias_added,

@@ -132,12 +132,12 @@ def run_alias_pipeline(
                 resolved, total, normalized_features
             - payload: aggregated LLM payload dict, or None if all resolved
     """
-    from app.src.annotation.alias_registry import (
+    from app.src.alias.alias_registry import (
         detect_alias_config_for_record,
         get_detected_virus_name,
     )
-    from app.src.annotation.annotation_strategy import get_feature_type
-    from app.src.annotation.gene_alias import (
+    from app.src.features.annotation_strategy import get_feature_type
+    from app.src.alias.gene_alias import (
         apply_alias_to_features,
         apply_ref_naming,
         build_canonical_to_ref_map,

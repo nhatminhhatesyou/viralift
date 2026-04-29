@@ -2,17 +2,17 @@ import argparse
 import json
 from pathlib import Path
 
-from app.src.annotation.alias_payload import (
+from app.src.alias.alias_payload import (
     build_map_aliases_payload,
     build_new_virus_payload,
     get_unresolved_features,
 )
-from app.src.annotation.alias_registry import (
+from app.src.alias.alias_registry import (
     detect_alias_config_for_record,
     get_detected_virus_name,
 )
-from app.src.annotation.annotation_strategy import choose_strategy
-from app.src.annotation.gene_alias import apply_alias_to_features, load_alias_lookup
+from app.src.features.annotation_strategy import choose_strategy
+from app.src.alias.gene_alias import apply_alias_to_features, load_alias_lookup
 from app.src.io.genbank_parser import (
     load_genbank_records,
     parse_cds_features,

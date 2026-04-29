@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
 
-from app.src.annotation.alias_payload import run_alias_pipeline, save_payload
+from app.src.alias.alias_payload import run_alias_pipeline, save_payload
 from app.src.io.genbank_parser import load_single_genbank, load_genbank_records
 
 

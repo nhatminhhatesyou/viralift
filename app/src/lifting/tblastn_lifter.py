@@ -33,7 +33,7 @@ from Bio.Blast import NCBIXML
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 
-from app.src.annotation.validator import validate_cds_boundaries, rescue_start_codon, rescue_stop_codon
+from app.src.lifting.validator import validate_cds_boundaries, rescue_start_codon, rescue_stop_codon
 from app.src.lifting.base import LiftedFeature
 
 
@@ -608,3 +608,46 @@ def lift_all_tblastn(
         ))
 
     return results
+
+
+def process_one_query_record(
+    ref_record: SeqRecord,
+    query_record: SeqRecord,
+    ref_cds: List[Dict],
+    ref_feature_type: str,
+    min_coverage: float,
+    min_identity: float = 0.3,
+    evalue: float = 1e-5,
+    rescue_window: int = 50,
+    quiet: bool = False,
+) -> List[LiftedFeature]:
+    """
+    Lift all reference features onto one query genome via tblastn.
+
+    Args:
+        ref_record:       Reference genome record.
+        query_record:     Query genome record.
+        ref_cds:          Parsed reference features (alias-normalized).
+        ref_feature_type: "CDS" or "mat_peptide" — controls codon validation.
+        min_coverage:     Minimum accepted protein coverage.
+        min_identity:     Minimum accepted protein identity.
+        evalue:           E-value threshold for tblastn.
+        rescue_window:    Window size (bp) for start codon rescue.
+        quiet:            Suppress per-record console output.
+
+    Returns:
+        List of LiftedFeature objects.
+    """
+    # mat_peptide boundaries don't require ATG/stop codon validation
+    validate_codons = (ref_feature_type == "CDS")
+
+    return lift_all_tblastn(
+        ref_features=ref_cds,
+        ref_record=ref_record,
+        query_record=query_record,
+        min_coverage=min_coverage,
+        min_identity=min_identity,
+        evalue=evalue,
+        rescue_window=rescue_window,
+        validate_codons=validate_codons,
+    )
