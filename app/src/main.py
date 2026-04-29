@@ -12,7 +12,7 @@ from app.src.annotation.alias_registry import (
     detect_alias_config_for_record,
     get_detected_virus_name,
 )
-from app.src.annotation.annotation_strategy import get_feature_type
+from app.src.annotation.annotation_strategy import get_feature_type, get_strategy
 from app.src.annotation.gene_alias import (
     apply_alias_to_features,
     load_alias_lookup,
@@ -510,16 +510,10 @@ def main() -> None:
         if not args.quiet:
             iterator.set_postfix_str(query_record.id)
 
-        # Route per-record: direct extract only when query has the same feature type as ref.
-        # If ref uses mat_peptide but query only has CDS (or vice versa), tblastn is needed
-        # to properly extract individual gene-level features.
-        query_feature_type = get_feature_type(query_record)
-        granularity_matches = (
-            query_feature_type is not None
-            and query_feature_type == ref_feature_type
-        )
+        strategy = get_strategy(query_record, ref_feature_type)
 
-        if granularity_matches:
+        if strategy == "direct":
+            query_feature_type = get_feature_type(query_record)
             results = direct_extract_with_alias(
                 query_record=query_record,
                 query_feature_type=query_feature_type,

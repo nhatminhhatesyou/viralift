@@ -27,7 +27,7 @@ from app.src.annotation.alias_registry import (
     detect_alias_config_for_record,
     get_detected_virus_name,
 )
-from app.src.annotation.annotation_strategy import get_feature_type
+from app.src.annotation.annotation_strategy import get_feature_type, get_strategy
 from app.src.annotation.gene_alias import (
     apply_alias_to_features,
     load_alias_lookup,
@@ -270,12 +270,10 @@ def _run_pipeline(
     n = len(query_records)
     for i, qrec in enumerate(query_records):
         progress_bar.progress(i / n, text=f"Processing {qrec.id}  ({i+1}/{n})")
-        query_feature_type = get_feature_type(qrec)
-        granularity_matches = (
-            query_feature_type is not None and query_feature_type == ref_feature_type
-        )
+        strategy = get_strategy(qrec, ref_feature_type)
         try:
-            if granularity_matches:
+            if strategy == "direct":
+                query_feature_type = get_feature_type(qrec)
                 results = direct_extract_with_alias(
                     qrec, query_feature_type, ref_features, effective_lookup
                 )
