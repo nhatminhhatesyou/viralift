@@ -1,15 +1,28 @@
 {
   "virus": "PRRSV",
+  "notes": "Canonical names updated to ORF convention. NSP2-12 retain NSP naming (no individual ORF equivalents). Old GP/M/N/E names kept as aliases for backward compatibility.",
+  "ignored_names": [
+    "non-structural protein",
+    "nonstructural protein",
+    "structural membrane protein",
+    "proteinase",
+    "cysteine/serine protease",
+    "unknown protein",
+    "nsp1",
+    "nsp7"
+  ],
   "canonical_names": {
     "ORF1ab": [
       "orf1ab",
       "polyprotein 1ab",
       "polyprotein",
-      "replicase polyprotein"
+      "replicase polyprotein",
+      "ORF1ab polyprotein"
     ],
-    "NSP1A": [
+    "ORF1a": [
+      "NSP1A",
+      "nsp1a",
       "polyprotein 1a",
-      "orf1a",
       "orf1a polyprotein",
       "nonstructural proteins orf1a",
       "papain-like cysteine protease",
@@ -18,11 +31,13 @@
       "nsp1alpha",
       "pp1a",
       "replicase polyprotein 1a",
-      "polypeptide precursor of non-structural proteins NSP1 through NSP8"
+      "polypeptide precursor of non-structural proteins NSP1 through NSP8",
+      "polyprotein ORF1a"
     ],
-    "NSP1B": [
+    "ORF1b": [
+      "NSP1B",
+      "nsp1b",
       "polyprotein 1b",
-      "orf1b",
       "orf1b polyprotein",
       "rna-dependent rna polymerase",
       "rna dependent rna polymerase",
@@ -33,7 +48,9 @@
       "nsp1beta",
       "pp1b",
       "replicase polyprotein 1b",
-      "polypeptide precursor of non-structural proteins NSP9 through NSP12"
+      "polypeptide precursor of non-structural proteins NSP9 through NSP12",
+      "polyprotein ORF1b",
+      "nonstructural proteins ORF1b"
     ],
     "NSP2": [
       "nsp2",
@@ -107,10 +124,10 @@
       "nsp12",
       "NSP12"
     ],
-    "GP2": [
+    "ORF2a": [
+      "GP2",
       "gp2",
       "orf2",
-      "orf2a",
       "glycoprotein 2",
       "glycoprotein 2a",
       "minor envelope glycoprotein gp2",
@@ -121,43 +138,58 @@
       "gp2a",
       "gp2a protein",
       "glycosylated membrane protein 2",
-      "envelope protein GP2"
+      "envelope protein GP2",
+      "GP2a envelope protein",
+      "glycosylated envelope protein GP2",
+      "envelope glycoprotein GP2",
+      "N-glycosylated envelope protein GP2"
     ],
-    "E": [
+    "ORF2b": [
+      "E",
       "e",
-      "orf2b",
       "small envelope protein e",
-      "envelope protein",
       "envelope protein e",
       "2b/E membrane protein",
       "E protein",
-      "small unglycosylated protein"
+      "small unglycosylated protein",
+      "GP2b envelope protein",
+      "envelope protein GP2b",
+      "GP2b",
+      "2b",
+      "ORF2b structual protein",
+      "unglycosylated envelope protein"
     ],
-    "GP3": [
+    "ORF3": [
+      "GP3",
       "gp3",
-      "orf3",
       "glycoprotein 3",
       "glycosylated membrane protein gp3",
       "glycosylated membrane protein 3",
       "glycosylated protein 3",
       "gp3 envelope protein",
       "gp3 protein",
-      "envelope protein GP3"
+      "envelope protein GP3",
+      "glycosylated envelope protein GP3",
+      "envelope glycoprotein GP3",
+      "N-glycosylated envelope protein GP3"
     ],
-    "GP4": [
+    "ORF4": [
+      "GP4",
       "gp4",
-      "orf4",
       "glycoprotein 4",
       "glycosylated membrane protein gp4",
       "glycosylated membrane protein 4",
       "glycosylated protein 4",
       "gp4 protein",
       "gp4 envelope protein",
-      "envelope protein GP4"
+      "envelope protein GP4",
+      "glycosylated envelope protein GP4",
+      "envelope glycoprotein GP4",
+      "N-glycosylated envelope protein GP4"
     ],
-    "GP5": [
+    "ORF5": [
+      "GP5",
       "gp5",
-      "orf5",
       "glycoprotein 5",
       "major envelope glycoprotein gp5",
       "major envelope glycoprotein",
@@ -165,19 +197,22 @@
       "glycosylated membrane protein 5",
       "gp5 glycosylated envelope protein",
       "gp5 envelope protein",
-      "gp5 protein"
+      "gp5 protein",
+      "envelope protein GP5",
+      "glycosylated envelope protein GP5",
+      "envelope glycoprotein GP5",
+      "N-glycosylated envelope protein GP5"
     ],
     "ORF5a": [
-      "orf5a",
       "orf5a protein",
       "5a",
       "membrane protein 5a",
       "gp5a",
       "GP5a"
     ],
-    "M": [
+    "ORF6": [
+      "M",
       "m",
-      "orf6",
       "membrane protein",
       "matrix protein",
       "matrix protein m",
@@ -185,11 +220,13 @@
       "membrane protein m",
       "m matrix protein",
       "m protein",
-      "non-glycosylated membrane protein"
+      "non-glycosylated membrane protein",
+      "M membrane protein",
+      "membrane protein GP6"
     ],
-    "N": [
+    "ORF7": [
+      "N",
       "n",
-      "orf7",
       "nucleocapsid protein",
       "nucleocapsid protein n",
       "n protein",
