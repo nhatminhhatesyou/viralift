@@ -79,6 +79,12 @@ def get_record_sequence(record: SeqRecord) -> str:
     return str(record.seq)
 
 
+# Qualifier keys to extract from each feature for alias lookup.
+# Order matches _get_feature_name priority so downstream lookup tries
+# the most-specific field first when resolving canonical names.
+_LOOKUP_QUALIFIER_KEYS = ["gene", "product", "label", "standard_name", "locus_tag", "note"]
+
+
 # ---------------------------------------------------------------------
 # Qualifier helpers
 # ---------------------------------------------------------------------
@@ -135,8 +141,7 @@ def _feature_to_basic_dict(feature: SeqFeature, index: int) -> Dict:
 
     Fields:
         - name
-        - gene
-        - product
+        - all keys in _LOOKUP_QUALIFIER_KEYS (gene, product, label, standard_name, locus_tag, note)
         - start
         - end
         - strand
@@ -155,14 +160,17 @@ def _feature_to_basic_dict(feature: SeqFeature, index: int) -> Dict:
     if feature.location.strand == -1:
         strand = "-"
 
-    return {
+    result = {
         "name": _get_feature_name(feature, index),
-        "gene": _get_first_qualifier(feature, "gene"),
-        "product": _get_first_qualifier(feature, "product"),
         "start": start,
         "end": end,
         "strand": strand,
     }
+
+    for key in _LOOKUP_QUALIFIER_KEYS:
+        result[key] = _get_first_qualifier(feature, key)
+
+    return result
 
 
 def _feature_to_scored_dict(feature: SeqFeature, genome_length: int, order_index: int) -> Dict:
@@ -172,8 +180,7 @@ def _feature_to_scored_dict(feature: SeqFeature, genome_length: int, order_index
     Fields:
         - type
         - name
-        - gene
-        - product
+        - all keys in _LOOKUP_QUALIFIER_KEYS (gene, product, label, standard_name, locus_tag, note)
         - start / end
         - strand
         - length
@@ -193,19 +200,22 @@ def _feature_to_scored_dict(feature: SeqFeature, genome_length: int, order_index
     strand = "+" if feature.location.strand == 1 else "-"
     length = end - start + 1
 
-    return {
-        "type": feature.type,
-        "name": _get_feature_name(feature, order_index),
-        "gene": _get_first_qualifier(feature, "gene"),
-        "product": _get_first_qualifier(feature, "product"),
-        "start": start,
-        "end": end,
-        "strand": strand,
-        "length": length,
+    result = {
+        "type":      feature.type,
+        "name":      _get_feature_name(feature, order_index),
+        "start":     start,
+        "end":       end,
+        "strand":    strand,
+        "length":    length,
         "rel_start": start / genome_length,
-        "rel_end": end / genome_length,
-        "order": order_index,
+        "rel_end":   end / genome_length,
+        "order":     order_index,
     }
+
+    for key in _LOOKUP_QUALIFIER_KEYS:
+        result[key] = _get_first_qualifier(feature, key)
+
+    return result
 
 
 # ---------------------------------------------------------------------
