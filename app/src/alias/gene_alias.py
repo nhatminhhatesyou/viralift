@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
+
+from app.src.io.genbank_parser import _LOOKUP_QUALIFIER_KEYS
 
 
 """
@@ -96,16 +98,21 @@ def load_alias_config(config_path: Path) -> Dict:
     return config_data
 
 
+IGNORED_SENTINEL = "__ignored__"
+
+
 def build_alias_lookup(config_data: Dict) -> Dict[str, str]:
     """
     Build a normalized alias lookup table from config data.
 
     Output format:
         normalized_alias -> canonical_name
+        normalized_ignored -> IGNORED_SENTINEL
 
     Example:
         "orf5" -> "GP5"
         "glycoprotein5" -> "GP5"
+        "nonstructuralprotein" -> "__ignored__"
 
     Args:
         config_data: Parsed alias config dictionary
@@ -125,7 +132,6 @@ def build_alias_lookup(config_data: Dict) -> Dict[str, str]:
                 f"Aliases for canonical name '{canonical_name}' must be a list."
             )
 
-        # Include canonical name itself in the lookup
         all_names = [canonical_name] + aliases
 
         for alias in all_names:
@@ -146,6 +152,11 @@ def build_alias_lookup(config_data: Dict) -> Dict[str, str]:
                 )
 
             lookup[normalized_alias] = canonical_name
+
+    for ignored_name in config_data.get("ignored_names", []):
+        normalized = normalize_text(ignored_name)
+        if normalized and normalized not in lookup:
+            lookup[normalized] = IGNORED_SENTINEL
 
     return lookup
 
@@ -172,39 +183,77 @@ def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
     """
     Apply alias normalization to a single feature dictionary.
 
-    Input feature is expected to have at least:
-        - name
+    Strategy:
+        Iterate over all qualifier fields (gene, product, label, standard_name,
+        locus_tag, note) in priority order and collect every field whose value
+        has a hit in alias_lookup. Then decide:
 
-    Output feature will include:
-        - raw_name
-        - name (canonical if matched, else original)
-        - name_source ("alias" or "raw")
+        - 0 hits              → keep raw display name, name_source="raw"
+        - 1 hit               → use that canonical
+        - multiple hits, same canonical → unanimous, use it
+        - multiple hits, different canonicals → conflict; use the hit from the
+          highest-priority field (first in _LOOKUP_QUALIFIER_KEYS order)
+
+        IGNORED_SENTINEL hits are treated like misses for canonical resolution
+        but still propagate name_source="ignored" if they are the only result.
+
+    Output fields added to feature dict:
+        - raw_name   : original display name before any resolution
+        - name       : canonical name (or raw_name if unresolved)
+        - name_source: one of "alias", "ignored", "raw", "alias_conflict_resolved"
 
     Args:
-        feature: Feature dictionary
-        alias_lookup: normalized_alias -> canonical_name
+        feature:      Feature dictionary produced by genbank_parser.
+        alias_lookup: normalized_alias -> canonical_name mapping.
 
     Returns:
-        Updated feature dictionary
+        Updated feature dictionary.
     """
     new_feature = feature.copy()
-
     raw_name = feature.get("name")
-    in_lookup = normalize_text(raw_name) in alias_lookup
 
-    if in_lookup:
-        canonical_name = resolve_alias(raw_name, alias_lookup)
-        name_source = "alias"
+    # Collect (field, raw_value, canonical) for every qualifier that hits alias
+    hits: List[Tuple[str, str, str]] = []
+    for field in _LOOKUP_QUALIFIER_KEYS:
+        value = feature.get(field)
+        if not value:
+            continue
+        canonical = alias_lookup.get(normalize_text(value))
+        if canonical is not None:
+            hits.append((field, value, canonical))
+
+    if not hits:
+        # Nothing matched alias at all → keep raw display name
+        canonical_name = raw_name
+        name_source = "raw"
+
     else:
-        # fallback: try product field
-        product = feature.get("product")
-        in_product = normalize_text(product) in alias_lookup if product else False
-        if in_product:
-            canonical_name = resolve_alias(product, alias_lookup)
-            name_source = "product_alias"
+        unique_canonicals = {canonical for _, _, canonical in hits}
+
+        if len(unique_canonicals) == 1:
+            # All hits agree (or only one hit) → use it
+            _, _, canonical_name = hits[0]
+            if canonical_name == IGNORED_SENTINEL:
+                canonical_name = raw_name
+                name_source = "ignored"
+            else:
+                name_source = "alias"
+
         else:
-            canonical_name = raw_name
-            name_source = "raw"
+            # Conflict: multiple different canonicals.
+            # Drop IGNORED hits first, then take the highest-priority field.
+            non_ignored = [
+                (field, value, canonical)
+                for field, value, canonical in hits
+                if canonical != IGNORED_SENTINEL
+            ]
+            if non_ignored:
+                _, _, canonical_name = non_ignored[0]
+                name_source = "alias_conflict_resolved"
+            else:
+                # All hits were IGNORED_SENTINEL
+                canonical_name = raw_name
+                name_source = "ignored"
 
     new_feature["raw_name"] = raw_name
     new_feature["name"] = canonical_name
