@@ -3,6 +3,7 @@
   "ignored_names": [
     "polyprotein"
   ],
+  "notes": "Variants added from 100-seq validation: peptide-suffix names, compound names with semicolons",
   "canonical_names": {
     "Lpro": [
       "Lpro",
@@ -13,29 +14,38 @@
       "La",
       "Lb",
       "L",
-      "pro peptide"
+      "pro peptide",
+      "L-protease",
+      "L-protein",
+      "Lab peptide",
+      "Lab peptide; leader peptide",
+      "leader peptide"
     ],
     "VP4": [
       "VP4",
       "1A",
-      "capsid protein VP4"
+      "capsid protein VP4",
+      "VP4 peptide"
     ],
     "VP2": [
       "VP2",
       "1B",
       "capsid protein VP2",
-      "VP2 protein"
+      "VP2 protein",
+      "VP2 peptide"
     ],
     "VP3": [
       "VP3",
       "1C",
-      "capsid protein VP3"
+      "capsid protein VP3",
+      "VP3 peptide"
     ],
     "VP1": [
       "VP1",
       "1D",
       "capsid protein VP1",
-      "viral protein 1"
+      "viral protein 1",
+      "VP1 peptide"
     ],
     "2A": [
       "2A",
@@ -62,20 +72,28 @@
       "3B3",
       "VPg1",
       "VPg2",
-      "VPg3"
+      "VPg3",
+      "3B peptide",
+      "3B1/3B2/3B3",
+      "3B1/3B2/3B3 peptide",
+      "3B peptide; 3B1/3B2/3B3 peptide"
     ],
     "3Cpro": [
       "3Cpro",
       "3C",
       "protease 3C",
-      "3C protease"
+      "3C protease",
+      "3C peptide",
+      "3C peptide; pro peptide"
     ],
     "3Dpol": [
       "3Dpol",
       "3D",
       "RNA dependent RNA polymerase",
       "3D polymerase",
-      "pol peptide"
+      "pol peptide",
+      "3D peptide",
+      "pol peptide; 3D peptide"
     ]
   }
 }
