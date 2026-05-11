@@ -6,7 +6,7 @@
 
 ## 🧩 The Problem
 
-GenBank viral genome submissions are inconsistent. The same gene across different submissions can be labelled:
+GenBank viral genome submissions are inconsistent. The same gene across different submissions can be labelled in completely different ways across different qualifier fields (`/gene`, `/product`, `/note`, etc.):
 
 | Virus | Same gene, different labels |
 |-------|-----------------------------|
@@ -57,6 +57,18 @@ Reference GenBank (.gb)          Query GenBank (.gb)
          ▼
   TSV / FASTA output  (coordinates + canonical names + status)
 ```
+
+### 🔎 How Alias Lookup Works
+
+When a query feature is parsed, ViraLift checks **all qualifier fields** — `/gene`, `/product`, `/label`, `/standard_name`, `/locus_tag`, `/note` — not just one. Every field that matches an entry in the alias config contributes a "hit". The final canonical name is chosen by:
+
+- **0 hits** → keep the raw name, flag as unresolved
+- **1 hit, or all hits agree** → use that canonical name
+- **Conflicting hits** → use the highest-priority field's result (gene > product > label > ...)
+
+This handles common GenBank inconsistencies — for example, a record with `/product="envelope protein"` (too generic, not in alias) and `/note="ORF5"` (specific, in alias) will correctly resolve to `ORF5` via the `note` field.
+
+---
 
 ### 🔬 Why tblastn?
 
@@ -127,9 +139,9 @@ docker compose down   # stop
 
 | Column | What to do |
 |--------|-----------|
-| Gene name | The raw name found in the query file |
+| Candidate names | All qualifier values found for this feature group (e.g. `` `envelope protein` `` `` `ORF5` ``). Displayed as chips so you have full context. |
 | Dropdown | Pick the canonical name to map it to, or leave as `-- ignore (keep raw name) --` |
-| 💾 Save | Check to permanently add this mapping to the alias config for future runs |
+| 💾 Save | Check to permanently add **all** candidate values to the alias config — not just the one shown. This ensures any variant of the name is resolved automatically in future runs. |
 
 Click **▶ Continue with these decisions** when done.
 
@@ -263,15 +275,15 @@ python -m app.src.main \
 Results are written to `<output>/extracted_cds.tsv`:
 
 ```
-record_id   name    source_name  start   end     strand  status       coverage  identity  method
-AF331831.1  GP5     ORF5         13880   14482   +       ok           0.99      95.2      tblastn
-AF331831.1  M       ORF6         14467   14991   +       ok           1.00      97.1      tblastn
-AF331831.1  N       ORF7         14981   15352   +       ok_rescued   0.98      94.4      tblastn
-AF331831.1  ORF1ab  polyprotein  190     12173   +       ok           1.00      91.3      direct
+record_id   name    source_name       start   end     strand  status       coverage  identity  method
+AF331831.1  ORF5    GP5               13880   14482   +       ok           0.99      95.2      tblastn
+AF331831.1  ORF6    membrane protein  14467   14991   +       ok           1.00      97.1      tblastn
+AF331831.1  ORF7    N                 14981   15352   +       ok_rescued   0.98      94.4      tblastn
+AF331831.1  ORF1ab  polyprotein       190     12173   +       ok           1.00      91.3      direct
 ```
 
-- **name** — canonical name from the alias config key
-- **source_name** — original raw name in the query annotation (direct extracts only)
+- **name** — canonical name from the alias config key (e.g. `ORF5`, `ORF6`, `NSP2`)
+- **source_name** — original raw name found in the query annotation before normalisation (direct extracts only)
 
 ---
 
@@ -290,23 +302,27 @@ viralift/
 │   │   └── cross_check/               # Validation datasets
 │   └── src/
 │       ├── main.py                    # 🚪 CLI entry point + core pipeline
-│       ├── lifting/
-│       │   ├── base.py                # 📦 LiftedFeature dataclass
-│       │   └── tblastn_lifter.py      # 🔬 Protein-guided coordinate lifting
-│       ├── annotation/
-│       │   ├── gene_alias.py          # 📖 Alias lookup and normalisation
-│       │   ├── alias_registry.py      # 🔍 Auto-detection of alias config
-│       │   └── annotation_strategy.py # 🧭 Feature type detection (CDS / mat_peptide / None)
-│       └── io/
-│           ├── genbank_parser.py      # 📂 GenBank parsing utilities
-│           └── run_logger.py          # 📝 Run and alias audit logging
+│       ├── io/
+│       │   ├── genbank_parser.py      # 📂 GenBank parsing, feature extraction
+│       │   └── result_writer.py       # 📝 TSV output and run summary
+│       ├── features/
+│       │   ├── annotation_strategy.py # 🧭 Route each record: direct or tblastn
+│       │   ├── ref_loader.py          # 🔧 Prepare reference features + alias
+│       │   └── direct_extractor.py    # ⚡ Extract annotated features without alignment
+│       ├── alias/
+│       │   ├── gene_alias.py          # 📖 Alias lookup, multi-field resolution
+│       │   └── alias_registry.py      # 🔍 Auto-detection of alias config by virus
+│       └── lifting/
+│           ├── base.py                # 📦 LiftedFeature dataclass
+│           ├── tblastn_lifter.py      # 🔬 Protein-guided coordinate lifting
+│           └── validator.py           # ✅ Start/stop codon validation and rescue
 ├── ui/
-│   ├── streamlit_app.py               # 🖥️ Web UI (4-stage Streamlit app)
-│   └── requirements.txt               # UI-specific Python dependencies
+│   └── streamlit_app.py               # 🖥️ Web UI (4-stage Streamlit app)
 ├── logs/                              # 📋 Runtime logs (gitignored, volume-mounted)
 ├── output/                            # 📤 CLI output files (gitignored, volume-mounted)
 ├── Dockerfile
 ├── docker-compose.yml
+├── CODEBASE_GUIDE.md                  # 📚 Developer reference: module-by-module walkthrough
 └── README.md
 ```
 
@@ -319,27 +335,35 @@ Alias configs live in `app/config/`. Each file maps a canonical gene name to all
 ```json
 {
   "virus": "PRRSV",
-  "ignored_names": ["polyprotein"],
+  "ignored_names": ["polyprotein", "nonstructural protein"],
   "canonical_names": {
-    "GP5": [
+    "ORF5": [
       "GP5",
       "gp5",
-      "ORF5",
       "glycoprotein 5",
-      "major envelope glycoprotein"
+      "major envelope glycoprotein",
+      "gp5 envelope protein",
+      "envelope glycoprotein GP5"
     ],
-    "N": [
+    "ORF7": [
       "N",
-      "ORF7",
+      "n",
       "nucleocapsid protein",
-      "N protein"
+      "nucleocapsid protein n",
+      "n protein"
+    ],
+    "NSP2": [
+      "nsp2",
+      "NSP2"
     ]
   }
 }
 ```
 
-- **`canonical_names`** — the key is the canonical output name; the list is every alias that maps to it
-- **`ignored_names`** — names to exclude from alias scanning entirely (e.g. FMD's `polyprotein`, which is the whole-genome parent feature and carries no gene-level information)
+- **`canonical_names`** — the key is the canonical output name; the list is every alias that maps to it. The canonical key itself is always included in the lookup automatically.
+- **`ignored_names`** — names to skip entirely (e.g. `polyprotein`, which is a whole-genome wrapper CDS with no gene-level information).
+
+**PRRSV naming convention:** Structural proteins use ORF names (`ORF2a`, `ORF2b`, `ORF3`–`ORF7`). Replicase ORFs use `ORF1a` / `ORF1b` / `ORF1ab`. Individual nonstructural proteins cleaved from the polyprotein (`NSP2`–`NSP12`) retain NSP names since they have no individual ORF designation.
 
 ### Adding a new virus
 
@@ -400,4 +424,4 @@ Alias name coverage (unique raw names resolved to canonical):
 | PRRSV | 95.2% (80 / 84 unique names) |
 | FMDV  | 100% (28 / 28 unique names) |
 
-> 💬 The 4 unmapped PRRSV names (`unknown protein`, `non-structural protein`, `proteinase`, `unglycosylated envelope protein`) are genuinely ambiguous and intentionally left as raw fallback.
+> 💬 Unmapped PRRSV names (e.g. `unknown protein`, `non-structural protein`, `proteinase`) are genuinely ambiguous — no single gene can be inferred from the name alone — and are intentionally left as raw fallback or listed in `ignored_names`.
