@@ -26,9 +26,8 @@ Notes:
     - mat_peptide takes priority over CDS because some viruses (e.g. FMDV) encode
       a single whole-genome polyprotein CDS with no gene-level names; the real
       names live in mat_peptide sub-features.
-    - A query with exactly one CDS when the ref uses mat_peptide is treated as an
-      unannotated polyprotein shell and routed to tblastn, even though technically
-      it has a CDS feature.
+    - A query with exactly one CDS whose name contains "polyprotein" (or is unknown)
+      is treated as an unannotated shell and routed to tblastn, regardless of ref type.
 """
 
 
@@ -79,9 +78,12 @@ def get_strategy(
     if query_type is None:
         return "tblastn"
 
-    # A single CDS on a mat_peptide virus is an unannotated polyprotein shell —
-    # no gene-level names yet, needs tblastn to lift individual peptide boundaries.
-    if query_type == "CDS" and ref_feature_type == "mat_peptide":
-        return "tblastn" if len(parse_cds_features(query_record)) == 1 else "direct"
+    # A single CDS whose name looks like a polyprotein shell (no gene-level names)
+    # should be lifted via tblastn regardless of whether the ref uses CDS or mat_peptide.
+    cds_list = parse_cds_features(query_record)
+    if query_type == "CDS" and len(cds_list) == 1:
+        name = (cds_list[0].get("name") or "").lower()
+        if "polyprotein" in name or name in ("", "unknown"):
+            return "tblastn"
 
     return "direct"
