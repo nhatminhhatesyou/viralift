@@ -1,11 +1,10 @@
 # ViraLift — Codebase Guide
 
-> Complete walkthrough of every essential module: what it does, when it is called,
-> and how data flows from file upload all the way to exported results.
+A walkthrough of every module: what it does, when it's called, and how data moves from input files to final output.
 
 ---
 
-## The Big Picture
+## Big Picture
 
 Two entry points, one shared pipeline.
 
@@ -15,124 +14,112 @@ UI (Streamlit)          CLI (main.py)
       └──────────┬────────────┘
                  ▼
          shared pipeline
-   prepare ref → route per query → lift → validate → output
+   load files → prepare ref → route per query → lift/extract → validate → output
+```
+
+The pipeline always does the same thing regardless of entry point. The UI just wraps it with file upload, an interactive resolver for unknown gene names, and a results viewer.
+
+---
+
+## Module Map
+
+```
+app/src/
+├── io/
+│   ├── genbank_parser.py       load .gb files, parse features into dicts
+│   └── result_writer.py        write TSV output and print summary
+├── features/
+│   ├── annotation_strategy.py  decide which feature type a record uses
+│   ├── ref_loader.py           orchestrate reference preparation
+│   └── direct_extractor.py     extract + rename annotated features (no alignment)
+├── alias/
+│   ├── alias_registry.py       auto-detect the right alias config for a virus
+│   └── gene_alias.py           build alias lookup, normalize raw names → canonical
+└── lifting/
+    ├── base.py                 LiftedFeature dataclass (output from any path)
+    ├── tblastn_lifter.py       protein-guided coordinate lifting via tblastn
+    └── validator.py            check / rescue start and stop codons
+ui/
+└── streamlit_app.py            4-stage web interface
 ```
 
 ---
 
-## Layer 1 — I/O: `app/src/io/genbank_parser.py`
+## Step-by-Step Pipeline
 
-Everything starts here. Turns `.gb` files into Python objects.
+### Step 1 — Load files
 
-| Function | Role |
+**`io/genbank_parser.py`**
+
+Turns `.gb` files into Biopython `SeqRecord` objects and then into plain Python dicts.
+
+| Function | What it does |
 |---|---|
-| `load_single_genbank(path)` | Loads **exactly one** GenBank record. Strict — throws if 0 or 2+. Used for the **ref**. |
-| `load_genbank_records(path)` | Loads **all** records from a file. Used for **query** (may contain dozens of genomes). |
-| `parse_cds_features(record)` | Extracts `CDS` features → list of plain dicts: `{name, gene, product, start, end, strand, length, ...}` |
-| `parse_mat_peptides(record)` | Same but for `mat_peptide` features — used for FMDV where all gene names live in mat_peptide sub-features instead of CDS. |
+| `load_single_genbank(path)` | Loads exactly one record. Throws if the file has 0 or more than 1. Used for the **reference**. |
+| `load_genbank_records(path)` | Loads all records from a file. Used for the **query** (may have dozens of genomes). |
+| `parse_cds_features(record)` | Extracts `CDS` features into dicts. |
+| `parse_mat_peptides(record)` | Same but for `mat_peptide` features — FMDV stores gene names here instead of in CDS. |
+| `_feature_to_scored_dict(feature, ...)` | Internal. Converts one Biopython feature into a dict with all qualifier fields extracted: `name, gene, product, label, standard_name, locus_tag, note, start, end, strand, ...` |
 
-Raw coordinates are **1-based inclusive** throughout the codebase (same as GenBank).
+All coordinates are **1-based inclusive** throughout the codebase, matching the GenBank convention.
+
+**`_LOOKUP_QUALIFIER_KEYS`** is a module-level constant defining which qualifier fields get extracted and in what priority order:
+```python
+["gene", "product", "label", "standard_name", "locus_tag", "note"]
+```
+This same list is imported by `gene_alias.py` for consistent alias lookup across all field types.
 
 ---
 
-## Layer 2 — Strategy Decision: `app/src/annotation/annotation_strategy.py`
+### Step 2 — Detect feature type
+
+**`features/annotation_strategy.py`**
 
 ```python
-choose_strategy(record) → ("direct" | "minimap", "mat_peptide" | "CDS" | None)
+get_feature_type(record) → "CDS" | "mat_peptide" | None
+get_strategy(query_record, ref_feature_type) → "direct" | "tblastn"
 ```
 
-Called **once for the ref** and **once per each query record**. It simply asks:
-does this genome already have usable annotation?
+`get_feature_type` asks: does this record have `mat_peptide` features? If yes, use those. Otherwise, does it have `CDS`? If neither, return `None`.
 
-| Has `mat_peptide`? | Has `CDS`? | Result |
-|---|---|---|
-| ✅ | — | `("direct", "mat_peptide")` |
-| ❌ | ✅ | `("direct", "CDS")` |
-| ❌ | ❌ | `("minimap", None)` |
+`get_strategy` decides how to process a query record:
+- **`"direct"`** — record has usable gene-level annotation, extract coordinates without alignment
+- **`"tblastn"`** — record has no annotation, or only a single shell polyprotein CDS — must lift coordinates from the reference
 
-`mat_peptide` takes priority over `CDS` because viruses like FMDV encode a single
-whole-genome polyprotein `CDS` which is useless for naming — the real gene names
-live in `mat_peptide` sub-features.
-
-### ⚠️ Why does it say "minimap" when we use tblastn?
-
-`"minimap"` is a **legacy label from Phase 1** of the project when minimap2 was
-the lifting engine. The code that reads this return value only checks for `"direct"`:
-
-```python
-# main.py
-granularity_matches = (
-    query_strategy == "direct"          # ← only "direct" is special-cased
-    and query_feature_type == ref_feature_type
-)
-
-if granularity_matches:
-    results = direct_extract_with_alias(...)  # fast path
-else:
-    results = process_one_query_record(...)   # tblastn path — catches "minimap" too
-```
-
-So `"minimap"` effectively means **"needs lifting"**, and the actual engine used
-is **always tblastn**. The minimap2 code in `alignment/minimap_runner.py` and
-`alignment/sam_lifter.py` is dead code — leftover from Phase 1, never called
-by the current pipeline.
-
-**The correct label would be `"tblastn"` or `"lift"`**, but renaming it is a
-cosmetic refactor with no functional impact.
+Special case: a record with exactly one CDS whose name contains `"polyprotein"` or is blank is treated as unannotated and routed to tblastn, because it has no individual gene coordinates to extract from.
 
 ---
 
-## Layer 3 — Alias System: `app/src/annotation/gene_alias.py`
+### Step 3 — Prepare reference
 
-The naming brain. Standardises raw annotation names into canonical keys.
+**`features/ref_loader.py` → `prepare_reference_features()`**
 
-### `normalize_text(text) → str`
-
-Applied before every lookup. Strips, lowercases, removes spaces / hyphens / underscores.
+Called once per run. Orchestrates everything needed to get the reference ready:
 
 ```
-"GP-5 protein"  →  "gp5protein"
-"ORF 5"         →  "orf5"
+ref_record
+  ├─ get_feature_type()          → which feature type the ref uses
+  ├─ parse_cds_features()        → raw feature dicts
+  ├─ detect_alias_config_for_record()  → find the right alias JSON
+  ├─ load_alias_lookup()         → build flat normalized lookup dict
+  └─ apply_alias_to_features()   → normalize all ref feature names
+
+returns: (ref_features, alias_config_path, virus_name, alias_lookup)
 ```
 
-### `build_alias_lookup(config) → {normalized_alias: canonical_key}`
-
-Built once from a JSON config file. Every alias (including the canonical key itself)
-maps to the canonical key.
-
-```json
-"GP5": ["GP5", "ORF5", "glycoprotein 5", "glycoprotein5"]
-```
-→ `{"gp5": "GP5", "orf5": "GP5", "glycoprotein5": "GP5", ...}`
-
-### `apply_alias_to_feature(feature, alias_lookup) → feature`
-
-Core resolver for one feature dict. Try in order:
-
-1. Normalize `feature["name"]` → lookup → canonical. `name_source = "alias"`
-2. Fallback: normalize `feature["product"]` → lookup. `name_source = "product_alias"`
-3. No match: keep raw name unchanged. `name_source = "raw"`
-
-Always writes:
-- `feature["raw_name"]` = original name before any change
-- `feature["name"]` = canonical key (or raw if no match)
-- `feature["name_source"]` = `"alias"` | `"product_alias"` | `"raw"`
-
-`"raw"` is the flag that means *"this name is not in the alias DB"* — the UI reads
-this field to detect unknown ref names.
+After this step, every `ref_feature["name"]` is a canonical key like `"ORF5"` or `"Lpro"`. Names not found in the alias config keep their raw value and get `name_source == "raw"`.
 
 ---
 
-## Layer 4 — Virus Auto-Detection: `app/src/annotation/alias_registry.py`
+### Step 4 — Auto-detect alias config
+
+**`alias/alias_registry.py`**
 
 ```python
 detect_alias_config_for_record(record, registry_path) → Path | None
 ```
 
-Reads `config/virus_alias_registry.json`. Each entry has a virus name, a list of
-keywords, and a path to the alias config. The function builds a searchable string
-from the record's organism / description / id fields, then checks if any keyword
-appears in that string.
+Reads `app/config/virus_alias_registry.json`. Each entry maps a set of keywords to an alias config file. The function builds a searchable string from the record's organism, description, and accession fields, then checks if any registered keyword appears in it.
 
 ```json
 {
@@ -142,323 +129,257 @@ appears in that string.
 }
 ```
 
-This is what lets you upload any PRRSV GenBank file and automatically get
-`prrsv_alias.json` without specifying anything. Returns `None` for unregistered viruses
-(names just pass through unchanged).
+This is what lets you upload any PRRSV GenBank file and automatically load `prrsv_alias.json` without specifying anything. Returns `None` for unregistered viruses — names just pass through unchanged.
 
 ---
 
-## Layer 5 — Reference Preparation: `main.prepare_reference_features()`
+### Step 5 — Build alias lookup
 
-First real pipeline function called after loading files. Orchestrates layers 2–4
-for the **ref only**:
-
-```
-ref_record
-    │
-    ├─ choose_strategy()           → pick CDS or mat_peptide
-    ├─ parse_cds_features()        → raw feature dicts
-    ├─ detect_alias_config()       → find the right alias JSON via registry
-    ├─ load_alias_lookup()         → build normalized lookup table
-    └─ apply_alias_to_features()   → normalize all ref names
-
-returns: (ref_features, alias_config_path, virus_name, alias_lookup)
-```
-
-After this, every `ref_feature["name"]` is a canonical key like `"GP5"` or `"Lpro"`.
-If a ref name was not in the alias DB, `name` keeps the raw name and `name_source == "raw"`.
-
----
-
-## Layer 6 — Routing Per Query Record
-
-For every query record, check whether to use the **fast path** or the **slow path**:
+**`alias/gene_alias.py`**
 
 ```python
-query_strategy, query_feature_type = choose_strategy(query_record)
-
-granularity_matches = (
-    query_strategy == "direct"
-    and query_feature_type == ref_feature_type  # both CDS, or both mat_peptide
-)
+load_alias_lookup(config_path) → {normalized_alias: canonical_key}
 ```
 
-| Query genome | Route |
-|---|---|
-| Has annotation, same feature type as ref | **Direct extract** (fast, no alignment) |
-| Has annotation but different type (e.g. ref=mat_peptide, query=CDS) | **tblastn** (slow) |
-| No annotation at all | **tblastn** (slow) |
+Reads the alias JSON config (e.g. `prrsv_alias.json`) and builds a **flat dict** where every alias — including the canonical key itself — maps to the canonical key.
 
-The "different type" case matters: if ref uses mat_peptide and query only has a
-single polyprotein CDS, you cannot name individual genes by direct lookup — you
-need protein-guided lifting to find each gene's coordinates independently.
+```json
+"ORF5": ["GP5", "gp5", "glycoprotein 5", "major envelope glycoprotein"]
+```
+→
+```python
+{
+  "orf5":                     "ORF5",   # canonical maps to itself
+  "gp5":                      "ORF5",
+  "glycoprotein5":            "ORF5",
+  "majorenvelopeglycoprotein":"ORF5",
+  ...
+}
+```
+
+`normalize_text()` is applied to every key before insertion and every lookup — strips whitespace, lowercases, removes spaces/hyphens/underscores. So `"GP-5 Protein"` and `"gp5protein"` hit the same entry.
 
 ---
 
-## Fast Path: `main.direct_extract_with_alias()`
+### Step 6 — Resolve names
 
-Used when query already has its own annotation coordinates. **No alignment at all.**
+**`alias/gene_alias.py` → `apply_alias_to_feature(feature, alias_lookup)`**
+
+The name resolution logic for a single feature dict. Instead of checking only one field, it iterates over **all qualifier fields** in priority order and collects every field that hits the alias lookup:
 
 ```
-query_record
-    │
-    ├─ parse_cds/mat_peptides()        raw query features
-    ├─ apply_alias_to_features()       normalize names using same alias lookup
-    └─ for each query feature:
-        ├─ name match against ref      → get ref_start/ref_end for the record
-        ├─ slice query sequence        → no lifting, direct coordinate slice
-        └─ LiftedFeature(
-               method="direct",
-               status="ok",
-               coverage=1.0,
-               source_name=raw_name if alias resolved else None
-           )
+for each field in [gene, product, label, standard_name, locus_tag, note]:
+    if normalize(feature[field]) is in alias_lookup → collect hit
+
+0 hits     → name_source = "raw",                   keep original name
+1 hit      → name_source = "alias",                 use canonical
+multiple hits, same canonical → name_source = "alias",  unanimous, use it
+multiple hits, different canonicals → name_source = "alias_conflict_resolved",
+                                      use the hit from the highest-priority field
 ```
 
-`source_name` is populated only when the alias actually resolved something
-(`name_source == "alias"`). This is why direct extracts show a "raw name" column
-in the UI — you can always trace back to the original annotation.
+This multi-field strategy handles common GenBank inconsistencies — for example, a record with `/product="envelope protein"` (generic, not in alias) and `/note="ORF5"` (specific, in alias) will correctly resolve to `ORF5` via the `note` field fallback.
+
+Always writes back to the feature dict:
+- `raw_name` — original display name before resolution
+- `name` — canonical key (or raw if unresolved)
+- `name_source` — `"alias"` | `"alias_conflict_resolved"` | `"raw"` | `"ignored"`
 
 ---
 
-## Slow Path: `main.process_one_query_record()` → `lifting/tblastn_lifter.py`
+### Step 7A — Direct extraction (fast path)
 
-Used when query has no annotation (or incompatible annotation type).
-This is the core scientific contribution of the project.
+**`features/direct_extractor.py` → `direct_extract_with_alias()`**
 
-### Step 1 — `translate_feature(feature, ref_record)`
+Used when the query record already has usable annotation. No alignment needed.
 
-Slices the ref genome at CDS coordinates, reverse-complements if on `−` strand,
-translates to protein with Biopython. Returns a protein string or `None` if
-translation fails or the protein is shorter than 10 aa.
+```
+parse features from query record
+  → apply_alias_to_features()       normalize names using the shared alias lookup
+  → for each resolved feature:
+      slice query sequence at [start:end]
+      reverse-complement if strand == "-"
+      → LiftedFeature(method="direct", status="ok", coverage=1.0)
+```
 
-### Step 2 — `run_tblastn(protein, query_genome, tmp_dir)`
+`source_name` is set to the original raw name whenever `name_source` indicates a resolution happened (`"alias"`, `"alias_conflict_resolved"`). Features with `name_source == "ignored"` are skipped entirely.
 
-- Writes protein to a temp FASTA file
-- Writes query genome to another temp FASTA file
-- Shells out to BLAST+:
-  ```
-  tblastn -query prot.fa -subject genome.fa -outfmt 5 -evalue 1e-5 -seg no
-  ```
-- Parses XML result, returns the list of **HSPs** (High-Scoring Pairs) from the
-  best alignment, or `None` if no hit.
+---
 
-Why not nucleotide BLAST? Protein is ~3–4× more conserved than nucleotide sequence
-across serotypes and lineages. Each gene is searched independently so overlapping
-genes (common in dense viral genomes) don't interfere.
+### Step 7B — tblastn lifting (slow path)
 
-### Step 3 — `merge_hsps(hsps)`
+**`lifting/tblastn_lifter.py`**
 
-tblastn often returns multiple HSPs for one gene (divergent regions, gaps).
-Merge strategy:
+Used when the query record has no usable annotation. This is the core of the project.
+
+#### Translate reference proteins
+
+```python
+translate_feature(feature, ref_record)
+```
+
+Slices the ref genome at each CDS's coordinates, reverse-complements if on `−` strand, translates to protein. Returns `None` if translation fails or the protein is shorter than 10 aa.
+
+#### Batch tblastn
+
+```python
+run_tblastn_batch(proteins, query_genome, tmp_dir, evalue)
+```
+
+All reference proteins are written into a **single multi-FASTA query file** and searched against the query genome in **one tblastn subprocess call**. This is significantly faster than calling tblastn once per gene because the genome is indexed only once internally.
+
+Returns `{query_id: [HSPs]}` for each protein.
+
+#### Merge HSPs → genomic coordinates
+
+```python
+merge_hsps(hsps) → (start, end, strand, coverage, identity, bit_score)
+```
+
+tblastn often returns multiple High-Scoring Pairs for one gene (gaps, divergent regions). Merge strategy:
 - **Strand**: majority vote by aligned length
-- **Coordinates**: `merged_start = min(all starts)`, `merged_end = max(all ends)`
-- **Identity**: weighted average across HSPs by aligned length
+- **Coordinates**: `min(all starts)` to `max(all ends)`
+- **Identity**: weighted average by aligned length
 - **Coverage**: unique query protein positions covered ÷ total query protein length
 
-Returns `(start, end, strand, coverage, identity, bit_score)` in 1-based genome coords.
+Returns 1-based genome coordinates.
 
-### Step 4 — Coordinate filtering
+#### Validate codons
 
-- `coverage < min_coverage` → `status = "low_coverage"`, no sequence extracted
-- Otherwise: slice query genome at merged coords, reverse-complement if `−` strand
+**`lifting/validator.py`**
 
-### Step 5 — `annotation/validator.py` — Codon validation + rescue
+```python
+validate_cds_boundaries(seq)       → {valid, has_start_codon, has_stop_codon}
+rescue_stop_codon(record, ...)     → scan forward codon-by-codon (up to 30 codons)
+rescue_start_codon(record, ...)    → scan ±N bp around lifted start for nearest ATG
+```
 
-**`validate_cds_boundaries(seq)`** — checks:
-- `seq[:3] == "ATG"` → has start codon
-- `seq[-3:] in {TAA, TAG, TGA}` → has stop codon
+tblastn aligns protein sequence, so the stop codon is not included in the HSP end coordinate — `rescue_stop_codon` always runs to extend the end to the actual stop. If the start codon is also missing, `rescue_start_codon` scans a window (default ±50 bp) upstream of the lifted start.
 
-**`rescue_start_codon()`** — if start codon missing:
-Expands search ±1, ±2, ... ±N bp from the lifted start position, upstream first
-(most common fix is a small frameshift). Returns the nearest ATG and the offset used.
+---
 
-**`rescue_stop_codon()`** — if stop codon missing:
-Scans forward from `query_end` codon by codon (up to 30 codons = 90 bp) looking
-for the next in-frame TAA/TAG/TGA.
+### Step 8 — Output
 
-Final status codes:
+**`lifting/base.py` → `LiftedFeature`**
+
+Both paths produce `LiftedFeature` dataclass instances. This is the standard data object passed between pipeline layers and written to output.
+
+```python
+name            # canonical key, e.g. "ORF5"
+source_name     # raw name before alias resolution (direct path only, else None)
+ref_start       # 1-based start on reference
+ref_end         # 1-based end on reference
+strand          # "+" or "-"
+query_start     # 1-based start on query genome
+query_end       # 1-based end on query genome
+sequence        # extracted nucleotide string
+coverage        # fraction of ref protein covered (0.0–1.0)
+status          # see status codes below
+method          # "direct" | "tblastn"
+identity        # % identity from BLAST (tblastn only)
+score           # bit score (tblastn only)
+has_start_codon # bool (tblastn only)
+has_stop_codon  # bool (tblastn only)
+rescue_offset   # bp offset used to fix start codon (or None)
+```
+
+**`io/result_writer.py`**
+
+`write_results_tsv()` flattens all `LiftedFeature` objects to rows in a TSV file. `summarize_counts()` tallies status codes for the console/UI summary.
+
+---
+
+## Status Codes
 
 | Status | Meaning |
 |---|---|
-| `ok` | Valid ATG start + stop codon |
-| `ok_rescued` | Start codon was missing but was found nearby |
-| `invalid_boundaries` | Could not fix start or stop |
-| `low_coverage` | Protein coverage below threshold |
-| `no_hit` | tblastn returned no alignment |
-| `translation_fail` | Ref protein could not be translated |
+| `ok` | Valid ATG start + in-frame stop codon |
+| `ok_rescued` | Start codon was missing but found nearby within rescue window |
+| `invalid_boundaries` | Lifted but could not fix start or stop codon |
+| `low_coverage` | tblastn hit found but protein coverage below threshold |
+| `no_hit` | tblastn returned no alignment for this gene |
+| `translation_fail` | Reference feature could not be translated to protein |
 
 ---
 
-## The Output Object: `lifting/base.py` — `LiftedFeature`
+## Alias Config Format
 
-Every path (direct or tblastn) produces `LiftedFeature` dataclass instances.
-This is the standard currency between all pipeline layers.
-
-```python
-name          # canonical key, e.g. "GP5"           ← always set
-source_name   # raw original name, e.g. "ORF5"      ← direct extracts only
-
-ref_start     # 1-based start on reference genome
-ref_end       # 1-based end on reference genome
-strand        # "+" or "-"
-
-query_start   # 1-based start on query genome
-query_end     # 1-based end on query genome
-sequence      # extracted nucleotide string
-
-coverage      # fraction of ref protein covered (0.0–1.0)
-status        # see table above
-method        # "direct" | "tblastn"
-
-identity      # % identity from BLAST (tblastn only, else None)
-score         # bit score (tblastn only, else None)
-has_start_codon   # bool (tblastn only)
-has_stop_codon    # bool (tblastn only)
-rescue_offset     # int, bp offset used to fix start (or None)
+```json
+{
+  "virus": "PRRSV",
+  "ignored_names": ["polyprotein"],
+  "canonical_names": {
+    "ORF5": [
+      "GP5", "gp5", "orf5",
+      "glycoprotein 5", "major envelope glycoprotein"
+    ],
+    "ORF7": [
+      "N", "n", "orf7",
+      "nucleocapsid protein", "nucleocapsid protein n"
+    ]
+  }
+}
 ```
 
-`.to_dict()` flattens it to a plain dict for TSV export.
+- **`canonical_names`** — key is the output canonical name; list contains every known raw name variant that maps to it. The canonical key itself is also automatically included in the lookup.
+- **`ignored_names`** — names excluded from alias scanning entirely (e.g. `"polyprotein"` for FMDV, which is a whole-genome wrapper CDS with no useful gene-level information).
+
+PRRSV canonical naming convention: structural proteins use **ORF names** (`ORF2a`, `ORF2b`, `ORF3`–`ORF7`), replicase ORFs use `ORF1a` / `ORF1b` / `ORF1ab`. Individual nonstructural proteins processed from the polyprotein (NSP2–NSP12) retain **NSP names** since they have no individual ORF designation.
 
 ---
 
-## UI Layer: `ui/streamlit_app.py`
+## Web UI — `ui/streamlit_app.py`
 
-4-stage state machine driven by `st.session_state.stage`.
-All state persists across Streamlit reruns inside `st.session_state`.
+4-stage state machine. All state lives in `st.session_state` and persists across Streamlit reruns.
 
-### Stage 1 — `stage_upload()`
+### Stage 1 — Upload
 
-User uploads ref + query `.gb` files and configures options.
+User uploads ref + query `.gb` files and sets optional thresholds (`min_coverage`, `min_identity`, `evalue`, `rescue_window`).
 
-On "Run ViraLift" click:
-```
-ref file  → load_single_genbank()
-query file → load_genbank_records()
-ref       → prepare_reference_features()   → ref_features, alias_lookup, virus_name
-ref       → choose_strategy()              → ref_feature_type
-ref_features → _scan_unknown_ref_names()   → list of ref names with name_source=="raw"
-query records → _scan_unknown_names()      → {raw_name: [record_ids]} for unmapped names
-```
+On submit:
+1. Load and parse both files
+2. Run `prepare_reference_features()` for the ref
+3. Scan query records for gene names not in the alias lookup (`_scan_unknown_names`)
+4. Scan ref features for names with `name_source == "raw"` (`_scan_unknown_ref_names`)
+5. Any unknowns → go to **Stage 2**. All known → skip to **Stage 3**.
 
-Routing after scan:
-- Any unknowns (ref or query) → **Stage 2 (resolve)**
-- All names known → **Stage 3 (running)**
+`_scan_unknown_names` checks all qualifier fields (`_LOOKUP_QUALIFIER_KEYS`), not just `gene`/`product`. A feature is only flagged as unknown when **every** field misses the alias lookup — mirroring `apply_alias_to_feature` logic exactly.
 
-Options set here:
-- `min_coverage`, `min_identity`, `evalue`, `rescue_window` (advanced thresholds)
-- `use_ref_names` toggle (show ref's raw gene names in output instead of canonical keys)
+### Stage 2 — Resolve
 
-### Stage 2 — `stage_resolve()`
+Shown when there are unrecognised names.
 
-Shown when there are unrecognised names in the ref or query.
+**Ref panel** — lists ref names with `name_source == "raw"`. User can add them as new canonical entries (empty alias list) to the config file. Newly added names immediately appear in the query resolver dropdowns.
 
-**Ref-side panel** (top, shown only if ref has unknowns):
-- Lists ref feature names that have `name_source == "raw"`
-- Per-name checkbox to add as a new canonical entry to the alias JSON
-- Save button calls `_add_new_canonicals_to_config()` → writes `"new_gene": []`
-  to the alias config file (empty alias list, can be filled in later)
-- Newly added names immediately appear in the query resolver dropdowns
+**Query resolver** — for each unknown feature group:
+- Shows **all candidate qualifier values** (e.g. `` `envelope protein` `ORF4` ``) so the user has full context
+- Dropdown to pick a canonical key (or ignore)
+- 💾 Save checkbox — if checked, **all candidate values** in the group are written to the alias config, not just the representative shown. This ensures future records using any variant of that name are resolved automatically.
 
-**Query-side resolver** (below):
-- Per-name selectbox: pick a canonical key or "ignore (keep raw name)"
-- Per-name 💾 Save checkbox: if checked, the mapping is also written permanently to
-  the alias JSON (appends raw_name to the canonical's alias list) via `_save_to_alias_config()`
-- Decisions are stored in `st.session_state.resolver`
+On Continue: all candidates are expanded into the session resolver dict, which is merged into the base alias lookup via `_build_effective_lookup()` for the current run.
 
-On "Continue": resolver decisions are merged into the alias lookup for this run
-via `_build_effective_lookup()`.
+### Stage 3 — Running (transient)
 
-### Stage 3 — `stage_running()` (transient)
+Immediately processes all query records and advances to Stage 4. For each record:
+- `get_strategy()` → `"direct"` or `"tblastn"`
+- Direct → `direct_extract_with_alias()`
+- tblastn → `process_one_query_record()`
 
-Auto-advances immediately to Stage 4.
+### Stage 4 — Results
 
-```
-_build_effective_lookup(base_alias_lookup, resolver)
-    → effective_lookup (base + user decisions for this run)
+Displays status badges, per-record expandable tables, and export options.
 
-_run_pipeline(ref, queries, ref_features, effective_lookup, thresholds)
-    → for each query record:
-        choose_strategy()
-        if direct and type matches → direct_extract_with_alias()
-        else                       → process_one_query_record()  [tblastn]
-    → [(query_id, [LiftedFeature]), ...]
-```
-
-Stores results to `st.session_state.all_results`.
-
-### Stage 4 — `stage_results()`
-
-```
-ref_name_map = _canonical_to_ref_map(ref_features)   # if use_ref_names toggle is ON
-    → {"Lpro": "Lab", "3Cpro": "3C", ...}
-
-_results_to_df(all_results, ref_name_map)
-    → DataFrame (name column uses ref names if map provided)
-
-Display:
-    → summary badges (ok / rescued / invalid / low_cov / no_hit)
-    → per-record expandable tables (canonical name, raw name, coords, coverage)
-
-Export tabs:
-    → TSV: canonical names | raw names
-    → FASTA: gene multiselect, quality filter, per-gene or all-in-one
-```
-
-The FASTA export uses `ref_name_map` for both the gene list (multiselect options)
-and the FASTA headers, so the naming is consistent with whatever the toggle is set to.
+Export:
+- **TSV** — with canonical names or raw names
+- **FASTA** — gene multiselect, quality filters (min coverage/identity, include/exclude rescued), one file per gene or combined
 
 ---
 
-## Config Files
-
-```
-app/config/virus_alias_registry.json
-    which keyword → which alias config file
-
-app/config/prrsv_alias.json
-app/config/fmdv_alias.json
-    {
-      "virus": "PRRSV",
-      "ignored_names": ["polyprotein"],      ← excluded from alias scanning
-      "canonical_names": {
-        "GP5": ["GP5", "ORF5", "glycoprotein 5", ...],
-        "Lpro": ["Lab", "leader protease", ...]
-      }
-    }
-```
-
-`ignored_names` lets you exclude features like FMD's `"polyprotein"` (the parent
-CDS that wraps the entire genome) from alias scanning and coverage statistics,
-without affecting the lifting itself.
-
----
-
-## Dead Code
+## Experimental / Dead Code
 
 | File | Status |
 |---|---|
-| `alignment/minimap_runner.py` | ☠️ Unused. Was the Phase 1 lifting engine (minimap2). |
-| `alignment/sam_lifter.py` | ☠️ Unused. Parsed SAM output from minimap2 into a position map. |
-| `annotation/extractor.py` | ⚠️ Was used with the minimap path. Still imported in tests but not called by the live pipeline. |
-| `annotation/feature_matcher.py` | ⚠️ Structural scoring (length/position/order). Not used in the main pipeline but available as a utility. |
-| `annotation/direct_extractor.py` | ⚠️ Simple sequence slicing from existing coords. The current `direct_extract_with_alias()` in `main.py` reimplements this inline with alias support. |
+| `alignment/minimap_runner.py` | Experimental — was Phase 1 lifting engine using minimap2. Not called by the current pipeline. minimap2 showed ~40% accuracy vs tblastn's ~94% on PRRSV, so it was replaced. |
+| `alignment/sam_lifter.py` | Experimental — parsed SAM output from minimap2. Not used. |
 
----
-
-## One-Line Summary Per File
-
-| File | Does what |
-|---|---|
-| `io/genbank_parser.py` | Loads `.gb` files, parses CDS/mat_peptide → raw dicts |
-| `annotation/annotation_strategy.py` | Decides direct vs lift per record |
-| `annotation/alias_registry.py` | Keyword-matches ref record → finds the right alias JSON |
-| `annotation/gene_alias.py` | Normalizes gene names, builds lookup, applies canonical naming |
-| `annotation/validator.py` | Checks ATG/stop codons, rescues missing start or stop |
-| `annotation/extractor.py` | ☠️ Legacy — coordinate lifting via position map (minimap path) |
-| `annotation/direct_extractor.py` | ⚠️ Legacy — simple sequence slice, superseded by `direct_extract_with_alias` |
-| `annotation/feature_matcher.py` | ⚠️ Structural scoring utility (length/position/order), not used in pipeline |
-| `lifting/base.py` | `LiftedFeature` dataclass — standard output from any lifting engine |
-| `lifting/tblastn_lifter.py` | Translate → BLAST → merge HSPs → validate codons → `LiftedFeature` |
-| `main.py` | Orchestrates everything: prepare ref, route per query, write TSV/FASTA output |
-| `ui/streamlit_app.py` | 4-stage web UI: upload → resolve → run → results/export |
+These files are kept for reference but can be safely ignored. The current lifting engine is exclusively tblastn.
