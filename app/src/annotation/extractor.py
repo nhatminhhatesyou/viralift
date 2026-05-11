@@ -3,7 +3,7 @@ from typing import Dict, List, Optional, Tuple
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 
-from app.src.annotation.validator import validate_cds_boundaries, rescue_start_codon
+from app.src.lifting.validator import validate_cds_boundaries, rescue_start_codon
 
 
 """
