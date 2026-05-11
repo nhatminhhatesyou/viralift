@@ -2,7 +2,7 @@ from typing import Dict, List
 
 from Bio.SeqRecord import SeqRecord
 
-from app.src.alias.gene_alias import apply_alias_to_features
+from app.src.alias.gene_alias import apply_alias_to_features, IGNORED_SENTINEL
 from app.src.io.genbank_parser import parse_cds_features, parse_mat_peptides
 from app.src.lifting.base import LiftedFeature
 
@@ -50,8 +50,13 @@ def direct_extract_with_alias(
     # canonical name → ref feature (for ref_start / ref_end)
     ref_by_name: Dict[str, Dict] = {f["name"]: f for f in ref_features}
 
+    ignored: List[str] = []
     results: List[LiftedFeature] = []
     for qf in query_features:
+        if qf.get("name_source") == "ignored":
+            ignored.append(qf.get("raw_name") or qf["name"])
+            continue
+
         name = qf["name"]
         ref_match = ref_by_name.get(name)
 
@@ -67,7 +72,7 @@ def direct_extract_with_alias(
             name=name,
             source_name=(
                 qf.get("raw_name")
-                if qf.get("name_source") in ("alias", "product_alias")
+                if qf.get("name_source") in ("alias", "product_alias", "alias_conflict_resolved")
                 else None
             ),
             ref_start=ref_match["start"] if ref_match else None,
@@ -80,5 +85,11 @@ def direct_extract_with_alias(
             coverage=1.0,
             status="ok",
         ))
+
+    if ignored:
+        print(
+            f"  [WARN] {query_record.id}: {len(ignored)} feature(s) skipped "
+            f"(ambiguous name, cannot resolve to canonical): {ignored}"
+        )
 
     return results
