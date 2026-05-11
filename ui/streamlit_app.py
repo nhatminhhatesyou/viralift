@@ -38,6 +38,7 @@ from app.src.io.genbank_parser import (
     load_genbank_records,
     parse_cds_features,
     parse_mat_peptides,
+    _LOOKUP_QUALIFIER_KEYS,
 )
 from app.src.features.direct_extractor import direct_extract_with_alias
 from app.src.features.ref_loader import prepare_reference_features
@@ -121,26 +122,66 @@ def _scan_unknown_names(
     query_records: List[SeqRecord],
     alias_lookup: Dict[str, str],
     ignored_names: set,
-) -> Dict[str, List[str]]:
+) -> Dict[str, Dict]:
     """
-    Return {raw_name: [record_ids]} for every feature name in query records
-    that isn't in the alias lookup and isn't explicitly ignored.
+    Return a dict keyed by representative name for every feature group in query
+    records where NONE of the qualifier fields (_LOOKUP_QUALIFIER_KEYS) hit the
+    alias lookup and none are explicitly ignored.
+
+    Each value is:
+        {
+            "records":    [record_id, ...],       # records containing this feature
+            "candidates": [val, ...],             # all qualifier values, priority order
+        }
+
+    The representative key is the highest-priority non-ignored candidate — used
+    as the widget key in the resolver UI. All candidates are preserved so the
+    user can see them and all get saved to alias config when a mapping is confirmed.
+
+    Mirrors the logic of apply_alias_to_feature: a feature is only considered
+    unknown when every candidate field misses the alias — not just gene/product.
     """
-    unknown: Dict[str, List[str]] = {}
+    unknown: Dict[str, Dict] = {}
     for rec in query_records:
         for feat in rec.features:
             if feat.type not in ("CDS", "mat_peptide"):
                 continue
-            for field in ("gene", "product"):
+
+            # Collect all unique qualifier values in priority order
+            seen_vals: set = set()
+            candidates = []
+            for field in _LOOKUP_QUALIFIER_KEYS:
                 val = feat.qualifiers.get(field, [None])[0]
-                if not val:
-                    continue
-                if val.lower() in ignored_names:
-                    continue
-                if normalize_text(val) not in alias_lookup:
-                    unknown.setdefault(val, [])
-                    if rec.id not in unknown[val]:
-                        unknown[val].append(rec.id)
+                if val and val not in seen_vals:
+                    seen_vals.add(val)
+                    candidates.append(val)
+
+            if not candidates:
+                continue
+
+            # Skip if ANY candidate hits the alias (same logic as apply_alias_to_feature)
+            if any(normalize_text(v) in alias_lookup for v in candidates):
+                continue
+
+            # Skip if ALL candidates are in ignored_names
+            if all(v.lower() in ignored_names for v in candidates):
+                continue
+
+            # Representative = highest-priority non-ignored name (widget key)
+            representative = next(
+                (v for v in candidates if v.lower() not in ignored_names),
+                candidates[0],
+            )
+
+            non_ignored_candidates = [
+                v for v in candidates if v.lower() not in ignored_names
+            ]
+
+            if representative not in unknown:
+                unknown[representative] = {"records": [], "candidates": non_ignored_candidates}
+            if rec.id not in unknown[representative]["records"]:
+                unknown[representative]["records"].append(rec.id)
+
     return unknown
 
 
@@ -496,27 +537,35 @@ def stage_resolve():
     save_flags = {}
     options    = ["-- ignore (keep raw name) --"] + canonicals
 
-    for raw_name, record_ids in unknown.items():
+    for rep, info in unknown.items():
+        record_ids = info["records"]
+        candidates = info["candidates"]
+
         col_name, col_action, col_save = st.columns([3, 3, 1])
 
-        col_name.markdown(f"**`{raw_name}`**")
+        # Show all candidates so user has full context
+        chips = " ".join(f"`{v}`" for v in candidates)
+        col_name.markdown(chips)
         col_name.caption(f"Appears in: {', '.join(record_ids[:5])}"
                          + ("…" if len(record_ids) > 5 else ""))
 
         choice = col_action.selectbox(
             "Map to canonical →",
             options,
-            key=f"resolve_{raw_name}",
+            key=f"resolve_{rep}",
             label_visibility="collapsed",
         )
         mapped = None if choice.startswith("--") else choice
-        decisions[raw_name] = mapped
+        decisions[rep] = mapped
 
         # only offer save if user actually picked a canonical
         if mapped:
-            save_flags[raw_name] = col_save.checkbox(
-                "💾 Save", key=f"save_{raw_name}", value=True,
-                help="Add this mapping to the alias config so it's recognised next time"
+            save_flags[rep] = col_save.checkbox(
+                "💾 Save", key=f"save_{rep}", value=True,
+                help=(
+                    "Add ALL names shown above to the alias config "
+                    "so they're recognised next time"
+                ),
             )
         else:
             col_save.write("")   # keep layout aligned
@@ -529,12 +578,24 @@ def stage_resolve():
         st.rerun()
 
     if col_run.button("▶ Continue with these decisions", type="primary", use_container_width=True):
-        # persist checked mappings to alias config
-        to_save = {
-            raw: canonical
-            for raw, canonical in decisions.items()
-            if canonical and save_flags.get(raw, False)
-        }
+        # Expand all candidates for each group into flat {candidate: canonical} dicts.
+        # This ensures every variant name (product, note, etc.) is covered — both
+        # for the session-only effective lookup and for permanent alias config saves.
+
+        # Session resolver: all candidates of every decided group
+        resolver_expanded: Dict[str, str] = {}
+        for rep, canonical in decisions.items():
+            if canonical:
+                for candidate in unknown[rep]["candidates"]:
+                    resolver_expanded[candidate] = canonical
+
+        # Persist to alias config: only groups where 💾 Save was checked
+        to_save: Dict[str, str] = {}
+        for rep, canonical in decisions.items():
+            if canonical and save_flags.get(rep, False):
+                for candidate in unknown[rep]["candidates"]:
+                    to_save[candidate] = canonical
+
         if to_save and st.session_state.alias_config_path:
             written = _save_to_alias_config(
                 Path(st.session_state.alias_config_path), to_save
@@ -542,14 +603,14 @@ def stage_resolve():
             if written:
                 st.toast(f"💾 {written} alias(es) saved to config", icon="✅")
 
-        # log ALL decisions (session-only and saved) so there is always a trace
+        # log ALL decisions so there is always a trace
         if decisions:
             log_session_decisions(
-                decisions=decisions,
+                decisions=resolver_expanded,
                 saved_names=list(to_save.keys()),
             )
 
-        st.session_state.resolver = decisions
+        st.session_state.resolver = resolver_expanded
         st.session_state.stage    = "running"
         st.rerun()
 
