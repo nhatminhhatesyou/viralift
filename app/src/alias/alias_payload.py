@@ -173,11 +173,12 @@ def run_alias_pipeline(
     for record in query_records:
         feature_type = get_feature_type(record)
 
-        # CDS on a mat_peptide virus: if the record has exactly one CDS it's just
-        # a polyprotein shell with no gene-level names — treat as unannotated.
-        if feature_type == "CDS" and ref_feature_type == "mat_peptide":
-            if len(parse_cds_features(record)) == 1:
-                feature_type = None   # force tblastn path
+        # If all qualifier values on every CDS feature map to IGNORED_SENTINEL (or are
+        # empty), the record is an unannotated shell regardless of ref type or CDS count.
+        if feature_type == "CDS" and alias_lookup:
+            from app.src.features.annotation_strategy import _all_names_ignored
+            if _all_names_ignored(record, alias_lookup):
+                feature_type = None  # force tblastn path
 
         needs_lifting = feature_type is None or feature_type != ref_feature_type
 

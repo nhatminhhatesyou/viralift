@@ -127,7 +127,7 @@ def main() -> None:
         if not args.quiet:
             iterator.set_postfix_str(query_record.id)
 
-        strategy = get_strategy(query_record, ref_feature_type)
+        strategy = get_strategy(query_record, ref_feature_type, alias_lookup)
 
         if strategy == "direct":
             results = direct_extract_with_alias(
