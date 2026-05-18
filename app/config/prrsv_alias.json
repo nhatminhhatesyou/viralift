@@ -1,6 +1,14 @@
 {
   "virus": "PRRSV",
   "notes": "Canonical names updated to ORF convention. NSP2-12 retain NSP naming (no individual ORF equivalents). Old GP/M/N/E names kept as aliases for backward compatibility.",
+  "ambiguous_names": [
+    "envelope protein",
+    "structural protein",
+    "glycosylated membrane protein",
+    "glycosylated protein",
+    "membrane glycoprotein",
+    "viral protein"
+  ],
   "ignored_names": [
     "non-structural protein",
     "nonstructural protein",
@@ -16,6 +24,7 @@
       "orf1ab",
       "polyprotein 1ab",
       "polyprotein",
+      "pp1ab",
       "replicase polyprotein",
       "ORF1ab polyprotein"
     ],
@@ -213,6 +222,8 @@
     "ORF6": [
       "M",
       "m",
+      "GP6",
+      "gp6",
       "membrane protein",
       "matrix protein",
       "matrix protein m",
@@ -227,6 +238,8 @@
     "ORF7": [
       "N",
       "n",
+      "GP7",
+      "gp7",
       "nucleocapsid protein",
       "nucleocapsid protein n",
       "n protein",
