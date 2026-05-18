@@ -32,6 +32,7 @@ from app.src.alias.gene_alias import (
     apply_alias_to_features,
     load_alias_lookup,
     normalize_text,
+    AMBIGUOUS_SENTINEL,
 )
 from app.src.io.genbank_parser import (
     load_single_genbank,
@@ -125,23 +126,24 @@ def _scan_unknown_names(
 ) -> Dict[str, Dict]:
     """
     Return a dict keyed by representative name for every feature group in query
-    records where NONE of the qualifier fields (_LOOKUP_QUALIFIER_KEYS) hit the
-    alias lookup and none are explicitly ignored.
+    records that needs user resolution: either the name is completely unknown
+    (misses alias lookup entirely) or it is explicitly ambiguous (maps to
+    AMBIGUOUS_SENTINEL — shared by multiple genes).
 
     Each value is:
         {
-            "records":    [record_id, ...],       # records containing this feature
-            "candidates": [val, ...],             # all qualifier values, priority order
+            "records":    [record_id, ...],   # records containing this feature
+            "candidates": [val, ...],         # all qualifier values, priority order
+            "ambiguous":  bool,               # True → known-ambiguous; False → unknown
         }
 
-    The representative key is the highest-priority non-ignored candidate — used
-    as the widget key in the resolver UI. All candidates are preserved so the
-    user can see them and all get saved to alias config when a mapping is confirmed.
-
-    Mirrors the logic of apply_alias_to_feature: a feature is only considered
-    unknown when every candidate field misses the alias — not just gene/product.
+    Resolution logic mirrors apply_alias_to_feature:
+        - ANY candidate hits a real canonical  → feature is resolved, skip
+        - ALL candidates miss OR hit AMBIGUOUS → include (unknown or ambiguous)
+        - ALL candidates hit IGNORED           → skip (intentionally excluded)
     """
-    unknown: Dict[str, Dict] = {}
+    result: Dict[str, Dict] = {}
+
     for rec in query_records:
         for feat in rec.features:
             if feat.type not in ("CDS", "mat_peptide"):
@@ -159,30 +161,41 @@ def _scan_unknown_names(
             if not candidates:
                 continue
 
-            # Skip if ANY candidate hits the alias (same logic as apply_alias_to_feature)
-            if any(normalize_text(v) in alias_lookup for v in candidates):
+            # Classify each candidate's hit in the alias lookup
+            hits = {v: alias_lookup.get(normalize_text(v)) for v in candidates}
+
+            # If ANY candidate resolves to a real canonical → already handled, skip
+            if any(
+                h is not None and h != AMBIGUOUS_SENTINEL
+                for h in hits.values()
+            ):
                 continue
 
-            # Skip if ALL candidates are in ignored_names
+            # If ALL candidates resolve to IGNORED → skip entirely
             if all(v.lower() in ignored_names for v in candidates):
                 continue
 
-            # Representative = highest-priority non-ignored name (widget key)
-            representative = next(
-                (v for v in candidates if v.lower() not in ignored_names),
-                candidates[0],
-            )
+            # Determine if this is ambiguous or fully unknown
+            is_ambiguous = any(h == AMBIGUOUS_SENTINEL for h in hits.values())
 
             non_ignored_candidates = [
                 v for v in candidates if v.lower() not in ignored_names
             ]
+            if not non_ignored_candidates:
+                continue
 
-            if representative not in unknown:
-                unknown[representative] = {"records": [], "candidates": non_ignored_candidates}
-            if rec.id not in unknown[representative]["records"]:
-                unknown[representative]["records"].append(rec.id)
+            representative = non_ignored_candidates[0]
 
-    return unknown
+            if representative not in result:
+                result[representative] = {
+                    "records":   [],
+                    "candidates": non_ignored_candidates,
+                    "ambiguous": is_ambiguous,
+                }
+            if rec.id not in result[representative]["records"]:
+                result[representative]["records"].append(rec.id)
+
+    return result
 
 
 def _scan_unknown_ref_names(ref_features: list, ignored_names: set) -> List[str]:
@@ -520,12 +533,18 @@ def stage_resolve():
         st.divider()
 
     # ── Query-side resolver ──────────────────────────────────────────────
-    if unknown:
+    unknown_items   = {k: v for k, v in unknown.items() if not v.get("ambiguous")}
+    ambiguous_items = {k: v for k, v in unknown.items() if v.get("ambiguous")}
+
+    if unknown_items:
         st.markdown(
-            f"The query file contains **{len(unknown)} name(s)** not found in the "
-            f"**{virus}** alias config. Decide what to do with each one before running."
+            f"The query file contains **{len(unknown_items)} unrecognised name(s)** "
+            f"not found in the **{virus}** alias config. "
+            "Decide what to do with each one before running."
         )
         st.divider()
+    elif ambiguous_items:
+        pass  # header shown below in ambiguous section
     else:
         st.markdown(
             "✅ All query gene names are already in the alias config. "
@@ -537,17 +556,18 @@ def stage_resolve():
     save_flags = {}
     options    = ["-- ignore (keep raw name) --"] + canonicals
 
-    for rep, info in unknown.items():
+    def _render_resolver_row(rep: str, info: Dict, is_ambiguous: bool) -> None:
         record_ids = info["records"]
         candidates = info["candidates"]
 
         col_name, col_action, col_save = st.columns([3, 3, 1])
 
-        # Show all candidates so user has full context
         chips = " ".join(f"`{v}`" for v in candidates)
         col_name.markdown(chips)
-        col_name.caption(f"Appears in: {', '.join(record_ids[:5])}"
-                         + ("…" if len(record_ids) > 5 else ""))
+        col_name.caption(
+            f"Appears in: {', '.join(record_ids[:5])}"
+            + ("…" if len(record_ids) > 5 else "")
+        )
 
         choice = col_action.selectbox(
             "Map to canonical →",
@@ -558,7 +578,6 @@ def stage_resolve():
         mapped = None if choice.startswith("--") else choice
         decisions[rep] = mapped
 
-        # only offer save if user actually picked a canonical
         if mapped:
             save_flags[rep] = col_save.checkbox(
                 "💾 Save", key=f"save_{rep}", value=True,
@@ -568,9 +587,24 @@ def stage_resolve():
                 ),
             )
         else:
-            col_save.write("")   # keep layout aligned
+            col_save.write("")
 
         st.divider()
+
+    # Unknown names (completely unrecognised)
+    for rep, info in unknown_items.items():
+        _render_resolver_row(rep, info, is_ambiguous=False)
+
+    # Ambiguous names (known to map to multiple genes — user must pick which one)
+    if ambiguous_items:
+        st.markdown(
+            f"⚠️ **{len(ambiguous_items)} ambiguous name(s)** — these names appear in "
+            f"the alias config but are shared across multiple genes in **{virus}**. "
+            "Select which gene each one refers to in this dataset."
+        )
+        st.divider()
+        for rep, info in ambiguous_items.items():
+            _render_resolver_row(rep, info, is_ambiguous=True)
 
     col_back, col_run = st.columns([1, 3])
     if col_back.button("← Back"):
