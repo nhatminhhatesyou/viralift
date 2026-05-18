@@ -1,4 +1,5 @@
 import json
+import warnings
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -98,7 +99,8 @@ def load_alias_config(config_path: Path) -> Dict:
     return config_data
 
 
-IGNORED_SENTINEL = "__ignored__"
+IGNORED_SENTINEL   = "__ignored__"
+AMBIGUOUS_SENTINEL = "__ambiguous__"
 
 
 def build_alias_lookup(config_data: Dict) -> Dict[str, str]:
@@ -106,22 +108,22 @@ def build_alias_lookup(config_data: Dict) -> Dict[str, str]:
     Build a normalized alias lookup table from config data.
 
     Output format:
-        normalized_alias -> canonical_name
-        normalized_ignored -> IGNORED_SENTINEL
+        normalized_alias    -> canonical_name
+        normalized_ignored  -> IGNORED_SENTINEL
+        normalized_ambiguous -> AMBIGUOUS_SENTINEL
 
-    Example:
-        "orf5" -> "GP5"
-        "glycoprotein5" -> "GP5"
-        "nonstructuralprotein" -> "__ignored__"
+    Conflict handling:
+        If the same normalized alias appears under two different canonical names
+        (i.e. a name was accidentally duplicated), a warning is emitted and the
+        alias is demoted to AMBIGUOUS_SENTINEL instead of raising an error.
+        Use the explicit "ambiguous_names" config key for names that are
+        intentionally ambiguous across multiple genes.
 
     Args:
         config_data: Parsed alias config dictionary
 
     Returns:
         Alias lookup dictionary
-
-    Raises:
-        ValueError: If one normalized alias maps to multiple canonical names
     """
     lookup: Dict[str, str] = {}
     canonical_names = config_data.get("canonical_names", {})
@@ -146,19 +148,77 @@ def build_alias_lookup(config_data: Dict) -> Dict[str, str]:
                 continue
 
             if normalized_alias in lookup and lookup[normalized_alias] != canonical_name:
-                raise ValueError(
-                    f"Alias conflict detected: '{alias}' normalizes to '{normalized_alias}' "
-                    f"and maps to both '{lookup[normalized_alias]}' and '{canonical_name}'."
-                )
+                existing = lookup[normalized_alias]
+                if existing != AMBIGUOUS_SENTINEL:
+                    # First conflict: demote to ambiguous and warn
+                    warnings.warn(
+                        f"Alias conflict: '{alias}' (normalized: '{normalized_alias}') "
+                        f"maps to both '{existing}' and '{canonical_name}' — "
+                        f"marked as ambiguous. Move it to 'ambiguous_names' in the "
+                        f"alias config to suppress this warning.",
+                        stacklevel=2,
+                    )
+                    lookup[normalized_alias] = AMBIGUOUS_SENTINEL
+                # else: already ambiguous, nothing to do
+                continue
 
             lookup[normalized_alias] = canonical_name
 
+    # Explicit ambiguous_names: names known to be shared across multiple genes
+    for ambiguous_name in config_data.get("ambiguous_names", []):
+        normalized = normalize_text(ambiguous_name)
+        if normalized:
+            lookup[normalized] = AMBIGUOUS_SENTINEL
+
+    # Ignored names: added last so they can override ambiguous if needed,
+    # but only if not already mapped to a real canonical
     for ignored_name in config_data.get("ignored_names", []):
         normalized = normalize_text(ignored_name)
         if normalized and normalized not in lookup:
             lookup[normalized] = IGNORED_SENTINEL
 
     return lookup
+
+
+def lookup_field_value(value: Optional[str], alias_lookup: Dict[str, str]) -> Optional[str]:
+    """
+    Look up one qualifier field value in the alias lookup.
+
+    Tries the whole string first, then splits on ";" to handle compound
+    note fields like "M; ORF6" or "GP5; ORF5; glycoprotein 5".
+    Prefers a real canonical over AMBIGUOUS/IGNORED sentinels.
+
+    Args:
+        value:        Raw qualifier string (e.g. "M; ORF6").
+        alias_lookup: normalized_alias -> canonical_name mapping.
+
+    Returns:
+        Canonical string (including sentinels) if any part matched, else None.
+    """
+    if not value:
+        return None
+
+    # Try whole string first
+    canonical = alias_lookup.get(normalize_text(value))
+    if canonical is not None:
+        return canonical
+
+    # Try each semicolon-separated part
+    parts = [p.strip() for p in value.split(";") if p.strip()]
+    if len(parts) <= 1:
+        return None
+
+    _SPECIAL = (IGNORED_SENTINEL, AMBIGUOUS_SENTINEL)
+    best: Optional[str] = None
+    for part in parts:
+        canonical = alias_lookup.get(normalize_text(part))
+        if canonical is None:
+            continue
+        if canonical not in _SPECIAL:
+            return canonical          # real canonical — return immediately
+        if best is None:
+            best = canonical          # keep as fallback
+    return best
 
 
 def resolve_alias(raw_name: Optional[str], alias_lookup: Dict[str, str]) -> Optional[str]:
@@ -175,8 +235,8 @@ def resolve_alias(raw_name: Optional[str], alias_lookup: Dict[str, str]) -> Opti
     if not raw_name:
         return raw_name
 
-    normalized_name = normalize_text(raw_name)
-    return alias_lookup.get(normalized_name, raw_name)
+    result = lookup_field_value(raw_name, alias_lookup)
+    return result if result is not None else raw_name
 
 
 def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
@@ -194,13 +254,15 @@ def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
         - multiple hits, different canonicals → conflict; use the hit from the
           highest-priority field (first in _LOOKUP_QUALIFIER_KEYS order)
 
-        IGNORED_SENTINEL hits are treated like misses for canonical resolution
-        but still propagate name_source="ignored" if they are the only result.
+        IGNORED_SENTINEL and AMBIGUOUS_SENTINEL hits are treated like misses for
+        canonical resolution but still propagate their respective name_source
+        values if they are the only result.
 
     Output fields added to feature dict:
         - raw_name   : original display name before any resolution
         - name       : canonical name (or raw_name if unresolved)
-        - name_source: one of "alias", "ignored", "raw", "alias_conflict_resolved"
+        - name_source: one of "alias", "alias_conflict_resolved",
+                       "ambiguous", "ignored", "raw"
 
     Args:
         feature:      Feature dictionary produced by genbank_parser.
@@ -212,15 +274,18 @@ def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
     new_feature = feature.copy()
     raw_name = feature.get("name")
 
-    # Collect (field, raw_value, canonical) for every qualifier that hits alias
+    # Collect (field, raw_value, canonical) for every qualifier that hits alias.
+    # Uses lookup_field_value which handles compound note fields like "M; ORF6".
     hits: List[Tuple[str, str, str]] = []
     for field in _LOOKUP_QUALIFIER_KEYS:
         value = feature.get(field)
         if not value:
             continue
-        canonical = alias_lookup.get(normalize_text(value))
+        canonical = lookup_field_value(value, alias_lookup)
         if canonical is not None:
             hits.append((field, value, canonical))
+
+    _SPECIAL = (IGNORED_SENTINEL, AMBIGUOUS_SENTINEL)
 
     if not hits:
         # Nothing matched alias at all → keep raw display name
@@ -236,24 +301,39 @@ def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
             if canonical_name == IGNORED_SENTINEL:
                 canonical_name = raw_name
                 name_source = "ignored"
+            elif canonical_name == AMBIGUOUS_SENTINEL:
+                canonical_name = raw_name
+                name_source = "ambiguous"
             else:
                 name_source = "alias"
 
         else:
             # Conflict: multiple different canonicals.
-            # Drop IGNORED hits first, then take the highest-priority field.
-            non_ignored = [
+            # Priority: real canonical > ambiguous > ignored.
+            real_hits = [
                 (field, value, canonical)
                 for field, value, canonical in hits
-                if canonical != IGNORED_SENTINEL
+                if canonical not in _SPECIAL
             ]
-            if non_ignored:
-                _, _, canonical_name = non_ignored[0]
+            if real_hits:
+                # At least one field resolves to a real canonical — use
+                # the highest-priority one and note the conflict was resolved.
+                _, _, canonical_name = real_hits[0]
                 name_source = "alias_conflict_resolved"
             else:
-                # All hits were IGNORED_SENTINEL
-                canonical_name = raw_name
-                name_source = "ignored"
+                # No real canonical hit. Check if any hit is ambiguous.
+                ambiguous_hits = [
+                    (field, value, canonical)
+                    for field, value, canonical in hits
+                    if canonical == AMBIGUOUS_SENTINEL
+                ]
+                if ambiguous_hits:
+                    canonical_name = raw_name
+                    name_source = "ambiguous"
+                else:
+                    # All hits were IGNORED_SENTINEL
+                    canonical_name = raw_name
+                    name_source = "ignored"
 
     new_feature["raw_name"] = raw_name
     new_feature["name"] = canonical_name
