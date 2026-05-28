@@ -12,5 +12,6 @@ logs/*.log.*
 *.fa
 *.mmi
 app/data/*
-app/validation/
+app/validation/**/outputs/*
+!app/validation/**/outputs/.gitkeep
 app/src/tests/
