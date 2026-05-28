@@ -2,7 +2,7 @@ from typing import Dict, List
 
 from Bio.SeqRecord import SeqRecord
 
-from app.src.alias.gene_alias import apply_alias_to_features, IGNORED_SENTINEL
+from app.src.alias.gene_alias import apply_alias_to_features
 from app.src.io.genbank_parser import parse_cds_features, parse_mat_peptides
 from app.src.lifting.base import LiftedFeature
 
@@ -37,7 +37,11 @@ def direct_extract_with_alias(
         alias_lookup:       Alias normalization lookup {raw_name: canonical}.
 
     Returns:
-        List of LiftedFeature objects with method="direct" and status="ok".
+        List of LiftedFeature objects with method="direct". Status values:
+        - ok: name resolved and exists in the reference feature set
+        - unresolved_name: name was not resolved by the alias lookup
+        - ambiguous_name: name is known ambiguous and needs user resolution
+        - not_in_reference: name resolved, but the selected reference lacks it
     """
     if query_feature_type == "mat_peptide":
         query_features = parse_mat_peptides(query_record)
@@ -58,7 +62,17 @@ def direct_extract_with_alias(
             continue
 
         name = qf["name"]
+        name_source = qf.get("name_source")
         ref_match = ref_by_name.get(name)
+
+        if name_source == "ambiguous":
+            status = "ambiguous_name"
+        elif alias_lookup and name_source == "raw":
+            status = "unresolved_name"
+        elif ref_match is None:
+            status = "not_in_reference"
+        else:
+            status = "ok"
 
         start  = qf["start"]
         end    = qf["end"]
@@ -72,7 +86,7 @@ def direct_extract_with_alias(
             name=name,
             source_name=(
                 qf.get("raw_name")
-                if qf.get("name_source") in ("alias", "product_alias", "alias_conflict_resolved")
+                if name_source in ("alias", "product_alias", "alias_conflict_resolved")
                 else None
             ),
             ref_start=ref_match["start"] if ref_match else None,
@@ -83,7 +97,7 @@ def direct_extract_with_alias(
             query_end=end,
             sequence=str(seq),
             coverage=1.0,
-            status="ok",
+            status=status,
         ))
 
     if ignored:

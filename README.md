@@ -22,7 +22,7 @@ This creates two distinct problems depending on the submission:
 │  → Normalise names via alias lookup (fast, no alignment)    │
 ├─────────────────────────────────────────────────────────────┤
 │  Case 2 — Query has no annotation                           │
-│  No CDS features at all                                     │
+│  No useful gene-level CDS / mat_peptide annotation          │
 │  → Lift coordinates from reference via tblastn, then name   │
 └─────────────────────────────────────────────────────────────┘
 ```

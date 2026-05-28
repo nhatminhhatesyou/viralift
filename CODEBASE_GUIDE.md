@@ -77,16 +77,23 @@ This same list is imported by `gene_alias.py` for consistent alias lookup across
 
 ```python
 get_feature_type(record) → "CDS" | "mat_peptide" | None
+get_best_feature_type(record, alias_lookup) → "CDS" | "mat_peptide" | None
 get_strategy(query_record, ref_feature_type) → "direct" | "tblastn"
 ```
 
-`get_feature_type` asks: does this record have `mat_peptide` features? If yes, use those. Otherwise, does it have `CDS`? If neither, return `None`.
+`get_feature_type` is the legacy existence check: does this record have `mat_peptide` features? If yes, return `"mat_peptide"`. Otherwise, does it have `CDS`? If neither, return `None`.
+
+`get_best_feature_type` is what the active pipeline uses for extraction. It scores both `mat_peptide` and `CDS` with the alias lookup:
+- alias-resolved feature names are strongly preferred
+- raw names are weakly useful because the resolver can ask the user to map them
+- ignored / ambiguous names count against that feature level
+- if neither level is informative, return `None`
 
 `get_strategy` decides how to process a query record:
 - **`"direct"`** — record has usable gene-level annotation, extract coordinates without alignment
-- **`"tblastn"`** — record has no annotation, or only a single shell polyprotein CDS — must lift coordinates from the reference
+- **`"tblastn"`** — record has no useful gene-level annotation — must lift coordinates from the reference
 
-Special case: a record with exactly one CDS whose name contains `"polyprotein"` or is blank is treated as unannotated and routed to tblastn, because it has no individual gene coordinates to extract from.
+Fallback special case when no alias config is available: a record with exactly one CDS whose name contains `"polyprotein"` or is blank is treated as unannotated and routed to tblastn, because it has no individual gene coordinates to extract from.
 
 ---
 
@@ -98,8 +105,9 @@ Called once per run. Orchestrates everything needed to get the reference ready:
 
 ```
 ref_record
-  ├─ get_feature_type()          → which feature type the ref uses
-  ├─ parse_cds_features()        → raw feature dicts
+  ├─ get_feature_type()          → which feature levels exist
+  ├─ get_best_feature_type()     → which feature level is most informative
+  ├─ parse_cds_features() / parse_mat_peptides()
   ├─ detect_alias_config_for_record()  → find the right alias JSON
   ├─ load_alias_lookup()         → build flat normalized lookup dict
   └─ apply_alias_to_features()   → normalize all ref feature names

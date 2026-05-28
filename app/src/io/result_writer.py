@@ -38,6 +38,9 @@ def summarize_counts(all_results: List[Tuple[str, List]]) -> Dict[str, int]:
         "low_coverage": 0,
         "no_hit": 0,
         "translation_fail": 0,
+        "unresolved_name": 0,
+        "ambiguous_name": 0,
+        "not_in_reference": 0,
     }
     for _, results in all_results:
         for lifted in results:

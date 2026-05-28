@@ -4,7 +4,7 @@ from typing import List, Tuple
 
 from tqdm import tqdm
 
-from app.src.features.annotation_strategy import get_feature_type, get_strategy
+from app.src.features.annotation_strategy import get_best_feature_type, get_feature_type, get_strategy
 from app.src.features.direct_extractor import direct_extract_with_alias
 from app.src.features.ref_loader import prepare_reference_features
 from app.src.io.genbank_parser import load_single_genbank, load_genbank_records
@@ -97,7 +97,7 @@ def main() -> None:
             alias_registry_arg=args.alias_registry,
         )
     )
-    ref_feature_type = get_feature_type(ref_record)
+    ref_feature_type = get_best_feature_type(ref_record, alias_lookup) or get_feature_type(ref_record)
 
     print("ViraLift")
     print(f"  Reference record   : {ref_record.id}")
@@ -132,7 +132,7 @@ def main() -> None:
         if strategy == "direct":
             results = direct_extract_with_alias(
                 query_record=query_record,
-                query_feature_type=get_feature_type(query_record),
+                query_feature_type=get_best_feature_type(query_record, alias_lookup),
                 ref_features=ref_features,
                 alias_lookup=alias_lookup,
             )
@@ -167,6 +167,9 @@ def main() -> None:
     print(f"  Low coverage            : {summary['low_coverage']}")
     print(f"  No hit                  : {summary['no_hit']}")
     print(f"  Translation fail        : {summary['translation_fail']}")
+    print(f"  Unresolved names        : {summary['unresolved_name']}")
+    print(f"  Ambiguous names         : {summary['ambiguous_name']}")
+    print(f"  Not in reference        : {summary['not_in_reference']}")
     print(f"\n  TSV : {tsv_out}")
 
 

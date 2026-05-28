@@ -144,7 +144,7 @@ def _hsp_to_genome_coords(hsp) -> Tuple[int, int, str]:
         return hsp.sbjct_end, hsp.sbjct_start, "-"
 
 
-def merge_hsps(hsps: List) -> Tuple[int, int, str, float, float]:
+def merge_hsps(hsps: List, protein_length: int) -> Tuple[int, int, str, float, float]:
     """
     Merge a list of HSPs into a single genomic span.
 
@@ -153,8 +153,12 @@ def merge_hsps(hsps: List) -> Tuple[int, int, str, float, float]:
         - Take min(start) and max(end) across all HSPs on that strand
         - Compute weighted average identity (by aligned length)
 
-    Returns: (merged_start, merged_end, strand, coverage_fraction, identity)
-    where coverage_fraction is relative to the query protein length (in aa → *3 for nt).
+    Args:
+        hsps: tblastn HSPs for one protein query.
+        protein_length: Full length of the reference protein query in amino acids.
+
+    Returns: (merged_start, merged_end, strand, coverage_fraction, identity, bit_score)
+    where coverage_fraction is relative to the full query protein length.
     """
     if not hsps:
         raise ValueError("No HSPs to merge")
@@ -179,14 +183,18 @@ def merge_hsps(hsps: List) -> Tuple[int, int, str, float, float]:
         if total_aligned > 0 else 0.0
     )
 
-    # Coverage: total query aa covered / query length
+    # Coverage: unique query aa covered / full reference protein length.
+    # Do not use max(h.query_end) as the denominator; a hit covering only the
+    # N-terminus would otherwise look like 100% coverage.
     query_positions = set()
     for h in relevant:
         qs = min(h.query_start, h.query_end)
         qe = max(h.query_start, h.query_end)
         query_positions.update(range(qs, qe + 1))
-    query_length = max(h.query_end for h in relevant) if relevant else 1
-    coverage = len(query_positions) / query_length
+    coverage = (
+        min(1.0, len(query_positions) / protein_length)
+        if protein_length > 0 else 0.0
+    )
 
     bit_score = max(h.bits for h in relevant)
 
@@ -264,7 +272,10 @@ def lift_feature_tblastn(
         )
 
     # 3. Merge HSPs → genomic coordinates
-    q_start, q_end, strand, coverage, identity, score = merge_hsps(hsps)
+    q_start, q_end, strand, coverage, identity, score = merge_hsps(
+        hsps,
+        protein_length=len(protein),
+    )
 
     # tblastn aligns protein → stop codon not included in HSP end.
     # Use stop codon rescue: scan forward in-frame from q_end to find
@@ -424,6 +435,7 @@ def _build_lifted_from_hsps(
     feature: Dict,
     hsps: List,
     query_record: SeqRecord,
+    protein_length: int,
     min_coverage: float,
     min_identity: float,
     rescue_window: int,
@@ -450,7 +462,10 @@ def _build_lifted_from_hsps(
             status="no_hit",
         )
 
-    q_start, q_end, strand, coverage, identity, score = merge_hsps(hsps)
+    q_start, q_end, strand, coverage, identity, score = merge_hsps(
+        hsps,
+        protein_length=protein_length,
+    )
 
     if validate_codons and q_end is not None:
         rescued_stop = rescue_stop_codon(
@@ -554,7 +569,7 @@ def lift_all_tblastn(
 
     # 1. Translate every feature; track which features were translatable.
     proteins: List[Tuple[str, str]] = []
-    qid_to_feature: Dict[str, Dict] = {}
+    qid_to_protein_length: Dict[str, int] = {}
     failed: List[Dict] = []  # features that failed to translate
 
     for idx, feature in enumerate(ref_features):
@@ -564,7 +579,7 @@ def lift_all_tblastn(
             continue
         qid = f"feat_{idx}"
         proteins.append((qid, protein))
-        qid_to_feature[qid] = feature
+        qid_to_protein_length[qid] = len(protein)
 
     # 2. Single batched tblastn call for all translated proteins.
     with tempfile.TemporaryDirectory() as tmp:
@@ -601,6 +616,7 @@ def lift_all_tblastn(
             feature=feature,
             hsps=hsps,
             query_record=query_record,
+            protein_length=qid_to_protein_length[qid],
             min_coverage=min_coverage,
             min_identity=min_identity,
             rescue_window=rescue_window,

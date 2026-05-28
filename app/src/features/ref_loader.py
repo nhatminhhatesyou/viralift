@@ -7,7 +7,7 @@ from app.src.alias.alias_registry import (
     detect_alias_config_for_record,
     get_detected_virus_name,
 )
-from app.src.features.annotation_strategy import get_feature_type
+from app.src.features.annotation_strategy import get_best_feature_type, get_feature_type
 from app.src.alias.gene_alias import apply_alias_to_features, load_alias_lookup
 from app.src.io.genbank_parser import parse_cds_features, parse_mat_peptides
 
@@ -51,17 +51,17 @@ def prepare_reference_features(
             - detected_virus_name:  Virus name from registry, or None.
             - alias_lookup:         {raw_name: canonical} dict, or {}.
     """
-    feature_type = get_feature_type(ref_record)
+    preliminary_feature_type = get_feature_type(ref_record)
 
-    if feature_type == "mat_peptide":
+    if preliminary_feature_type == "mat_peptide":
         ref_features = parse_mat_peptides(ref_record)
-    elif feature_type == "CDS":
+    elif preliminary_feature_type == "CDS":
         ref_features = parse_cds_features(ref_record)
     else:
         raise ValueError("Reference record has no CDS or mat_peptide features.")
 
     if not ref_features:
-        raise ValueError(f"Reference record has no {feature_type} features.")
+        raise ValueError(f"Reference record has no {preliminary_feature_type} features.")
 
     alias_config_path: Optional[Path] = None
     detected_virus_name: Optional[str] = None
@@ -80,6 +80,11 @@ def prepare_reference_features(
 
     if alias_config_path is not None:
         alias_lookup = load_alias_lookup(alias_config_path)
+        feature_type = get_best_feature_type(ref_record, alias_lookup) or preliminary_feature_type
+        if feature_type == "mat_peptide":
+            ref_features = parse_mat_peptides(ref_record)
+        elif feature_type == "CDS":
+            ref_features = parse_cds_features(ref_record)
         ref_features = apply_alias_to_features(ref_features, alias_lookup)
 
     return ref_features, alias_config_path, detected_virus_name, alias_lookup

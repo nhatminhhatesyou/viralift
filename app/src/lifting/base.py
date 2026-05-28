@@ -21,7 +21,7 @@ class LiftedFeature:
     sequence: Optional[str]          # extracted nucleotide sequence
 
     coverage: float                  # fraction of ref feature mapped
-    status: str                      # ok | ok_rescued | invalid_boundaries | low_coverage | unmapped
+    status: str                      # ok | ok_rescued | invalid_boundaries | low_coverage | no_hit | ...
     method: str                      # "tblastn" | "minimap_transfer"
 
     has_start_codon: Optional[bool] = None

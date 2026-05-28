@@ -27,12 +27,13 @@ from app.src.alias.alias_registry import (
     detect_alias_config_for_record,
     get_detected_virus_name,
 )
-from app.src.features.annotation_strategy import get_feature_type, get_strategy
+from app.src.features.annotation_strategy import get_best_feature_type, get_feature_type, get_strategy
 from app.src.alias.gene_alias import (
     apply_alias_to_features,
     load_alias_lookup,
     normalize_text,
     AMBIGUOUS_SENTINEL,
+    IGNORED_SENTINEL,
 )
 from app.src.io.genbank_parser import (
     load_single_genbank,
@@ -65,6 +66,9 @@ STATUS_ICON = {
     "low_coverage":        "🟠",
     "no_hit":              "🔴",
     "translation_fail":    "🔴",
+    "unresolved_name":     "🟠",
+    "ambiguous_name":      "🟠",
+    "not_in_reference":    "🟡",
     "direct":              "🔵",
 }
 GOOD_STATUSES = {"ok", "ok_rescued", "direct"}
@@ -145,8 +149,12 @@ def _scan_unknown_names(
     result: Dict[str, Dict] = {}
 
     for rec in query_records:
+        selected_feature_type = get_best_feature_type(rec, alias_lookup)
+        if selected_feature_type is None:
+            continue
+
         for feat in rec.features:
-            if feat.type not in ("CDS", "mat_peptide"):
+            if feat.type != selected_feature_type:
                 continue
 
             # Collect all unique qualifier values in priority order
@@ -166,7 +174,7 @@ def _scan_unknown_names(
 
             # If ANY candidate resolves to a real canonical → already handled, skip
             if any(
-                h is not None and h != AMBIGUOUS_SENTINEL
+                h is not None and h not in (AMBIGUOUS_SENTINEL, IGNORED_SENTINEL)
                 for h in hits.values()
             ):
                 continue
@@ -322,10 +330,10 @@ def _run_pipeline(
     n = len(query_records)
     for i, qrec in enumerate(query_records):
         progress_bar.progress(i / n, text=f"Processing {qrec.id}  ({i+1}/{n})")
-        strategy = get_strategy(qrec, ref_feature_type)
+        strategy = get_strategy(qrec, ref_feature_type, effective_lookup)
         try:
             if strategy == "direct":
-                query_feature_type = get_feature_type(qrec)
+                query_feature_type = get_best_feature_type(qrec, effective_lookup)
                 results = direct_extract_with_alias(
                     qrec, query_feature_type, ref_features, effective_lookup
                 )
@@ -406,7 +414,7 @@ def stage_upload():
                     alias_registry_arg=str(REGISTRY_PATH),
                 )
             )
-            ref_feature_type = get_feature_type(ref_record)
+            ref_feature_type = get_best_feature_type(ref_record, alias_lookup) or get_feature_type(ref_record)
 
             # canonical list for resolver dropdowns
             canonical_list = sorted(set(alias_lookup.values())) if alias_lookup else []
