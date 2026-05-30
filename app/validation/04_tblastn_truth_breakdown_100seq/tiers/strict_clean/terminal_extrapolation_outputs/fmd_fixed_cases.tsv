@@ -1,0 +1,27 @@
+record_id	pred_name	baseline_exact_match	baseline_coord_correct	baseline_pred_start	baseline_pred_end	baseline_truth_start	baseline_truth_end	baseline_failure_mode	experiment_exact_match	experiment_coord_correct	experiment_pred_start	experiment_pred_end	experiment_truth_start	experiment_truth_end	experiment_failure_mode	experiment_status
+DQ533483.2	2A	False	True	3893.0	3943.0	3890.0	3943.0	Boundary offset	True	True	3890.0	3943.0	3890.0	3943.0	Correct	ok_extrapolated
+DQ989304.1	2A	False	True	3934.0	3984.0	3931.0	3984.0	Boundary offset	True	True	3931.0	3984.0	3931.0	3984.0	Correct	ok_extrapolated
+DQ989313.1	2A	False	True	3980.0	4030.0	3977.0	4030.0	Boundary offset	True	True	3977.0	4030.0	3977.0	4030.0	Correct	ok_extrapolated
+DQ989317.1	Lpro	False	True	1194.0	1784.0	1182.0	1784.0	Boundary offset	True	True	1182.0	1784.0	1182.0	1784.0	Correct	ok_extrapolated
+DQ989318.1	Lpro	False	True	1190.0	1780.0	1178.0	1780.0	Boundary offset	True	True	1178.0	1780.0	1178.0	1780.0	Correct	ok_extrapolated
+GU931682.1	2A	False	True	3892.0	3942.0	3889.0	3942.0	Boundary offset	True	True	3889.0	3942.0	3889.0	3942.0	Correct	ok_extrapolated
+KJ754939.1	Lpro	False	True	1113.0	1703.0	1101.0	1703.0	Boundary offset	True	True	1101.0	1703.0	1101.0	1703.0	Correct	ok_extrapolated
+MF372126.1	VP1	False	True	3355.0	3978.0	3352.0	3978.0	Boundary offset	True	True	3352.0	3978.0	3352.0	3978.0	Correct	ok_extrapolated
+MG372727.1	Lpro	False	True	1051.0	1632.0	1051.0	1647.0	Boundary offset	True	True	1051.0	1647.0	1051.0	1647.0	Correct	ok_extrapolated
+MK088171.1	Lpro	False	True	1114.0	1704.0	1102.0	1704.0	Boundary offset	True	True	1102.0	1704.0	1102.0	1704.0	Correct	ok_extrapolated
+MN095356.1	Lpro	False	True	1102.0	1692.0	1090.0	1692.0	Boundary offset	True	True	1090.0	1692.0	1090.0	1692.0	Correct	ok_extrapolated
+MN095357.1	Lpro	False	True	1109.0	1699.0	1097.0	1699.0	Boundary offset	True	True	1097.0	1699.0	1097.0	1699.0	Correct	ok_extrapolated
+MN095358.1	Lpro	False	True	1091.0	1681.0	1079.0	1681.0	Boundary offset	True	True	1079.0	1681.0	1079.0	1681.0	Correct	ok_extrapolated
+MN095359.1	Lpro	False	True	1093.0	1683.0	1081.0	1683.0	Boundary offset	True	True	1081.0	1683.0	1081.0	1683.0	Correct	ok_extrapolated
+MN095360.1	Lpro	False	True	1104.0	1694.0	1092.0	1694.0	Boundary offset	True	True	1092.0	1694.0	1092.0	1694.0	Correct	ok_extrapolated
+MN095361.1	Lpro	False	True	1084.0	1674.0	1072.0	1674.0	Boundary offset	True	True	1072.0	1674.0	1072.0	1674.0	Correct	ok_extrapolated
+MN095362.1	Lpro	False	True	1104.0	1694.0	1092.0	1694.0	Boundary offset	True	True	1092.0	1694.0	1092.0	1694.0	Correct	ok_extrapolated
+MN095363.1	Lpro	False	True	1084.0	1674.0	1072.0	1674.0	Boundary offset	True	True	1072.0	1674.0	1072.0	1674.0	Correct	ok_extrapolated
+OK318512.1	2A	False	True	3835.0	3885.0	3832.0	3885.0	Boundary offset	True	True	3832.0	3885.0	3832.0	3885.0	Correct	ok_extrapolated
+OK318519.1	Lpro	False	True	1078.0	1668.0	1066.0	1668.0	Boundary offset	True	True	1066.0	1668.0	1066.0	1668.0	Correct	ok_extrapolated
+OK318524.1	2A	False	True	3833.0	3883.0	3830.0	3883.0	Boundary offset	True	True	3830.0	3883.0	3830.0	3883.0	Correct	ok_extrapolated
+OK318528.1	2A	False	True	3836.0	3886.0	3833.0	3886.0	Boundary offset	True	True	3833.0	3886.0	3833.0	3886.0	Correct	ok_extrapolated
+OK318541.1	2A	False	True	3818.0	3868.0	3815.0	3868.0	Boundary offset	True	True	3815.0	3868.0	3815.0	3868.0	Correct	ok_extrapolated
+PV805282.1	3Cpro	False	True	6063.0	6689.0	6051.0	6689.0	Boundary offset	True	True	6051.0	6689.0	6051.0	6689.0	Correct	ok_extrapolated
+PV805283.1	3B	False	True	5835.0	6044.0	5835.0	6047.0	Boundary offset	True	True	5835.0	6047.0	5835.0	6047.0	Correct	ok_extrapolated
+PV805283.1	3Cpro	False	True	6060.0	6686.0	6048.0	6686.0	Boundary offset	True	True	6048.0	6686.0	6048.0	6686.0	Correct	ok_extrapolated
