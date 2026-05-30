@@ -477,6 +477,38 @@ def _inject_css():
                 transform: translateY(-1px);
             }
 
+            div[data-testid="stFileUploader"] button,
+            div[data-testid="stFileUploader"] button[kind],
+            div[data-testid="stFileUploader"] [data-testid="stBaseButton-secondary"] {
+                background: linear-gradient(180deg, var(--vl-surface-muted), var(--vl-surface-strong));
+                border: 1px solid var(--vl-border-strong);
+                color: var(--vl-text);
+                border-radius: 10px;
+                box-shadow: none;
+                font-weight: 750;
+            }
+
+            div[data-testid="stFileUploader"] button:hover,
+            div[data-testid="stFileUploader"] [data-testid="stBaseButton-secondary"]:hover {
+                background: var(--vl-accent-soft);
+                border-color: var(--vl-accent);
+                color: var(--vl-text);
+                box-shadow: 0 10px 22px rgba(79, 224, 198, 0.13);
+            }
+
+            div[data-testid="stFileUploader"] button *,
+            div[data-testid="stFileUploader"] [data-testid="stBaseButton-secondary"] * {
+                color: var(--vl-text);
+                fill: var(--vl-text);
+                stroke: var(--vl-text);
+            }
+
+            div[data-testid="stFileUploader"] small,
+            div[data-testid="stFileUploader"] span,
+            div[data-testid="stFileUploader"] p {
+                color: var(--vl-muted);
+            }
+
             label, .stMarkdown p, .stCaptionContainer {
                 color: var(--vl-muted);
             }
