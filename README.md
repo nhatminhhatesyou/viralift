@@ -304,14 +304,16 @@ viralift/
 │       ├── main.py                    # 🚪 CLI entry point + core pipeline
 │       ├── io/
 │       │   ├── genbank_parser.py      # 📂 GenBank parsing, feature extraction
-│       │   └── result_writer.py       # 📝 TSV output and run summary
+│       │   ├── result_writer.py       # 📝 TSV output and run summary
+│       │   └── run_logger.py          # 📋 Rotating audit log
 │       ├── features/
-│       │   ├── annotation_strategy.py # 🧭 Route each record: direct or tblastn
+│       │   ├── annotation_strategy.py # 🧭 Feature type selection + routing decision
 │       │   ├── ref_loader.py          # 🔧 Prepare reference features + alias
 │       │   └── direct_extractor.py    # ⚡ Extract annotated features without alignment
 │       ├── alias/
 │       │   ├── gene_alias.py          # 📖 Alias lookup, multi-field resolution
-│       │   └── alias_registry.py      # 🔍 Auto-detection of alias config by virus
+│       │   ├── alias_registry.py      # 🔍 Auto-detection of alias config by virus
+│       │   └── alias_payload.py       # 🤖 Build JSON payloads for LLM-assisted alias mapping
 │       └── lifting/
 │           ├── base.py                # 📦 LiftedFeature dataclass
 │           ├── tblastn_lifter.py      # 🔬 Protein-guided coordinate lifting
@@ -336,6 +338,7 @@ Alias configs live in `app/config/`. Each file maps a canonical gene name to all
 {
   "virus": "PRRSV",
   "ignored_names": ["polyprotein", "nonstructural protein"],
+  "ambiguous_names": ["envelope protein", "glycoprotein"],
   "canonical_names": {
     "ORF5": [
       "GP5",
@@ -361,7 +364,8 @@ Alias configs live in `app/config/`. Each file maps a canonical gene name to all
 ```
 
 - **`canonical_names`** — the key is the canonical output name; the list is every alias that maps to it. The canonical key itself is always included in the lookup automatically.
-- **`ignored_names`** — names to skip entirely (e.g. `polyprotein`, which is a whole-genome wrapper CDS with no gene-level information).
+- **`ignored_names`** — names to skip entirely (e.g. `"polyprotein"`, a whole-genome wrapper CDS with no gene-level information).
+- **`ambiguous_names`** — names that are shared across multiple genes (e.g. `"envelope protein"` could be ORF2a, ORF5, or ORF6). Features with ambiguous names are flagged as `ambiguous_name` in the output and shown to the user in the resolver for manual disambiguation.
 
 **PRRSV naming convention:** Structural proteins use ORF names (`ORF2a`, `ORF2b`, `ORF3`–`ORF7`). Replicase ORFs use `ORF1a` / `ORF1b` / `ORF1ab`. Individual nonstructural proteins cleaved from the polyprotein (`NSP2`–`NSP12`) retain NSP names since they have no individual ORF designation.
 
@@ -410,12 +414,10 @@ ViraLift writes an append-only audit log to `logs/viralift.log` (rotates at 5 MB
 
 Validated on 20 fully-annotated PRRSV and FMDV records from GenBank. Coordinate accuracy measured by IoU ≥ 0.90 against ground-truth annotations:
 
-| Virus | Method | Accuracy |
-|-------|--------|----------|
-| PRRSV | 🥇 **tblastn** | **93.9%** |
-| PRRSV | minimap2 | 43.3% |
-| FMDV  | 🥇 **tblastn** | **100%** |
-| FMDV  | minimap2 | 40.0% |
+| Virus | Accuracy |
+|-------|----------|
+| PRRSV | **93.9%** |
+| FMDV  | **100%** |
 
 Alias name coverage (unique raw names resolved to canonical):
 

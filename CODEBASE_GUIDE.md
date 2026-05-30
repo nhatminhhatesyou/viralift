@@ -27,14 +27,16 @@ The pipeline always does the same thing regardless of entry point. The UI just w
 app/src/
 ├── io/
 │   ├── genbank_parser.py       load .gb files, parse features into dicts
-│   └── result_writer.py        write TSV output and print summary
+│   ├── result_writer.py        write TSV output, compute status summary
+│   └── run_logger.py           rotating audit log for alias decisions and runs
 ├── features/
-│   ├── annotation_strategy.py  decide which feature type a record uses
+│   ├── annotation_strategy.py  select feature type; decide direct vs tblastn
 │   ├── ref_loader.py           orchestrate reference preparation
 │   └── direct_extractor.py     extract + rename annotated features (no alignment)
 ├── alias/
 │   ├── alias_registry.py       auto-detect the right alias config for a virus
-│   └── gene_alias.py           build alias lookup, normalize raw names → canonical
+│   ├── gene_alias.py           build alias lookup, normalize raw names → canonical
+│   └── alias_payload.py        build JSON payloads for LLM-assisted alias mapping (planned)
 └── lifting/
     ├── base.py                 LiftedFeature dataclass (output from any path)
     ├── tblastn_lifter.py       protein-guided coordinate lifting via tblastn
@@ -59,7 +61,8 @@ Turns `.gb` files into Biopython `SeqRecord` objects and then into plain Python 
 | `load_genbank_records(path)` | Loads all records from a file. Used for the **query** (may have dozens of genomes). |
 | `parse_cds_features(record)` | Extracts `CDS` features into dicts. |
 | `parse_mat_peptides(record)` | Same but for `mat_peptide` features — FMDV stores gene names here instead of in CDS. |
-| `_feature_to_scored_dict(feature, ...)` | Internal. Converts one Biopython feature into a dict with all qualifier fields extracted: `name, gene, product, label, standard_name, locus_tag, note, start, end, strand, ...` |
+| `get_record_metadata(record)` | Returns `{id, name, description, organism, length}` for display/logging. |
+| `_feature_to_scored_dict(feature, ...)` | Internal. Converts one Biopython feature into a dict with all qualifier fields extracted: `name, gene, product, label, standard_name, locus_tag, note, start, end, strand, length, rel_start, rel_end, order` |
 
 All coordinates are **1-based inclusive** throughout the codebase, matching the GenBank convention.
 
@@ -71,29 +74,30 @@ This same list is imported by `gene_alias.py` for consistent alias lookup across
 
 ---
 
-### Step 2 — Detect feature type
+### Step 2 — Detect feature type + decide routing
 
 **`features/annotation_strategy.py`**
 
 ```python
-get_feature_type(record) → "CDS" | "mat_peptide" | None
-get_best_feature_type(record, alias_lookup) → "CDS" | "mat_peptide" | None
-get_strategy(query_record, ref_feature_type) → "direct" | "tblastn"
+select_feature_type(record, alias_lookup=None) → "CDS" | "mat_peptide" | None
+get_strategy(query_record, alias_lookup=None)  → ("direct" | "tblastn", feature_type | None)
 ```
 
-`get_feature_type` is the legacy existence check: does this record have `mat_peptide` features? If yes, return `"mat_peptide"`. Otherwise, does it have `CDS`? If neither, return `None`.
+**`select_feature_type`** is the single entry point for feature type selection. It combines two behaviors:
 
-`get_best_feature_type` is what the active pipeline uses for extraction. It scores both `mat_peptide` and `CDS` with the alias lookup:
-- alias-resolved feature names are strongly preferred
-- raw names are weakly useful because the resolver can ask the user to map them
-- ignored / ambiguous names count against that feature level
-- if neither level is informative, return `None`
+- **With `alias_lookup`**: scores both `CDS` and `mat_peptide` by how many features can be alias-resolved. Scoring formula: `(resolved * 100) + raw - ignored_or_ambiguous`. Returns the level with the higher score, or `None` if neither level is informative.
+- **Without `alias_lookup`**: simple existence check with a polyprotein-shell guard — returns `None` if the only CDS is a whole-genome `"polyprotein"` placeholder (no individual gene coordinates to extract).
 
-`get_strategy` decides how to process a query record:
-- **`"direct"`** — record has usable gene-level annotation, extract coordinates without alignment
-- **`"tblastn"`** — record has no useful gene-level annotation — must lift coordinates from the reference
+**`get_strategy`** calls `select_feature_type` once and returns both the routing decision and the selected feature type as a tuple, so the caller does not need to call `select_feature_type` again:
 
-Fallback special case when no alias config is available: a record with exactly one CDS whose name contains `"polyprotein"` or is blank is treated as unannotated and routed to tblastn, because it has no individual gene coordinates to extract from.
+```python
+strategy, feature_type = get_strategy(query_record, alias_lookup)
+# strategy   → "direct" | "tblastn"
+# feature_type → "CDS" | "mat_peptide" | None
+```
+
+- **`"direct"`** — query has usable gene-level annotation; extract coordinates without alignment.
+- **`"tblastn"`** — query has no useful annotation; lift coordinates from the reference. `feature_type` is `None`.
 
 ---
 
@@ -101,21 +105,33 @@ Fallback special case when no alias config is available: a record with exactly o
 
 **`features/ref_loader.py` → `prepare_reference_features()`**
 
-Called once per run. Orchestrates everything needed to get the reference ready:
+Called once per run. Returns a 5-tuple — all downstream code unpacks this and does not re-derive the feature type independently:
 
-```
-ref_record
-  ├─ get_feature_type()          → which feature levels exist
-  ├─ get_best_feature_type()     → which feature level is most informative
-  ├─ parse_cds_features() / parse_mat_peptides()
-  ├─ detect_alias_config_for_record()  → find the right alias JSON
-  ├─ load_alias_lookup()         → build flat normalized lookup dict
-  └─ apply_alias_to_features()   → normalize all ref feature names
-
-returns: (ref_features, alias_config_path, virus_name, alias_lookup)
+```python
+ref_features, ref_feature_type, alias_config_path, virus_name, alias_lookup = (
+    prepare_reference_features(ref_record, alias_config_arg, alias_registry_arg)
+)
 ```
 
-After this step, every `ref_feature["name"]` is a canonical key like `"ORF5"` or `"Lpro"`. Names not found in the alias config keep their raw value and get `name_source == "raw"`.
+Internal processing order (single pass, no redundant parsing):
+
+```
+1. Resolve alias config path:
+   │  user-provided --alias-config
+   │  → auto-detect from virus_alias_registry.json
+   │  → no config (raw names kept)
+   ▼
+2. Load alias lookup from config (or {} if no config)
+   ▼
+3. select_feature_type(ref_record, alias_lookup)
+   → "CDS" or "mat_peptide"   (raises ValueError if None — ref must be usable)
+   ▼
+4. parse_cds_features() / parse_mat_peptides()
+   ▼
+5. apply_alias_to_features()   → normalize all ref feature names
+```
+
+After this step, every `ref_feature["name"]` is a canonical key like `"ORF5"` or `"Lpro"`. Names not in the alias config keep their raw value with `name_source == "raw"`.
 
 ---
 
@@ -133,11 +149,11 @@ Reads `app/config/virus_alias_registry.json`. Each entry maps a set of keywords 
 {
   "virus_name": "PRRSV",
   "keywords": ["porcine reproductive and respiratory syndrome", "prrsv"],
-  "alias_config": "config/prrsv_alias.json"
+  "alias_config": "app/config/prrsv_alias.json"
 }
 ```
 
-This is what lets you upload any PRRSV GenBank file and automatically load `prrsv_alias.json` without specifying anything. Returns `None` for unregistered viruses — names just pass through unchanged.
+Returns `None` for unregistered viruses — names just pass through unchanged.
 
 ---
 
@@ -157,7 +173,7 @@ Reads the alias JSON config (e.g. `prrsv_alias.json`) and builds a **flat dict**
 →
 ```python
 {
-  "orf5":                     "ORF5",   # canonical maps to itself
+  "orf5":                     "ORF5",
   "gp5":                      "ORF5",
   "glycoprotein5":            "ORF5",
   "majorenvelopeglycoprotein":"ORF5",
@@ -166,6 +182,10 @@ Reads the alias JSON config (e.g. `prrsv_alias.json`) and builds a **flat dict**
 ```
 
 `normalize_text()` is applied to every key before insertion and every lookup — strips whitespace, lowercases, removes spaces/hyphens/underscores. So `"GP-5 Protein"` and `"gp5protein"` hit the same entry.
+
+Two special sentinel values in the lookup:
+- **`"__ignored__"`** — feature should be skipped entirely (e.g. `"polyprotein"` wrapper CDS)
+- **`"__ambiguous__"`** — name is shared across multiple genes; user must resolve manually
 
 ---
 
@@ -179,11 +199,13 @@ The name resolution logic for a single feature dict. Instead of checking only on
 for each field in [gene, product, label, standard_name, locus_tag, note]:
     if normalize(feature[field]) is in alias_lookup → collect hit
 
-0 hits     → name_source = "raw",                   keep original name
-1 hit      → name_source = "alias",                 use canonical
+0 hits     → name_source = "raw",                  keep original name
+1 hit      → name_source = "alias",                use canonical
 multiple hits, same canonical → name_source = "alias",  unanimous, use it
 multiple hits, different canonicals → name_source = "alias_conflict_resolved",
                                       use the hit from the highest-priority field
+hit → "__ignored__"   → name_source = "ignored"
+hit → "__ambiguous__" → name_source = "ambiguous"
 ```
 
 This multi-field strategy handles common GenBank inconsistencies — for example, a record with `/product="envelope protein"` (generic, not in alias) and `/note="ORF5"` (specific, in alias) will correctly resolve to `ORF5` via the `note` field fallback.
@@ -191,7 +213,7 @@ This multi-field strategy handles common GenBank inconsistencies — for example
 Always writes back to the feature dict:
 - `raw_name` — original display name before resolution
 - `name` — canonical key (or raw if unresolved)
-- `name_source` — `"alias"` | `"alias_conflict_resolved"` | `"raw"` | `"ignored"`
+- `name_source` — `"alias"` | `"alias_conflict_resolved"` | `"raw"` | `"ignored"` | `"ambiguous"`
 
 ---
 
@@ -202,15 +224,19 @@ Always writes back to the feature dict:
 Used when the query record already has usable annotation. No alignment needed.
 
 ```
-parse features from query record
+parse features from query record (CDS or mat_peptide)
   → apply_alias_to_features()       normalize names using the shared alias lookup
-  → for each resolved feature:
-      slice query sequence at [start:end]
-      reverse-complement if strand == "-"
-      → LiftedFeature(method="direct", status="ok", coverage=1.0)
+  → for each feature:
+      "ignored"    → skip entirely
+      "ambiguous"  → LiftedFeature(status="ambiguous_name")
+      "raw"        → LiftedFeature(status="unresolved_name")
+      resolved, not in ref → LiftedFeature(status="not_in_reference")
+      resolved, in ref     → slice query sequence at [start:end]
+                             reverse-complement if strand == "-"
+                             → LiftedFeature(method="direct", status="ok", coverage=1.0)
 ```
 
-`source_name` is set to the original raw name whenever `name_source` indicates a resolution happened (`"alias"`, `"alias_conflict_resolved"`). Features with `name_source == "ignored"` are skipped entirely.
+`source_name` is set to the original raw name when alias resolution occurred (`name_source` is `"alias"` or `"alias_conflict_resolved"`).
 
 ---
 
@@ -248,7 +274,7 @@ tblastn often returns multiple High-Scoring Pairs for one gene (gaps, divergent 
 - **Strand**: majority vote by aligned length
 - **Coordinates**: `min(all starts)` to `max(all ends)`
 - **Identity**: weighted average by aligned length
-- **Coverage**: unique query protein positions covered ÷ total query protein length
+- **Coverage**: unique query protein positions covered ÷ total reference protein length
 
 Returns 1-based genome coordinates.
 
@@ -299,6 +325,8 @@ rescue_offset   # bp offset used to fix start codon (or None)
 
 ## Status Codes
 
+### tblastn path
+
 | Status | Meaning |
 |---|---|
 | `ok` | Valid ATG start + in-frame stop codon |
@@ -308,6 +336,15 @@ rescue_offset   # bp offset used to fix start codon (or None)
 | `no_hit` | tblastn returned no alignment for this gene |
 | `translation_fail` | Reference feature could not be translated to protein |
 
+### direct path
+
+| Status | Meaning |
+|---|---|
+| `ok` | Name resolved and coordinates extracted |
+| `unresolved_name` | Name not found in alias lookup |
+| `ambiguous_name` | Name is known-ambiguous; user must disambiguate manually |
+| `not_in_reference` | Name resolved but gene is absent from the chosen reference |
+
 ---
 
 ## Alias Config Format
@@ -315,7 +352,8 @@ rescue_offset   # bp offset used to fix start codon (or None)
 ```json
 {
   "virus": "PRRSV",
-  "ignored_names": ["polyprotein"],
+  "ignored_names": ["polyprotein", "nonstructural protein"],
+  "ambiguous_names": ["envelope protein", "glycoprotein"],
   "canonical_names": {
     "ORF5": [
       "GP5", "gp5", "orf5",
@@ -330,7 +368,8 @@ rescue_offset   # bp offset used to fix start codon (or None)
 ```
 
 - **`canonical_names`** — key is the output canonical name; list contains every known raw name variant that maps to it. The canonical key itself is also automatically included in the lookup.
-- **`ignored_names`** — names excluded from alias scanning entirely (e.g. `"polyprotein"` for FMDV, which is a whole-genome wrapper CDS with no useful gene-level information).
+- **`ignored_names`** — names excluded from alias scanning entirely (e.g. `"polyprotein"`, a whole-genome wrapper CDS with no useful gene-level information).
+- **`ambiguous_names`** — names shared across multiple genes. Features matching these are flagged as `ambiguous_name` and shown to the user for manual disambiguation.
 
 PRRSV canonical naming convention: structural proteins use **ORF names** (`ORF2a`, `ORF2b`, `ORF3`–`ORF7`), replicase ORFs use `ORF1a` / `ORF1b` / `ORF1ab`. Individual nonstructural proteins processed from the polyprotein (NSP2–NSP12) retain **NSP names** since they have no individual ORF designation.
 
@@ -346,7 +385,7 @@ User uploads ref + query `.gb` files and sets optional thresholds (`min_coverage
 
 On submit:
 1. Load and parse both files
-2. Run `prepare_reference_features()` for the ref
+2. Run `prepare_reference_features()` for the ref → returns `(ref_features, ref_feature_type, alias_config_path, virus_name, alias_lookup)`
 3. Scan query records for gene names not in the alias lookup (`_scan_unknown_names`)
 4. Scan ref features for names with `name_source == "raw"` (`_scan_unknown_ref_names`)
 5. Any unknowns → go to **Stage 2**. All known → skip to **Stage 3**.
@@ -359,7 +398,7 @@ Shown when there are unrecognised names.
 
 **Ref panel** — lists ref names with `name_source == "raw"`. User can add them as new canonical entries (empty alias list) to the config file. Newly added names immediately appear in the query resolver dropdowns.
 
-**Query resolver** — for each unknown feature group:
+**Query resolver** — for each unknown or ambiguous feature group:
 - Shows **all candidate qualifier values** (e.g. `` `envelope protein` `ORF4` ``) so the user has full context
 - Dropdown to pick a canonical key (or ignore)
 - 💾 Save checkbox — if checked, **all candidate values** in the group are written to the alias config, not just the representative shown. This ensures future records using any variant of that name are resolved automatically.
@@ -369,9 +408,14 @@ On Continue: all candidates are expanded into the session resolver dict, which i
 ### Stage 3 — Running (transient)
 
 Immediately processes all query records and advances to Stage 4. For each record:
-- `get_strategy()` → `"direct"` or `"tblastn"`
-- Direct → `direct_extract_with_alias()`
-- tblastn → `process_one_query_record()`
+
+```python
+strategy, query_feature_type = get_strategy(qrec, effective_lookup)
+if strategy == "direct":
+    results = direct_extract_with_alias(qrec, query_feature_type, ref_features, effective_lookup)
+else:
+    results = process_one_query_record(ref_record, qrec, ref_features, ref_feature_type, ...)
+```
 
 ### Stage 4 — Results
 
@@ -383,11 +427,28 @@ Export:
 
 ---
 
-## Experimental / Dead Code
+## Planned: LLM-Assisted Alias Building
 
-| File | Status |
+**`alias/alias_payload.py`**
+
+When a run encounters unresolved gene names, the pipeline can build a structured JSON payload containing the unresolved features (names, lengths, qualifier fields — no sequence data). Two task types:
+
+- **`"map_aliases"`** — virus already in registry; some raw names not yet covered. LLM maps them to existing canonical keys.
+- **`"build_alias_map"`** — virus not in registry at all. LLM builds a canonical name list from scratch.
+
+The payload structure and builder functions are complete. The LLM API call and response parser are the remaining pieces to integrate. Currently, the manual resolver in Stage 2 of the UI serves this role interactively.
+
+---
+
+## Audit Log — `io/run_logger.py`
+
+Appends structured events to `logs/viralift.log` (rotates at 5 MB, 3 backups).
+
+| Event | When |
 |---|---|
-| `alignment/minimap_runner.py` | Experimental — was Phase 1 lifting engine using minimap2. Not called by the current pipeline. minimap2 showed ~40% accuracy vs tblastn's ~94% on PRRSV, so it was replaced. |
-| `alignment/sam_lifter.py` | Experimental — parsed SAM output from minimap2. Not used. |
-
-These files are kept for reference but can be safely ignored. The current lifting engine is exclusively tblastn.
+| `RUN_START` | Pipeline begins — ref ID, query count, all thresholds |
+| `RUN_COMPLETE` | Pipeline finishes — full status distribution |
+| `SESSION_DECISION` | User maps a name in the resolver — logged whether or not 💾 Save is checked |
+| `ALIAS_ADDED` | A raw→canonical mapping is permanently written to the alias config |
+| `CANONICAL_ADDED` | A new canonical key is added to the alias config |
+| `ERROR` | Any exception during record processing |

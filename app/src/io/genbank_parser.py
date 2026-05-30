@@ -66,19 +66,6 @@ def load_genbank_records(path: Path) -> List[SeqRecord]:
     return list(SeqIO.parse(str(path), "genbank"))
 
 
-def get_record_sequence(record: SeqRecord) -> str:
-    """
-    Return the full nucleotide sequence of a record as a string.
-
-    Args:
-        record: Input SeqRecord
-
-    Returns:
-        Genome sequence as string
-    """
-    return str(record.seq)
-
-
 # Qualifier keys to extract from each feature for alias lookup.
 # Order matches _get_feature_name priority so downstream lookup tries
 # the most-specific field first when resolving canonical names.
@@ -134,44 +121,6 @@ def _get_feature_name(feature: SeqFeature, fallback_index: Optional[int] = None)
 # ---------------------------------------------------------------------
 # Feature conversion helpers
 # ---------------------------------------------------------------------
-
-def _feature_to_basic_dict(feature: SeqFeature, index: int) -> Dict:
-    """
-    Convert a feature into a minimal dictionary for extraction workflows.
-
-    Fields:
-        - name
-        - all keys in _LOOKUP_QUALIFIER_KEYS (gene, product, label, standard_name, locus_tag, note)
-        - start
-        - end
-        - strand
-
-    Args:
-        feature: Biopython SeqFeature
-        index: Feature index used for fallback naming
-
-    Returns:
-        Dictionary containing basic feature information
-    """
-    start = int(feature.location.start) + 1
-    end = int(feature.location.end)
-
-    strand = "+"
-    if feature.location.strand == -1:
-        strand = "-"
-
-    result = {
-        "name": _get_feature_name(feature, index),
-        "start": start,
-        "end": end,
-        "strand": strand,
-    }
-
-    for key in _LOOKUP_QUALIFIER_KEYS:
-        result[key] = _get_first_qualifier(feature, key)
-
-    return result
-
 
 def _feature_to_scored_dict(feature: SeqFeature, genome_length: int, order_index: int) -> Dict:
     """
@@ -260,45 +209,6 @@ def parse_mat_peptides(record: SeqRecord) -> List[Dict]:
 
     for i, feature in enumerate(mat_features, start=1):
         items.append(_feature_to_scored_dict(feature, genome_length, i))
-
-    return items
-
-
-def parse_feature_levels(record: SeqRecord) -> Dict[str, List[Dict]]:
-    """
-    Parse multiple feature levels from a record.
-
-    Args:
-        record: Input SeqRecord
-
-    Returns:
-        Dictionary grouping parsed features by type
-    """
-    return {
-        "CDS": parse_cds_features(record),
-        "mat_peptide": parse_mat_peptides(record),
-    }
-
-
-def parse_cds_features_basic(record: SeqRecord) -> List[Dict]:
-    """
-    Parse CDS features into minimal dictionaries for extraction workflows.
-
-    This is useful when only coordinate and naming metadata are needed,
-    without relative-position scoring fields.
-
-    Args:
-        record: Input SeqRecord
-
-    Returns:
-        List of CDS feature dictionaries
-    """
-    items: List[Dict] = []
-
-    cds_features = [feature for feature in record.features if feature.type == "CDS"]
-
-    for i, feature in enumerate(cds_features, start=1):
-        items.append(_feature_to_basic_dict(feature, i))
 
     return items
 

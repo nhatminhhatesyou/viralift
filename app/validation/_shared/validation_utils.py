@@ -27,7 +27,7 @@ from app.src.alias.gene_alias import (
     lookup_field_value,
     normalize_text,
 )
-from app.src.features.annotation_strategy import get_best_feature_type, get_strategy
+from app.src.features.annotation_strategy import get_strategy, select_feature_type
 from app.src.features.direct_extractor import direct_extract_with_alias
 from app.src.features.ref_loader import prepare_reference_features
 from app.src.io.genbank_parser import (
@@ -78,12 +78,11 @@ def load_reference_bundle(ref_path: Path, registry_path: Path = CONFIG / "virus_
     alias_config_path = detect_alias_config_for_record(ref_record, registry_path)
     if alias_config_path is not None and not alias_config_path.is_absolute():
         alias_config_path = ROOT / alias_config_path
-    ref_features, alias_config_path, virus_name, alias_lookup = prepare_reference_features(
+    ref_features, ref_feature_type, alias_config_path, virus_name, alias_lookup = prepare_reference_features(
         ref_record=ref_record,
         alias_config_arg=str(alias_config_path) if alias_config_path else None,
         alias_registry_arg=str(registry_path),
     )
-    ref_feature_type = get_best_feature_type(ref_record, alias_lookup)
     return {
         "record": ref_record,
         "features": ref_features,
@@ -118,6 +117,7 @@ def lifted_to_rows(record_id: str, lifted: Iterable, method: str) -> List[Dict]:
         rows.append({
             "record_id": record_id,
             "method": method,
+            "ref_name": data.get("ref_name") or data.get("name"),
             "pred_name": data.get("name"),
             "source_name": data.get("source_name"),
             "pred_start": data.get("start") or data.get("query_start"),
@@ -229,14 +229,28 @@ def run_tblastn_against_truth(
     query_path: Path,
     output_dir: Path,
     registry_path: Path = CONFIG / "virus_alias_registry.json",
+    progress: bool = True,
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    from tqdm.auto import tqdm
+
     bundle = load_reference_bundle(ref_path, registry_path)
     query_records = load_genbank_records(query_path)
     rows = []
-    for record in query_records:
+
+    iterator = tqdm(
+        query_records,
+        desc=f"tblastn  {virus_label}",
+        unit="rec",
+        dynamic_ncols=True,
+        leave=True,
+    ) if progress else query_records
+
+    for record in iterator:
         truth, _ = parse_truth_features(record, bundle["alias_lookup"], bundle["feature_type"])
         if not truth:
             continue
+        if progress:
+            iterator.set_postfix_str(record.id, refresh=True)
         lifted = lift_all_tblastn(
             ref_features=bundle["features"],
             ref_record=bundle["record"],
@@ -247,6 +261,7 @@ def run_tblastn_against_truth(
         compared = compare_predictions_to_truth(preds, truth)
         compared.insert(0, "virus", virus_label)
         rows.append(compared)
+
     result = pd.concat(rows, ignore_index=True) if rows else pd.DataFrame()
     summary = summarize_comparison(result, ["virus", "method"]) if not result.empty else pd.DataFrame()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -266,13 +281,12 @@ def run_production_pipeline_against_truth(
     query_records = load_genbank_records(query_path)
     rows = []
     for record in query_records:
-        truth_type = get_best_feature_type(record, bundle["alias_lookup"]) or bundle["feature_type"]
+        truth_type = select_feature_type(record, bundle["alias_lookup"]) or bundle["feature_type"]
         truth, _ = parse_truth_features(record, bundle["alias_lookup"], truth_type)
         if not truth:
             continue
-        strategy = get_strategy(record, bundle["feature_type"], bundle["alias_lookup"])
+        strategy, query_feature_type = get_strategy(record, bundle["alias_lookup"])
         if strategy == "direct":
-            query_feature_type = get_best_feature_type(record, bundle["alias_lookup"])
             lifted = direct_extract_with_alias(record, query_feature_type, bundle["features"], bundle["alias_lookup"])
         else:
             lifted = process_one_query_record(

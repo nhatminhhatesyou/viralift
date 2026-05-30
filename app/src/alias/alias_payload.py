@@ -136,7 +136,7 @@ def run_alias_pipeline(
         detect_alias_config_for_record,
         get_detected_virus_name,
     )
-    from app.src.features.annotation_strategy import get_best_feature_type, get_feature_type
+    from app.src.features.annotation_strategy import select_feature_type
     from app.src.alias.gene_alias import (
         apply_alias_to_features,
         apply_ref_naming,
@@ -153,7 +153,7 @@ def run_alias_pipeline(
     canonical_names = _unique_ordered(list(alias_lookup.values())) if alias_lookup else []
 
     # Determine expected feature type from reference
-    ref_feature_type = get_best_feature_type(ref_record, alias_lookup) or get_feature_type(ref_record)
+    ref_feature_type = select_feature_type(ref_record, alias_lookup or None)
 
     # Build canonical -> ref name map for output naming
     if use_ref_naming and alias_lookup:
@@ -171,7 +171,7 @@ def run_alias_pipeline(
     payload_records = []
 
     for record in query_records:
-        feature_type = get_best_feature_type(record, alias_lookup)
+        feature_type = select_feature_type(record, alias_lookup or None)
 
         needs_lifting = feature_type is None
 

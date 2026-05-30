@@ -4,7 +4,7 @@ from typing import List, Tuple
 
 from tqdm import tqdm
 
-from app.src.features.annotation_strategy import get_best_feature_type, get_feature_type, get_strategy
+from app.src.features.annotation_strategy import get_strategy
 from app.src.features.direct_extractor import direct_extract_with_alias
 from app.src.features.ref_loader import prepare_reference_features
 from app.src.io.genbank_parser import load_single_genbank, load_genbank_records
@@ -90,14 +90,13 @@ def main() -> None:
     if not query_records:
         raise ValueError("No query records found.")
 
-    ref_features, alias_config_path, detected_virus_name, alias_lookup = (
+    ref_features, ref_feature_type, alias_config_path, detected_virus_name, alias_lookup = (
         prepare_reference_features(
             ref_record=ref_record,
             alias_config_arg=args.alias_config,
             alias_registry_arg=args.alias_registry,
         )
     )
-    ref_feature_type = get_best_feature_type(ref_record, alias_lookup) or get_feature_type(ref_record)
 
     print("ViraLift")
     print(f"  Reference record   : {ref_record.id}")
@@ -127,12 +126,12 @@ def main() -> None:
         if not args.quiet:
             iterator.set_postfix_str(query_record.id)
 
-        strategy = get_strategy(query_record, ref_feature_type, alias_lookup)
+        strategy, query_feature_type = get_strategy(query_record, alias_lookup)
 
         if strategy == "direct":
             results = direct_extract_with_alias(
                 query_record=query_record,
-                query_feature_type=get_best_feature_type(query_record, alias_lookup),
+                query_feature_type=query_feature_type,
                 ref_features=ref_features,
                 alias_lookup=alias_lookup,
             )

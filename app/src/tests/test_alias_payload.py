@@ -11,7 +11,7 @@ from app.src.alias.alias_registry import (
     detect_alias_config_for_record,
     get_detected_virus_name,
 )
-from app.src.features.annotation_strategy import choose_strategy
+from app.src.features.annotation_strategy import get_strategy
 from app.src.alias.gene_alias import apply_alias_to_features, load_alias_lookup
 from app.src.io.genbank_parser import (
     load_genbank_records,
@@ -35,7 +35,7 @@ def process_record(record, registry_path):
     Process one record. Returns a payload dict if unresolved features exist, else None.
     Also returns a status string for summary.
     """
-    strategy, feature_type = choose_strategy(record)
+    strategy, feature_type = get_strategy(record)
 
     if feature_type == "mat_peptide":
         raw_features = parse_mat_peptides(record)

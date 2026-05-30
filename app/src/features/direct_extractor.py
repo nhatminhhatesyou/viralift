@@ -86,7 +86,7 @@ def direct_extract_with_alias(
             name=name,
             source_name=(
                 qf.get("raw_name")
-                if name_source in ("alias", "product_alias", "alias_conflict_resolved")
+                if name_source in ("alias", "alias_conflict_resolved")
                 else None
             ),
             ref_start=ref_match["start"] if ref_match else None,
@@ -103,7 +103,7 @@ def direct_extract_with_alias(
     if ignored:
         print(
             f"  [WARN] {query_record.id}: {len(ignored)} feature(s) skipped "
-            f"(ambiguous name, cannot resolve to canonical): {ignored}"
+            f"(ignored by alias config): {ignored}"
         )
 
     return results

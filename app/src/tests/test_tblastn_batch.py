@@ -25,7 +25,7 @@ from typing import Dict, List, Tuple
 from Bio.SeqRecord import SeqRecord
 
 from app.src.alias.alias_registry import detect_alias_config_for_record, get_detected_virus_name
-from app.src.features.annotation_strategy import choose_strategy
+from app.src.features.annotation_strategy import get_strategy
 from app.src.alias.gene_alias import (
     apply_alias_to_features,
     apply_ref_naming,
@@ -56,7 +56,7 @@ def _has_full_annotation(record: SeqRecord) -> bool:
 
 
 def _parse_ref_features(ref_record: SeqRecord):
-    _, feature_type = choose_strategy(ref_record)
+    _, feature_type = get_strategy(ref_record)
     if feature_type == "mat_peptide":
         return parse_mat_peptides(ref_record), "mat_peptide"
     elif feature_type == "CDS":
