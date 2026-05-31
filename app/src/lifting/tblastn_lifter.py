@@ -144,7 +144,7 @@ def _hsp_to_genome_coords(hsp) -> Tuple[int, int, str]:
         return hsp.sbjct_end, hsp.sbjct_start, "-"
 
 
-def merge_hsps(hsps: List, protein_length: int) -> Tuple[int, int, str, float, float]:
+def merge_hsps(hsps: List, protein_length: int) -> Tuple[int, int, str, float, float, float]:
     """
     Merge a list of HSPs into a single genomic span.
 
@@ -199,6 +199,59 @@ def merge_hsps(hsps: List, protein_length: int) -> Tuple[int, int, str, float, f
     bit_score = max(h.bits for h in relevant)
 
     return merged_start, merged_end, strand, coverage, identity, bit_score
+
+
+def extrapolate_terminal_boundaries(
+    start: int,
+    end: int,
+    strand: str,
+    hsps: List,
+    protein_length: int,
+    genome_length: int,
+    coverage: float,
+    min_coverage: float = 0.90,
+    max_missing_aa: int = 10,
+) -> Tuple[int, int, int, int]:
+    """
+    Conservatively extend tblastn boundaries for protein terminals not covered
+    by the HSP span.
+
+    tblastn is a local aligner: terminal amino acids can be omitted from an HSP
+    even when the full feature is present in the query genome. HSP query
+    coordinates tell us how many reference-protein amino acids are missing at
+    the N/C termini. For non-CDS features such as mat_peptide, codon rescue is
+    not applicable, so we can extend by missing_aa * 3 bp when coverage is high.
+
+    Returns:
+        (new_start, new_end, n_terminal_extended_bp, c_terminal_extended_bp)
+    """
+    if coverage < min_coverage or protein_length <= 0 or not hsps:
+        return start, end, 0, 0
+
+    relevant = [h for h in hsps if (h.sbjct_start <= h.sbjct_end) == (strand == "+")]
+    if not relevant:
+        relevant = hsps
+
+    min_query_start = min(min(h.query_start, h.query_end) for h in relevant)
+    max_query_end = max(max(h.query_start, h.query_end) for h in relevant)
+
+    missing_n_aa = max(0, min_query_start - 1)
+    missing_c_aa = max(0, protein_length - max_query_end)
+
+    if missing_n_aa > max_missing_aa or missing_c_aa > max_missing_aa:
+        return start, end, 0, 0
+
+    n_extension = missing_n_aa * 3
+    c_extension = missing_c_aa * 3
+
+    if strand == "+":
+        new_start = max(1, start - n_extension)
+        new_end = min(genome_length, end + c_extension)
+    else:
+        new_start = max(1, start - c_extension)
+        new_end = min(genome_length, end + n_extension)
+
+    return new_start, new_end, n_extension, c_extension
 
 
 # ---------------------------------------------------------------------------
@@ -276,6 +329,8 @@ def lift_feature_tblastn(
         hsps,
         protein_length=len(protein),
     )
+    n_term_extension = 0
+    c_term_extension = 0
 
     # tblastn aligns protein → stop codon not included in HSP end.
     # Use stop codon rescue: scan forward in-frame from q_end to find
@@ -289,6 +344,16 @@ def lift_feature_tblastn(
         else:
             # Fallback: at least add 3bp for stop codon
             q_end = min(q_end + 3, len(query_record.seq))
+    elif q_start is not None and q_end is not None:
+        q_start, q_end, n_term_extension, c_term_extension = extrapolate_terminal_boundaries(
+            start=q_start,
+            end=q_end,
+            strand=strand,
+            hsps=hsps,
+            protein_length=len(protein),
+            genome_length=len(query_record.seq),
+            coverage=coverage,
+        )
 
     if coverage < min_coverage or identity < min_identity:
         return LiftedFeature(
@@ -305,11 +370,12 @@ def lift_feature_tblastn(
 
     # 5. Skip codon validation if not requested (e.g. mat_peptide features)
     if not validate_codons:
+        status = "ok_extrapolated" if (n_term_extension or c_term_extension) else "ok"
         return LiftedFeature(
             **base,
             query_start=q_start, query_end=q_end,
             sequence=seq_str, coverage=round(coverage, 4),
-            status="ok",
+            status=status,
             identity=round(identity * 100, 1),
             score=round(score, 1),
         )
@@ -466,6 +532,8 @@ def _build_lifted_from_hsps(
         hsps,
         protein_length=protein_length,
     )
+    n_term_extension = 0
+    c_term_extension = 0
 
     if validate_codons and q_end is not None:
         rescued_stop = rescue_stop_codon(
@@ -475,6 +543,16 @@ def _build_lifted_from_hsps(
             q_end, _, _ = rescued_stop
         else:
             q_end = min(q_end + 3, len(query_record.seq))
+    elif q_start is not None and q_end is not None:
+        q_start, q_end, n_term_extension, c_term_extension = extrapolate_terminal_boundaries(
+            start=q_start,
+            end=q_end,
+            strand=strand,
+            hsps=hsps,
+            protein_length=protein_length,
+            genome_length=len(query_record.seq),
+            coverage=coverage,
+        )
 
     if coverage < min_coverage or identity < min_identity:
         return LiftedFeature(
@@ -489,11 +567,12 @@ def _build_lifted_from_hsps(
     seq_str = extract_sequence(query_record, q_start, q_end, strand)
 
     if not validate_codons:
+        status = "ok_extrapolated" if (n_term_extension or c_term_extension) else "ok"
         return LiftedFeature(
             **base,
             query_start=q_start, query_end=q_end,
             sequence=seq_str, coverage=round(coverage, 4),
-            status="ok",
+            status=status,
             identity=round(identity * 100, 1),
             score=round(score, 1),
         )
