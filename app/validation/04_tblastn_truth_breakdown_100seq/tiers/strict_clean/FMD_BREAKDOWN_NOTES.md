@@ -1,190 +1,171 @@
 # FMD Breakdown Notes
 
-Ghi chú ngày hôm nay cho phần `strict_clean` FMD validation.
+Ghi chú cho phần `strict_clean` FMD validation, gồm baseline và kết quả sau khi thử terminal extrapolation.
 
-## Kết Quả Tổng Quan
+## Cách Tính Accuracy
 
-- Tổng FMD predictions: `1152`
+FMD dùng `mat_peptide`, nên validation so từng peptide/gene trên các query records có same-gene truth.
+
+Metric chính:
+
+- `total`: số record có truth gene đó.
+- `exact`: pred name, start, end khớp hoàn toàn với truth.
+- `coord_only`: tọa độ đúng theo IoU threshold nhưng không exact.
+- `failed`: không exact và cũng không coordinate-correct.
+- `accuracy_pct = (exact + coord_only) / total`.
+
+## Baseline Tổng Quan
+
+Baseline trước terminal extrapolation:
+
+- Tổng predictions: `1152`
 - Exact match: `1088 / 1152 = 94.44%`
 - Coordinate-correct: `1131 / 1152 = 98.18%`
-- Non-exact predictions: `64 / 1152 = 5.56%`
-- Failed coord/name theo raw scoring: `21 / 1152 = 1.82%`
+- Non-exact: `64 / 1152 = 5.56%`
 
-## Final Adjudication Cho 64 Non-Exact Cases
+Trong 64 non-exact cases:
 
-- Do ref/truth annotation model: `28 / 64 = 43.75%`
-- Do tool-side prediction/boundary: `36 / 64 = 56.25%`
+- Ref/truth annotation issue: `28 / 64`
+- Tool-side boundary issue: `36 / 64`
 
-Tính trên toàn bộ FMD predictions:
+## Finding Chính Ở Baseline
 
-- Ref/truth artifact: `28 / 1152 = 2.43%`
-- Tool-side issue: `36 / 1152 = 3.12%`
+### Ref/Truth Annotation Issues
 
-## Nhóm Do Ref/Truth
+Một số case fail không phải do tool lift sai, mà do reference và query truth dùng boundary khác nhau.
 
-### `ref_query_boundary_convention_mismatch`: 25 cases
+Các nhóm chính:
 
-- Tool prediction match reference model, nhưng query truth dùng boundary khác.
-- Không nên xem đây là lỗi tool trực tiếp.
+- `2A`: nhiều query truth annotate `2A` ngắn hơn reference khoảng `6 bp`.
+- `VP1`: một số query truth dài/ngắn khác reference vài bp.
+- `VP2`: có case truth dùng boundary dài hơn reference rất nhiều.
+- Một số gene truth absent nên không thể score công bằng.
 
-Các pattern chính:
+Kết luận:
 
-- `2A`: 15 cases
-  - `ref_len = 54 bp`
-  - `pred_len = 54 bp`
-  - `truth_len = 48 bp`
-  - Tool đang lift đúng theo ref, nhưng query truth annotate `2A` ngắn hơn 6 bp.
-  - Vì `2A` rất ngắn, lệch 6 bp làm IoU tụt xuống `0.8889`.
+- Không nên quy toàn bộ non-exact baseline thành lỗi tool.
+- FMD có vài boundary convention mismatch giữa ref và query truth.
 
-- `VP1`: 9 cases
-  - Nhiều case `pred_len = ref_len = 633 bp`
-  - Query truth thường dài hơn vài bp, ví dụ `639 bp`.
-  - Đây là boundary convention mismatch giữa ref và query truth.
+### Tool-Side Boundary Issues
 
-- `VP2`: 1 case
-  - `ref_len = pred_len = 654 bp`
-  - `truth_len = 954 bp`
-  - Query truth rõ ràng dùng feature boundary/convention khác.
+Pattern tool-side rõ nhất:
 
-### `truth_feature_absent`: 3 cases
+- `Lpro` và `3Cpro`: thiếu `12 bp` ở N-terminal.
+- `3B`: thiếu `3 bp` ở C-terminal.
+- `3A`: một case thiếu C-terminal lớn `111 bp`.
+- `2A`: peptide rất ngắn nên lệch `3-6 bp` làm IoU tụt mạnh.
 
-- Query truth thiếu same-name feature nên không thể score công bằng.
-- Gồm các case như `VP3`, `VP4`, và một case `VP1`.
+Pattern quan trọng:
 
-## Nhóm Do Tool
+- Nhiều case có `delta_end = 0`, nhưng `delta_start > 0`.
+- Nghĩa là tool kết thúc đúng, nhưng bắt đầu muộn, thiếu N-terminal amino acids.
 
-### `n_terminal_truncation_12bp`: 15 cases
+## Vì Sao FMD Bị Thiếu Terminal?
 
-- Chủ yếu ở `Lpro` và `3Cpro`.
-- Pattern điển hình:
-  - `ref_len == truth_len`
-  - `pred_len = ref_len - 12 bp`
-  - `delta_start = +12`
-  - `delta_end = 0`
-- Ví dụ `Lpro`:
-  - `ref_len = 603 bp`
-  - `truth_len = 603 bp`
-  - `pred_len = 591 bp`
-- Kết luận:
-  - Ref và truth đồng ý với nhau.
-  - Prediction bị thiếu 12 bp ở đầu, tức thiếu 4 aa N-terminal.
-  - Đây là tool-side boundary inference issue.
+FMD dùng `mat_peptide`, không phải CDS riêng.
 
-### `short_peptide_boundary_offset`: 9 cases
+Vì vậy code không dùng:
 
-- Chủ yếu ở `2A`.
-- Pattern:
-  - Lệch boundary 3 bp ở peptide rất ngắn.
-  - IoU vẫn khoảng `0.94`, nhưng do `2A` ngắn nên offset nhỏ bị phạt mạnh.
-- Đây là boundary precision issue, không phải lift sai vùng lớn.
+- `rescue_start_codon`
+- `rescue_stop_codon`
+- start/stop codon validation
 
-### `minor_vp1_boundary_offset`: 8 cases
+Baseline lấy boundary trực tiếp từ HSP span của `tblastn`.
 
-- `VP1` có một số case không match cả ref và truth boundary.
-- Offset nhỏ, IoU cao khoảng `0.99`.
-- Tính là tool-side under strict scoring, nhưng severity thấp.
+Nhưng `tblastn` là local alignment:
 
-### Các Tool Issues Lẻ
-
-- `no_hit`: 1 case
-  - `2A` không lift được.
-  - Đây là tool miss rõ.
-
-- `major_c_terminal_truncation`: 1 case
-  - `3A`
-  - Start đúng nhưng end thiếu `111 bp`.
-  - Prediction không match ref cũng không match truth.
-  - Đây là lỗi tool rõ nhất trong FMD breakdown.
-
-- `minor_c_terminal_truncation_3bp`: 1 case
-  - `3B`
-  - Prediction thiếu 3 bp ở cuối.
-  - Minor boundary issue.
-
-- `boundary_offset_matches_neither_ref_nor_truth`: 1 case
-  - Mixed boundary case, currently counted as tool-side under strict scoring.
-
-## Kết Luận FMD
-
-- FMD tblastn localization nhìn chung rất tốt.
-- Raw exact accuracy là `94.44%`.
-- Coordinate-correct accuracy là `98.18%`.
-- Nhiều raw failures không phải tool lift sai vùng mà do ref/query truth annotation boundary khác nhau.
-- Tool-side issues chủ yếu là boundary precision, không phải localization failure lớn.
-- Severe tool errors rõ nhất:
-  - `2A no_hit`: 1 case
-  - `3A` bị thiếu C-terminal `111 bp`: 1 case
-
-Một câu report có thể dùng:
-
-> For FMDV, tblastn lifting is highly reliable at the localization level. Most non-exact predictions are caused by reference-vs-query annotation boundary differences or small terminal boundary offsets. Clear severe tool-side failures are rare.
-
-## Insight Quan Trọng Về Tool
-
-FMD dùng `mat_peptide`, nên code không chạy codon validation/rescue:
-
-- Không dùng `rescue_start_codon`
-- Không dùng `rescue_stop_codon`
-
-Vì vậy các case thiếu `12 bp` ở `Lpro` / `3Cpro` không phải do rescue codon.
-
-Nguyên nhân khả dĩ:
-
-- `tblastn` là local alignment.
-- Nếu HSP không cover 4 aa đầu của protein, prediction sẽ thiếu:
-  - `4 aa * 3 bp = 12 bp`
-- Code hiện tại lấy boundary trực tiếp từ HSP span:
-  - `pred_start = min HSP subject coordinate`
-  - `pred_end = max HSP subject coordinate`
-- Do đó terminal amino acids không align sẽ bị mất khỏi predicted feature.
-
-## Hướng Cải Thiện Tool
-
-### Ý tưởng: terminal extrapolation cho tblastn HSPs
-
-Thay vì lấy HSP span làm full feature boundary, dùng query protein coordinates để suy ra terminal missing aa.
+- Nếu HSP không cover vài amino acids đầu/cuối protein,
+- prediction sẽ thiếu đoạn terminal đó.
 
 Ví dụ:
 
-- `protein_length = 201 aa`
-- HSP bắt đầu ở `query_start = 5`
-- Missing N-terminal:
-  - `5 - 1 = 4 aa`
-  - `4 * 3 = 12 bp`
-- Với strand `+`, extend prediction start upstream 12 bp.
+- HSP bắt đầu ở amino acid 5.
+- Thiếu `4 aa` đầu.
+- Tọa độ nucleotide bị thiếu `4 * 3 = 12 bp`.
 
-Tương tự C-terminal:
+## Cải Thiện Đã Thử: Terminal Extrapolation
 
-- Nếu `hsp.query_end < protein_length`
-- Missing C-terminal:
-  - `protein_length - hsp.query_end`
-  - extend downstream `missing_aa * 3 bp`
+Ý tưởng:
 
-### Rule Nên Conservative
+- Dùng HSP query protein coordinate để biết HSP thiếu bao nhiêu aa ở đầu/cuối.
+- Nếu coverage cao và thiếu ít aa, extend boundary thêm `missing_aa * 3 bp`.
 
-Chỉ extrapolate nếu:
+Rule conservative:
 
-- coverage cao, ví dụ `>= 0.90`
-- terminal missing nhỏ, ví dụ `<= 10 aa`
-- strand rõ ràng
-- extension không vượt genome bounds
-- không tạo tọa độ invalid
+- Chỉ apply khi coverage đủ cao.
+- Chỉ extend terminal missing nhỏ.
+- Không dùng cho CDS/codon rescue path.
+- Hiện chủ yếu áp dụng cho `mat_peptide` như FMD.
 
-### Features Có Thể Được Cải Thiện
+## Kết Quả Sau Cải Thiện
 
-- `Lpro`: thiếu 12 bp N-terminal
-- `3Cpro`: thiếu 12 bp N-terminal
-- `3B`: thiếu 3 bp C-terminal
-- Một phần `2A`: boundary offset 3-6 bp
+Sau terminal extrapolation:
+
+- Exact match tăng từ `94.44%` lên `96.70%`.
+- Tool-side failures giảm từ `36` xuống `9`.
+- Nhiều case thiếu N-terminal `12 bp` được fix.
+
+Các nhóm được cải thiện rõ:
+
+- `Lpro`: fix nhiều case thiếu N-terminal.
+- `3Cpro`: fix nhiều case thiếu N-terminal.
+- `3B`: fix case thiếu C-terminal nhỏ.
+- Một phần boundary offset ngắn cũng được cải thiện.
+
+## Kết Quả Theo Gene Sau Cải Thiện
+
+Theo notebook summary mới:
+
+| Gene | Total | Exact | Coord only | Failed | Accuracy |
+|---|---:|---:|---:|---:|---:|
+| Lpro | 96 | 96 | 0 | 0 | 100.00% |
+| VP4 | 95 | 95 | 0 | 0 | 100.00% |
+| VP2 | 96 | 95 | 0 | 1 | 98.96% |
+| VP3 | 95 | 95 | 0 | 0 | 100.00% |
+| VP1 | 95 | 79 | 16 | 0 | 100.00% |
+| 2A | 96 | 79 | 0 | 17 | 82.29% |
+| 2B | 96 | 96 | 0 | 0 | 100.00% |
+| 2C | 96 | 96 | 0 | 0 | 100.00% |
+| 3A | 96 | 95 | 0 | 1 | 98.96% |
+| 3B | 96 | 96 | 0 | 0 | 100.00% |
+| 3Cpro | 96 | 96 | 0 | 0 | 100.00% |
+| 3Dpol | 96 | 96 | 0 | 0 | 100.00% |
+
+Overall FMD sau cải thiện:
+
+- `1130 / 1149` coordinate-correct-or-exact
+- Accuracy: `98.35%`
+- Exact: `1114 / 1149 = 96.95%`
+- Failed: `19 / 1149 = 1.65%`
+
+## Case Còn Lại
+
+Các failed cases còn lại chủ yếu nằm ở:
+
+- `2A`: peptide rất ngắn, lệch `6 bp` làm IoU chỉ khoảng `0.8889`, dưới threshold `0.90`.
+- `VP2`: 1 case boundary lệch lớn.
+- `3A`: 1 case thiếu C-terminal lớn.
+
+Interpretation:
+
+- `2A` failures có thể bị strict IoU phạt mạnh vì gene quá ngắn.
+- `VP2` và `3A` là case cần review riêng.
+
+## Kết Luận FMD
+
+- FMD tblastn lifting rất tốt ở mức localization.
+- Baseline fail chủ yếu do terminal boundary thiếu vài amino acids hoặc ref/truth boundary convention mismatch.
+- Terminal extrapolation cải thiện rõ exact accuracy.
+- Sau cải thiện, FMD đạt `98.35%` accuracy theo truth-available per-gene scoring.
+- Severe tool-side failures còn lại ít, nổi bật nhất là một số case `2A`, `VP2`, `3A`.
+
+Một câu report có thể dùng:
+
+> For FMDV, tblastn lifting is highly reliable at the localization level. Most baseline errors were small terminal boundary offsets caused by local HSP truncation or reference-vs-query boundary convention differences. Conservative terminal extrapolation improved exact boundary recovery while keeping coordinate accuracy high.
 
 ## Việc Nên Làm Tiếp
 
-- Implement thử terminal extrapolation trong một branch riêng.
-- Chạy lại `strict_clean` FMD validation.
-- So sánh:
-  - exact_pct
-  - coord_pct
-  - số `n_terminal_truncation_12bp`
-  - số `short_peptide_boundary_offset`
-  - kiểm tra có làm xấu PRRS không.
-- Nếu sợ ảnh hưởng PRRS gene overlap, có thể bật extrapolation trước cho `mat_peptide` only.
+- Giữ terminal extrapolation cho `mat_peptide` path.
+- Review riêng `2A` vì gene quá ngắn và IoU threshold dễ phạt nặng.
+- Manual review `VP2` và `3A` failed cases còn lại.
+- Sau khi merge PRRSV start rescue, rerun notebook summary chung để cập nhật final numbers.

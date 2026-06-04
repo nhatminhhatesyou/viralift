@@ -26,6 +26,7 @@ class LiftedFeature:
 
     has_start_codon: Optional[bool] = None
     has_stop_codon: Optional[bool] = None
+    in_frame: Optional[bool] = None
     rescue_offset: Optional[int] = None
 
     # Extra engine-specific info
@@ -47,6 +48,7 @@ class LiftedFeature:
             "method": self.method,
             "has_start_codon": self.has_start_codon,
             "has_stop_codon": self.has_stop_codon,
+            "in_frame": self.in_frame,
             "rescue_offset": self.rescue_offset,
             "identity": self.identity,
             "score": self.score,

@@ -397,12 +397,17 @@ def lift_feature_tblastn(
     # 7. Try start codon rescue if ATG missing
     if not validation["has_start_codon"]:
         rescued = rescue_start_codon(
-            query_record, q_start, q_end, strand, max_window=rescue_window
+            query_record,
+            q_start,
+            q_end,
+            strand,
+            max_window=rescue_window,
+            expected_length=len(protein) * 3 + 3,
         )
         if rescued:
             new_start, new_seq, offset = rescued
             revalidation = validate_cds_boundaries(new_seq)
-            status = "ok_rescued" if revalidation["has_stop_codon"] else "invalid_boundaries"
+            status = "ok_rescued" if revalidation["valid"] else "invalid_boundaries"
             return LiftedFeature(
                 **base,
                 query_start=new_start, query_end=q_end,
@@ -410,6 +415,7 @@ def lift_feature_tblastn(
                 status=status,
                 has_start_codon=True,
                 has_stop_codon=revalidation["has_stop_codon"],
+                in_frame=revalidation["in_frame"],
                 rescue_offset=offset,
                 identity=round(identity * 100, 1),
                 score=round(score, 1),
@@ -592,12 +598,17 @@ def _build_lifted_from_hsps(
 
     if not validation["has_start_codon"]:
         rescued = rescue_start_codon(
-            query_record, q_start, q_end, strand, max_window=rescue_window
+            query_record,
+            q_start,
+            q_end,
+            strand,
+            max_window=rescue_window,
+            expected_length=protein_length * 3 + 3,
         )
         if rescued:
             new_start, new_seq, offset = rescued
             revalidation = validate_cds_boundaries(new_seq)
-            status = "ok_rescued" if revalidation["has_stop_codon"] else "invalid_boundaries"
+            status = "ok_rescued" if revalidation["valid"] else "invalid_boundaries"
             return LiftedFeature(
                 **base,
                 query_start=new_start, query_end=q_end,
@@ -605,6 +616,7 @@ def _build_lifted_from_hsps(
                 status=status,
                 has_start_codon=True,
                 has_stop_codon=revalidation["has_stop_codon"],
+                in_frame=revalidation["in_frame"],
                 rescue_offset=offset,
                 identity=round(identity * 100, 1),
                 score=round(score, 1),
