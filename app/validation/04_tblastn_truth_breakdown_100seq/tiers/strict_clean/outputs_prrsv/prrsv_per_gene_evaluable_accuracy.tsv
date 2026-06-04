@@ -1,0 +1,10 @@
+ref_name	truth_available_records	all_records	lifted_with_truth	not_lifted_with_truth	exact_correct	coord_correct	exact_wrong_or_nonexact	coord_wrong_or_missing	extra_predictions_without_truth	records_without_truth	exact_pct_on_truth	coord_pct_on_truth	extra_prediction_pct_of_records_without_truth
+ORF1a	62	95	62	0	61	62	1	0	33	33	98.39	100.0	100.0
+ORF1b	83	95	83	0	0	83	83	0	12	12	0.0	100.0	100.0
+ORF2a	95	95	95	0	95	95	0	0	0	0	100.0	100.0	
+ORF2b	48	95	48	0	45	48	3	0	47	47	93.75	100.0	100.0
+ORF3	95	95	95	0	95	95	0	0	0	0	100.0	100.0	
+ORF4	95	95	95	0	94	95	1	0	0	0	98.95	100.0	
+ORF5	95	95	95	0	91	95	4	0	0	0	95.79	100.0	
+ORF6	94	95	94	0	91	94	3	0	1	1	96.81	100.0	100.0
+ORF7	94	95	94	0	66	66	28	28	1	1	70.21	70.21	100.0

@@ -1,0 +1,9 @@
+evaluation_type	ref_name	record_id	pred_name	truth_name	status	failure_mode	exact_match	coord_correct	pred_start	pred_end	truth_start	truth_end	iou	best_overlap_name	best_iou	delta_start	delta_end	pred_len	truth_len	ref_len	pred_minus_ref_len	truth_minus_ref_len	pred_minus_truth_len
+truth_available	ORF4	DQ864705.1	ORF4	ORF4	ok_rescued	Boundary offset	False	True	12914	13420	12869.0	13420.0	0.9185	ORF4	0.9185	45.0	0.0	507	552.0	537	-30	15.0	-45.0
+truth_available	ORF5	AY366525.1	ORF5	ORF5	ok_rescued	Boundary offset	False	True	13448	14048	13443.0	14048.0	0.9917	ORF5	0.9917	5.0	0.0	601	606.0	603	-2	3.0	-5.0
+truth_available	ORF5	DQ489311.1	ORF5	ORF5	ok_rescued	Boundary offset	False	True	13448	14048	13443.0	14048.0	0.9917	ORF5	0.9917	5.0	0.0	601	606.0	603	-2	3.0	-5.0
+truth_available	ORF5	DQ864705.1	ORF5	ORF5	ok_rescued	Boundary offset	False	True	13422	14022	13417.0	14022.0	0.9917	ORF5	0.9917	5.0	0.0	601	606.0	603	-2	3.0	-5.0
+truth_available	ORF5	EU076704.1	ORF5	ORF5	ok_rescued	Boundary offset	False	True	13475	14075	13470.0	14075.0	0.9917	ORF5	0.9917	5.0	0.0	601	606.0	603	-2	3.0	-5.0
+truth_available	ORF6	AY366525.1	ORF6	ORF6	ok_rescued	Boundary offset	False	True	14049	14557	14036.0	14557.0	0.9751	ORF6	0.9751	13.0	0.0	509	522.0	525	-16	-3.0	-13.0
+truth_available	ORF6	DQ864705.1	ORF6	ORF6	ok_rescued	Boundary offset	False	True	14023	14531	14010.0	14531.0	0.9751	ORF6	0.9751	13.0	0.0	509	522.0	525	-16	-3.0	-13.0
+truth_available	ORF6	EU076704.1	ORF6	ORF6	ok_rescued	Boundary offset	False	True	14076	14584	14063.0	14584.0	0.9751	ORF6	0.9751	13.0	0.0	509	522.0	525	-16	-3.0	-13.0

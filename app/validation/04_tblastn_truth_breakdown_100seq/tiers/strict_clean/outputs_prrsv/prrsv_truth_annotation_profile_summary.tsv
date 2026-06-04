@@ -1,0 +1,11 @@
+feature	is_reference_target	raw_records_with_feature	validation_records_with_feature	total_records	raw_pct_records	validation_pct_records
+ORF1a	True	62	62	95	65.26	65.26
+ORF1b	True	83	83	95	87.37	87.37
+ORF2a	True	95	95	95	100.0	100.0
+ORF2b	True	48	48	95	50.53	50.53
+ORF3	True	95	95	95	100.0	100.0
+ORF4	True	95	95	95	100.0	100.0
+ORF5	True	95	95	95	100.0	100.0
+ORF6	True	94	94	95	98.95	98.95
+ORF7	True	94	94	95	98.95	98.95
+ORF1ab	False	33	33	95	34.74	34.74

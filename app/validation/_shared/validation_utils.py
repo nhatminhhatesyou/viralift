@@ -98,13 +98,59 @@ def parse_truth_features(
     alias_lookup: Dict[str, str],
     feature_type: Optional[str],
     filter_nested: bool = True,
+    target_names: Optional[Sequence[str]] = None,
+    keep_extra_names: Optional[Sequence[str]] = None,
 ) -> Tuple[List[Dict], List[Dict]]:
     features = parse_features_for_type(record, feature_type)
     if alias_lookup and features:
         features = apply_alias_to_features(features, alias_lookup)
+    if target_names is not None:
+        allowed = set(target_names)
+        if keep_extra_names:
+            allowed.update(keep_extra_names)
+        kept = [feature for feature in features if feature.get("name") in allowed]
+        dropped = [feature for feature in features if feature.get("name") not in allowed]
+        return kept, dropped
     if not filter_nested:
         return features, []
     return filter_subfeatures(features)
+
+
+def truth_target_names(ref_features: Sequence[Dict], virus_label: Optional[str] = None) -> Tuple[List[str], List[str]]:
+    target_names = sorted({feature["name"] for feature in ref_features if feature.get("name")})
+    extra_names: List[str] = []
+    if virus_label and virus_label.upper().startswith("PRRS"):
+        # PRRSV records may annotate ORF1a/ORF1b as one ORF1ab feature.
+        # Keep it in truth so validation can identify granularity mismatches
+        # instead of treating the region as absent.
+        extra_names.append("ORF1ab")
+    return target_names, extra_names
+
+
+def should_use_target_truth_filter(feature_type: Optional[str], virus_label: Optional[str] = None) -> bool:
+    if virus_label and virus_label.upper().startswith("PRRS"):
+        return True
+    return feature_type == "CDS"
+
+
+def parse_validation_truth_features(
+    record: SeqRecord,
+    alias_lookup: Dict[str, str],
+    feature_type: Optional[str],
+    ref_features: Sequence[Dict],
+    virus_label: Optional[str] = None,
+) -> Tuple[List[Dict], List[Dict]]:
+    if should_use_target_truth_filter(feature_type, virus_label):
+        targets, extras = truth_target_names(ref_features, virus_label)
+        return parse_truth_features(
+            record,
+            alias_lookup,
+            feature_type,
+            filter_nested=False,
+            target_names=targets,
+            keep_extra_names=extras,
+        )
+    return parse_truth_features(record, alias_lookup, feature_type)
 
 
 def lifted_to_rows(record_id: str, lifted: Iterable, method: str) -> List[Dict]:
@@ -246,7 +292,13 @@ def run_tblastn_against_truth(
     ) if progress else query_records
 
     for record in iterator:
-        truth, _ = parse_truth_features(record, bundle["alias_lookup"], bundle["feature_type"])
+        truth, _ = parse_validation_truth_features(
+            record,
+            bundle["alias_lookup"],
+            bundle["feature_type"],
+            bundle["features"],
+            virus_label,
+        )
         if not truth:
             continue
         if progress:
@@ -282,7 +334,13 @@ def run_production_pipeline_against_truth(
     rows = []
     for record in query_records:
         truth_type = select_feature_type(record, bundle["alias_lookup"]) or bundle["feature_type"]
-        truth, _ = parse_truth_features(record, bundle["alias_lookup"], truth_type)
+        truth, _ = parse_validation_truth_features(
+            record,
+            bundle["alias_lookup"],
+            truth_type,
+            bundle["features"],
+            virus_label,
+        )
         if not truth:
             continue
         strategy, query_feature_type = get_strategy(record, bundle["alias_lookup"])
