@@ -390,6 +390,7 @@ def lift_feature_tblastn(
             sequence=seq_str, coverage=round(coverage, 4),
             status="ok",
             has_start_codon=True, has_stop_codon=True,
+            in_frame=validation["in_frame"],
             identity=round(identity * 100, 1),
             score=round(score, 1),
         )
@@ -428,6 +429,7 @@ def lift_feature_tblastn(
         status="invalid_boundaries",
         has_start_codon=validation["has_start_codon"],
         has_stop_codon=validation["has_stop_codon"],
+        in_frame=validation["in_frame"],
         identity=round(identity * 100, 1),
         score=round(score, 1),
     )
@@ -592,6 +594,7 @@ def _build_lifted_from_hsps(
             sequence=seq_str, coverage=round(coverage, 4),
             status="ok",
             has_start_codon=True, has_stop_codon=True,
+            in_frame=validation["in_frame"],
             identity=round(identity * 100, 1),
             score=round(score, 1),
         )
@@ -629,6 +632,7 @@ def _build_lifted_from_hsps(
         status="invalid_boundaries",
         has_start_codon=validation["has_start_codon"],
         has_stop_codon=validation["has_stop_codon"],
+        in_frame=validation["in_frame"],
         identity=round(identity * 100, 1),
         score=round(score, 1),
     )

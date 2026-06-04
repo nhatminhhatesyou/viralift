@@ -71,6 +71,7 @@ def write_results_tsv(all_results: List[Tuple[str, List]], out_path: Path) -> No
                 "score":          lifted.score,
                 "has_start_codon": lifted.has_start_codon,
                 "has_stop_codon":  lifted.has_stop_codon,
+                "in_frame":        lifted.in_frame,
                 "rescue_offset":   lifted.rescue_offset,
                 "length":         len(lifted.sequence) if lifted.sequence else None,
             })
@@ -82,5 +83,4 @@ def write_results_tsv(all_results: List[Tuple[str, List]], out_path: Path) -> No
         writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()), delimiter="\t")
         writer.writeheader()
         writer.writerows(rows)
-
 
