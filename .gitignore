@@ -12,6 +12,12 @@ logs/*.log.*
 *.fa
 *.mmi
 app/data/*
-app/validation/**/outputs/*
-!app/validation/**/outputs/.gitkeep
+# Validation run artifacts
+app/validation/**/outputs*/
+app/validation/**/*outputs*/
+!app/validation/**/outputs*/.gitkeep
+!app/validation/**/*outputs*/.gitkeep
+app/validation/**/.ipynb_checkpoints/
+app/validation/**/__pycache__/
+app/validation/**/*.pyc
 app/src/tests/
