@@ -1,2 +1,0 @@
-evaluation_type	record_id	ref_name	pred_name	truth_name	best_overlap_name	ref_len	pred_len	truth_len	pred_minus_ref_len	truth_minus_ref_len	pred_minus_truth_len	pred_start	pred_end	truth_start	truth_end	delta_start	delta_end	failure_mode	status	iou	best_iou
-truth_available	DQ779791.1	ORF1a	ORF1a	ORF1a	ORF1a	7512	7620	7607.0	108	95.0	13.0	191	7810	191.0	7797.0	0.0	13.0	Boundary offset	ok	0.9983	0.9983

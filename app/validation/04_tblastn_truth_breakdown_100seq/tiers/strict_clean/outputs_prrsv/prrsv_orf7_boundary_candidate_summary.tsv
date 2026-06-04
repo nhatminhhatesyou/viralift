@@ -1,2 +1,0 @@
-status	cases	delta_start_pattern	delta_end_pattern	pred_minus_ref_pattern	truth_minus_ref_pattern	mean_iou	mean_best_iou
-ok_rescued	28	43:25, 48:3	0:28	-43:25, -33:3	0:25, 15:3	0.8835	0.8835

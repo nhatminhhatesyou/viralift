@@ -1,6 +1,0 @@
-final_blame	final_cause	cases	pct_of_failures	pct_of_all_predictions
-ref_truth	ref_query_boundary_convention_mismatch	26	68.42	2.26
-ref_truth	truth_feature_absent	3	7.89	0.26
-tool	minor_vp1_boundary_offset	7	18.42	0.61
-tool	major_c_terminal_truncation	1	2.63	0.09
-tool	no_hit	1	2.63	0.09

@@ -1,4 +1,0 @@
-evaluation_type	record_id	ref_name	pred_name	truth_name	best_overlap_name	ref_len	pred_len	truth_len	pred_minus_ref_len	truth_minus_ref_len	pred_minus_truth_len	pred_start	pred_end	truth_start	truth_end	delta_start	delta_end	failure_mode	status	iou	best_iou
-truth_available	AY366525.1	ORF2b	ORF2b	ORF2b	ORF2b	222	218	213.0	-4	-9.0	5.0	11745	11962	11750.0	11962.0	-5.0	0.0	Boundary offset	ok_rescued	0.9771	0.9771
-truth_available	DQ489311.1	ORF2b	ORF2b	ORF2b	ORF2b	222	218	213.0	-4	-9.0	5.0	11745	11962	11750.0	11962.0	-5.0	0.0	Boundary offset	ok_rescued	0.9771	0.9771
-truth_available	EU076704.1	ORF2b	ORF2b	ORF2b	ORF2b	222	218	213.0	-4	-9.0	5.0	11796	12013	11801.0	12013.0	-5.0	0.0	Boundary offset	ok_rescued	0.9771	0.9771
