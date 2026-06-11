@@ -12,6 +12,7 @@ logs/*.log.*
 *.fa
 *.mmi
 app/data/*
+app/validation/
 # Validation run artifacts
 app/validation/**/outputs*/
 app/validation/**/*outputs*/

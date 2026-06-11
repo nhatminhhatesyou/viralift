@@ -1,3 +1,0 @@
-run	total	exact_match	coord_correct	coord_only	failed_coord_or_name	exact_pct	coord_pct	failed_pct
-baseline	1152	1088	1131	43	21	94.44	98.18	1.82
-terminal_extrapolation	1152	1114	1130	16	22	96.7	98.09	1.91

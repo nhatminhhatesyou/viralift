@@ -1,6 +1,0 @@
-pandas
-matplotlib
-notebook
-ipykernel
-ipywidgets
-tqdm
