@@ -3,6 +3,7 @@ ViraLift Streamlit Web UI
 
 Stages:
     upload: user uploads ref + query, pipeline is configured
+    bootstrap_alias: unknown virus, user creates a first alias config
     resolve: unmapped gene names found, user maps or ignores each
     results: pipeline ran, show results + export options
 """
@@ -10,6 +11,7 @@ Stages:
 import sys
 import json
 import html
+import re
 import tempfile
 from io import StringIO
 from pathlib import Path
@@ -27,6 +29,26 @@ sys.path.insert(0, str(ROOT))
 from app.src.alias.alias_registry import (
     detect_alias_config_for_record,
     get_detected_virus_name,
+)
+from app.src.alias.alias_bootstrap import (
+    append_alias_registry_entry,
+    apply_approved_alias_suggestions,
+    build_coordinate_supported_alias_suggestions,
+    build_seed_alias_config_from_ref,
+    safe_alias_filename,
+    write_new_alias_config,
+)
+from app.src.alias.alias_manager import (
+    add_registry_keyword,
+    alias_config_to_tables,
+    list_registry_entries,
+    load_alias_config as manager_load_alias_config,
+    move_ignored_to_alias,
+    resolve_config_path,
+    save_alias_config as manager_save_alias_config,
+    tables_to_alias_config,
+    update_registry_entry,
+    validate_alias_config,
 )
 from app.src.features.annotation_strategy import get_strategy, select_feature_type
 from app.src.alias.gene_alias import (
@@ -60,6 +82,7 @@ from app.src.io.run_logger import (
 
 # ── constants ────────────────────────────────────────────────────────
 REGISTRY_PATH  = ROOT / "app/config/virus_alias_registry.json"
+CONFIG_DIR = ROOT / "app/config"
 GOOD_STATUSES = {"ok", "ok_rescued", "direct"}
 REVIEW_STATUSES = {
     "invalid_boundaries",
@@ -224,9 +247,11 @@ UI_TEXT = {
         "gene_download": "{gene}.fasta  ({count} sequences)",
         "skipped": "{count} features skipped due to quality filter or missing sequence.",
         "stage_upload": "1 Upload",
-        "stage_resolve": "2 Resolve",
-        "stage_run": "3 Run",
-        "stage_review": "4 Review",
+        "stage_virus_review": "2 Virus",
+        "stage_bootstrap": "3 Alias seed",
+        "stage_resolve": "4 Resolve",
+        "stage_run": "5 Run",
+        "stage_review": "6 Review",
         "sidebar_subtitle": "Reference-guided viral gene name standardisation",
         "alias_config": "Alias config",
         "stage": "Stage",
@@ -255,6 +280,7 @@ UI_TEXT = {
 def _init_state():
     defaults = dict(
         stage="upload",
+        app_mode="Run pipeline",
         tmp=None,               # tempfile.TemporaryDirectory object
         ref_record=None,
         query_records=None,
@@ -275,6 +301,15 @@ def _init_state():
         evalue=1e-5,
         rescue_window=50,
         ui_theme="dark",
+        bootstrap_alias_config=None,
+        bootstrap_alias_config_path=None,
+        bootstrap_suggestions=[],
+        bootstrap_diagnostics={},
+        bootstrap_virus_name="",
+        bootstrap_keywords="",
+        alias_manager_config_path=None,
+        virus_review_metadata=[],
+        virus_review_guess="",
     )
     for k, v in defaults.items():
         if k not in st.session_state:
@@ -578,7 +613,7 @@ def _inject_css():
 
             .vl-stage-rail {
                 display: grid;
-                grid-template-columns: repeat(4, minmax(0, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
                 gap: 0.55rem;
                 margin: 0.95rem 0 0.2rem;
             }
@@ -807,27 +842,32 @@ def _inject_css():
     st.markdown(_theme_overrides(), unsafe_allow_html=True)
 
 
-def _render_page_intro(kicker: str, title: str, body: str):
+def _render_page_intro(kicker: str, title: str, body: str, show_stages: bool = True):
     stages = [
         ("upload", _t("stage_upload")),
+        ("virus_review", _t("stage_virus_review")),
+        ("bootstrap_alias", _t("stage_bootstrap")),
         ("resolve", _t("stage_resolve")),
         ("running", _t("stage_run")),
         ("results", _t("stage_review")),
     ]
-    rail = "".join(
-        "<div class='vl-stage {active}'>{label}</div>".format(
-            active="vl-stage-active" if st.session_state.stage == key else "",
-            label=label,
+    rail = ""
+    if show_stages:
+        rail = "".join(
+            "<div class='vl-stage {active}'>{label}</div>".format(
+                active="vl-stage-active" if st.session_state.stage == key else "",
+                label=label,
+            )
+            for key, label in stages
         )
-        for key, label in stages
-    )
+        rail = f"<div class='vl-stage-rail'>{rail}</div>"
     st.markdown(
         f"""
         <section class="vl-hero">
             <div class="vl-kicker">{html.escape(kicker)}</div>
             <h1>{html.escape(title)}</h1>
             <div class="vl-help">{html.escape(body)}</div>
-            <div class="vl-stage-rail">{rail}</div>
+            {rail}
         </section>
         """,
         unsafe_allow_html=True,
@@ -836,12 +876,12 @@ def _render_page_intro(kicker: str, title: str, body: str):
 
 def _render_context_panel(items: List[Tuple[str, object]]):
     cells = "".join(
-        """
-        <div class="vl-context">
-            <div class="vl-context-label">{label}</div>
-            <div class="vl-context-value">{value}</div>
-        </div>
-        """.format(
+        (
+            "<div class='vl-context'>"
+            "<div class='vl-context-label'>{label}</div>"
+            "<div class='vl-context-value'>{value}</div>"
+            "</div>"
+        ).format(
             label=html.escape(str(label)),
             value=html.escape(str(value)),
         )
@@ -891,6 +931,104 @@ def _save_upload(uploaded_file) -> Path:
     dest = tmp_dir / uploaded_file.name
     dest.write_bytes(uploaded_file.read())
     return dest
+
+
+def _suggest_virus_name(record: SeqRecord) -> str:
+    """Best-effort display name for a virus without an existing alias config."""
+    organism = record.annotations.get("organism")
+    if organism:
+        return organism
+    return record.description or record.id or "new virus"
+
+
+def _record_metadata_candidates(record: SeqRecord) -> List[str]:
+    candidates = [
+        record.annotations.get("organism", ""),
+        getattr(record, "description", "") or "",
+        getattr(record, "name", "") or "",
+        getattr(record, "id", "") or "",
+    ]
+    result = []
+    seen = set()
+    for item in candidates:
+        value = str(item or "").strip()
+        key = normalize_text(value)
+        if key and key not in seen:
+            seen.add(key)
+            result.append(value)
+    return result
+
+
+def _split_keywords(raw_text: str, virus_name: str) -> List[str]:
+    """Parse comma/newline separated registry keywords and include virus name."""
+    values = [virus_name]
+    for part in re.split(r"[,\n]+", raw_text or ""):
+        item = part.strip()
+        if item:
+            values.append(item)
+
+    deduped = []
+    seen = set()
+    for item in values:
+        key = normalize_text(item)
+        if key and key not in seen:
+            seen.add(key)
+            deduped.append(item)
+    return deduped
+
+
+def _unique_alias_config_paths(filename: str) -> Tuple[Path, Path]:
+    """Return absolute/relative alias config paths without overwriting existing files."""
+    candidate = CONFIG_DIR / filename
+    if not candidate.exists():
+        return candidate, Path("app/config") / filename
+
+    stem = Path(filename).stem
+    suffix = Path(filename).suffix
+    index = 2
+    while True:
+        next_name = f"{stem}_{index}{suffix}"
+        candidate = CONFIG_DIR / next_name
+        if not candidate.exists():
+            return candidate, Path("app/config") / next_name
+        index += 1
+
+
+def _continue_with_existing_alias_config(entry: Dict, save_keyword: Optional[str] = None) -> None:
+    alias_config = entry.get("alias_config")
+    alias_config_path = resolve_config_path(Path(alias_config), ROOT)
+    if save_keyword:
+        add_registry_keyword(REGISTRY_PATH, alias_config, save_keyword)
+
+    alias_lookup = load_alias_lookup(alias_config_path)
+    ref_features = apply_alias_to_features(st.session_state.ref_features, alias_lookup)
+    ignored = _load_ignored_names(alias_config_path)
+    unknown = _scan_unknown_names(st.session_state.query_records, alias_lookup, ignored)
+    unknown_ref = _scan_unknown_ref_names(ref_features, ignored)
+
+    st.session_state.ref_features = ref_features
+    st.session_state.alias_lookup = alias_lookup
+    st.session_state.alias_config_path = alias_config_path
+    st.session_state.virus_name = entry.get("virus_name")
+    st.session_state.canonical_list = sorted(set(alias_lookup.values()))
+    st.session_state.unknown_names = unknown
+    st.session_state.unknown_ref_names = unknown_ref
+    st.session_state.stage = "resolve" if (unknown or unknown_ref) else "running"
+
+
+def _selected_dataframe_rows(state) -> List[int]:
+    """Extract selected row indices from Streamlit dataframe selection state."""
+    if not state:
+        return []
+    selection = getattr(state, "selection", None)
+    if selection is None and isinstance(state, dict):
+        selection = state.get("selection")
+    if not selection:
+        return []
+    rows = getattr(selection, "rows", None)
+    if rows is None and isinstance(selection, dict):
+        rows = selection.get("rows")
+    return list(rows or [])
 
 
 def _scan_unknown_names(
@@ -1178,7 +1316,7 @@ def stage_upload():
     )
 
     ready = ref_file and query_file
-    if st.button(_t("run_button"), disabled=not ready, type="primary", use_container_width=True):
+    if st.button(_t("run_button"), disabled=not ready, type="primary", width="stretch"):
         # persist files to temp dir
         if st.session_state.tmp is None:
             st.session_state.tmp = tempfile.TemporaryDirectory()
@@ -1198,6 +1336,34 @@ def stage_upload():
                         alias_registry_arg=str(REGISTRY_PATH),
                     )
                 )
+
+                if alias_config_path is None:
+                    virus_guess = _suggest_virus_name(ref_record)
+                    seed_config = build_seed_alias_config_from_ref(
+                        ref_record=ref_record,
+                        ref_features=ref_features,
+                        virus_name=virus_guess,
+                    )
+
+                    st.session_state.ref_record        = ref_record
+                    st.session_state.query_records     = query_records
+                    st.session_state.ref_features      = ref_features
+                    st.session_state.ref_feature_type  = ref_feature_type
+                    st.session_state.alias_lookup      = {}
+                    st.session_state.alias_config_path = None
+                    st.session_state.virus_name        = virus_guess
+                    st.session_state.canonical_list    = sorted(seed_config["canonical_names"])
+                    st.session_state.unknown_names     = {}
+                    st.session_state.unknown_ref_names = []
+                    st.session_state.bootstrap_alias_config = seed_config
+                    st.session_state.bootstrap_virus_name = virus_guess
+                    st.session_state.bootstrap_keywords = virus_guess
+                    st.session_state.bootstrap_suggestions = []
+                    st.session_state.bootstrap_diagnostics = {}
+                    st.session_state.virus_review_metadata = _record_metadata_candidates(ref_record)
+                    st.session_state.virus_review_guess = virus_guess
+                    st.session_state.stage = "virus_review"
+                    st.rerun()
 
                 # canonical list for resolver dropdowns
                 canonical_list = sorted(set(alias_lookup.values())) if alias_lookup else []
@@ -1236,6 +1402,309 @@ def stage_upload():
             (_t("query_file"), query_file.name),
             (_t("name_mode"), _t("reference_names") if st.session_state.use_ref_names else _t("canonical_names")),
         ])
+
+
+# ═══════════════════════════════════════════════════════════════════
+# Stage: VIRUS REVIEW
+# ═══════════════════════════════════════════════════════════════════
+
+def stage_virus_review():
+    _render_page_intro(
+        "Virus review",
+        "Virus not recognised",
+        (
+            "The reference metadata did not match any registered virus keyword. "
+            "Use an existing alias config if this is a known virus with new metadata, "
+            "or create a new virus config."
+        ),
+    )
+
+    metadata = st.session_state.virus_review_metadata or []
+    _render_context_panel([
+        (_t("reference"), st.session_state.ref_record.id),
+        ("Suggested name", st.session_state.virus_review_guess),
+        ("Metadata candidates", len(metadata)),
+    ])
+    if metadata:
+        st.markdown("**Reference metadata found**")
+        st.dataframe(pd.DataFrame({"candidate_keyword": metadata}), hide_index=True, width="stretch")
+
+    entries = list_registry_entries(REGISTRY_PATH)
+    choice = st.radio(
+        "What do you want to do?",
+        ["Use existing virus config", "Create new virus config"],
+        horizontal=True,
+    )
+
+    if choice == "Use existing virus config":
+        options = [
+            f"{entry.get('virus_name', 'unknown')} — {entry.get('alias_config', '')}"
+            for entry in entries
+        ]
+        selected = st.selectbox("Existing virus", options)
+        entry = entries[options.index(selected)]
+
+        keyword_options = [""] + metadata
+        keyword_to_save = st.selectbox(
+            "Save metadata as new keyword for this virus",
+            keyword_options,
+            help="Optional. Saving a keyword helps auto-detect this metadata next time.",
+        )
+        custom_keyword = st.text_input("Or custom keyword", value="")
+        final_keyword = custom_keyword.strip() or keyword_to_save.strip()
+
+        if st.button("Use this config", type="primary", width="stretch"):
+            try:
+                _continue_with_existing_alias_config(entry, save_keyword=final_keyword or None)
+                st.rerun()
+            except Exception as e:
+                st.error(f"Could not continue with selected config: {e}")
+    else:
+        st.info("Continue to seed a new alias config from the reference feature names.")
+        if st.button("Create new virus config", type="primary", width="stretch"):
+            st.session_state.stage = "bootstrap_alias"
+            st.rerun()
+
+
+# ═══════════════════════════════════════════════════════════════════
+# Stage: BOOTSTRAP ALIAS CONFIG
+# ═══════════════════════════════════════════════════════════════════
+
+def stage_bootstrap_alias():
+    seed_config = st.session_state.bootstrap_alias_config
+    if not seed_config:
+        st.warning("No bootstrap alias state is available. Start a new run.")
+        if st.button(_t("new_run")):
+            _reset()
+            st.rerun()
+        return
+
+    _render_page_intro(
+        "Alias seed",
+        "Create alias config for a new virus",
+        (
+            "No existing alias config matched this reference. Seed canonical "
+            "names from the reference, then use tblastn coordinate evidence to "
+            "suggest which query names are safe aliases."
+        ),
+    )
+
+    canonical_names = sorted(seed_config.get("canonical_names", {}))
+    _render_context_panel([
+        (_t("reference"), st.session_state.ref_record.id),
+        (_t("query_records"), len(st.session_state.query_records)),
+        ("Ref feature type", st.session_state.ref_feature_type),
+        ("Seed canonicals", len(canonical_names)),
+    ])
+
+    st.subheader("1. Reference canonical names")
+    st.caption(
+        "For a new virus, ViraLift treats the reference feature names as the first canonical names."
+    )
+    st.dataframe(
+        pd.DataFrame({"canonical_name": canonical_names}),
+        width="stretch",
+        hide_index=True,
+    )
+
+    st.subheader("2. Virus registry entry")
+    default_name = st.session_state.bootstrap_virus_name or seed_config.get("virus") or "new virus"
+    virus_name = st.text_input(
+        "Virus name",
+        value=default_name,
+        help="Stored in the alias config and registry.",
+    ).strip() or default_name
+    keyword_default = st.session_state.bootstrap_keywords or virus_name
+    keywords_raw = st.text_area(
+        "Registry keywords",
+        value=keyword_default,
+        help="Comma or newline separated strings used to auto-detect this virus next time.",
+    )
+
+    st.subheader("3. Query-supported alias suggestions")
+    st.caption(
+        "Suggestions are generated only when a query annotation overlaps a tblastn-lifted reference feature with IoU >= 0.90. "
+        "Duplicate aliases across records are merged into one review row with a support count."
+    )
+
+    gen_col, info_col = st.columns([1, 2])
+    if gen_col.button("Generate suggestions", type="primary", width="stretch"):
+        progress = st.progress(0.0, text="Starting alias suggestion scan...")
+
+        def _update_bootstrap_progress(done: int, total: int, message: str) -> None:
+            fraction = done / total if total else 1.0
+            progress.progress(min(1.0, max(0.0, fraction)), text=message)
+
+        with st.spinner("Running tblastn and matching query annotations..."):
+            try:
+                diagnostics = {}
+                suggestions = build_coordinate_supported_alias_suggestions(
+                    ref_record=st.session_state.ref_record,
+                    query_records=st.session_state.query_records,
+                    ref_features=st.session_state.ref_features,
+                    ref_feature_type=st.session_state.ref_feature_type,
+                    min_iou=0.90,
+                    min_coverage=st.session_state.min_coverage,
+                    min_identity=st.session_state.min_identity,
+                    evalue=st.session_state.evalue,
+                    rescue_window=st.session_state.rescue_window,
+                    diagnostics=diagnostics,
+                    progress_callback=_update_bootstrap_progress,
+                )
+            except Exception as e:
+                log_error("bootstrap alias suggestions", e)
+                st.error(f"Could not generate suggestions: {e}")
+                suggestions = []
+                diagnostics = {"error": str(e)}
+                progress.empty()
+            st.session_state.bootstrap_suggestions = suggestions
+            st.session_state.bootstrap_diagnostics = diagnostics
+            st.rerun()
+
+    info_col.info(
+        "Review each raw query name independently. Save strong gene symbols like `GP5`; "
+        "ignore broad descriptions like `major envelope glycoprotein`. You review alias patterns once, not record by record."
+    )
+
+    diagnostics = st.session_state.bootstrap_diagnostics or {}
+    if diagnostics:
+        if diagnostics.get("error"):
+            st.error(f"Suggestion diagnostics: {diagnostics['error']}")
+        else:
+            d_cols = st.columns(5)
+            d_cols[0].metric("Records", diagnostics.get("total_records", 0))
+            d_cols[1].metric("tblastn runs", diagnostics.get("records_tblastn_run", 0))
+            d_cols[2].metric("Lifted features", diagnostics.get("lifted_features_total", 0))
+            d_cols[3].metric("Matched features", diagnostics.get("matched_query_features_total", 0))
+            d_cols[4].metric("Suggestions", diagnostics.get("deduplicated_suggestions_total", 0))
+
+            skipped = diagnostics.get("records_without_usable_annotation", 0)
+            no_names = diagnostics.get("records_without_name_candidates", 0)
+            feature_counts = diagnostics.get("query_feature_type_counts", {})
+            st.caption(
+                "Diagnostics: "
+                f"{skipped} record(s) skipped because no usable annotation was detected; "
+                f"{no_names} record(s) had usable features but no name qualifiers; "
+                f"query feature types: {feature_counts or '{}'}."
+            )
+
+    suggestions = st.session_state.bootstrap_suggestions or []
+    edited_rows = pd.DataFrame()
+    if suggestions:
+        suggestion_df = pd.DataFrame(suggestions)
+        suggestion_df["save"] = suggestion_df["default_save"].fillna(False).astype(bool)
+        suggestion_df["ignore"] = suggestion_df["suggested_action"].eq("ignore")
+        show_cols = [
+            "save",
+            "ignore",
+            "raw_value",
+            "field",
+            "canonical_name",
+            "suggested_action",
+            "confidence",
+            "score",
+            "support_count",
+            "support_records",
+            "iou",
+            "coverage",
+            "identity",
+            "reason",
+            "record_id",
+            "query_name",
+            "query_start",
+            "query_end",
+            "tblastn_start",
+            "tblastn_end",
+        ]
+        show_cols = [c for c in show_cols if c in suggestion_df.columns]
+        edited_rows = st.data_editor(
+            suggestion_df[show_cols],
+            width="stretch",
+            hide_index=True,
+            disabled=[c for c in show_cols if c not in {"save", "ignore"}],
+            column_config={
+                "save": st.column_config.CheckboxColumn("Save alias"),
+                "ignore": st.column_config.CheckboxColumn("Ignore"),
+                "raw_value": st.column_config.TextColumn("Raw query name"),
+                "canonical_name": st.column_config.TextColumn("Canonical"),
+                "suggested_action": st.column_config.TextColumn("Suggestion"),
+                "support_count": st.column_config.NumberColumn("Support", step=1),
+                "support_records": st.column_config.TextColumn("Supporting records"),
+                "iou": st.column_config.NumberColumn("IoU", format="%.3f"),
+                "coverage": st.column_config.NumberColumn("Coverage", format="%.3f"),
+                "identity": st.column_config.NumberColumn("Identity", format="%.3f"),
+            },
+            key="bootstrap_suggestion_editor",
+        )
+    else:
+        st.info("No suggestions yet. You can still save a seed config with only reference canonical names.")
+
+    st.divider()
+    back_col, save_col = st.columns([1, 3])
+    if back_col.button(_t("back")):
+        _reset()
+        st.rerun()
+
+    if save_col.button("Save alias config and continue", type="primary", width="stretch"):
+        config = build_seed_alias_config_from_ref(
+            ref_record=st.session_state.ref_record,
+            ref_features=st.session_state.ref_features,
+            virus_name=virus_name,
+        )
+        config["notes"] = (
+            "Bootstrapped from reference feature names. Query aliases were added "
+            "only after coordinate-supported user approval."
+        )
+
+        filename = safe_alias_filename(virus_name)
+        absolute_config_path, relative_config_path = _unique_alias_config_paths(filename)
+
+        try:
+            write_new_alias_config(config, absolute_config_path)
+
+            if not edited_rows.empty:
+                approved_rows = edited_rows[edited_rows["save"].fillna(False)].to_dict("records")
+                ignored_rows = edited_rows[
+                    edited_rows["ignore"].fillna(False) & ~edited_rows["save"].fillna(False)
+                ].to_dict("records")
+                config = apply_approved_alias_suggestions(
+                    absolute_config_path,
+                    approved_rows=approved_rows,
+                    ignored_rows=ignored_rows,
+                )
+
+            append_alias_registry_entry(
+                REGISTRY_PATH,
+                virus_name=virus_name,
+                keywords=_split_keywords(keywords_raw, virus_name),
+                alias_config_path=relative_config_path,
+            )
+
+            alias_lookup = load_alias_lookup(absolute_config_path)
+            ref_features = apply_alias_to_features(
+                st.session_state.ref_features,
+                alias_lookup,
+            )
+            ignored = _load_ignored_names(absolute_config_path)
+            unknown = _scan_unknown_names(st.session_state.query_records, alias_lookup, ignored)
+            unknown_ref = _scan_unknown_ref_names(ref_features, ignored)
+
+            st.session_state.ref_features = ref_features
+            st.session_state.alias_lookup = alias_lookup
+            st.session_state.alias_config_path = absolute_config_path
+            st.session_state.virus_name = virus_name
+            st.session_state.canonical_list = sorted(config.get("canonical_names", {}))
+            st.session_state.unknown_names = unknown
+            st.session_state.unknown_ref_names = unknown_ref
+            st.session_state.resolver = {}
+            st.session_state.bootstrap_alias_config_path = absolute_config_path
+
+            st.toast(f"Alias config saved: {relative_config_path}")
+            st.session_state.stage = "resolve" if (unknown or unknown_ref) else "running"
+            st.rerun()
+        except Exception as e:
+            log_error("saving bootstrap alias config", e)
+            st.error(f"Could not save alias config: {e}")
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -1401,7 +1870,7 @@ def stage_resolve():
         _reset()
         st.rerun()
 
-    if col_run.button(_t("continue"), type="primary", use_container_width=True):
+    if col_run.button(_t("continue"), type="primary", width="stretch"):
         # Expand all candidates for each group into flat {candidate: canonical} dicts.
         # This ensures every variant name (product, note, etc.) is covered, both
         # for the session-only effective lookup and for permanent alias config saves.
@@ -1538,7 +2007,7 @@ def stage_results():
     if run_errors:
         st.error(_t("processing_error", count=failed_records))
         with st.expander(_t("processing_errors"), expanded=True):
-            st.dataframe(pd.DataFrame(run_errors), use_container_width=True, hide_index=True)
+            st.dataframe(pd.DataFrame(run_errors), width="stretch", hide_index=True)
 
     status_rows = [
         {
@@ -1551,7 +2020,7 @@ def stage_results():
     ]
     if status_rows:
         with st.expander(_t("status_breakdown"), expanded=review_features > 0):
-            st.dataframe(pd.DataFrame(status_rows), use_container_width=True, hide_index=True)
+            st.dataframe(pd.DataFrame(status_rows), width="stretch", hide_index=True)
 
     st.divider()
 
@@ -1607,7 +2076,7 @@ def stage_results():
             visible_overview["record_id"].str.contains(search_text, case=False, na=False)
         ]
 
-    st.dataframe(visible_overview, use_container_width=True, hide_index=True)
+    st.dataframe(visible_overview, width="stretch", hide_index=True)
 
     st.subheader(_t("record_details"))
     visible_ids = set(visible_overview["record_id"].tolist())
@@ -1651,7 +2120,7 @@ def stage_results():
                     "identity":  _format_percent(lf.identity),
                     "method":    lf.method,
                 })
-            st.dataframe(pd.DataFrame(rec_rows), use_container_width=True, hide_index=True)
+            st.dataframe(pd.DataFrame(rec_rows), width="stretch", hide_index=True)
 
     st.divider()
 
@@ -1670,7 +2139,7 @@ def stage_results():
             data=tsv_canonical,
             file_name="viralift_canonical.tsv",
             mime="text/tab-separated-values",
-            use_container_width=True,
+            width="stretch",
         )
 
         df_raw = df.copy()
@@ -1682,7 +2151,7 @@ def stage_results():
             data=tsv_raw,
             file_name="viralift_raw.tsv",
             mime="text/tab-separated-values",
-            use_container_width=True,
+            width="stretch",
         )
 
     # FASTA extraction tab
@@ -1778,7 +2247,7 @@ def stage_results():
                     data=all_seqs,
                     file_name="all_genes.fasta",
                     mime="text/plain",
-                    use_container_width=True,
+                    width="stretch",
                 )
             else:
                 # one download button per gene
@@ -1797,6 +2266,372 @@ def stage_results():
 
             if skipped:
                 st.caption(_t("skipped", count=skipped))
+
+
+# ═══════════════════════════════════════════════════════════════════
+# Page: ALIAS MANAGER
+# ═══════════════════════════════════════════════════════════════════
+
+def page_alias_manager():
+    _render_page_intro(
+        "Alias manager",
+        "Review and edit alias maps",
+        (
+            "Manage canonical names, aliases, ignored names, and ambiguous names. "
+            "Every save creates a timestamped backup beside the config file."
+        ),
+        show_stages=False,
+    )
+
+    try:
+        entries = list_registry_entries(REGISTRY_PATH)
+    except Exception as e:
+        st.error(f"Could not load alias registry: {e}")
+        return
+
+    if not entries:
+        st.warning("No registered virus alias configs found.")
+        return
+
+    options = [
+        f"{entry.get('virus_name', 'unknown')} — {entry.get('alias_config', '')}"
+        for entry in entries
+    ]
+    selected = st.selectbox("Alias config", options, index=0)
+    entry = entries[options.index(selected)]
+    config_path = resolve_config_path(Path(entry.get("alias_config", "")), ROOT)
+    st.session_state.alias_manager_config_path = config_path
+
+    try:
+        config = manager_load_alias_config(config_path)
+    except Exception as e:
+        st.error(f"Could not load alias config `{config_path}`: {e}")
+        return
+
+    _render_context_panel([
+        ("Virus", entry.get("virus_name", config.get("virus", "unknown"))),
+        ("Config", config_path),
+        ("Canonical names", len(config.get("canonical_names", {}))),
+    ])
+
+    _, ignored_rows, ambiguous_rows = alias_config_to_tables(config)
+
+    tab_registry, tab_alias, tab_ignored, tab_ambiguous, tab_raw = st.tabs([
+        "Registry",
+        "Canonical aliases",
+        "Ignored names",
+        "Ambiguous names",
+        "Raw JSON",
+    ])
+
+    with tab_registry:
+        st.caption("Auto-detection uses keywords. Virus name is the display label.")
+        registry_virus_name = st.text_input(
+            "Virus name",
+            value=entry.get("virus_name", config.get("virus", "")),
+            key=f"registry_virus_name_{config_path}",
+        )
+        keyword_rows = [{"keyword": keyword} for keyword in entry.get("keywords", [])]
+        edited_keywords = st.data_editor(
+            pd.DataFrame(keyword_rows, columns=["keyword"]),
+            num_rows="dynamic",
+            width="stretch",
+            hide_index=True,
+            column_config={"keyword": st.column_config.TextColumn("Detection keyword")},
+            key=f"registry_keywords_{config_path}",
+        )
+        if st.button("Save registry entry", type="primary", width="stretch"):
+            try:
+                keywords = [
+                    str(row.get("keyword") or "").strip()
+                    for row in edited_keywords.to_dict("records")
+                    if str(row.get("keyword") or "").strip()
+                ]
+                backup = update_registry_entry(
+                    REGISTRY_PATH,
+                    alias_config=entry.get("alias_config", ""),
+                    virus_name=registry_virus_name.strip(),
+                    keywords=keywords,
+                )
+                st.success(f"Registry saved. Backup: `{backup.name if backup else 'none'}`")
+                st.rerun()
+            except Exception as e:
+                st.error(f"Could not save registry entry: {e}")
+
+    with tab_alias:
+        st.caption("Each canonical has its own table. Select alias row(s), then use the delete button that appears below the table.")
+        search_text = st.text_input(
+            "Search canonical or alias",
+            value="",
+            key=f"alias_manager_search_{config_path}",
+        )
+
+        st.markdown("**Add canonical / alias**")
+        new_alias_rows = st.data_editor(
+            pd.DataFrame(columns=["canonical_name", "alias"]),
+            num_rows="dynamic",
+            width="stretch",
+            hide_index=True,
+            column_config={
+                "canonical_name": st.column_config.TextColumn("Canonical name", required=True),
+                "alias": st.column_config.TextColumn("Alias"),
+            },
+            key=f"alias_manager_new_aliases_{config_path}",
+        )
+
+        alias_records_for_save = []
+        canonical_names = config.get("canonical_names", {})
+        search_norm = normalize_text(search_text)
+        for canonical in sorted(canonical_names, key=normalize_text):
+            aliases = canonical_names.get(canonical, []) or []
+            searchable = normalize_text(" ".join([canonical] + aliases))
+            if search_norm and search_norm not in searchable:
+                continue
+
+            label = f"{canonical} · {len(aliases)} alias(es)"
+            with st.expander(label, expanded=bool(search_norm)):
+                delete_canonical = st.checkbox(
+                    f"Delete canonical `{canonical}`",
+                    value=False,
+                    key=f"delete_canonical_{config_path}_{normalize_text(canonical)}",
+                    help="Removes this canonical and all aliases when you save.",
+                )
+                alias_df = pd.DataFrame(
+                    [{"alias": alias} for alias in aliases],
+                    columns=["alias"],
+                )
+                alias_table_state = st.dataframe(
+                    alias_df,
+                    width="stretch",
+                    hide_index=True,
+                    on_select="rerun",
+                    selection_mode="multi-row",
+                    column_config={
+                        "alias": st.column_config.TextColumn("Alias"),
+                    },
+                    key=f"alias_editor_{config_path}_{normalize_text(canonical)}",
+                )
+                selected_rows = _selected_dataframe_rows(alias_table_state)
+                selected_aliases = [
+                    alias_df.iloc[row]["alias"]
+                    for row in selected_rows
+                    if 0 <= row < len(alias_df)
+                ]
+
+                if selected_aliases:
+                    st.caption(
+                        "Selected: " + ", ".join(f"`{alias}`" for alias in selected_aliases)
+                    )
+                delete_col, edit_hint_col = st.columns([1, 3])
+                if delete_col.button(
+                    f"Delete selected ({len(selected_aliases)})",
+                    disabled=not selected_aliases,
+                    key=f"delete_selected_aliases_{config_path}_{normalize_text(canonical)}",
+                ):
+                    updated = json.loads(json.dumps(config))
+                    selected_norms = {normalize_text(alias) for alias in selected_aliases}
+                    updated["canonical_names"][canonical] = [
+                        alias
+                        for alias in updated.get("canonical_names", {}).get(canonical, [])
+                        if normalize_text(alias) not in selected_norms
+                    ]
+                    backup = manager_save_alias_config(config_path, updated)
+                    st.success(
+                        f"Deleted {len(selected_aliases)} alias(es) from `{canonical}`. "
+                        f"Backup: `{backup.name if backup else 'none'}`"
+                    )
+                    remaining_warnings = validate_alias_config(updated)
+                    if remaining_warnings:
+                        st.info(
+                            "Alias was deleted. Remaining config warnings still need review:\n\n"
+                            + "\n".join(f"- {w}" for w in remaining_warnings)
+                        )
+                    st.rerun()
+                edit_hint_col.caption("To edit an alias value, delete the old row and add the corrected alias in the Add canonical / alias table.")
+
+                if delete_canonical:
+                    st.warning(f"`{canonical}` will be deleted on save.")
+                    continue
+
+                alias_records_for_save.append({
+                    "canonical_name": canonical,
+                    "aliases": "\n".join(aliases),
+                })
+
+        for row in new_alias_rows.to_dict("records"):
+            canonical = str(row.get("canonical_name") or "").strip()
+            alias = str(row.get("alias") or "").strip()
+            if not canonical:
+                continue
+            alias_records_for_save.append({
+                "canonical_name": canonical,
+                "aliases": alias,
+            })
+
+    with tab_ignored:
+        st.caption("Names here are intentionally ignored by automatic alias matching.")
+        ignored_df = pd.DataFrame(ignored_rows, columns=["ignored_name"])
+        ignored_table_state = st.dataframe(
+            ignored_df,
+            width="stretch",
+            hide_index=True,
+            on_select="rerun",
+            selection_mode="multi-row",
+            column_config={
+                "ignored_name": st.column_config.TextColumn("Ignored name"),
+            },
+            key=f"alias_manager_ignored_table_{config_path}",
+        )
+        selected_ignored_rows = _selected_dataframe_rows(ignored_table_state)
+        selected_ignored = [
+            ignored_df.iloc[row]["ignored_name"]
+            for row in selected_ignored_rows
+            if 0 <= row < len(ignored_df)
+        ]
+        if selected_ignored:
+            st.caption("Selected: " + ", ".join(f"`{name}`" for name in selected_ignored))
+        del_ignored_col, add_ignored_col = st.columns([1, 3])
+        if del_ignored_col.button(
+            f"Delete selected ({len(selected_ignored)})",
+            disabled=not selected_ignored,
+            key=f"delete_selected_ignored_{config_path}",
+        ):
+            updated = json.loads(json.dumps(config))
+            selected_norms = {normalize_text(name) for name in selected_ignored}
+            updated["ignored_names"] = [
+                name
+                for name in updated.get("ignored_names", [])
+                if normalize_text(name) not in selected_norms
+            ]
+            backup = manager_save_alias_config(config_path, updated)
+            st.success(
+                f"Deleted {len(selected_ignored)} ignored name(s). "
+                f"Backup: `{backup.name if backup else 'none'}`"
+            )
+            st.rerun()
+        add_ignored_col.caption("Use the table below to add new ignored names, then save.")
+
+        edited_ignored_new = st.data_editor(
+            pd.DataFrame(columns=["ignored_name"]),
+            num_rows="dynamic",
+            width="stretch",
+            hide_index=True,
+            column_config={
+                "ignored_name": st.column_config.TextColumn("Add ignored name"),
+            },
+            key=f"alias_manager_ignored_add_{config_path}",
+        )
+        edited_ignored = pd.concat(
+            [
+                ignored_df,
+                edited_ignored_new,
+            ],
+            ignore_index=True,
+        )
+
+        st.divider()
+        st.markdown("**Move ignored name to alias**")
+        ignored_options = [row["ignored_name"] for row in ignored_rows]
+        canonical_options = sorted(config.get("canonical_names", {}))
+        c1, c2, c3 = st.columns([2, 2, 1])
+        ignored_choice = c1.selectbox("Ignored name", ignored_options, key=f"move_ignored_name_{config_path}") if ignored_options else None
+        canonical_choice = c2.selectbox("Canonical", canonical_options, key=f"move_ignored_canonical_{config_path}") if canonical_options else None
+        if c3.button("Move", disabled=not (ignored_choice and canonical_choice), key=f"move_ignored_btn_{config_path}"):
+            updated = move_ignored_to_alias(config, ignored_choice, canonical_choice)
+            warnings = validate_alias_config(updated)
+            if warnings:
+                st.warning("\n".join(warnings))
+            else:
+                backup = manager_save_alias_config(config_path, updated)
+                st.success(f"Moved `{ignored_choice}` to `{canonical_choice}`. Backup: {backup.name if backup else 'none'}")
+                st.rerun()
+
+    with tab_ambiguous:
+        st.caption("Ambiguous names are known shared terms that require user decision per dataset.")
+        ambiguous_df = pd.DataFrame(ambiguous_rows, columns=["ambiguous_name"])
+        ambiguous_table_state = st.dataframe(
+            ambiguous_df,
+            width="stretch",
+            hide_index=True,
+            on_select="rerun",
+            selection_mode="multi-row",
+            column_config={
+                "ambiguous_name": st.column_config.TextColumn("Ambiguous name"),
+            },
+            key=f"alias_manager_ambiguous_table_{config_path}",
+        )
+        selected_ambiguous_rows = _selected_dataframe_rows(ambiguous_table_state)
+        selected_ambiguous = [
+            ambiguous_df.iloc[row]["ambiguous_name"]
+            for row in selected_ambiguous_rows
+            if 0 <= row < len(ambiguous_df)
+        ]
+        if selected_ambiguous:
+            st.caption("Selected: " + ", ".join(f"`{name}`" for name in selected_ambiguous))
+        del_ambiguous_col, add_ambiguous_col = st.columns([1, 3])
+        if del_ambiguous_col.button(
+            f"Delete selected ({len(selected_ambiguous)})",
+            disabled=not selected_ambiguous,
+            key=f"delete_selected_ambiguous_{config_path}",
+        ):
+            updated = json.loads(json.dumps(config))
+            selected_norms = {normalize_text(name) for name in selected_ambiguous}
+            updated["ambiguous_names"] = [
+                name
+                for name in updated.get("ambiguous_names", [])
+                if normalize_text(name) not in selected_norms
+            ]
+            backup = manager_save_alias_config(config_path, updated)
+            st.success(
+                f"Deleted {len(selected_ambiguous)} ambiguous name(s). "
+                f"Backup: `{backup.name if backup else 'none'}`"
+            )
+            st.rerun()
+        add_ambiguous_col.caption("Use the table below to add new ambiguous names, then save.")
+
+        edited_ambiguous_new = st.data_editor(
+            pd.DataFrame(columns=["ambiguous_name"]),
+            num_rows="dynamic",
+            width="stretch",
+            hide_index=True,
+            column_config={
+                "ambiguous_name": st.column_config.TextColumn("Add ambiguous name"),
+            },
+            key=f"alias_manager_ambiguous_add_{config_path}",
+        )
+        edited_ambiguous = pd.concat(
+            [
+                ambiguous_df,
+                edited_ambiguous_new,
+            ],
+            ignore_index=True,
+        )
+
+    with tab_raw:
+        st.json(config)
+
+    st.divider()
+    updated_config = tables_to_alias_config(
+        config,
+        alias_records_for_save,
+        edited_ignored.to_dict("records"),
+        edited_ambiguous.to_dict("records"),
+    )
+    warnings = validate_alias_config(updated_config)
+    if warnings:
+        st.warning("Review before saving:\n\n" + "\n".join(f"- {w}" for w in warnings))
+
+    save_col, reload_col = st.columns([3, 1])
+    if save_col.button("Save alias config", type="primary", width="stretch", disabled=bool(warnings)):
+        try:
+            backup = manager_save_alias_config(config_path, updated_config)
+            st.success(f"Saved `{config_path.name}`. Backup created: `{backup.name if backup else 'none'}`")
+            st.rerun()
+        except Exception as e:
+            st.error(f"Could not save alias config: {e}")
+
+    if reload_col.button("Reload", width="stretch"):
+        st.rerun()
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -1819,6 +2654,13 @@ with st.sidebar:
     st.divider()
 
     st.radio(
+        "Mode",
+        options=["Run pipeline", "Alias manager"],
+        key="app_mode",
+    )
+    st.divider()
+
+    st.radio(
         _t("theme"),
         options=["dark", "light"],
         format_func=lambda value: _t(value),
@@ -1836,18 +2678,32 @@ with st.sidebar:
     if st.session_state.alias_config_path:
         _sidebar_item(_t("alias_config"), Path(st.session_state.alias_config_path).name)
 
-    st.divider()
-    stage_labels = {"upload": _t("stage_upload"), "resolve": _t("stage_resolve"),
-                    "running": _t("stage_run"), "results": _t("stage_review")}
-    _sidebar_item(_t("stage"), stage_labels.get(st.session_state.stage, "?"))
+    if st.session_state.app_mode == "Run pipeline":
+        st.divider()
+        stage_labels = {
+            "upload": _t("stage_upload"),
+            "virus_review": _t("stage_virus_review"),
+            "bootstrap_alias": _t("stage_bootstrap"),
+            "resolve": _t("stage_resolve"),
+            "running": _t("stage_run"),
+            "results": _t("stage_review"),
+        }
+        _sidebar_item(_t("stage"), stage_labels.get(st.session_state.stage, "?"))
 
 # route to current stage
-stage = st.session_state.stage
-if stage == "upload":
-    stage_upload()
-elif stage == "resolve":
-    stage_resolve()
-elif stage == "running":
-    stage_running()
-elif stage == "results":
-    stage_results()
+if st.session_state.app_mode == "Alias manager":
+    page_alias_manager()
+else:
+    stage = st.session_state.stage
+    if stage == "upload":
+        stage_upload()
+    elif stage == "virus_review":
+        stage_virus_review()
+    elif stage == "bootstrap_alias":
+        stage_bootstrap_alias()
+    elif stage == "resolve":
+        stage_resolve()
+    elif stage == "running":
+        stage_running()
+    elif stage == "results":
+        stage_results()
