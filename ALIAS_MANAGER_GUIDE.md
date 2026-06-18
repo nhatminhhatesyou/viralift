@@ -12,6 +12,7 @@ Tài liệu này giải thích module Alias Manager: nó dùng để làm gì, k
 - [Cách đọc Alias Manager UI](#cách-đọc-alias-manager-ui)
 - [Ý nghĩa các loại tên](#ý-nghĩa-các-loại-tên)
 - [Cách tool gợi ý alias cho virus mới](#cách-tool-gợi-ý-alias-cho-virus-mới)
+- [Granularity mismatch](#granularity-mismatch)
 - [Ví dụ thực tế](#ví-dụ-thực-tế)
 - [Các cảnh báo thường gặp](#các-cảnh-báo-thường-gặp)
 - [Best practices](#best-practices)
@@ -25,6 +26,7 @@ Trong GenBank, cùng một gene có thể được ghi bằng nhiều tên khác
 | `ORF5` | `GP5`, `ORF5 protein`, `major envelope glycoprotein` |
 | `N` | `nucleoprotein`, `N protein` |
 | `S` | `spike protein`, `S protein` |
+| `ORF1ab` | `ORF1a/1b`, `ORF1a/b`, `Pol1`, `polyprotein 1ab` |
 
 ViraLift cần chuẩn hóa các tên này về một tên chuẩn duy nhất gọi là `canonical name`.
 
@@ -35,6 +37,8 @@ GP5 -> ORF5
 ORF5 protein -> ORF5
 major envelope glycoprotein -> có thể ignore nếu quá mô tả/generic
 ```
+
+Alias map là theo từng virus, không phải dùng chung cho mọi virus. Một tên như `envelope protein` có thể quá mơ hồ ở virus này, nhưng lại map ổn định vào `E` ở virus khác nếu reference/query evidence chứng minh rõ.
 
 ## Vì sao cần Alias Manager?
 
@@ -64,6 +68,8 @@ Mỗi lần lưu alias config qua UI, tool tạo backup trong:
 ```text
 app/config/backups/
 ```
+
+Folder backup này là artifact runtime và đã được ignore khỏi Git. Nó chỉ dùng để khôi phục nếu user sửa nhầm alias config.
 
 ## Flow khi tool gặp virus đã biết
 
@@ -118,7 +124,7 @@ Nếu reference không match virus nào trong registry, tool sẽ vào flow viru
    Ví dụ reference PED có:
 
    ```text
-   S, ORF3, E, M, N
+   ORF1a, ORF1b, S, ORF3, E, M, N
    ```
 
    Thì alias config mới sẽ có canonical:
@@ -126,6 +132,8 @@ Nếu reference không match virus nào trong registry, tool sẽ vào flow viru
    ```json
    {
      "canonical_names": {
+       "ORF1a": [],
+       "ORF1b": [],
        "S": [],
        "ORF3": [],
        "E": [],
@@ -195,10 +203,12 @@ Ví dụ:
 protein
 glycoprotein
 unknown protein
-major envelope glycoprotein
+replicase polyprotein
 ```
 
 Các tên này thường quá chung chung. Nếu đưa vào alias map, tool có thể map nhầm nhiều gene khác nhau.
+
+Lưu ý: `envelope protein`, `membrane protein`, `nucleocapsid protein` không phải lúc nào cũng phải ignore. Với PED, các tên này có evidence rõ và được map lần lượt vào `E`, `M`, `N`.
 
 ### Ambiguous names
 
@@ -212,6 +222,8 @@ glycosylated membrane protein
 ```
 
 Nếu một tên có thể vừa giống ORF2, ORF5, ORF6 tùy virus/record, nên để ambiguous hoặc manual review.
+
+Ví dụ PED có raw gene `mp` trong một số record. `mp` có thể hiểu là ORF3 accessory membrane protein, nhưng cũng dễ bị nhầm với membrane protein. Vì vậy để `mp` trong `ambiguous_names` sẽ an toàn hơn nếu nó xuất hiện một mình.
 
 ### Raw JSON
 
@@ -249,7 +261,8 @@ Ví dụ:
 ```text
 protein
 glycoprotein
-envelope protein
+unknown protein
+replicase polyprotein
 ```
 
 ### Ambiguous name
@@ -300,6 +313,50 @@ Nếu tọa độ query trùng với tblastn ORF5, tool có thể gợi ý:
 
 Lý do: `GP5` và `ORF5 protein` có tên gene cụ thể. `major envelope glycoprotein` mô tả protein nhưng không nhất thiết là alias an toàn cho mọi record.
 
+## Granularity mismatch
+
+Một số virus có annotation convention khác nhau giữa reference và query. Alias Manager chỉ chuẩn hóa tên, không tự tách/gộp gene.
+
+Ví dụ với PED:
+
+```text
+Reference: ORF1a + ORF1b tách riêng
+Query:     ORF1ab là một feature gộp
+```
+
+Trong trường hợp này không nên map:
+
+```text
+ORF1ab -> ORF1a
+ORF1a/1b -> ORF1a
+Pol1 -> ORF1a
+```
+
+Vì như vậy query đang có vùng gộp nhưng bị gọi nhầm thành vùng lẻ `ORF1a`.
+
+Cách đúng hơn là tạo canonical riêng:
+
+```json
+{
+  "canonical_names": {
+    "ORF1a": ["ORF1A", "ORF1a protein"],
+    "ORF1b": ["ORF1B", "ORF1b polyprotein"],
+    "ORF1ab": [
+      "ORF1",
+      "ORF1a/1b",
+      "ORF1a/b",
+      "ORF 1a/1b",
+      "ORF1ab polyprotein",
+      "polyprotein 1ab",
+      "Pol1",
+      "POL1"
+    ]
+  }
+}
+```
+
+Khi reference không có `ORF1ab`, output `ORF1ab` có thể được đánh dấu `not_in_reference`. Đây là tín hiệu đúng: query và reference khác mức annotation, không phải alias sai.
+
 ## Ví dụ thực tế
 
 Giả sử query có annotation:
@@ -341,6 +398,20 @@ GP5 -> ORF5: nên save_alias
 ORF5 protein -> ORF5: nên save_alias
 major envelope glycoprotein: nên cân nhắc ignore/manual_review
 ```
+
+Ví dụ PED sau khi review 100 records:
+
+```text
+envelope protein       -> E
+membrane protein       -> M
+nucleocapsid protein   -> N
+accessory protein 3a   -> ORF3
+ORF1a/1b, Pol1, ORF1ab -> ORF1ab
+HNZK1                  -> ignore
+mp                     -> ambiguous
+```
+
+Trong đó `HNZK1` là strain/isolate prefix xuất hiện ở nhiều gene khác nhau, nên không được đưa vào alias.
 
 ## Các cảnh báo thường gặp
 
@@ -386,10 +457,10 @@ Xem phần diagnostics trong UI để biết record bị skip ở bước nào.
 ## Best practices
 
 - Chỉ đưa vào alias những tên đủ cụ thể, ví dụ `GP5`, `ORF5 protein`, `N protein`.
-- Không đưa tên quá chung như `protein`, `glycoprotein`, `envelope protein` vào alias nếu nó có thể xuất hiện ở nhiều gene.
+- Không đưa tên quá chung như `protein`, `glycoprotein`, `replicase polyprotein` vào alias nếu nó có thể xuất hiện ở nhiều gene.
+- Nếu query dùng gene gộp như `ORF1ab` nhưng reference tách `ORF1a`/`ORF1b`, hãy tạo canonical riêng `ORF1ab` thay vì ép nó vào `ORF1a`.
 - Với virus mới, nên review suggestions trước khi lưu config.
 - Nếu một alias làm tool map sai, vào Alias Manager xóa alias đó ngay.
 - Nếu auto-detect virus chọn sai config, vào tab `Registry` sửa keyword.
 - Sau khi sửa alias config, nên chạy lại vài query đại diện để kiểm tra output.
 - Không cần sợ sửa nhầm quá mức: mỗi lần save qua UI đều có backup trong `app/config/backups/`.
-

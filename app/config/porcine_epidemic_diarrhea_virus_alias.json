@@ -1,0 +1,80 @@
+{
+  "virus": "Porcine epidemic diarrhea virus",
+  "notes": "Bootstrapped from reference feature names. Query aliases were added only after coordinate-supported user approval.",
+  "ignored_names": [
+    "gene",
+    "glycoprotein",
+    "HNZK1",
+    "hypothetical protein",
+    "major glycoprotein",
+    "minor glycoprotein",
+    "nonstructural protein",
+    "open reading frame",
+    "orf",
+    "polyprotein",
+    "protein",
+    "putative protein",
+    "replicase polyprotein",
+    "structural protein",
+    "unknown",
+    "unknown protein",
+    "viral protein"
+  ],
+  "ambiguous_names": [
+    "mp"
+  ],
+  "canonical_names": {
+    "ORF1a": [
+      "ORF1A",
+      "ORF1a polyprotein",
+      "ORF1a protein",
+      "polyprotein 1a"
+    ],
+    "ORF1b": [
+      "ORF1B",
+      "ORF1b polyprotein",
+      "polyprotein 1b"
+    ],
+    "ORF1ab": [
+      "ORF 1a/1b",
+      "ORF1",
+      "ORF1a/1b",
+      "ORF1a/1b polyprotein",
+      "ORF1a/b",
+      "ORF1ab polyprotein",
+      "ORF1ab protein",
+      "POL1",
+      "polyprotein 1a/1b",
+      "polyprotein 1ab",
+      "polyprotein ORF 1a/1b",
+      "Pol1"
+    ],
+    "S": [
+      "S protein",
+      "spike glycoprotein",
+      "spike protein"
+    ],
+    "ORF3": [
+      "accessory membrane protein",
+      "accessory protein 3a",
+      "ORF3 protein",
+      "ORF3; showed unexpected variability in cell culture-adapted virus"
+    ],
+    "E": [
+      "E protein",
+      "envelope protein",
+      "small membrane protein",
+      "sM",
+      "sM protein"
+    ],
+    "M": [
+      "membrane protein",
+      "M protein"
+    ],
+    "N": [
+      "N protein",
+      "nucleocapsid protein",
+      "nucleoprotein"
+    ]
+  }
+}
