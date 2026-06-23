@@ -207,7 +207,7 @@ def build_coordinate_supported_alias_suggestions(
     min_coverage: float = 0.5,
     min_identity: float = 0.3,
     evalue: float = 1e-5,
-    rescue_window: int = 50,
+    rescue_window: int = 200,
     diagnostics: Optional[Dict] = None,
     progress_callback: Optional[Callable[[int, int, str], None]] = None,
 ) -> List[Dict]:

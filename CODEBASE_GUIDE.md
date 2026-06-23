@@ -285,10 +285,10 @@ Returns 1-based genome coordinates.
 ```python
 validate_cds_boundaries(seq)       → {valid, has_start_codon, has_stop_codon}
 rescue_stop_codon(record, ...)     → scan forward codon-by-codon (up to 30 codons)
-rescue_start_codon(record, ...)    → scan ±N bp around lifted start for nearest ATG
+rescue_start_codon(record, ...)    → scan ±N bp around lifted start and choose the best ATG by frame/length
 ```
 
-tblastn aligns protein sequence, so the stop codon is not included in the HSP end coordinate — `rescue_stop_codon` always runs to extend the end to the actual stop. If the start codon is also missing, `rescue_start_codon` scans a window (default ±50 bp) upstream of the lifted start.
+tblastn aligns protein sequence, so the stop codon is not included in the HSP end coordinate — `rescue_stop_codon` always runs to extend the end to the actual stop. It scores stop candidates by in-frame status and, when reference length is available, CDS length closeness to the reference. If the start codon is also missing, `rescue_start_codon` scans a window (default ±200 bp) around the lifted start and prefers ATG candidates that preserve frame and reference-like length.
 
 ---
 
@@ -330,8 +330,8 @@ rescue_offset   # bp offset used to fix start codon (or None)
 | Status | Meaning |
 |---|---|
 | `ok` | Valid ATG start + in-frame stop codon |
-| `ok_rescued` | Start codon was missing but found nearby within rescue window |
-| `invalid_boundaries` | Lifted but could not fix start or stop codon |
+| `ok_rescued` | Start/stop boundary was adjusted and the CDS passes start/stop/frame checks |
+| `invalid_boundaries` | Lifted but could not pass start codon, stop codon, or reading-frame checks |
 | `low_coverage` | tblastn hit found but protein coverage below threshold |
 | `no_hit` | tblastn returned no alignment for this gene |
 | `translation_fail` | Reference feature could not be translated to protein |

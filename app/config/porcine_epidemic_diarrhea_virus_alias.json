@@ -47,7 +47,10 @@
       "polyprotein 1a/1b",
       "polyprotein 1ab",
       "polyprotein ORF 1a/1b",
-      "Pol1"
+      "Pol1",
+      "ORF1ab; 1a polyprotein and 1b polyprotein",
+      "contains ORF1a and ORF1b",
+      "1a polyprotein and 1b polyprotein; ORF1ab"
     ],
     "S": [
       "S protein",

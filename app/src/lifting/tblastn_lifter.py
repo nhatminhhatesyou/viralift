@@ -278,7 +278,7 @@ def lift_feature_tblastn(
     min_coverage: float = 0.5,
     min_identity: float = 0.3,
     evalue: float = 1e-5,
-    rescue_window: int = 50,
+    rescue_window: int = 200,
     validate_codons: bool = True,
 ) -> LiftedFeature:
     """
@@ -337,7 +337,12 @@ def lift_feature_tblastn(
     # the actual stop codon. Falls back gracefully if not found within window.
     if validate_codons and q_end is not None:
         rescued_stop = rescue_stop_codon(
-            query_record, q_start, q_end, strand, max_codons=30
+            query_record,
+            q_start,
+            q_end,
+            strand,
+            max_codons=30,
+            expected_length=len(protein) * 3 + 3,
         )
         if rescued_stop:
             q_end, _, _ = rescued_stop
@@ -408,10 +413,23 @@ def lift_feature_tblastn(
         if rescued:
             new_start, new_seq, offset = rescued
             revalidation = validate_cds_boundaries(new_seq)
+            new_end = q_end
+            if not revalidation["has_stop_codon"]:
+                rescued_stop = rescue_stop_codon(
+                    query_record,
+                    new_start,
+                    q_end,
+                    strand,
+                    max_codons=30,
+                    expected_length=len(protein) * 3 + 3,
+                )
+                if rescued_stop:
+                    new_end, new_seq, _ = rescued_stop
+                    revalidation = validate_cds_boundaries(new_seq)
             status = "ok_rescued" if revalidation["valid"] else "invalid_boundaries"
             return LiftedFeature(
                 **base,
-                query_start=new_start, query_end=q_end,
+                query_start=new_start, query_end=new_end,
                 sequence=new_seq, coverage=round(coverage, 4),
                 status=status,
                 has_start_codon=True,
@@ -545,7 +563,12 @@ def _build_lifted_from_hsps(
 
     if validate_codons and q_end is not None:
         rescued_stop = rescue_stop_codon(
-            query_record, q_start, q_end, strand, max_codons=30
+            query_record,
+            q_start,
+            q_end,
+            strand,
+            max_codons=30,
+            expected_length=protein_length * 3 + 3,
         )
         if rescued_stop:
             q_end, _, _ = rescued_stop
@@ -611,10 +634,23 @@ def _build_lifted_from_hsps(
         if rescued:
             new_start, new_seq, offset = rescued
             revalidation = validate_cds_boundaries(new_seq)
+            new_end = q_end
+            if not revalidation["has_stop_codon"]:
+                rescued_stop = rescue_stop_codon(
+                    query_record,
+                    new_start,
+                    q_end,
+                    strand,
+                    max_codons=30,
+                    expected_length=protein_length * 3 + 3,
+                )
+                if rescued_stop:
+                    new_end, new_seq, _ = rescued_stop
+                    revalidation = validate_cds_boundaries(new_seq)
             status = "ok_rescued" if revalidation["valid"] else "invalid_boundaries"
             return LiftedFeature(
                 **base,
-                query_start=new_start, query_end=q_end,
+                query_start=new_start, query_end=new_end,
                 sequence=new_seq, coverage=round(coverage, 4),
                 status=status,
                 has_start_codon=True,
@@ -645,7 +681,7 @@ def lift_all_tblastn(
     min_coverage: float = 0.5,
     min_identity: float = 0.3,
     evalue: float = 1e-5,
-    rescue_window: int = 50,
+    rescue_window: int = 200,
     validate_codons: bool = True,
 ) -> List[LiftedFeature]:
     """
@@ -729,7 +765,7 @@ def process_one_query_record(
     min_coverage: float,
     min_identity: float = 0.3,
     evalue: float = 1e-5,
-    rescue_window: int = 50,
+    rescue_window: int = 200,
     quiet: bool = False,
 ) -> List[LiftedFeature]:
     """

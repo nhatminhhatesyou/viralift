@@ -125,12 +125,17 @@ def rescue_stop_codon(
     query_end: int,
     strand: str,
     max_codons: int = 30,
+    expected_length: Optional[int] = None,
 ) -> Optional[Tuple[int, str, int]]:
     """
-    Scan forward from query_end in-frame to find the nearest stop codon.
+    Scan forward from query_end in-frame to find a plausible stop codon.
 
     Used when tblastn HSP is truncated before the stop codon — either because
     the C-terminus is divergent (HSP ends early) or the +3 fix wasn't enough.
+    Earlier versions returned the first stop codon found. That can over-trust
+    a premature nearby stop. This function now scores all stop candidates in
+    the scan window and, when reference length is available, prefers the stop
+    whose resulting CDS length is closest to the reference CDS length.
 
     Args:
         query_record: Query genome SeqRecord
@@ -138,11 +143,13 @@ def rescue_stop_codon(
         query_end:    Current end (1-based, inclusive) — expected to lack stop codon
         strand:       "+" or "-"
         max_codons:   Max codons to scan forward (default 30 = 90bp)
+        expected_length: Expected CDS length in bp, including stop codon.
 
     Returns:
         (new_end, new_sequence, codons_extended) if stop found, else None
     """
     genome_len = len(query_record.seq)
+    candidates = []
 
     for n in range(1, max_codons + 1):
         extension = n * 3
@@ -159,6 +166,22 @@ def rescue_stop_codon(
             ).upper()
 
         if candidate[-3:] in STOP_CODONS:
-            return new_end, candidate, n
+            length = len(candidate)
+            length_delta = (
+                abs(length - expected_length)
+                if expected_length is not None
+                else 0
+            )
+            candidates.append((
+                length % 3 != 0,
+                length_delta,
+                n,
+                new_end,
+                candidate,
+            ))
 
-    return None
+    if not candidates:
+        return None
+
+    _, _, codons_extended, new_end, candidate = min(candidates)
+    return new_end, candidate, codons_extended

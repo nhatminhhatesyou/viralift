@@ -156,14 +156,19 @@ Click **▶ Continue with these decisions** when done.
 | Badge | Meaning |
 |-------|---------|
 | 🟢 OK | Lifted successfully, valid start + stop codon |
-| 🟡 Rescued | Start codon was missing but recovered nearby |
-| 🟠 Invalid boundary | Could not fix start or stop codon |
+| 🟡 Rescued | Start/stop boundary was adjusted and the CDS passes validation |
+| 🟠 Invalid boundary | Could not pass start codon, stop codon, or reading-frame checks |
 | 🟠 Low coverage | tblastn hit found but protein coverage below threshold |
 | 🔴 No hit | tblastn found no alignment for this gene |
 | 🔴 Translation fail | Reference feature could not be translated to protein |
 
-**Per-record expanders** show a table for each query record with:
-- Status, canonical name, raw original name, start/end coordinates, coverage, identity, method (direct/tblastn)
+**Per-record expanders** are grouped by method (`direct` vs `tblastn`) and show:
+- Status, canonical name, raw original name, start/end coordinates, coverage, identity, method, boundary check, and rescue offset.
+
+For tblastn CDS features, `boundary_check` means:
+- `start:yes/no` — whether the extracted CDS starts with `ATG`.
+- `stop:yes/no` — whether the extracted CDS ends with `TAA`, `TAG`, or `TGA`.
+- `frame:yes/no` — whether the CDS length is divisible by 3, so it can be read as complete codons.
 
 ---
 

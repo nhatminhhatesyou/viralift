@@ -238,7 +238,7 @@ Nếu alias config sai:
 | `min_coverage` | Tỉ lệ protein reference phải được tblastn cover | `0.5` |
 | `min_identity` | Protein identity tối thiểu của hit | `0.3` |
 | `evalue` | Ngưỡng ý nghĩa thống kê của tblastn hit | `1e-5` |
-| `rescue_window` | Vùng bp quanh start để tìm ATG nếu boundary bị lệch | `50` |
+| `rescue_window` | Vùng bp quanh start để tìm ATG nếu boundary bị lệch | `200` |
 
 Gợi ý:
 
@@ -289,7 +289,7 @@ Ví dụ:
 ```text
 Reference ORF5 length: 603 bp
 tblastn lifted span: 600 bp, không bắt đầu bằng ATG
-rescue_window: 50 bp
+rescue_window: 200 bp
 ```
 
 Tool sẽ tìm các ATG quanh start. Nếu có một ATG làm cho sequence dài gần `603 bp` và vẫn in-frame, candidate đó sẽ được ưu tiên hơn một ATG gần hơn nhưng làm length lệch nhiều.
@@ -314,9 +314,51 @@ q_end + 9
 ...
 ```
 
-tối đa 30 codons. Nếu gặp `TAA`, `TAG`, hoặc `TGA`, tool update `q_end`.
+tối đa 30 codons. Nếu gặp `TAA`, `TAG`, hoặc `TGA`, tool có thể update `q_end`.
 
-Khác với start rescue, stop rescue hiện tại **không chọn theo length gần ref nhất**. Nó chọn stop codon in-frame gần nhất phía sau.
+Stop rescue hiện tại không còn lấy stop codon đầu tiên một cách máy móc. Nếu có reference length, nó chấm điểm các stop codon candidate và ưu tiên stop làm cho CDS length gần reference nhất:
+
+```text
+expected_length = protein_length * 3 + 3
+```
+
+Nếu start rescue đổi `q_start`, tool sẽ retry stop rescue với start mới, vì đổi start có thể đổi frame và làm stop codon cũ không còn hợp lệ.
+
+Nếu không có reference length, stop rescue fallback về hành vi an toàn hơn: chọn stop codon in-frame gần nhất phía sau.
+
+### Ý nghĩa `start`, `stop`, `frame` trong boundary check
+
+Trong UI, mỗi tblastn feature có thể có cột `boundary_check`:
+
+```text
+start:yes, stop:no, frame:yes
+```
+
+Ý nghĩa:
+
+- `start:yes`: đoạn CDS bắt đầu bằng start codon `ATG`.
+- `stop:yes`: đoạn CDS kết thúc bằng một stop codon hợp lệ: `TAA`, `TAG`, hoặc `TGA`.
+- `frame:yes`: tổng chiều dài CDS chia hết cho 3, tức là sequence có thể được đọc theo từng bộ ba nucleotide/codon.
+
+Ví dụ:
+
+```text
+ATG AAA GGG TAA
+```
+
+Đoạn này có 12 bp, chia hết cho 3, bắt đầu bằng `ATG`, kết thúc bằng `TAA`, nên:
+
+```text
+start:yes, stop:yes, frame:yes
+```
+
+Nếu length không chia hết cho 3, ví dụ thiếu 1-2 bp ở đầu/cuối, UI sẽ hiện:
+
+```text
+frame:no
+```
+
+Nếu `start:no`, start rescue sẽ tìm `ATG` quanh start trong `rescue_window`. Default hiện tại là `200 bp` vì một số viral records có boundary lệch xa hơn 50 bp.
 
 ### Terminal extrapolation
 
@@ -357,7 +399,7 @@ Pattern này nên được đọc là boundary ambiguity/granularity issue trư�
 | Status | Ý nghĩa | Cần review? |
 |---|---|---|
 | `ok` | Feature được tìm thấy và boundary hợp lệ | Không |
-| `ok_rescued` | Feature được tìm thấy, start/stop được rescue | Thường không, nhưng nên chú ý nếu nhiều |
+| `ok_rescued` | Feature được tìm thấy, boundary được chỉnh và pass start/stop/frame checks | Thường không, nhưng nên chú ý nếu nhiều |
 | `direct` | Feature lấy trực tiếp từ query annotation | Không |
 | `invalid_boundaries` | Có hit nhưng boundary/codon không hợp lệ | Có |
 | `low_coverage` | Hit có coverage thấp hơn threshold | Có |
@@ -365,7 +407,7 @@ Pattern này nên được đọc là boundary ambiguity/granularity issue trư�
 | `translation_fail` | Reference feature không translate được sang protein | Có |
 | `unresolved_name` | Query có tên chưa map được bằng alias config | Có |
 | `ambiguous_name` | Tên nằm trong ambiguous list, cần user quyết định | Có |
-| `not_in_reference` | Query resolve được tên nhưng reference không có gene đó | Có |
+| `not_in_reference` | Query resolve được canonical name nhưng selected reference không có gene đó | Không; vẫn tính là mapped/pass, nhưng cần ghi chú |
 
 Lưu ý: `not_in_reference` không nhất thiết là tool sai. Ví dụ query có `ORF1ab` nhưng reference chỉ có `ORF1a` và `ORF1b`, đây là mismatch về annotation granularity.
 
@@ -386,7 +428,7 @@ Kết quả chính gồm các cột:
 | `coverage` | Tỉ lệ protein reference được cover |
 | `identity` | Protein identity của tblastn hit |
 | `has_start_codon`, `has_stop_codon` | Check codon boundary |
-| `rescue_offset` | Offset nếu start/stop được rescue |
+| `rescue_offset` | Offset của start codon nếu start rescue đổi vị trí start |
 
 ### TSV canonical vs TSV raw
 

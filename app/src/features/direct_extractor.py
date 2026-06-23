@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from Bio.SeqRecord import SeqRecord
 
@@ -53,6 +53,7 @@ def direct_extract_with_alias(
 
     # canonical name → ref feature (for ref_start / ref_end)
     ref_by_name: Dict[str, Dict] = {f["name"]: f for f in ref_features}
+    query_features = _collapse_duplicate_canonicals(query_features, ref_by_name)
 
     ignored: List[str] = []
     results: List[LiftedFeature] = []
@@ -107,3 +108,76 @@ def direct_extract_with_alias(
         )
 
     return results
+
+
+def _collapse_duplicate_canonicals(
+    features: List[Dict],
+    ref_by_name: Dict[str, Dict],
+) -> List[Dict]:
+    """
+    Keep one direct feature per canonical name when annotations contain
+    overlapping duplicate entries.
+
+    Some viral records annotate a polyprotein both as a full-length feature and
+    as a shorter nested/sub-feature while both resolve to the same canonical
+    name. For direct extraction, emitting both creates duplicated output rows.
+    If the canonical exists in the reference, keep the feature whose length is
+    closest to the reference feature. If it does not exist in the reference,
+    keep the longest feature, which preserves the broadest query annotation.
+    """
+    best_by_name: Dict[str, Dict] = {}
+    order_by_name: Dict[str, int] = {}
+
+    for order, feature in enumerate(features):
+        name = feature.get("name")
+        if not name:
+            continue
+
+        existing = best_by_name.get(name)
+        if existing is None:
+            best_by_name[name] = feature
+            order_by_name[name] = order
+            continue
+
+        chosen = _choose_better_duplicate(feature, existing, ref_by_name.get(name))
+        if chosen is feature:
+            best_by_name[name] = feature
+
+    return [
+        best_by_name[name]
+        for name, _ in sorted(order_by_name.items(), key=lambda item: item[1])
+    ]
+
+
+def _choose_better_duplicate(
+    candidate: Dict,
+    current: Dict,
+    ref_match: Optional[Dict],
+) -> Dict:
+    candidate_len = int(candidate.get("length") or _feature_len(candidate))
+    current_len = int(current.get("length") or _feature_len(current))
+
+    if ref_match:
+        ref_len = int(ref_match.get("length") or _feature_len(ref_match))
+        candidate_delta = abs(candidate_len - ref_len)
+        current_delta = abs(current_len - ref_len)
+        if candidate_delta != current_delta:
+            return candidate if candidate_delta < current_delta else current
+
+    if candidate_len != current_len:
+        return candidate if candidate_len > current_len else current
+
+    candidate_start = int(candidate.get("start") or 0)
+    current_start = int(current.get("start") or 0)
+    if candidate_start != current_start:
+        return candidate if candidate_start < current_start else current
+
+    return current
+
+
+def _feature_len(feature: Dict) -> int:
+    start = feature.get("start")
+    end = feature.get("end")
+    if start is None or end is None:
+        return 0
+    return int(end) - int(start) + 1

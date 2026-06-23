@@ -83,7 +83,7 @@ from app.src.io.run_logger import (
 # ── constants ────────────────────────────────────────────────────────
 REGISTRY_PATH  = ROOT / "app/config/virus_alias_registry.json"
 CONFIG_DIR = ROOT / "app/config"
-GOOD_STATUSES = {"ok", "ok_rescued", "direct"}
+GOOD_STATUSES = {"ok", "ok_rescued", "direct", "not_in_reference"}
 REVIEW_STATUSES = {
     "invalid_boundaries",
     "low_coverage",
@@ -91,7 +91,6 @@ REVIEW_STATUSES = {
     "translation_fail",
     "unresolved_name",
     "ambiguous_name",
-    "not_in_reference",
 }
 STATUS_LABEL = {
     "ok": "OK",
@@ -115,7 +114,7 @@ STATUS_TONE = {
     "translation_fail": "fail",
     "unresolved_name": "review",
     "ambiguous_name": "review",
-    "not_in_reference": "review",
+    "not_in_reference": "pass",
 }
 
 UI_TEXT = {
@@ -299,7 +298,7 @@ def _init_state():
         min_coverage=0.5,
         min_identity=0.3,
         evalue=1e-5,
-        rescue_window=50,
+        rescue_window=200,
         ui_theme="dark",
         bootstrap_alias_config=None,
         bootstrap_alias_config_path=None,
@@ -895,6 +894,22 @@ def _status_text(status: str) -> str:
     return f"{tone} · {_t(f'status_{status}')}"
 
 
+def _ordered_methods(methods: List[str]) -> List[str]:
+    priority = {"direct": 0, "tblastn": 1}
+    return sorted(
+        {method or "unknown" for method in methods},
+        key=lambda method: (priority.get(method, 99), method),
+    )
+
+
+def _method_section_label(method: str) -> str:
+    labels = {
+        "direct": "Direct extraction",
+        "tblastn": "tblastn lifting",
+    }
+    return labels.get(method or "unknown", method or "Unknown method")
+
+
 def _sidebar_item(label: str, value: object):
     st.markdown(
         """
@@ -1306,7 +1321,7 @@ def stage_upload():
         st.session_state.min_coverage   = c1.number_input(_t("min_coverage"),  0.0, 1.0, 0.5, 0.05)
         st.session_state.min_identity   = c2.number_input(_t("min_identity"),  0.0, 1.0, 0.3, 0.05)
         st.session_state.evalue         = c3.number_input(_t("evalue"),       value=1e-5, format="%.0e")
-        st.session_state.rescue_window  = c4.number_input(_t("rescue_window"), 10,  200,   50,    10)
+        st.session_state.rescue_window  = c4.number_input(_t("rescue_window"), 10,  500,   200,   10)
 
     st.divider()
     st.session_state.use_ref_names = st.toggle(
@@ -2053,7 +2068,7 @@ def stage_results():
         overview_rows.append({
             "record_id": query_id,
             "health": health,
-            "mapped": ok_count,
+            "passed": ok_count,
             "total": total_count,
             "needs_review": needs_review,
             "method": method_tag,
@@ -2080,10 +2095,36 @@ def stage_results():
 
     st.subheader(_t("record_details"))
     visible_ids = set(visible_overview["record_id"].tolist())
-    for query_id, features in all_results:
-        if query_id not in visible_ids:
-            continue
+    visible_results = [
+        (query_id, features)
+        for query_id, features in all_results
+        if query_id in visible_ids
+    ]
 
+    def _record_method_bucket(query_id: str, features: List[LiftedFeature]) -> str:
+        if query_id in error_map or not features:
+            return "other"
+        methods = {feature.method for feature in features if feature.method}
+        if methods == {"direct"}:
+            return "direct"
+        if methods == {"tblastn"}:
+            return "tblastn"
+        if "direct" in methods and "tblastn" in methods:
+            return "mixed"
+        return "other"
+
+    def _boundary_check(feature: LiftedFeature) -> str:
+        checks = []
+        for label, value in (
+            ("start", feature.has_start_codon),
+            ("stop", feature.has_stop_codon),
+            ("frame", feature.in_frame),
+        ):
+            if value is not None:
+                checks.append(f"{label}:{'yes' if value else 'no'}")
+        return ", ".join(checks)
+
+    def _render_record_expander(query_id: str, features: List[LiftedFeature]) -> None:
         ok_count     = sum(1 for f in features if f.status in GOOD_STATUSES)
         total_count  = len(features)
         needs_review = sum(1 for f in features if f.status in REVIEW_STATUSES)
@@ -2093,17 +2134,17 @@ def stage_results():
         elif total_count == 0:
             label = f"{_t('empty')} · {query_id}"
         elif needs_review:
-            label = f"{_t('needs_review')} · {query_id} · {ok_count}/{total_count} mapped"
+            label = f"{_t('needs_review')} · {query_id} · {ok_count}/{total_count} passed"
         else:
-            label = f"{_t('passed')} · {query_id} · {ok_count}/{total_count} mapped"
+            label = f"{_t('passed')} · {query_id} · {ok_count}/{total_count} passed"
 
         with st.expander(label, expanded=show_details or query_id in error_map):
             if query_id in error_map:
                 st.error(error_map[query_id])
-                continue
+                return
             if not features:
                 st.warning(_t("no_features"))
-                continue
+                return
             rec_rows = []
             for lf in features:
                 display_name = (
@@ -2119,8 +2160,60 @@ def stage_results():
                     "coverage":  _format_fraction_percent(lf.coverage),
                     "identity":  _format_percent(lf.identity),
                     "method":    lf.method,
+                    "boundary_check": _boundary_check(lf),
+                    "rescue_offset": "" if lf.rescue_offset is None else lf.rescue_offset,
                 })
-            st.dataframe(pd.DataFrame(rec_rows), width="stretch", hide_index=True)
+            rec_df = pd.DataFrame(rec_rows)
+            for method in _ordered_methods(rec_df["method"].dropna().unique().tolist()):
+                method_df = rec_df[rec_df["method"] == method]
+                if method_df.empty:
+                    continue
+
+                st.markdown(f"##### {_method_section_label(method)} ({len(method_df)})")
+                if method == "tblastn" and method_df["status"].str.contains("Invalid boundary", na=False).any():
+                    st.caption(
+                        "Invalid boundary means tblastn found a strong protein match, "
+                        "but the extracted CDS did not pass start/stop/frame checks. "
+                        "In boundary_check, start means ATG at the beginning, "
+                        "stop means TAA/TAG/TGA at the end, and frame means the "
+                        "CDS length is divisible by 3."
+                    )
+                review_df = method_df[
+                    method_df["status"].str.startswith(f"{_t('tone_review')} ·", na=False)
+                ]
+                pass_df = method_df[
+                    method_df["status"].str.startswith(f"{_t('tone_pass')} ·", na=False)
+                ]
+                other_df = method_df.drop(review_df.index.union(pass_df.index))
+
+                if not review_df.empty:
+                    st.caption(_t("needs_review"))
+                    st.dataframe(review_df, width="stretch", hide_index=True)
+                if not pass_df.empty:
+                    st.caption(_t("passed"))
+                    st.dataframe(pass_df, width="stretch", hide_index=True)
+                if not other_df.empty:
+                    st.caption("Other")
+                    st.dataframe(other_df, width="stretch", hide_index=True)
+
+    detail_sections = [
+        ("direct", "Direct extraction records"),
+        ("tblastn", "tblastn lifting records"),
+        ("mixed", "Mixed direct + tblastn records"),
+        ("other", "Other / errors / empty records"),
+    ]
+    for bucket, title in detail_sections:
+        bucket_results = [
+            (query_id, features)
+            for query_id, features in visible_results
+            if _record_method_bucket(query_id, features) == bucket
+        ]
+        st.markdown(f"### {title} ({len(bucket_results)})")
+        if not bucket_results:
+            st.caption("No records in this section for the current filter.")
+            continue
+        for query_id, features in bucket_results:
+            _render_record_expander(query_id, features)
 
     st.divider()
 

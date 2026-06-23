@@ -61,8 +61,8 @@ def parse_args() -> argparse.Namespace:
                         help="Minimum protein identity threshold. Default: 0.3")
     parser.add_argument("--evalue",       type=float, default=1e-5,
                         help="E-value threshold for tblastn. Default: 1e-5")
-    parser.add_argument("--rescue-window", type=int, default=50,
-                        help="Window size (bp) for start codon rescue. Default: 50")
+    parser.add_argument("--rescue-window", type=int, default=200,
+                        help="Window size (bp) for start codon rescue. Default: 200")
     parser.add_argument("--alias-config",
                         help="Optional path to alias JSON config file.")
     parser.add_argument("--alias-registry",
