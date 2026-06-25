@@ -23,3 +23,5 @@ app/validation/**/.ipynb_checkpoints/
 app/validation/**/__pycache__/
 app/validation/**/*.pyc
 app/src/tests/
+
+aegis_trial/
