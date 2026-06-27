@@ -363,6 +363,7 @@ def _inject_css():
             }
 
             .vl-step-dot {
+                position: relative;
                 display: inline-grid;
                 place-items: center;
                 width: 1.8rem;
@@ -403,8 +404,12 @@ def _inject_css():
 
             .vl-step-complete .vl-step-dot::after {
                 content: "✓";
+                position: absolute;
+                inset: 0;
+                display: grid;
+                place-items: center;
                 color: var(--vl-bg);
-                font-size: 0.86rem;
+                font-size: 0.9rem;
                 font-weight: 900;
                 line-height: 1;
             }
