@@ -300,28 +300,99 @@ def _inject_css():
             }
 
             .vl-stage-rail {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
-                gap: 0.55rem;
-                margin: 0.95rem 0 0.2rem;
+                position: relative;
+                margin: 1.05rem 0 0.1rem;
+                max-width: 54rem;
             }
 
-            .vl-stage {
-                border: 1px solid var(--vl-border);
-                border-radius: 999px;
-                padding: 0.45rem 0.65rem;
-                color: var(--vl-muted);
-                background: var(--vl-soft-panel);
+            .vl-stage-meta {
+                color: var(--vl-accent);
                 font-size: 0.78rem;
-                font-weight: 700;
-                white-space: nowrap;
-                text-align: center;
+                font-weight: 800;
+                margin-bottom: 0.55rem;
             }
 
-            .vl-stage-active {
-                border-color: rgba(29, 108, 99, 0.42);
+            .vl-stage-track {
+                --vl-step-line: var(--vl-border-strong);
+                position: relative;
+                display: grid;
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+                gap: 0;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .vl-stage-track::before {
+                content: "";
+                position: absolute;
+                left: 1.05rem;
+                right: 1.05rem;
+                top: 0.78rem;
+                height: 1px;
+                background: linear-gradient(
+                    90deg,
+                    rgba(79, 224, 198, 0.58),
+                    var(--vl-step-line)
+                );
+            }
+
+            .vl-step {
+                position: relative;
+                z-index: 1;
+                min-width: 0;
+                color: var(--vl-faint);
+            }
+
+            .vl-step-dot {
+                display: inline-grid;
+                place-items: center;
+                width: 1.55rem;
+                height: 1.55rem;
+                border-radius: 999px;
+                border: 1px solid var(--vl-border-strong);
+                background: var(--vl-surface);
+                color: var(--vl-muted);
+                font-size: 0.72rem;
+                font-weight: 850;
+                box-shadow: 0 0 0 6px color-mix(in srgb, var(--vl-surface) 76%, transparent);
+            }
+
+            .vl-step-label {
+                display: block;
+                max-width: 6.8rem;
+                margin-top: 0.42rem;
+                color: inherit;
+                font-size: 0.72rem;
+                font-weight: 720;
+                line-height: 1.15;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .vl-step-complete .vl-step-dot {
+                border-color: color-mix(in srgb, var(--vl-accent) 54%, var(--vl-border));
                 background: var(--vl-accent-soft);
                 color: var(--vl-accent-2);
+            }
+
+            .vl-step-active {
+                color: var(--vl-text);
+            }
+
+            .vl-step-active .vl-step-dot {
+                border-color: var(--vl-accent);
+                background: var(--vl-accent);
+                color: var(--vl-bg);
+                box-shadow:
+                    0 0 0 6px color-mix(in srgb, var(--vl-accent) 16%, transparent),
+                    0 10px 26px color-mix(in srgb, var(--vl-accent) 24%, transparent);
+            }
+
+            .vl-step-active .vl-step-label {
+                color: var(--vl-text);
+                font-weight: 850;
             }
 
             .vl-panel {
@@ -569,9 +640,17 @@ def _inject_css():
                     padding: 1.15rem 1rem 2rem;
                 }
 
-                .vl-stage-rail,
                 .vl-context-grid {
                     grid-template-columns: 1fr;
+                }
+
+                .vl-stage-track {
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                    row-gap: 0.8rem;
+                }
+
+                .vl-stage-track::before {
+                    display: none;
                 }
 
                 h1 {

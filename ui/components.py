@@ -8,32 +8,72 @@ from ui.state import STATUS_TONE
 
 def _render_page_intro(kicker: str, title: str, body: str, show_stages: bool = True):
     stages = [
-        ("upload", _t("stage_upload")),
-        ("virus_review", _t("stage_virus_review")),
-        ("bootstrap_alias", _t("stage_bootstrap")),
-        ("resolve", _t("stage_resolve")),
-        ("running", _t("stage_run")),
-        ("results", _t("stage_review")),
+        (("upload",), _t("stage_files")),
+        (("virus_review", "bootstrap_alias"), _t("stage_setup")),
+        (("resolve",), _t("stage_name_review")),
+        (("running",), _t("stage_run_annotation")),
+        (("results",), _t("stage_results")),
     ]
     rail = ""
     if show_stages:
-        rail = "".join(
-            "<div class='vl-stage {active}'>{label}</div>".format(
-                active="vl-stage-active" if st.session_state.stage == key else "",
-                label=label,
-            )
-            for key, label in stages
+        active_index = next(
+            (
+                index
+                for index, (keys, _) in enumerate(stages)
+                if st.session_state.stage in keys
+            ),
+            0,
         )
-        rail = f"<div class='vl-stage-rail'>{rail}</div>"
+        step_items = []
+        for index, (_, label) in enumerate(stages):
+            parts = label.split(" ", 1)
+            number = parts[0] if parts else str(index + 1)
+            name = parts[1] if len(parts) > 1 else label
+            state = (
+                "vl-step-active"
+                if index == active_index
+                else "vl-step-complete"
+                if index < active_index
+                else ""
+            )
+            # Compact, single-line HTML: no leading indentation and no blank
+            # lines. Streamlit renders st.markdown as CommonMark, which ends an
+            # HTML block at the first blank/whitespace-only line and then treats
+            # following 4+ space indented lines as a code block — which is why a
+            # pretty-printed <ol>/<li> showed up as raw text.
+            step_items.append(
+                (
+                    '<li class="vl-step {state}">'
+                    '<span class="vl-step-dot">{number}</span>'
+                    '<span class="vl-step-label">{name}</span>'
+                    '</li>'
+                ).format(
+                    state=state,
+                    number=html.escape(number),
+                    name=html.escape(name),
+                )
+            )
+        active_label = stages[active_index][1].split(" ", 1)[-1]
+        rail = (
+            '<div class="vl-stage-rail" aria-label="Pipeline progress">'
+            '<div class="vl-stage-meta">Step {step} of {total} · {label}</div>'
+            '<ol class="vl-stage-track">{items}</ol>'
+            '</div>'
+        ).format(
+            step=active_index + 1,
+            total=len(stages),
+            label=html.escape(active_label),
+            items="".join(step_items),
+        )
     st.markdown(
-        f"""
-        <section class="vl-hero">
-            <div class="vl-kicker">{html.escape(kicker)}</div>
-            <h1>{html.escape(title)}</h1>
-            <div class="vl-help">{html.escape(body)}</div>
-            {rail}
-        </section>
-        """,
+        (
+            '<section class="vl-hero">'
+            f'<div class="vl-kicker">{html.escape(kicker)}</div>'
+            f'<h1>{html.escape(title)}</h1>'
+            f'<div class="vl-help">{html.escape(body)}</div>'
+            f'{rail}'
+            '</section>'
+        ),
         unsafe_allow_html=True,
     )
 
