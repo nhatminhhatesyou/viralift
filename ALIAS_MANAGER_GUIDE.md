@@ -313,6 +313,59 @@ Nếu tọa độ query trùng với tblastn ORF5, tool có thể gợi ý:
 
 Lý do: `GP5` và `ORF5 protein` có tên gene cụ thể. `major envelope glycoprotein` mô tả protein nhưng không nhất thiết là alias an toàn cho mọi record.
 
+### Công thức chấm điểm (scoring)
+
+Quyết định `save_alias` / `manual_review` / `ignore` cho mỗi raw name dựa trên **một điểm số cộng dồn**. Code nằm ở `app/src/alias/alias_classifier.py` (`classify_alias_candidate`). Có hai lớp:
+
+**Lớp 1 — bằng chứng toạ độ.** tblastn lift feature reference lên query; annotation sẵn có của query được ghép với feature đã lift bằng **IoU** (độ chồng lấn khoảng toạ độ, 1-based inclusive). Chỉ những cặp có `IoU ≥ min_iou` (mặc định `0.90`) mới được xét — đây là điều kiện để raw name được coi là bằng chứng cho canonical.
+
+**Lớp 2 — chấm điểm từng raw name.** Mỗi chuỗi qualifier được cộng/trừ điểm độc lập:
+
+| Yếu tố | Điểm |
+|---|---|
+| IoU ≥ 0.95 | +5 |
+| IoU ≥ 0.90 (và < 0.95) | +4 |
+| Cùng strand với feature đã lift | +1 |
+| Field **mạnh**: `gene`, `label`, `standard_name` | +3 |
+| Field **yếu**: `product`, `note`, `locus_tag` | −1 |
+| Raw name **trùng đúng** tên canonical | +5 |
+| Raw name **chứa** tên canonical | +4 |
+| Ký hiệu gene ngắn khớp phần số của canonical (vd `GP5` ↔ `ORF5`) | +3 |
+| Tên chung chung (generic): `protein`, `glycoprotein`, `polyprotein`, `envelope protein`… | −8 |
+| Từ mô tả sinh học (`polymerase`, `capsid`, `nucleocapsid`…) **không kèm** tên gene cụ thể | −4 |
+| Từ mô tả sinh học **có kèm** tên gene cụ thể | +1 |
+| Trông giống locus tag (vd `ABC_001234`) | −6 |
+
+> Ghi chú: ba mục "trùng đúng / chứa / ký hiệu ngắn khớp số" loại trừ lẫn nhau — chỉ cộng mục đầu tiên thoả mãn. Tên có chứa chữ số (vd `ORF3`, `ORF1a`) **không** bị coi là generic, dù chứa từ như `orf`.
+
+**Ngưỡng quyết định** từ tổng điểm:
+
+| Tổng điểm | Action | Confidence | Mặc định tích lưu |
+|---|---|---|---|
+| ≥ 8 | `save_alias` | high | ✅ có |
+| 3 – 7 | `manual_review` | medium | ❌ không (cần duyệt tay) |
+| < 3 | `ignore` | low | ❌ không |
+
+**Ví dụ tính điểm** (feature ORF5, IoU = 1.0, cùng strand):
+
+```text
+GP5  (field=gene):
+  +4  IoU ≥ 0.90
+  +1  cùng strand
+  +3  field mạnh (gene)
+  +3  ký hiệu ngắn khớp số "5" của ORF5
+  = 11  → ≥ 8 → save_alias (high)
+
+major envelope glycoprotein  (field=product):
+  +4  IoU ≥ 0.90
+  +1  cùng strand
+  −1  field yếu (product)
+  −8  tên generic ("envelope protein"/"glycoprotein")
+  = −4  → < 3 → ignore (low)
+```
+
+Lý do thiết kế: bằng chứng toạ độ (IoU) xác nhận *feature nào* tương ứng canonical nào, nhưng **bản thân chuỗi tên** vẫn được chấm riêng để tránh lưu những tên quá chung (như `glycoprotein`) thành alias toàn cục — vì một tên generic có thể xuất hiện ở nhiều gene khác nhau ở các record khác.
+
 ## Granularity mismatch
 
 Một số virus có annotation convention khác nhau giữa reference và query. Alias Manager chỉ chuẩn hóa tên, không tự tách/gộp gene.
