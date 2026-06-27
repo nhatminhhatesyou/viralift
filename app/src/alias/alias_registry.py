@@ -5,6 +5,13 @@ from typing import Dict, List, Optional
 from Bio.SeqRecord import SeqRecord
 
 
+# Package config directory, resolved from this file's location so it works both
+# in-repo and after `pip install` (config/*.json is shipped as package data).
+# alias_registry.py lives at app/src/alias/ → parents[2] is the `app` package.
+PACKAGE_CONFIG_DIR = Path(__file__).resolve().parents[2] / "config"
+DEFAULT_REGISTRY_PATH = PACKAGE_CONFIG_DIR / "virus_alias_registry.json"
+
+
 """
 Module: alias_registry.py
 
@@ -145,21 +152,62 @@ def find_registry_entry_for_record(record: SeqRecord, registry_data: Dict) -> Op
     return find_registry_entry_for_text(search_text, registry_data)
 
 
-def get_alias_config_path_from_entry(entry: Dict) -> Optional[Path]:
+def _resolve_alias_config(alias_config: str, registry_path: Path) -> Path:
     """
-    Extract alias config path from one registry entry.
+    Resolve an entry's `alias_config` string to an existing file.
+
+    Registry entries historically store cwd-relative paths like
+    "app/config/prrsv_alias.json". That breaks once the package is pip-installed
+    and run from another directory. Resolution is tried in order:
+
+        1. As written — absolute, or cwd-relative that actually exists
+           (preserves in-repo and Streamlit UI behavior).
+        2. The basename next to the registry file (registry_path.parent).
+        3. The basename in the packaged config dir.
+
+    Returns the first candidate that exists; if none do, returns the
+    registry-relative candidate (the most likely intended location) so the
+    caller gets a sensible path to report.
+    """
+    raw = Path(alias_config)
+
+    if raw.is_absolute():
+        return raw
+
+    candidates = [
+        raw,                                  # cwd-relative (repo / UI)
+        registry_path.parent / raw.name,      # next to the registry file
+        PACKAGE_CONFIG_DIR / raw.name,        # packaged config dir
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+
+    return registry_path.parent / raw.name
+
+
+def get_alias_config_path_from_entry(
+    entry: Dict,
+    registry_path: Optional[Path] = None,
+) -> Optional[Path]:
+    """
+    Extract and resolve the alias config path from one registry entry.
 
     Args:
-        entry: One registry entry
+        entry:         One registry entry.
+        registry_path: Path to the registry file, used to resolve relative
+                       alias_config entries robustly (see _resolve_alias_config).
+                       When omitted, the packaged default registry path is used.
 
     Returns:
-        Path to alias config file, or None if missing
+        Resolved Path to the alias config file, or None if the entry has none.
     """
     alias_config = entry.get("alias_config")
     if not alias_config:
         return None
 
-    return Path(alias_config)
+    base = registry_path if registry_path is not None else DEFAULT_REGISTRY_PATH
+    return _resolve_alias_config(alias_config, base)
 
 
 def detect_alias_config_for_record(
@@ -182,7 +230,7 @@ def detect_alias_config_for_record(
     if entry is None:
         return None
 
-    return get_alias_config_path_from_entry(entry)
+    return get_alias_config_path_from_entry(entry, registry_path)
 
 
 def get_detected_virus_name(record: SeqRecord, registry_path: Path) -> Optional[str]:

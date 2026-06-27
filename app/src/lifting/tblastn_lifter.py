@@ -11,7 +11,7 @@ Pipeline per feature:
     5. Extract nucleotide sequence from query genome
     6. Validate start/stop codons (with rescue for missing ATG)
 
-Advantages over minimap:
+Advantages over nucleotide coordinate transfer:
     - Protein is ~3-4x more conserved than nucleotide
     - Works across serotypes and lineages
     - Each gene is searched independently → no interference between overlapping genes
@@ -19,22 +19,51 @@ Advantages over minimap:
 Limitations:
     - Frameshift genes (ORF1b in PRRSV) still have ambiguous start
     - Requires BLAST+ installed (tblastn in PATH)
-    - Slower than minimap (~2-5s per genome vs ~0.1s)
+    - Requires an external BLAST+ binary and is slower than direct extraction
 """
 
+import shutil
 import subprocess
 import tempfile
-from io import StringIO
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 from Bio import SeqIO
 from Bio.Blast import NCBIXML
-from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 
 from app.src.lifting.validator import validate_cds_boundaries, rescue_start_codon, rescue_stop_codon
 from app.src.lifting.base import LiftedFeature
+from app.src.io.run_logger import log_error
+
+
+# tblastn binary name; kept as a constant so the pre-flight check and the
+# subprocess calls can never drift apart.
+TBLASTN_BIN = "tblastn"
+
+
+class BlastNotInstalledError(RuntimeError):
+    """Raised when the tblastn executable cannot be found on PATH."""
+
+
+def ensure_tblastn_available() -> str:
+    """
+    Verify that the tblastn executable is on PATH before any lifting starts.
+
+    Returns the resolved path to tblastn. Raises BlastNotInstalledError with a
+    clear, actionable message if it is missing — this turns an obscure
+    FileNotFoundError deep inside subprocess into a single understandable error
+    at the start of the run.
+    """
+    path = shutil.which(TBLASTN_BIN)
+    if path is None:
+        raise BlastNotInstalledError(
+            "BLAST+ is required for tblastn lifting but 'tblastn' was not found "
+            "on PATH. Install NCBI BLAST+ (e.g. `apt-get install ncbi-blast+`, "
+            "`conda install -c bioconda blast`, or `brew install blast`) and "
+            "ensure 'tblastn' is on PATH."
+        )
+    return path
 
 
 # ---------------------------------------------------------------------------
@@ -60,72 +89,17 @@ def translate_feature(feature: Dict, ref_record: SeqRecord) -> Optional[str]:
 
     try:
         protein = str(nuc.translate(to_stop=True, table=1))
-    except Exception:
+    except Exception as exc:
+        # Biopython raises TranslationError (a ValueError subclass) plus a few
+        # others for bad sequence; keep the broad catch but record the reason so
+        # a translation_fail is never a silent black box.
+        log_error(f"translate_feature:{feature.get('name')}", exc)
         return None
 
     if len(protein) < 10:
         return None
 
     return protein
-
-
-# ---------------------------------------------------------------------------
-# BLAST runner
-# ---------------------------------------------------------------------------
-
-def run_tblastn(
-    protein_seq: str,
-    query_genome: SeqRecord,
-    tmp_dir: Path,
-    feature_name: str = "feature",
-    evalue: float = 1e-5,
-) -> Optional[List]:
-    """
-    Run tblastn of one protein against one genome.
-
-    Returns list of Biopython HSP objects from the best alignment,
-    or None if no hit found.
-    """
-    # Write protein FASTA
-    prot_path = tmp_dir / f"{feature_name}_prot.fa"
-    prot_path.write_text(f">{feature_name}\n{protein_seq}\n")
-
-    # Write genome FASTA
-    genome_path = tmp_dir / "genome.fa"
-    SeqIO.write(query_genome, str(genome_path), "fasta")
-
-    # Run tblastn
-    result_path = tmp_dir / f"{feature_name}_blast.xml"
-    cmd = [
-        "tblastn",
-        "-query", str(prot_path),
-        "-subject", str(genome_path),
-        "-evalue", str(evalue),
-        "-outfmt", "5",       # XML output
-        "-out", str(result_path),
-        "-seg", "no",         # disable low-complexity filter for short viral proteins
-        "-soft_masking", "false",
-    ]
-
-    try:
-        subprocess.run(cmd, check=True, capture_output=True)
-    except subprocess.CalledProcessError:
-        return None
-
-    if not result_path.exists() or result_path.stat().st_size == 0:
-        return None
-
-    with open(result_path) as f:
-        try:
-            records = list(NCBIXML.parse(f))
-        except Exception:
-            return None
-
-    if not records or not records[0].alignments:
-        return None
-
-    best_alignment = records[0].alignments[0]
-    return best_alignment.hsps
 
 
 # ---------------------------------------------------------------------------
@@ -267,193 +241,6 @@ def extract_sequence(query_record: SeqRecord, start: int, end: int, strand: str)
 
 
 # ---------------------------------------------------------------------------
-# Main lifter
-# ---------------------------------------------------------------------------
-
-def lift_feature_tblastn(
-    feature: Dict,
-    ref_record: SeqRecord,
-    query_record: SeqRecord,
-    tmp_dir: Path,
-    min_coverage: float = 0.5,
-    min_identity: float = 0.3,
-    evalue: float = 1e-5,
-    rescue_window: int = 200,
-    validate_codons: bool = True,
-) -> LiftedFeature:
-    """
-    Lift one ref CDS feature onto query genome using tblastn.
-
-    Returns a LiftedFeature with status:
-        ok               — lifted, valid start/stop
-        ok_rescued       — lifted, ATG rescued within rescue_window
-        invalid_boundaries — lifted but missing start/stop
-        low_coverage     — hit found but protein coverage too low
-        no_hit           — tblastn found no hit
-        translation_fail — ref feature could not be translated
-    """
-    base = dict(
-        name=feature["name"],
-        source_name=None,  # tblastn: query has no annotation, source_name not applicable
-        ref_start=feature["start"],
-        ref_end=feature["end"],
-        strand=feature.get("strand", "+"),
-        method="tblastn",
-    )
-
-    # 1. Translate ref feature
-    protein = translate_feature(feature, ref_record)
-    if not protein:
-        return LiftedFeature(
-            **base,
-            query_start=None, query_end=None,
-            sequence=None, coverage=0.0,
-            status="translation_fail",
-        )
-
-    # 2. Run tblastn
-    safe_name = feature["name"].replace(" ", "_").replace("/", "_")[:30]
-    hsps = run_tblastn(protein, query_record, tmp_dir,
-                       feature_name=safe_name, evalue=evalue)
-
-    if not hsps:
-        return LiftedFeature(
-            **base,
-            query_start=None, query_end=None,
-            sequence=None, coverage=0.0,
-            status="no_hit",
-        )
-
-    # 3. Merge HSPs → genomic coordinates
-    q_start, q_end, strand, coverage, identity, score = merge_hsps(
-        hsps,
-        protein_length=len(protein),
-    )
-    n_term_extension = 0
-    c_term_extension = 0
-
-    # tblastn aligns protein → stop codon not included in HSP end.
-    # Use stop codon rescue: scan forward in-frame from q_end to find
-    # the actual stop codon. Falls back gracefully if not found within window.
-    if validate_codons and q_end is not None:
-        rescued_stop = rescue_stop_codon(
-            query_record,
-            q_start,
-            q_end,
-            strand,
-            max_codons=30,
-            expected_length=len(protein) * 3 + 3,
-        )
-        if rescued_stop:
-            q_end, _, _ = rescued_stop
-        else:
-            # Fallback: at least add 3bp for stop codon
-            q_end = min(q_end + 3, len(query_record.seq))
-    elif q_start is not None and q_end is not None:
-        q_start, q_end, n_term_extension, c_term_extension = extrapolate_terminal_boundaries(
-            start=q_start,
-            end=q_end,
-            strand=strand,
-            hsps=hsps,
-            protein_length=len(protein),
-            genome_length=len(query_record.seq),
-            coverage=coverage,
-        )
-
-    if coverage < min_coverage or identity < min_identity:
-        return LiftedFeature(
-            **base,
-            query_start=q_start, query_end=q_end,
-            sequence=None, coverage=round(coverage, 4),
-            status="low_coverage",
-            identity=round(identity * 100, 1),
-            score=round(score, 1),
-        )
-
-    # 4. Extract sequence
-    seq_str = extract_sequence(query_record, q_start, q_end, strand)
-
-    # 5. Skip codon validation if not requested (e.g. mat_peptide features)
-    if not validate_codons:
-        status = "ok_extrapolated" if (n_term_extension or c_term_extension) else "ok"
-        return LiftedFeature(
-            **base,
-            query_start=q_start, query_end=q_end,
-            sequence=seq_str, coverage=round(coverage, 4),
-            status=status,
-            identity=round(identity * 100, 1),
-            score=round(score, 1),
-        )
-
-    # 6. Validate boundaries
-    validation = validate_cds_boundaries(seq_str)
-
-    if validation["valid"]:
-        return LiftedFeature(
-            **base,
-            query_start=q_start, query_end=q_end,
-            sequence=seq_str, coverage=round(coverage, 4),
-            status="ok",
-            has_start_codon=True, has_stop_codon=True,
-            in_frame=validation["in_frame"],
-            identity=round(identity * 100, 1),
-            score=round(score, 1),
-        )
-
-    # 7. Try start codon rescue if ATG missing
-    if not validation["has_start_codon"]:
-        rescued = rescue_start_codon(
-            query_record,
-            q_start,
-            q_end,
-            strand,
-            max_window=rescue_window,
-            expected_length=len(protein) * 3 + 3,
-        )
-        if rescued:
-            new_start, new_seq, offset = rescued
-            revalidation = validate_cds_boundaries(new_seq)
-            new_end = q_end
-            if not revalidation["has_stop_codon"]:
-                rescued_stop = rescue_stop_codon(
-                    query_record,
-                    new_start,
-                    q_end,
-                    strand,
-                    max_codons=30,
-                    expected_length=len(protein) * 3 + 3,
-                )
-                if rescued_stop:
-                    new_end, new_seq, _ = rescued_stop
-                    revalidation = validate_cds_boundaries(new_seq)
-            status = "ok_rescued" if revalidation["valid"] else "invalid_boundaries"
-            return LiftedFeature(
-                **base,
-                query_start=new_start, query_end=new_end,
-                sequence=new_seq, coverage=round(coverage, 4),
-                status=status,
-                has_start_codon=True,
-                has_stop_codon=revalidation["has_stop_codon"],
-                in_frame=revalidation["in_frame"],
-                rescue_offset=offset,
-                identity=round(identity * 100, 1),
-                score=round(score, 1),
-            )
-
-    return LiftedFeature(
-        **base,
-        query_start=q_start, query_end=q_end,
-        sequence=seq_str, coverage=round(coverage, 4),
-        status="invalid_boundaries",
-        has_start_codon=validation["has_start_codon"],
-        has_stop_codon=validation["has_stop_codon"],
-        in_frame=validation["in_frame"],
-        identity=round(identity * 100, 1),
-        score=round(score, 1),
-    )
-
-
-# ---------------------------------------------------------------------------
 # Batched lifter — single tblastn call for all proteins per genome
 # ---------------------------------------------------------------------------
 
@@ -491,7 +278,7 @@ def run_tblastn_batch(
 
     result_path = tmp_dir / "all_blast.xml"
     cmd = [
-        "tblastn",
+        TBLASTN_BIN,
         "-query", str(prot_path),
         "-subject", str(genome_path),
         "-evalue", str(evalue),
@@ -503,7 +290,16 @@ def run_tblastn_batch(
 
     try:
         subprocess.run(cmd, check=True, capture_output=True)
-    except subprocess.CalledProcessError:
+    except FileNotFoundError as exc:
+        # tblastn binary not on PATH. This is an environment error, not a
+        # biological "no hit" — surface it loudly instead of silently turning
+        # every gene into no_hit.
+        raise BlastNotInstalledError(
+            "tblastn executable not found on PATH while running BLAST. "
+            "Install NCBI BLAST+ and ensure 'tblastn' is on PATH."
+        ) from exc
+    except subprocess.CalledProcessError as exc:
+        log_error("run_tblastn_batch", exc)
         return {qid: [] for qid, _ in proteins}
 
     if not result_path.exists() or result_path.stat().st_size == 0:
@@ -517,8 +313,11 @@ def run_tblastn_batch(
                 qid = record.query.split()[0]
                 if record.alignments:
                     hsps_by_id[qid] = record.alignments[0].hsps
-        except Exception:
-            pass
+        except (ValueError, SyntaxError) as exc:
+            # Malformed/truncated BLAST XML. Log it so a parse failure is not
+            # mistaken for a genuine absence of hits; return whatever was
+            # parsed before the error.
+            log_error("run_tblastn_batch:NCBIXML.parse", exc)
 
     return hsps_by_id
 
@@ -535,7 +334,11 @@ def _build_lifted_from_hsps(
 ) -> LiftedFeature:
     """
     Build a LiftedFeature from already-computed HSPs.
-    Mirrors the post-tblastn logic of lift_feature_tblastn.
+
+    This is the single post-tblastn path: merge HSPs → rescue stop codon (or
+    extrapolate terminals for non-CDS) → coverage/identity gate → extract
+    sequence → validate boundaries → rescue start codon. Used by the batched
+    lifter for every feature.
     """
     base = dict(
         name=feature["name"],
@@ -698,6 +501,10 @@ def lift_all_tblastn(
     """
     results: List[LiftedFeature] = []
 
+    # 0. Fail fast with a clear message if BLAST+ is not installed, rather than
+    #    letting a FileNotFoundError surface deep inside subprocess.
+    ensure_tblastn_available()
+
     # 1. Translate every feature; track which features were translatable.
     proteins: List[Tuple[str, str]] = []
     qid_to_protein_length: Dict[str, int] = {}
@@ -798,3 +605,34 @@ def process_one_query_record(
         rescue_window=rescue_window,
         validate_codons=validate_codons,
     )
+
+
+def lift_feature_tblastn(
+    feature: Dict,
+    ref_record: SeqRecord,
+    query_record: SeqRecord,
+    tmp_dir: Optional[Path] = None,
+    min_coverage: float = 0.5,
+    min_identity: float = 0.3,
+    evalue: float = 1e-5,
+    rescue_window: int = 200,
+    validate_codons: bool = True,
+) -> LiftedFeature:
+    """
+    Lift a single ref feature onto the query genome via tblastn.
+
+    Backward-compatible wrapper kept for external callers (e.g. validation
+    notebooks). Internally this now delegates to the batched path, which is the
+    single source of truth for the lift logic. `tmp_dir` is accepted but ignored
+    — the batched path manages its own temporary directory.
+    """
+    return lift_all_tblastn(
+        ref_features=[feature],
+        ref_record=ref_record,
+        query_record=query_record,
+        min_coverage=min_coverage,
+        min_identity=min_identity,
+        evalue=evalue,
+        rescue_window=rescue_window,
+        validate_codons=validate_codons,
+    )[0]

@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "viralift"
+version = "0.1.0"
+description = "Reference-guided viral CDS annotation transfer and gene-name standardization using tblastn."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    # NOTE: biopython is pinned below 1.90 because Bio.Blast.NCBIXML is used.
+    # Bumping past this requires migrating to Bio.SearchIO / Bio.Blast first.
+    "biopython>=1.81,<1.90",
+    "tqdm>=4.65,<5",
+]
+
+[project.optional-dependencies]
+ui = [
+    "streamlit>=1.32,<2",
+    "pandas>=2.0,<3",
+]
+dev = [
+    "pytest>=7.4",
+]
+
+[project.scripts]
+viralift = "app.src.main:main"
+
+# External system requirement (not installable via pip):
+#   NCBI BLAST+ providing the `tblastn` executable on PATH.
+
+# Auto-discover all app packages instead of hard-coding them (the previous
+# explicit list silently dropped every subpackage from the built wheel).
+# Tests and the validation workspace are excluded from the distribution.
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+exclude = ["app.src.tests*", "app.validation*"]
+
+# Ship the alias config JSON so the CLI works after `pip install` outside the repo.
+[tool.setuptools.package-data]
+app = ["config/*.json"]
+
+[tool.pytest.ini_options]
+# Put the repo root on sys.path so `from app.src...` imports resolve when
+# running `pytest` directly (without exporting PYTHONPATH).
+pythonpath = ["."]
+testpaths = ["app/src/tests"]
+python_files = ["test_*.py"]

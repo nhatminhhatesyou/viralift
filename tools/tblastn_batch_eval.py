@@ -1,9 +1,7 @@
 """
 test_tblastn_batch.py
 
-Batch accuracy test for tblastn-based protein-guided lifting.
-
-Same interface and output format as test_minimap_batch.py for direct comparison.
+Batch accuracy helper for tblastn-based protein-guided lifting.
 
 Usage:
     python -m app.src.tests.test_tblastn_batch \
@@ -24,7 +22,11 @@ from typing import Dict, List, Tuple
 
 from Bio.SeqRecord import SeqRecord
 
-from app.src.alias.alias_registry import detect_alias_config_for_record, get_detected_virus_name
+from app.src.alias.alias_registry import (
+    DEFAULT_REGISTRY_PATH,
+    detect_alias_config_for_record,
+    get_detected_virus_name,
+)
 from app.src.features.annotation_strategy import get_strategy
 from app.src.alias.gene_alias import (
     apply_alias_to_features,
@@ -38,7 +40,8 @@ from app.src.io.genbank_parser import (
     parse_cds_features,
     parse_mat_peptides,
 )
-from app.src.lifting.tblastn_lifter import lift_all_tblastn, LiftedFeature
+from app.src.lifting.base import LiftedFeature
+from app.src.lifting.tblastn_lifter import lift_all_tblastn
 
 MIN_LEN_RATIO = 0.5
 MAX_LEN_RATIO = 2.0
@@ -46,7 +49,7 @@ SUBFEATURE_MAX_RATIO = 0.8
 
 
 # ---------------------------------------------------------------------------
-# Helpers (same as minimap batch)
+# Helpers
 # ---------------------------------------------------------------------------
 
 def _has_full_annotation(record: SeqRecord) -> bool:
@@ -267,7 +270,7 @@ def parse_args():
     )
     parser.add_argument("--reference", required=True)
     parser.add_argument("--query", required=True)
-    parser.add_argument("--alias-registry", default="app/config/virus_alias_registry.json")
+    parser.add_argument("--alias-registry", default=str(DEFAULT_REGISTRY_PATH))
     parser.add_argument("--output-dir", default="output/tblastn_batch")
     return parser.parse_args()
 

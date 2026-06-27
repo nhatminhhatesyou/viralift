@@ -1,3 +1,4 @@
+import logging
 from typing import Dict, List, Optional
 
 from Bio.SeqRecord import SeqRecord
@@ -5,6 +6,8 @@ from Bio.SeqRecord import SeqRecord
 from app.src.alias.gene_alias import apply_alias_to_features
 from app.src.io.genbank_parser import parse_cds_features, parse_mat_peptides
 from app.src.lifting.base import LiftedFeature
+
+_logger = logging.getLogger("viralift")
 
 
 """
@@ -102,9 +105,11 @@ def direct_extract_with_alias(
         ))
 
     if ignored:
-        print(
-            f"  [WARN] {query_record.id}: {len(ignored)} feature(s) skipped "
-            f"(ignored by alias config): {ignored}"
+        # Library code must not print directly — route through the shared logger
+        # so callers (CLI, UI, other pipelines) control how this surfaces.
+        _logger.info(
+            "IGNORED_FEATURES | record=%s | count=%d | names=%s",
+            query_record.id, len(ignored), ignored,
         )
 
     return results

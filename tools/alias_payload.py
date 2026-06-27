@@ -8,6 +8,7 @@ from app.src.alias.alias_payload import (
     get_unresolved_features,
 )
 from app.src.alias.alias_registry import (
+    DEFAULT_REGISTRY_PATH,
     detect_alias_config_for_record,
     get_detected_virus_name,
 )
@@ -25,7 +26,7 @@ def parse_args():
         description="Check alias coverage for all records in a GenBank file and save a single payload for LLM."
     )
     parser.add_argument("--input", required=True, help="Input GenBank file (single or multi-record).")
-    parser.add_argument("--alias-registry", default="app/config/virus_alias_registry.json")
+    parser.add_argument("--alias-registry", default=str(DEFAULT_REGISTRY_PATH))
     parser.add_argument("--output-dir", default="output/alias_payloads")
     return parser.parse_args()
 
@@ -42,7 +43,7 @@ def process_record(record, registry_path):
     elif feature_type == "CDS":
         raw_features = parse_cds_features(record)
     else:
-        print(f"  [{record.id}] no annotation -> skip (minimap case)")
+        print(f"  [{record.id}] no annotation -> skip (tblastn lifting case)")
         return None, "no_annotation"
 
     alias_config_path = detect_alias_config_for_record(record, registry_path)

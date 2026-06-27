@@ -1,8 +1,10 @@
 FROM python:3.11-slim
 
 # ── system dependencies ──────────────────────────────────────────
+# ncbi-blast+ provides tblastn, the only external binary the pipeline needs.
+# (minimap2 was removed — the minimap lifting path is no longer part of ViraLift.)
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    minimap2 \
+    curl \
     ncbi-blast+ \
     && rm -rf /var/lib/apt/lists/*
 

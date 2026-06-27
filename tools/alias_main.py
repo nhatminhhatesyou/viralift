@@ -2,6 +2,7 @@ import argparse
 from pathlib import Path
 
 from app.src.alias.alias_payload import run_alias_pipeline, save_payload
+from app.src.alias.alias_registry import DEFAULT_REGISTRY_PATH
 from app.src.io.genbank_parser import load_single_genbank, load_genbank_records
 
 
@@ -11,7 +12,7 @@ def parse_args():
     )
     parser.add_argument("--reference", required=True, help="Reference GenBank file (single record).")
     parser.add_argument("--query", required=True, help="Query GenBank file (single or multi-record).")
-    parser.add_argument("--alias-registry", default="app/config/virus_alias_registry.json")
+    parser.add_argument("--alias-registry", default=str(DEFAULT_REGISTRY_PATH))
     parser.add_argument("--output-dir", default="output/alias_payloads")
     parser.add_argument(
         "--canonical",
@@ -43,7 +44,7 @@ def main():
         rid = r["record_id"]
 
         if status == "no_annotation":
-            print(f"  [{rid}] no annotation -> minimap case")
+            print(f"  [{rid}] no annotation -> tblastn lifting case")
         elif status == "new_virus":
             print(f"  [{rid}] virus not in registry -> build_alias_map ({r['feature_type']}, {r['total']} features)")
         elif status == "all_resolved":

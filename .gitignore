@@ -3,6 +3,11 @@ __pycache__/
 .DS_Store
 .env
 .venv/
+.claude/
+# Python build artifacts
+build/
+dist/
+*.egg-info/
 output/*
 !output/.gitkeep
 logs/*.log
@@ -22,6 +27,6 @@ app/validation/**/*outputs*/
 app/validation/**/.ipynb_checkpoints/
 app/validation/**/__pycache__/
 app/validation/**/*.pyc
-app/src/tests/
+# Note: app/src/tests/ is intentionally tracked so unit tests are version-controlled.
 
 aegis_trial/

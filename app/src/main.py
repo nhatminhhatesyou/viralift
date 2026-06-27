@@ -1,15 +1,14 @@
 import argparse
 from pathlib import Path
-from typing import List, Tuple
 
 from tqdm import tqdm
 
-from app.src.features.annotation_strategy import get_strategy
-from app.src.features.direct_extractor import direct_extract_with_alias
+from app.src.alias.alias_registry import DEFAULT_REGISTRY_PATH
 from app.src.features.ref_loader import prepare_reference_features
 from app.src.io.genbank_parser import load_single_genbank, load_genbank_records
-from app.src.io.result_writer import summarize_counts, write_results_tsv
-from app.src.lifting.tblastn_lifter import process_one_query_record
+from app.src.io.result_writer import write_results_tsv
+from app.src.lifting.base import STATUS_LABELS
+from app.src.pipeline import PipelineConfig, run_pipeline
 
 
 """
@@ -66,8 +65,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--alias-config",
                         help="Optional path to alias JSON config file.")
     parser.add_argument("--alias-registry",
-                        default="app/config/virus_alias_registry.json",
-                        help="Path to virus alias registry. Default: app/config/virus_alias_registry.json")
+                        default=str(DEFAULT_REGISTRY_PATH),
+                        help="Path to virus alias registry. "
+                             "Default: the registry shipped with the package.")
     parser.add_argument("--quiet", action="store_true",
                         help="Reduce console output.")
     return parser.parse_args()
@@ -117,58 +117,41 @@ def main() -> None:
     else:
         print("  Alias config       : none (using raw names)")
 
-    all_results: List[Tuple] = []
-    direct_count = lifted_count = 0
-
     iterator = tqdm(query_records, desc="Processing records", unit="record", dynamic_ncols=True)
 
-    for query_record in iterator:
+    def update_progress(index: int, total: int, record_id: str) -> None:
+        if index >= total:
+            iterator.update(total - iterator.n)
+            return
         if not args.quiet:
-            iterator.set_postfix_str(query_record.id)
+            iterator.set_postfix_str(record_id)
+        iterator.update(index - iterator.n)
 
-        strategy, query_feature_type = get_strategy(query_record, alias_lookup)
-
-        if strategy == "direct":
-            results = direct_extract_with_alias(
-                query_record=query_record,
-                query_feature_type=query_feature_type,
-                ref_features=ref_features,
-                alias_lookup=alias_lookup,
-            )
-            direct_count += 1
-        else:
-            results = process_one_query_record(
-                ref_record=ref_record,
-                query_record=query_record,
-                ref_cds=ref_features,
-                ref_feature_type=ref_feature_type,
-                min_coverage=args.min_coverage,
-                min_identity=args.min_identity,
-                evalue=args.evalue,
-                rescue_window=args.rescue_window,
-            )
-            lifted_count += 1
-
-        all_results.append((query_record.id, results))
+    run_result = run_pipeline(
+        ref_record=ref_record,
+        query_records=query_records,
+        ref_features=ref_features,
+        ref_feature_type=ref_feature_type,
+        alias_lookup=alias_lookup,
+        config=PipelineConfig(
+            min_coverage=args.min_coverage,
+            min_identity=args.min_identity,
+            evalue=args.evalue,
+            rescue_window=args.rescue_window,
+        ),
+        progress_callback=update_progress,
+    )
 
     tsv_out = outdir / "extracted_cds.tsv"
-    write_results_tsv(all_results, tsv_out)
-
-    summary = summarize_counts(all_results)
+    write_results_tsv(run_result.all_results, tsv_out)
 
     print("\nRun summary")
     print(f"  Query records processed : {len(query_records)}")
-    print(f"    Direct (annotated)    : {direct_count}")
-    print(f"    Lifted (tblastn)      : {lifted_count}")
-    print(f"  OK                      : {summary['ok']}")
-    print(f"  OK (rescued)            : {summary['ok_rescued']}")
-    print(f"  Invalid boundaries      : {summary['invalid_boundaries']}")
-    print(f"  Low coverage            : {summary['low_coverage']}")
-    print(f"  No hit                  : {summary['no_hit']}")
-    print(f"  Translation fail        : {summary['translation_fail']}")
-    print(f"  Unresolved names        : {summary['unresolved_name']}")
-    print(f"  Ambiguous names         : {summary['ambiguous_name']}")
-    print(f"  Not in reference        : {summary['not_in_reference']}")
+    print(f"    Direct (annotated)    : {run_result.direct_count}")
+    print(f"    Lifted (tblastn)      : {run_result.lifted_count}")
+    for status, count in run_result.summary.items():
+        label = STATUS_LABELS.get(status, status)
+        print(f"  {label:<24}: {count}")
     print(f"\n  TSV : {tsv_out}")
 
 
