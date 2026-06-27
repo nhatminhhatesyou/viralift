@@ -278,6 +278,38 @@ tblastn often returns multiple High-Scoring Pairs for one gene (gaps, divergent 
 
 Returns 1-based genome coordinates.
 
+#### Understanding coverage vs identity
+
+These two numbers come from the tblastn alignment of the **reference protein** against the **query genome**, and they measure different things. tblastn first lines the reference protein up against the translated query, amino acid by amino acid (the *alignment*):
+
+```
+Ref:    M  K  L  V  A  S  T  G  R      (reference protein, 9 aa)
+Query:  M  K  I  V  A  S  P  G  R      (translated query)
+        |  |  x  |  |  |  x  |  |
+        match    match  match
+```
+
+**Coverage = how much of the gene was aligned at all.**
+It is the number of reference-protein amino-acid positions that any HSP covers, divided by the *full* reference protein length. In the example all 9 aa are aligned → coverage = 9/9 = `1.0`. If tblastn had only managed to align the first 180 aa of a 200 aa protein, coverage would be `0.9`. Low coverage means part of the gene (often the N- or C-terminus, or a divergent middle) could not be matched.
+
+> Important: the denominator is the **reference protein length**, not `max(query_end)`. Using the query span would make an HSP that only hits the N-terminus look like 100 % coverage. The code deliberately uses the reference length so coverage reflects how much of the gene is genuinely present.
+
+**Identity = within the aligned region, how well it matches.**
+It is the fraction of *aligned positions* where the amino acid is exactly the same (averaged across HSPs, weighted by aligned length). In the example, 7 of the 9 aligned positions match (M, K, V, A, S, G, R; the L↔I and T↔P positions differ) → identity = 7/9 ≈ `0.78` (78 %). Identity is **not** the count of identical aa over the whole gene — only over the part that was aligned.
+
+A quick way to keep them apart: **coverage = how much aligned, identity = how similar the aligned part is.** They are independent:
+
+| Coverage | Identity | Interpretation |
+|---|---|---|
+| high | high | clean, confident lift (`ok`) |
+| high | low | correct gene, but a distant strain/serotype |
+| low | high | only a fragment/conserved domain matched (truncated gene) |
+| low | low | weak or spurious hit |
+
+Identity is measured on **amino acids** (tblastn aligns at the protein level), not nucleotides. Two genes can differ a lot in DNA yet share the same amino acids (the genetic code is redundant), so protein identity is higher and more stable across lineages than DNA identity — which is exactly why the tool lifts via protein.
+
+Both values feed the acceptance thresholds: if `coverage < min_coverage` (default `0.5`) **or** `identity < min_identity` (default `0.3`), the feature is marked `low_coverage` and no sequence is emitted. The identity threshold is set low because protein is ~3–4× more conserved than nucleotide, so even a 30 % protein identity hit can be a genuine homolog across serotypes.
+
 #### Validate codons
 
 **`lifting/validator.py`**

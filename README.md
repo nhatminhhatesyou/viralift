@@ -119,6 +119,8 @@ docker compose down   # stop
    - **Min identity** — minimum protein identity to accept a hit (default `0.3`)
    - **E-value** — tblastn significance threshold (default `1e-5`)
    - **Rescue window** — how many bp to scan around the lifted start position looking for ATG if start codon is missing (default `50`)
+
+   > **Coverage vs identity** — these measure different things. **Coverage** is *how much* of the reference gene was aligned (aligned amino acids ÷ full reference protein length); **identity** is *how similar* the aligned part is (fraction of aligned amino-acid positions that match exactly). So coverage = "how much aligned", identity = "how alike the aligned bit is". Both are at the **protein** level (more conserved than DNA), and a feature is rejected as `low_coverage` if it falls below either threshold. See [CODEBASE_GUIDE.md → Understanding coverage vs identity](CODEBASE_GUIDE.md#understanding-coverage-vs-identity) for a worked example.
 4. Toggle **"Use ref gene names as output"** if you want the output to use the reference's original gene names (e.g. `Lab`) instead of the canonical alias key (e.g. `Lpro`).
 5. Click **▶ Run ViraLift**.
 
