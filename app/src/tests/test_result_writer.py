@@ -61,3 +61,19 @@ def test_write_results_tsv_writes_rows(tmp_path: Path):
     lines = out.read_text(encoding="utf-8").splitlines()
     assert len(lines) == 2  # header + one row
     assert lines[1].startswith("q1\t")
+
+
+def test_write_results_tsv_includes_rescue_action(tmp_path: Path):
+    out = tmp_path / "out.tsv"
+    feature = _lf("ok_rescued")
+    feature.rescue_target = "start+stop"
+    feature.rescue_offset = -12
+    feature.rescue_action = "start -12 bp; stop +6 bp"
+
+    write_results_tsv([("q1", [feature])], out)
+
+    header, row = out.read_text(encoding="utf-8").splitlines()
+    assert "rescue_target" in header
+    assert "rescue_action" in header
+    assert "start+stop" in row
+    assert "start -12 bp; stop +6 bp" in row

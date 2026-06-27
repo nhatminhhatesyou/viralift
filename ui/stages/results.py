@@ -168,6 +168,15 @@ def stage_results():
                 checks.append(f"{label}:{'yes' if value else 'no'}")
         return ", ".join(checks)
 
+    def _rescue_action(feature: LiftedFeature) -> str:
+        if feature.rescue_action:
+            return feature.rescue_action
+        if feature.rescue_target and feature.rescue_offset is not None:
+            return f"{feature.rescue_target} {feature.rescue_offset:+d} bp"
+        if feature.rescue_offset is not None:
+            return f"start {feature.rescue_offset:+d} bp"
+        return ""
+
     def _render_record_expander(query_id: str, features: List[LiftedFeature]) -> None:
         ok_count     = sum(1 for f in features if f.status in GOOD_STATUSES)
         total_count  = len(features)
@@ -205,7 +214,7 @@ def stage_results():
                     "identity":  _format_percent(lf.identity),
                     "method":    lf.method,
                     "boundary_check": _boundary_check(lf),
-                    "rescue_offset": "" if lf.rescue_offset is None else lf.rescue_offset,
+                    "rescue_action": _rescue_action(lf),
                 })
             rec_df = pd.DataFrame(rec_rows)
             for method in _ordered_methods(rec_df["method"].dropna().unique().tolist()):
@@ -220,7 +229,8 @@ def stage_results():
                         "but the extracted CDS did not pass start/stop/frame checks. "
                         "In boundary_check, start means ATG at the beginning, "
                         "stop means TAA/TAG/TGA at the end, and frame means the "
-                        "CDS length is divisible by 3."
+                        "CDS length is divisible by 3. rescue_action shows which "
+                        "boundary was moved, for example `start -12 bp` or `stop +6 bp`."
                     )
                 review_df = method_df[
                     method_df["status"].str.startswith(f"{_t('tone_review')} ·", na=False)

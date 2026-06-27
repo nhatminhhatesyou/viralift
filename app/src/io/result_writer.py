@@ -52,7 +52,7 @@ def write_results_tsv(all_results: List[Tuple[str, List]], out_path: Path) -> No
         "query_id", "name", "source_name", "ref_start", "ref_end",
         "start", "end", "strand", "method", "status", "coverage",
         "identity", "score", "has_start_codon", "has_stop_codon",
-        "in_frame", "rescue_offset", "length",
+        "in_frame", "rescue_target", "rescue_offset", "rescue_action", "length",
     ]
 
     rows: List[Dict] = []
@@ -75,7 +75,9 @@ def write_results_tsv(all_results: List[Tuple[str, List]], out_path: Path) -> No
                 "has_start_codon": lifted.has_start_codon,
                 "has_stop_codon":  lifted.has_stop_codon,
                 "in_frame":        lifted.in_frame,
+                "rescue_target":   lifted.rescue_target,
                 "rescue_offset":   lifted.rescue_offset,
+                "rescue_action":   lifted.rescue_action,
                 "length":         len(lifted.sequence) if lifted.sequence else None,
             })
 
@@ -85,4 +87,3 @@ def write_results_tsv(all_results: List[Tuple[str, List]], out_path: Path) -> No
         writer = csv.DictWriter(handle, fieldnames=fieldnames, delimiter="\t")
         writer.writeheader()
         writer.writerows(rows)
-
