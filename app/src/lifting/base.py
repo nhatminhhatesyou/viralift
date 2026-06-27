@@ -77,6 +77,8 @@ class LiftedFeature:
     has_stop_codon: Optional[bool] = None
     in_frame: Optional[bool] = None
     rescue_offset: Optional[int] = None
+    rescue_target: Optional[str] = None
+    rescue_action: Optional[str] = None
 
     # Extra engine-specific info
     identity: Optional[float] = None     # tblastn: % identity of best HSP
@@ -99,6 +101,8 @@ class LiftedFeature:
             "has_stop_codon": self.has_stop_codon,
             "in_frame": self.in_frame,
             "rescue_offset": self.rescue_offset,
+            "rescue_target": self.rescue_target,
+            "rescue_action": self.rescue_action,
             "identity": self.identity,
             "score": self.score,
         }

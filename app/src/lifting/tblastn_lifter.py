@@ -363,6 +363,7 @@ def _build_lifted_from_hsps(
     )
     n_term_extension = 0
     c_term_extension = 0
+    stop_rescue_offset_bp = None
 
     if validate_codons and q_end is not None:
         rescued_stop = rescue_stop_codon(
@@ -374,7 +375,8 @@ def _build_lifted_from_hsps(
             expected_length=protein_length * 3 + 3,
         )
         if rescued_stop:
-            q_end, _, _ = rescued_stop
+            q_end, _, codons_extended = rescued_stop
+            stop_rescue_offset_bp = codons_extended * 3
         else:
             q_end = min(q_end + 3, len(query_record.seq))
     elif q_start is not None and q_end is not None:
@@ -414,13 +416,20 @@ def _build_lifted_from_hsps(
     validation = validate_cds_boundaries(seq_str)
 
     if validation["valid"]:
+        rescued_by_stop = stop_rescue_offset_bp is not None
         return LiftedFeature(
             **base,
             query_start=q_start, query_end=q_end,
             sequence=seq_str, coverage=round(coverage, 4),
-            status="ok",
+            status="ok_rescued" if rescued_by_stop else "ok",
             has_start_codon=True, has_stop_codon=True,
             in_frame=validation["in_frame"],
+            rescue_offset=stop_rescue_offset_bp,
+            rescue_target="stop" if rescued_by_stop else None,
+            rescue_action=(
+                f"stop +{stop_rescue_offset_bp} bp"
+                if rescued_by_stop else None
+            ),
             identity=round(identity * 100, 1),
             score=round(score, 1),
         )
@@ -438,6 +447,7 @@ def _build_lifted_from_hsps(
             new_start, new_seq, offset = rescued
             revalidation = validate_cds_boundaries(new_seq)
             new_end = q_end
+            rescue_parts = [f"start {offset:+d} bp"]
             if not revalidation["has_stop_codon"]:
                 rescued_stop = rescue_stop_codon(
                     query_record,
@@ -448,7 +458,8 @@ def _build_lifted_from_hsps(
                     expected_length=protein_length * 3 + 3,
                 )
                 if rescued_stop:
-                    new_end, new_seq, _ = rescued_stop
+                    new_end, new_seq, codons_extended = rescued_stop
+                    rescue_parts.append(f"stop +{codons_extended * 3} bp")
                     revalidation = validate_cds_boundaries(new_seq)
             status = "ok_rescued" if revalidation["valid"] else "invalid_boundaries"
             return LiftedFeature(
@@ -460,6 +471,8 @@ def _build_lifted_from_hsps(
                 has_stop_codon=revalidation["has_stop_codon"],
                 in_frame=revalidation["in_frame"],
                 rescue_offset=offset,
+                rescue_target="start+stop" if len(rescue_parts) > 1 else "start",
+                rescue_action="; ".join(rescue_parts),
                 identity=round(identity * 100, 1),
                 score=round(score, 1),
             )

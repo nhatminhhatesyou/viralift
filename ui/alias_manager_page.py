@@ -38,10 +38,6 @@ def _split_lines(raw_text: str) -> List[str]:
     return values
 
 
-def _format_values(values: Iterable[str]) -> str:
-    return "\n".join(str(value) for value in values if str(value).strip())
-
-
 def _dedupe_values(values: Iterable[str]) -> List[str]:
     result: List[str] = []
     seen = set()
@@ -180,6 +176,61 @@ def _delete_names(config_path: Path, config: Dict, field: str, names: List[str],
     st.rerun()
 
 
+def _save_registry_entry(
+    alias_config: str,
+    virus_name: str,
+    keywords: List[str],
+    message: str,
+) -> None:
+    try:
+        backup = update_registry_entry(
+            REGISTRY_PATH,
+            alias_config=alias_config,
+            virus_name=virus_name.strip(),
+            keywords=keywords,
+        )
+        st.success(f"{message} Backup: `{backup.name if backup else 'none'}`")
+        st.rerun()
+    except Exception as e:
+        st.error(f"Could not save registry entry: {e}")
+
+
+def _delete_registry_keywords(entry: Dict, virus_name: str, keywords: List[str]) -> None:
+    current_keywords = entry.get("keywords", [])
+    selected_norms = {normalize_text(keyword) for keyword in keywords}
+    kept_keywords = [
+        keyword
+        for keyword in current_keywords
+        if normalize_text(keyword) not in selected_norms
+    ]
+    _save_registry_entry(
+        alias_config=entry.get("alias_config", ""),
+        virus_name=virus_name,
+        keywords=kept_keywords,
+        message=f"Deleted {len(keywords)} keyword(s).",
+    )
+
+
+def _add_registry_keywords(entry: Dict, virus_name: str, keywords: List[str]) -> None:
+    if not keywords:
+        st.warning("Add at least one keyword first.")
+        return
+
+    existing = entry.get("keywords", [])
+    merged = _dedupe_values([*existing, *keywords])
+    added_count = len(merged) - len(_dedupe_values(existing))
+    if added_count <= 0:
+        st.info("No new keyword to add.")
+        return
+
+    _save_registry_entry(
+        alias_config=entry.get("alias_config", ""),
+        virus_name=virus_name,
+        keywords=merged,
+        message=f"Added {added_count} keyword(s).",
+    )
+
+
 def page_alias_manager():
     _render_page_intro(
         "Alias manager",
@@ -245,25 +296,52 @@ def page_alias_manager():
             value=entry.get("virus_name", config.get("virus", "")),
             key=f"registry_virus_name_{config_path}",
         )
-        keywords_text = st.text_area(
-            "Detection keywords",
-            value=_format_values(entry.get("keywords", [])),
-            height=150,
-            help="One keyword per line. These strings are used to auto-detect this virus.",
-            key=f"registry_keywords_{config_path}",
+        if st.button("Save virus name", width="stretch"):
+            _save_registry_entry(
+                alias_config=entry.get("alias_config", ""),
+                virus_name=registry_virus_name,
+                keywords=entry.get("keywords", []),
+                message="Virus name saved.",
+            )
+
+        st.markdown("**Detection keywords**")
+        st.caption("Tick keywords to delete them, or add one keyword per line below.")
+        selected_keywords = _checkbox_list(
+            entry.get("keywords", []),
+            key_prefix=f"registry_keyword_select_{config_path}",
+            empty_message="No detection keywords yet.",
         )
-        if st.button("Save registry entry", type="primary", width="stretch"):
-            try:
-                backup = update_registry_entry(
-                    REGISTRY_PATH,
-                    alias_config=entry.get("alias_config", ""),
-                    virus_name=registry_virus_name.strip(),
-                    keywords=_split_lines(keywords_text),
-                )
-                st.success(f"Registry saved. Backup: `{backup.name if backup else 'none'}`")
-                st.rerun()
-            except Exception as e:
-                st.error(f"Could not save registry entry: {e}")
+        if selected_keywords:
+            st.caption(
+                "Selected: " + ", ".join(f"`{keyword}`" for keyword in selected_keywords)
+            )
+
+        if st.button(
+            f"Delete selected ({len(selected_keywords)})",
+            disabled=not selected_keywords,
+            key=f"delete_selected_registry_keywords_{config_path}",
+        ):
+            _delete_registry_keywords(entry, registry_virus_name, selected_keywords)
+
+        with st.form(f"registry_add_keywords_form_{config_path}", clear_on_submit=True):
+            new_keywords_text = st.text_area(
+                "Add detection keywords",
+                value="",
+                height=120,
+                placeholder="One keyword per line",
+                key=f"registry_keywords_add_{config_path}",
+            )
+            add_keywords_submitted = st.form_submit_button(
+                "Add keywords",
+                type="primary",
+            )
+
+        if add_keywords_submitted:
+            _add_registry_keywords(
+                entry,
+                registry_virus_name,
+                _split_lines(new_keywords_text),
+            )
 
     with tab_alias:
         st.caption(
@@ -480,14 +558,16 @@ def page_alias_manager():
     )
     warnings = validate_alias_config(updated_config)
     if warnings:
-        st.warning("Review before saving:\n\n" + "\n".join(f"- {w}" for w in warnings))
+        st.warning(
+            "Review before saving. These are warnings only; you can still save:\n\n"
+            + "\n".join(f"- {w}" for w in warnings)
+        )
 
     save_col, reload_col = st.columns([3, 1])
     if save_col.button(
         "Save alias config",
         type="primary",
         width="stretch",
-        disabled=bool(warnings),
     ):
         try:
             backup = manager_save_alias_config(config_path, updated_config)
