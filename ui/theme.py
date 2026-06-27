@@ -307,13 +307,14 @@ def _inject_css():
 
             .vl-stage-meta {
                 color: var(--vl-accent);
-                font-size: 0.78rem;
+                font-size: 0.72rem;
                 font-weight: 800;
-                margin-bottom: 0.55rem;
+                letter-spacing: 0.09em;
+                text-transform: uppercase;
+                margin-bottom: 0.7rem;
             }
 
             .vl-stage-track {
-                --vl-step-line: var(--vl-border-strong);
                 position: relative;
                 display: grid;
                 grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -323,60 +324,92 @@ def _inject_css():
                 margin: 0;
             }
 
-            .vl-stage-track::before {
+            /* Connector: a muted base line plus an accent fill up to the
+               active step (width driven by --vl-progress set inline). Both run
+               between the first and last dot centres (10% .. 90%). */
+            .vl-stage-track::before,
+            .vl-stage-track::after {
                 content: "";
                 position: absolute;
-                left: 1.05rem;
-                right: 1.05rem;
-                top: 0.78rem;
-                height: 1px;
+                left: 10%;
+                top: 0.88rem;
+                height: 2px;
+                border-radius: 999px;
+            }
+
+            .vl-stage-track::before {
+                right: 10%;
+                background: var(--vl-border-strong);
+                opacity: 0.55;
+            }
+
+            .vl-stage-track::after {
+                width: calc(var(--vl-progress, 10%) - 10%);
                 background: linear-gradient(
                     90deg,
-                    rgba(79, 224, 198, 0.58),
-                    var(--vl-step-line)
+                    color-mix(in srgb, var(--vl-accent) 60%, transparent),
+                    var(--vl-accent)
                 );
+                box-shadow: 0 0 10px color-mix(in srgb, var(--vl-accent) 45%, transparent);
+                transition: width 360ms cubic-bezier(0.22, 0.61, 0.36, 1);
             }
 
             .vl-step {
                 position: relative;
                 z-index: 1;
                 min-width: 0;
+                text-align: center;
                 color: var(--vl-faint);
             }
 
             .vl-step-dot {
                 display: inline-grid;
                 place-items: center;
-                width: 1.55rem;
-                height: 1.55rem;
+                width: 1.8rem;
+                height: 1.8rem;
                 border-radius: 999px;
-                border: 1px solid var(--vl-border-strong);
+                border: 1.5px solid var(--vl-border-strong);
                 background: var(--vl-surface);
                 color: var(--vl-muted);
-                font-size: 0.72rem;
+                font-size: 0.76rem;
                 font-weight: 850;
-                box-shadow: 0 0 0 6px color-mix(in srgb, var(--vl-surface) 76%, transparent);
+                transition: transform 200ms ease, background 200ms ease,
+                            border-color 200ms ease;
             }
 
             .vl-step-label {
                 display: block;
-                max-width: 6.8rem;
-                margin-top: 0.42rem;
+                margin: 0.5rem auto 0;
+                max-width: 8rem;
                 color: inherit;
-                font-size: 0.72rem;
-                font-weight: 720;
-                line-height: 1.15;
+                font-size: 0.74rem;
+                font-weight: 700;
+                line-height: 1.2;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
 
-            .vl-step-complete .vl-step-dot {
-                border-color: color-mix(in srgb, var(--vl-accent) 54%, var(--vl-border));
-                background: var(--vl-accent-soft);
-                color: var(--vl-accent-2);
+            /* completed: filled accent dot with a check mark */
+            .vl-step-complete {
+                color: var(--vl-muted);
             }
 
+            .vl-step-complete .vl-step-dot {
+                border-color: var(--vl-accent);
+                background: var(--vl-accent);
+                color: transparent;
+            }
+
+            .vl-step-complete .vl-step-dot::after {
+                content: "✓";
+                color: var(--vl-bg);
+                font-size: 0.86rem;
+                font-weight: 900;
+                line-height: 1;
+            }
+
+            /* active: bold accent dot with a glow ring */
             .vl-step-active {
                 color: var(--vl-text);
             }
@@ -385,9 +418,10 @@ def _inject_css():
                 border-color: var(--vl-accent);
                 background: var(--vl-accent);
                 color: var(--vl-bg);
+                transform: scale(1.14);
                 box-shadow:
-                    0 0 0 6px color-mix(in srgb, var(--vl-accent) 16%, transparent),
-                    0 10px 26px color-mix(in srgb, var(--vl-accent) 24%, transparent);
+                    0 0 0 5px color-mix(in srgb, var(--vl-accent) 20%, transparent),
+                    0 8px 22px color-mix(in srgb, var(--vl-accent) 30%, transparent);
             }
 
             .vl-step-active .vl-step-label {
@@ -418,12 +452,6 @@ def _inject_css():
                 color: var(--vl-text);
                 font-size: 0.82rem;
                 font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-            }
-
-            .vl-step {
-                color: var(--vl-muted);
-                font-size: 0.86rem;
-                line-height: 1.55;
             }
 
             .vl-context-grid {
@@ -649,7 +677,8 @@ def _inject_css():
                     row-gap: 0.8rem;
                 }
 
-                .vl-stage-track::before {
+                .vl-stage-track::before,
+                .vl-stage-track::after {
                     display: none;
                 }
 

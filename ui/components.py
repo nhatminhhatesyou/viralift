@@ -54,15 +54,19 @@ def _render_page_intro(kicker: str, title: str, body: str, show_stages: bool = T
                 )
             )
         active_label = stages[active_index][1].split(" ", 1)[-1]
+        # Percentage position of the active dot's centre (dots are centred in
+        # equal columns), used by CSS to draw the filled progress line up to it.
+        progress_pct = round((active_index + 0.5) / len(stages) * 100, 2)
         rail = (
             '<div class="vl-stage-rail" aria-label="Pipeline progress">'
             '<div class="vl-stage-meta">Step {step} of {total} · {label}</div>'
-            '<ol class="vl-stage-track">{items}</ol>'
+            '<ol class="vl-stage-track" style="--vl-progress:{progress}%">{items}</ol>'
             '</div>'
         ).format(
             step=active_index + 1,
             total=len(stages),
             label=html.escape(active_label),
+            progress=progress_pct,
             items="".join(step_items),
         )
     st.markdown(
