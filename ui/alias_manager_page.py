@@ -18,7 +18,6 @@ from app.src.alias.alias_manager import (
     move_ignored_to_alias,
     resolve_config_path,
     save_alias_config as manager_save_alias_config,
-    tables_to_alias_config,
     update_registry_entry,
     validate_alias_config,
 )
@@ -41,6 +40,19 @@ def _split_lines(raw_text: str) -> List[str]:
 
 def _format_values(values: Iterable[str]) -> str:
     return "\n".join(str(value) for value in values if str(value).strip())
+
+
+def _dedupe_values(values: Iterable[str]) -> List[str]:
+    result: List[str] = []
+    seen = set()
+    for value in values:
+        item = str(value or "").strip()
+        key = normalize_text(item)
+        if not key or key in seen:
+            continue
+        seen.add(key)
+        result.append(item)
+    return sorted(result, key=normalize_text)
 
 
 def _deepcopy_config(config: Dict) -> Dict:
@@ -106,6 +118,47 @@ def _add_aliases(config_path: Path, config: Dict, canonical: str, aliases: List[
     backup = manager_save_alias_config(config_path, updated)
     st.success(
         f"Added {len(added)} alias(es) to `{canonical}`. "
+        f"Backup: `{backup.name if backup else 'none'}`"
+    )
+    st.rerun()
+
+
+def _add_canonical(
+    config_path: Path,
+    config: Dict,
+    canonical: str,
+    aliases: List[str],
+) -> None:
+    canonical = canonical.strip()
+    if not canonical:
+        st.warning("Add a canonical name first.")
+        return
+
+    updated = _deepcopy_config(config)
+    canonical_names = updated.setdefault("canonical_names", {})
+    existing_key = next(
+        (
+            name
+            for name in canonical_names
+            if normalize_text(name) == normalize_text(canonical)
+        ),
+        None,
+    )
+    target = existing_key or canonical
+    existing = canonical_names.setdefault(target, [])
+    existing_norms = {normalize_text(alias) for alias in existing}
+
+    for alias in aliases:
+        key = normalize_text(alias)
+        if key and key not in existing_norms:
+            existing.append(alias)
+            existing_norms.add(key)
+
+    st.session_state.alias_manager_open_canonical = target
+    backup = manager_save_alias_config(config_path, updated)
+    action = "Updated" if existing_key else "Added"
+    st.success(
+        f"{action} canonical `{target}`. "
         f"Backup: `{backup.name if backup else 'none'}`"
     )
     st.rerun()
@@ -181,7 +234,7 @@ def page_alias_manager():
         "Raw JSON",
     ])
 
-    alias_records_for_save: List[Dict[str, str]] = []
+    deleted_canonicals: List[str] = []
     edited_ignored_records = [{"ignored_name": name} for name in ignored_existing]
     edited_ambiguous_records = [{"ambiguous_name": name} for name in ambiguous_existing]
 
@@ -224,24 +277,32 @@ def page_alias_manager():
         )
 
         st.markdown("**Add new canonical**")
-        add_col1, add_col2 = st.columns([2, 3])
-        new_canonical = add_col1.text_input(
-            "Canonical name",
-            value="",
-            key=f"alias_manager_new_canonical_{config_path}",
-        ).strip()
-        new_canonical_aliases = add_col2.text_area(
-            "Initial aliases",
-            value="",
-            height=96,
-            help="Optional. One alias per line.",
-            key=f"alias_manager_new_canonical_aliases_{config_path}",
-        )
-        if new_canonical:
-            alias_records_for_save.append({
-                "canonical_name": new_canonical,
-                "aliases": _format_values(_split_lines(new_canonical_aliases)),
-            })
+        with st.form(f"alias_manager_add_canonical_form_{config_path}", clear_on_submit=True):
+            add_col1, add_col2 = st.columns([2, 3])
+            new_canonical = add_col1.text_input(
+                "Canonical name",
+                value="",
+                key=f"alias_manager_new_canonical_{config_path}",
+            ).strip()
+            new_canonical_aliases = add_col2.text_area(
+                "Initial aliases",
+                value="",
+                height=96,
+                help="Optional. One alias per line.",
+                key=f"alias_manager_new_canonical_aliases_{config_path}",
+            )
+            add_canonical_submitted = st.form_submit_button(
+                "Add canonical",
+                type="primary",
+            )
+
+        if add_canonical_submitted:
+            _add_canonical(
+                config_path,
+                config,
+                new_canonical,
+                _split_lines(new_canonical_aliases),
+            )
 
         canonical_names = config.get("canonical_names", {})
         search_norm = normalize_text(search_text)
@@ -282,6 +343,7 @@ def page_alias_manager():
 
                 if delete_canonical:
                     st.warning(f"`{canonical}` will be deleted on save.")
+                    deleted_canonicals.append(canonical)
                     continue
 
                 with st.form(
@@ -305,11 +367,6 @@ def page_alias_manager():
                         st.warning("Add at least one alias first.")
                         st.stop()
                     _add_aliases(config_path, config, canonical, new_aliases)
-
-                alias_records_for_save.append({
-                    "canonical_name": canonical,
-                    "aliases": _format_values(aliases),
-                })
 
     with tab_ignored:
         st.caption("Names here are intentionally ignored by automatic alias matching.")
@@ -408,11 +465,18 @@ def page_alias_manager():
         st.json(config)
 
     st.divider()
-    updated_config = tables_to_alias_config(
-        config,
-        alias_records_for_save,
-        edited_ignored_records,
-        edited_ambiguous_records,
+    updated_config = _deepcopy_config(config)
+    for canonical in deleted_canonicals:
+        updated_config.setdefault("canonical_names", {}).pop(canonical, None)
+    updated_config["ignored_names"] = _dedupe_values(
+        row.get("ignored_name")
+        for row in edited_ignored_records
+        if row.get("ignored_name")
+    )
+    updated_config["ambiguous_names"] = _dedupe_values(
+        row.get("ambiguous_name")
+        for row in edited_ambiguous_records
+        if row.get("ambiguous_name")
     )
     warnings = validate_alias_config(updated_config)
     if warnings:
