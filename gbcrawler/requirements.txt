@@ -1,0 +1,5 @@
+# gbcrawler dependencies
+biopython>=1.81
+# UI only:
+streamlit>=1.32
+pandas>=2.0

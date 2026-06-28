@@ -32,6 +32,24 @@ from ui.stages.resolve import stage_resolve
 from ui.stages.running import stage_running
 from ui.stages.results import stage_results
 from ui.alias_manager_page import page_alias_manager
+from ui.data_crawler_page import page_data_crawler
+
+
+APP_MODES = ("Run pipeline", "Data crawler", "Alias manager")
+
+
+def _mode_key(label: str) -> str:
+    return label.lower().replace(" ", "_")
+
+
+def _set_app_mode(mode: str) -> None:
+    _sync_crawler_credentials()
+    st.session_state.app_mode = mode
+
+
+def _sync_crawler_credentials() -> None:
+    st.session_state.crawler_email_value = st.session_state.get("crawler_email_input", "")
+    st.session_state.crawler_api_key_value = st.session_state.get("crawler_api_key_input", "")
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -52,11 +70,35 @@ with st.sidebar:
     st.caption(_t("sidebar_subtitle"))
     st.divider()
 
-    st.radio(
-        "Mode",
-        options=["Run pipeline", "Alias manager"],
-        key="app_mode",
-    )
+    st.markdown("**Workspace**")
+    for mode in APP_MODES:
+        st.button(
+            mode,
+            key=f"mode_{_mode_key(mode)}",
+            type="primary" if st.session_state.app_mode == mode else "secondary",
+            width="stretch",
+            on_click=_set_app_mode,
+            args=(mode,),
+        )
+
+    if st.session_state.app_mode == "Data crawler":
+        st.divider()
+        st.text_input(
+            "NCBI email",
+            value=st.session_state.get("crawler_email_value", ""),
+            key="crawler_email_input",
+            placeholder="you@lab.org",
+            help="Required by NCBI Entrez requests.",
+            on_change=_sync_crawler_credentials,
+        )
+        st.text_input(
+            "NCBI API key",
+            value=st.session_state.get("crawler_api_key_value", ""),
+            key="crawler_api_key_input",
+            type="password",
+            help="Optional. Increases Entrez rate limit.",
+            on_change=_sync_crawler_credentials,
+        )
     st.divider()
 
 _inject_css()
@@ -86,6 +128,8 @@ with st.sidebar:
 # route to current stage
 if st.session_state.app_mode == "Alias manager":
     page_alias_manager()
+elif st.session_state.app_mode == "Data crawler":
+    page_data_crawler()
 else:
     stage = st.session_state.stage
     if stage == "upload":

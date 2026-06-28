@@ -67,6 +67,17 @@ def _init_state():
         virus_review_metadata=[],
         virus_review_guess="",
         approved_export_features=[],
+        crawler_count_result=None,
+        crawler_summary=None,
+        crawler_out_dir=None,
+        crawler_query_path=None,
+        crawler_query_label="",
+        crawler_email="",
+        crawler_api_key="",
+        crawler_email_value="",
+        crawler_api_key_value="",
+        crawler_count_signature=None,
+        crawler_summary_signature=None,
     )
     for k, v in defaults.items():
         if k not in st.session_state:

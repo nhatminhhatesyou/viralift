@@ -519,8 +519,15 @@ def _inject_css():
             .stDownloadButton > button {
                 border-radius: 10px;
                 border: 1px solid var(--vl-border-strong);
+                color: var(--vl-text);
                 font-weight: 750;
                 transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+            }
+
+            .stButton > button *,
+            .stDownloadButton > button * {
+                color: inherit !important;
+                -webkit-text-fill-color: currentColor !important;
             }
 
             .stButton > button:hover,
@@ -539,7 +546,14 @@ def _inject_css():
             .stButton > button[kind="primary"] {
                 border-color: var(--vl-accent-2);
                 background: linear-gradient(180deg, var(--vl-accent), var(--vl-accent-2));
-                color: #ffffff;
+                color: #ffffff !important;
+                -webkit-text-fill-color: #ffffff !important;
+            }
+
+            button[kind="primary"] *,
+            .stButton > button[kind="primary"] * {
+                color: #ffffff !important;
+                -webkit-text-fill-color: #ffffff !important;
             }
 
             .st-key-delete_virus_entry button {

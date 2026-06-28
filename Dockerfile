@@ -16,6 +16,7 @@ RUN pip install --no-cache-dir -r ui/requirements.txt
 
 # ── application code ─────────────────────────────────────────────
 COPY app  /viralift/app
+COPY gbcrawler /viralift/gbcrawler
 COPY ui   /viralift/ui
 
 # ── runtime ──────────────────────────────────────────────────────

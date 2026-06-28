@@ -222,7 +222,9 @@
       "envelope protein GP3",
       "glycosylated envelope protein GP3",
       "envelope glycoprotein GP3",
-      "N-glycosylated envelope protein GP3"
+      "N-glycosylated envelope protein GP3",
+      "envelope glycoprotein 3",
+      "GP3; ORF3"
     ],
     "ORF4": [
       "GP4",
@@ -237,7 +239,9 @@
       "envelope protein GP4",
       "glycosylated envelope protein GP4",
       "envelope glycoprotein GP4",
-      "N-glycosylated envelope protein GP4"
+      "N-glycosylated envelope protein GP4",
+      "envelope glycoprotein 4",
+      "GP4; ORF4"
     ],
     "ORF5": [
       "GP5",
@@ -254,7 +258,9 @@
       "envelope protein GP5",
       "glycosylated envelope protein GP5",
       "envelope glycoprotein GP5",
-      "N-glycosylated envelope protein GP5"
+      "N-glycosylated envelope protein GP5",
+      "major envelope glycoprotein 5",
+      "GP5; ORF5"
     ],
     "ORF5a": [
       "orf5a protein",
@@ -294,6 +300,10 @@
       "ORF7 nucleocapsid protein",
       "nucleocapsid prtein n",
       "nucleocapsid"
+    ],
+    "ORF2": [
+      "envelope glycoprotein 2",
+      "GP2; ORF2"
     ]
   }
 }

@@ -1,6 +1,7 @@
 # Auto-split from the original monolithic streamlit_app.py.
 import streamlit as st
 import tempfile
+from pathlib import Path
 from app.src.alias.alias_bootstrap import build_seed_alias_config_from_ref
 from app.src.features.ref_loader import prepare_reference_features
 from app.src.io.genbank_parser import load_genbank_records, load_single_genbank
@@ -26,7 +27,16 @@ def stage_upload():
     with col_query:
         st.markdown(f"**{_t('query_records')}**")
         st.caption(_t("query_caption"))
-        query_file = st.file_uploader("Query GenBank (.gb)", type=["gb", "gbk"], label_visibility="collapsed")
+        crawled_query_path = st.session_state.get("crawler_query_path")
+        if crawled_query_path:
+            st.success(f"Using crawler output: `{Path(crawled_query_path).name}`")
+            if st.button("Clear crawler query", key="clear_crawler_query"):
+                st.session_state.crawler_query_path = None
+                st.session_state.crawler_query_label = ""
+                st.rerun()
+            query_file = None
+        else:
+            query_file = st.file_uploader("Query GenBank (.gb)", type=["gb", "gbk"], label_visibility="collapsed")
 
     with st.expander(_t("file_requirements"), expanded=False):
         st.markdown(_t("file_requirements_body"))
@@ -49,7 +59,7 @@ def stage_upload():
         help=_t("use_ref_names_help"),
     )
 
-    ready = ref_file and query_file
+    ready = ref_file and (query_file or st.session_state.get("crawler_query_path"))
     if st.button(_t("run_button"), disabled=not ready, type="primary", width="stretch"):
         # persist files to temp dir
         if st.session_state.tmp is None:
@@ -57,8 +67,11 @@ def stage_upload():
 
         with st.spinner(_t("loading_files")):
             try:
-                ref_path   = _save_upload(ref_file)
-                query_path = _save_upload(query_file)
+                ref_path = _save_upload(ref_file)
+                if query_file:
+                    query_path = _save_upload(query_file)
+                else:
+                    query_path = Path(st.session_state.crawler_query_path)
 
                 ref_record    = load_single_genbank(ref_path)
                 query_records = load_genbank_records(query_path)
@@ -130,9 +143,10 @@ def stage_upload():
 
         st.rerun()
 
-    if ref_file and query_file:
+    if ref_file and (query_file or st.session_state.get("crawler_query_path")):
+        query_label = query_file.name if query_file else Path(st.session_state.crawler_query_path).name
         _render_context_panel([
             (_t("reference_file"), ref_file.name),
-            (_t("query_file"), query_file.name),
+            (_t("query_file"), query_label),
             (_t("name_mode"), _t("reference_names") if st.session_state.use_ref_names else _t("canonical_names")),
         ])

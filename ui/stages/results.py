@@ -25,19 +25,15 @@ def stage_results():
 
     df = _results_to_df(all_results, ref_name_map)
 
-    # ── header + new run button ──────────────────────────────────
-    h_col, btn_col = st.columns([5, 1])
-    with h_col:
-        _render_page_intro(
-            _t("run_review"),
-            _t("results_title"),
-            _t("results_body"),
-        )
+    # ── header ───────────────────────────────────────────────────
+    _render_page_intro(
+        _t("run_review"),
+        _t("results_title"),
+        _t("results_body"),
+    )
     if st.session_state.use_ref_names:
-        h_col.caption(_t("ref_names_caption"))
-    if btn_col.button(_t("new_run")):
-        _reset()
-        st.rerun()
+        st.caption(_t("ref_names_caption"))
+    st.button(_t("new_run"), key="results_new_run", on_click=_reset)
 
     total_records = len(all_results)
     failed_records = len(run_errors)

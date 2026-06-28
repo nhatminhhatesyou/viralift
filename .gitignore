@@ -30,3 +30,5 @@ app/validation/**/*.pyc
 # Note: app/src/tests/ is intentionally tracked so unit tests are version-controlled.
 
 aegis_trial/
+gbcrawler_out/
+gbcrawler_ledger.txt
