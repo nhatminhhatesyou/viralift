@@ -4,5 +4,5 @@
 # manager (see Dockerfile), not pip.
 biopython>=1.81,<1.90   # NOTE: pins below 1.90 because Bio.Blast.NCBIXML is used
 tqdm>=4.65,<5
-streamlit>=1.32,<2
+streamlit>=1.40,<2   # width="stretch" API requires >=1.40
 pandas>=2.0,<3

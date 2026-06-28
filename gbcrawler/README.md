@@ -28,23 +28,18 @@ splits by species, because ViraLift takes **one reference per species**.
 ## Install
 
 ```bash
-pip install biopython            # CLI only
-pip install -r requirements.txt  # + Streamlit UI
+pip install biopython
 ```
 
 > **Layout** — gbcrawler is a submodule of ViraLift: `viralift/gbcrawler/`.
 > Run all commands below from the `viralift/` folder.
 
-## Web UI (demo)
+## Web UI
 
-```bash
-# from viralift/
-streamlit run gbcrawler/ui_app.py
-```
-
-Build a query, press **① Count only** to preview the match count (nothing
-downloaded), then **② Crawl + split by species** to crawl, split by species,
-and download each `.gb` + `manifest.csv`. Same engine as the CLI below.
+The crawler is built into the ViraLift Streamlit app as the **"Data crawler"**
+mode (see `viralift/ui/data_crawler_page.py`) — launch the app and switch to
+that mode. This module (`gbcrawler/`) is the engine behind both the UI and the
+CLI below.
 
 ## Usage (CLI)
 

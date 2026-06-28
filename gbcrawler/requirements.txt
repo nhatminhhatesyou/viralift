@@ -1,5 +1,3 @@
-# gbcrawler dependencies
+# gbcrawler engine dependencies (CLI + the ViraLift "Data crawler" UI page).
+# The Streamlit UI itself is part of ViraLift — see viralift/ui/requirements.txt.
 biopython>=1.81
-# UI only:
-streamlit>=1.32
-pandas>=2.0

@@ -211,17 +211,21 @@ def page_data_crawler() -> None:
                         dates = picked_dates
             with f3:
                 region_choice = st.selectbox(
-                    "Region / country",
-                    ["Global", "Asia", "Vietnam", "Custom"],
+                    "Country",
+                    ["Any (global)", "Vietnam", "Custom country…"],
                     key="crawler_region_choice",
                 )
                 region = ""
-                if region_choice == "Asia":
-                    region = "Asia"
-                elif region_choice == "Vietnam":
+                if region_choice == "Vietnam":
                     region = "Vietnam"
-                elif region_choice == "Custom":
-                    region = st.text_input("Region text", placeholder="e.g. China")
+                elif region_choice == "Custom country…":
+                    region = st.text_input("Country name", placeholder="e.g. China")
+                if region:
+                    st.caption(
+                        "⚠️ Country filter is text-based and approximate on nuccore. "
+                        "For exact geographic subsets, filter by the /country "
+                        "qualifier after download (or use NCBI Virus)."
+                    )
 
             extra = st.text_input(
                 "Extra NCBI condition",

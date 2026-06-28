@@ -1,91 +1,93 @@
-# Hướng dẫn Pipeline Runner trong ViraLift
+# ViraLift Pipeline Runner Guide
 
-Tài liệu này giải thích phần chạy pipeline chính của ViraLift: từ lúc user đưa reference + query GenBank vào tool cho tới khi nhận TSV/FASTA output.
+> Navigation: [README](README.md) · **Pipeline Runner** · [Data Crawler](DATA_CRAWLER_GUIDE.md) · [Alias Manager](ALIAS_MANAGER_GUIDE.md)
 
-Trong UI hiện tại, phần này được gọi là **Run pipeline**. Tên này ổn cho nút/tab thao tác. Trong tài liệu kỹ thuật, có thể gọi rõ hơn là **Pipeline Runner** hoặc **ViraLift Pipeline**.
+This document explains ViraLift's main processing stage: from the moment the user feeds a reference + query GenBank into the tool until it returns the TSV/FASTA output.
 
-## Mục lục
+In the current UI this part is called **Run pipeline**. That label is fine for the button/tab. In technical docs it can be referred to more explicitly as the **Pipeline Runner** or the **ViraLift Pipeline**.
 
-- [Pipeline Runner là gì?](#pipeline-runner-là-gì)
-- [Input và output](#input-và-output)
-- [Flow tổng quát](#flow-tổng-quát)
-- [Các stage trong Web UI](#các-stage-trong-web-ui)
-- [Tool quyết định direct hay tblastn như thế nào?](#tool-quyết-định-direct-hay-tblastn-như-thế-nào)
-- [Alias config ảnh hưởng gì tới pipeline?](#alias-config-ảnh-hưởng-gì-tới-pipeline)
-- [Ý nghĩa các threshold](#ý-nghĩa-các-threshold)
-- [Cơ chế boundary rescue](#cơ-chế-boundary-rescue)
-- [Ý nghĩa các status](#ý-nghĩa-các-status)
-- [Cách đọc kết quả](#cách-đọc-kết-quả)
-- [Ví dụ chạy bằng CLI](#ví-dụ-chạy-bằng-cli)
-- [Các case thường gặp](#các-case-thường-gặp)
+## Table of contents
+
+- [What is the Pipeline Runner?](#what-is-the-pipeline-runner)
+- [Input and output](#input-and-output)
+- [Overall flow](#overall-flow)
+- [Stages in the Web UI](#stages-in-the-web-ui)
+- [How does the tool decide direct vs tblastn?](#how-does-the-tool-decide-direct-vs-tblastn)
+- [How does the alias config affect the pipeline?](#how-does-the-alias-config-affect-the-pipeline)
+- [What the thresholds mean](#what-the-thresholds-mean)
+- [Boundary rescue](#boundary-rescue)
+- [What the statuses mean](#what-the-statuses-mean)
+- [Reading the results](#reading-the-results)
+- [Running from the CLI](#running-from-the-cli)
+- [Common cases](#common-cases)
 - [Best practices](#best-practices)
 
-## Pipeline Runner là gì?
+## What is the Pipeline Runner?
 
-Pipeline Runner là phần xử lý chính của ViraLift. Nó nhận:
-
-```text
-1 reference GenBank + nhiều query GenBank records
-```
-
-rồi tạo output gồm:
+The Pipeline Runner is ViraLift's core processing component. It takes:
 
 ```text
-gene name chuẩn hóa + tọa độ trên query + sequence + trạng thái mapping
+1 reference GenBank + many query GenBank records
 ```
 
-Pipeline tự xử lý hai loại query:
+and produces output consisting of:
 
 ```text
-Query đã có annotation hữu ích  -> direct extraction
-Query thiếu annotation hữu ích  -> tblastn lifting từ reference
+standardised gene names + coordinates on the query + sequence + mapping status
 ```
 
-## Input và output
+The pipeline handles two kinds of query automatically:
+
+```text
+Query already has useful annotation  -> direct extraction
+Query lacks useful annotation        -> tblastn lifting from the reference
+```
+
+## Input and output
 
 ### Input
 
-| Input | Ý nghĩa |
+| Input | Meaning |
 |---|---|
-| Reference GenBank | Một record chuẩn, có annotation tốt, làm nguồn gene chuẩn |
-| Query GenBank | Một hoặc nhiều records cần chuẩn hóa/lift annotation |
-| Alias config | File JSON chuẩn hóa tên gene cho virus tương ứng |
-| Thresholds | Điều kiện nhận tblastn hit: coverage, identity, e-value, rescue window |
+| Reference GenBank | A single, well-annotated record used as the source of canonical genes |
+| Query GenBank | One or more records that need name standardisation / annotation lifting |
+| Alias config | JSON file that standardises gene names for the matching virus |
+| Thresholds | Conditions for accepting a tblastn hit: coverage, identity, e-value, rescue window |
 
 ### Output
 
-| Output | Ý nghĩa |
+| Output | Meaning |
 |---|---|
-| TSV canonical | Bảng kết quả dùng tên canonical hoặc tên ref tùy setting |
-| TSV raw | Bảng kết quả ưu tiên tên gốc nếu query có annotation |
-| FASTA | Sequence gene đã extract, có filter theo coverage/status |
-| Run summary | Thống kê số feature OK, rescued, no hit, cần review |
+| TSV canonical | Result table using canonical names (or reference names, depending on the setting) |
+| TSV raw | Result table that prefers the original names when the query has annotation |
+| FASTA | Extracted gene sequences, filterable by coverage/status |
+| Run summary | Counts of features that are OK, rescued, no-hit, or need review |
 
-## Flow tổng quát
+## Overall flow
 
 ```text
 Upload reference + query
         |
         v
-Detect virus bằng registry keyword
+Detect virus via registry keywords
         |
         v
-Load alias config tương ứng
+Load the matching alias config
         |
         v
 Parse reference features
         |
         v
-Chuẩn hóa tên reference bằng alias config
+Standardise reference names with the alias config
         |
         v
-Với từng query record:
+For each query record:
     |
-    +-- Có annotation hữu ích?
+    +-- Has useful annotation?
     |       |
-    |       +-- Có -> direct extraction
+    |       +-- Yes -> direct extraction
     |       |
-    |       +-- Không -> tblastn lifting
+    |       +-- No  -> tblastn lifting
     |
     v
 Validate coordinate / codon / coverage
@@ -94,16 +96,16 @@ Validate coordinate / codon / coverage
 Show results + export TSV/FASTA
 ```
 
-## Các stage trong Web UI
+## Stages in the Web UI
 
 ### 1. Upload
 
-User upload:
+The user uploads:
 
-- Reference GenBank file: một record.
-- Query GenBank file: một hoặc nhiều records.
+- Reference GenBank file: a single record.
+- Query GenBank file: one or more records.
 
-Ở đây cũng có advanced options:
+Advanced options are also available here:
 
 - `min_coverage`
 - `min_identity`
@@ -111,105 +113,105 @@ User upload:
 - `rescue_window`
 - `Use ref gene names as output`
 
-Nếu tool nhận diện được virus, pipeline đi tiếp. Nếu không nhận diện được virus, UI chuyển sang stage review/tạo alias config mới.
+If the tool recognises the virus, the pipeline continues. If it cannot recognise the virus, the UI moves to the review / new-alias-config stage.
 
 ### 2. Virus review
 
-Chỉ hiện khi reference không match keyword nào trong registry.
+Shown only when the reference matches no keyword in the registry.
 
-User chọn:
+The user chooses:
 
-- Dùng alias config đã có nếu đây là virus cũ nhưng metadata lạ.
-- Tạo alias config mới nếu đây là virus mới.
+- Use an existing alias config if this is a known virus with unusual metadata.
+- Create a new alias config if this is a new virus.
 
 ### 3. Alias seed
 
-Chỉ hiện khi tạo virus mới.
+Shown only when creating a new virus.
 
-Tool lấy tên feature trong reference làm canonical ban đầu, rồi có thể chạy tblastn để gợi ý alias từ query annotation.
+The tool takes the reference feature names as the initial canonical names, then can run tblastn to suggest aliases from the query annotation.
 
 ### 4. Resolve
 
-Chỉ hiện khi query hoặc reference có tên chưa nằm trong alias config.
+Shown only when the query or reference contains names not yet in the alias config.
 
-User có thể:
+The user can:
 
-- Map tên lạ vào canonical có sẵn.
-- Add tên mới làm canonical.
-- Save mapping vào alias config để lần sau tự nhận.
-- Ignore nếu tên quá chung hoặc không đáng tin.
+- Map an unknown name to an existing canonical.
+- Add a new name as a canonical.
+- Save the mapping to the alias config so it is recognised automatically next time.
+- Ignore a name if it is too generic or untrustworthy.
 
 ### 5. Run
 
-Tool chạy thật trên từng query record:
+The tool runs for real on each query record:
 
-- record có annotation tốt -> direct
-- record thiếu annotation -> tblastn
+- record with good annotation -> direct
+- record lacking annotation -> tblastn
 
-UI hiển thị progress theo record.
+The UI shows per-record progress.
 
 ### 6. Review
 
-Hiển thị:
+Displays:
 
-- Tổng số records xử lý.
-- Tổng số features tìm được.
+- Total records processed.
+- Total features found.
 - Pass rate.
-- Số feature cần review.
-- Bảng chi tiết từng record.
-- Export TSV/FASTA.
+- Number of features needing review.
+- A detailed per-record table.
+- TSV/FASTA export.
 
-## Tool quyết định direct hay tblastn như thế nào?
+## How does the tool decide direct vs tblastn?
 
-ViraLift dùng hàm strategy để chọn đường xử lý cho từng query record.
+ViraLift uses a strategy function to pick the processing path for each query record.
 
 ### Direct extraction
 
-Dùng khi query đã có annotation gene-level hữu ích.
+Used when the query already has useful gene-level annotation.
 
-Ví dụ query có CDS:
+For example, a query with a CDS like:
 
 ```text
 gene = ORF5
 product = major envelope glycoprotein
 ```
 
-Nếu alias config resolve được tên này về canonical, tool không cần alignment. Nó chỉ:
+If the alias config can resolve this name to a canonical, the tool needs no alignment. It only:
 
-1. Parse tọa độ annotation có sẵn trong query.
-2. Chuẩn hóa tên bằng alias config.
-3. Extract sequence trực tiếp từ query.
+1. Parses the coordinates already present in the query annotation.
+2. Standardises the name with the alias config.
+3. Extracts the sequence directly from the query.
 
-Ưu điểm:
+Advantages:
 
-- Nhanh.
-- Giữ đúng annotation gốc của query.
-- Phù hợp khi query đã được annotate tốt.
+- Fast.
+- Preserves the query's original annotation.
+- Ideal when the query is already well annotated.
 
 ### tblastn lifting
 
-Dùng khi query không có annotation hữu ích.
+Used when the query has no useful annotation.
 
-Tool sẽ:
+The tool will:
 
-1. Lấy gene từ reference.
-2. Dịch gene reference sang protein.
-3. Chạy `tblastn` protein reference against query genome.
-4. Merge HSP để suy ra tọa độ gene trên query.
-5. Extract sequence.
-6. Validate start/stop codon nếu phù hợp.
+1. Take the gene from the reference.
+2. Translate the reference gene to protein.
+3. Run `tblastn` with the reference protein against the query genome.
+4. Merge HSPs to infer the gene coordinates on the query.
+5. Extract the sequence.
+6. Validate the start/stop codon where appropriate.
 
-Ưu điểm:
+Advantages:
 
-- Dùng được cho query chưa annotate.
-- Protein conserved hơn nucleotide, phù hợp virus khác dòng/serotype.
-- Xử lý tốt hơn minimap2 với gene ngắn hoặc biến dị.
+- Works on queries that are not yet annotated.
+- Protein is more conserved than nucleotide, so it suits divergent lineages/serotypes.
+- Handles short or variable genes better than minimap2.
 
-## Alias config ảnh hưởng gì tới pipeline?
+## How does the alias config affect the pipeline?
 
-Alias config quyết định tên raw trong GenBank sẽ được chuẩn hóa thành canonical nào.
+The alias config decides which canonical a raw GenBank name is standardised to.
 
-Ví dụ PED:
+PED example:
 
 ```text
 envelope protein       -> E
@@ -219,93 +221,93 @@ accessory protein 3a   -> ORF3
 ORF1a/1b, Pol1, ORF1ab -> ORF1ab
 ```
 
-Nếu alias config thiếu tên:
+If the alias config is missing a name:
 
-- Query vẫn có thể được extract.
-- Nhưng tên có thể bị `unresolved_name`.
-- UI sẽ hỏi user map tên đó vào canonical nào.
+- The query can still be extracted.
+- But the name may come out as `unresolved_name`.
+- The UI will ask the user which canonical to map it to.
 
-Nếu alias config sai:
+If the alias config is wrong:
 
-- Direct extraction có thể gọi sai gene.
-- Validation/pipeline result sẽ bị nhiễu.
-- Nên sửa trong Alias Manager.
+- Direct extraction may call the wrong gene.
+- The validation / pipeline result gets noisy.
+- Fix it in the Alias Manager.
 
-## Ý nghĩa các threshold
+## What the thresholds mean
 
-| Threshold | Ý nghĩa | Default |
+| Threshold | Meaning | Default |
 |---|---|---|
-| `min_coverage` | Tỉ lệ protein reference phải được tblastn cover | `0.5` |
-| `min_identity` | Protein identity tối thiểu của hit | `0.3` |
-| `evalue` | Ngưỡng ý nghĩa thống kê của tblastn hit | `1e-5` |
-| `rescue_window` | Vùng bp quanh start để tìm ATG nếu boundary bị lệch | `200` |
+| `min_coverage` | Fraction of the reference protein that tblastn must cover | `0.5` |
+| `min_identity` | Minimum protein identity of a hit | `0.3` |
+| `evalue` | Statistical-significance threshold for a tblastn hit | `1e-5` |
+| `rescue_window` | bp window around the start to search for an ATG when the boundary is off | `200` |
 
-Gợi ý:
+Tips:
 
-- Nếu virus rất gần nhau: có thể giữ threshold mặc định.
-- Nếu query xa reference: có thể cần giảm `min_identity`.
-- Nếu nhiều hit nhiễu: tăng `min_coverage` hoặc kiểm tra reference.
+- If the viruses are very close: the defaults are usually fine.
+- If the query is distant from the reference: you may need to lower `min_identity`.
+- If there are many noisy hits: raise `min_coverage` or check the reference.
 
-## Cơ chế boundary rescue
+## Boundary rescue
 
-Sau khi `tblastn` tìm được vùng gene trên query, ViraLift vẫn phải kiểm tra boundary vì HSP của tblastn là local alignment, không phải lúc nào cũng bắt đúng đầu/cuối CDS.
+After `tblastn` finds the gene region on the query, ViraLift still has to check the boundary, because a tblastn HSP is a local alignment and does not always capture the exact CDS start/end.
 
-Với feature type `CDS`, pipeline làm thêm bước codon validation:
+For features of type `CDS`, the pipeline adds a codon-validation step:
 
 ```text
-sequence phải:
-1. bắt đầu bằng ATG
-2. kết thúc bằng stop codon: TAA/TAG/TGA
-3. có length chia hết cho 3
+the sequence must:
+1. start with ATG
+2. end with a stop codon: TAA/TAG/TGA
+3. have a length divisible by 3
 ```
 
-Nếu check này không đạt, tool có thể rescue boundary.
+If this check fails, the tool may rescue the boundary.
 
 ### Start codon rescue
 
-Start rescue chỉ trigger khi sequence hiện tại **không bắt đầu bằng ATG**.
+Start rescue only triggers when the current sequence **does not start with ATG**.
 
-Khi đó tool tìm các ATG quanh `q_start` trong phạm vi `rescue_window`.
+It then searches for ATGs around `q_start` within `rescue_window`.
 
-Điểm quan trọng: tool không đơn giản chọn ATG gần nhất. Nó chấm điểm candidate theo thứ tự:
+Key point: the tool does not simply pick the nearest ATG. It scores candidates in this order:
 
 ```text
-1. ưu tiên sequence in-frame
-2. ưu tiên length gần reference CDS length nhất
-3. nếu vẫn ngang nhau, ưu tiên ATG gần q_start hơn
-4. nếu vẫn ngang nhau, ưu tiên upstream trước downstream
+1. prefer in-frame sequences
+2. prefer the length closest to the reference CDS length
+3. if still tied, prefer the ATG closer to q_start
+4. if still tied, prefer upstream over downstream
 ```
 
-Reference expected length được tính như sau:
+The expected reference length is computed as:
 
 ```text
 expected_length = protein_length * 3 + 3
 ```
 
-Vì protein được translate không gồm stop codon, nên cần cộng thêm `+3` cho stop codon.
+Because the translated protein excludes the stop codon, we add `+3` for the stop codon.
 
-Ví dụ:
+Example:
 
 ```text
 Reference ORF5 length: 603 bp
-tblastn lifted span: 600 bp, không bắt đầu bằng ATG
+tblastn lifted span: 600 bp, does not start with ATG
 rescue_window: 200 bp
 ```
 
-Tool sẽ tìm các ATG quanh start. Nếu có một ATG làm cho sequence dài gần `603 bp` và vẫn in-frame, candidate đó sẽ được ưu tiên hơn một ATG gần hơn nhưng làm length lệch nhiều.
+The tool searches for ATGs around the start. If one ATG makes the sequence close to `603 bp` and still in-frame, that candidate is preferred over a nearer ATG that distorts the length a lot.
 
-Nếu rescue thành công và sequence sau rescue hợp lệ:
+If the rescue succeeds and the rescued sequence is valid:
 
 ```text
 status = ok_rescued
-rescue_offset = vị trí start mới lệch bao nhiêu bp so với start ban đầu
+rescue_offset = how many bp the new start differs from the original start
 ```
 
 ### Stop codon rescue
 
-Stop rescue chạy trước start validation. Nó dùng khi HSP/tblastn span bị thiếu stop codon ở cuối.
+Stop rescue runs before start validation. It is used when the HSP/tblastn span is missing the stop codon at the end.
 
-Tool scan forward theo frame từ `q_end`:
+The tool scans forward in-frame from `q_end`:
 
 ```text
 q_end + 3
@@ -314,144 +316,144 @@ q_end + 9
 ...
 ```
 
-tối đa 30 codons. Nếu gặp `TAA`, `TAG`, hoặc `TGA`, tool có thể update `q_end`.
+up to 30 codons. If it hits `TAA`, `TAG`, or `TGA`, it may update `q_end`.
 
-Stop rescue hiện tại không còn lấy stop codon đầu tiên một cách máy móc. Nếu có reference length, nó chấm điểm các stop codon candidate và ưu tiên stop làm cho CDS length gần reference nhất:
+Stop rescue no longer takes the first stop codon mechanically. If a reference length is available, it scores stop-codon candidates and prefers the stop that makes the CDS length closest to the reference:
 
 ```text
 expected_length = protein_length * 3 + 3
 ```
 
-Nếu start rescue đổi `q_start`, tool sẽ retry stop rescue với start mới, vì đổi start có thể đổi frame và làm stop codon cũ không còn hợp lệ.
+If start rescue changes `q_start`, the tool retries stop rescue with the new start, because changing the start can change the frame and invalidate the old stop codon.
 
-Nếu không có reference length, stop rescue fallback về hành vi an toàn hơn: chọn stop codon in-frame gần nhất phía sau.
+If there is no reference length, stop rescue falls back to safer behaviour: pick the nearest in-frame stop codon downstream.
 
-### Ý nghĩa `start`, `stop`, `frame` trong boundary check
+### What `start`, `stop`, `frame` mean in the boundary check
 
-Trong UI, mỗi tblastn feature có thể có cột `boundary_check`:
+In the UI, each tblastn feature can have a `boundary_check` column:
 
 ```text
 start:yes, stop:no, frame:yes
 ```
 
-Ý nghĩa:
+Meaning:
 
-- `start:yes`: đoạn CDS bắt đầu bằng start codon `ATG`.
-- `stop:yes`: đoạn CDS kết thúc bằng một stop codon hợp lệ: `TAA`, `TAG`, hoặc `TGA`.
-- `frame:yes`: tổng chiều dài CDS chia hết cho 3, tức là sequence có thể được đọc theo từng bộ ba nucleotide/codon.
+- `start:yes`: the CDS starts with the start codon `ATG`.
+- `stop:yes`: the CDS ends with a valid stop codon: `TAA`, `TAG`, or `TGA`.
+- `frame:yes`: the total CDS length is divisible by 3, i.e. the sequence can be read as whole codons.
 
-Ví dụ:
+Example:
 
 ```text
 ATG AAA GGG TAA
 ```
 
-Đoạn này có 12 bp, chia hết cho 3, bắt đầu bằng `ATG`, kết thúc bằng `TAA`, nên:
+This is 12 bp, divisible by 3, starts with `ATG`, ends with `TAA`, so:
 
 ```text
 start:yes, stop:yes, frame:yes
 ```
 
-Nếu length không chia hết cho 3, ví dụ thiếu 1-2 bp ở đầu/cuối, UI sẽ hiện:
+If the length is not divisible by 3 — for example missing 1-2 bp at either end — the UI shows:
 
 ```text
 frame:no
 ```
 
-Nếu `start:no`, start rescue sẽ tìm `ATG` quanh start trong `rescue_window`. Default hiện tại là `200 bp` vì một số viral records có boundary lệch xa hơn 50 bp.
+If `start:no`, start rescue searches for an `ATG` around the start within `rescue_window`. The current default is `200 bp` because some viral records have boundaries off by more than 50 bp.
 
 ### Terminal extrapolation
 
-Terminal extrapolation là cơ chế khác với codon rescue.
+Terminal extrapolation is a mechanism distinct from codon rescue.
 
-Nó dùng HSP query coordinates để biết protein alignment thiếu bao nhiêu amino acid ở đầu/cuối, rồi extend boundary:
+It uses the HSP query coordinates to learn how many amino acids the protein alignment is missing at each end, then extends the boundary by:
 
 ```text
 missing_aa * 3 bp
 ```
 
-Cơ chế này dùng cho nhánh không validate codon, ví dụ `mat_peptide`, vì mat_peptide không nhất thiết có ATG/stop codon riêng như CDS.
+This mechanism is used for the non-codon-validated path, e.g. `mat_peptide`, because a mat_peptide does not necessarily have its own ATG/stop codon like a CDS.
 
-### Vì sao ORF1b vẫn có thể lệch start?
+### Why can ORF1b still have an off start?
 
-Với các gene như PED/PRRSV `ORF1b`, start boundary có thể liên quan đến vùng `ORF1a/ORF1b` và frameshift/annotation convention. Vì vậy:
+For genes like PED/PRRSV `ORF1b`, the start boundary can involve the `ORF1a/ORF1b` region and a frameshift/annotation convention. So:
 
 ```text
-end boundary thường ổn định hơn
-start boundary dễ lệch hơn
+the end boundary is usually more stable
+the start boundary is more prone to drift
 ```
 
-Nếu tblastn span đã bắt đầu bằng ATG hợp lệ, start rescue sẽ **không trigger**, kể cả khi GenBank truth dùng một start coordinate khác.
+If the tblastn span already starts with a valid ATG, start rescue will **not trigger**, even when the GenBank truth uses a different start coordinate.
 
-Nếu start rescue có trigger, nó vẫn chọn ATG dựa trên in-frame + length gần ref. Với ORF1b, exact GenBank start đôi khi phản ánh annotation convention hơn là một start codon sinh học rõ ràng. Vì vậy có thể thấy:
+If start rescue does trigger, it still picks the ATG based on in-frame + length close to the reference. For ORF1b, the exact GenBank start sometimes reflects an annotation convention rather than a clear biological start codon. So you may see:
 
 ```text
 coord_correct = True
 exact_match = False
 delta_end = 0
-delta_start lệch vài bp hoặc nhiều bp
+delta_start off by a few bp or many bp
 ```
 
-Pattern này nên được đọc là boundary ambiguity/granularity issue trước khi kết luận tool lift sai.
+This pattern should be read as a boundary ambiguity / granularity issue before concluding the tool lifted incorrectly.
 
-## Ý nghĩa các status
+## What the statuses mean
 
-| Status | Ý nghĩa | Cần review? |
+| Status | Meaning | Needs review? |
 |---|---|---|
-| `ok` | Feature được tìm thấy và boundary hợp lệ | Không |
-| `ok_rescued` | Feature được tìm thấy, boundary được chỉnh và pass start/stop/frame checks | Thường không, nhưng nên chú ý nếu nhiều |
-| `direct` | Feature lấy trực tiếp từ query annotation | Không |
-| `invalid_boundaries` | Có hit nhưng boundary/codon không hợp lệ | Có |
-| `low_coverage` | Hit có coverage thấp hơn threshold | Có |
-| `no_hit` | Không tìm thấy hit bằng tblastn | Có |
-| `translation_fail` | Reference feature không translate được sang protein | Có |
-| `unresolved_name` | Query có tên chưa map được bằng alias config | Có |
-| `ambiguous_name` | Tên nằm trong ambiguous list, cần user quyết định | Có |
-| `not_in_reference` | Query resolve được canonical name nhưng selected reference không có gene đó | Không; vẫn tính là mapped/pass, nhưng cần ghi chú |
+| `ok` | Feature found and boundary valid | No |
+| `ok_rescued` | Feature found; boundary adjusted and passed start/stop/frame checks | Usually no, but worth noting if frequent |
+| `direct` | Feature taken directly from the query annotation | No |
+| `invalid_boundaries` | Hit found but boundary/codon invalid | Yes |
+| `low_coverage` | Hit coverage below the threshold | Yes |
+| `no_hit` | No tblastn hit found | Yes |
+| `translation_fail` | Reference feature could not be translated to protein | Yes |
+| `unresolved_name` | Query has a name that the alias config could not map | Yes |
+| `ambiguous_name` | Name is in the ambiguous list; the user must decide | Yes |
+| `not_in_reference` | Query resolved to a canonical name, but the selected reference has no such gene | No; still counts as mapped/pass, but worth noting |
 
-Lưu ý: `not_in_reference` không nhất thiết là tool sai. Ví dụ query có `ORF1ab` nhưng reference chỉ có `ORF1a` và `ORF1b`, đây là mismatch về annotation granularity.
+Note: `not_in_reference` does not necessarily mean the tool is wrong. For example, the query has `ORF1ab` but the reference only has `ORF1a` and `ORF1b` — this is an annotation-granularity mismatch.
 
-## Cách đọc kết quả
+## Reading the results
 
-Kết quả chính gồm các cột:
+The main result has these columns:
 
-| Cột | Ý nghĩa |
+| Column | Meaning |
 |---|---|
-| `query_id` | Record query |
-| `name` | Tên gene sau chuẩn hóa |
-| `source_name` | Tên raw ban đầu nếu có |
-| `ref_start`, `ref_end` | Tọa độ feature trên reference |
-| `start`, `end` | Tọa độ feature trên query |
-| `strand` | Chiều gene |
-| `method` | `direct` hoặc `tblastn` |
-| `status` | Trạng thái mapping |
-| `coverage` | Tỉ lệ protein reference được cover |
-| `identity` | Protein identity của tblastn hit |
-| `has_start_codon`, `has_stop_codon` | Check codon boundary |
-| `rescue_offset` | Offset của start codon nếu start rescue đổi vị trí start |
+| `query_id` | Query record |
+| `name` | Gene name after standardisation |
+| `source_name` | Original raw name, if any |
+| `ref_start`, `ref_end` | Feature coordinates on the reference |
+| `start`, `end` | Feature coordinates on the query |
+| `strand` | Gene strand |
+| `method` | `direct` or `tblastn` |
+| `status` | Mapping status |
+| `coverage` | Fraction of the reference protein covered |
+| `identity` | Protein identity of the tblastn hit |
+| `has_start_codon`, `has_stop_codon` | Codon boundary checks |
+| `rescue_offset` | Start-codon offset if start rescue moved the start |
 
 ### TSV canonical vs TSV raw
 
-TSV canonical dùng tên chuẩn sau alias mapping.
+TSV canonical uses the standardised names after alias mapping.
 
-TSV raw ưu tiên tên gốc từ query nếu có, hữu ích khi muốn audit annotation ban đầu.
+TSV raw prefers the original names from the query when available — useful when you want to audit the original annotation.
 
 ### FASTA export
 
-FASTA export cho phép:
+FASTA export lets you:
 
-- Chọn gene cần xuất.
-- Chọn một file chung hoặc một file mỗi gene.
-- Lọc theo coverage/identity.
-- Include hoặc exclude `ok_rescued`.
+- Select which genes to export.
+- Choose a single combined file or one file per gene.
+- Filter by coverage/identity.
+- Include or exclude `ok_rescued`.
 
-Header FASTA:
+FASTA header:
 
 ```text
 >{record_id}|{gene}|{start}|{end}|{strand}
 ```
 
-## Ví dụ chạy bằng CLI
+## Running from the CLI
 
 ### Auto-detect alias config
 
@@ -462,7 +464,7 @@ venv/bin/python -m app.src.main \
   --output output/ped_run
 ```
 
-### Chỉ định alias config thủ công
+### Specify the alias config manually
 
 ```bash
 venv/bin/python -m app.src.main \
@@ -472,7 +474,7 @@ venv/bin/python -m app.src.main \
   --alias-config app/config/porcine_epidemic_diarrhea_virus_alias.json
 ```
 
-### Tăng threshold coverage
+### Raise the coverage threshold
 
 ```bash
 venv/bin/python -m app.src.main \
@@ -482,61 +484,61 @@ venv/bin/python -m app.src.main \
   --min-coverage 0.9
 ```
 
-## Các case thường gặp
+## Common cases
 
-### Query đã có annotation nhưng tên chưa chuẩn
+### Query has annotation but the name is non-standard
 
-Ví dụ:
+Example:
 
 ```text
 gene = GP5
 product = major envelope glycoprotein
 ```
 
-Nếu alias config có `GP5 -> ORF5`, pipeline sẽ đi direct và output `ORF5`.
+If the alias config has `GP5 -> ORF5`, the pipeline goes direct and outputs `ORF5`.
 
-### Query không có annotation
+### Query has no annotation
 
-Pipeline dùng tblastn để lift toàn bộ gene từ reference sang query.
+The pipeline uses tblastn to lift the whole gene from the reference onto the query.
 
-Output name lấy từ reference canonical.
+The output name comes from the reference canonical.
 
-### Query có gene gộp nhưng reference tách gene
+### Query has a merged gene but the reference splits it
 
-Ví dụ:
+Example:
 
 ```text
 query: ORF1ab
 ref:   ORF1a + ORF1b
 ```
 
-Không nên ép `ORF1ab` thành `ORF1a`. Nên giữ canonical riêng `ORF1ab`. Nếu reference không có `ORF1ab`, status `not_in_reference` là hợp lý.
+Do not force `ORF1ab` into `ORF1a`. Keep a separate canonical `ORF1ab`. If the reference has no `ORF1ab`, the status `not_in_reference` is reasonable.
 
-### Virus không có trong registry
+### Virus not in the registry
 
-UI sẽ chuyển sang Virus Review:
+The UI moves to Virus Review:
 
-- Chọn config có sẵn nếu auto-detect thiếu keyword.
-- Hoặc tạo alias config mới bằng Alias Seed.
+- Pick an existing config if auto-detect is missing a keyword.
+- Or create a new alias config via Alias Seed.
 
-### Nhiều `invalid_boundaries`
+### Many `invalid_boundaries`
 
-Có thể do:
+This can be due to:
 
-- Reference boundary khác query truth.
-- Start codon khó xác định.
-- Gene bị truncated.
-- tblastn local hit thiếu terminal amino acids.
-- Rescue window chưa đủ hoặc rescue logic chọn boundary chưa tốt.
+- The reference boundary differs from the query truth.
+- A hard-to-determine start codon.
+- A truncated gene.
+- A tblastn local hit missing terminal amino acids.
+- An insufficient rescue window or rescue logic picking a suboptimal boundary.
 
-Nên xem theo từng gene, không chỉ nhìn tổng count.
+Look at it gene by gene, not just the total count.
 
 ## Best practices
 
-- Dùng reference có annotation đầy đủ và đáng tin.
-- Với virus mới, tạo alias config trước khi chạy production.
-- Không map gene gộp vào gene lẻ chỉ để làm score đẹp.
-- Khi pass rate thấp, đọc status breakdown trước rồi mới sửa threshold.
-- `ok_rescued` thường chấp nhận được, nhưng nếu xuất hiện hàng loạt ở cùng một gene thì nên review reference/query boundary.
-- Export FASTA nên lọc status `ok`, `direct`, và tùy mục tiêu có thể include `ok_rescued`.
-- Nếu UI auto-detect sai virus, sửa keyword trong Alias Manager thay vì chọn thủ công mỗi lần.
+- Use a reference with complete, trustworthy annotation.
+- For a new virus, create the alias config before running in production.
+- Do not map a merged gene onto a split gene just to make the score look nice.
+- When the pass rate is low, read the status breakdown first before tweaking thresholds.
+- `ok_rescued` is usually acceptable, but if it shows up en masse for the same gene, review the reference/query boundary.
+- For FASTA export, filter to `ok` and `direct`, and include `ok_rescued` depending on your goal.
+- If the UI auto-detects the wrong virus, fix the keyword in the Alias Manager instead of selecting manually each time.

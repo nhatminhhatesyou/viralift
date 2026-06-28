@@ -1,87 +1,89 @@
-# Hướng dẫn Alias Manager trong ViraLift
+# ViraLift Alias Manager Guide
 
-Tài liệu này giải thích module Alias Manager: nó dùng để làm gì, khi nào cần dùng, và cách đọc/sửa alias map cho virus mới hoặc virus đã có config.
+> Navigation: [README](README.md) · [Pipeline Runner](PIPELINE_RUNNER_GUIDE.md) · [Data Crawler](DATA_CRAWLER_GUIDE.md) · **Alias Manager**
 
-## Mục lục
+This document explains the Alias Manager module: what it is for, when to use it, and how to read/edit the alias map for a new virus or one that already has a config.
 
-- [Alias map là gì?](#alias-map-là-gì)
-- [Vì sao cần Alias Manager?](#vì-sao-cần-alias-manager)
-- [Các file chính](#các-file-chính)
-- [Flow khi tool gặp virus đã biết](#flow-khi-tool-gặp-virus-đã-biết)
-- [Flow khi tool gặp virus mới](#flow-khi-tool-gặp-virus-mới)
-- [Cách đọc Alias Manager UI](#cách-đọc-alias-manager-ui)
-- [Ý nghĩa các loại tên](#ý-nghĩa-các-loại-tên)
-- [Cách tool gợi ý alias cho virus mới](#cách-tool-gợi-ý-alias-cho-virus-mới)
+## Table of contents
+
+- [What is an alias map?](#what-is-an-alias-map)
+- [Why do you need the Alias Manager?](#why-do-you-need-the-alias-manager)
+- [Key files](#key-files)
+- [Flow for a known virus](#flow-for-a-known-virus)
+- [Flow for a new virus](#flow-for-a-new-virus)
+- [Reading the Alias Manager UI](#reading-the-alias-manager-ui)
+- [What the name types mean](#what-the-name-types-mean)
+- [How the tool suggests aliases for a new virus](#how-the-tool-suggests-aliases-for-a-new-virus)
 - [Granularity mismatch](#granularity-mismatch)
-- [Ví dụ thực tế](#ví-dụ-thực-tế)
-- [Các cảnh báo thường gặp](#các-cảnh-báo-thường-gặp)
+- [Worked example](#worked-example)
+- [Common warnings](#common-warnings)
 - [Best practices](#best-practices)
 
-## Alias map là gì?
+## What is an alias map?
 
-Trong GenBank, cùng một gene có thể được ghi bằng nhiều tên khác nhau:
+In GenBank, the same gene can be written under many different names:
 
-| Canonical name | Alias có thể gặp |
+| Canonical name | Aliases you might see |
 |---|---|
 | `ORF5` | `GP5`, `ORF5 protein`, `major envelope glycoprotein` |
 | `N` | `nucleoprotein`, `N protein` |
 | `S` | `spike protein`, `S protein` |
 | `ORF1ab` | `ORF1a/1b`, `ORF1a/b`, `Pol1`, `polyprotein 1ab` |
 
-ViraLift cần chuẩn hóa các tên này về một tên chuẩn duy nhất gọi là `canonical name`.
+ViraLift needs to standardise these names to a single canonical name, called the `canonical name`.
 
-Ví dụ:
+Example:
 
 ```text
 GP5 -> ORF5
 ORF5 protein -> ORF5
-major envelope glycoprotein -> có thể ignore nếu quá mô tả/generic
+major envelope glycoprotein -> may be ignored if too descriptive/generic
 ```
 
-Alias map là theo từng virus, không phải dùng chung cho mọi virus. Một tên như `envelope protein` có thể quá mơ hồ ở virus này, nhưng lại map ổn định vào `E` ở virus khác nếu reference/query evidence chứng minh rõ.
+The alias map is per virus, not shared across all viruses. A name like `envelope protein` may be too vague for one virus but map reliably to `E` in another when reference/query evidence is clear.
 
-## Vì sao cần Alias Manager?
+## Why do you need the Alias Manager?
 
-Alias Manager giúp user:
+The Alias Manager lets you:
 
-- Xem virus hiện đang có alias config nào.
-- Sửa canonical name và alias nếu tool map sai.
-- Xóa alias bị thêm nhầm.
-- Quản lý `ignored_names` và `ambiguous_names`.
-- Sửa keyword dùng để tự động nhận diện virus.
-- Tạo alias config cho virus mới từ reference + query annotation.
+- See which viruses currently have an alias config.
+- Fix canonical names and aliases when the tool maps incorrectly.
+- Delete aliases added by mistake.
+- Manage `ignored_names` and `ambiguous_names`.
+- Edit the keywords used to auto-detect a virus.
+- Create an alias config for a new virus from the reference + query annotation.
 
-Nói ngắn gọn: đây là nơi quản lý "từ điển tên gene" của từng virus.
+In short: this is where you manage each virus's "gene-name dictionary".
 
-## Các file chính
+## Key files
 
-| File | Vai trò |
+| File | Role |
 |---|---|
-| `app/config/virus_alias_registry.json` | Registry liệt kê virus, keyword nhận diện, và đường dẫn alias config |
-| `app/config/*_alias.json` | Alias config riêng cho từng virus |
-| `app/src/alias/alias_manager.py` | Hàm đọc/sửa/validate alias config |
-| `app/src/alias/alias_bootstrap.py` | Tạo alias config và gợi ý alias cho virus mới |
-| `ui/streamlit_app.py` | UI Alias Manager và flow tạo alias seed |
+| `app/config/virus_alias_registry.json` | Registry listing viruses, detection keywords, and alias config paths |
+| `app/config/*_alias.json` | Per-virus alias config |
+| `app/src/alias/alias_manager.py` | Functions to read/edit/validate the alias config |
+| `app/src/alias/alias_bootstrap.py` | Creates an alias config and suggests aliases for a new virus |
+| `ui/streamlit_app.py` | The Alias Manager UI and the alias-seed flow |
 
-Mỗi lần lưu alias config qua UI, tool tạo backup trong:
+Each time an alias config is saved via the UI, the tool writes a backup in:
 
 ```text
 app/config/backups/
 ```
 
-Folder backup này là artifact runtime và đã được ignore khỏi Git. Nó chỉ dùng để khôi phục nếu user sửa nhầm alias config.
+This backup folder is a runtime artifact and is git-ignored. It exists only to recover from accidental edits to the alias config.
 
-## Flow khi tool gặp virus đã biết
+## Flow for a known virus
 
-Khi user upload reference, tool đọc metadata của reference, ví dụ:
+When the user uploads a reference, the tool reads its metadata, e.g.:
 
 ```text
 organism = Porcine reproductive and respiratory syndrome virus
 ```
 
-Sau đó tool so với `keywords` trong `virus_alias_registry.json`.
+It then compares this against the `keywords` in `virus_alias_registry.json`.
 
-Ví dụ registry:
+Example registry entry:
 
 ```json
 {
@@ -95,39 +97,39 @@ Ví dụ registry:
 }
 ```
 
-Nếu metadata chứa keyword tương ứng, tool sẽ tự chọn alias config đó.
+If the metadata contains a matching keyword, the tool auto-selects that alias config.
 
-Sau đó pipeline chạy bình thường:
+The pipeline then runs normally:
 
-1. Parse feature từ reference.
-2. Chuẩn hóa tên bằng alias config.
-3. Parse query.
-4. Nếu query thiếu annotation hữu ích thì dùng tblastn lifting.
-5. Xuất kết quả đã chuẩn hóa tên.
+1. Parse features from the reference.
+2. Standardise names with the alias config.
+3. Parse the query.
+4. If the query lacks useful annotation, use tblastn lifting.
+5. Output the result with standardised names.
 
-## Flow khi tool gặp virus mới
+## Flow for a new virus
 
-Nếu reference không match virus nào trong registry, tool sẽ vào flow virus mới:
+If the reference matches no virus in the registry, the tool enters the new-virus flow:
 
 1. **Virus review**  
-   Tool hiển thị metadata lấy từ reference như `organism`, `description`, `record id`.
+   The tool shows metadata taken from the reference such as `organism`, `description`, `record id`.
 
-2. **User chọn một trong hai hướng**
+2. **The user picks one of two paths**
 
-   - Chọn alias config đã có nếu đây thật ra là virus cũ nhưng keyword chưa có.
-   - Tạo alias config mới nếu đây là virus mới.
+   - Choose an existing alias config if this is really a known virus whose keyword is simply missing.
+   - Create a new alias config if this is a new virus.
 
 3. **Alias seed**
 
-   Với virus mới, ViraLift lấy tên feature trong reference làm canonical name ban đầu.
+   For a new virus, ViraLift takes the reference feature names as the initial canonical names.
 
-   Ví dụ reference PED có:
+   For example, a PED reference has:
 
    ```text
    ORF1a, ORF1b, S, ORF3, E, M, N
    ```
 
-   Thì alias config mới sẽ có canonical:
+   So the new alias config has these canonicals:
 
    ```json
    {
@@ -145,59 +147,59 @@ Nếu reference không match virus nào trong registry, tool sẽ vào flow viru
 
 4. **Generate suggestions**
 
-   Tool chạy tblastn từ reference sang từng query record, sau đó so tọa độ với annotation thật trong query để tìm tên nào nên thêm làm alias.
+   The tool runs tblastn from the reference onto each query record, then compares the coordinates against the real annotation in the query to find which names should be added as aliases.
 
-5. **User approve**
+5. **User approval**
 
-   Gợi ý nào hợp lý thì tick `save`. Gợi ý nào generic hoặc sai thì để `ignore`.
+   Tick `save` for any reasonable suggestion. Leave `ignore` for any that are generic or wrong.
 
 6. **Save config**
 
-   Tool lưu file alias config mới vào `app/config/` và thêm virus vào registry.
+   The tool saves the new alias config into `app/config/` and adds the virus to the registry.
 
-## Cách đọc Alias Manager UI
+## Reading the Alias Manager UI
 
-Trong sidebar chọn:
+In the sidebar select:
 
 ```text
 Alias manager
 ```
 
-Các tab chính:
+The main tabs:
 
 ### Registry
 
-Dùng để sửa:
+Used to edit:
 
-- `virus_name`: tên hiển thị cho user.
-- `keywords`: từ khóa dùng để tự động nhận diện virus.
+- `virus_name`: the display name shown to the user.
+- `keywords`: the keywords used to auto-detect the virus.
 
-Lưu ý: auto-detect dựa chủ yếu vào `keywords`, không chỉ dựa vào `virus_name`.
+Note: auto-detect relies mainly on `keywords`, not just `virus_name`.
 
 ### Canonical aliases
 
-Mỗi canonical name có một khung riêng.
+Each canonical name has its own panel.
 
-Ví dụ:
+Example:
 
 ```text
 E · 4 alias(es)
 ```
 
-Bên trong là danh sách alias của `E`.
+Inside is the list of aliases for `E`.
 
-User có thể:
+The user can:
 
-- Tick một hoặc nhiều alias.
-- Bấm `Delete selected` để xóa alias đó.
-- Tick `Delete canonical` để xóa cả canonical name.
-- Thêm alias mới ở bảng `Add canonical / alias`.
+- Tick one or more aliases.
+- Click `Delete selected` to remove them.
+- Tick `Delete canonical` to remove the whole canonical name.
+- Add a new alias in the `Add canonical / alias` form.
 
 ### Ignored names
 
-Chứa các tên không nên dùng để map gene.
+Holds names that should not be used to map a gene.
 
-Ví dụ:
+Example:
 
 ```text
 protein
@@ -206,36 +208,36 @@ unknown protein
 replicase polyprotein
 ```
 
-Các tên này thường quá chung chung. Nếu đưa vào alias map, tool có thể map nhầm nhiều gene khác nhau.
+These names are usually too generic. If put into the alias map, the tool could mis-map many different genes.
 
-Lưu ý: `envelope protein`, `membrane protein`, `nucleocapsid protein` không phải lúc nào cũng phải ignore. Với PED, các tên này có evidence rõ và được map lần lượt vào `E`, `M`, `N`.
+Note: `envelope protein`, `membrane protein`, `nucleocapsid protein` do not always have to be ignored. For PED, these names have clear evidence and map respectively to `E`, `M`, `N`.
 
 ### Ambiguous names
 
-Chứa các tên có thể map sang nhiều gene khác nhau.
+Holds names that could map to several different genes.
 
-Ví dụ:
+Example:
 
 ```text
 envelope protein
 glycosylated membrane protein
 ```
 
-Nếu một tên có thể vừa giống ORF2, ORF5, ORF6 tùy virus/record, nên để ambiguous hoặc manual review.
+If a name could resemble ORF2, ORF5, or ORF6 depending on the virus/record, keep it ambiguous or send it to manual review.
 
-Ví dụ PED có raw gene `mp` trong một số record. `mp` có thể hiểu là ORF3 accessory membrane protein, nhưng cũng dễ bị nhầm với membrane protein. Vì vậy để `mp` trong `ambiguous_names` sẽ an toàn hơn nếu nó xuất hiện một mình.
+For example, PED has a raw gene `mp` in some records. `mp` could mean the ORF3 accessory membrane protein, but is also easily confused with membrane protein. So keeping `mp` in `ambiguous_names` is safer when it appears on its own.
 
 ### Raw JSON
 
-Hiển thị nguyên file alias config. Dùng để debug nhanh.
+Shows the raw alias config file. Useful for quick debugging.
 
-## Ý nghĩa các loại tên
+## What the name types mean
 
 ### Canonical name
 
-Tên chuẩn cuối cùng mà ViraLift muốn output.
+The final standardised name ViraLift wants to output.
 
-Ví dụ:
+Example:
 
 ```text
 ORF5
@@ -243,9 +245,9 @@ ORF5
 
 ### Alias
 
-Tên khác nhưng đủ cụ thể để map về canonical.
+A different name that is specific enough to map to a canonical.
 
-Ví dụ:
+Example:
 
 ```text
 GP5 -> ORF5
@@ -254,9 +256,9 @@ ORF5 protein -> ORF5
 
 ### Ignored name
 
-Tên nên bỏ qua vì không đủ thông tin.
+A name to skip because it carries too little information.
 
-Ví dụ:
+Example:
 
 ```text
 protein
@@ -267,33 +269,33 @@ replicase polyprotein
 
 ### Ambiguous name
 
-Tên có thông tin nhưng không đủ chắc để map vào một canonical duy nhất.
+A name that carries information but is not certain enough to map to a single canonical.
 
-Ví dụ:
+Example:
 
 ```text
 glycosylated membrane protein
 ```
 
-Tên này có thể chỉ các gene khác nhau tùy virus hoặc annotation convention.
+This name could point to different genes depending on the virus or annotation convention.
 
-## Cách tool gợi ý alias cho virus mới
+## How the tool suggests aliases for a new virus
 
-Khi bấm `Generate suggestions`, tool làm như sau:
+When you click `Generate suggestions`, the tool does the following:
 
-1. Chọn feature type hữu ích trong query, ví dụ `CDS` hoặc `mat_peptide`.
-2. Lấy các field có thể chứa tên gene:
+1. Picks useful feature types in the query, e.g. `CDS` or `mat_peptide`.
+2. Takes the fields that may contain a gene name:
 
    ```text
    gene, product, note, label, standard_name, locus_tag
    ```
 
-3. Chạy tblastn reference -> query.
-4. So tọa độ annotation của query với tọa độ tblastn lift bằng IoU.
-5. Nếu IoU đủ cao, tool coi đây là bằng chứng rằng query feature đó tương ứng với canonical từ reference.
-6. Chấm điểm từng raw name độc lập.
+3. Runs tblastn reference -> query.
+4. Compares the query annotation coordinates against the tblastn-lifted coordinates using IoU.
+5. If the IoU is high enough, the tool treats it as evidence that the query feature corresponds to the canonical from the reference.
+6. Scores each raw name independently.
 
-Ví dụ cùng một feature ORF5 có thể có:
+For example, the same ORF5 feature might have:
 
 ```json
 {
@@ -303,81 +305,81 @@ Ví dụ cùng một feature ORF5 có thể có:
 }
 ```
 
-Nếu tọa độ query trùng với tblastn ORF5, tool có thể gợi ý:
+If the query coordinates overlap the tblastn ORF5, the tool might suggest:
 
 | Raw name | Field | Canonical | Action |
 |---|---|---|---|
 | `GP5` | `gene` | `ORF5` | `save_alias` |
 | `ORF5 protein` | `note` | `ORF5` | `save_alias` |
-| `major envelope glycoprotein` | `product` | `ORF5` | `ignore` hoặc `manual_review` |
+| `major envelope glycoprotein` | `product` | `ORF5` | `ignore` or `manual_review` |
 
-Lý do: `GP5` và `ORF5 protein` có tên gene cụ thể. `major envelope glycoprotein` mô tả protein nhưng không nhất thiết là alias an toàn cho mọi record.
+Reason: `GP5` and `ORF5 protein` are specific gene names. `major envelope glycoprotein` describes the protein but is not necessarily a safe alias for every record.
 
-### Công thức chấm điểm (scoring)
+### The scoring formula
 
-Quyết định `save_alias` / `manual_review` / `ignore` cho mỗi raw name dựa trên **một điểm số cộng dồn**. Code nằm ở `app/src/alias/alias_classifier.py` (`classify_alias_candidate`). Có hai lớp:
+The decision `save_alias` / `manual_review` / `ignore` for each raw name is based on **a single accumulated score**. The code is in `app/src/alias/alias_classifier.py` (`classify_alias_candidate`). There are two layers:
 
-**Lớp 1 — bằng chứng toạ độ.** tblastn lift feature reference lên query; annotation sẵn có của query được ghép với feature đã lift bằng **IoU** (độ chồng lấn khoảng toạ độ, 1-based inclusive). Chỉ những cặp có `IoU ≥ min_iou` (mặc định `0.90`) mới được xét — đây là điều kiện để raw name được coi là bằng chứng cho canonical.
+**Layer 1 — coordinate evidence.** tblastn lifts the reference feature onto the query; the query's existing annotation is matched to the lifted feature via **IoU** (the overlap of coordinate ranges, 1-based inclusive). Only pairs with `IoU ≥ min_iou` (default `0.90`) are considered — this is the condition for a raw name to count as evidence for a canonical.
 
-**Lớp 2 — chấm điểm từng raw name.** Mỗi chuỗi qualifier được cộng/trừ điểm độc lập:
+**Layer 2 — scoring each raw name.** Each qualifier string is scored independently with additions/subtractions:
 
-| Yếu tố | Điểm |
+| Factor | Points |
 |---|---|
 | IoU ≥ 0.95 | +5 |
-| IoU ≥ 0.90 (và < 0.95) | +4 |
-| Cùng strand với feature đã lift | +1 |
-| Field **mạnh**: `gene`, `label`, `standard_name` | +3 |
-| Field **yếu**: `product`, `note`, `locus_tag` | −1 |
-| Raw name **trùng đúng** tên canonical | +5 |
-| Raw name **chứa** tên canonical | +4 |
-| Ký hiệu gene ngắn khớp phần số của canonical (vd `GP5` ↔ `ORF5`) | +3 |
-| Tên chung chung (generic): `protein`, `glycoprotein`, `polyprotein`, `envelope protein`… | −8 |
-| Từ mô tả sinh học (`polymerase`, `capsid`, `nucleocapsid`…) **không kèm** tên gene cụ thể | −4 |
-| Từ mô tả sinh học **có kèm** tên gene cụ thể | +1 |
-| Trông giống locus tag (vd `ABC_001234`) | −6 |
+| IoU ≥ 0.90 (and < 0.95) | +4 |
+| Same strand as the lifted feature | +1 |
+| **Strong** field: `gene`, `label`, `standard_name` | +3 |
+| **Weak** field: `product`, `note`, `locus_tag` | −1 |
+| Raw name is an **exact match** of the canonical name | +5 |
+| Raw name **contains** the canonical name | +4 |
+| Short gene symbol matches the numeric part of the canonical (e.g. `GP5` ↔ `ORF5`) | +3 |
+| Generic name: `protein`, `glycoprotein`, `polyprotein`, `envelope protein`… | −8 |
+| Biological descriptor word (`polymerase`, `capsid`, `nucleocapsid`…) **without** a specific gene name | −4 |
+| Biological descriptor word **with** a specific gene name | +1 |
+| Looks like a locus tag (e.g. `ABC_001234`) | −6 |
 
-> Ghi chú: ba mục "trùng đúng / chứa / ký hiệu ngắn khớp số" loại trừ lẫn nhau — chỉ cộng mục đầu tiên thoả mãn. Tên có chứa chữ số (vd `ORF3`, `ORF1a`) **không** bị coi là generic, dù chứa từ như `orf`.
+> Note: the three items "exact match / contains / short symbol matches number" are mutually exclusive — only the first satisfied one is added. A name containing a digit (e.g. `ORF3`, `ORF1a`) is **not** treated as generic, even if it contains a word like `orf`.
 
-**Ngưỡng quyết định** từ tổng điểm:
+**Decision thresholds** from the total score:
 
-| Tổng điểm | Action | Confidence | Mặc định tích lưu |
+| Total score | Action | Confidence | Saved by default |
 |---|---|---|---|
-| ≥ 8 | `save_alias` | high | ✅ có |
-| 3 – 7 | `manual_review` | medium | ❌ không (cần duyệt tay) |
-| < 3 | `ignore` | low | ❌ không |
+| ≥ 8 | `save_alias` | high | ✅ yes |
+| 3 – 7 | `manual_review` | medium | ❌ no (needs manual approval) |
+| < 3 | `ignore` | low | ❌ no |
 
-**Ví dụ tính điểm** (feature ORF5, IoU = 1.0, cùng strand):
+**Worked scoring example** (ORF5 feature, IoU = 1.0, same strand):
 
 ```text
 GP5  (field=gene):
   +4  IoU ≥ 0.90
-  +1  cùng strand
-  +3  field mạnh (gene)
-  +3  ký hiệu ngắn khớp số "5" của ORF5
+  +1  same strand
+  +3  strong field (gene)
+  +3  short symbol matches the number "5" of ORF5
   = 11  → ≥ 8 → save_alias (high)
 
 major envelope glycoprotein  (field=product):
   +4  IoU ≥ 0.90
-  +1  cùng strand
-  −1  field yếu (product)
-  −8  tên generic ("envelope protein"/"glycoprotein")
+  +1  same strand
+  −1  weak field (product)
+  −8  generic name ("envelope protein"/"glycoprotein")
   = −4  → < 3 → ignore (low)
 ```
 
-Lý do thiết kế: bằng chứng toạ độ (IoU) xác nhận *feature nào* tương ứng canonical nào, nhưng **bản thân chuỗi tên** vẫn được chấm riêng để tránh lưu những tên quá chung (như `glycoprotein`) thành alias toàn cục — vì một tên generic có thể xuất hiện ở nhiều gene khác nhau ở các record khác.
+Design rationale: coordinate evidence (IoU) confirms *which feature* corresponds to which canonical, but **the name string itself** is still scored separately to avoid saving overly generic names (like `glycoprotein`) as global aliases — because a generic name can appear on many different genes in other records.
 
 ## Granularity mismatch
 
-Một số virus có annotation convention khác nhau giữa reference và query. Alias Manager chỉ chuẩn hóa tên, không tự tách/gộp gene.
+Some viruses have different annotation conventions between the reference and the query. The Alias Manager only standardises names; it does not split/merge genes itself.
 
-Ví dụ với PED:
+PED example:
 
 ```text
-Reference: ORF1a + ORF1b tách riêng
-Query:     ORF1ab là một feature gộp
+Reference: ORF1a + ORF1b separate
+Query:     ORF1ab is a single merged feature
 ```
 
-Trong trường hợp này không nên map:
+In this case you should not map:
 
 ```text
 ORF1ab -> ORF1a
@@ -385,9 +387,9 @@ ORF1a/1b -> ORF1a
 Pol1 -> ORF1a
 ```
 
-Vì như vậy query đang có vùng gộp nhưng bị gọi nhầm thành vùng lẻ `ORF1a`.
+Because that would label the query's merged region with the single-gene name `ORF1a`.
 
-Cách đúng hơn là tạo canonical riêng:
+The better approach is a separate canonical:
 
 ```json
 {
@@ -408,11 +410,11 @@ Cách đúng hơn là tạo canonical riêng:
 }
 ```
 
-Khi reference không có `ORF1ab`, output `ORF1ab` có thể được đánh dấu `not_in_reference`. Đây là tín hiệu đúng: query và reference khác mức annotation, không phải alias sai.
+When the reference has no `ORF1ab`, the output `ORF1ab` may be flagged `not_in_reference`. This is the correct signal: the query and reference differ in annotation granularity — it is not a wrong alias.
 
-## Ví dụ thực tế
+## Worked example
 
-Giả sử query có annotation:
+Suppose the query has annotation:
 
 ```json
 {
@@ -438,21 +440,21 @@ Giả sử query có annotation:
 }
 ```
 
-Đọc kết quả:
+Reading the result:
 
-- `IoU = 1.0`: tọa độ query annotation và tblastn prediction trùng hoàn toàn.
-- `coverage = 1.0`: tblastn cover đủ protein reference.
-- `identity = 0.94`: trình tự protein rất giống.
+- `IoU = 1.0`: the query annotation and tblastn prediction coordinates overlap completely.
+- `coverage = 1.0`: tblastn covers the full reference protein.
+- `identity = 0.94`: the protein sequences are very similar.
 
-Kết luận hợp lý:
+Reasonable conclusion:
 
 ```text
-GP5 -> ORF5: nên save_alias
-ORF5 protein -> ORF5: nên save_alias
-major envelope glycoprotein: nên cân nhắc ignore/manual_review
+GP5 -> ORF5: should save_alias
+ORF5 protein -> ORF5: should save_alias
+major envelope glycoprotein: consider ignore/manual_review
 ```
 
-Ví dụ PED sau khi review 100 records:
+PED example after reviewing 100 records:
 
 ```text
 envelope protein       -> E
@@ -464,56 +466,56 @@ HNZK1                  -> ignore
 mp                     -> ambiguous
 ```
 
-Trong đó `HNZK1` là strain/isolate prefix xuất hiện ở nhiều gene khác nhau, nên không được đưa vào alias.
+Here `HNZK1` is a strain/isolate prefix that appears on many different genes, so it should not go into the alias.
 
-## Các cảnh báo thường gặp
+## Common warnings
 
 ### `X maps to multiple canonicals`
 
-Nghĩa là cùng một alias đang được map vào nhiều canonical.
+Means the same alias is being mapped to multiple canonicals.
 
-Ví dụ:
+Example:
 
 ```text
 HNZK1 maps to multiple canonicals: M, N, ORF3, S.
 ```
 
-Trường hợp này thường là do tên `HNZK1` không phải tên gene, mà là strain/isolate prefix. Nên xóa khỏi alias.
+This is usually because `HNZK1` is not a gene name but a strain/isolate prefix. Remove it from the alias.
 
 ### `X is both ignored and an alias`
 
-Nghĩa là một tên vừa nằm trong `ignored_names`, vừa nằm trong alias của canonical.
+Means a name is both in `ignored_names` and in a canonical's aliases.
 
-Ví dụ:
+Example:
 
 ```text
 ORF3 is both ignored and an alias for ORF3.
 ```
 
-Cách xử lý:
+How to handle:
 
-- Nếu `ORF3` là tên gene thật: xóa khỏi ignored.
-- Nếu tên đó quá chung chung: xóa khỏi alias.
+- If `ORF3` is a real gene name: remove it from ignored.
+- If the name is too generic: remove it from the alias.
 
-### Không có suggestion sau khi bấm Generate suggestions
+### No suggestions after clicking Generate suggestions
 
-Có thể do:
+Possible causes:
 
-- Query không có annotation hữu ích.
-- Query annotation không có field tên gene/product/note.
-- tblastn không lift được feature.
-- IoU giữa query annotation và tblastn prediction dưới threshold.
-- Feature type trong query không phù hợp.
+- The query has no useful annotation.
+- The query annotation has no gene/product/note name field.
+- tblastn could not lift the feature.
+- The IoU between the query annotation and the tblastn prediction is below threshold.
+- The feature type in the query is unsuitable.
 
-Xem phần diagnostics trong UI để biết record bị skip ở bước nào.
+Check the diagnostics section in the UI to see which step skipped each record.
 
 ## Best practices
 
-- Chỉ đưa vào alias những tên đủ cụ thể, ví dụ `GP5`, `ORF5 protein`, `N protein`.
-- Không đưa tên quá chung như `protein`, `glycoprotein`, `replicase polyprotein` vào alias nếu nó có thể xuất hiện ở nhiều gene.
-- Nếu query dùng gene gộp như `ORF1ab` nhưng reference tách `ORF1a`/`ORF1b`, hãy tạo canonical riêng `ORF1ab` thay vì ép nó vào `ORF1a`.
-- Với virus mới, nên review suggestions trước khi lưu config.
-- Nếu một alias làm tool map sai, vào Alias Manager xóa alias đó ngay.
-- Nếu auto-detect virus chọn sai config, vào tab `Registry` sửa keyword.
-- Sau khi sửa alias config, nên chạy lại vài query đại diện để kiểm tra output.
-- Không cần sợ sửa nhầm quá mức: mỗi lần save qua UI đều có backup trong `app/config/backups/`.
+- Only put specific-enough names into aliases, e.g. `GP5`, `ORF5 protein`, `N protein`.
+- Do not put overly generic names like `protein`, `glycoprotein`, `replicase polyprotein` into aliases if they could appear on multiple genes.
+- If the query uses a merged gene like `ORF1ab` but the reference splits `ORF1a`/`ORF1b`, create a separate canonical `ORF1ab` instead of forcing it into `ORF1a`.
+- For a new virus, review the suggestions before saving the config.
+- If an alias makes the tool map incorrectly, go to the Alias Manager and delete that alias immediately.
+- If virus auto-detect picks the wrong config, go to the `Registry` tab and fix the keyword.
+- After editing an alias config, re-run a few representative queries to check the output.
+- Don't be afraid of over-editing: every save via the UI creates a backup in `app/config/backups/`.
