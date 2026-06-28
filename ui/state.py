@@ -66,6 +66,7 @@ def _init_state():
         alias_manager_config_path=None,
         virus_review_metadata=[],
         virus_review_guess="",
+        approved_export_features=[],
     )
     for k, v in defaults.items():
         if k not in st.session_state:

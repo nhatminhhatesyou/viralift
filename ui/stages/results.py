@@ -177,6 +177,38 @@ def stage_results():
             return f"start {feature.rescue_offset:+d} bp"
         return ""
 
+    def _display_gene(feature: LiftedFeature) -> str:
+        return ref_name_map.get(feature.name, feature.name) if ref_name_map else feature.name
+
+    def _export_key(query_id: str, feature: LiftedFeature, gene: str) -> str:
+        return "|".join(
+            str(value)
+            for value in (
+                query_id,
+                gene,
+                feature.status,
+                feature.query_start,
+                feature.query_end,
+                feature.strand,
+            )
+        )
+
+    manually_approvable_statuses = {"invalid_boundaries", "low_coverage"}
+
+    def _approval_label(query_id: str, feature: LiftedFeature, gene: str) -> str:
+        return (
+            f"{query_id} | {gene} | {_t(f'status_{feature.status}')} | "
+            f"{feature.query_start}-{feature.query_end} | "
+            f"cov {_format_fraction_percent(feature.coverage)} | "
+            f"id {_format_percent(feature.identity)}"
+        )
+
+    def _approved_export_keys() -> set:
+        return set(st.session_state.get("approved_export_features", []))
+
+    def _save_approved_export_keys(keys: set) -> None:
+        st.session_state.approved_export_features = sorted(keys)
+
     def _render_record_expander(query_id: str, features: List[LiftedFeature]) -> None:
         ok_count     = sum(1 for f in features if f.status in GOOD_STATUSES)
         total_count  = len(features)
@@ -200,10 +232,7 @@ def stage_results():
                 return
             rec_rows = []
             for lf in features:
-                display_name = (
-                    ref_name_map.get(lf.name, lf.name)
-                    if ref_name_map else lf.name
-                )
+                display_name = _display_gene(lf)
                 rec_rows.append({
                     "status":    _status_text(lf.status),
                     "name":      display_name,
@@ -215,6 +244,11 @@ def stage_results():
                     "method":    lf.method,
                     "boundary_check": _boundary_check(lf),
                     "rescue_action": _rescue_action(lf),
+                    "approved_for_fasta": (
+                        "yes"
+                        if _export_key(query_id, lf, display_name) in _approved_export_keys()
+                        else ""
+                    ),
                 })
             rec_df = pd.DataFrame(rec_rows)
             for method in _ordered_methods(rec_df["method"].dropna().unique().tolist()):
@@ -242,6 +276,57 @@ def stage_results():
 
                 if not review_df.empty:
                     st.caption(_t("needs_review"))
+                    review_candidates = [
+                        lf for lf in features
+                        if lf.method == method
+                        and lf.status in manually_approvable_statuses
+                        and lf.sequence
+                    ]
+                    if review_candidates:
+                        approved_keys = _approved_export_keys()
+                        selected_keys = set()
+                        with st.container(border=True):
+                            for idx, lf in enumerate(review_candidates):
+                                gene = _display_gene(lf)
+                                key = _export_key(query_id, lf, gene)
+                                checked = st.checkbox(
+                                    _approval_label(query_id, lf, gene),
+                                    value=key in approved_keys,
+                                    key=(
+                                        f"approve_export_{query_id}_{method}_{idx}_"
+                                        f"{lf.status}_{lf.query_start}_{lf.query_end}"
+                                    ),
+                                )
+                                if checked:
+                                    selected_keys.add(key)
+
+                        approve_col, clear_col = st.columns([2, 1])
+                        if approve_col.button(
+                            _t("approve_for_fasta"),
+                            key=f"approve_selected_export_{query_id}_{method}",
+                            width="stretch",
+                        ):
+                            record_candidate_keys = {
+                                _export_key(query_id, lf, _display_gene(lf))
+                                for lf in review_candidates
+                            }
+                            approved_keys.difference_update(record_candidate_keys)
+                            approved_keys.update(selected_keys)
+                            _save_approved_export_keys(approved_keys)
+                            st.rerun()
+                        record_candidate_keys = {
+                            _export_key(query_id, lf, _display_gene(lf))
+                            for lf in review_candidates
+                        }
+                        if clear_col.button(
+                            _t("clear_approved_for_record"),
+                            key=f"clear_approved_export_{query_id}_{method}",
+                            width="stretch",
+                            disabled=not (approved_keys & record_candidate_keys),
+                        ):
+                            approved_keys.difference_update(record_candidate_keys)
+                            _save_approved_export_keys(approved_keys)
+                            st.rerun()
                     st.dataframe(review_df, width="stretch", hide_index=True)
                 if not pass_df.empty:
                     st.caption(_t("passed"))
@@ -332,28 +417,40 @@ def stage_results():
 
         # quality filter
         st.markdown(f"**{_t('quality_filter')}**")
-        qf_col1, qf_col2, qf_col3 = st.columns(3)
+        qf_col1, qf_col2, qf_col3, qf_col4 = st.columns(4)
         min_cov_export = qf_col1.slider(_t("min_coverage"), 0.0, 1.0, 0.5, 0.05)
         min_id_export  = qf_col2.slider(_t("min_identity"),  0.0, 100.0, 0.0, 5.0)
         include_rescued = qf_col3.checkbox(_t("include_rescued"), value=True)
+        include_extrapolated = qf_col4.checkbox(_t("include_extrapolated"), value=True)
 
         accepted_statuses = {"ok", "direct"}
         if include_rescued:
             accepted_statuses.add("ok_rescued")
+        if include_extrapolated:
+            accepted_statuses.add("ok_extrapolated")
+
+        approved_review_keys = _approved_export_keys()
+        if approved_review_keys:
+            st.caption(_t("approved_export_count", count=len(approved_review_keys)))
+
+        def _passes_fasta_filters(query_id: str, feature: LiftedFeature, gene: str) -> bool:
+            if gene not in selected_genes or not feature.sequence:
+                return False
+            if _export_key(query_id, feature, gene) in approved_review_keys:
+                return True
+            if feature.status not in accepted_statuses:
+                return False
+            if feature.coverage is not None and feature.coverage < min_cov_export:
+                return False
+            if feature.identity is not None and feature.identity < min_id_export:
+                return False
+            return True
 
         candidate_count = 0
-        for _, features in all_results:
+        for query_id, features in all_results:
             for lf in features:
-                gene = ref_name_map.get(lf.name, lf.name) if ref_name_map else lf.name
-                if gene not in selected_genes:
-                    continue
-                if lf.status not in accepted_statuses:
-                    continue
-                if lf.coverage is not None and lf.coverage < min_cov_export:
-                    continue
-                if lf.identity is not None and lf.identity < min_id_export:
-                    continue
-                if lf.sequence:
+                gene = _display_gene(lf)
+                if _passes_fasta_filters(query_id, lf, gene):
                     candidate_count += 1
         st.caption(_t("candidate_count", count=candidate_count))
 
@@ -365,22 +462,11 @@ def stage_results():
             for query_id, features in all_results:
                 for lf in features:
                     # resolve display name the same way as the gene list above
-                    gene = (
-                        ref_name_map.get(lf.name, lf.name)
-                        if ref_name_map else lf.name
-                    )
+                    gene = _display_gene(lf)
                     if gene not in gene_seqs:
                         continue
-                    if lf.status not in accepted_statuses:
+                    if not _passes_fasta_filters(query_id, lf, gene):
                         skipped += 1
-                        continue
-                    if lf.coverage is not None and lf.coverage < min_cov_export:
-                        skipped += 1
-                        continue
-                    if lf.identity is not None and lf.identity < min_id_export:
-                        skipped += 1
-                        continue
-                    if not lf.sequence:
                         continue
                     header = f">{query_id}|{gene}|{lf.query_start}|{lf.query_end}|{lf.strand}"
                     gene_seqs[gene].append(f"{header}\n{lf.sequence}")
