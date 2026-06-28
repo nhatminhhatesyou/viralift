@@ -89,7 +89,7 @@ def direct_extract_with_alias(
         results.append(LiftedFeature(
             name=name,
             source_name=(
-                qf.get("raw_name")
+                qf.get("alias_source_value") or qf.get("raw_name")
                 if name_source in ("alias", "alias_conflict_resolved")
                 else None
             ),

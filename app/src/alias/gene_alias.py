@@ -287,6 +287,8 @@ def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
 
     _SPECIAL = (IGNORED_SENTINEL, AMBIGUOUS_SENTINEL)
 
+    alias_source_value = None
+
     if not hits:
         # Nothing matched alias at all → keep raw display name
         canonical_name = raw_name
@@ -297,12 +299,14 @@ def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
 
         if len(unique_canonicals) == 1:
             # All hits agree (or only one hit) → use it
-            _, _, canonical_name = hits[0]
+            _, alias_source_value, canonical_name = hits[0]
             if canonical_name == IGNORED_SENTINEL:
                 canonical_name = raw_name
+                alias_source_value = None
                 name_source = "ignored"
             elif canonical_name == AMBIGUOUS_SENTINEL:
                 canonical_name = raw_name
+                alias_source_value = None
                 name_source = "ambiguous"
             else:
                 name_source = "alias"
@@ -318,7 +322,7 @@ def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
             if real_hits:
                 # At least one field resolves to a real canonical — use
                 # the highest-priority one and note the conflict was resolved.
-                _, _, canonical_name = real_hits[0]
+                _, alias_source_value, canonical_name = real_hits[0]
                 name_source = "alias_conflict_resolved"
             else:
                 # No real canonical hit. Check if any hit is ambiguous.
@@ -336,6 +340,7 @@ def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
                     name_source = "ignored"
 
     new_feature["raw_name"] = raw_name
+    new_feature["alias_source_value"] = alias_source_value
     new_feature["name"] = canonical_name
     new_feature["name_source"] = name_source
 

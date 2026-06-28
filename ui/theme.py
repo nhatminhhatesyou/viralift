@@ -461,8 +461,8 @@ def _inject_css():
 
             .vl-context-grid {
                 display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 0.75rem;
+                grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+                gap: 0.6rem;
                 margin: 1rem 0 1.25rem;
             }
 
@@ -542,6 +542,17 @@ def _inject_css():
                 color: #ffffff;
             }
 
+            .st-key-delete_virus_entry button {
+                border-color: var(--vl-danger) !important;
+                background: linear-gradient(180deg, var(--vl-danger), #7f2525) !important;
+                color: #ffffff !important;
+            }
+
+            .st-key-delete_virus_entry button:hover {
+                border-color: var(--vl-danger) !important;
+                box-shadow: 0 14px 28px rgba(166, 58, 58, 0.2) !important;
+            }
+
             div[data-testid="stExpander"] {
                 border: 1px solid var(--vl-border);
                 border-radius: 13px;
@@ -561,14 +572,28 @@ def _inject_css():
                 box-shadow: 0 16px 40px rgba(45, 74, 63, 0.06);
             }
 
+            /* Spread the tabs evenly across the full width like a segmented bar
+               instead of clustering on the left. */
             div[data-baseweb="tab-list"] {
-                gap: 0.45rem;
+                display: flex;
+                width: 100%;
+                gap: 0.4rem;
                 border-bottom: 1px solid var(--vl-border);
+                margin-bottom: 1.4rem;
             }
 
             button[data-baseweb="tab"] {
+                flex: 1 1 0;
+                justify-content: center;
+                text-align: center;
                 border-radius: 10px 10px 0 0;
                 font-weight: 750;
+                padding: 0.4rem 0.5rem 0.7rem;
+            }
+
+            /* breathing room between the tab bar and the panel content */
+            div[data-baseweb="tab-panel"] {
+                padding-top: 0.4rem;
             }
 
             div[data-testid="stAlert"] {

@@ -2,7 +2,7 @@ import json
 import shutil
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 from app.src.alias.gene_alias import normalize_text
 
@@ -81,6 +81,51 @@ def update_registry_entry(
         entry["keywords"] = _dedupe_strings(keywords)
         return save_registry(registry_path, registry)
     raise ValueError(f"Alias config not found in registry: {alias_config}")
+
+
+def remove_registry_entry(
+    registry_path: Path,
+    alias_config: str,
+    root: Optional[Path] = None,
+    archive_alias_config: bool = False,
+) -> Tuple[Path, Optional[Path]]:
+    """
+    Remove one virus entry from the alias registry.
+
+    If archive_alias_config is True, copy the active alias JSON into the normal
+    backups directory, then remove the active file. The config file is only
+    archived when no remaining registry entry points to the same alias_config.
+    """
+    registry = load_registry(registry_path)
+    entries = registry.get("viruses", [])
+    kept_entries = [
+        entry
+        for entry in entries
+        if entry.get("alias_config") != alias_config
+    ]
+    if len(kept_entries) == len(entries):
+        raise ValueError(f"Alias config not found in registry: {alias_config}")
+
+    registry["viruses"] = kept_entries
+    registry_backup = save_registry(registry_path, registry)
+
+    config_backup = None
+    if archive_alias_config:
+        still_referenced = any(
+            entry.get("alias_config") == alias_config
+            for entry in kept_entries
+        )
+        if still_referenced:
+            raise ValueError(
+                f"Cannot archive alias config still used by another registry entry: {alias_config}"
+            )
+        config_root = root or registry_path.parent
+        config_path = resolve_config_path(Path(alias_config), config_root)
+        if config_path.exists():
+            config_backup = backup_alias_config(config_path)
+            config_path.unlink()
+
+    return registry_backup, config_backup
 
 
 def resolve_config_path(config_path: Path, root: Path) -> Path:

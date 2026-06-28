@@ -10,6 +10,21 @@ from ui.services import _load_ignored_names, _scan_unknown_names, _scan_unknown_
 from ui.state import REGISTRY_PATH, _reset
 
 
+def _suggestion_flag_conflicts(rows: pd.DataFrame) -> list[str]:
+    conflicts = []
+    if rows.empty:
+        return conflicts
+    for _, row in rows.iterrows():
+        selected = [
+            label
+            for label, column in (("Save", "save"), ("Ignore", "ignore"), ("Skip", "skip"))
+            if bool(row.get(column))
+        ]
+        if len(selected) > 1:
+            conflicts.append(f"`{row.get('raw_value', '')}`: {', '.join(selected)}")
+    return conflicts
+
+
 def stage_bootstrap_alias():
     seed_config = st.session_state.bootstrap_alias_config
     if not seed_config:
@@ -46,6 +61,39 @@ def stage_bootstrap_alias():
         width="stretch",
         hide_index=True,
     )
+    add_canonical_col, add_canonical_button_col = st.columns([3, 1])
+    new_seed_canonical = add_canonical_col.text_input(
+        "Add canonical target",
+        value="",
+        placeholder="e.g. ORF1ab",
+        key="bootstrap_new_canonical",
+    ).strip()
+    add_canonical_button_col.markdown("<div style='height: 1.78rem'></div>", unsafe_allow_html=True)
+    if add_canonical_button_col.button(
+        "Add canonical",
+        disabled=not new_seed_canonical,
+        width="stretch",
+        key="bootstrap_add_canonical",
+    ):
+        canonical_map = seed_config.setdefault("canonical_names", {})
+        already_exists = new_seed_canonical in canonical_map
+        canonical_map.setdefault(new_seed_canonical, [])
+        st.session_state.bootstrap_alias_config = seed_config
+        if already_exists:
+            st.session_state.bootstrap_canonical_notice = (
+                "info",
+                f"`{new_seed_canonical}` already exists.",
+            )
+        else:
+            st.session_state.bootstrap_canonical_notice = (
+                "success",
+                f"Added `{new_seed_canonical}` successfully.",
+            )
+        st.rerun()
+    notice = st.session_state.pop("bootstrap_canonical_notice", None)
+    if notice:
+        kind, message = notice
+        getattr(st, kind)(message)
 
     st.subheader("2. Virus registry entry")
     default_name = st.session_state.bootstrap_virus_name or seed_config.get("virus") or "new virus"
@@ -132,47 +180,67 @@ def stage_bootstrap_alias():
     edited_rows = pd.DataFrame()
     if suggestions:
         suggestion_df = pd.DataFrame(suggestions)
-        suggestion_df["save"] = suggestion_df["default_save"].fillna(False).astype(bool)
+        suggestion_df["save"] = False
         suggestion_df["ignore"] = suggestion_df["suggested_action"].eq("ignore")
+        suggestion_df["skip"] = False
+        suggestion_df.loc[
+            suggestion_df["default_save"].fillna(False).astype(bool),
+            ["save", "ignore", "skip"],
+        ] = [True, False, False]
+        suggestion_df.loc[
+            ~(suggestion_df["save"] | suggestion_df["ignore"]),
+            "skip",
+        ] = True
         show_cols = [
             "save",
             "ignore",
+            "skip",
             "raw_value",
             "field",
             "canonical_name",
-            "suggested_action",
             "confidence",
-            "score",
             "support_count",
             "support_records",
-            "iou",
-            "coverage",
-            "identity",
             "reason",
-            "record_id",
-            "query_name",
-            "query_start",
-            "query_end",
-            "tblastn_start",
-            "tblastn_end",
         ]
         show_cols = [c for c in show_cols if c in suggestion_df.columns]
+        st.caption(
+            "Tick exactly one action per raw name. Edit Canonical when a good alias should point to a different target."
+        )
         edited_rows = st.data_editor(
             suggestion_df[show_cols],
             width="stretch",
             hide_index=True,
-            disabled=[c for c in show_cols if c not in {"save", "ignore"}],
+            height=520,
+            disabled=[c for c in show_cols if c not in {"save", "ignore", "skip", "canonical_name"}],
             column_config={
-                "save": st.column_config.CheckboxColumn("Save alias"),
-                "ignore": st.column_config.CheckboxColumn("Ignore"),
-                "raw_value": st.column_config.TextColumn("Raw query name"),
-                "canonical_name": st.column_config.TextColumn("Canonical"),
-                "suggested_action": st.column_config.TextColumn("Suggestion"),
-                "support_count": st.column_config.NumberColumn("Support", step=1),
-                "support_records": st.column_config.TextColumn("Supporting records"),
-                "iou": st.column_config.NumberColumn("IoU", format="%.3f"),
-                "coverage": st.column_config.NumberColumn("Coverage", format="%.3f"),
-                "identity": st.column_config.NumberColumn("Identity", format="%.3f"),
+                "save": st.column_config.CheckboxColumn(
+                    "Save",
+                    help="Add this raw name as an alias.",
+                    width="small",
+                ),
+                "ignore": st.column_config.CheckboxColumn(
+                    "Ignore",
+                    help="Store this raw name as intentionally ignored.",
+                    width="small",
+                ),
+                "skip": st.column_config.CheckboxColumn(
+                    "Skip",
+                    help="Do nothing with this raw name.",
+                    width="small",
+                ),
+                "raw_value": st.column_config.TextColumn("Raw query name", width="medium"),
+                "field": st.column_config.TextColumn("Field", width="small"),
+                "canonical_name": st.column_config.SelectboxColumn(
+                    "Canonical",
+                    options=canonical_names,
+                    required=False,
+                    width="small",
+                ),
+                "confidence": st.column_config.TextColumn("Confidence", width="small"),
+                "support_count": st.column_config.NumberColumn("Support", step=1, width="small"),
+                "support_records": st.column_config.TextColumn("Supporting records", width="large"),
+                "reason": st.column_config.TextColumn("Reason", width="large"),
             },
             key="bootstrap_suggestion_editor",
         )
@@ -200,12 +268,23 @@ def stage_bootstrap_alias():
         absolute_config_path, relative_config_path = _unique_alias_config_paths(filename)
 
         try:
+            conflicts = _suggestion_flag_conflicts(edited_rows)
+            if conflicts:
+                st.error(
+                    "Each suggestion can have only one action. Fix these rows: "
+                    + "; ".join(conflicts[:8])
+                    + ("..." if len(conflicts) > 8 else "")
+                )
+                return
+
             write_new_alias_config(config, absolute_config_path)
 
             if not edited_rows.empty:
-                approved_rows = edited_rows[edited_rows["save"].fillna(False)].to_dict("records")
+                approved_rows = edited_rows[
+                    edited_rows["save"].fillna(False)
+                ].to_dict("records")
                 ignored_rows = edited_rows[
-                    edited_rows["ignore"].fillna(False) & ~edited_rows["save"].fillna(False)
+                    edited_rows["ignore"].fillna(False)
                 ].to_dict("records")
                 config = apply_approved_alias_suggestions(
                     absolute_config_path,

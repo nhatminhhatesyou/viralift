@@ -81,6 +81,53 @@ def stage_resolve():
         st.markdown(_t("all_known"))
         st.divider()
 
+    if unknown_items or ambiguous_items:
+        st.markdown("**Add new canonical target**")
+        add_col, button_col = st.columns([3, 1])
+        new_canonical = add_col.text_input(
+            "New canonical name",
+            value="",
+            placeholder="e.g. ORF1ab",
+            key="resolve_new_canonical_name",
+            label_visibility="collapsed",
+        ).strip()
+        button_col.markdown("<div style='height: 1.78rem'></div>", unsafe_allow_html=True)
+        if button_col.button(
+            "Add canonical",
+            disabled=not new_canonical,
+            width="stretch",
+            key="resolve_add_canonical",
+        ):
+            already_exists = new_canonical in st.session_state.canonical_list
+            if st.session_state.alias_config_path:
+                added = _add_new_canonicals_to_config(
+                    Path(st.session_state.alias_config_path),
+                    [new_canonical],
+                )
+            else:
+                added = 0
+            st.session_state.canonical_list = sorted(
+                set(st.session_state.canonical_list) | {new_canonical}
+            )
+            if added and not already_exists:
+                st.session_state.resolve_canonical_notice = (
+                    "success",
+                    f"Added `{new_canonical}` successfully.",
+                )
+            else:
+                st.session_state.resolve_canonical_notice = (
+                    "info",
+                    f"`{new_canonical}` already exists.",
+                )
+            st.rerun()
+        notice = st.session_state.pop("resolve_canonical_notice", None)
+        if notice:
+            kind, message = notice
+            getattr(st, kind)(message)
+        st.caption("Add targets like `ORF1ab` here before mapping unknown names below.")
+        st.divider()
+        canonicals = st.session_state.canonical_list
+
     decisions  = {}
     save_flags = {}
     options    = [_t("ignore_option")] + canonicals

@@ -38,3 +38,32 @@ def test_direct_extract_collapses_duplicate_canonical_features_without_ref_match
     assert orf1ab.query_start == 10
     assert orf1ab.query_end == 210
     assert orf1ab.status == "not_in_reference"
+
+
+def test_direct_extract_reports_alias_source_value_instead_of_generic_display_name():
+    record = SeqRecord(Seq("A" * 900), id="query")
+    record.features = [
+        SeqFeature(
+            FeatureLocation(99, 300, strand=1),
+            type="CDS",
+            qualifiers={"product": ["unknown"], "note": ["ORF3"]},
+        )
+    ]
+
+    ref_features = [{"name": "ORF3", "start": 100, "end": 300, "length": 201}]
+    alias_lookup = {
+        "unknown": "__ignored__",
+        "orf3": "ORF3",
+    }
+
+    results = direct_extract_with_alias(
+        query_record=record,
+        query_feature_type="CDS",
+        ref_features=ref_features,
+        alias_lookup=alias_lookup,
+    )
+
+    assert len(results) == 1
+    assert results[0].name == "ORF3"
+    assert results[0].source_name == "ORF3"
+    assert results[0].status == "ok"

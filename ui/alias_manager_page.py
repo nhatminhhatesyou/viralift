@@ -16,6 +16,7 @@ from app.src.alias.alias_manager import (
     list_registry_entries,
     load_alias_config as manager_load_alias_config,
     move_ignored_to_alias,
+    remove_registry_entry,
     resolve_config_path,
     save_alias_config as manager_save_alias_config,
     update_registry_entry,
@@ -231,6 +232,27 @@ def _add_registry_keywords(entry: Dict, virus_name: str, keywords: List[str]) ->
     )
 
 
+def _delete_virus_entry(entry: Dict, archive_alias_config: bool) -> None:
+    try:
+        registry_backup, config_backup = remove_registry_entry(
+            REGISTRY_PATH,
+            alias_config=entry.get("alias_config", ""),
+            root=ROOT,
+            archive_alias_config=archive_alias_config,
+        )
+        if st.session_state.get("alias_manager_config_path"):
+            del st.session_state["alias_manager_config_path"]
+        message = f"Deleted virus from registry. Registry backup: `{registry_backup.name}`"
+        if config_backup:
+            message += f". Alias config archived as `{config_backup.name}`"
+        elif archive_alias_config:
+            message += ". Alias config file was already missing"
+        st.success(message)
+        st.rerun()
+    except Exception as e:
+        st.error(f"Could not delete virus: {e}")
+
+
 def page_alias_manager():
     _render_page_intro(
         "Alias manager",
@@ -267,15 +289,19 @@ def page_alias_manager():
         st.error(f"Could not load alias config `{config_path}`: {e}")
         return
 
-    _render_context_panel([
-        ("Virus", entry.get("virus_name", config.get("virus", "unknown"))),
-        ("Config", config_path),
-        ("Canonical names", len(config.get("canonical_names", {}))),
-    ])
-
     _, ignored_rows, ambiguous_rows = alias_config_to_tables(config)
     ignored_existing = [row["ignored_name"] for row in ignored_rows]
     ambiguous_existing = [row["ambiguous_name"] for row in ambiguous_rows]
+
+    canonical_names_map = config.get("canonical_names", {})
+    total_aliases = sum(len(aliases or []) for aliases in canonical_names_map.values())
+    _render_context_panel([
+        ("Virus", entry.get("virus_name", config.get("virus", "unknown"))),
+        ("Canonical", len(canonical_names_map)),
+        ("Aliases", total_aliases),
+        ("Ignored", len(ignored_existing)),
+        ("Ambiguous", len(ambiguous_existing)),
+    ])
 
     tab_registry, tab_alias, tab_ignored, tab_ambiguous, tab_raw = st.tabs([
         "Registry",
@@ -291,12 +317,16 @@ def page_alias_manager():
 
     with tab_registry:
         st.caption("Auto-detection uses keywords. Virus name is the display label.")
-        registry_virus_name = st.text_input(
+
+        # Virus name with an inline, right-sized Save (not a heavy full-width bar).
+        vn_input_col, vn_btn_col = st.columns([4, 1])
+        registry_virus_name = vn_input_col.text_input(
             "Virus name",
             value=entry.get("virus_name", config.get("virus", "")),
             key=f"registry_virus_name_{config_path}",
         )
-        if st.button("Save virus name", width="stretch"):
+        vn_btn_col.markdown("<div style='height: 1.75rem'></div>", unsafe_allow_html=True)
+        if vn_btn_col.button("Save", key=f"save_virus_name_{config_path}", width="stretch"):
             _save_registry_entry(
                 alias_config=entry.get("alias_config", ""),
                 virus_name=registry_virus_name,
@@ -327,7 +357,7 @@ def page_alias_manager():
             new_keywords_text = st.text_area(
                 "Add detection keywords",
                 value="",
-                height=120,
+                height=80,
                 placeholder="One keyword per line",
                 key=f"registry_keywords_add_{config_path}",
             )
@@ -342,6 +372,28 @@ def page_alias_manager():
                 registry_virus_name,
                 _split_lines(new_keywords_text),
             )
+
+        # Destructive action tucked away in a collapsed expander so it can't be
+        # hit by accident and doesn't weigh down the tab.
+        with st.expander("⚠ Danger zone — delete this virus", expanded=False):
+            st.caption(
+                "Delete this virus from the alias registry so ViraLift will no longer "
+                "auto-detect or list it."
+            )
+            archive_alias_config = st.checkbox(
+                "Also archive and remove the active alias config file",
+                value=False,
+                help=(
+                    "Copies the alias JSON into app/config/backups/ before removing "
+                    "the active config file."
+                ),
+                key=f"delete_virus_archive_config_{config_path}",
+            )
+            if st.button(
+                "Delete virus from Alias Manager",
+                key="delete_virus_entry",
+            ):
+                _delete_virus_entry(entry, archive_alias_config)
 
     with tab_alias:
         st.caption(
