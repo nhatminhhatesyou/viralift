@@ -43,7 +43,7 @@ def rescue_start_codon(
     strand: str,
     max_window: int = 50,
     expected_length: Optional[int] = None,
-) -> Optional[Tuple[int, str, int]]:
+) -> Optional[Tuple[int, int, str, int]]:
     """
     Try to find a plausible ATG around the lifted start position.
 
@@ -61,22 +61,26 @@ def rescue_start_codon(
         expected_length: Expected CDS length in bp, including stop codon.
 
     Returns:
-        (new_start, new_sequence, offset_used) if ATG found, else None
-        offset_used is negative = upstream, positive = downstream
+        (new_start, new_end, new_sequence, offset_used) if ATG found, else None.
+        For + strand, start rescue adjusts new_start. For - strand, the
+        biological start codon is at the higher genomic coordinate, so start
+        rescue adjusts new_end.
     """
     genome_len = len(query_record.seq)
     candidates = []
 
-    def add_candidate(new_start: int, offset_used: int) -> None:
+    def add_candidate(new_start: int, new_end: int, offset_used: int) -> None:
         if new_start < 1 or new_start > genome_len:
             return
-        if new_start > query_end:
+        if new_end < 1 or new_end > genome_len:
+            return
+        if new_start > new_end:
             return
         if strand == "+":
-            candidate = str(query_record.seq[new_start - 1: query_end]).upper()
+            candidate = str(query_record.seq[new_start - 1: new_end]).upper()
         else:
             candidate = str(
-                query_record.seq[new_start - 1: query_end].reverse_complement()
+                query_record.seq[new_start - 1: new_end].reverse_complement()
             ).upper()
         if candidate[:3] != "ATG":
             return
@@ -92,31 +96,43 @@ def rescue_start_codon(
             abs(offset_used),
             0 if offset_used < 0 else 1,
             new_start,
+            new_end,
             candidate,
             offset_used,
         ))
 
-    if expected_length is not None and strand == "+":
-        expected_start = query_end - expected_length + 1
-        add_candidate(expected_start, expected_start - query_start)
+    if expected_length is not None:
+        if strand == "+":
+            expected_start = query_end - expected_length + 1
+            add_candidate(expected_start, query_end, expected_start - query_start)
+        else:
+            expected_end = query_start + expected_length - 1
+            add_candidate(query_start, expected_end, expected_end - query_end)
 
     for offset in range(1, max_window + 1):
         for direction in (-1, +1):  # upstream first (more common for frameshift)
-            new_start = query_start + direction * offset
+            if strand == "+":
+                new_start = query_start + direction * offset
+                new_end = query_end
+            else:
+                new_start = query_start
+                new_end = query_end + direction * offset
 
             # Bounds check
             if new_start < 1 or new_start > genome_len:
                 continue
-            if new_start > query_end:
+            if new_end < 1 or new_end > genome_len:
+                continue
+            if new_start > new_end:
                 continue
 
-            add_candidate(new_start, direction * offset)
+            add_candidate(new_start, new_end, direction * offset)
 
     if not candidates:
         return None
 
-    _, _, _, _, new_start, candidate, offset = min(candidates)
-    return new_start, candidate, offset
+    _, _, _, _, new_start, new_end, candidate, offset = min(candidates)
+    return new_start, new_end, candidate, offset
 
 
 def rescue_stop_codon(
@@ -126,9 +142,9 @@ def rescue_stop_codon(
     strand: str,
     max_codons: int = 30,
     expected_length: Optional[int] = None,
-) -> Optional[Tuple[int, str, int]]:
+) -> Optional[Tuple[int, int, str, int]]:
     """
-    Scan forward from query_end in-frame to find a plausible stop codon.
+    Scan in-frame from the biological C-terminus to find a plausible stop codon.
 
     Used when tblastn HSP is truncated before the stop codon — either because
     the C-terminus is divergent (HSP ends early) or the +3 fix wasn't enough.
@@ -146,23 +162,31 @@ def rescue_stop_codon(
         expected_length: Expected CDS length in bp, including stop codon.
 
     Returns:
-        (new_end, new_sequence, codons_extended) if stop found, else None
+        (new_start, new_end, new_sequence, codons_extended) if stop found, else None.
+        For + strand, stop rescue adjusts new_end. For - strand, the biological
+        stop codon is at the lower genomic coordinate, so stop rescue adjusts
+        new_start.
     """
     genome_len = len(query_record.seq)
     candidates = []
 
     for n in range(1, max_codons + 1):
         extension = n * 3
-        new_end = query_end + extension
+        if strand == "+":
+            new_start = query_start
+            new_end = query_end + extension
+        else:
+            new_start = query_start - extension
+            new_end = query_end
 
-        if new_end > genome_len:
+        if new_start < 1 or new_end > genome_len:
             break
 
         if strand == "+":
-            candidate = str(query_record.seq[query_start - 1: new_end]).upper()
+            candidate = str(query_record.seq[new_start - 1: new_end]).upper()
         else:
             candidate = str(
-                query_record.seq[query_start - 1: new_end].reverse_complement()
+                query_record.seq[new_start - 1: new_end].reverse_complement()
             ).upper()
 
         if candidate[-3:] in STOP_CODONS:
@@ -176,6 +200,7 @@ def rescue_stop_codon(
                 length % 3 != 0,
                 length_delta,
                 n,
+                new_start,
                 new_end,
                 candidate,
             ))
@@ -183,5 +208,5 @@ def rescue_stop_codon(
     if not candidates:
         return None
 
-    _, _, codons_extended, new_end, candidate = min(candidates)
-    return new_end, candidate, codons_extended
+    _, _, codons_extended, new_start, new_end, candidate = min(candidates)
+    return new_start, new_end, candidate, codons_extended

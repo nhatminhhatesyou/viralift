@@ -375,10 +375,13 @@ def _build_lifted_from_hsps(
             expected_length=protein_length * 3 + 3,
         )
         if rescued_stop:
-            q_end, _, codons_extended = rescued_stop
+            q_start, q_end, _, codons_extended = rescued_stop
             stop_rescue_offset_bp = codons_extended * 3
         else:
-            q_end = min(q_end + 3, len(query_record.seq))
+            if strand == "+":
+                q_end = min(q_end + 3, len(query_record.seq))
+            else:
+                q_start = max(1, q_start - 3)
     elif q_start is not None and q_end is not None:
         q_start, q_end, n_term_extension, c_term_extension = extrapolate_terminal_boundaries(
             start=q_start,
@@ -444,21 +447,20 @@ def _build_lifted_from_hsps(
             expected_length=protein_length * 3 + 3,
         )
         if rescued:
-            new_start, new_seq, offset = rescued
+            new_start, new_end, new_seq, offset = rescued
             revalidation = validate_cds_boundaries(new_seq)
-            new_end = q_end
             rescue_parts = [f"start {offset:+d} bp"]
             if not revalidation["has_stop_codon"]:
                 rescued_stop = rescue_stop_codon(
                     query_record,
                     new_start,
-                    q_end,
+                    new_end,
                     strand,
                     max_codons=30,
                     expected_length=protein_length * 3 + 3,
                 )
                 if rescued_stop:
-                    new_end, new_seq, codons_extended = rescued_stop
+                    new_start, new_end, new_seq, codons_extended = rescued_stop
                     rescue_parts.append(f"stop +{codons_extended * 3} bp")
                     revalidation = validate_cds_boundaries(new_seq)
             status = "ok_rescued" if revalidation["valid"] else "invalid_boundaries"
