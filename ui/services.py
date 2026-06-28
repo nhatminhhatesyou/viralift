@@ -7,7 +7,14 @@ from Bio.SeqRecord import SeqRecord
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 from app.src.alias.alias_manager import add_registry_keyword, resolve_config_path
-from app.src.alias.gene_alias import AMBIGUOUS_SENTINEL, IGNORED_SENTINEL, apply_alias_to_features, load_alias_lookup, normalize_text
+from app.src.alias.gene_alias import (
+    AMBIGUOUS_SENTINEL,
+    IGNORED_SENTINEL,
+    apply_alias_to_features,
+    load_alias_lookup,
+    lookup_field_value,
+    normalize_text,
+)
 from app.src.features.annotation_strategy import select_feature_type
 from app.src.io.genbank_parser import _LOOKUP_QUALIFIER_KEYS
 from app.src.io.run_logger import log_alias_added, log_canonical_added, log_run_complete, log_run_start
@@ -168,8 +175,9 @@ def _scan_unknown_names(
             if not candidates:
                 continue
 
-            # Classify each candidate's hit in the alias lookup
-            hits = {v: alias_lookup.get(normalize_text(v)) for v in candidates}
+            # Classify each candidate's hit using the same resolver as the core
+            # pipeline, including semicolon-separated note fields like "ORF6; M".
+            hits = {v: lookup_field_value(v, alias_lookup) for v in candidates}
 
             # If ANY candidate resolves to a real canonical, already handled, skip
             if any(

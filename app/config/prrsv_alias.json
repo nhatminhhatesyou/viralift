@@ -168,26 +168,13 @@
       "NSP12"
     ],
     "ORF2a": [
-      "GP2",
-      "gp2",
-      "orf2",
-      "glycoprotein 2",
       "glycoprotein 2a",
-      "minor envelope glycoprotein gp2",
-      "glycosylated membrane protein",
-      "gp2 glycosylated envelope protein",
-      "gp2 envelope protein",
       "glycosylated protein 2a",
       "gp2a",
       "gp2a protein",
       "GP2a glycosylated envelope protein",
       "ORF2a glycosylated membrane protein",
-      "glycosylated membrane protein 2",
-      "envelope protein GP2",
-      "GP2a envelope protein",
-      "glycosylated envelope protein GP2",
-      "envelope glycoprotein GP2",
-      "N-glycosylated envelope protein GP2"
+      "GP2a envelope protein"
     ],
     "ORF2b": [
       "E",
@@ -302,6 +289,18 @@
       "nucleocapsid"
     ],
     "ORF2": [
+      "GP2",
+      "gp2",
+      "ORF2 protein",
+      "glycoprotein 2",
+      "minor envelope glycoprotein gp2",
+      "gp2 glycosylated envelope protein",
+      "gp2 envelope protein",
+      "glycosylated membrane protein 2",
+      "envelope protein GP2",
+      "glycosylated envelope protein GP2",
+      "envelope glycoprotein GP2",
+      "N-glycosylated envelope protein GP2",
       "envelope glycoprotein 2",
       "GP2; ORF2"
     ]

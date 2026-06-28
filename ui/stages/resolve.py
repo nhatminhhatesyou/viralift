@@ -128,15 +128,22 @@ def stage_resolve():
         st.divider()
         canonicals = st.session_state.canonical_list
 
-    decisions  = {}
-    save_flags = {}
+    decisions = {}
+    save_candidates = {}
     options    = [_t("ignore_option")] + canonicals
+
+    def _default_save_candidate(candidate: str, representative: str) -> bool:
+        """Persist only the clean representative by default."""
+        text = str(candidate or "").strip()
+        if not text or ";" in text:
+            return False
+        return text == representative
 
     def _render_resolver_row(rep: str, info: Dict, is_ambiguous: bool) -> None:
         record_ids = info["records"]
         candidates = info["candidates"]
 
-        col_name, col_action, col_save = st.columns([3, 3, 1])
+        col_name, col_action, col_save = st.columns([3, 2, 2])
 
         chips = " ".join(
             f"<span class='vl-pill'>{html.escape(str(v))}</span>"
@@ -159,10 +166,18 @@ def stage_resolve():
         decisions[rep] = mapped
 
         if mapped:
-            save_flags[rep] = col_save.checkbox(
-                _t("save"), key=f"save_{rep}", value=True,
-                help=_t("save_help"),
-            )
+            col_save.caption(_t("save_aliases"))
+            selected = []
+            for idx, candidate in enumerate(candidates):
+                checked = col_save.checkbox(
+                    str(candidate),
+                    key=f"save_{rep}_{idx}",
+                    value=_default_save_candidate(str(candidate), rep),
+                    help=_t("save_candidate_help"),
+                )
+                if checked:
+                    selected.append(candidate)
+            save_candidates[rep] = selected
         else:
             col_save.write("")
 
@@ -196,11 +211,12 @@ def stage_resolve():
                 for candidate in unknown[rep]["candidates"]:
                     resolver_expanded[candidate] = canonical
 
-        # Persist to alias config: only groups where Save was checked
+        # Persist to alias config: only candidate aliases explicitly selected
+        # by the user. Session resolution remains broader than permanent saves.
         to_save: Dict[str, str] = {}
         for rep, canonical in decisions.items():
-            if canonical and save_flags.get(rep, False):
-                for candidate in unknown[rep]["candidates"]:
+            if canonical:
+                for candidate in save_candidates.get(rep, []):
                     to_save[candidate] = canonical
 
         if to_save and st.session_state.alias_config_path:
