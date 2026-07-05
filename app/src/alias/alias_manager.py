@@ -256,6 +256,23 @@ def validate_alias_config(config: Dict) -> List[str]:
     return warnings
 
 
+def save_validated_alias_config(
+    config_path: Path,
+    config: Dict,
+    create_backup: bool = True,
+) -> Path:
+    """
+    Validate and save an alias config through the normal backup-aware path.
+
+    Raises:
+        ValueError: If obvious alias conflicts are found.
+    """
+    warnings = validate_alias_config(config)
+    if warnings:
+        raise ValueError("Alias config validation failed:\n" + "\n".join(warnings))
+    return save_alias_config(config_path, config, create_backup=create_backup)
+
+
 def move_ignored_to_alias(config: Dict, ignored_name: str, canonical_name: str) -> Dict:
     ignored_norm = normalize_text(ignored_name)
     canonical_names = config.setdefault("canonical_names", {})

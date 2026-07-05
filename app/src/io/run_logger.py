@@ -183,12 +183,15 @@ def log_run_complete(
     total = sum(summary.values())
     _logger.info(
         "RUN_COMPLETE | ref=%s | records=%d | features=%d "
-        "| ok=%d rescued=%d invalid=%d low_cov=%d no_hit=%d translation_fail=%d",
+        "| ok=%d rescued=%d invalid=%d low_cov=%d low_id=%d low_cov_id=%d "
+        "no_hit=%d translation_fail=%d",
         ref_id, n_queries, total,
         summary.get("ok", 0),
         summary.get("ok_rescued", 0),
         summary.get("invalid_boundaries", 0),
         summary.get("low_coverage", 0),
+        summary.get("low_identity", 0),
+        summary.get("low_coverage_and_identity", 0),
         summary.get("no_hit", 0),
         summary.get("translation_fail", 0),
     )

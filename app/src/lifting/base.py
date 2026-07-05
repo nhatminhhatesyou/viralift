@@ -11,6 +11,8 @@ TBLASTN_STATUSES = (
     "ok_extrapolated",
     "invalid_boundaries",
     "low_coverage",
+    "low_identity",
+    "low_coverage_and_identity",
     "no_hit",
     "translation_fail",
 )
@@ -32,6 +34,8 @@ STATUS_META = {
     "ok_extrapolated": {"label": "OK (extrapolated)", "category": "pass", "is_pass": True},
     "invalid_boundaries": {"label": "Invalid boundaries", "category": "review", "is_pass": False},
     "low_coverage": {"label": "Low coverage", "category": "review", "is_pass": False},
+    "low_identity": {"label": "Low identity", "category": "review", "is_pass": False},
+    "low_coverage_and_identity": {"label": "Low coverage + identity", "category": "review", "is_pass": False},
     "no_hit": {"label": "No hit", "category": "review", "is_pass": False},
     "translation_fail": {"label": "Translation fail", "category": "review", "is_pass": False},
     "unresolved_name": {"label": "Unresolved names", "category": "review", "is_pass": False},

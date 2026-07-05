@@ -26,17 +26,18 @@ dev = [
 
 [project.scripts]
 viralift = "app.src.main:main"
+gbcrawler = "gbcrawler.__main__:main"
 
 # External system requirement (not installable via pip):
 #   NCBI BLAST+ providing the `tblastn` executable on PATH.
 
-# Auto-discover all app packages instead of hard-coding them (the previous
-# explicit list silently dropped every subpackage from the built wheel).
-# Tests and the validation workspace are excluded from the distribution.
+# Auto-discover runtime packages instead of hard-coding them. The UI and
+# GenBank crawler live outside app/, so include them in the built wheel too.
+# Tests, validation workspaces, and runtime outputs are excluded.
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["app*"]
-exclude = ["app.src.tests*", "app.validation*"]
+include = ["app*", "ui*", "gbcrawler*"]
+exclude = ["app.src.tests*", "app.validation*", "output*"]
 
 # Ship the alias config JSON so the CLI works after `pip install` outside the repo.
 [tool.setuptools.package-data]

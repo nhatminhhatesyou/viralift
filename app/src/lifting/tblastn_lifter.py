@@ -240,6 +240,24 @@ def extract_sequence(query_record: SeqRecord, start: int, end: int, strand: str)
     return str(seq)
 
 
+def _threshold_failure_status(
+    coverage: float,
+    identity: float,
+    min_coverage: float,
+    min_identity: float,
+) -> Optional[str]:
+    """Return the precise quality-gate failure status, if thresholds fail."""
+    low_coverage = coverage < min_coverage
+    low_identity = identity < min_identity
+    if low_coverage and low_identity:
+        return "low_coverage_and_identity"
+    if low_coverage:
+        return "low_coverage"
+    if low_identity:
+        return "low_identity"
+    return None
+
+
 # ---------------------------------------------------------------------------
 # Batched lifter — single tblastn call for all proteins per genome
 # ---------------------------------------------------------------------------
@@ -393,12 +411,18 @@ def _build_lifted_from_hsps(
             coverage=coverage,
         )
 
-    if coverage < min_coverage or identity < min_identity:
+    threshold_failure = _threshold_failure_status(
+        coverage,
+        identity,
+        min_coverage,
+        min_identity,
+    )
+    if threshold_failure:
         return LiftedFeature(
             **base,
             query_start=q_start, query_end=q_end,
             sequence=None, coverage=round(coverage, 4),
-            status="low_coverage",
+            status=threshold_failure,
             identity=round(identity * 100, 1),
             score=round(score, 1),
         )

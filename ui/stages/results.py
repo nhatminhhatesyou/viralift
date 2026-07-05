@@ -189,7 +189,12 @@ def stage_results():
             )
         )
 
-    manually_approvable_statuses = {"invalid_boundaries", "low_coverage"}
+    manually_approvable_statuses = {
+        "invalid_boundaries",
+        "low_coverage",
+        "low_identity",
+        "low_coverage_and_identity",
+    }
 
     def _approval_label(query_id: str, feature: LiftedFeature, gene: str) -> str:
         return (

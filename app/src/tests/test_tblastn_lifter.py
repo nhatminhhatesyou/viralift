@@ -10,11 +10,15 @@ import shutil
 from pathlib import Path
 
 import pytest
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
 
 from app.src.lifting import tblastn_lifter as tl
 from app.src.lifting.tblastn_lifter import (
     BlastNotInstalledError,
     ensure_tblastn_available,
+    _build_lifted_from_hsps,
+    _threshold_failure_status,
 )
 from app.src.alias.alias_registry import DEFAULT_REGISTRY_PATH
 
@@ -51,6 +55,61 @@ def test_lift_all_tblastn_fails_fast_without_blast(monkeypatch):
             ref_record=None,
             query_record=None,
         )
+
+
+@pytest.mark.parametrize(
+    "coverage,identity,expected",
+    [
+        (0.80, 0.80, None),
+        (0.40, 0.80, "low_coverage"),
+        (0.80, 0.20, "low_identity"),
+        (0.40, 0.20, "low_coverage_and_identity"),
+    ],
+)
+def test_threshold_failure_status_is_specific(coverage, identity, expected):
+    assert _threshold_failure_status(
+        coverage=coverage,
+        identity=identity,
+        min_coverage=0.5,
+        min_identity=0.3,
+    ) == expected
+
+
+@pytest.mark.parametrize(
+    "coverage,identity,expected_status",
+    [
+        (0.40, 0.80, "low_coverage"),
+        (0.80, 0.20, "low_identity"),
+        (0.40, 0.20, "low_coverage_and_identity"),
+    ],
+)
+def test_build_lifted_from_hsps_reports_precise_threshold_failure(
+    monkeypatch,
+    coverage,
+    identity,
+    expected_status,
+):
+    monkeypatch.setattr(
+        tl,
+        "merge_hsps",
+        lambda _hsps, protein_length: (10, 90, "+", coverage, identity, 42.0),
+    )
+    monkeypatch.setattr(tl, "rescue_stop_codon", lambda *args, **kwargs: None)
+
+    result = _build_lifted_from_hsps(
+        feature={"name": "ORF-test", "start": 1, "end": 90, "strand": "+"},
+        hsps=[object()],
+        query_record=SeqRecord(Seq("N" * 200)),
+        protein_length=30,
+        min_coverage=0.5,
+        min_identity=0.3,
+        rescue_window=20,
+        validate_codons=True,
+    )
+
+    assert result.status == expected_status
+    assert result.sequence is None
+    assert result.identity == round(identity * 100, 1)
 
 
 # --------------------------------------------------------------------------

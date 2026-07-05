@@ -1,4 +1,3 @@
-import json
 import re
 from pathlib import Path
 from typing import Callable, Dict, Iterable, List, Optional, Tuple
@@ -8,6 +7,12 @@ from Bio.SeqRecord import SeqRecord
 from app.src.alias.alias_classifier import (
     GENERIC_NAME_BLACKLIST,
     classify_alias_candidate,
+)
+from app.src.alias.alias_manager import (
+    load_alias_config,
+    load_registry,
+    save_registry,
+    save_validated_alias_config,
 )
 from app.src.alias.gene_alias import normalize_text
 from app.src.features.annotation_strategy import select_feature_type
@@ -365,9 +370,7 @@ def deduplicate_suggestions(suggestions: List[Dict]) -> List[Dict]:
 def write_new_alias_config(config: Dict, output_path: Path) -> Path:
     """Write a new alias config JSON file."""
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with output_path.open("w", encoding="utf-8") as handle:
-        json.dump(config, handle, indent=2, ensure_ascii=False)
-        handle.write("\n")
+    save_validated_alias_config(output_path, config, create_backup=False)
     return output_path
 
 
@@ -377,8 +380,7 @@ def apply_approved_alias_suggestions(
     ignored_rows: Optional[List[Dict]] = None,
 ) -> Dict:
     """Apply user-approved alias suggestions to an alias config file."""
-    with alias_config_path.open("r", encoding="utf-8") as handle:
-        config = json.load(handle)
+    config = load_alias_config(alias_config_path)
 
     canonical_names = config.setdefault("canonical_names", {})
     for row in approved_rows:
@@ -397,9 +399,7 @@ def apply_approved_alias_suggestions(
             ignored.append(raw_value)
 
     config["ignored_names"] = sorted(set(ignored), key=normalize_text)
-    with alias_config_path.open("w", encoding="utf-8") as handle:
-        json.dump(config, handle, indent=2, ensure_ascii=False)
-        handle.write("\n")
+    save_validated_alias_config(alias_config_path, config)
     return config
 
 
@@ -410,8 +410,7 @@ def append_alias_registry_entry(
     alias_config_path: Path,
 ) -> Dict:
     """Append or update one registry entry for a bootstrapped virus."""
-    with registry_path.open("r", encoding="utf-8") as handle:
-        registry = json.load(handle)
+    registry = load_registry(registry_path)
 
     viruses = registry.setdefault("viruses", [])
     config_str = str(alias_config_path)
@@ -428,9 +427,7 @@ def append_alias_registry_entry(
     else:
         viruses.append(entry)
 
-    with registry_path.open("w", encoding="utf-8") as handle:
-        json.dump(registry, handle, indent=2, ensure_ascii=False)
-        handle.write("\n")
+    save_registry(registry_path, registry)
 
     return entry
 

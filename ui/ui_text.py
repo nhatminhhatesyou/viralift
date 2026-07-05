@@ -156,6 +156,8 @@ UI_TEXT = {
         "status_direct": "Direct",
         "status_invalid_boundaries": "Invalid boundary",
         "status_low_coverage": "Low coverage",
+        "status_low_identity": "Low identity",
+        "status_low_coverage_and_identity": "Low coverage + identity",
         "status_no_hit": "No hit",
         "status_translation_fail": "Translation fail",
         "status_unresolved_name": "Unresolved name",

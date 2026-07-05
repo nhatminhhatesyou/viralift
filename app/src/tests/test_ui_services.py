@@ -1,9 +1,11 @@
+import json
+
 from Bio.Seq import Seq
 from Bio.SeqFeature import FeatureLocation, SeqFeature
 from Bio.SeqRecord import SeqRecord
 
 from app.src.alias.gene_alias import normalize_text
-from ui.services import _scan_unknown_names
+from ui.services import _save_to_alias_config, _scan_unknown_names
 
 
 def _record_with_cds(*, product: str, note: str) -> SeqRecord:
@@ -59,3 +61,22 @@ def test_scan_unknown_names_keeps_feature_when_semicolon_candidate_is_unresolved
             "ambiguous": False,
         }
     }
+
+
+def test_save_to_alias_config_uses_backup_aware_save(tmp_path):
+    config_path = tmp_path / "virus_alias.json"
+    config_path.write_text(
+        json.dumps({"virus": "Test", "canonical_names": {"ORF6": []}}),
+        encoding="utf-8",
+    )
+
+    written = _save_to_alias_config(
+        config_path,
+        {"unglycosylated membrane protein": "ORF6"},
+    )
+
+    assert written == 1
+    saved = json.loads(config_path.read_text(encoding="utf-8"))
+    assert saved["canonical_names"]["ORF6"] == ["unglycosylated membrane protein"]
+    backups = list((tmp_path / "backups").glob("virus_alias.*.json"))
+    assert len(backups) == 1

@@ -1,12 +1,16 @@
 # Auto-split from the original monolithic streamlit_app.py.
-import json
 import pandas as pd
 import re
 import streamlit as st
 from Bio.SeqRecord import SeqRecord
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
-from app.src.alias.alias_manager import add_registry_keyword, resolve_config_path
+from app.src.alias.alias_manager import (
+    add_registry_keyword,
+    load_alias_config as manager_load_alias_config,
+    resolve_config_path,
+    save_validated_alias_config,
+)
 from app.src.alias.gene_alias import (
     AMBIGUOUS_SENTINEL,
     IGNORED_SENTINEL,
@@ -245,8 +249,7 @@ def _add_new_canonicals_to_config(
     """
     if not alias_config_path or not alias_config_path.exists():
         return 0
-    with open(alias_config_path) as f:
-        cfg = json.load(f)
+    cfg = manager_load_alias_config(alias_config_path)
     added = 0
     config_name = alias_config_path.name
     for name in new_canonicals:
@@ -255,16 +258,14 @@ def _add_new_canonicals_to_config(
             log_canonical_added(config_name, name)
             added += 1
     if added:
-        with open(alias_config_path, "w") as f:
-            json.dump(cfg, f, indent=2)
+        save_validated_alias_config(alias_config_path, cfg)
     return added
 
 
 def _load_ignored_names(alias_config_path: Optional[Path]) -> set:
     if alias_config_path is None or not alias_config_path.exists():
         return set()
-    with open(alias_config_path) as f:
-        cfg = json.load(f)
+    cfg = manager_load_alias_config(alias_config_path)
     return {normalize_text(n) for n in cfg.get("ignored_names", [])}
 
 
@@ -386,8 +387,7 @@ def _save_to_alias_config(alias_config_path: Path, mappings: Dict[str, str]) -> 
     if not alias_config_path or not alias_config_path.exists():
         return 0
 
-    with open(alias_config_path) as f:
-        cfg = json.load(f)
+    cfg = manager_load_alias_config(alias_config_path)
 
     written = 0
     config_name = alias_config_path.name
@@ -400,7 +400,7 @@ def _save_to_alias_config(alias_config_path: Path, mappings: Dict[str, str]) -> 
             log_alias_added(config_name, raw_name, canonical)
             written += 1
 
-    with open(alias_config_path, "w") as f:
-        json.dump(cfg, f, indent=2)
+    if written:
+        save_validated_alias_config(alias_config_path, cfg)
 
     return written
