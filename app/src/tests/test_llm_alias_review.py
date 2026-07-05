@@ -54,6 +54,22 @@ def test_uncertain_payload_marks_matching_available_canonical():
     assert payload["suggestions"][1]["matching_available_canonical"] == "ORF1ab"
 
 
+def test_uncertain_payload_marks_specific_polyprotein_as_orf_match():
+    payload = build_uncertain_suggestion_review_payload(
+        virus_name="test virus",
+        canonical_names=["ORF1a", "ORF1b", "ORF1ab"],
+        suggestions=[
+            _row("polyprotein 1a", "ignore", "low", canonical="ORF1a"),
+            _row("replicase polyprotein 1b", "ignore", "low", canonical="ORF1b"),
+            _row("polyprotein 1ab", "ignore", "low", canonical="ORF1ab"),
+        ],
+    )
+
+    assert payload["suggestions"][0]["matching_available_canonical"] == "ORF1a"
+    assert payload["suggestions"][1]["matching_available_canonical"] == "ORF1b"
+    assert payload["suggestions"][2]["matching_available_canonical"] == "ORF1ab"
+
+
 def test_review_uncertain_alias_suggestions_merges_mock_reviews():
     suggestions = [
         _row("M", "save_alias", "high", field="gene"),
