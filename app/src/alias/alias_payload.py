@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -124,6 +125,11 @@ def build_uncertain_suggestion_review_payload(
             "is present, prefer that canonical unless there is strong evidence of a true "
             "shared/ambiguous name. query_name is weak context and may describe a parent "
             "or combined ORF; do not reject a specific raw alias solely because query_name differs. "
+            "Generic means a broad description without a specific gene/ORF identifier, "
+            "for example 'polyprotein' or 'replicase polyprotein' alone. Names such as "
+            "'polyprotein 1a', 'polyprotein 1b', and 'polyprotein 1ab' are specific "
+            "and should usually map to ORF1a, ORF1b, and ORF1ab when coordinate evidence "
+            "or matching_available_canonical supports that target. "
             "Use move_to_ambiguous for names that appear shared across genes, "
             "ignore for generic descriptions, and skip when evidence is weak."
         ),
@@ -185,9 +191,23 @@ def _matching_available_canonical(raw_value: str, canonical_names: List[str]) ->
             f"{canonical_norm}cds",
         }:
             matches.append((1, canonical))
+        elif _descriptive_orf_polyprotein_matches(raw_norm, canonical_norm):
+            matches.append((2, canonical))
     if not matches:
         return None
     return sorted(matches, key=lambda item: (item[0], len(item[1])))[0][1]
+
+
+def _descriptive_orf_polyprotein_matches(raw_norm: str, canonical_norm: str) -> bool:
+    if not raw_norm.startswith("polyprotein") and "polyprotein" not in raw_norm:
+        return False
+
+    canonical_match = re.fullmatch(r"orf(\d+[a-z]*)", canonical_norm)
+    if not canonical_match:
+        return False
+
+    raw_match = re.search(r"polyprotein(?:orf)?(\d+[a-z]*)$", raw_norm)
+    return bool(raw_match and raw_match.group(1) == canonical_match.group(1))
 
 
 # ---------------------------------------------------------------------
