@@ -168,11 +168,35 @@ def compute_iou(
     return intersection / union if union else 0.0
 
 
+def resolve_seed_canonical_override(
+    raw_value: str,
+    fallback_canonical: str,
+    seed_canonical_names: Optional[Iterable[str]] = None,
+) -> Tuple[str, bool]:
+    """
+    Prefer a user-seeded canonical when the raw qualifier is an exact canonical match.
+
+    Coordinate evidence may point an annotation to a nearby/ref feature such as ORF1a,
+    but if the query qualifier itself is exactly a canonical the user added, e.g.
+    ORF1ab, that exact naming evidence should win for alias bootstrapping.
+    """
+    lookup = {
+        normalize_text(name): name
+        for name in (seed_canonical_names or [])
+        if normalize_text(name)
+    }
+    matched = lookup.get(normalize_text(raw_value))
+    if matched is None:
+        return fallback_canonical, False
+    return matched, matched != fallback_canonical
+
+
 def build_coordinate_supported_alias_suggestions(
     ref_record: SeqRecord,
     query_records: List[SeqRecord],
     ref_features: List[Dict],
     ref_feature_type: str,
+    seed_canonical_names: Optional[Iterable[str]] = None,
     min_iou: float = 0.90,
     min_coverage: float = 0.5,
     min_identity: float = 0.3,
@@ -197,6 +221,7 @@ def build_coordinate_supported_alias_suggestions(
             "lifted_features_total": 0,
             "matched_query_features_total": 0,
             "raw_suggestions_total": 0,
+            "seed_canonical_overrides_total": 0,
             "query_feature_type_counts": {},
         })
 
@@ -254,12 +279,24 @@ def build_coordinate_supported_alias_suggestions(
                 diagnostics["matched_query_features_total"] += 1
 
             for raw in query_feature["raw_values"]:
+                coordinate_canonical = match["canonical_name"]
+                canonical_name, seed_override = resolve_seed_canonical_override(
+                    raw_value=raw["value"],
+                    fallback_canonical=coordinate_canonical,
+                    seed_canonical_names=seed_canonical_names,
+                )
                 classified = classify_alias_candidate(
                     raw_value=raw["value"],
                     field=raw["field"],
-                    canonical_name=match["canonical_name"],
+                    canonical_name=canonical_name,
                     evidence=match,
                 )
+                if seed_override:
+                    classified["reason"] = (
+                        f"raw qualifier exactly matches seed canonical `{canonical_name}`; "
+                        f"coordinate evidence matched `{coordinate_canonical}`. "
+                        + classified.get("reason", "")
+                    )
                 suggestions.append({
                     "record_id": query_record.id,
                     "query_feature_type": query_feature_type,
@@ -267,7 +304,9 @@ def build_coordinate_supported_alias_suggestions(
                     "query_start": query_feature.get("start"),
                     "query_end": query_feature.get("end"),
                     "query_strand": query_feature.get("strand"),
-                    "canonical_name": match["canonical_name"],
+                    "canonical_name": canonical_name,
+                    "coordinate_canonical_name": coordinate_canonical,
+                    "canonical_override": "raw_exact_seed_canonical" if seed_override else "",
                     "tblastn_start": match["tblastn_start"],
                     "tblastn_end": match["tblastn_end"],
                     "tblastn_strand": match["tblastn_strand"],
@@ -280,6 +319,8 @@ def build_coordinate_supported_alias_suggestions(
                 })
                 if diagnostics is not None:
                     diagnostics["raw_suggestions_total"] += 1
+                    if seed_override:
+                        diagnostics["seed_canonical_overrides_total"] += 1
 
     deduped = deduplicate_suggestions(suggestions)
     if diagnostics is not None:

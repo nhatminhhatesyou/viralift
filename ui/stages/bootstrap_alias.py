@@ -1,7 +1,9 @@
 # Auto-split from the original monolithic streamlit_app.py.
+import copy
+
 import pandas as pd
 import streamlit as st
-from app.src.alias.alias_bootstrap import append_alias_registry_entry, apply_approved_alias_suggestions, build_coordinate_supported_alias_suggestions, build_seed_alias_config_from_ref, safe_alias_filename, write_new_alias_config
+from app.src.alias.alias_bootstrap import append_alias_registry_entry, apply_approved_alias_suggestions, build_coordinate_supported_alias_suggestions, safe_alias_filename, write_new_alias_config
 from app.src.alias.gene_alias import apply_alias_to_features, load_alias_lookup
 from app.src.io.run_logger import log_error
 from app.src.llm.alias_review import review_uncertain_alias_suggestions
@@ -137,6 +139,7 @@ def stage_bootstrap_alias():
                     min_identity=st.session_state.min_identity,
                     evalue=st.session_state.evalue,
                     rescue_window=st.session_state.rescue_window,
+                    seed_canonical_names=canonical_names,
                     diagnostics=diagnostics,
                     progress_callback=_update_bootstrap_progress,
                 )
@@ -356,11 +359,13 @@ def stage_bootstrap_alias():
         st.rerun()
 
     if save_col.button("Save alias config and continue", type="primary", width="stretch"):
-        config = build_seed_alias_config_from_ref(
-            ref_record=st.session_state.ref_record,
-            ref_features=st.session_state.ref_features,
-            virus_name=virus_name,
-        )
+        config = copy.deepcopy(seed_config)
+        config["virus"] = virus_name
+        config.setdefault("canonical_names", {})
+        for canonical_name in canonical_names:
+            config["canonical_names"].setdefault(canonical_name, [])
+        config.setdefault("ignored_names", [])
+        config.setdefault("ambiguous_names", {})
         config["notes"] = (
             "Bootstrapped from reference feature names. Query aliases were added "
             "only after coordinate-supported user approval."
