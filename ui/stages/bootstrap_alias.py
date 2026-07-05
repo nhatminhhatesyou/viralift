@@ -4,6 +4,7 @@ import streamlit as st
 from app.src.alias.alias_bootstrap import append_alias_registry_entry, apply_approved_alias_suggestions, build_coordinate_supported_alias_suggestions, build_seed_alias_config_from_ref, safe_alias_filename, write_new_alias_config
 from app.src.alias.gene_alias import apply_alias_to_features, load_alias_lookup
 from app.src.io.run_logger import log_error
+from app.src.llm.alias_review import review_uncertain_alias_suggestions
 from ui.components import _render_context_panel, _render_page_intro
 from ui.i18n import _t
 from ui.services import _load_ignored_names, _scan_unknown_names, _scan_unknown_ref_names, _split_keywords, _unique_alias_config_paths
@@ -139,6 +140,15 @@ def stage_bootstrap_alias():
                     diagnostics=diagnostics,
                     progress_callback=_update_bootstrap_progress,
                 )
+                suggestions, llm_diagnostics = review_uncertain_alias_suggestions(
+                    suggestions,
+                    virus_name=virus_name,
+                    canonical_names=canonical_names,
+                    ignored_names=seed_config.get("ignored_names", []),
+                    ambiguous_names=seed_config.get("ambiguous_names", []),
+                    cache=st.session_state.llm_alias_review_cache,
+                )
+                diagnostics["llm_review"] = llm_diagnostics
             except Exception as e:
                 log_error("bootstrap alias suggestions", e)
                 st.error(f"Could not generate suggestions: {e}")
@@ -175,6 +185,19 @@ def stage_bootstrap_alias():
                 f"{no_names} record(s) had usable features but no name qualifiers; "
                 f"query feature types: {feature_counts or '{}'}."
             )
+            llm_diag = diagnostics.get("llm_review") or {}
+            if llm_diag:
+                if llm_diag.get("status") == "reviewed":
+                    cache_note = " (cached)" if llm_diag.get("cache_hit") else ""
+                    st.caption(
+                        "LLM review: "
+                        f"{llm_diag.get('reviewed_rows', 0)} uncertain alias row(s) reviewed"
+                        f"{cache_note}."
+                    )
+                elif llm_diag.get("status") == "error":
+                    st.warning(f"LLM review failed; deterministic suggestions were kept. {llm_diag.get('error')}")
+                elif llm_diag.get("status") == "missing_api_key":
+                    st.caption("LLM review skipped: set OPENAI_API_KEY to review uncertain aliases.")
 
     suggestions = st.session_state.bootstrap_suggestions or []
     edited_rows = pd.DataFrame()
@@ -183,8 +206,35 @@ def stage_bootstrap_alias():
         suggestion_df["save"] = False
         suggestion_df["ignore"] = suggestion_df["suggested_action"].eq("ignore")
         suggestion_df["skip"] = False
+        if "llm_reviewed" in suggestion_df.columns:
+            llm_save = (
+                suggestion_df["llm_reviewed"].fillna(False).astype(bool)
+                & suggestion_df["llm_action"].eq("save_alias")
+                & suggestion_df["llm_confidence"].isin(["medium", "high"])
+                & suggestion_df["llm_canonical_name"].isin(canonical_names)
+            )
+            suggestion_df.loc[llm_save, "canonical_name"] = suggestion_df.loc[
+                llm_save,
+                "llm_canonical_name",
+            ]
+            suggestion_df.loc[llm_save, ["save", "ignore", "skip"]] = [True, False, False]
+
+            llm_ignore = (
+                suggestion_df["llm_reviewed"].fillna(False).astype(bool)
+                & suggestion_df["llm_action"].eq("ignore")
+                & suggestion_df["llm_confidence"].isin(["medium", "high"])
+            )
+            suggestion_df.loc[llm_ignore, ["save", "ignore", "skip"]] = [False, True, False]
+
+            llm_skip = (
+                suggestion_df["llm_reviewed"].fillna(False).astype(bool)
+                & suggestion_df["llm_action"].isin(["skip", "move_to_ambiguous"])
+            )
+            suggestion_df.loc[llm_skip, ["save", "ignore", "skip"]] = [False, False, True]
+
         suggestion_df.loc[
-            suggestion_df["default_save"].fillna(False).astype(bool),
+            suggestion_df["default_save"].fillna(False).astype(bool)
+            & ~(suggestion_df["save"] | suggestion_df["ignore"] | suggestion_df["skip"]),
             ["save", "ignore", "skip"],
         ] = [True, False, False]
         suggestion_df.loc[
@@ -204,46 +254,98 @@ def stage_bootstrap_alias():
             "reason",
         ]
         show_cols = [c for c in show_cols if c in suggestion_df.columns]
-        st.caption(
-            "Tick exactly one action per raw name. Edit Canonical when a good alias should point to a different target."
+
+        editor_config = {
+            "save": st.column_config.CheckboxColumn(
+                "Save",
+                help="Add this raw name as an alias.",
+                width="small",
+            ),
+            "ignore": st.column_config.CheckboxColumn(
+                "Ignore",
+                help="Store this raw name as intentionally ignored.",
+                width="small",
+            ),
+            "skip": st.column_config.CheckboxColumn(
+                "Skip",
+                help="Do nothing with this raw name.",
+                width="small",
+            ),
+            "raw_value": st.column_config.TextColumn("Raw query name", width="medium"),
+            "field": st.column_config.TextColumn("Field", width="small"),
+            "canonical_name": st.column_config.SelectboxColumn(
+                "Canonical",
+                options=canonical_names,
+                required=False,
+                width="small",
+            ),
+            "confidence": st.column_config.TextColumn("Confidence", width="small"),
+            "support_count": st.column_config.NumberColumn("Support", step=1, width="small"),
+            "support_records": st.column_config.TextColumn("Supporting records", width="large"),
+            "reason": st.column_config.TextColumn("Reason", width="large"),
+            "llm_action": st.column_config.TextColumn("LLM action", width="small"),
+            "llm_confidence": st.column_config.TextColumn("LLM confidence", width="small"),
+            "llm_reason": st.column_config.TextColumn("LLM reason", width="large"),
+        }
+        editable_cols = {"save", "ignore", "skip", "canonical_name"}
+        edited_frames = []
+        llm_mask = (
+            suggestion_df["llm_reviewed"].fillna(False).astype(bool)
+            if "llm_reviewed" in suggestion_df.columns
+            else pd.Series(False, index=suggestion_df.index)
         )
-        edited_rows = st.data_editor(
-            suggestion_df[show_cols],
-            width="stretch",
-            hide_index=True,
-            height=520,
-            disabled=[c for c in show_cols if c not in {"save", "ignore", "skip", "canonical_name"}],
-            column_config={
-                "save": st.column_config.CheckboxColumn(
-                    "Save",
-                    help="Add this raw name as an alias.",
-                    width="small",
-                ),
-                "ignore": st.column_config.CheckboxColumn(
-                    "Ignore",
-                    help="Store this raw name as intentionally ignored.",
-                    width="small",
-                ),
-                "skip": st.column_config.CheckboxColumn(
-                    "Skip",
-                    help="Do nothing with this raw name.",
-                    width="small",
-                ),
-                "raw_value": st.column_config.TextColumn("Raw query name", width="medium"),
-                "field": st.column_config.TextColumn("Field", width="small"),
-                "canonical_name": st.column_config.SelectboxColumn(
-                    "Canonical",
-                    options=canonical_names,
-                    required=False,
-                    width="small",
-                ),
-                "confidence": st.column_config.TextColumn("Confidence", width="small"),
-                "support_count": st.column_config.NumberColumn("Support", step=1, width="small"),
-                "support_records": st.column_config.TextColumn("Supporting records", width="large"),
-                "reason": st.column_config.TextColumn("Reason", width="large"),
-            },
-            key="bootstrap_suggestion_editor",
-        )
+        deterministic_rows = suggestion_df[~llm_mask].copy()
+        llm_rows = suggestion_df[llm_mask].copy()
+
+        if not deterministic_rows.empty:
+            st.markdown("**Deterministic suggestions**")
+            st.caption(
+                "Tick exactly one action per raw name. Edit Canonical when a good alias should point to a different target."
+            )
+            edited_frames.append(st.data_editor(
+                deterministic_rows[show_cols],
+                width="stretch",
+                hide_index=True,
+                height=min(520, 88 + 36 * len(deterministic_rows)),
+                disabled=[c for c in show_cols if c not in editable_cols],
+                column_config=editor_config,
+                key="bootstrap_suggestion_editor_deterministic",
+            ))
+
+        if not llm_rows.empty:
+            llm_show_cols = [
+                "save",
+                "ignore",
+                "skip",
+                "raw_value",
+                "field",
+                "canonical_name",
+                "llm_action",
+                "llm_confidence",
+                "llm_reason",
+                "confidence",
+                "reason",
+                "support_count",
+                "support_records",
+            ]
+            llm_show_cols = [c for c in llm_show_cols if c in llm_rows.columns]
+            with st.expander("LLM reviewed uncertain aliases", expanded=True):
+                st.caption(
+                    "These rows were separated because deterministic scoring was uncertain or risky. "
+                    "Sequences and full GenBank records are not sent to the LLM."
+                )
+                edited_frames.append(st.data_editor(
+                    llm_rows[llm_show_cols],
+                    width="stretch",
+                    hide_index=True,
+                    height=min(420, 88 + 36 * len(llm_rows)),
+                    disabled=[c for c in llm_show_cols if c not in editable_cols],
+                    column_config=editor_config,
+                    key="bootstrap_suggestion_editor_llm",
+                ))
+
+        if edited_frames:
+            edited_rows = pd.concat(edited_frames, ignore_index=True)
     else:
         st.info("No suggestions yet. You can still save a seed config with only reference canonical names.")
 

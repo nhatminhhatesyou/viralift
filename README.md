@@ -65,6 +65,7 @@ The three modes form one seamless flow:
 
 ```bash
 cd viralift
+cp .env.example .env  # optional: fill OPENAI_API_KEY to enable LLM alias review
 docker compose up        # first build ~2 min
 ```
 
@@ -81,6 +82,20 @@ streamlit run ui/streamlit_app.py
 ```
 
 > **BLAST+** is only needed for the tblastn path (assigning annotation to records that lack it). The name-standardisation (alias) path does not need BLAST+.
+
+### Optional LLM alias review
+
+ViraLift can automatically review low-confidence bootstrap alias suggestions with an LLM. The core pipeline still works without this.
+
+```bash
+cp .env.example .env
+# edit .env:
+#   VIRALIFT_LLM_ENABLED=1
+#   OPENAI_API_KEY=...
+docker compose up --build
+```
+
+Only uncertain alias rows are sent for review; sequence data and full GenBank records are not included.
 
 ## Output
 

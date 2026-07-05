@@ -4,6 +4,8 @@ from typing import Dict, List, Optional, Tuple
 
 from Bio.SeqRecord import SeqRecord
 
+from app.src.alias.gene_alias import normalize_text
+
 
 """
 Module: alias_payload.py
@@ -21,7 +23,7 @@ Main entry point:
     results and an aggregated LLM payload if anything is unresolved.
 
 Notes:
-    - Payloads are saved to disk for inspection (LLM API not yet integrated).
+    - Payloads are compact and intended for optional review-only LLM calls.
     - Nucleotide sequences are never included.
     - Only naming-relevant fields are extracted per feature.
 """
@@ -95,6 +97,43 @@ def build_new_virus_payload(
     }
 
 
+def build_uncertain_suggestion_review_payload(
+    virus_name: str,
+    canonical_names: List[str],
+    suggestions: List[Dict],
+    ignored_names: Optional[List[str]] = None,
+    ambiguous_names: Optional[List[str]] = None,
+) -> Dict:
+    """
+    Build a compact payload for LLM review of uncertain alias suggestions.
+
+    This payload is intentionally row-level and small: it contains only the
+    deterministic suggestion context needed to advise the user. It never
+    includes nucleotide sequence or full GenBank records.
+    """
+    return {
+        "task": "review_uncertain_alias_suggestions",
+        "virus": virus_name,
+        "available_canonicals": canonical_names,
+        "ignored_names": ignored_names or [],
+        "ambiguous_names": ambiguous_names or [],
+        "instructions": (
+            "Review only the supplied uncertain alias rows. Recommend save_alias "
+            "only when the raw alias clearly belongs to one available canonical. "
+            "Treat available_canonicals as authoritative. If matching_available_canonical "
+            "is present, prefer that canonical unless there is strong evidence of a true "
+            "shared/ambiguous name. query_name is weak context and may describe a parent "
+            "or combined ORF; do not reject a specific raw alias solely because query_name differs. "
+            "Use move_to_ambiguous for names that appear shared across genes, "
+            "ignore for generic descriptions, and skip when evidence is weak."
+        ),
+        "suggestions": [
+            _extract_suggestion_review_info(row, canonical_names)
+            for row in suggestions
+        ],
+    }
+
+
 # ---------------------------------------------------------------------
 # Feature helpers
 # ---------------------------------------------------------------------
@@ -102,6 +141,53 @@ def build_new_virus_payload(
 def get_unresolved_features(normalized_features: List[Dict]) -> List[Dict]:
     """Return features that were not resolved by alias lookup (name_source == 'raw')."""
     return [f for f in normalized_features if f.get("name_source") == "raw"]
+
+
+def _extract_suggestion_review_info(row: Dict, canonical_names: Optional[List[str]] = None) -> Dict:
+    return {
+        "review_id": row.get("llm_review_id"),
+        "raw_value": row.get("raw_value"),
+        "field": row.get("field"),
+        "matching_available_canonical": _matching_available_canonical(
+            row.get("raw_value"),
+            canonical_names or [],
+        ),
+        "deterministic_action": row.get("suggested_action"),
+        "deterministic_confidence": row.get("confidence"),
+        "deterministic_reason": row.get("reason"),
+        "deterministic_score": row.get("score"),
+        "canonical_candidate": row.get("canonical_name"),
+        "query_feature_type": row.get("query_feature_type"),
+        "query_name": row.get("query_name"),
+        "support_count": row.get("support_count"),
+        "support_records": row.get("support_records"),
+        "iou": row.get("iou"),
+        "coverage": row.get("coverage"),
+        "identity": row.get("identity"),
+    }
+
+
+def _matching_available_canonical(raw_value: str, canonical_names: List[str]) -> Optional[str]:
+    raw_norm = normalize_text(raw_value or "")
+    if not raw_norm:
+        return None
+    matches = []
+    for canonical in canonical_names:
+        canonical_norm = normalize_text(canonical)
+        if not canonical_norm:
+            continue
+        if raw_norm == canonical_norm:
+            matches.append((0, canonical))
+        elif raw_norm in {
+            f"{canonical_norm}protein",
+            f"{canonical_norm}polyprotein",
+            f"{canonical_norm}gene",
+            f"{canonical_norm}cds",
+        }:
+            matches.append((1, canonical))
+    if not matches:
+        return None
+    return sorted(matches, key=lambda item: (item[0], len(item[1])))[0][1]
 
 
 # ---------------------------------------------------------------------

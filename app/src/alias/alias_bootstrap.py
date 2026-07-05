@@ -355,6 +355,8 @@ def deduplicate_suggestions(suggestions: List[Dict]) -> List[Dict]:
             row["support_records"] += f", ... (+{len(support_records) - 10})"
         rows.append(row)
 
+    _demote_cross_canonical_alias_conflicts(rows)
+
     return sorted(
         rows,
         key=lambda r: (
@@ -365,6 +367,38 @@ def deduplicate_suggestions(suggestions: List[Dict]) -> List[Dict]:
             r.get("raw_value") or "",
         ),
     )
+
+
+def _demote_cross_canonical_alias_conflicts(rows: List[Dict]) -> None:
+    """
+    Avoid auto-saving raw names that appear against multiple canonical targets.
+
+    Strain names, lab codes, or vague symbols can have excellent coordinate
+    support in more than one gene. That is evidence they are not stable global
+    aliases, so the user or LLM should review them instead of default-save.
+    """
+    hits: Dict[Tuple[str, str], set] = {}
+    for row in rows:
+        norm = normalize_text(row.get("raw_value"))
+        if not norm:
+            continue
+        key = (norm, row.get("field") or "")
+        hits.setdefault(key, set()).add(row.get("canonical_name"))
+
+    for row in rows:
+        key = (normalize_text(row.get("raw_value")), row.get("field") or "")
+        canonicals = sorted(
+            canonical for canonical in hits.get(key, set()) if canonical
+        )
+        if len(canonicals) <= 1:
+            continue
+        row["suggested_action"] = "manual_review"
+        row["confidence"] = "medium"
+        row["default_save"] = False
+        row["score"] = min(row.get("score") or 0, 5)
+        suffix = "appears with multiple canonical targets: " + ", ".join(canonicals)
+        reason = row.get("reason") or ""
+        row["reason"] = f"{reason}; {suffix}" if reason else suffix
 
 
 def write_new_alias_config(config: Dict, output_path: Path) -> Path:

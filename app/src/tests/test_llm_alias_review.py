@@ -1,0 +1,149 @@
+from app.src.llm.alias_review import (
+    needs_llm_review,
+    review_uncertain_alias_suggestions,
+)
+from app.src.alias.alias_payload import build_uncertain_suggestion_review_payload
+from app.src.llm.config import LLMConfig
+from app.src.llm.provider import MockLLMProvider
+
+
+def _row(raw_value, action, confidence, canonical="M", field="product"):
+    return {
+        "record_id": "Q1",
+        "raw_value": raw_value,
+        "field": field,
+        "canonical_name": canonical,
+        "suggested_action": action,
+        "confidence": confidence,
+        "reason": "test reason",
+        "score": 3,
+        "default_save": action == "save_alias",
+        "support_count": 1,
+        "support_records": "Q1",
+        "iou": 0.96,
+        "coverage": 1.0,
+        "identity": 99.0,
+    }
+
+
+def test_needs_llm_review_only_for_uncertain_or_risky_rows():
+    assert not needs_llm_review(_row("M", "save_alias", "high", field="gene"))
+    assert needs_llm_review(_row("membrane protein", "manual_review", "medium"))
+    assert needs_llm_review(_row("ORF6; M", "save_alias", "high"))
+    assert not needs_llm_review(_row("ORF1a protein", "save_alias", "high", canonical="ORF1a"))
+    assert not needs_llm_review(_row("ORF1ab", "save_alias", "high", canonical="ORF1ab"))
+    assert not needs_llm_review(_row("hypothetical protein", "ignore", "low"))
+    assert needs_llm_review(_row("polyprotein", "ignore", "low", canonical="ORF1a"))
+    assert needs_llm_review(_row("glycoprotein", "ignore", "low", canonical="S"))
+    assert needs_llm_review(_row("structural protein", "ignore", "low", canonical="S"))
+    assert needs_llm_review(_row("ORF2a", "ignore", "low", canonical="ORF2"))
+
+
+def test_uncertain_payload_marks_matching_available_canonical():
+    payload = build_uncertain_suggestion_review_payload(
+        virus_name="test virus",
+        canonical_names=["ORF1a", "ORF1ab", "N"],
+        suggestions=[
+            _row("ORF1a protein", "manual_review", "medium", canonical="ORF1a"),
+            _row("ORF1ab", "manual_review", "medium", canonical="ORF1a"),
+        ],
+    )
+
+    assert payload["available_canonicals"] == ["ORF1a", "ORF1ab", "N"]
+    assert payload["suggestions"][0]["matching_available_canonical"] == "ORF1a"
+    assert payload["suggestions"][1]["matching_available_canonical"] == "ORF1ab"
+
+
+def test_review_uncertain_alias_suggestions_merges_mock_reviews():
+    suggestions = [
+        _row("M", "save_alias", "high", field="gene"),
+        _row("unglycosylated membrane protein", "manual_review", "medium"),
+    ]
+    provider = MockLLMProvider([
+        {
+            "review_id": "placeholder",
+            "recommendation": "save_alias",
+            "canonical_name": "M",
+            "confidence": "medium",
+            "reason": "Membrane protein wording supports M in this context.",
+        }
+    ])
+
+    # Prime the generated review id without duplicating its hash logic.
+    primed, _ = review_uncertain_alias_suggestions(
+        suggestions,
+        virus_name="test virus",
+        canonical_names=["M", "N"],
+        config=LLMConfig(enabled=False),
+        provider=MockLLMProvider([]),
+    )
+    review_id = primed[1]["llm_review_id"]
+    provider = MockLLMProvider([
+        {
+            "review_id": review_id,
+            "recommendation": "save_alias",
+            "canonical_name": "M",
+            "confidence": "medium",
+            "reason": "Membrane protein wording supports M in this context.",
+        }
+    ])
+
+    reviewed, diagnostics = review_uncertain_alias_suggestions(
+        suggestions,
+        virus_name="test virus",
+        canonical_names=["M", "N"],
+        config=LLMConfig(enabled=True, api_key="test"),
+        provider=provider,
+    )
+
+    assert diagnostics["status"] == "reviewed"
+    assert diagnostics["submitted_rows"] == 1
+    assert len(provider.calls) == 1
+    assert len(provider.calls[0]["suggestions"]) == 1
+    assert provider.calls[0]["suggestions"][0]["raw_value"] == "unglycosylated membrane protein"
+    assert reviewed[0]["llm_reviewed"] is False
+    assert reviewed[1]["llm_reviewed"] is True
+    assert reviewed[1]["llm_action"] == "save_alias"
+    assert reviewed[1]["llm_canonical_name"] == "M"
+
+
+def test_review_uncertain_alias_suggestions_uses_cache():
+    suggestions = [_row("unglycosylated membrane protein", "manual_review", "medium")]
+    cache = {}
+    provider = MockLLMProvider([])
+
+    first, first_diag = review_uncertain_alias_suggestions(
+        suggestions,
+        virus_name="test virus",
+        canonical_names=["M"],
+        config=LLMConfig(enabled=True, api_key="test"),
+        provider=provider,
+        cache=cache,
+    )
+    second, second_diag = review_uncertain_alias_suggestions(
+        suggestions,
+        virus_name="test virus",
+        canonical_names=["M"],
+        config=LLMConfig(enabled=True, api_key="test"),
+        provider=provider,
+        cache=cache,
+    )
+
+    assert first_diag["cache_hit"] is False
+    assert second_diag["cache_hit"] is True
+    assert len(provider.calls) == 1
+    assert first[0]["llm_review_id"] == second[0]["llm_review_id"]
+
+
+def test_review_uncertain_alias_suggestions_skips_when_disabled():
+    suggestions = [_row("unglycosylated membrane protein", "manual_review", "medium")]
+    reviewed, diagnostics = review_uncertain_alias_suggestions(
+        suggestions,
+        virus_name="test virus",
+        canonical_names=["M"],
+        config=LLMConfig(enabled=False, api_key=None),
+    )
+
+    assert diagnostics["status"] == "disabled"
+    assert diagnostics["submitted_rows"] == 1
+    assert reviewed[0]["llm_reviewed"] is False

@@ -17,13 +17,6 @@
         "foot and mouth disease virus"
       ],
       "alias_config": "app/config/fmdv_alias.json"
-    },
-    {
-      "virus_name": "Porcine epidemic diarrhea virus",
-      "keywords": [
-        "Porcine epidemic diarrhea virus"
-      ],
-      "alias_config": "app/config/porcine_epidemic_diarrhea_virus_alias.json"
     }
   ]
 }

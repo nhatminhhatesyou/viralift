@@ -61,6 +61,7 @@ def _init_state():
         bootstrap_alias_config_path=None,
         bootstrap_suggestions=[],
         bootstrap_diagnostics={},
+        llm_alias_review_cache={},
         bootstrap_virus_name="",
         bootstrap_keywords="",
         alias_manager_config_path=None,

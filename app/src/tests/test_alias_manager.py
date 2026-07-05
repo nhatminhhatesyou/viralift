@@ -6,7 +6,13 @@ from app.src.alias.alias_manager import (
     remove_registry_entry,
     save_validated_alias_config,
 )
-from app.src.alias.alias_bootstrap import apply_approved_alias_suggestions
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
+
+from app.src.alias.alias_bootstrap import (
+    apply_approved_alias_suggestions,
+    build_seed_alias_config_from_ref,
+)
 
 
 def test_remove_registry_entry_can_archive_alias_config(tmp_path):
@@ -128,3 +134,20 @@ def test_apply_approved_alias_suggestions_creates_backup(tmp_path):
     assert saved["canonical_names"]["A"] == ["alpha"]
     backups = list((tmp_path / "backups").glob("virus_alias.*.json"))
     assert len(backups) == 1
+
+
+def test_seed_alias_config_does_not_ignore_contextual_descriptions():
+    ref_record = SeqRecord(Seq("ATG"), id="ref")
+    config = build_seed_alias_config_from_ref(
+        ref_record,
+        ref_features=[{"name": "S"}, {"name": "M"}, {"name": "E"}],
+        virus_name="Test virus",
+    )
+
+    ignored = set(config["ignored_names"])
+    assert "unknown" in ignored
+    assert "hypothetical protein" in ignored
+    assert "envelope protein" not in ignored
+    assert "membrane protein" not in ignored
+    assert "glycoprotein" not in ignored
+    assert "polyprotein" not in ignored
