@@ -104,7 +104,13 @@ def classify_alias_candidate(
         has_name_specific_evidence = True
         reasons.append("descriptive synonym matches canonical")
 
-    if _is_generic_name(raw_value) and not descriptive_match:
+    orf_polyprotein_match = _descriptive_orf_polyprotein_matches(raw_value, canonical_name)
+    if orf_polyprotein_match:
+        score += 5
+        has_name_specific_evidence = True
+        reasons.append("specific ORF polyprotein description matches canonical")
+
+    if _is_generic_name(raw_value) and not (descriptive_match or orf_polyprotein_match):
         score -= 8
         reasons.append("generic name")
     elif raw_words & DESCRIPTIVE_REVIEW_TERMS:
@@ -198,6 +204,20 @@ def _descriptive_alias_matches_canonical(raw_value: str, canonical_name: str) ->
         if normalized == normalize_text(raw_alias):
             return canonical_norm in {normalize_text(canonical) for canonical in canonicals}
     return False
+
+
+def _descriptive_orf_polyprotein_matches(raw_value: str, canonical_name: str) -> bool:
+    raw_norm = normalize_text(raw_value or "")
+    canonical_norm = normalize_text(canonical_name or "")
+    if not raw_norm.startswith("polyprotein") and "polyprotein" not in raw_norm:
+        return False
+
+    canonical_match = re.fullmatch(r"orf(\d+[a-z]*)", canonical_norm)
+    if not canonical_match:
+        return False
+
+    raw_match = re.search(r"polyprotein(?:orf)?(\d+[a-z]*)$", raw_norm)
+    return bool(raw_match and raw_match.group(1) == canonical_match.group(1))
 
 
 def _looks_like_locus_tag(value: str) -> bool:

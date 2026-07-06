@@ -66,7 +66,7 @@ class OpenAILLMProvider:
                 {
                     "role": "system",
                     "content": (
-                        "You review viral gene alias suggestions. Return only JSON "
+                        "You review viral gene alias and unresolved-name suggestions. Return only JSON "
                         "matching the schema. Do not invent canonicals outside the "
                         "provided available_canonicals list. You are advisory only; "
                         "the user will approve or skip each suggestion."
@@ -166,4 +166,3 @@ def _alias_review_schema() -> Dict:
         },
         "required": ["reviews"],
     }
-

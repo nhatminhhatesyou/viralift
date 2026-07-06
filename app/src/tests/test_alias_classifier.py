@@ -71,6 +71,27 @@ def test_contextual_descriptions_are_review_terms_not_hard_blacklist():
         assert "descriptive biological term" in result["reason"]
 
 
+def test_specific_polyprotein_description_matches_orf_canonical():
+    cases = [
+        ("polyprotein 1a", "ORF1a"),
+        ("replicase polyprotein 1b", "ORF1b"),
+        ("polyprotein 1ab", "ORF1ab"),
+    ]
+
+    for raw_value, canonical_name in cases:
+        result = _classify(raw_value, canonical_name)
+        assert result["suggested_action"] == "save_alias"
+        assert result["confidence"] == "high"
+        assert "specific ORF polyprotein description matches canonical" in result["reason"]
+
+
+def test_specific_polyprotein_description_does_not_match_wrong_orf_canonical():
+    result = _classify("polyprotein 1a", "ORF1ab")
+
+    assert "specific ORF polyprotein description matches canonical" not in result["reason"]
+    assert result["suggested_action"] != "save_alias"
+
+
 def test_hard_noise_names_remain_generic():
     for raw_value in ["unknown", "hypothetical protein", "protein"]:
         result = _classify(raw_value, "ORF3")

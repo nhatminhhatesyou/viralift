@@ -36,13 +36,24 @@ app/src/
 ├── alias/
 │   ├── alias_registry.py       auto-detect the right alias config for a virus
 │   ├── gene_alias.py           build alias lookup, normalize raw names → canonical
-│   └── alias_payload.py        build JSON payloads for LLM-assisted alias mapping (planned)
+│   ├── alias_classifier.py     rule-based scorer: raw qualifier + coordinate evidence → save_alias/manual_review/ignore
+│   ├── alias_bootstrap.py      brand-new-virus flow: tblastn + IoU matching → coordinate-supported alias suggestions
+│   ├── alias_manager.py        read/write canonical/ignored/ambiguous lists for the Alias Manager UI page
+│   └── alias_payload.py        build JSON payloads for LLM-assisted alias review
+├── llm/
+│   ├── config.py               LLMConfig — reads VIRALIFT_LLM_*/OPENAI_API_KEY from env, off by default
+│   ├── provider.py             OpenAILLMProvider — calls OpenAI Responses API with a strict JSON schema
+│   └── alias_review.py         needs_llm_review() gate + review_uncertain_alias_suggestions()/review_unresolved_names() — see "LLM-Assisted Alias Review" below
 └── lifting/
     ├── base.py                 LiftedFeature dataclass (output from any path)
     ├── tblastn_lifter.py       protein-guided coordinate lifting via tblastn
     └── validator.py            check / rescue start and stop codons
 ui/
-└── streamlit_app.py            4-stage web interface
+├── streamlit_app.py            top-level state machine / router
+└── stages/
+    ├── upload.py, resolve.py, running.py, results.py   the 4 core stages described below
+    ├── bootstrap_alias.py      alternate stage for a virus with no alias config yet (see "LLM-Assisted Alias Review")
+    └── virus_review.py         shown when a query's virus is auto-detected against the registry; user confirms/picks the matching alias config before continuing
 ```
 
 ---
@@ -407,9 +418,9 @@ PRRSV canonical naming convention: structural proteins use **ORF names** (`ORF2a
 
 ---
 
-## Web UI — `ui/streamlit_app.py`
+## Web UI — `ui/streamlit_app.py` + `ui/stages/`
 
-4-stage state machine. All state lives in `st.session_state` and persists across Streamlit reruns.
+4-stage state machine for the core pipeline (below), plus two side stages: `bootstrap_alias.py` (virus not yet in the registry — see "LLM-Assisted Alias Review") and `virus_review.py` (registry match confirmation). All state lives in `st.session_state` and persists across Streamlit reruns.
 
 ### Stage 1 — Upload
 
@@ -437,6 +448,8 @@ Shown when there are unrecognised names.
 
 On Continue: all candidates are expanded into the session resolver dict, which is merged into the base alias lookup via `_build_effective_lookup()` for the current run.
 
+Optional **"Ask LLM to suggest mappings"** button pre-fills the dropdown/canonical for unknown and ambiguous rows using `review_unresolved_names()` — see "LLM-Assisted Alias Review" below. Advisory only; the user still confirms every row before Continue.
+
 ### Stage 3 — Running (transient)
 
 Immediately processes all query records and advances to Stage 4. For each record:
@@ -459,16 +472,32 @@ Export:
 
 ---
 
-## Planned: LLM-Assisted Alias Building
+## LLM-Assisted Alias Review — `llm/` + `alias/alias_payload.py`
 
-**`alias/alias_payload.py`**
+**Implemented and validated** (see `LLM_ALIAS_VALIDATION_REPORT.md` — 100% action accuracy on known cases, 100% accuracy on the confidence tier the UI actually auto-applies, 0 dangerous false positives on the PED test set). Off by default: set `VIRALIFT_LLM_ENABLED=1` + `OPENAI_API_KEY` in `.env` to turn it on. Without it, the pipeline behaves exactly as before — deterministic scoring + manual resolver only.
 
-When a run encounters unresolved gene names, the pipeline can build a structured JSON payload containing the unresolved features (names, lengths, qualifier fields — no sequence data). Two task types:
+**Two entry points, two payload shapes**, both built in `alias/alias_payload.py` and both advisory-only (the UI never auto-writes to the alias config without the confidence gate below):
 
-- **`"map_aliases"`** — virus already in registry; some raw names not yet covered. LLM maps them to existing canonical keys.
-- **`"build_alias_map"`** — virus not in registry at all. LLM builds a canonical name list from scratch.
+- **`review_uncertain_alias_suggestions()`** (`llm/alias_review.py`) — used by `ui/stages/bootstrap_alias.py` (brand-new virus). Reviews rows from `alias_bootstrap.build_coordinate_supported_alias_suggestions()` (tblastn + IoU-matched raw names) that the deterministic classifier flagged as uncertain.
+- **`review_unresolved_names()`** — used by `ui/stages/resolve.py`'s "Ask LLM to suggest mappings" button. Reviews names that never got a coordinate-backed suggestion at all (fully unknown or already-known-ambiguous).
 
-The payload structure and builder functions are complete. The LLM API call and response parser are the remaining pieces to integrate. Currently, the manual resolver in Stage 2 of the UI serves this role interactively.
+Never sends sequence data or full GenBank records — only raw qualifier text, field name, candidate canonical, coordinate evidence (IoU/coverage/identity), and the available canonical list.
+
+**`needs_llm_review()` — the gate deciding which rows even reach the LLM.** Not just "low confidence". It also force-escalates specific risky shapes regardless of a `high` deterministic confidence:
+
+- Raw value contains `;`, `/`, `,`, or the word "or" (compound/uncertain annotation).
+- Raw value contains a descriptive biological term (`glycoprotein`, `polyprotein`, `membrane`, ...) without the raw text matching the canonical exactly.
+- **Same ORF family root, different suffix** — e.g. raw `ORF1ab` vs. candidate canonical `ORF1a`: both reduce to family root `orf1`, but the exact text differs, so it's escalated even at `score=13`/`confidence=high`. This is the actual mechanism that catches PED's `ORF1ab`-vs-`ORF1a` annotation mismatch (see validation report) — the coordinate-based candidate can be wrong, and this rule is what stops it from being silently auto-saved.
+- Deterministic `ignore` on a name that still "looks like" a specific gene symbol (e.g. `ORF3`, `GP5`-shaped).
+
+**Response schema**: `recommendation` ∈ `{save_alias, ignore, skip, move_to_ambiguous}`, `confidence` ∈ `{low, medium, high}`, plus `canonical_name` and `reason`. Validated against the available canonical list — a `save_alias` pointing at a canonical that doesn't exist is dropped, never applied.
+
+**Confidence gating in the UI (`bootstrap_alias.py`)** — this is the actual safety mechanism, not just a display detail:
+- `save_alias` / `ignore` at `medium`/`high` confidence → pre-ticks the corresponding checkbox.
+- `low` confidence → no auto-tick; falls back to whatever the deterministic scorer already had. In the PED validation, every wrong LLM recommendation came in at `low` confidence, so none of them were ever auto-applied.
+- `skip` **and** `move_to_ambiguous` both map to the same "Skip" checkbox, which is a pure no-op — it does not write to `ignored_names` or `ambiguous_names`. **Known gap**: even a correct `move_to_ambiguous` call (validated 100% accurate on the `mp` test case) currently has no path to actually persist into `ambiguous_names`. Same gap exists in `resolve.py`'s dropdown (no "mark ambiguous" option — only a canonical or a no-op "ignore"). Fix tracked but not yet implemented.
+
+Details, per-case results, and the validation script live in `app/validation/07_llm_alias_validation/` and `LLM_ALIAS_VALIDATION_REPORT.md`.
 
 ---
 

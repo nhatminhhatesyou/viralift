@@ -14,6 +14,7 @@ This document explains the Alias Manager module: what it is for, when to use it,
 - [Reading the Alias Manager UI](#reading-the-alias-manager-ui)
 - [What the name types mean](#what-the-name-types-mean)
 - [How the tool suggests aliases for a new virus](#how-the-tool-suggests-aliases-for-a-new-virus)
+- [Optional LLM-assisted review](#optional-llm-assisted-review)
 - [Granularity mismatch](#granularity-mismatch)
 - [Worked example](#worked-example)
 - [Common warnings](#common-warnings)
@@ -63,7 +64,11 @@ In short: this is where you manage each virus's "gene-name dictionary".
 | `app/config/*_alias.json` | Per-virus alias config |
 | `app/src/alias/alias_manager.py` | Functions to read/edit/validate the alias config |
 | `app/src/alias/alias_bootstrap.py` | Creates an alias config and suggests aliases for a new virus |
-| `ui/streamlit_app.py` | The Alias Manager UI and the alias-seed flow |
+| `app/src/alias/alias_classifier.py` | Rule-based scorer used by the bootstrap flow — see [The scoring formula](#the-scoring-formula) |
+| `app/src/llm/` (`config.py`, `provider.py`, `alias_review.py`) | Optional LLM second-opinion on uncertain suggestions — see [Optional LLM-assisted review](#optional-llm-assisted-review) |
+| `ui/stages/bootstrap_alias.py` | The alias-seed flow UI (new virus): generate suggestions, tick save/ignore/skip, save config |
+| `ui/stages/resolve.py` | The known-virus resolver UI: map unresolved/ambiguous names, optional "Ask LLM to suggest mappings" |
+| `ui/alias_manager_page.py` | The standalone Alias Manager page (edit an existing config directly) |
 
 Each time an alias config is saved via the UI, the tool writes a backup in:
 
@@ -147,11 +152,13 @@ If the reference matches no virus in the registry, the tool enters the new-virus
 
 4. **Generate suggestions**
 
-   The tool runs tblastn from the reference onto each query record, then compares the coordinates against the real annotation in the query to find which names should be added as aliases.
+   The tool runs tblastn from the reference onto each query record, then compares the coordinates against the real annotation in the query to find which names should be added as aliases. Each suggestion row gets exactly one of three checkboxes: `save`, `ignore`, or `skip` (do nothing — the name stays unresolved and reappears on the next run; it is not written to `ignored_names`).
+
+   If `VIRALIFT_LLM_ENABLED=1` is set, rows the deterministic scorer flags as uncertain (see [Optional LLM-assisted review](#optional-llm-assisted-review)) get an extra LLM opinion, and the checkboxes are pre-ticked accordingly — still fully editable before saving.
 
 5. **User approval**
 
-   Tick `save` for any reasonable suggestion. Leave `ignore` for any that are generic or wrong.
+   Tick `save` for any reasonable suggestion, `ignore` for names that are generic or wrong, `skip` for anything you're not ready to decide on. Review the pre-ticked boxes if LLM assist ran — it's advisory, not final.
 
 6. **Save config**
 
@@ -368,6 +375,19 @@ major envelope glycoprotein  (field=product):
 
 Design rationale: coordinate evidence (IoU) confirms *which feature* corresponds to which canonical, but **the name string itself** is still scored separately to avoid saving overly generic names (like `glycoprotein`) as global aliases — because a generic name can appear on many different genes in other records.
 
+## Optional LLM-assisted review
+
+Off by default (`VIRALIFT_LLM_ENABLED=0`). When enabled, an LLM gives a second opinion on rows the scoring formula above can't confidently resolve on its own — code in `app/src/llm/` + `app/src/alias/alias_payload.py`. It never sees sequence data or full GenBank records, only the raw qualifier text, field, candidate canonical, and coordinate evidence. It is validated on PED (see `LLM_ALIAS_VALIDATION_REPORT.md`) and used in two places:
+
+- **Alias-seed flow** (`ui/stages/bootstrap_alias.py`): reviews uncertain rows from step 4 above.
+- **Resolver** (`ui/stages/resolve.py`): "Ask LLM to suggest mappings" button for names that never got a coordinate-backed suggestion.
+
+Not every uncertain row is a low-score case. A row can score `≥ 8`/high confidence from the table above and still get escalated — for example when the raw name and the coordinate-matched canonical are in the **same ORF family but spelled differently** (`ORF1ab` vs. candidate `ORF1a`). This is exactly the granularity-mismatch trap described below: coordinate evidence alone can point at the wrong ORF sibling, so this case is always sent for review regardless of score.
+
+**Only `medium`/`high`-confidence `save_alias`/`ignore` recommendations get pre-ticked.** A `low`-confidence recommendation changes nothing — the checkbox stays whatever the deterministic scorer already had. In PED testing, every incorrect LLM recommendation happened to be `low` confidence, so it was never auto-applied.
+
+**Known limitation:** an LLM recommendation of `move_to_ambiguous` is currently bucketed into the same "skip" checkbox as a plain no-op — it does **not** get written into `ambiguous_names` automatically, even when the recommendation is correct (validated 100% on the PED `mp` case, [What the name types mean](#what-the-name-types-mean) above). If the LLM (or you) determines a name is genuinely ambiguous, add it to `ambiguous_names` yourself via the Alias Manager page — don't rely on ticking a suggestion checkbox for that.
+
 ## Granularity mismatch
 
 Some viruses have different annotation conventions between the reference and the query. The Alias Manager only standardises names; it does not split/merge genes itself.
@@ -411,6 +431,8 @@ The better approach is a separate canonical:
 ```
 
 When the reference has no `ORF1ab`, the output `ORF1ab` may be flagged `not_in_reference`. This is the correct signal: the query and reference differ in annotation granularity — it is not a wrong alias.
+
+This is not just a theoretical warning: PED validation caught a real instance where a handful of query records annotated `ORF1ab` but their coordinates happened to overlap the reference's `ORF1a` almost exactly, so the coordinate-matching step alone picked `ORF1a` as the candidate. The deterministic scorer would have confidently (`score=13`, high confidence) saved `ORF1ab -> ORF1a`, which is wrong. The LLM-assist safety net (see [Optional LLM-assisted review](#optional-llm-assisted-review)) is specifically what escalated this row instead of letting it auto-save. Without LLM assist enabled, this kind of case still reaches the user as a `manual_review`/high-score suggestion row — review these carefully rather than trusting the score alone whenever an `ORFx` raw name and an `ORFy` candidate share the same leading number.
 
 ## Worked example
 

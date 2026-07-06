@@ -1,3 +1,4 @@
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -140,6 +141,63 @@ def build_uncertain_suggestion_review_payload(
     }
 
 
+def build_unresolved_name_review_payload(
+    virus_name: str,
+    canonical_names: List[str],
+    unknown_items: Dict[str, Dict],
+    ambiguous_items: Optional[Dict[str, Dict]] = None,
+    ignored_names: Optional[List[str]] = None,
+) -> Dict:
+    """
+    Build a payload for LLM review of names that did not get coordinate-backed
+    alias suggestions.
+
+    This is used on the manual Name review page. It is intentionally advisory:
+    the model can suggest a mapping, but the UI still requires user approval.
+    """
+    unresolved_rows = []
+    for representative, info in (unknown_items or {}).items():
+        unresolved_rows.append(
+            _extract_unresolved_review_info(
+                representative,
+                info,
+                canonical_names,
+                is_ambiguous=False,
+            )
+        )
+    for representative, info in (ambiguous_items or {}).items():
+        unresolved_rows.append(
+            _extract_unresolved_review_info(
+                representative,
+                info,
+                canonical_names,
+                is_ambiguous=True,
+            )
+        )
+
+    return {
+        "task": "review_unresolved_names",
+        "virus": virus_name,
+        "available_canonicals": canonical_names,
+        "ignored_names": ignored_names or [],
+        "instructions": (
+            "Review unresolved query annotation names that were not resolved by the "
+            "alias config and may not have coordinate-backed tblastn suggestions. "
+            "Recommend save_alias only when the representative name or one of its "
+            "candidate qualifiers clearly belongs to exactly one available canonical. "
+            "Recommend ignore for broad descriptions, comments, locus-like values, "
+            "or parent annotations that should not become a reusable alias. Recommend "
+            "skip when the evidence is insufficient. Use move_to_ambiguous when the "
+            "same raw name is genuinely shared across multiple genes. Treat "
+            "available_canonicals as authoritative and do not invent new canonicals. "
+            "If a combined ORF name such as 'ORF1a/1b', 'ORF1a/b', or 'contains ORF1a "
+            "and ORF1b' appears and ORF1ab is available, prefer ORF1ab; otherwise skip "
+            "and let the user add a new canonical first."
+        ),
+        "suggestions": unresolved_rows,
+    }
+
+
 # ---------------------------------------------------------------------
 # Feature helpers
 # ---------------------------------------------------------------------
@@ -173,6 +231,49 @@ def _extract_suggestion_review_info(row: Dict, canonical_names: Optional[List[st
     }
 
 
+def _extract_unresolved_review_info(
+    representative: str,
+    info: Dict,
+    canonical_names: List[str],
+    is_ambiguous: bool,
+) -> Dict:
+    candidates = [str(value) for value in info.get("candidates", []) if value]
+    matching = (
+        _matching_available_canonical(representative, canonical_names)
+        or _first_matching_candidate(candidates, canonical_names)
+    )
+    return {
+        "review_id": _unresolved_review_id(representative),
+        "raw_value": representative,
+        "candidate_values": candidates,
+        "matching_available_canonical": matching,
+        "deterministic_action": "ambiguous" if is_ambiguous else "unresolved",
+        "deterministic_confidence": "low",
+        "deterministic_reason": (
+            "raw name maps to multiple canonicals"
+            if is_ambiguous
+            else "raw name was not resolved by alias lookup"
+        ),
+        "canonical_candidate": matching,
+        "support_count": len(info.get("records", [])),
+        "support_records": list(info.get("records", []))[:12],
+        "is_ambiguous": is_ambiguous,
+    }
+
+
+def _unresolved_review_id(representative: str) -> str:
+    digest = hashlib.sha1(normalize_text(representative).encode("utf-8")).hexdigest()[:12]
+    return f"unresolved_{digest}"
+
+
+def _first_matching_candidate(candidates: List[str], canonical_names: List[str]) -> Optional[str]:
+    for candidate in candidates:
+        matched = _matching_available_canonical(candidate, canonical_names)
+        if matched:
+            return matched
+    return None
+
+
 def _matching_available_canonical(raw_value: str, canonical_names: List[str]) -> Optional[str]:
     raw_norm = normalize_text(raw_value or "")
     if not raw_norm:
@@ -193,6 +294,8 @@ def _matching_available_canonical(raw_value: str, canonical_names: List[str]) ->
             matches.append((1, canonical))
         elif _descriptive_orf_polyprotein_matches(raw_norm, canonical_norm):
             matches.append((2, canonical))
+        elif _combined_orf_matches(raw_value or "", canonical_norm):
+            matches.append((3, canonical))
     if not matches:
         return None
     return sorted(matches, key=lambda item: (item[0], len(item[1])))[0][1]
@@ -208,6 +311,21 @@ def _descriptive_orf_polyprotein_matches(raw_norm: str, canonical_norm: str) -> 
 
     raw_match = re.search(r"polyprotein(?:orf)?(\d+[a-z]*)$", raw_norm)
     return bool(raw_match and raw_match.group(1) == canonical_match.group(1))
+
+
+def _combined_orf_matches(raw_value: str, canonical_norm: str) -> bool:
+    if canonical_norm != "orf1ab":
+        return False
+    raw = (raw_value or "").lower()
+    raw_compact = normalize_text(raw)
+    if raw_compact in {"orf1a/1b", "orf1a/b"}:
+        return True
+    if re.search(r"orf\s*1a\s*/\s*(?:orf\s*)?1?b", raw):
+        return True
+    return bool(
+        re.search(r"contains\s+orf\s*1a\s+and\s+orf\s*1b", raw)
+        or re.search(r"orf\s*1a\s+and\s+orf\s*1b", raw)
+    )
 
 
 # ---------------------------------------------------------------------

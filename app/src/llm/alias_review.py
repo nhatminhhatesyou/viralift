@@ -5,6 +5,7 @@ from typing import Dict, Iterable, List, Optional, Tuple
 
 from app.src.alias.alias_classifier import DESCRIPTIVE_REVIEW_TERMS, GENERIC_NAME_BLACKLIST
 from app.src.alias.alias_payload import build_uncertain_suggestion_review_payload
+from app.src.alias.alias_payload import build_unresolved_name_review_payload
 from app.src.alias.gene_alias import normalize_text
 from app.src.llm.config import LLMConfig
 from app.src.llm.provider import LLMProviderError, NoopLLMProvider, OpenAILLMProvider
@@ -113,6 +114,99 @@ def review_uncertain_alias_suggestions(
     return merged, diagnostics
 
 
+def review_unresolved_names(
+    unknown_items: Dict[str, Dict],
+    ambiguous_items: Dict[str, Dict],
+    virus_name: str,
+    canonical_names: Iterable[str],
+    *,
+    ignored_names: Optional[Iterable[str]] = None,
+    config: Optional[LLMConfig] = None,
+    provider=None,
+    cache: Optional[Dict[str, Dict]] = None,
+) -> Tuple[Dict[str, Dict], Dict]:
+    """
+    Ask the optional LLM to suggest mappings for unresolved Name review rows.
+
+    The result is keyed by the representative unresolved name. It is advisory
+    only; the UI still requires user approval before continuing or saving aliases.
+    """
+    config = config or LLMConfig.from_env()
+    canonical_list = list(canonical_names or [])
+    payload = build_unresolved_name_review_payload(
+        virus_name=virus_name,
+        canonical_names=canonical_list,
+        unknown_items=unknown_items,
+        ambiguous_items=ambiguous_items,
+        ignored_names=list(ignored_names or []),
+    )
+    suggestions = payload.get("suggestions", [])[:config.max_rows]
+    payload = {**payload, "suggestions": suggestions}
+    by_review_id = {
+        row.get("review_id"): row
+        for row in suggestions
+        if row.get("review_id")
+    }
+
+    diagnostics = {
+        "enabled": config.enabled,
+        "available": config.available if provider is None else True,
+        "model": config.model,
+        "fallback_model": config.fallback_model,
+        "unresolved_rows": len((unknown_items or {})) + len((ambiguous_items or {})),
+        "submitted_rows": len(suggestions),
+        "reviewed_rows": 0,
+        "status": "skipped",
+        "error": None,
+        "cache_hit": False,
+    }
+
+    if not suggestions:
+        diagnostics["status"] = "no_unresolved_rows"
+        return {}, diagnostics
+
+    if provider is None and not config.available:
+        diagnostics["status"] = "missing_api_key" if config.enabled else "disabled"
+        return {}, diagnostics
+
+    cache_key = alias_review_cache_key(payload)
+    if cache is not None and cache_key in cache:
+        response = cache[cache_key]
+        diagnostics["cache_hit"] = True
+    else:
+        provider = provider or OpenAILLMProvider(config)
+        try:
+            response = provider.review_alias_suggestions(payload)
+        except LLMProviderError as exc:
+            diagnostics["status"] = "error"
+            diagnostics["error"] = str(exc)
+            return {}, diagnostics
+        if cache is not None:
+            cache[cache_key] = response
+
+    reviews = _valid_reviews(response.get("reviews", []), set(canonical_list))
+    keyed_reviews = {}
+    for review in reviews:
+        suggestion_row = by_review_id.get(review.get("review_id"))
+        if not suggestion_row:
+            continue
+        raw_value = suggestion_row.get("raw_value")
+        if not raw_value:
+            continue
+        review_value = {
+            "action": review.get("recommendation"),
+            "canonical_name": review.get("canonical_name") or "",
+            "confidence": review.get("confidence"),
+            "reason": review.get("reason"),
+        }
+        for lookup_key in _unresolved_review_lookup_keys(suggestion_row):
+            keyed_reviews[lookup_key] = review_value
+
+    diagnostics["reviewed_rows"] = len(reviews)
+    diagnostics["status"] = "reviewed"
+    return keyed_reviews, diagnostics
+
+
 def merge_alias_reviews(suggestions: List[Dict], reviews: List[Dict]) -> List[Dict]:
     by_id = {review.get("review_id"): review for review in reviews}
     merged = []
@@ -135,6 +229,19 @@ def merge_alias_reviews(suggestions: List[Dict], reviews: List[Dict]) -> List[Di
 def alias_review_cache_key(payload: Dict) -> str:
     raw = json.dumps(payload, sort_keys=True, ensure_ascii=False)
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def _unresolved_review_lookup_keys(suggestion_row: Dict) -> List[str]:
+    keys = []
+    for value in [suggestion_row.get("raw_value"), *(suggestion_row.get("candidate_values") or [])]:
+        text = str(value or "").strip()
+        if not text:
+            continue
+        keys.append(text)
+        normalized = normalize_text(text)
+        if normalized:
+            keys.append(normalized)
+    return list(dict.fromkeys(keys))
 
 
 def _with_default_llm_fields(row: Dict) -> Dict:

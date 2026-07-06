@@ -3,11 +3,28 @@ import html
 import streamlit as st
 from pathlib import Path
 from typing import Dict
+from app.src.alias.gene_alias import normalize_text
+from app.src.llm.alias_review import review_unresolved_names
 from app.src.io.run_logger import log_session_decisions
 from ui.components import _render_context_panel, _render_page_intro
 from ui.i18n import _t
-from ui.services import _add_new_canonicals_to_config, _save_to_alias_config
+from ui.services import _add_new_canonicals_to_config, _load_ignored_names, _save_to_alias_config
 from ui.state import _reset
+
+
+def _llm_review_for_row(llm_reviews: Dict, rep: str, info: Dict) -> Dict:
+    """Find an LLM review even when the representative differs from candidates."""
+    if not llm_reviews:
+        return {}
+    lookup_values = [rep, normalize_text(rep)]
+    for candidate in info.get("candidates", []) or []:
+        text = str(candidate or "").strip()
+        if text:
+            lookup_values.extend([text, normalize_text(text)])
+    for value in lookup_values:
+        if value and value in llm_reviews:
+            return llm_reviews[value]
+    return {}
 
 
 def stage_resolve():
@@ -119,6 +136,8 @@ def stage_resolve():
                     "info",
                     f"`{new_canonical}` already exists.",
                 )
+            st.session_state.resolve_llm_reviews = {}
+            st.session_state.resolve_llm_diagnostics = {}
             st.rerun()
         notice = st.session_state.pop("resolve_canonical_notice", None)
         if notice:
@@ -127,6 +146,76 @@ def stage_resolve():
         st.caption("Add targets like `ORF1ab` here before mapping unknown names below.")
         st.divider()
         canonicals = st.session_state.canonical_list
+
+    llm_reviews = st.session_state.get("resolve_llm_reviews", {}) or {}
+    llm_diagnostics = st.session_state.get("resolve_llm_diagnostics", {}) or {}
+
+    if unknown_items or ambiguous_items:
+        st.markdown("**LLM assist for unresolved names**")
+        st.caption(
+            "Use this for names that did not become coordinate-backed tblastn suggestions. "
+            "Only raw names, candidate qualifier values, record IDs, and available canonicals are sent. "
+            "The model pre-fills suggestions; you still approve each dropdown before continuing."
+        )
+        assist_cols = st.columns([1.2, 1, 1, 2])
+        assist_cols[0].metric("Rows to review", len(unknown_items) + len(ambiguous_items))
+        assist_cols[1].metric("Unknown", len(unknown_items))
+        assist_cols[2].metric("Ambiguous", len(ambiguous_items))
+        if assist_cols[3].button(
+            "Ask LLM to suggest mappings",
+            type="primary",
+            width="stretch",
+            key="resolve_run_llm_review",
+        ):
+            with st.spinner("Reviewing unresolved names with LLM..."):
+                ignored = (
+                    _load_ignored_names(Path(st.session_state.alias_config_path))
+                    if st.session_state.alias_config_path
+                    else set()
+                )
+                reviews, diagnostics = review_unresolved_names(
+                    unknown_items=unknown_items,
+                    ambiguous_items=ambiguous_items,
+                    virus_name=virus,
+                    canonical_names=canonicals,
+                    ignored_names=ignored,
+                    cache=st.session_state.llm_alias_review_cache,
+                )
+            st.session_state.resolve_llm_reviews = reviews
+            st.session_state.resolve_llm_diagnostics = diagnostics
+            ignore_option = _t("ignore_option")
+            all_review_items = {**unknown_items, **ambiguous_items}
+            for representative, info in all_review_items.items():
+                review = _llm_review_for_row(reviews, representative, info)
+                if not review:
+                    continue
+                action = review.get("action")
+                canonical = review.get("canonical_name")
+                key = f"resolve_{representative}"
+                if action == "save_alias" and canonical in canonicals:
+                    st.session_state[key] = canonical
+                elif action in {"ignore", "skip", "move_to_ambiguous"}:
+                    st.session_state[key] = ignore_option
+            st.rerun()
+
+        if llm_diagnostics:
+            status = llm_diagnostics.get("status")
+            if status == "reviewed":
+                cache_note = " cached" if llm_diagnostics.get("cache_hit") else ""
+                st.success(
+                    "LLM reviewed "
+                    f"{llm_diagnostics.get('reviewed_rows', 0)} / "
+                    f"{llm_diagnostics.get('submitted_rows', 0)} submitted row(s){cache_note}."
+                )
+            elif status == "missing_api_key":
+                st.warning("LLM review is enabled but no API key is configured.")
+            elif status == "disabled":
+                st.info("LLM review is disabled. Set `VIRALIFT_LLM_ENABLED=true` to use this assist.")
+            elif status == "error":
+                st.error(f"LLM review failed: {llm_diagnostics.get('error')}")
+            elif status:
+                st.caption(f"LLM review status: {status}")
+        st.divider()
 
     decisions = {}
     save_candidates = {}
@@ -164,6 +253,16 @@ def stage_resolve():
         )
         mapped = None if choice.startswith("--") else choice
         decisions[rep] = mapped
+
+        review = _llm_review_for_row(llm_reviews, rep, info)
+        if review:
+            action = review.get("action")
+            canonical = review.get("canonical_name") or "none"
+            confidence = review.get("confidence") or "unknown"
+            reason = review.get("reason") or "No reason returned."
+            col_action.caption(
+                f"LLM: `{action}` -> `{canonical}` ({confidence}). {reason}"
+            )
 
         if mapped:
             col_save.caption(_t("save_aliases"))

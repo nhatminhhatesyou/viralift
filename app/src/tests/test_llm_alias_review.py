@@ -1,8 +1,10 @@
 from app.src.llm.alias_review import (
     needs_llm_review,
+    review_unresolved_names,
     review_uncertain_alias_suggestions,
 )
 from app.src.alias.alias_payload import build_uncertain_suggestion_review_payload
+from app.src.alias.alias_payload import build_unresolved_name_review_payload
 from app.src.llm.config import LLMConfig
 from app.src.llm.provider import MockLLMProvider
 
@@ -68,6 +70,30 @@ def test_uncertain_payload_marks_specific_polyprotein_as_orf_match():
     assert payload["suggestions"][0]["matching_available_canonical"] == "ORF1a"
     assert payload["suggestions"][1]["matching_available_canonical"] == "ORF1b"
     assert payload["suggestions"][2]["matching_available_canonical"] == "ORF1ab"
+
+
+def test_unresolved_payload_marks_combined_orf_when_orf1ab_available():
+    payload = build_unresolved_name_review_payload(
+        virus_name="test virus",
+        canonical_names=["ORF1a", "ORF1b", "ORF1ab"],
+        unknown_items={
+            "ORF1a/1b polyprotein": {
+                "records": ["Q1"],
+                "candidates": ["ORF1a/1b polyprotein"],
+            },
+            "contains ORF1a and ORF1b": {
+                "records": ["Q2"],
+                "candidates": ["contains ORF1a and ORF1b"],
+            },
+        },
+    )
+
+    matches = {
+        row["raw_value"]: row["matching_available_canonical"]
+        for row in payload["suggestions"]
+    }
+    assert matches["ORF1a/1b polyprotein"] == "ORF1ab"
+    assert matches["contains ORF1a and ORF1b"] == "ORF1ab"
 
 
 def test_review_uncertain_alias_suggestions_merges_mock_reviews():
@@ -149,6 +175,94 @@ def test_review_uncertain_alias_suggestions_uses_cache():
     assert second_diag["cache_hit"] is True
     assert len(provider.calls) == 1
     assert first[0]["llm_review_id"] == second[0]["llm_review_id"]
+
+
+def test_review_unresolved_names_returns_recommendations_by_raw_name():
+    unknown_items = {
+        "ORF1a/1b": {
+            "records": ["Q1"],
+            "candidates": ["ORF1a/1b"],
+        }
+    }
+
+    primed, _ = review_unresolved_names(
+        unknown_items=unknown_items,
+        ambiguous_items={},
+        virus_name="test virus",
+        canonical_names=["ORF1a", "ORF1b", "ORF1ab"],
+        config=LLMConfig(enabled=False),
+        provider=MockLLMProvider([]),
+    )
+    assert primed == {}
+
+    payload = build_unresolved_name_review_payload(
+        virus_name="test virus",
+        canonical_names=["ORF1a", "ORF1b", "ORF1ab"],
+        unknown_items=unknown_items,
+    )
+    review_id = payload["suggestions"][0]["review_id"]
+    provider = MockLLMProvider([
+        {
+            "review_id": review_id,
+            "recommendation": "save_alias",
+            "canonical_name": "ORF1ab",
+            "confidence": "medium",
+            "reason": "Combined ORF1a/1b wording maps to ORF1ab.",
+        }
+    ])
+
+    reviews, diagnostics = review_unresolved_names(
+        unknown_items=unknown_items,
+        ambiguous_items={},
+        virus_name="test virus",
+        canonical_names=["ORF1a", "ORF1b", "ORF1ab"],
+        config=LLMConfig(enabled=True, api_key="test"),
+        provider=provider,
+    )
+
+    assert diagnostics["status"] == "reviewed"
+    assert diagnostics["submitted_rows"] == 1
+    assert reviews["ORF1a/1b"]["action"] == "save_alias"
+    assert reviews["ORF1a/1b"]["canonical_name"] == "ORF1ab"
+    assert reviews["orf1a/1b"]["canonical_name"] == "ORF1ab"
+
+
+def test_review_unresolved_names_can_be_found_by_candidate_value():
+    unknown_items = {
+        "combined_orf_label": {
+            "records": ["Q1"],
+            "candidates": ["ORF1a/1b"],
+        }
+    }
+    payload = build_unresolved_name_review_payload(
+        virus_name="test virus",
+        canonical_names=["ORF1a", "ORF1b", "ORF1ab"],
+        unknown_items=unknown_items,
+    )
+    review_id = payload["suggestions"][0]["review_id"]
+    provider = MockLLMProvider([
+        {
+            "review_id": review_id,
+            "recommendation": "save_alias",
+            "canonical_name": "ORF1ab",
+            "confidence": "high",
+            "reason": "Combined ORF1a/1b wording maps to ORF1ab.",
+        }
+    ])
+
+    reviews, diagnostics = review_unresolved_names(
+        unknown_items=unknown_items,
+        ambiguous_items={},
+        virus_name="test virus",
+        canonical_names=["ORF1a", "ORF1b", "ORF1ab"],
+        config=LLMConfig(enabled=True, api_key="test"),
+        provider=provider,
+    )
+
+    assert diagnostics["reviewed_rows"] == 1
+    assert reviews["combined_orf_label"]["canonical_name"] == "ORF1ab"
+    assert reviews["ORF1a/1b"]["canonical_name"] == "ORF1ab"
+    assert reviews["orf1a/1b"]["canonical_name"] == "ORF1ab"
 
 
 def test_review_uncertain_alias_suggestions_skips_when_disabled():
