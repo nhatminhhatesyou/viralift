@@ -121,17 +121,26 @@ def test_save_validated_alias_config_rejects_conflicts_without_overwrite(tmp_pat
 def test_apply_approved_alias_suggestions_creates_backup(tmp_path):
     config_path = tmp_path / "virus_alias.json"
     config_path.write_text(
-        json.dumps({"virus": "Test", "canonical_names": {"A": []}}),
+        json.dumps({
+            "virus": "Test",
+            "canonical_names": {"A": []},
+            "ignored_names": ["alpha"],
+            "ambiguous_names": ["alpha"],
+        }),
         encoding="utf-8",
     )
 
     apply_approved_alias_suggestions(
         config_path,
         approved_rows=[{"raw_value": "alpha", "canonical_name": "A"}],
+        ignored_rows=[{"raw_value": "ignored label"}],
+        ambiguous_rows=[{"raw_value": "shared label"}],
     )
 
     saved = json.loads(config_path.read_text(encoding="utf-8"))
     assert saved["canonical_names"]["A"] == ["alpha"]
+    assert saved["ignored_names"] == ["ignored label"]
+    assert saved["ambiguous_names"] == ["shared label"]
     backups = list((tmp_path / "backups").glob("virus_alias.*.json"))
     assert len(backups) == 1
 

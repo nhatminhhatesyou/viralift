@@ -492,10 +492,11 @@ Never sends sequence data or full GenBank records — only raw qualifier text, f
 
 **Response schema**: `recommendation` ∈ `{save_alias, ignore, skip, move_to_ambiguous}`, `confidence` ∈ `{low, medium, high}`, plus `canonical_name` and `reason`. Validated against the available canonical list — a `save_alias` pointing at a canonical that doesn't exist is dropped, never applied.
 
-**Confidence gating in the UI (`bootstrap_alias.py`)** — this is the actual safety mechanism, not just a display detail:
-- `save_alias` / `ignore` at `medium`/`high` confidence → pre-ticks the corresponding checkbox.
-- `low` confidence → no auto-tick; falls back to whatever the deterministic scorer already had. In the PED validation, every wrong LLM recommendation came in at `low` confidence, so none of them were ever auto-applied.
-- `skip` **and** `move_to_ambiguous` both map to the same "Skip" checkbox, which is a pure no-op — it does not write to `ignored_names` or `ambiguous_names`. **Known gap**: even a correct `move_to_ambiguous` call (validated 100% accurate on the `mp` test case) currently has no path to actually persist into `ambiguous_names`. Same gap exists in `resolve.py`'s dropdown (no "mark ambiguous" option — only a canonical or a no-op "ignore"). Fix tracked but not yet implemented.
+**Confidence gating in the UI (`bootstrap_alias.py`)** — this is the actual safety mechanism, not just a display detail. Each suggestion row has a single **Action** dropdown (`Save alias` / `Save ambiguous` / `Save ignored` / `Skip this run` — a `SelectboxColumn`, not four independent checkboxes, so a row can never end up with two actions selected at once):
+- `save_alias` / `move_to_ambiguous` / `ignore` at `medium`/`high` confidence → pre-fills the matching Action option (`llm_canonical_name` must also be a real available canonical for `save_alias` to pre-fill).
+- `skip` at **any** confidence → pre-fills `Skip this run` (there's no risk in leaving a row unresolved, so this doesn't need the confidence gate).
+- Anything else (e.g. a `save_alias`/`ignore`/`move_to_ambiguous` recommendation at `low` confidence) → no pre-fill; falls back to whatever the deterministic scorer already had. In the PED validation, every wrong LLM recommendation came in at `low` confidence, so none of them were ever auto-applied.
+- `move_to_ambiguous` has its own dedicated Action (`Save ambiguous`) that writes straight to `ambiguous_names` via `apply_approved_alias_suggestions(..., ambiguous_rows=...)`. This used to be a known gap (an LLM `move_to_ambiguous` call, even when correct, had no path to persist — validated 100% accurate on the `mp` test case but silently discarded); it's now fixed. `resolve.py`'s dropdown still lacks a "mark ambiguous" option (only a canonical or a no-op "ignore") — that part of the gap remains open.
 
 Details, per-case results, and the validation script live in `app/validation/07_llm_alias_validation/` and `LLM_ALIAS_VALIDATION_REPORT.md`.
 

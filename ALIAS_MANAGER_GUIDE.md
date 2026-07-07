@@ -66,7 +66,7 @@ In short: this is where you manage each virus's "gene-name dictionary".
 | `app/src/alias/alias_bootstrap.py` | Creates an alias config and suggests aliases for a new virus |
 | `app/src/alias/alias_classifier.py` | Rule-based scorer used by the bootstrap flow — see [The scoring formula](#the-scoring-formula) |
 | `app/src/llm/` (`config.py`, `provider.py`, `alias_review.py`) | Optional LLM second-opinion on uncertain suggestions — see [Optional LLM-assisted review](#optional-llm-assisted-review) |
-| `ui/stages/bootstrap_alias.py` | The alias-seed flow UI (new virus): generate suggestions, tick save/ignore/skip, save config |
+| `ui/stages/bootstrap_alias.py` | The alias-seed flow UI (new virus): generate suggestions, pick an Action per row (save/ambiguous/ignore/skip), save config |
 | `ui/stages/resolve.py` | The known-virus resolver UI: map unresolved/ambiguous names, optional "Ask LLM to suggest mappings" |
 | `ui/alias_manager_page.py` | The standalone Alias Manager page (edit an existing config directly) |
 
@@ -152,13 +152,13 @@ If the reference matches no virus in the registry, the tool enters the new-virus
 
 4. **Generate suggestions**
 
-   The tool runs tblastn from the reference onto each query record, then compares the coordinates against the real annotation in the query to find which names should be added as aliases. Each suggestion row gets exactly one of three checkboxes: `save`, `ignore`, or `skip` (do nothing — the name stays unresolved and reappears on the next run; it is not written to `ignored_names`).
+   The tool runs tblastn from the reference onto each query record, then compares the coordinates against the real annotation in the query to find which names should be added as aliases. Each suggestion row gets one **Action** dropdown with exactly four choices: `Save alias`, `Save ambiguous` (writes to `ambiguous_names`), `Save ignored` (writes to `ignored_names`), or `Skip this run` (do nothing — the name stays unresolved and reappears on the next run). It's a single-select dropdown, not independent checkboxes, so a row can never end up with two actions at once.
 
-   If `VIRALIFT_LLM_ENABLED=1` is set, rows the deterministic scorer flags as uncertain (see [Optional LLM-assisted review](#optional-llm-assisted-review)) get an extra LLM opinion, and the checkboxes are pre-ticked accordingly — still fully editable before saving.
+   If `VIRALIFT_LLM_ENABLED=1` is set, rows the deterministic scorer flags as uncertain (see [Optional LLM-assisted review](#optional-llm-assisted-review)) get an extra LLM opinion, and the Action dropdown is pre-filled accordingly — still fully editable before saving.
 
 5. **User approval**
 
-   Tick `save` for any reasonable suggestion, `ignore` for names that are generic or wrong, `skip` for anything you're not ready to decide on. Review the pre-ticked boxes if LLM assist ran — it's advisory, not final.
+   Pick `Save alias` for any reasonable suggestion, `Save ignored` for names that are generic or wrong, `Save ambiguous` for names genuinely shared across multiple genes, or `Skip this run` for anything you're not ready to decide on. Review the pre-filled dropdown if LLM assist ran — it's advisory, not final.
 
 6. **Save config**
 
@@ -384,9 +384,9 @@ Off by default (`VIRALIFT_LLM_ENABLED=0`). When enabled, an LLM gives a second o
 
 Not every uncertain row is a low-score case. A row can score `≥ 8`/high confidence from the table above and still get escalated — for example when the raw name and the coordinate-matched canonical are in the **same ORF family but spelled differently** (`ORF1ab` vs. candidate `ORF1a`). This is exactly the granularity-mismatch trap described below: coordinate evidence alone can point at the wrong ORF sibling, so this case is always sent for review regardless of score.
 
-**Only `medium`/`high`-confidence `save_alias`/`ignore` recommendations get pre-ticked.** A `low`-confidence recommendation changes nothing — the checkbox stays whatever the deterministic scorer already had. In PED testing, every incorrect LLM recommendation happened to be `low` confidence, so it was never auto-applied.
+**Only `medium`/`high`-confidence `save_alias`/`move_to_ambiguous`/`ignore` recommendations get pre-filled into the Action dropdown.** An LLM `skip` always pre-fills regardless of confidence (there's nothing risky about leaving a row unresolved). Any other `low`-confidence recommendation changes nothing — the Action stays whatever the deterministic scorer already had. In PED testing, every incorrect LLM recommendation happened to be `low` confidence, so it was never auto-applied.
 
-**Known limitation:** an LLM recommendation of `move_to_ambiguous` is currently bucketed into the same "skip" checkbox as a plain no-op — it does **not** get written into `ambiguous_names` automatically, even when the recommendation is correct (validated 100% on the PED `mp` case, [What the name types mean](#what-the-name-types-mean) above). If the LLM (or you) determines a name is genuinely ambiguous, add it to `ambiguous_names` yourself via the Alias Manager page — don't rely on ticking a suggestion checkbox for that.
+`move_to_ambiguous` has its own Action option (`Save ambiguous`) that writes straight to `ambiguous_names` — it is no longer folded into the same bucket as `skip`/no-op. This was a real gap found during PED validation (an LLM `move_to_ambiguous` call that was correct 100% of the time on the `mp` test case still couldn't be persisted); it's now fixed in `ui/stages/bootstrap_alias.py`.
 
 ## Granularity mismatch
 

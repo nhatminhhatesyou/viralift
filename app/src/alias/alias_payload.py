@@ -130,9 +130,14 @@ def build_uncertain_suggestion_review_payload(
             "for example 'polyprotein' or 'replicase polyprotein' alone. Names such as "
             "'polyprotein 1a', 'polyprotein 1b', and 'polyprotein 1ab' are specific "
             "and should usually map to ORF1a, ORF1b, and ORF1ab when coordinate evidence "
-            "or matching_available_canonical supports that target. "
-            "Use move_to_ambiguous for names that appear shared across genes, "
-            "ignore for generic descriptions, and skip when evidence is weak."
+            "or matching_available_canonical supports that target. Do not reject a "
+            "specific product name solely because it contains words like membrane, "
+            "envelope, glycoprotein, or polyprotein; names such as small membrane "
+            "protein or sM protein can be meaningful aliases when they consistently "
+            "support one canonical. Use shared_across_canonicals and "
+            "cross_canonical_targets as strong evidence for move_to_ambiguous. "
+            "Use ignore only for globally uninformative values, and skip when "
+            "evidence is weak or no available canonical fits."
         ),
         "suggestions": [
             _extract_suggestion_review_info(row, canonical_names)
@@ -190,6 +195,10 @@ def build_unresolved_name_review_payload(
             "skip when the evidence is insufficient. Use move_to_ambiguous when the "
             "same raw name is genuinely shared across multiple genes. Treat "
             "available_canonicals as authoritative and do not invent new canonicals. "
+            "Use support_count and candidate_values_count as context: high support "
+            "with one clear target can justify save_alias; high support with broad "
+            "or mixed wording is stronger evidence for ignore or move_to_ambiguous "
+            "than for skip. "
             "If a combined ORF name such as 'ORF1a/1b', 'ORF1a/b', or 'contains ORF1a "
             "and ORF1b' appears and ORF1ab is available, prefer ORF1ab; otherwise skip "
             "and let the user add a new canonical first."
@@ -221,6 +230,9 @@ def _extract_suggestion_review_info(row: Dict, canonical_names: Optional[List[st
         "deterministic_reason": row.get("reason"),
         "deterministic_score": row.get("score"),
         "canonical_candidate": row.get("canonical_name"),
+        "shared_across_canonicals": bool(row.get("shared_across_canonicals")),
+        "cross_canonical_targets": row.get("cross_canonical_targets") or [],
+        "cross_canonical_target_count": row.get("cross_canonical_target_count") or 0,
         "query_feature_type": row.get("query_feature_type"),
         "query_name": row.get("query_name"),
         "support_count": row.get("support_count"),
@@ -257,6 +269,9 @@ def _extract_unresolved_review_info(
         "canonical_candidate": matching,
         "support_count": len(info.get("records", [])),
         "support_records": list(info.get("records", []))[:12],
+        "candidate_values_count": len(candidates),
+        "has_multiple_candidate_values": len(candidates) > 1,
+        "high_support_unresolved": len(info.get("records", [])) >= 3,
         "is_ambiguous": is_ambiguous,
     }
 

@@ -27,10 +27,14 @@ def test_default_registry_path_is_absolute_and_exists():
     assert PACKAGE_CONFIG_DIR.is_dir()
 
 
-def _ped_record() -> SeqRecord:
+def _prrsv_record() -> SeqRecord:
+    # Uses PRRSV rather than a specific field virus so this test only depends
+    # on *some* entry existing in the packaged registry, not on any one virus
+    # config staying registered. The point of this test is path resolution
+    # behavior (cwd-independence), not PRRSV/PED support specifically.
     rec = SeqRecord(Seq("ATG"), id="X", name="X",
-                    description="Porcine epidemic diarrhea virus strain test")
-    rec.annotations["organism"] = "Porcine epidemic diarrhea virus"
+                    description="Porcine reproductive and respiratory syndrome virus strain test")
+    rec.annotations["organism"] = "Porcine reproductive and respiratory syndrome virus"
     return rec
 
 
@@ -38,9 +42,8 @@ def test_detect_resolves_config_regardless_of_cwd(monkeypatch, tmp_path):
     # Simulate an installed CLI invoked from an unrelated directory.
     monkeypatch.chdir(tmp_path)
 
-    rec = _ped_record()
-    assert get_detected_virus_name(rec, DEFAULT_REGISTRY_PATH) == \
-        "Porcine epidemic diarrhea virus"
+    rec = _prrsv_record()
+    assert get_detected_virus_name(rec, DEFAULT_REGISTRY_PATH) == "PRRSV"
 
     cfg = detect_alias_config_for_record(rec, DEFAULT_REGISTRY_PATH)
     assert cfg is not None

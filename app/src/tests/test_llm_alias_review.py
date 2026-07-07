@@ -72,6 +72,24 @@ def test_uncertain_payload_marks_specific_polyprotein_as_orf_match():
     assert payload["suggestions"][2]["matching_available_canonical"] == "ORF1ab"
 
 
+def test_uncertain_payload_includes_cross_canonical_context():
+    row = _row("small membrane protein", "manual_review", "medium", canonical="E")
+    row["shared_across_canonicals"] = True
+    row["cross_canonical_targets"] = ["E", "M"]
+    row["cross_canonical_target_count"] = 2
+
+    payload = build_uncertain_suggestion_review_payload(
+        virus_name="test virus",
+        canonical_names=["E", "M"],
+        suggestions=[row],
+    )
+
+    suggestion = payload["suggestions"][0]
+    assert suggestion["shared_across_canonicals"] is True
+    assert suggestion["cross_canonical_targets"] == ["E", "M"]
+    assert suggestion["cross_canonical_target_count"] == 2
+
+
 def test_unresolved_payload_marks_combined_orf_when_orf1ab_available():
     payload = build_unresolved_name_review_payload(
         virus_name="test virus",
@@ -94,6 +112,28 @@ def test_unresolved_payload_marks_combined_orf_when_orf1ab_available():
     }
     assert matches["ORF1a/1b polyprotein"] == "ORF1ab"
     assert matches["contains ORF1a and ORF1b"] == "ORF1ab"
+    first = payload["suggestions"][0]
+    assert first["candidate_values_count"] == 1
+    assert first["high_support_unresolved"] is False
+
+
+def test_unresolved_payload_marks_high_support_mixed_candidates():
+    payload = build_unresolved_name_review_payload(
+        virus_name="test virus",
+        canonical_names=["S", "M"],
+        unknown_items={
+            "membrane-associated protein": {
+                "records": ["Q1", "Q2", "Q3"],
+                "candidates": ["membrane-associated protein", "small membrane protein"],
+            },
+        },
+    )
+
+    row = payload["suggestions"][0]
+    assert row["support_count"] == 3
+    assert row["candidate_values_count"] == 2
+    assert row["has_multiple_candidate_values"] is True
+    assert row["high_support_unresolved"] is True
 
 
 def test_review_uncertain_alias_suggestions_merges_mock_reviews():

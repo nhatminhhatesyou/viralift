@@ -57,9 +57,11 @@ Trên 59 suggestion row có coordinate support (IoU ≥ 0.90), 20 row bị heuri
 
 ### Điểm quan trọng nhất: accuracy trên phần thực sự được áp dụng
 
-App hiện tại (`ui/stages/bootstrap_alias.py`) **chỉ tự động tick checkbox khi
-LLM confidence là `medium` hoặc `high`** — recommendation ở confidence `low`
-không bao giờ được auto-apply. Khi lọc theo đúng ngưỡng này:
+App hiện tại (`ui/stages/bootstrap_alias.py`) **chỉ tự động điền sẵn Action
+(lúc chạy validation này còn là checkbox, giờ đã đổi thành dropdown — xem
+update ở mục 4) khi LLM confidence là `medium` hoặc `high`** — recommendation
+ở confidence `low` không bao giờ được auto-apply. Khi lọc theo đúng ngưỡng
+này:
 
 | Metric | Giá trị |
 |---|---:|
@@ -100,6 +102,16 @@ mismatch" mà PED report đã cảnh báo (mục 5.2) — và là ví dụ cụ 
 LLM review bổ sung giá trị thật, không chỉ lặp lại deterministic.
 
 ## 4. Phát hiện quan trọng, độc lập với số liệu accuracy
+
+> **Update (sau khi validation này chạy):** gap mô tả bên dưới ở
+> `bootstrap_alias.py` **đã được fix**. UI giờ có 1 dropdown "Action" với 4
+> lựa chọn (`Save alias` / `Save ambiguous` / `Save ignored` / `Skip this
+> run`) thay vì 4 checkbox độc lập; `Save ambiguous` ghi thẳng vào
+> `ambiguous_names` qua `apply_approved_alias_suggestions(...,
+> ambiguous_rows=...)`. Gap ở `resolve.py` (mô tả ở đoạn dưới) **vẫn còn mở**
+> — dropdown ở đó vẫn chỉ có canonical hoặc "ignore", chưa có lựa chọn đánh
+> dấu ambiguous. Giữ nguyên phần dưới làm bản ghi lại phát hiện gốc tại thời
+> điểm validation.
 
 `ui/stages/bootstrap_alias.py` hiện gộp cả `skip` và `move_to_ambiguous` từ
 LLM vào **cùng một checkbox "Skip"**, mà "Skip" thì không ghi gì vào

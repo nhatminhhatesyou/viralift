@@ -13,19 +13,59 @@ from ui.services import _load_ignored_names, _scan_unknown_names, _scan_unknown_
 from ui.state import REGISTRY_PATH, _reset
 
 
-def _suggestion_flag_conflicts(rows: pd.DataFrame) -> list[str]:
-    conflicts = []
-    if rows.empty:
-        return conflicts
-    for _, row in rows.iterrows():
-        selected = [
-            label
-            for label, column in (("Save", "save"), ("Ignore", "ignore"), ("Skip", "skip"))
-            if bool(row.get(column))
-        ]
-        if len(selected) > 1:
-            conflicts.append(f"`{row.get('raw_value', '')}`: {', '.join(selected)}")
-    return conflicts
+# Single-select action per suggestion row. This is deliberately ONE column
+# (a dropdown, via st.column_config.SelectboxColumn) rather than four
+# independent checkbox columns: st.data_editor has no "radio group" checkbox
+# concept, so four separate CheckboxColumns can all be ticked at once and only
+# get reconciled to one winner after the fact (at save time). A single
+# SelectboxColumn makes "exactly one action per row" true by construction —
+# there is nothing to reconcile because only one value can ever be selected.
+ACTION_LABELS = {
+    "save": "Save alias",
+    "ambiguous": "Save ambiguous",
+    "ignore": "Save ignored",
+    "skip": "Skip this run",
+}
+LABEL_TO_ACTION = {label: action for action, label in ACTION_LABELS.items()}
+ACTION_OPTIONS = list(ACTION_LABELS.values())
+
+
+def _default_suggestion_action(row: pd.Series, canonical_names: list[str]) -> str:
+    """Pick the pre-filled action for one suggestion row.
+
+    Precedence: an LLM "skip" always wins (regardless of confidence — a low-
+    confidence LLM skip should not be overridden by a stale deterministic
+    default). Otherwise, an LLM save/ambiguous/ignore recommendation wins only
+    at medium/high confidence (the same gate the app has always used to decide
+    which LLM recommendations are trustworthy enough to auto-apply). If none
+    of that applies, fall back to the deterministic scorer's own suggestion.
+    """
+    llm_reviewed = bool(row.get("llm_reviewed"))
+    llm_action = row.get("llm_action")
+    llm_confidence = row.get("llm_confidence")
+
+    if llm_reviewed and llm_action == "skip":
+        return "skip"
+    if llm_reviewed and llm_confidence in {"medium", "high"}:
+        if llm_action == "save_alias" and row.get("llm_canonical_name") in canonical_names:
+            return "save"
+        if llm_action == "move_to_ambiguous":
+            return "ambiguous"
+        if llm_action == "ignore":
+            return "ignore"
+    if bool(row.get("default_save")) or row.get("suggested_action") == "save_alias":
+        return "save"
+    if row.get("suggested_action") == "ignore":
+        return "ignore"
+    return "skip"
+
+
+def _resolve_suggestion_default(row: pd.Series, canonical_names: list[str]) -> pd.Series:
+    action = _default_suggestion_action(row, canonical_names)
+    canonical_name = row.get("canonical_name")
+    if action == "save" and bool(row.get("llm_reviewed")) and row.get("llm_action") == "save_alias":
+        canonical_name = row.get("llm_canonical_name") or canonical_name
+    return pd.Series({"action": ACTION_LABELS[action], "canonical_name": canonical_name})
 
 
 def stage_bootstrap_alias():
@@ -160,6 +200,9 @@ def stage_bootstrap_alias():
                 progress.empty()
             st.session_state.bootstrap_suggestions = suggestions
             st.session_state.bootstrap_diagnostics = diagnostics
+            # Force the review table to be rebuilt from these fresh suggestions
+            # instead of reusing whatever was cached from a previous generation.
+            st.session_state.pop("bootstrap_suggestion_table", None)
             st.rerun()
 
     info_col.info(
@@ -205,49 +248,33 @@ def stage_bootstrap_alias():
     suggestions = st.session_state.bootstrap_suggestions or []
     edited_rows = pd.DataFrame()
     if suggestions:
-        suggestion_df = pd.DataFrame(suggestions)
-        suggestion_df["save"] = False
-        suggestion_df["ignore"] = suggestion_df["suggested_action"].eq("ignore")
-        suggestion_df["skip"] = False
-        if "llm_reviewed" in suggestion_df.columns:
-            llm_save = (
-                suggestion_df["llm_reviewed"].fillna(False).astype(bool)
-                & suggestion_df["llm_action"].eq("save_alias")
-                & suggestion_df["llm_confidence"].isin(["medium", "high"])
-                & suggestion_df["llm_canonical_name"].isin(canonical_names)
+        # Build the default-ticked table ONCE per "Generate suggestions" run and
+        # cache it in session_state (cleared on regeneration, see above).
+        #
+        # Why this matters: Streamlit reruns this whole function on ANY widget
+        # interaction on the page (typing in "Virus name", ticking a checkbox in
+        # a different row, etc). st.data_editor persists the user's edits across
+        # reruns via its `key`, but only if the `data` it's fed is treated as the
+        # stable "base" for those edits. Recomputing save/ambiguous/ignore/skip
+        # from scratch from `suggestions` on every rerun — as this used to do —
+        # fights that persistence: the freshly recomputed default for a cell the
+        # user did NOT just touch can overwrite what the user chose two reruns
+        # ago, which shows up as ticks silently reverting ("auto-untick").
+        # Building once and then only ever updating this cached table from the
+        # editor's own returned value (below) keeps a single source of truth.
+        if "bootstrap_suggestion_table" not in st.session_state:
+            suggestion_df = pd.DataFrame(suggestions)
+            resolved = suggestion_df.apply(
+                lambda row: _resolve_suggestion_default(row, canonical_names),
+                axis=1,
             )
-            suggestion_df.loc[llm_save, "canonical_name"] = suggestion_df.loc[
-                llm_save,
-                "llm_canonical_name",
-            ]
-            suggestion_df.loc[llm_save, ["save", "ignore", "skip"]] = [True, False, False]
+            suggestion_df["action"] = resolved["action"]
+            suggestion_df["canonical_name"] = resolved["canonical_name"]
+            st.session_state.bootstrap_suggestion_table = suggestion_df
 
-            llm_ignore = (
-                suggestion_df["llm_reviewed"].fillna(False).astype(bool)
-                & suggestion_df["llm_action"].eq("ignore")
-                & suggestion_df["llm_confidence"].isin(["medium", "high"])
-            )
-            suggestion_df.loc[llm_ignore, ["save", "ignore", "skip"]] = [False, True, False]
-
-            llm_skip = (
-                suggestion_df["llm_reviewed"].fillna(False).astype(bool)
-                & suggestion_df["llm_action"].isin(["skip", "move_to_ambiguous"])
-            )
-            suggestion_df.loc[llm_skip, ["save", "ignore", "skip"]] = [False, False, True]
-
-        suggestion_df.loc[
-            suggestion_df["default_save"].fillna(False).astype(bool)
-            & ~(suggestion_df["save"] | suggestion_df["ignore"] | suggestion_df["skip"]),
-            ["save", "ignore", "skip"],
-        ] = [True, False, False]
-        suggestion_df.loc[
-            ~(suggestion_df["save"] | suggestion_df["ignore"]),
-            "skip",
-        ] = True
+        suggestion_df = st.session_state.bootstrap_suggestion_table
         show_cols = [
-            "save",
-            "ignore",
-            "skip",
+            "action",
             "raw_value",
             "field",
             "canonical_name",
@@ -259,20 +286,17 @@ def stage_bootstrap_alias():
         show_cols = [c for c in show_cols if c in suggestion_df.columns]
 
         editor_config = {
-            "save": st.column_config.CheckboxColumn(
-                "Save",
-                help="Add this raw name as an alias.",
-                width="small",
-            ),
-            "ignore": st.column_config.CheckboxColumn(
-                "Ignore",
-                help="Store this raw name as intentionally ignored.",
-                width="small",
-            ),
-            "skip": st.column_config.CheckboxColumn(
-                "Skip",
-                help="Do nothing with this raw name.",
-                width="small",
+            "action": st.column_config.SelectboxColumn(
+                "Action (click to edit)",
+                help=(
+                    "Save alias: add as an alias of Canonical. "
+                    "Save ambiguous: store in ambiguous_names for manual review later. "
+                    "Save ignored: store in ignored_names so future runs skip it globally. "
+                    "Skip this run: do nothing, leave it unresolved."
+                ),
+                options=ACTION_OPTIONS,
+                required=True,
+                width="medium",
             ),
             "raw_value": st.column_config.TextColumn("Raw query name", width="medium"),
             "field": st.column_config.TextColumn("Field", width="small"),
@@ -290,7 +314,7 @@ def stage_bootstrap_alias():
             "llm_confidence": st.column_config.TextColumn("LLM confidence", width="small"),
             "llm_reason": st.column_config.TextColumn("LLM reason", width="large"),
         }
-        editable_cols = {"save", "ignore", "skip", "canonical_name"}
+        editable_cols = {"action", "canonical_name"}
         edited_frames = []
         llm_mask = (
             suggestion_df["llm_reviewed"].fillna(False).astype(bool)
@@ -303,7 +327,7 @@ def stage_bootstrap_alias():
         if not deterministic_rows.empty:
             st.markdown("**Deterministic suggestions**")
             st.caption(
-                "Tick exactly one action per raw name. Edit Canonical when a good alias should point to a different target."
+                "Pick one action per raw name from the Action dropdown. Edit Canonical when a good alias should point to a different target."
             )
             edited_frames.append(st.data_editor(
                 deterministic_rows[show_cols],
@@ -317,9 +341,7 @@ def stage_bootstrap_alias():
 
         if not llm_rows.empty:
             llm_show_cols = [
-                "save",
-                "ignore",
-                "skip",
+                "action",
                 "raw_value",
                 "field",
                 "canonical_name",
@@ -348,7 +370,15 @@ def stage_bootstrap_alias():
                 ))
 
         if edited_frames:
-            edited_rows = pd.concat(edited_frames, ignore_index=True)
+            # Keep the original suggestion_df index (no ignore_index=True) so
+            # this aligns back into st.session_state.bootstrap_suggestion_table
+            # below — that write-back is what makes edits stick across reruns
+            # triggered by unrelated widgets elsewhere on the page.
+            edited_rows = pd.concat(edited_frames, ignore_index=False)
+            update_cols = [c for c in ("action", "canonical_name") if c in edited_rows.columns]
+            st.session_state.bootstrap_suggestion_table.loc[edited_rows.index, update_cols] = edited_rows[update_cols]
+            edited_rows = edited_rows.reset_index(drop=True)
+            edited_rows["action_key"] = edited_rows["action"].map(LABEL_TO_ACTION)
     else:
         st.info("No suggestions yet. You can still save a seed config with only reference canonical names.")
 
@@ -365,7 +395,7 @@ def stage_bootstrap_alias():
         for canonical_name in canonical_names:
             config["canonical_names"].setdefault(canonical_name, [])
         config.setdefault("ignored_names", [])
-        config.setdefault("ambiguous_names", {})
+        config.setdefault("ambiguous_names", [])
         config["notes"] = (
             "Bootstrapped from reference feature names. Query aliases were added "
             "only after coordinate-supported user approval."
@@ -375,28 +405,26 @@ def stage_bootstrap_alias():
         absolute_config_path, relative_config_path = _unique_alias_config_paths(filename)
 
         try:
-            conflicts = _suggestion_flag_conflicts(edited_rows)
-            if conflicts:
-                st.error(
-                    "Each suggestion can have only one action. Fix these rows: "
-                    + "; ".join(conflicts[:8])
-                    + ("..." if len(conflicts) > 8 else "")
-                )
-                return
-
+            # No conflict check needed: "action" is a single-select dropdown
+            # (SelectboxColumn), so each row can only ever hold exactly one of
+            # save/ambiguous/ignore/skip — there is nothing to reconcile.
             write_new_alias_config(config, absolute_config_path)
 
             if not edited_rows.empty:
                 approved_rows = edited_rows[
-                    edited_rows["save"].fillna(False)
+                    edited_rows["action_key"] == "save"
                 ].to_dict("records")
                 ignored_rows = edited_rows[
-                    edited_rows["ignore"].fillna(False)
+                    edited_rows["action_key"] == "ignore"
+                ].to_dict("records")
+                ambiguous_rows = edited_rows[
+                    edited_rows["action_key"] == "ambiguous"
                 ].to_dict("records")
                 config = apply_approved_alias_suggestions(
                     absolute_config_path,
                     approved_rows=approved_rows,
                     ignored_rows=ignored_rows,
+                    ambiguous_rows=ambiguous_rows,
                 )
 
             append_alias_registry_entry(

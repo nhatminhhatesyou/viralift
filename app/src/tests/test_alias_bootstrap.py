@@ -30,6 +30,9 @@ def test_deduplicate_demotes_raw_name_seen_in_multiple_canonicals():
         assert row["suggested_action"] == "manual_review"
         assert row["confidence"] == "medium"
         assert row["default_save"] is False
+        assert row["shared_across_canonicals"] is True
+        assert row["cross_canonical_targets"] == ["ORF3", "S"]
+        assert row["cross_canonical_target_count"] == 2
         assert "multiple canonical targets" in row["reason"]
 
 

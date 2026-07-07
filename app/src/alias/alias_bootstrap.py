@@ -431,6 +431,9 @@ def _demote_cross_canonical_alias_conflicts(rows: List[Dict]) -> None:
         canonicals = sorted(
             canonical for canonical in hits.get(key, set()) if canonical
         )
+        row["shared_across_canonicals"] = len(canonicals) > 1
+        row["cross_canonical_targets"] = canonicals
+        row["cross_canonical_target_count"] = len(canonicals)
         if len(canonicals) <= 1:
             continue
         row["suggested_action"] = "manual_review"
@@ -453,16 +456,19 @@ def apply_approved_alias_suggestions(
     alias_config_path: Path,
     approved_rows: List[Dict],
     ignored_rows: Optional[List[Dict]] = None,
+    ambiguous_rows: Optional[List[Dict]] = None,
 ) -> Dict:
     """Apply user-approved alias suggestions to an alias config file."""
     config = load_alias_config(alias_config_path)
 
     canonical_names = config.setdefault("canonical_names", {})
+    saved_norms = set()
     for row in approved_rows:
         raw_value = row.get("raw_value")
         canonical_name = row.get("canonical_name")
         if not raw_value or not canonical_name:
             continue
+        saved_norms.add(normalize_text(raw_value))
         aliases = canonical_names.setdefault(canonical_name, [])
         if raw_value != canonical_name and raw_value not in aliases:
             aliases.append(raw_value)
@@ -473,7 +479,26 @@ def apply_approved_alias_suggestions(
         if raw_value and raw_value not in ignored:
             ignored.append(raw_value)
 
-    config["ignored_names"] = sorted(set(ignored), key=normalize_text)
+    ambiguous = config.setdefault("ambiguous_names", [])
+    for row in ambiguous_rows or []:
+        raw_value = row.get("raw_value")
+        if raw_value and raw_value not in ambiguous:
+            ambiguous.append(raw_value)
+
+    config["ignored_names"] = sorted(
+        {
+            name for name in ignored
+            if normalize_text(name) not in saved_norms
+        },
+        key=normalize_text,
+    )
+    config["ambiguous_names"] = sorted(
+        {
+            name for name in ambiguous
+            if normalize_text(name) not in saved_norms
+        },
+        key=normalize_text,
+    )
     save_validated_alias_config(alias_config_path, config)
     return config
 
