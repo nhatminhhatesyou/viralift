@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Dict, Iterable, List
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 from app.src.alias.alias_manager import (
     alias_config_to_tables,
@@ -25,6 +26,46 @@ from app.src.alias.alias_manager import (
 from app.src.alias.gene_alias import normalize_text
 from ui.components import _render_context_panel, _render_page_intro
 from ui.state import REGISTRY_PATH, ROOT
+
+
+def _scroll_to_top_once() -> None:
+    if not st.session_state.pop("alias_manager_scroll_top", False):
+        return
+    components.html(
+        """
+        <script>
+        const root = window.parent;
+        root.scrollTo({ top: 0, behavior: "smooth" });
+        </script>
+        """,
+        height=0,
+    )
+
+
+@st.dialog("Virus deleted")
+def _delete_success_dialog(message: str) -> None:
+    st.success(message)
+    if st.button("OK", type="primary", width="stretch"):
+        st.session_state.pop("alias_manager_delete_success", None)
+        st.rerun()
+
+
+@st.dialog("Delete virus?")
+def _confirm_delete_virus_dialog(entry: Dict, archive_alias_config: bool) -> None:
+    virus_name = entry.get("virus_name") or entry.get("alias_config") or "this virus"
+    st.warning(f"Are you sure you want to delete `{virus_name}`?")
+    st.caption(
+        "This removes the virus from the Alias Manager registry. "
+        "Auto-detection will no longer select it."
+    )
+    if archive_alias_config:
+        st.caption("The active alias config file will also be archived and removed.")
+
+    cancel_col, delete_col = st.columns(2)
+    if cancel_col.button("Cancel", width="stretch"):
+        st.rerun()
+    if delete_col.button("Yes, delete virus", type="primary", width="stretch"):
+        _delete_virus_entry(entry, archive_alias_config)
 
 
 def _split_lines(raw_text: str) -> List[str]:
@@ -247,13 +288,15 @@ def _delete_virus_entry(entry: Dict, archive_alias_config: bool) -> None:
             message += f". Alias config archived as `{config_backup.name}`"
         elif archive_alias_config:
             message += ". Alias config file was already missing"
-        st.success(message)
+        st.session_state.alias_manager_delete_success = message
+        st.session_state.alias_manager_scroll_top = True
         st.rerun()
     except Exception as e:
         st.error(f"Could not delete virus: {e}")
 
 
 def page_alias_manager():
+    _scroll_to_top_once()
     _render_page_intro(
         "Alias manager",
         "Review and edit alias maps",
@@ -263,6 +306,9 @@ def page_alias_manager():
         ),
         show_stages=False,
     )
+
+    if st.session_state.get("alias_manager_delete_success"):
+        _delete_success_dialog(st.session_state.alias_manager_delete_success)
 
     try:
         entries = list_registry_entries(REGISTRY_PATH)
@@ -278,7 +324,12 @@ def page_alias_manager():
         f"{entry.get('virus_name', 'unknown')} - {entry.get('alias_config', '')}"
         for entry in entries
     ]
-    selected = st.selectbox("Alias config", options, index=0)
+    selected = st.selectbox(
+        "Choose virus",
+        options,
+        index=0,
+        help="Select the virus alias map you want to review or edit.",
+    )
     entry = entries[options.index(selected)]
     config_path = resolve_config_path(Path(entry.get("alias_config", "")), ROOT)
     st.session_state.alias_manager_config_path = config_path
@@ -393,7 +444,7 @@ def page_alias_manager():
                 "Delete virus from Alias Manager",
                 key="delete_virus_entry",
             ):
-                _delete_virus_entry(entry, archive_alias_config)
+                _confirm_delete_virus_dialog(entry, archive_alias_config)
 
     with tab_alias:
         st.caption(
