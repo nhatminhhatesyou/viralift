@@ -89,6 +89,11 @@ import tempfile
 OUT_DIR = Path(__file__).resolve().parent / "outputs"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
+# Rows per LLM request. Deliberately the same as LLMConfig's production default:
+# a bigger batch does not fit in timeout_seconds and the whole request fails (a
+# 279-row PRRSV batch returned "read operation timed out" with 0 rows reviewed).
+LLM_BATCH_ROWS = 20
+
 # One entry per virus: gold config + reference + query corpus.
 DATASETS = {
     "PEDV": {
@@ -225,15 +230,22 @@ def build_config_temp(name: str, cfg: dict, min_iou: float, llm_provider=None):
         min_iou=min_iou,
         progress_callback=_progress,
     )
-    # Production caps LLM review at config.max_rows (default 20) per pass — a
+    # Production caps LLM review at config.max_rows (default 20) per pass, so a
     # first-time bootstrap of a virus with many uncertain names needs several
-    # passes. For validation we want the tool's full capability in one shot, so
-    # raise the cap to cover every uncertain row; otherwise rows beyond the cap
-    # stay at 'manual_review' and, under the accept-recommendation policy, fall
-    # through to neither saved nor excluded (a pagination artifact, not a tool
-    # error). The 20-row cap itself is reported as a product finding.
+    # passes. Validation must still cover EVERY uncertain row, otherwise rows past
+    # the cap stay at 'manual_review' and count as misses -- a pagination
+    # artifact, not a tool error.
+    #
+    # The previous attempt at that raised max_rows to 100000 to do it "in one
+    # shot". That is what broke the run: 279 uncertain PRRSV rows went into a
+    # single request and the response never finished inside timeout_seconds (45),
+    # so review_uncertain_alias_suggestions returned status='error' with every row
+    # unreviewed. Production works precisely because 20 rows fit in one response.
+    #
+    # So: keep the production batch size and iterate. Same function, called once
+    # per chunk -- exactly what a real user does across several passes.
     import dataclasses
-    review_config = dataclasses.replace(LLMConfig.from_env(), max_rows=100000)
+    review_config = dataclasses.replace(LLMConfig.from_env(), max_rows=LLM_BATCH_ROWS)
 
     # Wrap the provider so the RAW response survives. _valid_reviews() drops a
     # review silently when recommendation/confidence are off-vocabulary, or when
@@ -247,19 +259,49 @@ def build_config_temp(name: str, cfg: dict, min_iou: float, llm_provider=None):
     if llm_provider is not None:
         llm_provider = _RecordingProvider(llm_provider, OUT_DIR / f"llm_raw_{name}.json")
 
-    reviewed, llm_diag = review_uncertain_alias_suggestions(
-        suggestions,
-        virus_name=name,
-        canonical_names=seed_canonicals,
-        excluded_names=seed.get("excluded_names", []),
-        config=review_config,
-        provider=llm_provider,
-    )
-    # review_uncertain_alias_suggestions swallows every failure mode (no API key,
-    # provider error, responses dropped by _valid_reviews) and returns the rows
-    # untouched. Without printing the diagnostics, a dead LLM pass looks exactly
-    # like a successful one -- which is how the previous PRRSV run produced
-    # reconstruction numbers with 0 of 363 rows actually reviewed.
+    # Chunk on the harness side, not by raising max_rows. needs_llm_review() does
+    # not look at llm_reviewed, so calling the function repeatedly on the whole
+    # list would keep re-submitting the same first 20 rows forever. Slicing the
+    # input is what actually advances through the corpus.
+    reviewed = []
+    chunk_diags = []
+    total_chunks = (len(suggestions) + LLM_BATCH_ROWS - 1) // LLM_BATCH_ROWS
+    for i in range(0, len(suggestions), LLM_BATCH_ROWS):
+        part, d = review_uncertain_alias_suggestions(
+            suggestions[i:i + LLM_BATCH_ROWS],
+            virus_name=name,
+            canonical_names=seed_canonicals,
+            excluded_names=seed.get("excluded_names", []),
+            config=review_config,
+            provider=llm_provider,
+        )
+        reviewed.extend(part)
+        chunk_diags.append(d)
+        print(f"\r[{name}] LLM batch {i // LLM_BATCH_ROWS + 1}/{total_chunks} "
+              f"submitted={d['submitted_rows']} reviewed={d['reviewed_rows']} "
+              f"status={d['status']}      ", end="", file=sys.stderr, flush=True)
+    print(file=sys.stderr)
+
+    # Aggregate: any chunk that errored must stay visible, not be averaged away.
+    errors = [d["error"] for d in chunk_diags if d.get("error")]
+    llm_diag = {
+        "enabled": review_config.enabled,
+        "available": review_config.available,
+        "model": review_config.model,
+        "batch_rows": LLM_BATCH_ROWS,
+        "batches": len(chunk_diags),
+        "batches_failed": sum(1 for d in chunk_diags if d["status"] == "error"),
+        "uncertain_rows": sum(d["uncertain_rows"] for d in chunk_diags),
+        "submitted_rows": sum(d["submitted_rows"] for d in chunk_diags),
+        "reviewed_rows": sum(d["reviewed_rows"] for d in chunk_diags),
+        "status": ("reviewed" if any(d["status"] == "reviewed" for d in chunk_diags)
+                   else chunk_diags[0]["status"] if chunk_diags else "no_rows"),
+        "error": errors[0] if errors else None,
+        "distinct_errors": sorted(set(errors)),
+    }
+    # A dead LLM pass returns rows untouched and looks exactly like a successful
+    # one, so the counts below are printed rather than discarded -- that is how the
+    # earlier run reported reconstruction numbers with 0 of 363 rows reviewed.
     merged = sum(1 for r in reviewed if r.get("llm_reviewed"))
     # Derived here, not passed in, so notebooks calling run_virus() get it too.
     llm_mode = ("mock" if isinstance(llm_provider, _MockLLMProvider)
@@ -268,10 +310,19 @@ def build_config_temp(name: str, cfg: dict, min_iou: float, llm_provider=None):
           f"submitted={llm_diag['submitted_rows']} merged={merged} "
           f"error={llm_diag.get('error')}")
     if llm_diag["submitted_rows"] and not merged:
-        print(f"[{name}] WARNING: {llm_diag['submitted_rows']} rows sent but none "
-              f"merged back -- responses were dropped. Check _valid_reviews "
-              f"(a save_alias whose canonical_name is not verbatim in "
-              f"{seed_canonicals} is discarded silently).")
+        print(f"[{name}] WARNING: {llm_diag['submitted_rows']} rows sent, 0 merged. "
+              f"{llm_diag['batches_failed']}/{llm_diag['batches']} batches errored: "
+              f"{llm_diag['distinct_errors']}")
+        print(f"[{name}]   If the errors are timeouts, lower LLM_BATCH_ROWS "
+              f"(now {LLM_BATCH_ROWS}) or raise VIRALIFT_LLM_TIMEOUT_SECONDS.")
+        print(f"[{name}]   If batches succeeded but nothing merged, the responses "
+              f"were dropped by _valid_reviews -- a save_alias whose canonical_name "
+              f"is not verbatim in {seed_canonicals} is discarded silently. "
+              f"See outputs/llm_raw_{name}.json.")
+    elif llm_diag["batches_failed"]:
+        print(f"[{name}] NOTE: {llm_diag['batches_failed']}/{llm_diag['batches']} "
+              f"batches failed ({llm_diag['distinct_errors']}); those rows kept "
+              f"their deterministic action. Numbers are a lower bound.")
     (OUT_DIR / f"llm_diagnostics_{name}.json").write_text(
         json.dumps({"llm_mode": llm_mode, **llm_diag, "merged_rows": merged},
                    indent=2) + "\n"
@@ -443,21 +494,29 @@ class _RecordingProvider:
     def __init__(self, inner, dump_path: Path):
         self.inner = inner
         self.dump_path = dump_path
+        self.calls = []          # one entry per batch, appended not overwritten
+
+    def _flush(self):
+        self.dump_path.write_text(
+            json.dumps(self.calls, indent=2, ensure_ascii=False) + "\n"
+        )
 
     def review_alias_suggestions(self, payload):
         record = {
+            "batch": len(self.calls) + 1,
             "provider": type(self.inner).__name__,
             "submitted_review_ids": [r.get("review_id") for r in payload.get("suggestions", [])],
             "available_canonicals": payload.get("available_canonicals"),
         }
+        self.calls.append(record)
         try:
             response = self.inner.review_alias_suggestions(payload)
         except Exception as exc:  # noqa: BLE001 -- record then re-raise
             record["exception"] = f"{type(exc).__name__}: {exc}"
-            self.dump_path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+            self._flush()
             raise
         record["raw_response"] = response
-        self.dump_path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+        self._flush()
         return response
 
 
