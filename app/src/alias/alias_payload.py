@@ -144,8 +144,53 @@ def build_uncertain_suggestion_review_payload(
             "string is. If matching_available_canonical is present, prefer it. "
             "query_name is weak context and may describe a parent or combined ORF; do "
             "not reject a raw label solely because query_name differs. "
+            # --- the counter-case: a name for a GROUP or a PART is not an alias
+            # Added after a PRRSV run where the rule above (save whenever
+            # cross_canonical_target_count == 1) produced 12 bad saves. Coordinate
+            # evidence cannot catch these: a category label or a domain label still
+            # lands on exactly one canonical whenever only one record happens to use
+            # it, so the count-is-1 test clears them. Only virus biology separates
+            # them from a real alias, which is why this is asked of you and not of
+            # the scorer.
+            "COUNTER-CASE, and it OVERRIDES the decision rule above even when "
+            "cross_canonical_target_count is 1. Recommend ignore for exactly two "
+            "shapes: (a) a label naming a CLASS or CATEGORY that several "
+            "available_canonicals in this virus all belong to, so it cannot pick out "
+            "one of them — 'structural protein', 'non-structural protein', 'structural "
+            "membrane protein'; and (b) a MECHANISM or process description that is not "
+            "a name at all — 'translated through a ribosomal frameshift at the "
+            "ORF1a/ORF1b junction'. "
+            "EXCEPTION to (a): if the label also carries an explicit ORF or gene "
+            "designation, the class word is merely extra and the label IS an alias — "
+            "'non-structural protein ORF1a', 'nonstructural polyprotein 1A' resolve to "
+            "ORF1a. Only treat a class word as disqualifying when nothing else in the "
+            "label identifies the gene. "
+            "Hold the line on the distinction: 'nucleocapsid protein' names this "
+            "gene's own product and IS an alias; 'structural protein' names a group "
+            "this gene merely belongs to and is NOT. Both are descriptive and both may "
+            "show one canonical — the difference is whole-versus-group, nothing about "
+            "surface form. "
+            # Deliberately NOT a rule: "a domain name is a part, not the gene". That
+            # question is already settled before you see the row -- min_iou means an
+            # annotated feature reaching you spans the whole gene, so a lab that
+            # labelled a whole-ORF feature "RNA-dependent RNA polymerase" was naming
+            # that ORF. Re-litigating part-vs-whole from the text cost 11 real ORF1a/
+            # ORF1b aliases in a PRRSV run, including the corpus's single most common
+            # ORF1b label (57 records).
+            "DOMAIN AND ACTIVITY NAMES. Labs very often label a whole replicase ORF by "
+            "its best-known enzymatic domain. Because coordinate matching already "
+            "guarantees the annotated feature spans the whole gene, such a label is "
+            "that lab's name for the gene and IS an alias: save 'RNA-dependent RNA "
+            "polymerase', 'papain-like cysteine protease', 'helicase' when they point "
+            "at the replicase canonical. Do not reject them for naming a domain. "
+            "The one exception is vagueness, not part-versus-whole: a bare activity "
+            "word that is not the standard designation for that ORF ('proteinase', "
+            "'protein kinase'), or several unrelated activities strung together "
+            "('cysteine protease/serine protease'), does not identify a gene — ignore "
+            "those. Specific and conventional for this ORF: save. Vague or "
+            "multi-activity: ignore. "
             # --- what genuinely warrants ignore/skip --------------------------
-            "Use ignore ONLY for: (a) a label that resolves to more than one "
+            "Use ignore ALSO for: (a) a label that resolves to more than one "
             "available_canonical by coordinate — shared_across_canonicals true or "
             "cross_canonical_target_count greater than 1 — which is genuinely "
             "ambiguous within this virus; or (b) a string that is not a gene label at "
@@ -155,7 +200,9 @@ def build_uncertain_suggestion_review_payload(
             "Use skip only when there is no canonical_candidate and no available "
             "canonical fits. Do NOT ignore or skip a label merely for being "
             "descriptive, generic-sounding, short, or lacking an ORF number when the "
-            "coordinates already tie it to exactly one canonical."
+            "coordinates already tie it to exactly one canonical — unless it falls "
+            "under the COUNTER-CASE above, which is about what the label names, not "
+            "about how it reads."
         ),
         "suggestions": [
             _extract_suggestion_review_info(row, canonical_names)

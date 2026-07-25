@@ -75,6 +75,7 @@ from app.src.alias.alias_bootstrap import (  # noqa: E402
 )
 from app.src.alias.gene_alias import (  # noqa: E402
     build_alias_lookup,
+    lookup_field_value,
     normalize_text,
 )
 from app.src.features.ref_loader import prepare_reference_features  # noqa: E402
@@ -381,7 +382,14 @@ def compare_per_canonical(config_temp: dict, config_truth: dict, corpus_norms: s
     truth_lu = build_alias_lookup(config_truth)
 
     def verdict(lu, norm):
-        v = lu.get(norm)
+        # lookup_field_value, not lu.get: ask "does this config RESOLVE the name",
+        # which is what the pipeline actually does at runtime, instead of "does it
+        # contain the string verbatim". The two differ for compound qualifiers --
+        # the resolver tries the whole string then splits on ";", so a config
+        # holding only `helicase` still resolves `helicase; zinc-finger protein`.
+        # Verbatim matching scored those 13 gold PRRSV compound aliases as misses
+        # even though the tool resolves every one of them.
+        v = lookup_field_value(norm, lu)
         if v is None:
             return None
         return v if not str(v).startswith("__") else "excluded"

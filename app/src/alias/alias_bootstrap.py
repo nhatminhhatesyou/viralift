@@ -134,17 +134,26 @@ def collect_query_name_candidates(
 
 def split_compound_name(value: str) -> List[str]:
     """
-    Split semicolon-delimited qualifier text while keeping the full string.
+    Split semicolon-delimited qualifier text into its parts.
 
     Example:
-        "M; ORF6" -> ["M; ORF6", "M", "ORF6"]
+        "M; ORF6"      -> ["M", "ORF6"]
+        "nucleocapsid" -> ["nucleocapsid"]
+
+    The full compound string is deliberately NOT offered as an alias candidate.
+    Labs often cram a whole sentence into one `/note`, and saving that verbatim
+    produces a one-off alias that bloats the config and generalises to nothing:
+    on the PRRSV corpus 73 of 104 suggestions truth had no entry for were exactly
+    these full compound strings.
+
+    Dropping them loses no resolving power, because `lookup_field_value` already
+    tries the whole string first and then splits on ";" itself — so storing only
+    the parts still resolves the original compound qualifier at runtime.
     """
     if not value:
         return []
-    values = [value.strip()]
     parts = [part.strip() for part in value.split(";") if part.strip()]
-    if len(parts) > 1:
-        values.extend(parts)
+    values = parts if len(parts) > 1 else [value.strip()]
     result = []
     seen = set()
     for item in values:
