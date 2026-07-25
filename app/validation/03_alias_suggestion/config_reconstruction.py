@@ -25,6 +25,7 @@ Requires a working `tblastn` on PATH (step 2 runs real lifting). Run from the
 viralift/ project root.
 """
 import argparse
+import os
 import sys
 from collections import Counter
 from pathlib import Path
@@ -33,6 +34,38 @@ import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(REPO_ROOT))
+
+
+def load_dotenv(path: Path = REPO_ROOT / ".env") -> int:
+    """
+    Put .env into os.environ, the way the app gets it in production.
+
+    The Streamlit app never reads .env from Python: docker-compose declares
+    `env_file: - .env`, so Docker injects the variables into the process before
+    it starts. Running this harness as a plain script skips that entirely, which
+    is why LLMConfig.from_env() saw no OPENAI_API_KEY and the run silently fell
+    back to the mock provider.
+
+    setdefault, not assignment: a variable already exported in the shell wins,
+    matching how you can override docker-compose env_file values.
+    """
+    if not path.exists():
+        return 0
+    loaded = 0
+    for line in path.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key = key.strip().removeprefix("export ").strip()
+        value = value.strip().strip('"').strip("'")
+        if key:
+            os.environ.setdefault(key, value)
+            loaded += 1
+    return loaded
+
+
+load_dotenv()
 
 from app.src.alias.alias_bootstrap import (  # noqa: E402
     apply_approved_alias_suggestions,
@@ -173,6 +206,15 @@ def build_config_temp(name: str, cfg: dict, min_iou: float, llm_provider=None):
     write_new_alias_config(seed, seed_path)
 
     # STEP 2 — real suggestion feature (coordinate layer) + real LLM-review layer.
+    # Progress goes to stderr: this step runs tblastn once per query record, so a
+    # 100-record virus takes minutes with no output otherwise, and a slow run is
+    # indistinguishable from a hung one.
+    def _progress(done, total, message):
+        print(f"\r[{name}] {done}/{total}  {message[:60]:<60}",
+              end="", file=sys.stderr, flush=True)
+        if done >= total:
+            print(file=sys.stderr)
+
     suggestions = build_coordinate_supported_alias_suggestions(
         ref_record=ref_record,
         query_records=query_records,
@@ -180,6 +222,7 @@ def build_config_temp(name: str, cfg: dict, min_iou: float, llm_provider=None):
         ref_feature_type=ref_ft,
         seed_canonical_names=seed_canonicals,
         min_iou=min_iou,
+        progress_callback=_progress,
     )
     # Production caps LLM review at config.max_rows (default 20) per pass — a
     # first-time bootstrap of a virus with many uncertain names needs several
@@ -204,7 +247,10 @@ def build_config_temp(name: str, cfg: dict, min_iou: float, llm_provider=None):
     # like a successful one -- which is how the previous PRRSV run produced
     # reconstruction numbers with 0 of 363 rows actually reviewed.
     merged = sum(1 for r in reviewed if r.get("llm_reviewed"))
-    print(f"[{name}] LLM status={llm_diag['status']} "
+    # Derived here, not passed in, so notebooks calling run_virus() get it too.
+    llm_mode = ("mock" if isinstance(llm_provider, _MockLLMProvider)
+                else "real" if review_config.available else "off")
+    print(f"[{name}] LLM mode={llm_mode} status={llm_diag['status']} "
           f"submitted={llm_diag['submitted_rows']} merged={merged} "
           f"error={llm_diag.get('error')}")
     if llm_diag["submitted_rows"] and not merged:
@@ -213,7 +259,8 @@ def build_config_temp(name: str, cfg: dict, min_iou: float, llm_provider=None):
               f"(a save_alias whose canonical_name is not verbatim in "
               f"{seed_canonicals} is discarded silently).")
     (OUT_DIR / f"llm_diagnostics_{name}.json").write_text(
-        json.dumps({**llm_diag, "merged_rows": merged}, indent=2) + "\n"
+        json.dumps({"llm_mode": llm_mode, **llm_diag, "merged_rows": merged},
+                   indent=2) + "\n"
     )
 
     # Diagnostic dump: what happened to every surfaced name — was it reviewed by
@@ -402,13 +449,31 @@ def main():
                     help="use a mock LLM (no API key); result is deterministic+mock, not full")
     args = ap.parse_args()
 
+    cfg = LLMConfig.from_env()
     provider = None
     if args.mock:
         provider = _MockLLMProvider()
-        print("Running with MOCK LLM (no API calls). Result is an approximation.\n")
-    elif not LLMConfig.from_env().available:
+        llm_mode = "mock"
+        print("LLM MODE: mock (forced by --mock). Numbers are an approximation.\n")
+    elif cfg.available:
+        llm_mode = "real"
+        print(f"LLM MODE: real — model={cfg.model} fallback={cfg.fallback_model} "
+              f"key=...{(cfg.api_key or '')[-4:]}\n")
+    else:
+        # Say exactly which precondition failed. "No OPENAI_API_KEY" was
+        # misleading: a present key with VIRALIFT_LLM_ENABLED unset fails too.
+        why = []
+        if not cfg.enabled:
+            why.append("VIRALIFT_LLM_ENABLED is not 1")
+        if not cfg.api_key:
+            why.append("no OPENAI_API_KEY / VIRALIFT_OPENAI_API_KEY in env or .env")
+        elif not cfg.available:
+            why.append("API key looks like a placeholder")
         provider = _MockLLMProvider()
-        print("No OPENAI_API_KEY found — falling back to MOCK LLM. Set a key for the real run.\n")
+        llm_mode = "mock"
+        print(f"LLM MODE: mock — {'; '.join(why)}.\n"
+              f"         .env checked at {REPO_ROOT / '.env'}\n"
+              f"         Numbers will NOT reflect the real LLM layer.\n")
 
     targets = [args.virus] if args.virus else list(DATASETS)
     for name in targets:
