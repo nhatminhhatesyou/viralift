@@ -1,6 +1,6 @@
 raw_value	norm	coord_canonical	iou	cross_canon_n	det_action	llm_reviewed	llm_action	llm_confidence	operative	llm_reason
-polyprotein ORF1a	polyproteinorf1a	ORF1a	1.0	1	save_alias	True	save_alias	high	save_alias	Direct match to ORF1a with unique coordinate support and no competing canonical.
-polyprotein ORF1b	polyproteinorf1b	ORF1b	0.9986	1	save_alias	True	save_alias	high	save_alias	Direct match to ORF1b with unique coordinate support and no competing canonical.
+polyprotein ORF1a	polyproteinorf1a	ORF1a	1.0	1	save_alias	True	save_alias	high	save_alias	Matches the provided canonical ORF1a with a unique coordinate-based target and high IoU; descriptive polyprotein wording is acceptable for PRRSV ORF1a.
+polyprotein ORF1b	polyproteinorf1b	ORF1b	0.9986	1	save_alias	True	save_alias	high	save_alias	Matches the provided canonical ORF1b with a unique coordinate-based target and very high IoU; descriptive polyprotein wording is acceptable for PRRSV ORF1b.
 ORF1a	orf1a	ORF1a	1.0	1	save_alias	False			save_alias	
 ORF1b	orf1b	ORF1b	0.9973	1	save_alias	False			save_alias	
 ORF2a	orf2a	ORF2a	1.0	1	save_alias	False			save_alias	
@@ -10,76 +10,76 @@ ORF4	orf4	ORF4	1.0	1	save_alias	False			save_alias
 ORF5	orf5	ORF5	1.0	1	save_alias	False			save_alias	
 ORF6	orf6	ORF6	1.0	1	save_alias	False			save_alias	
 ORF7	orf7	ORF7	1.0	1	save_alias	False			save_alias	
-ORF1ab	orf1ab	ORF1a	1.0	1	save_alias	True	save_alias	high	save_alias	ORF1ab is resolved by coordinates to ORF1a with unique canonical support in this virus.
+ORF1ab	orf1ab	ORF1a	1.0	1	save_alias	True	save_alias	high	save_alias	ORF1ab resolves to ORF1a in the provided canonicals with unique coordinate support; acceptable alias for this virus.
 GP3	gp3	ORF3	1.0	1	save_alias	False			save_alias	
 GP4	gp4	ORF4	1.0	1	save_alias	False			save_alias	
 GP5	gp5	ORF5	1.0	1	save_alias	False			save_alias	
-nonstructural polyprotein 1A	nonstructuralpolyprotein1a	ORF1a	1.0	1	save_alias	True	save_alias	high	save_alias	Nonstructural polyprotein 1A is an explicit ORF1a designation and not a disqualifying class-only label.
-replicase polyprotein 1A	replicasepolyprotein1a	ORF1a	1.0	1	save_alias	True	save_alias	high	save_alias	Replicase polyprotein 1A is a conventional ORF1a alias with unique coordinate support.
-nonstructual polyprotein 1B	nonstructualpolyprotein1b	ORF1b	0.9979	1	save_alias	True	save_alias	high	save_alias	Nonstructual polyprotein 1B is an explicit ORF1b designation and maps uniquely here.
-replicase polyprotein 1B	replicasepolyprotein1b	ORF1b	0.9979	1	save_alias	True	save_alias	high	save_alias	Replicase polyprotein 1B is a conventional ORF1b alias with unique coordinate support.
+nonstructural polyprotein 1A	nonstructuralpolyprotein1a	ORF1a	1.0	1	save_alias	True	save_alias	high	save_alias	Nonstructural polyprotein 1A specifically identifies ORF1a and has unique coordinate support; this is a valid alias.
+replicase polyprotein 1A	replicasepolyprotein1a	ORF1a	1.0	1	save_alias	True	save_alias	high	save_alias	Replicase polyprotein 1A specifically identifies ORF1a and has unique coordinate support; this is a valid alias.
+nonstructual polyprotein 1B	nonstructualpolyprotein1b	ORF1b	0.9979	1	save_alias	True	save_alias	high	save_alias	Nonstructural polyprotein 1B specifically identifies ORF1b and has unique coordinate support; this is a valid alias.
+replicase polyprotein 1B	replicasepolyprotein1b	ORF1b	0.9979	1	save_alias	True	save_alias	high	save_alias	Replicase polyprotein 1B specifically identifies ORF1b and has unique coordinate support; this is a valid alias.
 ORF1a	orf1a	ORF1a	1.0	1	save_alias	False			save_alias	
 ORF1a	orf1a	ORF1a	1.0	1	save_alias	False			save_alias	
 ORF1a polyprotein	orf1apolyprotein	ORF1a	1.0	1	save_alias	False			save_alias	
 ORF1a polyprotein	orf1apolyprotein	ORF1a	1.0	1	save_alias	False			save_alias	
-non-structural protein ORF1a	nonstructuralproteinorf1a	ORF1a	1.0	1	save_alias	True	save_alias	high	save_alias	Unambiguous within PRRSV; raw label explicitly names ORF1a and only one canonical target is present.
-nonstructural proteins ORF1a	nonstructuralproteinsorf1a	ORF1a	1.0	1	save_alias	True	save_alias	high	save_alias	Unambiguous within PRRSV; raw label includes ORF1a and coordinates resolve to a single canonical.
+non-structural protein ORF1a	nonstructuralproteinorf1a	ORF1a	1.0	1	save_alias	True	save_alias	high	save_alias	Explicit ORF1a designation with only one canonical target and strong coordinate match.
+nonstructural proteins ORF1a	nonstructuralproteinsorf1a	ORF1a	1.0	1	save_alias	True	save_alias	high	save_alias	Explicit ORF1a designation with only one canonical target and strong coordinate match.
 ORF1b	orf1b	ORF1b	0.9986	1	save_alias	False			save_alias	
 ORF1b	orf1b	ORF1b	0.9986	1	save_alias	False			save_alias	
 ORF1b polyprotein	orf1bpolyprotein	ORF1b	0.9986	1	save_alias	False			save_alias	
-non-structural protein ORF1b	nonstructuralproteinorf1b	ORF1b	0.9973	1	save_alias	True	save_alias	high	save_alias	Unambiguous within PRRSV; raw label explicitly names ORF1b and only one canonical target is present.
-nonstructural proteins ORF1b	nonstructuralproteinsorf1b	ORF1b	0.9973	1	save_alias	True	save_alias	high	save_alias	Unambiguous within PRRSV; raw label includes ORF1b and coordinates resolve to a single canonical.
+non-structural protein ORF1b	nonstructuralproteinorf1b	ORF1b	0.9973	1	save_alias	True	save_alias	high	save_alias	Explicit ORF1b designation with only one canonical target and strong coordinate match.
+nonstructural proteins ORF1b	nonstructuralproteinsorf1b	ORF1b	0.9973	1	save_alias	True	save_alias	high	save_alias	Explicit ORF1b designation with only one canonical target and strong coordinate match.
 ORF2a	orf2a	ORF2a	1.0	1	save_alias	False			save_alias	
 ORF2a	orf2a	ORF2a	1.0	1	save_alias	False			save_alias	
-ORF2a glycosylated membrane protein	orf2aglycosylatedmembraneprotein	ORF2a	1.0	1	save_alias	True	save_alias	high	save_alias	Unambiguous within PRRSV; raw label explicitly names ORF2a and only one canonical target is present.
+ORF2a glycosylated membrane protein	orf2aglycosylatedmembraneprotein	ORF2a	1.0	1	save_alias	True	save_alias	high	save_alias	Explicit ORF2a designation with only one canonical target and strong coordinate match.
 ORF2b	orf2b	ORF2b	1.0	1	save_alias	False			save_alias	
 ORF2b	orf2b	ORF2b	1.0	1	save_alias	False			save_alias	
 ORF3	orf3	ORF3	1.0	1	save_alias	False			save_alias	
 ORF3	orf3	ORF3	1.0	1	save_alias	False			save_alias	
-ORF3 glycosylated membrane protein	orf3glycosylatedmembraneprotein	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	Unambiguous within PRRSV; raw label explicitly names ORF3 and only one canonical target is present.
+ORF3 glycosylated membrane protein	orf3glycosylatedmembraneprotein	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	Explicit ORF3 designation with only one canonical target and strong coordinate match.
 ORF4	orf4	ORF4	1.0	1	save_alias	False			save_alias	
 ORF4	orf4	ORF4	1.0	1	save_alias	False			save_alias	
-ORF4 glycosylated membrane protein	orf4glycosylatedmembraneprotein	ORF4	1.0	1	save_alias	True	save_alias	high	save_alias	Explicit ORF4 designation with a specific product label; unambiguous for PRRSV.
+ORF4 glycosylated membrane protein	orf4glycosylatedmembraneprotein	ORF4	1.0	1	save_alias	True	save_alias	high	save_alias	Explicit ORF4 designation with unique coordinate match; descriptive membrane protein wording does not disqualify it.
 ORF5	orf5	ORF5	1.0	1	save_alias	False			save_alias	
 ORF5	orf5	ORF5	1.0	1	save_alias	False			save_alias	
-ORF5 glycosylated membrane protein	orf5glycosylatedmembraneprotein	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	Explicit ORF5 designation with a specific product label; unambiguous for PRRSV.
+ORF5 glycosylated membrane protein	orf5glycosylatedmembraneprotein	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	Explicit ORF5 designation with unique coordinate match; descriptive glycosylated membrane protein wording does not disqualify it.
 ORF6	orf6	ORF6	1.0	1	save_alias	False			save_alias	
 ORF6	orf6	ORF6	1.0	1	save_alias	False			save_alias	
-ORF6 matrix protein	orf6matrixprotein	ORF6	1.0	1	save_alias	True	save_alias	high	save_alias	Explicit ORF6 designation with matrix protein; unambiguous for PRRSV.
+ORF6 matrix protein	orf6matrixprotein	ORF6	1.0	1	save_alias	True	save_alias	high	save_alias	Explicit ORF6 designation with unique coordinate match; matrix protein is a valid gene/product alias here.
 ORF7	orf7	ORF7	1.0	1	save_alias	False			save_alias	
 ORF7	orf7	ORF7	1.0	1	save_alias	False			save_alias	
-ORF7 nucleocapsid protein	orf7nucleocapsidprotein	ORF7	1.0	1	save_alias	True	save_alias	high	save_alias	Explicit ORF7 designation with nucleocapsid protein; unambiguous for PRRSV.
+ORF7 nucleocapsid protein	orf7nucleocapsidprotein	ORF7	1.0	1	save_alias	True	save_alias	high	save_alias	Explicit ORF7 designation with unique coordinate match; nucleocapsid protein is a valid alias.
 ORF1a protein	orf1aprotein	ORF1a	1.0	1	save_alias	False			save_alias	
-ORF1B expressed by a ribosomal frameshifting mechanism	orf1bexpressedbyaribosomalframeshiftingmechanism	ORF1b	0.9979	1	save_alias	True	save_alias	high	save_alias	References ORF1B with frameshifting expression context; still identifies the ORF1b gene in PRRSV.
+ORF1B expressed by a ribosomal frameshifting mechanism	orf1bexpressedbyaribosomalframeshiftingmechanism	ORF1b	0.9979	1	save_alias	True	save_alias	high	save_alias	Explicit ORF1B designation and unique coordinate match; frameshifting mechanism wording is additional context, not disqualifying.
 ORF1b protein	orf1bprotein	ORF1b	0.9973	1	save_alias	False			save_alias	
-ORF1b translated through a ribosomal frameshift at ORF1a/1b junction	orf1btranslatedthrougharibosomalframeshiftatorf1a/1bjunction	ORF1b	0.9986	1	save_alias	True	ignore	high	ignore	This is a mechanism/process description ('translated through a ribosomal frameshift...') rather than a gene name, which the instructions say to ignore.
-translated through ribosomal frameshift at ORF1a/ORF1b junction	translatedthroughribosomalframeshiftatorf1a/orf1bjunction	ORF1b	0.9986	1	save_alias	True	ignore	high	ignore	This is a mechanism/process description ('translated through ribosomal frameshift...') rather than a gene name, which the instructions say to ignore.
-GP2a envelope protein	gp2aenvelopeprotein	ORF2a	1.0	1	save_alias	True	save_alias	high	save_alias	GP2a envelope protein is a specific PRRSV gene/product label and unambiguously maps to ORF2a.
-GP2b envelope protein	gp2benvelopeprotein	ORF2b	1.0	1	save_alias	True	save_alias	high	save_alias	GP2b envelope protein is a specific PRRSV gene/product label and unambiguously maps to ORF2b.
-ORF2b structual protein	orf2bstructualprotein	ORF2b	1.0	1	save_alias	True	save_alias	high	save_alias	ORF2b structural protein still contains an explicit ORF2b designation, so it resolves to ORF2b despite the class word.
-envelope protein GP2b	envelopeproteingp2b	ORF2b	1.0	1	save_alias	True	save_alias	high	save_alias	Envelope protein GP2b is a specific PRRSV label for ORF2b.
-GP3 envelope protein	gp3envelopeprotein	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	GP3 envelope protein is a specific PRRSV gene/product label and unambiguously maps to ORF3.
-GP3 envelope protein	gp3envelopeprotein	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF3; GP3 envelope protein is a specific alias for this gene within PRRSV.
-N-glycosylated envelope protein GP3	nglycosylatedenvelopeproteingp3	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF3; the GP3 product label is specific and resolves uniquely within PRRSV.
-envelope glycoprotein GP3	envelopeglycoproteingp3	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF3; envelope glycoprotein GP3 is a specific alias for ORF3.
-envelope protein GP3	envelopeproteingp3	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF3; envelope protein GP3 resolves uniquely to ORF3 in PRRSV.
-glycosylated envelope protein GP3	glycosylatedenvelopeproteingp3	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF3; glycosylated envelope protein GP3 is a valid alias for ORF3.
-glycosylated membrane protein GP3	glycosylatedmembraneproteingp3	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF3; glycosylated membrane protein GP3 resolves uniquely to ORF3.
-GP4 envelope protein	gp4envelopeprotein	ORF4	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF4; GP4 envelope protein is a specific alias for this gene within PRRSV.
-N-glycosylated envelope protein GP4	nglycosylatedenvelopeproteingp4	ORF4	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF4; N-glycosylated envelope protein GP4 is a specific alias for ORF4.
-envelope glycoprotein GP4	envelopeglycoproteingp4	ORF4	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF4; envelope glycoprotein GP4 is a valid alias for ORF4.
-envelope protein GP4	envelopeproteingp4	ORF4	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF4; envelope protein GP4 resolves uniquely to ORF4 in PRRSV.
-glycosylated envelope protein GP4	glycosylatedenvelopeproteingp4	ORF4	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF4; glycosylated envelope protein GP4 is a valid alias for ORF4.
-glycosylated membrane protein GP4	glycosylatedmembraneproteingp4	ORF4	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF4; glycosylated membrane protein GP4 resolves uniquely to ORF4.
-GP5 envelope protein	gp5envelopeprotein	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF5; GP5 envelope protein is a specific alias for this gene within PRRSV.
-GP5 glycosylated envelope protein	gp5glycosylatedenvelopeprotein	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF5; GP5 glycosylated envelope protein is a specific alias for ORF5.
-GP5 glycosylated envelope protein	gp5glycosylatedenvelopeprotein	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF5; GP5 glycosylated envelope protein resolves uniquely to ORF5.
-N-glycosylated envelope protein GP5	nglycosylatedenvelopeproteingp5	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF5; N-glycosylated envelope protein GP5 is a valid alias for ORF5.
-envelope glycoprotein GP5	envelopeglycoproteingp5	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF5; envelope glycoprotein GP5 is a specific alias for ORF5.
-envelope protein GP5	envelopeproteingp5	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF5; envelope protein GP5 resolves uniquely to ORF5 in PRRSV.
-glycosylated envelope protein GP5	glycosylatedenvelopeproteingp5	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF5; glycosylated envelope protein GP5 is a valid alias for ORF5.
-glycosylated membrane protein GP5	glycosylatedmembraneproteingp5	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	High IoU and unique coordinate match to ORF5; glycosylated membrane protein GP5 resolves uniquely to ORF5.
-membrane protein GP6	membraneproteingp6	ORF6	1.0	1	save_alias	True	save_alias	high	save_alias	Specific label for the ORF6 product; coordinate match is unique to ORF6.
+ORF1b translated through a ribosomal frameshift at ORF1a/1b junction	orf1btranslatedthrougharibosomalframeshiftatorf1a/1bjunction	ORF1b	0.9986	1	save_alias	True	ignore	high	ignore	This is the excluded mechanism description shape: it names a translation process rather than a gene label, even though ORF1b is mentioned.
+translated through ribosomal frameshift at ORF1a/ORF1b junction	translatedthroughribosomalframeshiftatorf1a/orf1bjunction	ORF1b	0.9986	1	save_alias	True	ignore	high	ignore	This is the excluded mechanism description shape: a frameshift/junction process comment rather than a gene name.
+GP2a envelope protein	gp2aenvelopeprotein	ORF2a	1.0	1	save_alias	True	save_alias	high	save_alias	GP2a envelope protein is a clear ORF2a alias with unique coordinate support.
+GP2b envelope protein	gp2benvelopeprotein	ORF2b	1.0	1	save_alias	True	save_alias	high	save_alias	GP2b envelope protein is a clear ORF2b alias with unique coordinate support.
+ORF2b structual protein	orf2bstructualprotein	ORF2b	1.0	1	save_alias	True	save_alias	high	save_alias	Contains explicit ORF2b designation with unique coordinate match; the misspelled structural wording does not change the target.
+envelope protein GP2b	envelopeproteingp2b	ORF2b	1.0	1	save_alias	True	save_alias	high	save_alias	Envelope protein GP2b is a valid alias for ORF2b with unique coordinate support.
+GP3 envelope protein	gp3envelopeprotein	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	GP3 envelope protein is a clear ORF3 alias with unique coordinate support.
+GP3 envelope protein	gp3envelopeprotein	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	Strong coordinate match to a unique available canonical; GP3 envelope protein is a known alias for ORF3 in PRRSV.
+N-glycosylated envelope protein GP3	nglycosylatedenvelopeproteingp3	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match and specific GP3 labeling support ORF3.
+envelope glycoprotein GP3	envelopeglycoproteingp3	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; envelope glycoprotein GP3 is a clear alias for ORF3.
+envelope protein GP3	envelopeproteingp3	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; envelope protein GP3 points to ORF3.
+glycosylated envelope protein GP3	glycosylatedenvelopeproteingp3	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; glycosylated envelope protein GP3 supports ORF3.
+glycosylated membrane protein GP3	glycosylatedmembraneproteingp3	ORF3	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; glycosylated membrane protein GP3 is consistent with ORF3.
+GP4 envelope protein	gp4envelopeprotein	ORF4	1.0	1	save_alias	True	save_alias	high	save_alias	Strong unique coordinate match to ORF4; GP4 envelope protein is a clear alias.
+N-glycosylated envelope protein GP4	nglycosylatedenvelopeproteingp4	ORF4	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; N-glycosylated envelope protein GP4 maps to ORF4.
+envelope glycoprotein GP4	envelopeglycoproteingp4	ORF4	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; envelope glycoprotein GP4 is a clear ORF4 alias.
+envelope protein GP4	envelopeproteingp4	ORF4	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; envelope protein GP4 supports ORF4.
+glycosylated envelope protein GP4	glycosylatedenvelopeproteingp4	ORF4	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; glycosylated envelope protein GP4 maps to ORF4.
+glycosylated membrane protein GP4	glycosylatedmembraneproteingp4	ORF4	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; glycosylated membrane protein GP4 is a valid ORF4 alias.
+GP5 envelope protein	gp5envelopeprotein	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match to ORF5; GP5 envelope protein is a clear alias.
+GP5 glycosylated envelope protein	gp5glycosylatedenvelopeprotein	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; GP5 glycosylated envelope protein supports ORF5.
+GP5 glycosylated envelope protein	gp5glycosylatedenvelopeprotein	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; GP5 glycosylated envelope protein is a known ORF5 alias.
+N-glycosylated envelope protein GP5	nglycosylatedenvelopeproteingp5	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; N-glycosylated envelope protein GP5 maps to ORF5.
+envelope glycoprotein GP5	envelopeglycoproteingp5	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; envelope glycoprotein GP5 is a clear alias for ORF5.
+envelope protein GP5	envelopeproteingp5	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; envelope protein GP5 supports ORF5.
+glycosylated envelope protein GP5	glycosylatedenvelopeproteingp5	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; glycosylated envelope protein GP5 maps to ORF5.
+glycosylated membrane protein GP5	glycosylatedmembraneproteingp5	ORF5	1.0	1	save_alias	True	save_alias	high	save_alias	Unique coordinate match; glycosylated membrane protein GP5 is a valid ORF5 alias.
+membrane protein GP6	membraneproteingp6	ORF6	1.0	1	save_alias	True	save_alias	high	save_alias	Specific product label with coordinate support maps uniquely to ORF6.
 GP2a	gp2a	ORF2a	1.0	1	save_alias	False			save_alias	
 2b	2b	ORF2b	1.0	1	save_alias	False			save_alias	
 GP2b	gp2b	ORF2b	1.0	1	save_alias	False			save_alias	
@@ -91,147 +91,139 @@ GP4	gp4	ORF4	1.0	1	save_alias	False			save_alias
 GP4 protein	gp4protein	ORF4	1.0	1	save_alias	False			save_alias	
 GP5	gp5	ORF5	1.0	1	save_alias	False			save_alias	
 GP5	gp5	ORF5	1.0	1	save_alias	False			save_alias	
-1a replicase protein	1areplicaseprotein	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Explicit 1a replicase label resolves uniquely to ORF1a.
-RNA polymerase	rnapolymerase	ORF1a	1.0	2	manual_review	True	ignore	high	ignore	Ambiguous within PRRSV because the label 'RNA polymerase' can map to more than one available canonical (ORF1a and ORF1b).
-contains 1a replicase protein	contains1areplicaseprotein	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Explicit 1a replicase label resolves uniquely to ORF1a.
-contains papain-like cysteine protease	containspapainlikecysteineprotease	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Papain-like cysteine protease is a conventional replicase-domain name that resolves uniquely to ORF1a.
-cysteine proteas	cysteineproteas	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Cysteine protease is a specific domain label for ORF1a and the coordinates resolve uniquely to ORF1a.
-cysteine protease	cysteineprotease	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Cysteine protease is a specific domain label for ORF1a and the coordinates resolve uniquely to ORF1a.
-cysteine protease/serine protease	cysteineprotease/serineprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	The combined label 'cysteine protease/serine protease' is multi-activity and too vague to identify a gene name reliably.
-cysteine protease/serine protease	cysteineprotease/serineprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	The combined label 'cysteine protease/serine protease' is multi-activity and too vague to identify a gene name reliably.
-cysteine/serine protease	cysteine/serineprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	The label is a multi-activity protease description ('cysteine/serine protease'), which the instructions say to ignore as too vague/unresolved, even though it maps to ORF1a.
-cysteine/serine protease	cysteine/serineprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	The label is a multi-activity protease description ('cysteine/serine protease'), which is explicitly too vague to use as an alias.
-encodes papain-like cycteine protease, 3C-like cysteine protease and serine protease	encodespapainlikecycteineprotease,3clikecysteineproteaseandserineprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	This is a free-text mechanism/process-style comment listing multiple protease activities, not a clean gene name or single conventional alias; the multi-activity wording makes it too vague to normalize.
-encodes papain-like cysteine protease, cysteine protease and 3C-like serine protease	encodespapainlikecysteineprotease,cysteineproteaseand3clikeserineprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	The label is a compound multi-activity protease description, which the instructions treat as too vague to identify a single gene name.
-non-structural protein	nonstructuralprotein	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	'non-structural protein' is a class/group label that applies to several PRRSV ORFs, so it cannot uniquely identify ORF1a.
-non-structural protein	nonstructuralprotein	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	'non-structural protein' is a class/group label spanning multiple available canonicals, so it is not a unique alias.
-papain-like cysteine protease	papainlikecysteineprotease	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Papain-like cysteine protease is a conventional enzymatic-domain name for the ORF1a replicase region, and the coordinates map uniquely to ORF1a.
-papain-like cysteine protease	papainlikecysteineprotease	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Papain-like cysteine protease is a standard domain-based name for ORF1a and uniquely resolves to that canonical.
-papain-like cysteine protease alpha and beta	papainlikecysteineproteasealphaandbeta	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	'papain-like cysteine protease alpha and beta' is still a conventional ORF1a protease designation, and the coordinates uniquely support ORF1a.
-papain-like cysteine/serine protease	papainlikecysteine/serineprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	'papain-like cysteine/serine protease' is a multi-activity description, which the instructions say to ignore as too vague.
-papain/chymotrypsin-like cystein protease	papain/chymotrypsinlikecysteinprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	'papain/chymotrypsin-like cystein protease' mixes unrelated activities, so it does not cleanly identify a single gene alias.
-polypeptide precursor of non-structural proteins NSP1 through NSP8	polypeptideprecursorofnonstructuralproteinsnsp1throughnsp8	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	This is a conventional precursor description for the ORF1a non-structural polyprotein region, and the coordinates uniquely point to ORF1a.
-polypeptide precursor of non-structural proteins NSP1 through NSP8	polypeptideprecursorofnonstructuralproteinsnsp1throughnsp8	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	The precursor wording refers to the ORF1a non-structural polyprotein region, and the coordinates uniquely resolve to ORF1a.
-polypeptide precursor of non-structural proteins NSP1-NSP8	polypeptideprecursorofnonstructuralproteinsnsp1nsp8	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	This is a precursor description for non-structural proteins NSP1-NSP8, which in this coordinate context resolves uniquely to ORF1a.
-polyprotein	polyprotein	ORF1a	1.0	2	manual_review	True	ignore	high	ignore	'polyprotein' alone is too generic and, here, it is shared across ORF1a and ORF1b, so it is ambiguous within PRRSV.
-proteinase	proteinase	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Proteinase is the standard conventional protease label for the ORF1a replicase region in PRRSV, and the coordinates uniquely support ORF1a.
-proteinase	proteinase	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Proteinase is a conventional shorthand for the ORF1a protease region, and the coordinate evidence uniquely maps to ORF1a.
-replicase polyprotein	replicasepolyprotein	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Replicase polyprotein is a standard label for the ORF1a replicase region, and the coordinates uniquely support ORF1a.
-serine protease	serineprotease	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Serine protease is a conventional domain-based alias for the ORF1a region, and the coordinates uniquely map to ORF1a.
-serine protease protease	serineproteaseprotease	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Despite the duplicated wording, this is still a serine protease label for the ORF1a region, which the coordinate evidence uniquely supports.
-unusual cysteine protease/serine protease	unusualcysteineprotease/serineprotease	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Specific enzymatic domain label for the ORF1a region; coordinate match is exact and it resolves to a single canonical.
-1b replicase protein	1breplicaseprotein	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	Descriptive replicase label for a feature that coordinates to ORF1b only.
-RNA dependent RNA polymerase	rnadependentrnapolymerase	ORF1b	0.9986	1	manual_review	True	save_alias	high	save_alias	Standard domain name for the ORF1b replicase region; uniquely resolves to ORF1b.
-RNA dependent RNA polymerase/helicase	rnadependentrnapolymerase/helicase	ORF1b	0.9986	1	manual_review	True	save_alias	high	save_alias	Combined domain label still points uniquely to ORF1b and is a valid alias.
-RNA dependent RNA polymerase/zinc-finger/helicase	rnadependentrnapolymerase/zincfinger/helicase	ORF1b	0.9986	1	manual_review	True	save_alias	high	save_alias	Multi-domain replicase description resolves uniquely to ORF1b.
-RNA polymerase	rnapolymerase	ORF1b	0.9986	2	manual_review	True	ignore	high	ignore	This is a broad class label ('RNA polymerase') that can refer to more than one available canonical in PRRSV, so it does not uniquely identify one gene.
-RNA-dependent RNA polymerase	rnadependentrnapolymerase	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	Standard and specific enzymatic designation for ORF1b; uniquely maps to the replicase region.
-RNA-dependent RNA polymerase/helicase	rnadependentrnapolymerase/helicase	ORF1b	0.9993	1	manual_review	True	save_alias	high	save_alias	Combined polymerase/helicase description is a valid ORF1b label and resolves uniquely to ORF1b.
-contains 1b replicase protein	contains1breplicaseprotein	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	Replicase protein label with explicit 1b designation uniquely identifies ORF1b.
-contains RNA-dependent RNA polymerase	containsrnadependentrnapolymerase	ORF1b	0.9986	1	manual_review	True	save_alias	high	save_alias	RNA-dependent RNA polymerase is a conventional ORF1b alias and the coordinates resolve uniquely to ORF1b.
-encodes RNA dependent-RNA polymerase, helicase, zinc finger and conserved nidovirus motifs	encodesrnadependentrnapolymerase,helicase,zincfingerandconservednidovirusmotifs	ORF1b	0.9979	1	manual_review	True	save_alias	high	save_alias	This is a detailed functional description of the ORF1b replicase product and uniquely resolves to ORF1b.
-encodes polymerase, helicase and zinc finger	encodespolymerase,helicaseandzincfinger	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	Although phrased as an encoded-product note, it still refers to the ORF1b region and uniquely resolves to ORF1b.
-encodes polymerase, helicase, zinc finger and nidovirus motifs	encodespolymerase,helicase,zincfingerandnidovirusmotifs	ORF1b	0.9979	1	manual_review	True	save_alias	high	save_alias	Domain/activity description for the ORF1b product; uniquely maps to ORF1b.
-expressed through -1 ribosomal frameshift	expressedthrough1ribosomalframeshift	ORF1b	0.9993	1	manual_review	True	ignore	high	ignore	This is a mechanism/process description about ribosomal frameshifting, not a gene name.
-expression occurs due to an upstream ribosomal frameshift	expressionoccursduetoanupstreamribosomalframeshift	ORF1b	0.9973	1	manual_review	True	ignore	high	ignore	This is a mechanism/process description about how expression occurs, not a gene name.
-helicase	helicase	ORF1b	0.9986	1	manual_review	True	save_alias	high	save_alias	Helicase is a conventional alias for the ORF1b replicase region and resolves uniquely here.
-helicase	helicase	ORF1b	0.9986	1	manual_review	True	save_alias	high	save_alias	Helicase is a valid ORF1b alias when the coordinates identify ORF1b uniquely.
-nidovirus-like domain	nidoviruslikedomain	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	Nidovirus-like domain label is being used for the ORF1b region and resolves uniquely to ORF1b.
-nidovirus-like domain protein	nidoviruslikedomainprotein	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	Domain-protein label for the ORF1b region; unique coordinate match supports ORF1b.
-polypeptide precursor of non-structural proteins NSP9 through NSP12	polypeptideprecursorofnonstructuralproteinsnsp9throughnsp12	ORF1b	0.9993	1	manual_review	True	save_alias	high	save_alias	Precursor label for the ORF1b non-structural protein block; it resolves uniquely to ORF1b.
-polypeptide precursor of non-structural proteins NSP9 through NSP12	polypeptideprecursorofnonstructuralproteinsnsp9throughnsp12	ORF1b	0.9993	1	manual_review	True	save_alias	high	save_alias	Coordinates map uniquely to ORF1b and the label is a valid descriptive alias for the replicase region.
-polypeptide precursor of non-structural proteins NSP9-NSP12, RNA-dependent RNA polymerase/helicase	polypeptideprecursorofnonstructuralproteinsnsp9nsp12,rnadependentrnapolymerase/helicase	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF1b; RNA-dependent RNA polymerase/helicase is a conventional alias for this ORF.
-polyprotein	polyprotein	ORF1b	0.9986	2	manual_review	True	ignore	high	ignore	The label is the generic polyprotein term and it spans multiple canonical targets (ORF1a and ORF1b), so it does not uniquely identify one gene.
-protein kinase	proteinkinase	ORF1b	0.9993	1	manual_review	True	ignore	high	ignore	Protein kinase is a vague activity description here and not a standard, specific designation for ORF1b.
-ribosomal	ribosomal	ORF1b	0.9973	1	manual_review	True	skip	high	skip	The raw label is too generic and not a resolvable gene name in this context.
-translated by ribosomal frameshift	translatedbyribosomalframeshift	ORF1b	0.9973	1	manual_review	True	ignore	high	ignore	This is a mechanism/process description (ribosomal frameshift), which is explicitly not a gene name.
-translated through a ribosomal frameshift at ORF1a/1b junction	translatedthrougharibosomalframeshiftatorf1a/1bjunction	ORF1b	0.9986	1	manual_review	True	ignore	high	ignore	This is a mechanism/process description rather than a gene label, so it should not be saved as an alias.
-zinc-finger protein	zincfingerprotein	ORF1b	0.9986	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF1b; zinc-finger protein is an accepted descriptive alias for this ORF.
-zinc-finger/helicase	zincfinger/helicase	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF1b; zinc-finger/helicase is a valid domain-based alias for the replicase ORF.
-GP2	gp2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; GP2 is a straightforward alias for this canonical.
-GP2	gp2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; GP2 is a valid alias regardless of the note field.
-GP2	gp2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; GP2 in the gene field is a valid alias.
-GP2 envelope protein	gp2envelopeprotein	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; GP2 envelope protein is a valid descriptive alias for this gene.
-GP2 envelope protein	gp2envelopeprotein	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; GP2 envelope protein is a valid alias even in a note field.
-GP2 glycosylated envelope protein	gp2glycosylatedenvelopeprotein	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; GP2 glycosylated envelope protein is a valid alias.
-GP2 glycosylated envelope protein	gp2glycosylatedenvelopeprotein	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; GP2 glycosylated envelope protein is a valid alias in the product field.
-N-glycosylated envelope protein GP2	nglycosylatedenvelopeproteingp2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; N-glycosylated envelope protein GP2 is a valid alias.
-ORF2	orf2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; ORF2 is a valid alias for this canonical.
-ORF2	orf2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; ORF2 is a valid alias even in a note field.
-ORF2	orf2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; ORF2 in the gene field is a valid alias.
-envelope glycoprotein	envelopeglycoprotein	ORF2a	1.0	2	manual_review	True	ignore	high	ignore	The label is shared across ORF2a and ORF3, so it is ambiguous within PRRSV and cannot resolve to one canonical.
-envelope glycoprotein GP2	envelopeglycoproteingp2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Coordinate match is exact and it maps uniquely to ORF2a; descriptive product wording is acceptable as an alias.
-envelope protein GP2	envelopeproteingp2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; 'envelope protein GP2' is a valid alias for this canonical.
-glycoprotein 2	glycoprotein2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; 'glycoprotein 2' is consistent with this gene name/alias.
-glycoprotein 2a	glycoprotein2a	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; 'glycoprotein 2a' resolves cleanly to ORF2a.
-glycosylated envelope protein GP2	glycosylatedenvelopeproteingp2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2a; this descriptive envelope/glycosylation wording still names the gene product.
-E	e	ORF2b	1.0	2	manual_review	True	ignore	high	ignore	The label 'E' appears to apply to both ORF2b and ORF5, making it ambiguous within PRRSV.
-E	e	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2b; 'E' is a valid short alias in this context.
-E protein	eprotein	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2b; 'E protein' is a valid alias for this gene.
-envelope protein E	envelopeproteine	ORF2b	1.0	2	manual_review	True	ignore	high	ignore	This label is shared across ORF2b and ORF5, so it is ambiguous within PRRSV.
-non-glycosylated	nonglycosylated	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2b; the note text is still a usable alias here.
-non-glycosylated protein 2b	nonglycosylatedprotein2b	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2b; 'non-glycosylated protein 2b' resolves to this canonical.
-protein E	proteine	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2b; 'protein E' is a valid alias for this gene product.
-small envelope protein	smallenvelopeprotein	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2b; 'small envelope protein' is a descriptive alias for this gene product.
-structural membrane protein	structuralmembraneprotein	ORF2b	1.0	2	manual_review	True	ignore	high	ignore	The label 'structural membrane protein' is a broad class/category term shared by multiple PRRSV genes, so it does not pick out one canonical.
-unglycosylated	unglycosylated	ORF2b	1.0	2	manual_review	True	ignore	high	ignore	The note text is ambiguous across ORF2b and ORF6, so it cannot be assigned to a single canonical.
-unglycosylated envelope protein	unglycosylatedenvelopeprotein	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2b; 'unglycosylated envelope protein' is a valid descriptive alias.
-unglycosylated membrane protein	unglycosylatedmembraneprotein	ORF2b	1.0	2	manual_review	True	ignore	high	ignore	The label is shared across ORF2b and ORF6, making it ambiguous within PRRSV.
-unglycosylated viral envelope protein	unglycosylatedviralenvelopeprotein	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Unique coordinate match to ORF2b; 'unglycosylated viral envelope protein' is a valid alias.
-envelope glycoprotein	envelopeglycoprotein	ORF3	1.0	2	manual_review	True	ignore	high	ignore	The label is shared across ORF2a and ORF3, so it is ambiguous within PRRSV.
-glycoprotein 3	glycoprotein3	ORF3	1.0	1	manual_review	True	save_alias	high	save_alias	Coordinate match is exact and cross-canonical target count is 1; 'glycoprotein 3' is a standard alias for ORF3.
-glycoprotein 4	glycoprotein4	ORF4	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support with a unique canonical target; 'glycoprotein 4' clearly maps to ORF4.
-glycosylated membrane portein	glycosylatedmembraneportein	ORF4	1.0	2	manual_review	True	ignore	high	ignore	The phrase 'glycosylated membrane protein' is a class/category description and the evidence shows it matches multiple canonicals (ORF4 and ORF5), so it is ambiguous within this virus.
-E	e	ORF5	1.0	2	manual_review	True	ignore	high	ignore	Single-letter 'E' is ambiguous here because the evidence shows multiple canonical targets (ORF2b and ORF5).
-contains neutralizing epitope	containsneutralizingepitope	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support with a unique canonical target; 'contains neutralizing epitope' is a valid label for ORF5 in this context.
-disulfide linked to M matrix protein	disulfidelinkedtommatrixprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support with a unique canonical target; the note describes GP5 via its disulfide linkage to matrix protein, which still points to ORF5.
-disulfide linked to Membrane protein coded for by ORF6	disulfidelinkedtomembraneproteincodedforbyorf6	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support and a unique canonical target; despite mentioning ORF6, the raw label is describing the GP5 product linked to membrane protein, so it resolves to ORF5.
-disulfide linked to the M protein	disulfidelinkedtothemprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support with a unique canonical target; 'disulfide linked to the M protein' is a descriptive alias for GP5/ORF5.
-envelope protein E	envelopeproteine	ORF5	1.0	2	manual_review	True	ignore	high	ignore	The label 'envelope protein E' is ambiguous in this virus because it matches multiple canonicals (ORF2b and ORF5).
-glycoprotein 5	glycoprotein5	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support with a unique canonical target; 'glycoprotein 5' is a direct alias for ORF5.
-glycosylated membrane portein	glycosylatedmembraneportein	ORF5	1.0	2	manual_review	True	ignore	high	ignore	The label is ambiguous across multiple canonicals (ORF4 and ORF5), so it cannot uniquely identify one gene within PRRSV.
-has neutralizing epitope	hasneutralizingepitope	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support with a unique canonical target; 'has neutralizing epitope' is a valid ORF5-associated note in this context.
-major envelope glycoprotein	majorenvelopeglycoprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support with a unique canonical target; 'major envelope glycoprotein' is a standard alias for ORF5.
-major envelope glycoprotein	majorenvelopeglycoprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support with a unique canonical target; repeated 'major envelope glycoprotein' note still points to ORF5.
-major viral attachment protein	majorviralattachmentprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support with a unique canonical target; 'major viral attachment protein' is a known label for ORF5.
-presumed cell attachment protein	presumedcellattachmentprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support with a unique canonical target; 'presumed cell attachment protein' is an ORF5 alias in PRRSV.
-putative viral attachment protein, disulfide linked to Membrane protein	putativeviralattachmentprotein,disulfidelinkedtomembraneprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support with a unique canonical target; the note describes the GP5/ORF5 attachment protein.
-viral attachment protein	viralattachmentprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support with a unique canonical target; 'viral attachment protein' maps to ORF5.
-M	m	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support with a unique canonical target; single-letter 'M' is the standard alias for ORF6 in PRRSV.
-M	m	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate support with a unique canonical target; single-letter 'M' is the standard alias for ORF6 in PRRSV.
-M	m	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'M' is a common alias for ORF6 in this virus.
-M matrix protein	mmatrixprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'M matrix protein' clearly refers to ORF6.
-M membrane protein	mmembraneprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'M membrane protein' is an accepted ORF6 alias.
-M protein	mprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'M protein' identifies ORF6.
-disulfide linked to GP5	disulfidelinkedtogp5	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; note text still names the ORF6 product as GP5-linked membrane protein.
-disulfide linked to the GP5 protein	disulfidelinkedtothegp5protein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; this note refers to the ORF6 product associated with GP5.
-matrix protein	matrixprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'matrix protein' is an alias for ORF6.
-matrix protein	matrixprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'matrix protein' maps to ORF6.
-matrix protein M	matrixproteinm	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'matrix protein M' clearly refers to ORF6.
-membrane envelope protein	membraneenvelopeprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'membrane envelope protein' is an ORF6 alias.
-membrane protein	membraneprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'membrane protein' is a standard ORF6 label.
-membrane protein M	membraneproteinm	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'membrane protein M' indicates ORF6.
-membrane protein M	membraneproteinm	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'membrane protein M' is an ORF6 alias.
-non-glycosylated membrane protein	nonglycosylatedmembraneprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'non-glycosylated membrane protein' resolves to ORF6.
-nonglycosylate	nonglycosylate	ORF6	1.0	2	manual_review	True	ignore	high	ignore	The label is ambiguous across multiple canonicals (ORF6 and ORF7), so it cannot uniquely identify one gene within PRRSV.
-structural membrane protein	structuralmembraneprotein	ORF6	1.0	2	manual_review	True	ignore	high	ignore	This is a class/category label ('structural membrane protein') that can apply to more than one canonical in this virus, so it is not a unique gene name.
-structural membrane protein	structuralmembraneprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'structural membrane protein' here is tied to ORF6 and functions as its label.
-unglycosylated	unglycosylated	ORF6	1.0	2	manual_review	True	ignore	high	ignore	The note is ambiguous across multiple canonicals (ORF2b and ORF6), so it should not be normalized to a single gene.
-unglycosylated membrane protein	unglycosylatedmembraneprotein	ORF6	1.0	2	manual_review	True	ignore	high	ignore	The note is ambiguous across multiple canonicals (ORF2b and ORF6), so it cannot be assigned uniquely.
-N	n	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'N' is the standard shorthand for ORF7.
-N	n	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; 'N' is a common alias for ORF7 in PRRSV.
-N	n	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	Single canonical target with perfect coordinate match; bare gene letter 'N' clearly points to ORF7.
-N nucleocapsid protein	nnucleocapsidprotein	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	'N nucleocapsid protein' is a standard PRRSV ORF7 alias and resolves uniquely to ORF7.
-N protein	nprotein	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	'N protein' is a common product label for PRRSV ORF7 and maps uniquely to ORF7.
-N protein	nprotein	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	'N protein' resolves uniquely to ORF7 by coordinates and is a recognized label for the nucleocapsid gene.
-icosahedral symmetry	icosahedralsymmetry	ORF7	1.0	1	manual_review	True	ignore	high	ignore	'icosahedral symmetry' is a free-text structural comment, not a gene name.
-nonglycosylate	nonglycosylate	ORF7	1.0	2	manual_review	True	ignore	high	ignore	The label is shared across ORF6 and ORF7, so it is ambiguous within PRRSV.
-nucleocapsid	nucleocapsid	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	'nucleocapsid' is a standard alias for the PRRSV ORF7 product and resolves uniquely to ORF7.
-nucleocapsid protein	nucleocapsidprotein	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	'nucleocapsid protein' is a standard descriptive name for the ORF7 product and maps uniquely to ORF7.
-nucleocapsid protein	nucleocapsidprotein	ORF7	1.0	1	manual_review	True	save_alias	medium	save_alias	'nucleocapsid protein' is a valid ORF7 alias, though this instance has lower coverage/identity than the others.
-nucleocapsid protein N	nucleocapsidproteinn	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	'nucleocapsid protein N' resolves uniquely to ORF7 and is consistent with standard PRRSV naming.
-nucleocapsid protein N	nucleocapsidproteinn	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	'nucleocapsid protein N' is a recognized ORF7 label and has a unique coordinate match.
-structural protein	structuralprotein	ORF7	1.0	1	manual_review	True	ignore	high	ignore	'structural protein' is a class/group label spanning multiple PRRSV proteins and cannot uniquely identify ORF7.
+1a replicase protein	1areplicaseprotein	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Despite the note field, the label is a conventional ORF1a replicase designation and uniquely resolves to ORF1a.
+RNA polymerase	rnapolymerase	ORF1a	1.0	2	manual_review	True	ignore	high	ignore	RNA polymerase is ambiguous here because it maps to multiple PRRSV canonicals (ORF1a and ORF1b).
+contains 1a replicase protein	contains1areplicaseprotein	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	This is a conventional ORF1a replicase descriptor and uniquely resolves to ORF1a.
+contains papain-like cysteine protease	containspapainlikecysteineprotease	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Papain-like cysteine protease is a standard ORF1a domain name and uniquely resolves to ORF1a.
+cysteine proteas	cysteineproteas	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Cysteine proteas is an obvious misspelling of cysteine protease and the coordinates uniquely support ORF1a.
+cysteine protease	cysteineprotease	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Cysteine protease is a standard ORF1a domain name and uniquely resolves to ORF1a.
+cysteine protease/serine protease	cysteineprotease/serineprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	The combined cysteine protease/serine protease label is too vague/multi-activity to identify a specific gene name.
+cysteine protease/serine protease	cysteineprotease/serineprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	The combined cysteine protease/serine protease label is too vague/multi-activity to identify a specific gene name.
+encodes papain-like cycteine protease, 3C-like cysteine protease and serine protease	encodespapainlikecycteineprotease,3clikecysteineproteaseandserineprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	The raw string is a multi-activity protease description (papain-like cysteine protease plus 3C-like cysteine/serine protease), which the instructions say to ignore when it is vague or combines unrelated activities rather than naming a single gene.
+encodes papain-like cysteine protease, cysteine protease and 3C-like serine protease	encodespapainlikecysteineprotease,cysteineproteaseand3clikeserineprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	This is a bundled protease description with multiple activities, not a single conventional gene name; the instructions call such multi-activity labels ambiguous and to ignore them.
+papain-like cysteine protease	papainlikecysteineprotease	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Papain-like cysteine protease is a conventional enzymatic name for the PRRSV ORF1a replicase region, and the coordinates map uniquely to ORF1a.
+papain-like cysteine protease	papainlikecysteineprotease	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Papain-like cysteine protease is a specific, conventional alias for ORF1a, with a unique coordinate match.
+papain-like cysteine protease alpha and beta	papainlikecysteineproteasealphaandbeta	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	The phrase 'alpha and beta' indicates multiple protease parts/domains rather than a single standard gene name, so it is too composite/vague to normalize as one alias.
+papain-like cysteine/serine protease	papainlikecysteine/serineprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	Papain-like cysteine/serine protease is a mixed activity description; the instructions say to ignore vague or multi-activity protease labels.
+papain/chymotrypsin-like cystein protease	papain/chymotrypsinlikecysteinprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	Papain/chymotrypsin-like cystein protease combines multiple protease activities, which the instructions treat as vague/multi-activity and not a resolvable alias.
+polypeptide precursor of non-structural proteins NSP1 through NSP8	polypeptideprecursorofnonstructuralproteinsnsp1throughnsp8	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Polypeptide precursor of non-structural proteins NSP1 through NSP8 is a clear name for the ORF1a replicase polyprotein region, and the coordinate evidence uniquely targets ORF1a.
+polypeptide precursor of non-structural proteins NSP1 through NSP8	polypeptideprecursorofnonstructuralproteinsnsp1throughnsp8	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Polypeptide precursor of non-structural proteins NSP1 through NSP8 is a valid ORF1a alias given the unique coordinate match.
+polypeptide precursor of non-structural proteins NSP1-NSP8	polypeptideprecursorofnonstructuralproteinsnsp1nsp8	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Polypeptide precursor of non-structural proteins NSP1-NSP8 is a clear label for the ORF1a replicase region and maps uniquely to ORF1a.
+replicase polyprotein	replicasepolyprotein	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Replicase polyprotein is a standard name for the ORF1a region in this virus and the coordinates resolve uniquely to ORF1a.
+serine protease	serineprotease	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Serine protease is a conventional domain-based alias for the ORF1a replicase region here, with unique coordinate resolution to ORF1a.
+serine protease protease	serineproteaseprotease	ORF1a	1.0	1	manual_review	True	save_alias	high	save_alias	Despite the duplicated wording, this still points to the serine protease domain of ORF1a, and the coordinates resolve uniquely to ORF1a.
+unusual cysteine protease/serine protease	unusualcysteineprotease/serineprotease	ORF1a	1.0	1	manual_review	True	ignore	high	ignore	Unusual cysteine protease/serine protease is a multi-activity protease description, which the instructions say to ignore rather than map.
+1b replicase protein	1breplicaseprotein	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	1b replicase protein directly identifies the ORF1b region and the coordinate match is unique to ORF1b.
+RNA dependent RNA polymerase	rnadependentrnapolymerase	ORF1b	0.9986	1	manual_review	True	save_alias	high	save_alias	RNA dependent RNA polymerase is a conventional alias for PRRSV ORF1b, with unique coordinate support for ORF1b.
+RNA dependent RNA polymerase/helicase	rnadependentrnapolymerase/helicase	ORF1b	0.9986	1	manual_review	True	save_alias	high	save_alias	RNA dependent RNA polymerase/helicase is a combined but still ORF1b-specific replicase domain label, and the coordinates map uniquely to ORF1b.
+RNA dependent RNA polymerase/zinc-finger/helicase	rnadependentrnapolymerase/zincfinger/helicase	ORF1b	0.9986	1	manual_review	True	save_alias	high	save_alias	RNA dependent RNA polymerase/zinc-finger/helicase is a combined ORF1b replicase-domain label with unique coordinate support for ORF1b.
+RNA polymerase	rnapolymerase	ORF1b	0.9986	2	manual_review	True	ignore	high	ignore	RNA polymerase is shared across ORF1a and ORF1b according to the evidence, so it is genuinely ambiguous within this virus and should be ignored.
+RNA-dependent RNA polymerase	rnadependentrnapolymerase	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	RNA-dependent RNA polymerase is a standard, specific alias for ORF1b, and the coordinates uniquely resolve to ORF1b.
+RNA-dependent RNA polymerase/helicase	rnadependentrnapolymerase/helicase	ORF1b	0.9993	1	manual_review	True	save_alias	high	save_alias	Coordinate match is strong and the label is a conventional domain/activity name for the replicase ORF1b; it uniquely maps to ORF1b.
+contains 1b replicase protein	contains1breplicaseprotein	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	The raw label still clearly identifies ORF1b and the coordinates uniquely match ORF1b.
+contains RNA-dependent RNA polymerase	containsrnadependentrnapolymerase	ORF1b	0.9986	1	manual_review	True	save_alias	high	save_alias	This is a standard ORF1b enzyme/domain description and uniquely resolves to ORF1b.
+encodes RNA dependent-RNA polymerase, helicase, zinc finger and conserved nidovirus motifs	encodesrnadependentrnapolymerase,helicase,zincfingerandconservednidovirusmotifs	ORF1b	0.9979	1	manual_review	True	save_alias	high	save_alias	The label describes ORF1b replicase domains and uniquely matches ORF1b by coordinates.
+encodes polymerase, helicase and zinc finger	encodespolymerase,helicaseandzincfinger	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	Although phrased as a note, it describes ORF1b-specific replicase domains and uniquely resolves to ORF1b.
+encodes polymerase, helicase, zinc finger and nidovirus motifs	encodespolymerase,helicase,zincfingerandnidovirusmotifs	ORF1b	0.9979	1	manual_review	True	save_alias	high	save_alias	The combined polymerase/helicase domain description is a conventional ORF1b label and uniquely maps to ORF1b.
+expressed through -1 ribosomal frameshift	expressedthrough1ribosomalframeshift	ORF1b	0.9993	1	manual_review	True	ignore	high	ignore	This is a mechanism/process description about frameshifting, which is explicitly excluded as a gene name.
+expression occurs due to an upstream ribosomal frameshift	expressionoccursduetoanupstreamribosomalframeshift	ORF1b	0.9973	1	manual_review	True	ignore	high	ignore	This is a frameshift-expression remark rather than a gene/product name, so it should not be saved as an alias.
+helicase	helicase	ORF1b	0.9986	1	manual_review	True	save_alias	high	save_alias	Helicase is a conventional ORF1b domain name here and the coordinates uniquely support ORF1b.
+helicase	helicase	ORF1b	0.9986	1	manual_review	True	save_alias	high	save_alias	The product field says helicase, which is a standard ORF1b alias and uniquely maps to ORF1b.
+nidovirus-like domain	nidoviruslikedomain	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	Nidovirus-like domain is a recognized ORF1b-related label and the coordinates uniquely resolve to ORF1b.
+nidovirus-like domain protein	nidoviruslikedomainprotein	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	The label names a nidovirus-like domain protein that uniquely corresponds to ORF1b in this virus.
+polypeptide precursor of non-structural proteins NSP9 through NSP12	polypeptideprecursorofnonstructuralproteinsnsp9throughnsp12	ORF1b	0.9993	1	manual_review	True	save_alias	high	save_alias	This precursor description still points to the ORF1b replicase region and uniquely resolves to ORF1b.
+polypeptide precursor of non-structural proteins NSP9 through NSP12	polypeptideprecursorofnonstructuralproteinsnsp9throughnsp12	ORF1b	0.9993	1	manual_review	True	save_alias	high	save_alias	The precursor description is an ORF1b-specific replicase label and the coordinates uniquely match ORF1b.
+polypeptide precursor of non-structural proteins NSP9-NSP12, RNA-dependent RNA polymerase/helicase	polypeptideprecursorofnonstructuralproteinsnsp9nsp12,rnadependentrnapolymerase/helicase	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	The combined replicase-domain description is a valid ORF1b alias and uniquely maps to ORF1b.
+protein kinase	proteinkinase	ORF1b	0.9993	1	manual_review	True	ignore	high	ignore	Protein kinase is a vague/nonstandard activity description for this ORF and the instructions say such bare activity words should be ignored.
+ribosomal	ribosomal	ORF1b	0.9973	1	manual_review	True	ignore	high	ignore	The raw value is just a generic fragment ('ribosomal') and does not function as a gene label.
+translated by ribosomal frameshift	translatedbyribosomalframeshift	ORF1b	0.9973	1	manual_review	True	ignore	high	ignore	This is a frameshift-process comment rather than a gene alias, so it should be ignored.
+translated through a ribosomal frameshift at ORF1a/1b junction	translatedthrougharibosomalframeshiftatorf1a/1bjunction	ORF1b	0.9986	1	manual_review	True	ignore	high	ignore	This is explicitly a mechanism/process description of translation via frameshift and is not a gene name.
+zinc-finger protein	zincfingerprotein	ORF1b	0.9986	1	manual_review	True	save_alias	high	save_alias	Zinc-finger protein is a recognized ORF1b-associated label here and uniquely maps to ORF1b by coordinates.
+zinc-finger/helicase	zincfinger/helicase	ORF1b	0.9973	1	manual_review	True	save_alias	high	save_alias	Specific helicase-domain label with coordinate match to a single canonical (ORF1b); per instructions, conventional domain names are valid aliases when they map uniquely.
+GP2	gp2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Raw label GP2 matches a single canonical target (ORF2a) with strong coordinate evidence; short descriptive gene/product names are valid aliases here.
+GP2	gp2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	GP2 is a straightforward alias for ORF2a with a unique coordinate match.
+GP2	gp2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	GP2 in the gene field maps uniquely to ORF2a and is a valid alias despite being plain/descriptive.
+GP2 envelope protein	gp2envelopeprotein	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	GP2 envelope protein names the ORF2a product and maps uniquely to ORF2a.
+GP2 envelope protein	gp2envelopeprotein	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	GP2 envelope protein is a valid alias for ORF2a with unique coordinate support.
+GP2 glycosylated envelope protein	gp2glycosylatedenvelopeprotein	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	GP2 glycosylated envelope protein uniquely resolves to ORF2a; descriptive wording is allowed.
+GP2 glycosylated envelope protein	gp2glycosylatedenvelopeprotein	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	GP2 glycosylated envelope protein is a unique alias for ORF2a supported by coordinates.
+N-glycosylated envelope protein GP2	nglycosylatedenvelopeproteingp2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	N-glycosylated envelope protein GP2 resolves uniquely to ORF2a and should be normalized as an alias.
+ORF2	orf2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	ORF2 is a direct label for this feature and maps uniquely to ORF2a.
+ORF2	orf2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	ORF2 in the note field still refers uniquely to ORF2a by coordinates.
+ORF2	orf2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	ORF2 in the gene field is a unique alias for ORF2a.
+envelope glycoprotein	envelopeglycoprotein	ORF2a	1.0	2	manual_review	True	ignore	high	ignore	Envelope glycoprotein is ambiguous within PRRSV because it spans more than one canonical target (ORF2a and ORF3), so it cannot uniquely identify a single gene.
+envelope glycoprotein GP2	envelopeglycoproteingp2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Envelope glycoprotein GP2 uniquely resolves to ORF2a; the GP2 qualifier disambiguates it.
+envelope protein GP2	envelopeproteingp2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Envelope protein GP2 is a unique alias for ORF2a.
+glycoprotein 2	glycoprotein2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Glycoprotein 2 is a standard product label for ORF2a and maps uniquely to it.
+glycoprotein 2a	glycoprotein2a	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Glycoprotein 2a directly matches ORF2a and is a unique alias.
+glycosylated envelope protein GP2	glycosylatedenvelopeproteingp2	ORF2a	1.0	1	manual_review	True	save_alias	high	save_alias	Glycosylated envelope protein GP2 uniquely identifies ORF2a.
+E	e	ORF2b	1.0	2	manual_review	True	ignore	high	ignore	Single-letter label E is ambiguous within PRRSV because it maps to more than one canonical target (ORF2b and ORF5), so it should not be saved as a unique alias.
+E	e	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	E in the note field maps uniquely to ORF2b by coordinate evidence and is a valid alias.
+E protein	eprotein	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match to a single available canonical; 'E protein' is a standard product name for ORF2b in PRRSV.
+envelope protein E	envelopeproteine	ORF2b	1.0	2	manual_review	True	ignore	high	ignore	Ambiguous within PRRSV because it maps to multiple available canonicals (ORF2b and ORF5).
+non-glycosylated	nonglycosylated	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Single-canonical coordinate match; 'non-glycosylated' is a descriptive variant for ORF2b, not a disqualifying class term.
+non-glycosylated protein 2b	nonglycosylatedprotein2b	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Single-canonical coordinate match and the label explicitly identifies ORF2b.
+protein E	proteine	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Single-canonical coordinate match; 'protein E' is a valid alias for ORF2b.
+small envelope protein	smallenvelopeprotein	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Single-canonical coordinate match; 'small envelope protein' is a recognized descriptive alias for ORF2b.
+unglycosylated	unglycosylated	ORF2b	1.0	2	manual_review	True	ignore	high	ignore	Ambiguous within PRRSV because it maps to multiple available canonicals (ORF2b and ORF6).
+unglycosylated envelope protein	unglycosylatedenvelopeprotein	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Single-canonical coordinate match; 'unglycosylated envelope protein' is a descriptive alias for ORF2b.
+unglycosylated membrane protein	unglycosylatedmembraneprotein	ORF2b	1.0	2	manual_review	True	ignore	high	ignore	Ambiguous within PRRSV because it maps to multiple available canonicals (ORF2b and ORF6).
+unglycosylated viral envelope protein	unglycosylatedviralenvelopeprotein	ORF2b	1.0	1	manual_review	True	save_alias	high	save_alias	Single-canonical coordinate match; 'unglycosylated viral envelope protein' is a descriptive alias for ORF2b.
+envelope glycoprotein	envelopeglycoprotein	ORF3	1.0	2	manual_review	True	ignore	high	ignore	Ambiguous within PRRSV because it maps to multiple available canonicals (ORF2a and ORF3).
+glycoprotein 3	glycoprotein3	ORF3	1.0	1	manual_review	True	save_alias	high	save_alias	Single-canonical coordinate match; 'glycoprotein 3' is a standard alias for ORF3.
+glycoprotein 4	glycoprotein4	ORF4	1.0	1	manual_review	True	save_alias	high	save_alias	Single-canonical coordinate match; 'glycoprotein 4' is a standard alias for ORF4.
+glycosylated membrane portein	glycosylatedmembraneportein	ORF4	1.0	2	manual_review	True	ignore	high	ignore	Ambiguous within PRRSV because it maps to multiple available canonicals (ORF4 and ORF5).
+E	e	ORF5	1.0	2	manual_review	True	ignore	high	ignore	Ambiguous within PRRSV because the single-letter label E maps to multiple available canonicals (ORF2b and ORF5).
+contains neutralizing epitope	containsneutralizingepitope	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Single-canonical coordinate match; this note describes ORF5 and is not a disqualifying free-text comment.
+disulfide linked to M matrix protein	disulfidelinkedtommatrixprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Single-canonical coordinate match; the note identifies ORF5 by its association with the M matrix protein.
+disulfide linked to Membrane protein coded for by ORF6	disulfidelinkedtomembraneproteincodedforbyorf6	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Single-canonical coordinate match; the note identifies ORF5 by its association with membrane protein coded by ORF6.
+disulfide linked to the M protein	disulfidelinkedtothemprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Single-canonical coordinate match; the note refers to ORF5 as the M-protein-associated partner.
+envelope protein E	envelopeproteine	ORF5	1.0	2	manual_review	True	ignore	high	ignore	Ambiguous within PRRSV because it maps to multiple available canonicals (ORF2b and ORF5).
+glycoprotein 5	glycoprotein5	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Specific product label for the ORF5 glycoprotein; coordinate match is exact and uniquely targets ORF5.
+glycosylated membrane portein	glycosylatedmembraneportein	ORF5	1.0	2	manual_review	True	ignore	high	ignore	The label maps to multiple available canonicals (ORF4 and ORF5), so it is ambiguous within PRRSV.
+has neutralizing epitope	hasneutralizingepitope	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Coordinate evidence uniquely supports ORF5; the note is a valid descriptive alias for this gene/product.
+major envelope glycoprotein	majorenvelopeglycoprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Conventional descriptive name for the ORF5 product, uniquely supported by coordinates.
+major envelope glycoprotein	majorenvelopeglycoprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Same as other ORF5 envelope-glycoprotein labels; uniquely resolves to ORF5.
+major viral attachment protein	majorviralattachmentprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Attachment-protein wording is a valid alias for PRRSV ORF5 and is uniquely supported by the coordinates.
+presumed cell attachment protein	presumedcellattachmentprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Presumed cell attachment protein is a valid ORF5 alias with unique coordinate support.
+putative viral attachment protein, disulfide linked to Membrane protein	putativeviralattachmentprotein,disulfidelinkedtomembraneprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	This is a descriptive alias for GP5/ORF5 and the coordinates uniquely point to ORF5.
+viral attachment protein	viralattachmentprotein	ORF5	1.0	1	manual_review	True	save_alias	high	save_alias	Viral attachment protein is a standard descriptive alias for PRRSV ORF5 and is uniquely resolved.
+M	m	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single-letter M label is a common alias for the matrix protein encoded by ORF6 and is uniquely supported.
+M	m	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Single-letter M label is a valid alias for ORF6 and is uniquely supported by coordinates.
+M	m	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Bare gene letter M is the established alias for the ORF6 matrix protein in PRRSV.
+M matrix protein	mmatrixprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	M matrix protein is a clear ORF6 alias and uniquely resolves to ORF6.
+M membrane protein	mmembraneprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	M membrane protein is a valid descriptive alias for the ORF6 matrix protein, with unique coordinate support.
+M protein	mprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	M protein is a valid alias for the ORF6 matrix protein and maps uniquely by coordinates.
+disulfide linked to GP5	disulfidelinkedtogp5	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Disulfide-linked-to-GP5 wording is a valid ORF6 alias in PRRSV and uniquely matches ORF6.
+disulfide linked to the GP5 protein	disulfidelinkedtothegp5protein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	This note describes the ORF6 membrane protein linked to GP5; coordinate evidence uniquely supports ORF6.
+matrix protein	matrixprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Matrix protein is the standard descriptive name for PRRSV ORF6 and is uniquely supported.
+matrix protein	matrixprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Matrix protein is a valid alias for ORF6; the coordinate match is exact and unique.
+matrix protein M	matrixproteinm	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Matrix protein M is a conventional ORF6 alias and uniquely resolves to ORF6.
+membrane envelope protein	membraneenvelopeprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Coordinate match is exact and the label names the ORF6 product; it resolves uniquely to ORF6.
+membrane protein	membraneprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match and the descriptive membrane protein label uniquely resolves to ORF6 in PRRSV.
+membrane protein M	membraneproteinm	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match; 'membrane protein M' is a recognized alias for ORF6 and resolves uniquely.
+membrane protein M	membraneproteinm	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match; 'membrane protein M' uniquely maps to ORF6.
+non-glycosylated membrane protein	nonglycosylatedmembraneprotein	ORF6	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match and the non-glycosylated membrane protein label points uniquely to ORF6.
+nonglycosylate	nonglycosylate	ORF6	1.0	2	manual_review	True	ignore	high	ignore	The note is ambiguous across ORF6 and ORF7, so it cannot uniquely identify a canonical.
+unglycosylated	unglycosylated	ORF6	1.0	2	manual_review	True	ignore	high	ignore	The label is ambiguous across ORF2b and ORF6, so it should not be normalized to a single canonical.
+unglycosylated membrane protein	unglycosylatedmembraneprotein	ORF6	1.0	2	manual_review	True	ignore	high	ignore	The label is ambiguous across ORF2b and ORF6, so it is not a unique alias.
+N	n	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match and the single-letter N label uniquely resolves to ORF7.
+N	n	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match; 'N' is the standard alias for ORF7 in PRRSV.
+N	n	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match and the bare N gene label uniquely identifies ORF7.
+N nucleocapsid protein	nnucleocapsidprotein	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match; 'N nucleocapsid protein' uniquely resolves to ORF7.
+N protein	nprotein	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match and 'N protein' uniquely maps to ORF7.
+N protein	nprotein	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match and 'N protein' is a standard alias for ORF7.
+icosahedral symmetry	icosahedralsymmetry	ORF7	1.0	1	manual_review	True	ignore	high	ignore	This is a non-name free-text remark about virion symmetry, not a gene alias.
+nonglycosylate	nonglycosylate	ORF7	1.0	2	manual_review	True	ignore	high	ignore	The label is ambiguous across ORF6 and ORF7, so it should not be assigned to one canonical.
+nucleocapsid	nucleocapsid	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match; 'nucleocapsid' uniquely identifies ORF7 in this virus.
+nucleocapsid protein	nucleocapsidprotein	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match; 'nucleocapsid protein' is the canonical product name for ORF7.
+nucleocapsid protein	nucleocapsidprotein	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match; despite lower coverage in some records, the label still uniquely refers to ORF7.
+nucleocapsid protein N	nucleocapsidproteinn	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	Exact coordinate match and 'nucleocapsid protein N' uniquely resolves to ORF7.
+nucleocapsid protein N	nucleocapsidproteinn	ORF7	1.0	1	manual_review	True	save_alias	high	save_alias	Exact product label for the nucleocapsid protein with one coordinate-matched canonical target (ORF7).
+polyprotein	polyprotein	ORF1a	1.0	2	manual_review	True	ignore	high	ignore	Raw label is the generic term 'polyprotein' and it maps to multiple canonicals (ORF1a, ORF1b), so it is ambiguous within PRRSV.
+polyprotein	polyprotein	ORF1b	0.9986	2	manual_review	True	ignore	high	ignore	Raw label is the generic term 'polyprotein' and it maps to multiple canonicals (ORF1a, ORF1b), so it is ambiguous within PRRSV.
+structural membrane protein	structuralmembraneprotein	ORF2b	1.0	2	manual_review	True	ignore	high	ignore	'structural membrane protein' is a class/category label that can refer to multiple canonicals in PRRSV, so it is not specific enough to select one target.
+structural membrane protein	structuralmembraneprotein	ORF6	1.0	2	manual_review	True	ignore	high	ignore	'structural membrane protein' is a class/category label that can refer to multiple canonicals in PRRSV, so it is not specific enough to select one target.
 envelope glycoprotein	envelopeglycoprotein	ORF2a	1.0	3	ignore	False			ignore	
 envelope protein	envelopeprotein	ORF2a	1.0	6	ignore	False			ignore	
 envelope protein	envelopeprotein	ORF2a	1.0	4	ignore	False			ignore	
@@ -269,4 +261,12 @@ glycosylated membrane protein	glycosylatedmembraneprotein	ORF5	1.0	4	ignore	Fals
 structural glycoprotein	structuralglycoprotein	ORF5	1.0	4	ignore	False			ignore	
 viral envelope glycoprotein	viralenvelopeglycoprotein	ORF5	1.0	4	ignore	False			ignore	
 envelope protein	envelopeprotein	ORF6	1.0	6	ignore	False			ignore	
+cysteine/serine protease	cysteine/serineprotease	ORF1a	1.0	1	ignore	True	save_alias	high	save_alias	Specific protease activity label with unique coordinate support for ORF1a; despite descriptive phrasing, it names this replicase gene's product.
+cysteine/serine protease	cysteine/serineprotease	ORF1a	1.0	1	ignore	True	save_alias	high	save_alias	Specific protease activity label with unique coordinate support for ORF1a; despite descriptive phrasing, it names this replicase gene's product.
+non-structural protein	nonstructuralprotein	ORF1a	1.0	1	ignore	True	save_alias	high	save_alias	Generic non-structural protein label is acceptable here because coordinates uniquely resolve to ORF1a and it is a common alias for this gene.
+non-structural protein	nonstructuralprotein	ORF1a	1.0	1	ignore	True	save_alias	high	save_alias	Generic non-structural protein label is acceptable here because coordinates uniquely resolve to ORF1a and it is a common alias for this gene.
+proteinase	proteinase	ORF1a	1.0	1	ignore	False			ignore	
+proteinase	proteinase	ORF1a	1.0	1	ignore	False			ignore	
 unknown protein	unknownprotein	ORF2b	1.0	1	ignore	False			ignore	
+structural membrane protein	structuralmembraneprotein	ORF6	1.0	1	ignore	True	save_alias	high	save_alias	Structural membrane protein label uniquely maps to ORF6 by coordinates and is a valid alias for this ORF in PRRSV.
+structural protein	structuralprotein	ORF7	1.0	1	ignore	True	ignore	high	ignore	This is the disallowed class/category label 'structural protein' with no explicit ORF/gene designation, so it cannot distinguish among structural genes.

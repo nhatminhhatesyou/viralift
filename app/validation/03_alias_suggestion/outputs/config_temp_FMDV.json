@@ -2,12 +2,20 @@
   "virus": "FMDV",
   "notes": "Bootstrapped from reference feature names. Review aliases before production use.",
   "excluded_names": [
+    "cysteine/serine protease",
+    "cysteine serine protease",
     "gene",
     "hypothetical protein",
+    "non-structural protein",
+    "nonstructural protein",
     "open reading frame",
     "orf",
+    "polyprotein",
     "protein",
+    "proteinase",
     "putative protein",
+    "structural membrane protein",
+    "structural protein",
     "unknown",
     "unknown protein",
     "viral protein"
@@ -19,7 +27,6 @@
       "L",
       "Lab",
       "Lab peptide",
-      "Lab peptide; leader peptide",
       "leader",
       "leader peptide"
     ],
@@ -49,7 +56,6 @@
     ],
     "3B": [
       "3B peptide",
-      "3B peptide; 3B1/3B2/3B3 peptide",
       "3B1-3B3",
       "3B1/3B2/3B3",
       "3B1/3B2/3B3 peptide"
@@ -57,14 +63,12 @@
     "3Cpro": [
       "3C",
       "3C peptide",
-      "3C peptide; pro peptide",
       "pro peptide"
     ],
     "3Dpol": [
       "3D",
       "3D peptide",
-      "pol peptide",
-      "pol peptide; 3D peptide"
+      "pol peptide"
     ]
   }
 }

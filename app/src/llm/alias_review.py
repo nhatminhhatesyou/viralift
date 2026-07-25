@@ -66,17 +66,41 @@ def review_uncertain_alias_suggestions(
     """
     config = config or LLMConfig.from_env()
     enriched = [_with_default_llm_fields(row) for row in suggestions]
-    uncertain = [
-        row for row in enriched
-        if needs_llm_review(row)
-    ][:config.max_rows]
+
+    # A name already on the exclusion list is settled: don't ask about it.
+    # The LLM verdict wins over the deterministic one at medium/high confidence,
+    # so sending an excluded name lets an advisory answer overturn a decision the
+    # tool (or the curator) already made. Telling the model not to do this in the
+    # prompt is not enough — it still saved blacklisted class words such as
+    # "non-structural protein" on some runs. Filtering here also saves tokens.
+    excluded_norms = {
+        normalize_text(name)
+        for name in [
+            *(excluded_names or []),
+            *(ignored_names or []),
+            *(ambiguous_names or []),
+        ]
+        if normalize_text(name)
+    }
+
+    def _wants_review(row: Dict) -> bool:
+        if normalize_text(row.get("raw_value")) in excluded_norms:
+            return False
+        return needs_llm_review(row)
+
+    uncertain = [row for row in enriched if _wants_review(row)][:config.max_rows]
 
     diagnostics = {
         "enabled": config.enabled,
         "available": config.available if provider is None else True,
         "model": config.model,
         "fallback_model": config.fallback_model,
-        "uncertain_rows": len([row for row in enriched if needs_llm_review(row)]),
+        "uncertain_rows": len([row for row in enriched if _wants_review(row)]),
+        "skipped_already_excluded": len([
+            row for row in enriched
+            if needs_llm_review(row)
+            and normalize_text(row.get("raw_value")) in excluded_norms
+        ]),
         "submitted_rows": len(uncertain),
         "reviewed_rows": 0,
         "status": "skipped",

@@ -2,12 +2,16 @@
   "virus": "PRRSV",
   "notes": "Bootstrapped from reference feature names. Review aliases before production use.",
   "excluded_names": [
+    "cysteine serine protease",
     "gene",
     "hypothetical protein",
     "open reading frame",
     "orf",
+    "polyprotein",
     "protein",
+    "proteinase",
     "putative protein",
+    "structural protein",
     "unknown",
     "unknown protein",
     "viral protein"
@@ -28,14 +32,13 @@
       "cysteine proteas",
       "cysteine protease",
       "papain-like cysteine protease",
-      "papain-like cysteine protease alpha and beta",
       "polypeptide precursor of non-structural proteins NSP1 through NSP8",
       "polypeptide precursor of non-structural proteins NSP1-NSP8",
-      "proteinase",
       "replicase polyprotein",
       "serine protease",
       "serine protease protease",
-      "unusual cysteine protease/serine protease"
+      "cysteine/serine protease",
+      "non-structural protein"
     ],
     "ORF1b": [
       "polyprotein ORF1b",

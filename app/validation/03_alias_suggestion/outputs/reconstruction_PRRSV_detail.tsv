@@ -3,13 +3,12 @@ ORF1a	precision	orf1ab	wrong_gene(ORF1ab)
 ORF1a	precision	contains1areplicaseprotein	not_in_truth
 ORF1a	precision	cysteineproteas	not_in_truth
 ORF1a	precision	cysteineprotease	not_in_truth
-ORF1a	precision	papainlikecysteineproteasealphaandbeta	not_in_truth
 ORF1a	precision	polypeptideprecursorofnonstructuralproteinsnsp1nsp8	not_in_truth
-ORF1a	precision	proteinase	false_save
 ORF1a	precision	replicasepolyprotein	wrong_gene(ORF1ab)
 ORF1a	precision	serineprotease	not_in_truth
 ORF1a	precision	serineproteaseprotease	not_in_truth
-ORF1a	precision	unusualcysteineprotease/serineprotease	false_save
+ORF1a	precision	cysteine/serineprotease	false_save
+ORF1a	precision	nonstructuralprotein	false_save
 ORF1a	recall	polyprotein1a	parked_not_in_corpus
 ORF1a	recall	polyproteinpp1a	parked_not_in_corpus
 ORF1a	recall	pp1a	parked_not_in_corpus

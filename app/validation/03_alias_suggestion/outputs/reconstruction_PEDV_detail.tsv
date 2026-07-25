@@ -1,9 +1,6 @@
 canonical	side	name	issue
-E	recall	sm	missed(temp→None)
-E	recall	smprotein	missed(temp→None)
-E	recall	smallmembraneprotein	missed(temp→excluded)
-N	recall	nucleoprotein	missed(temp→None)
 ORF1a	precision	orf1ab	wrong_gene(ORF1ab)
+ORF1a	precision	replicasepolyprotein	wrong_gene(ORF1ab)
 ORF1ab	recall	orf1ab	parked_canonical_not_in_ref
 ORF1ab	recall	orf1a/1bpolyprotein	parked_canonical_not_in_ref
 ORF1ab	recall	containsorf1aandorf1b	parked_canonical_not_in_ref
@@ -18,5 +15,3 @@ ORF1ab	recall	orf1	parked_canonical_not_in_ref
 ORF1ab	recall	polyprotein1a/1b	parked_canonical_not_in_ref
 ORF1ab	recall	1apolyproteinand1bpolyprotein	parked_canonical_not_in_ref
 ORF1ab	recall	replicasepolyprotein	parked_canonical_not_in_ref
-ORF3	recall	mp	missed(temp→None)
-ORF3	recall	accessorymembraneprotein	missed(temp→excluded)
