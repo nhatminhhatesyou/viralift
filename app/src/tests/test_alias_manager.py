@@ -147,6 +147,14 @@ def test_apply_approved_alias_suggestions_creates_backup(tmp_path):
 
 
 def test_seed_alias_config_does_not_ignore_contextual_descriptions():
+    """A fresh seed must not pre-exclude labels that are real aliases somewhere.
+
+    'envelope protein' / 'membrane protein' are how many labs name E and M, and
+    'glycoprotein' resolves once a number is attached — pre-excluding any of them
+    would make those records unresolvable. Class words and bare activities are a
+    different case and ARE pre-excluded; see
+    test_seed_alias_config_excludes_class_words below.
+    """
     ref_record = SeqRecord(Seq("ATG"), id="ref")
     config = build_seed_alias_config_from_ref(
         ref_record,
@@ -160,4 +168,25 @@ def test_seed_alias_config_does_not_ignore_contextual_descriptions():
     assert "envelope protein" not in excluded
     assert "membrane protein" not in excluded
     assert "glycoprotein" not in excluded
-    assert "polyprotein" not in excluded
+
+
+def test_seed_alias_config_excludes_class_words():
+    """Class words and bare activities start excluded, so the outcome is stable.
+
+    Left reviewable, these were the entire source of false saves in the PRRSV
+    alias-config reconstruction, and which ones got accepted changed run to run.
+    A curator can still add any of them as an explicit alias for a given virus:
+    build_alias_lookup only applies an exclusion when the name is not already
+    mapped to a canonical.
+    """
+    ref_record = SeqRecord(Seq("ATG"), id="ref")
+    config = build_seed_alias_config_from_ref(
+        ref_record,
+        ref_features=[{"name": "ORF1a"}, {"name": "ORF6"}],
+        virus_name="Test virus",
+    )
+
+    excluded = set(config["excluded_names"])
+    for name in ("structural protein", "non-structural protein", "polyprotein",
+                 "proteinase", "structural membrane protein"):
+        assert name in excluded, name

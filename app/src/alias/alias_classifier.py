@@ -17,6 +17,23 @@ GENERIC_NAME_BLACKLIST = {
     "putative protein",
     "open reading frame",
     "orf",
+    # Class words and bare enzymatic activities. None of these can ever name a
+    # single gene: in any virus several genes share the class ("structural"), and
+    # an activity with no gene designation names a domain, not a locus. Left to
+    # per-run LLM judgement these were decided inconsistently — across four PRRSV
+    # runs every false save came from exactly this pool, 2 to 5 of them accepted
+    # each time. Deciding them here makes the outcome reproducible.
+    # Reversible per virus: build_alias_lookup only applies an exclusion when the
+    # name is not already mapped, so a curator can still add any of these as an
+    # explicit alias under canonical_names and that wins.
+    "polyprotein",
+    "structural protein",
+    "structural membrane protein",
+    "non-structural protein",
+    "nonstructural protein",
+    "proteinase",
+    "cysteine/serine protease",
+    "cysteine serine protease",
 }
 
 DESCRIPTIVE_REVIEW_TERMS = {

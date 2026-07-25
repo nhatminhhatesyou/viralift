@@ -152,6 +152,13 @@ def build_uncertain_suggestion_review_payload(
             # it, so the count-is-1 test clears them. Only virus biology separates
             # them from a real alias, which is why this is asked of you and not of
             # the scorer.
+            # The payload already carries excluded_names but never said what to do
+            # with it, so the pro-save wording above could flip a name the
+            # deterministic layer had already ruled out -- PEDV saved "polyprotein"
+            # as an ORF1a alias that way, despite it being blacklisted.
+            "ALREADY EXCLUDED. If the raw string matches an entry in excluded_names, "
+            "that decision is already made — never recommend save_alias for it. "
+            "Recommend ignore, or skip if you disagree but are not confident. "
             "COUNTER-CASE, and it OVERRIDES the decision rule above even when "
             "cross_canonical_target_count is 1. Recommend ignore for exactly two "
             "shapes: (a) a label naming a CLASS or CATEGORY that several "

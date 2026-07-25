@@ -58,17 +58,53 @@ def test_membrane_protein_does_not_match_e_canonical():
 
 
 def test_contextual_descriptions_are_review_terms_not_hard_blacklist():
+    """Names whose meaning depends on context stay reviewable, not blacklisted.
+
+    'glycoprotein' is ambiguous rather than unusable: with an anchoring number it
+    becomes a real alias, so it must reach review instead of being ruled out.
+    """
     for raw_value in [
         "glycoprotein",
         "major glycoprotein",
         "minor glycoprotein",
-        "polyprotein",
-        "structural protein",
-        "nonstructural protein",
     ]:
         result = _classify(raw_value, "ORF1a")
         assert "generic name" not in result["reason"]
         assert "descriptive biological term" in result["reason"]
+
+
+def test_class_words_and_bare_activities_are_blacklisted():
+    """Class words and bare activities are ruled out, not left to per-run judgement.
+
+    These previously sat in the review bucket. That made the outcome depend on how
+    the LLM felt about them: across four PRRSV reconstruction runs every false save
+    came from exactly this pool, 2 to 5 accepted each time. They cannot name one
+    gene in any virus — several genes share the class, and an activity with no gene
+    designation names a domain — so the decision belongs here where it is stable.
+    """
+    for raw_value in [
+        "structural protein",
+        "nonstructural protein",
+        "non-structural protein",
+        "structural membrane protein",
+        "polyprotein",
+        "proteinase",
+    ]:
+        result = _classify(raw_value, "ORF1a")
+        assert "generic name" in result["reason"], raw_value
+        assert result["suggested_action"] == "ignore", raw_value
+
+
+def test_blacklist_does_not_catch_labels_carrying_a_gene_designation():
+    """The digit guard keeps numbered forms out of the blacklist."""
+    for raw_value, canonical in [
+        ("polyprotein 1a", "ORF1a"),
+        ("non-structural protein ORF1a", "ORF1a"),
+        ("structural protein GP5", "ORF5"),
+    ]:
+        result = _classify(raw_value, canonical)
+        assert "generic name" not in result["reason"], raw_value
+        assert result["suggested_action"] != "ignore", raw_value
 
 
 def test_specific_polyprotein_description_matches_orf_canonical():
