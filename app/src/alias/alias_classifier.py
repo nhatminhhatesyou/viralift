@@ -127,7 +127,21 @@ def classify_alias_candidate(
             score += 1
             reasons.append("descriptive term with specific gene name")
         else:
-            score -= 4
+            # No score penalty here, deliberately. A descriptive name can never
+            # auto-save anyway: without name-specific evidence the cap below
+            # forces score to 5 (manual_review). So the old -4 only ever pushed
+            # a row from manual_review down to `ignore` — and the bootstrap flow
+            # turns `ignore` into a permanent `excluded_names` entry, which
+            # silently blocks that name from ever resolving again.
+            #
+            # Measured on the PRRSV corpus: of 186 descriptive names, 90 were
+            # genuine aliases in the curated config and only 13 deserved
+            # exclusion. Ambiguity is caught by coordinate evidence instead --
+            # `_demote_cross_canonical_alias_conflicts` demotes any name landing
+            # on 2 canonicals and excludes one landing on 3+ (e.g. "envelope
+            # glycoprotein", which fits GP2-GP5 in PRRSV). The name text alone
+            # cannot tell "nucleocapsid protein" (one gene) from "envelope
+            # glycoprotein" (four); the corpus can.
             reasons.append("descriptive biological term")
 
     if _looks_like_locus_tag(raw_value):

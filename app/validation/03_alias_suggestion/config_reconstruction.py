@@ -134,11 +134,16 @@ def build_reconstructed_config(
     declared auto-approval policy above. No reimplementation of tool logic.
     """
     approved = [r for r in reviewed_suggestions if _operative_action(r) == "save_alias"]
-    excluded = [r for r in reviewed_suggestions if _operative_action(r) == "ignore"]
+    # excluded_rows stays EMPTY on purpose, matching the declared policy above:
+    # "exclude nothing on the tool's behalf". Previously every deterministic
+    # `ignore` row was passed here, which wrote it into `excluded_names` -- a
+    # permanent blacklist -- so a real alias the scorer merely felt unsure about
+    # became unresolvable forever. Not approving a row must mean "left for the
+    # user", not "banned".
     return apply_approved_alias_suggestions(
         seed_config_path,
         approved_rows=approved,
-        excluded_rows=excluded,
+        excluded_rows=[],
     )
 
 
@@ -185,13 +190,30 @@ def build_config_temp(name: str, cfg: dict, min_iou: float, llm_provider=None):
     # error). The 20-row cap itself is reported as a product finding.
     import dataclasses
     review_config = dataclasses.replace(LLMConfig.from_env(), max_rows=100000)
-    reviewed, _ = review_uncertain_alias_suggestions(
+    reviewed, llm_diag = review_uncertain_alias_suggestions(
         suggestions,
         virus_name=name,
         canonical_names=seed_canonicals,
         excluded_names=seed.get("excluded_names", []),
         config=review_config,
         provider=llm_provider,
+    )
+    # review_uncertain_alias_suggestions swallows every failure mode (no API key,
+    # provider error, responses dropped by _valid_reviews) and returns the rows
+    # untouched. Without printing the diagnostics, a dead LLM pass looks exactly
+    # like a successful one -- which is how the previous PRRSV run produced
+    # reconstruction numbers with 0 of 363 rows actually reviewed.
+    merged = sum(1 for r in reviewed if r.get("llm_reviewed"))
+    print(f"[{name}] LLM status={llm_diag['status']} "
+          f"submitted={llm_diag['submitted_rows']} merged={merged} "
+          f"error={llm_diag.get('error')}")
+    if llm_diag["submitted_rows"] and not merged:
+        print(f"[{name}] WARNING: {llm_diag['submitted_rows']} rows sent but none "
+              f"merged back -- responses were dropped. Check _valid_reviews "
+              f"(a save_alias whose canonical_name is not verbatim in "
+              f"{seed_canonicals} is discarded silently).")
+    (OUT_DIR / f"llm_diagnostics_{name}.json").write_text(
+        json.dumps({**llm_diag, "merged_rows": merged}, indent=2) + "\n"
     )
 
     # Diagnostic dump: what happened to every surfaced name — was it reviewed by
