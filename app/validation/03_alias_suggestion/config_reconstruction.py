@@ -82,6 +82,7 @@ from app.src.io.genbank_parser import load_genbank_records  # noqa: E402
 from app.validation._shared.validation_utils import collect_alias_rows  # noqa: E402
 from app.src.llm.alias_review import review_uncertain_alias_suggestions  # noqa: E402
 from app.src.llm.config import LLMConfig  # noqa: E402
+from app.src.llm.provider import OpenAILLMProvider  # noqa: E402
 import json
 import tempfile
 
@@ -233,6 +234,19 @@ def build_config_temp(name: str, cfg: dict, min_iou: float, llm_provider=None):
     # error). The 20-row cap itself is reported as a product finding.
     import dataclasses
     review_config = dataclasses.replace(LLMConfig.from_env(), max_rows=100000)
+
+    # Wrap the provider so the RAW response survives. _valid_reviews() drops a
+    # review silently when recommendation/confidence are off-vocabulary, or when
+    # a save_alias names a canonical that is not verbatim in seed_canonicals
+    # (e.g. model answers "ORF2" while the seed only has ORF2a/ORF2b). Once
+    # dropped, the row keeps llm_reviewed=False and nothing records what the
+    # model actually said -- so the raw response is the only place the reason
+    # for a merged=0 run can be found.
+    if llm_provider is None and review_config.available:
+        llm_provider = OpenAILLMProvider(review_config)
+    if llm_provider is not None:
+        llm_provider = _RecordingProvider(llm_provider, OUT_DIR / f"llm_raw_{name}.json")
+
     reviewed, llm_diag = review_uncertain_alias_suggestions(
         suggestions,
         virus_name=name,
@@ -416,6 +430,35 @@ def summarize(name: str, per_canon: pd.DataFrame) -> None:
     print(f"  RECALL (truth ∩ corpus → config_temp): {int(tot['recall_found'])}/{int(tot['recall_denom'])} "
           f"= {rec:.1f}%")
     print(f"     missed {int(tot['missed'])}  (parked, not scored: {int(tot['parked'])})")
+
+
+class _RecordingProvider:
+    """Passthrough provider that dumps the raw request/response to disk.
+
+    Adds no behaviour: it forwards the call untouched and returns the same
+    object. It exists only so a `submitted>0, merged=0` run can be diagnosed --
+    see the comment at the call site in build_config_temp().
+    """
+
+    def __init__(self, inner, dump_path: Path):
+        self.inner = inner
+        self.dump_path = dump_path
+
+    def review_alias_suggestions(self, payload):
+        record = {
+            "provider": type(self.inner).__name__,
+            "submitted_review_ids": [r.get("review_id") for r in payload.get("suggestions", [])],
+            "available_canonicals": payload.get("available_canonicals"),
+        }
+        try:
+            response = self.inner.review_alias_suggestions(payload)
+        except Exception as exc:  # noqa: BLE001 -- record then re-raise
+            record["exception"] = f"{type(exc).__name__}: {exc}"
+            self.dump_path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+            raise
+        record["raw_response"] = response
+        self.dump_path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+        return response
 
 
 class _MockLLMProvider:
