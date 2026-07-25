@@ -8,7 +8,7 @@ from app.src.llm.alias_review import review_unresolved_names
 from app.src.io.run_logger import log_session_decisions
 from ui.components import _render_context_panel, _render_page_intro
 from ui.i18n import _t
-from ui.services import _add_new_canonicals_to_config, _load_ignored_names, _save_to_alias_config
+from ui.services import _add_new_canonicals_to_config, _load_excluded_names, _save_to_alias_config
 from ui.state import _reset
 
 
@@ -86,19 +86,16 @@ def stage_resolve():
         st.divider()
 
     # ── Query-side resolver ──────────────────────────────────────────────
-    unknown_items   = {k: v for k, v in unknown.items() if not v.get("ambiguous")}
-    ambiguous_items = {k: v for k, v in unknown.items() if v.get("ambiguous")}
+    unknown_items = dict(unknown)
 
     if unknown_items:
         st.markdown(_t("unknown_query_intro", count=len(unknown_items), virus=virus))
         st.divider()
-    elif ambiguous_items:
-        pass  # header shown below in ambiguous section
     else:
         st.markdown(_t("all_known"))
         st.divider()
 
-    if unknown_items or ambiguous_items:
+    if unknown_items:
         st.markdown("**Add new canonical target**")
         add_col, button_col = st.columns([3, 1])
         new_canonical = add_col.text_input(
@@ -150,42 +147,39 @@ def stage_resolve():
     llm_reviews = st.session_state.get("resolve_llm_reviews", {}) or {}
     llm_diagnostics = st.session_state.get("resolve_llm_diagnostics", {}) or {}
 
-    if unknown_items or ambiguous_items:
+    if unknown_items:
         st.markdown("**LLM assist for unresolved names**")
         st.caption(
             "Use this for names that did not become coordinate-backed tblastn suggestions. "
             "Only raw names, candidate qualifier values, record IDs, and available canonicals are sent. "
             "The model pre-fills suggestions; you still approve each dropdown before continuing."
         )
-        assist_cols = st.columns([1.2, 1, 1, 2])
-        assist_cols[0].metric("Rows to review", len(unknown_items) + len(ambiguous_items))
-        assist_cols[1].metric("Unknown", len(unknown_items))
-        assist_cols[2].metric("Ambiguous", len(ambiguous_items))
-        if assist_cols[3].button(
+        assist_cols = st.columns([1.2, 2])
+        assist_cols[0].metric("Rows to review", len(unknown_items))
+        if assist_cols[1].button(
             "Ask LLM to suggest mappings",
             type="primary",
             width="stretch",
             key="resolve_run_llm_review",
         ):
             with st.spinner("Reviewing unresolved names with LLM..."):
-                ignored = (
-                    _load_ignored_names(Path(st.session_state.alias_config_path))
+                excluded = (
+                    _load_excluded_names(Path(st.session_state.alias_config_path))
                     if st.session_state.alias_config_path
                     else set()
                 )
                 reviews, diagnostics = review_unresolved_names(
                     unknown_items=unknown_items,
-                    ambiguous_items=ambiguous_items,
+                    ambiguous_items={},
                     virus_name=virus,
                     canonical_names=canonicals,
-                    ignored_names=ignored,
+                    excluded_names=excluded,
                     cache=st.session_state.llm_alias_review_cache,
                 )
             st.session_state.resolve_llm_reviews = reviews
             st.session_state.resolve_llm_diagnostics = diagnostics
             ignore_option = _t("ignore_option")
-            all_review_items = {**unknown_items, **ambiguous_items}
-            for representative, info in all_review_items.items():
+            for representative, info in unknown_items.items():
                 review = _llm_review_for_row(reviews, representative, info)
                 if not review:
                     continue
@@ -228,7 +222,7 @@ def stage_resolve():
             return False
         return text == representative
 
-    def _render_resolver_row(rep: str, info: Dict, is_ambiguous: bool) -> None:
+    def _render_resolver_row(rep: str, info: Dict) -> None:
         record_ids = info["records"]
         candidates = info["candidates"]
 
@@ -240,7 +234,7 @@ def stage_resolve():
         )
         col_name.markdown(chips, unsafe_allow_html=True)
         col_name.caption(
-            (_t("ambiguous_prefix") + " · " if is_ambiguous else _t("unknown_prefix") + " · ")
+            _t("unknown_prefix") + " · "
             + f"{_t('appears_in')}: {', '.join(record_ids[:5])}"
             + ("..." if len(record_ids) > 5 else "")
         )
@@ -284,14 +278,7 @@ def stage_resolve():
 
     # Unknown names (completely unrecognised)
     for rep, info in unknown_items.items():
-        _render_resolver_row(rep, info, is_ambiguous=False)
-
-    # Ambiguous names (known to map to multiple genes, user must pick which one)
-    if ambiguous_items:
-        st.markdown(_t("ambiguous_intro", count=len(ambiguous_items), virus=virus))
-        st.divider()
-        for rep, info in ambiguous_items.items():
-            _render_resolver_row(rep, info, is_ambiguous=True)
+        _render_resolver_row(rep, info)
 
     col_back, col_run = st.columns([1, 3])
     if col_back.button(_t("back")):

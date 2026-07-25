@@ -1,37 +1,85 @@
 {
   "virus": "PRRSV",
   "notes": "Canonical names updated to ORF convention. NSP2-12 retain NSP naming (no individual ORF equivalents). Old GP/M/N/E names kept as aliases for backward compatibility.",
-  "ambiguous_names": [
-    "envelope protein",
+  "excluded_names": [
+    "3C-like serine proteinase",
+    "cysteine protease/serine protease",
+    "cysteine/serine protease",
     "envelope glycoprotein",
+    "envelope protein",
     "glycoprotein",
     "glycosylated",
-    "structural protein",
-    "structural glycoprotein",
-    "structural glycoprotein; viral attachment protein",
     "glycosylated membrane protein",
     "glycosylated protein",
     "membrane glycoprotein",
-    "viral protein"
-  ],
-  "ignored_names": [
     "non-structural protein",
-    "nonstructural protein",
-    "structural membrane protein",
-    "proteinase",
-    "cysteine/serine protease",
-    "cysteine protease/serine protease",
-    "3C-like serine proteinase",
-    "papain/chymotrypsin-like cystein protease; serine protease",
-    "unusual cysteine protease/serine protease",
-    "protein kinase",
-    "similar to Coronavirus protein",
     "nonglycosylate",
+    "nonstructural protein",
+    "nsp1",
+    "nsp1 alpha",
+    "nsp1 beta",
+    "nsp10",
+    "NSP10",
+    "NSP11",
+    "nsp11",
+    "NSP12",
+    "nsp12",
+    "nsp1a",
+    "nsp1alpha",
+    "nsp1b",
+    "nsp1beta",
+    "NSP2",
+    "nsp2",
+    "nsp2n",
+    "nsp2N",
+    "nsp2TF",
+    "nsp2tf",
+    "nsp3",
+    "NSP3",
+    "nsp4",
+    "NSP4",
+    "NSP5",
+    "nsp5",
+    "nsp6",
+    "NSP6",
+    "nsp7",
+    "nsp7 alpha",
+    "nsp7 beta",
+    "nsp7a",
+    "NSP7A",
+    "NSP7alpha",
+    "nsp7alpha",
+    "nsp7b",
+    "NSP7B",
+    "NSP7beta",
+    "nsp7beta",
+    "NSP8",
+    "nsp8",
+    "NSP9",
+    "nsp9",
+    "orf1an",
+    "ORF1aN",
+    "orf1atf",
+    "ORF1aTF",
+    "papain/chymotrypsin-like cystein protease; serine protease",
+    "polyprotein 1aN",
+    "polyprotein 1an",
+    "polyprotein 1atf",
+    "polyprotein 1aTF",
+    "protein kinase",
+    "proteinase",
+    "putative polyprotein 1an",
+    "putative polyprotein 1aN",
+    "similar to Coronavirus protein",
+    "structural glycoprotein",
+    "structural glycoprotein; viral attachment protein",
+    "structural membrane protein",
+    "structural protein",
     "translated through a ribosomal frameshift at ORF1a/1b junction",
     "translated through ribosomal frameshift at ORF1a/ORF1b junction",
     "unknown protein",
-    "nsp1",
-    "nsp7"
+    "unusual cysteine protease/serine protease",
+    "viral protein"
   ],
   "canonical_names": {
     "ORF1ab": [
@@ -40,18 +88,15 @@
       "polyprotein",
       "pp1ab",
       "replicase polyprotein",
-      "ORF1ab polyprotein"
+      "ORF1ab polyprotein",
+      "polyprotein pp1ab"
     ],
     "ORF1a": [
-      "NSP1A",
-      "nsp1a",
       "polyprotein 1a",
       "orf1a polyprotein",
       "nonstructural proteins orf1a",
       "papain-like cysteine protease",
       "polyprotein pp1a",
-      "nsp1 alpha",
-      "nsp1alpha",
       "pp1a",
       "ORF1a protein",
       "replicase polyprotein 1a",
@@ -68,17 +113,12 @@
       "polyprotein ORF1a"
     ],
     "ORF1b": [
-      "NSP1B",
-      "nsp1b",
       "polyprotein 1b",
       "orf1b polyprotein",
       "rna-dependent rna polymerase",
       "rna dependent rna polymerase",
       "rna-dependent rna polymerase/helicase",
       "rna polymerase",
-      "polyprotein pp1ab",
-      "nsp1 beta",
-      "nsp1beta",
       "pp1b",
       "ORF1b protein",
       "replicase polyprotein 1b",
@@ -95,78 +135,6 @@
       "polyprotein ORF1b",
       "nonstructural proteins ORF1b"
     ],
-    "NSP2": [
-      "nsp2",
-      "NSP2"
-    ],
-    "NSP2TF": [
-      "nsp2tf",
-      "nsp2TF",
-      "ORF1aTF",
-      "orf1atf",
-      "polyprotein 1aTF",
-      "polyprotein 1atf"
-    ],
-    "NSP2N": [
-      "nsp2n",
-      "nsp2N",
-      "ORF1aN",
-      "orf1an",
-      "polyprotein 1aN",
-      "polyprotein 1an",
-      "putative polyprotein 1aN",
-      "putative polyprotein 1an"
-    ],
-    "NSP3": [
-      "nsp3",
-      "NSP3"
-    ],
-    "NSP4": [
-      "nsp4",
-      "NSP4"
-    ],
-    "NSP5": [
-      "nsp5",
-      "NSP5"
-    ],
-    "NSP6": [
-      "nsp6",
-      "NSP6"
-    ],
-    "NSP7A": [
-      "nsp7a",
-      "NSP7A",
-      "nsp7 alpha",
-      "nsp7alpha",
-      "NSP7alpha"
-    ],
-    "NSP7B": [
-      "nsp7b",
-      "NSP7B",
-      "nsp7 beta",
-      "nsp7beta",
-      "NSP7beta"
-    ],
-    "NSP8": [
-      "nsp8",
-      "NSP8"
-    ],
-    "NSP9": [
-      "nsp9",
-      "NSP9"
-    ],
-    "NSP10": [
-      "nsp10",
-      "NSP10"
-    ],
-    "NSP11": [
-      "nsp11",
-      "NSP11"
-    ],
-    "NSP12": [
-      "nsp12",
-      "NSP12"
-    ],
     "ORF2a": [
       "glycoprotein 2a",
       "glycosylated protein 2a",
@@ -174,7 +142,22 @@
       "gp2a protein",
       "GP2a glycosylated envelope protein",
       "ORF2a glycosylated membrane protein",
-      "GP2a envelope protein"
+      "GP2a envelope protein",
+      "ORF2",
+      "GP2",
+      "gp2",
+      "ORF2 protein",
+      "glycoprotein 2",
+      "minor envelope glycoprotein gp2",
+      "gp2 glycosylated envelope protein",
+      "gp2 envelope protein",
+      "glycosylated membrane protein 2",
+      "envelope protein GP2",
+      "glycosylated envelope protein GP2",
+      "envelope glycoprotein GP2",
+      "N-glycosylated envelope protein GP2",
+      "envelope glycoprotein 2",
+      "GP2; ORF2"
     ],
     "ORF2b": [
       "E",
@@ -287,22 +270,6 @@
       "ORF7 nucleocapsid protein",
       "nucleocapsid prtein n",
       "nucleocapsid"
-    ],
-    "ORF2": [
-      "GP2",
-      "gp2",
-      "ORF2 protein",
-      "glycoprotein 2",
-      "minor envelope glycoprotein gp2",
-      "gp2 glycosylated envelope protein",
-      "gp2 envelope protein",
-      "glycosylated membrane protein 2",
-      "envelope protein GP2",
-      "glycosylated envelope protein GP2",
-      "envelope glycoprotein GP2",
-      "N-glycosylated envelope protein GP2",
-      "envelope glycoprotein 2",
-      "GP2; ORF2"
     ]
   }
 }

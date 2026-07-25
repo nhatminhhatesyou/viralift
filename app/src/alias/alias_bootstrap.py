@@ -14,7 +14,7 @@ from app.src.alias.alias_manager import (
     save_registry,
     save_validated_alias_config,
 )
-from app.src.alias.gene_alias import normalize_text
+from app.src.alias.gene_alias import canonical_entry_aliases, normalize_text
 from app.src.features.annotation_strategy import select_feature_type
 from app.src.io.genbank_parser import (
     _LOOKUP_QUALIFIER_KEYS,
@@ -22,6 +22,10 @@ from app.src.io.genbank_parser import (
     parse_mat_peptides,
 )
 from app.src.lifting.tblastn_lifter import process_one_query_record
+
+# A raw name mapping to at least this many distinct canonicals by coordinate is
+# treated as a strain code / lab tag and auto-excluded without LLM review.
+_CROSS_CANONICAL_AUTO_EXCLUDE_MIN = 3
 
 
 """
@@ -80,8 +84,7 @@ def build_seed_alias_config_from_ref(
     return {
         "virus": virus_name or _get_organism(ref_record) or ref_record.id,
         "notes": "Bootstrapped from reference feature names. Review aliases before production use.",
-        "ignored_names": sorted(GENERIC_NAME_BLACKLIST),
-        "ambiguous_names": [],
+        "excluded_names": sorted(GENERIC_NAME_BLACKLIST),
         "canonical_names": canonical_names,
     }
 
@@ -436,13 +439,24 @@ def _demote_cross_canonical_alias_conflicts(rows: List[Dict]) -> None:
         row["cross_canonical_target_count"] = len(canonicals)
         if len(canonicals) <= 1:
             continue
-        row["suggested_action"] = "manual_review"
-        row["confidence"] = "medium"
-        row["default_save"] = False
-        row["score"] = min(row.get("score") or 0, 5)
         suffix = "appears with multiple canonical targets: " + ", ".join(canonicals)
         reason = row.get("reason") or ""
         row["reason"] = f"{reason}; {suffix}" if reason else suffix
+        row["default_save"] = False
+        if len(canonicals) >= _CROSS_CANONICAL_AUTO_EXCLUDE_MIN:
+            # A raw name that lands on this many distinct genes by coordinate is
+            # a strain code / lab tag stamped onto every feature, not a gene
+            # alias (e.g. 'HNZK1' on all of S/ORF3/E/M/N). Exclude it outright —
+            # no LLM call needed. Two targets is left as manual_review because
+            # that is where genuine granularity edges can live.
+            row["suggested_action"] = "ignore"
+            row["confidence"] = "high"
+            row["score"] = min(row.get("score") or 0, 0)
+            row["cross_canonical_auto_excluded"] = True
+        else:
+            row["suggested_action"] = "manual_review"
+            row["confidence"] = "medium"
+            row["score"] = min(row.get("score") or 0, 5)
 
 
 def write_new_alias_config(config: Dict, output_path: Path) -> Path:
@@ -457,6 +471,7 @@ def apply_approved_alias_suggestions(
     approved_rows: List[Dict],
     ignored_rows: Optional[List[Dict]] = None,
     ambiguous_rows: Optional[List[Dict]] = None,
+    excluded_rows: Optional[List[Dict]] = None,
 ) -> Dict:
     """Apply user-approved alias suggestions to an alias config file."""
     config = load_alias_config(alias_config_path)
@@ -469,36 +484,36 @@ def apply_approved_alias_suggestions(
         if not raw_value or not canonical_name:
             continue
         saved_norms.add(normalize_text(raw_value))
-        aliases = canonical_names.setdefault(canonical_name, [])
+        entry = canonical_names.setdefault(canonical_name, [])
+        aliases = canonical_entry_aliases(canonical_name, entry)
         if raw_value != canonical_name and raw_value not in aliases:
             aliases.append(raw_value)
+            # Preserve the entry shape: appending an approved alias must not
+            # drop a `parent` link that is already recorded.
+            if isinstance(entry, dict):
+                entry["aliases"] = aliases
+            else:
+                canonical_names[canonical_name] = aliases
 
-    ignored = config.setdefault("ignored_names", [])
-    for row in ignored_rows or []:
+    excluded = config.setdefault("excluded_names", [])
+    for row in [*(ignored_rows or []), *(ambiguous_rows or []), *(excluded_rows or [])]:
         raw_value = row.get("raw_value")
-        if raw_value and raw_value not in ignored:
-            ignored.append(raw_value)
+        if raw_value and raw_value not in excluded:
+            excluded.append(raw_value)
 
-    ambiguous = config.setdefault("ambiguous_names", [])
-    for row in ambiguous_rows or []:
-        raw_value = row.get("raw_value")
-        if raw_value and raw_value not in ambiguous:
-            ambiguous.append(raw_value)
-
-    config["ignored_names"] = sorted(
+    config["excluded_names"] = sorted(
         {
-            name for name in ignored
+            name for name in [
+                *excluded,
+                *config.get("ignored_names", []),
+                *config.get("ambiguous_names", []),
+            ]
             if normalize_text(name) not in saved_norms
         },
         key=normalize_text,
     )
-    config["ambiguous_names"] = sorted(
-        {
-            name for name in ambiguous
-            if normalize_text(name) not in saved_norms
-        },
-        key=normalize_text,
-    )
+    config.pop("ignored_names", None)
+    config.pop("ambiguous_names", None)
     save_validated_alias_config(alias_config_path, config)
     return config
 

@@ -18,7 +18,15 @@ logs/*.log.*
 *.mmi
 app/data/*
 app/config/backups/
-app/validation/
+# Validation notebooks and run artifacts are local; lightweight docs stay tracked.
+app/validation/**
+!app/validation/**/
+!app/validation/**/README.md
+!app/validation/NOTEBOOK_MANIFEST.tsv
+!app/validation/**/*.ipynb
+# Harness code and design docs are source, not run artifacts -> keep tracked.
+!app/validation/**/*.py
+!app/validation/**/*.md
 # Validation run artifacts
 app/validation/**/outputs*/
 app/validation/**/*outputs*/

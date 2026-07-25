@@ -9,7 +9,7 @@ from app.src.io.run_logger import log_error
 from app.src.llm.alias_review import review_uncertain_alias_suggestions
 from ui.components import _render_context_panel, _render_page_intro
 from ui.i18n import _t
-from ui.services import _load_ignored_names, _scan_unknown_names, _scan_unknown_ref_names, _split_keywords, _unique_alias_config_paths
+from ui.services import _load_excluded_names, _scan_unknown_names, _scan_unknown_ref_names, _split_keywords, _unique_alias_config_paths
 from ui.state import REGISTRY_PATH, _reset
 
 
@@ -22,8 +22,7 @@ from ui.state import REGISTRY_PATH, _reset
 # there is nothing to reconcile because only one value can ever be selected.
 ACTION_LABELS = {
     "save": "Save alias",
-    "ambiguous": "Save ambiguous",
-    "ignore": "Save ignored",
+    "ignore": "Exclude",
     "skip": "Skip this run",
 }
 LABEL_TO_ACTION = {label: action for action, label in ACTION_LABELS.items()}
@@ -35,7 +34,7 @@ def _default_suggestion_action(row: pd.Series, canonical_names: list[str]) -> st
 
     Precedence: an LLM "skip" always wins (regardless of confidence — a low-
     confidence LLM skip should not be overridden by a stale deterministic
-    default). Otherwise, an LLM save/ambiguous/ignore recommendation wins only
+    default). Otherwise, an LLM save/exclude recommendation wins only
     at medium/high confidence (the same gate the app has always used to decide
     which LLM recommendations are trustworthy enough to auto-apply). If none
     of that applies, fall back to the deterministic scorer's own suggestion.
@@ -50,7 +49,7 @@ def _default_suggestion_action(row: pd.Series, canonical_names: list[str]) -> st
         if llm_action == "save_alias" and row.get("llm_canonical_name") in canonical_names:
             return "save"
         if llm_action == "move_to_ambiguous":
-            return "ambiguous"
+            return "ignore"
         if llm_action == "ignore":
             return "ignore"
     if bool(row.get("default_save")) or row.get("suggested_action") == "save_alias":
@@ -187,8 +186,7 @@ def stage_bootstrap_alias():
                     suggestions,
                     virus_name=virus_name,
                     canonical_names=canonical_names,
-                    ignored_names=seed_config.get("ignored_names", []),
-                    ambiguous_names=seed_config.get("ambiguous_names", []),
+                    excluded_names=seed_config.get("excluded_names", []),
                     cache=st.session_state.llm_alias_review_cache,
                 )
                 diagnostics["llm_review"] = llm_diagnostics
@@ -207,7 +205,7 @@ def stage_bootstrap_alias():
 
     info_col.info(
         "Review each raw query name independently. Save strong gene symbols like `GP5`; "
-        "ignore broad descriptions like `major envelope glycoprotein`. You review alias patterns once, not record by record."
+        "exclude unsafe broad descriptions like `major envelope glycoprotein`. You review alias patterns once, not record by record."
     )
 
     diagnostics = st.session_state.bootstrap_diagnostics or {}
@@ -255,7 +253,7 @@ def stage_bootstrap_alias():
         # interaction on the page (typing in "Virus name", ticking a checkbox in
         # a different row, etc). st.data_editor persists the user's edits across
         # reruns via its `key`, but only if the `data` it's fed is treated as the
-        # stable "base" for those edits. Recomputing save/ambiguous/ignore/skip
+        # stable "base" for those edits. Recomputing save/exclude/skip
         # from scratch from `suggestions` on every rerun — as this used to do —
         # fights that persistence: the freshly recomputed default for a cell the
         # user did NOT just touch can overwrite what the user chose two reruns
@@ -290,8 +288,7 @@ def stage_bootstrap_alias():
                 "Action (click to edit)",
                 help=(
                     "Save alias: add as an alias of Canonical. "
-                    "Save ambiguous: store in ambiguous_names for manual review later. "
-                    "Save ignored: store in ignored_names so future runs skip it globally. "
+                    "Exclude: store in excluded_names so future runs skip it globally. "
                     "Skip this run: do nothing, leave it unresolved."
                 ),
                 options=ACTION_OPTIONS,
@@ -394,8 +391,9 @@ def stage_bootstrap_alias():
         config.setdefault("canonical_names", {})
         for canonical_name in canonical_names:
             config["canonical_names"].setdefault(canonical_name, [])
-        config.setdefault("ignored_names", [])
-        config.setdefault("ambiguous_names", [])
+        config.setdefault("excluded_names", [])
+        config.pop("ignored_names", None)
+        config.pop("ambiguous_names", None)
         config["notes"] = (
             "Bootstrapped from reference feature names. Query aliases were added "
             "only after coordinate-supported user approval."
@@ -407,24 +405,20 @@ def stage_bootstrap_alias():
         try:
             # No conflict check needed: "action" is a single-select dropdown
             # (SelectboxColumn), so each row can only ever hold exactly one of
-            # save/ambiguous/ignore/skip — there is nothing to reconcile.
+            # save/exclude/skip — there is nothing to reconcile.
             write_new_alias_config(config, absolute_config_path)
 
             if not edited_rows.empty:
                 approved_rows = edited_rows[
                     edited_rows["action_key"] == "save"
                 ].to_dict("records")
-                ignored_rows = edited_rows[
+                excluded_rows = edited_rows[
                     edited_rows["action_key"] == "ignore"
-                ].to_dict("records")
-                ambiguous_rows = edited_rows[
-                    edited_rows["action_key"] == "ambiguous"
                 ].to_dict("records")
                 config = apply_approved_alias_suggestions(
                     absolute_config_path,
                     approved_rows=approved_rows,
-                    ignored_rows=ignored_rows,
-                    ambiguous_rows=ambiguous_rows,
+                    excluded_rows=excluded_rows,
                 )
 
             append_alias_registry_entry(
@@ -439,9 +433,9 @@ def stage_bootstrap_alias():
                 st.session_state.ref_features,
                 alias_lookup,
             )
-            ignored = _load_ignored_names(absolute_config_path)
-            unknown = _scan_unknown_names(st.session_state.query_records, alias_lookup, ignored)
-            unknown_ref = _scan_unknown_ref_names(ref_features, ignored)
+            excluded = _load_excluded_names(absolute_config_path)
+            unknown = _scan_unknown_names(st.session_state.query_records, alias_lookup, excluded)
+            unknown_ref = _scan_unknown_ref_names(ref_features, excluded)
 
             st.session_state.ref_features = ref_features
             st.session_state.alias_lookup = alias_lookup

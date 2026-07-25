@@ -28,7 +28,7 @@ def _feature(status: str, method: str) -> LiftedFeature:
 def test_run_pipeline_routes_direct_and_tblastn(monkeypatch):
     calls = []
 
-    def fake_strategy(record, alias_lookup):
+    def fake_strategy(record, alias_lookup, allowed_types=None):
         return ("direct", "CDS") if record.id == "direct" else ("tblastn", None)
 
     def fake_direct_extract(**kwargs):
@@ -60,7 +60,7 @@ def test_run_pipeline_routes_direct_and_tblastn(monkeypatch):
 
 
 def test_run_pipeline_can_capture_record_errors(monkeypatch):
-    monkeypatch.setattr("app.src.pipeline.get_strategy", lambda *_: ("tblastn", None))
+    monkeypatch.setattr("app.src.pipeline.get_strategy", lambda *_, **__: ("tblastn", None))
 
     def broken_tblastn(**_kwargs):
         raise RuntimeError("boom")

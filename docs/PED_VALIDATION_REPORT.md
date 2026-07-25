@@ -41,16 +41,16 @@ Reference không có canonical `ORF1ab`; `ORF1ab` chỉ xuất hiện trong mộ
 
 ### Overall alias coverage
 
-| Dataset | Total qualifier values | Canonical | Ignored | Ambiguous | Unresolved | Canonical % | Actionable coverage % |
+| Dataset | Total qualifier values | Canonical | Excluded | Unresolved | Canonical % | Actionable coverage % |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| query_100 | 1077 | 976 | 95 | 2 | 4 | 90.62 | 99.39 |
-| reference | 28 | 27 | 1 | 0 | 0 | 96.43 | 100.00 |
+| query_100 | 1077 | 976 | 97 | 4 | 90.62 | 99.39 |
+| reference | 28 | 27 | 1 | 0 | 96.43 | 100.00 |
 
-`Actionable coverage` loại bỏ ignored names khỏi denominator. Vì các ignored names như `polyprotein`, `replicase polyprotein`, `hypothetical protein` không nên map thành canonical cụ thể.
+`Actionable coverage` loại bỏ `excluded_names` khỏi denominator. Vì các excluded names như `polyprotein`, `replicase polyprotein`, `hypothetical protein` không nên map thành canonical cụ thể.
 
 Figure:
 
-![PED alias qualifier resolution](report_assets/ped_validation/ped_alias_overall_resolution.png)
+![PED alias qualifier resolution](../report_assets/ped_validation/ped_alias_overall_resolution.png)
 
 ### Feature-level alias coverage
 
@@ -71,18 +71,18 @@ Sau khi apply alias ở mức feature, 100 query records có các gene sau:
 
 - `ORF1ab` được giữ thành canonical riêng.
 - Không ép `ORF1ab`, `ORF1a/1b`, `Pol1` thành `ORF1a`.
-- `HNZK1` được ignore vì là strain/isolate prefix, xuất hiện ở nhiều gene khác nhau.
-- `mp` được để ambiguous vì quá ngắn, dễ nhầm giữa ORF3 accessory protein và membrane protein.
+- `HNZK1` được exclude vì là strain/isolate prefix, xuất hiện ở nhiều gene khác nhau.
+- `mp` được exclude vì quá ngắn và phụ thuộc context, dễ nhầm giữa ORF3 accessory protein và membrane protein.
 
 ### Names còn cần review
 
 | Status | Raw name | Count | Nhận xét |
 |---|---|---:|---|
-| ambiguous | `mp` | 2 | Có thể là ORF3 trong dataset này, nhưng để ambiguous an toàn hơn |
-| ignored | `replicase polyprotein` | 35 | Quá chung/gộp vùng replicase |
-| ignored | `hypothetical protein` | 32 | Không đủ thông tin gene |
-| ignored | `polyprotein` | 22 | Quá chung |
-| ignored | `HNZK1` | 5 | Strain/isolate prefix, không phải gene |
+| excluded | `mp` | 2 | Có thể là ORF3 trong dataset này, nhưng quá ngắn để auto-map an toàn |
+| excluded | `replicase polyprotein` | 35 | Quá chung/gộp vùng replicase |
+| excluded | `hypothetical protein` | 32 | Không đủ thông tin gene |
+| excluded | `polyprotein` | 22 | Quá chung |
+| excluded | `HNZK1` | 5 | Strain/isolate prefix, không phải gene |
 | unresolved | misc notes | 4 | Các note mô tả frameshift/truncation, không nên auto-map |
 
 Kết luận alias: **PED alias map hiện tại đủ tốt để dùng cho validation/pipeline**, với actionable coverage 99.39% trên query set.
@@ -107,7 +107,7 @@ Trong đó:
 
 Figure:
 
-![PED tblastn accuracy by reference](report_assets/ped_validation/ped_tblastn_accuracy_by_ref_full100.png)
+![PED tblastn accuracy by reference](../report_assets/ped_validation/ped_tblastn_accuracy_by_ref_full100.png)
 
 Kết luận tổng quan: **tblastn lifting cho PED đạt 99.01% coordinate-level accuracy với cả 2 references**.
 
@@ -125,7 +125,7 @@ Kết luận tổng quan: **tblastn lifting cho PED đạt 99.01% coordinate-lev
 | `ORF3` | 92 | 89 | 90 | 2 | 96.74 | 97.83 |
 | `S` | 97 | 94 | 96 | 1 | 96.91 | 98.97 |
 
-![PED per-gene tblastn accuracy ref_1](report_assets/ped_validation/ped_tblastn_per_gene_ref_1_full100.png)
+![PED per-gene tblastn accuracy ref_1](../report_assets/ped_validation/ped_tblastn_per_gene_ref_1_full100.png)
 
 #### Reference 2: `PV974486.1`
 
@@ -139,7 +139,7 @@ Kết luận tổng quan: **tblastn lifting cho PED đạt 99.01% coordinate-lev
 | `ORF3` | 92 | 89 | 90 | 2 | 96.74 | 97.83 |
 | `S` | 97 | 94 | 96 | 1 | 96.91 | 98.97 |
 
-![PED per-gene tblastn accuracy ref_2](report_assets/ped_validation/ped_tblastn_per_gene_ref_2_full100.png)
+![PED per-gene tblastn accuracy ref_2](../report_assets/ped_validation/ped_tblastn_per_gene_ref_2_full100.png)
 
 ## 5. Main findings
 

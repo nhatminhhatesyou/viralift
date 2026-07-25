@@ -38,7 +38,7 @@ app/src/
 │   ├── gene_alias.py           build alias lookup, normalize raw names → canonical
 │   ├── alias_classifier.py     rule-based scorer: raw qualifier + coordinate evidence → save_alias/manual_review/ignore
 │   ├── alias_bootstrap.py      brand-new-virus flow: tblastn + IoU matching → coordinate-supported alias suggestions
-│   ├── alias_manager.py        read/write canonical/ignored/ambiguous lists for the Alias Manager UI page
+│   ├── alias_manager.py        read/write canonical aliases and excluded names for the Alias Manager UI page
 │   └── alias_payload.py        build JSON payloads for LLM-assisted alias review
 ├── llm/
 │   ├── config.py               LLMConfig — reads VIRALIFT_LLM_*/OPENAI_API_KEY from env, off by default
@@ -96,7 +96,7 @@ get_strategy(query_record, alias_lookup=None)  → ("direct" | "tblastn", featur
 
 **`select_feature_type`** is the single entry point for feature type selection. It combines two behaviors:
 
-- **With `alias_lookup`**: scores both `CDS` and `mat_peptide` by how many features can be alias-resolved. Scoring formula: `(resolved * 100) + raw - ignored_or_ambiguous`. Returns the level with the higher score, or `None` if neither level is informative.
+- **With `alias_lookup`**: scores both `CDS` and `mat_peptide` by how many features can be alias-resolved. Scoring formula: `(resolved * 100) + raw - excluded`. Returns the level with the higher score, or `None` if neither level is informative.
 - **Without `alias_lookup`**: simple existence check with a polyprotein-shell guard — returns `None` if the only CDS is a whole-genome `"polyprotein"` placeholder (no individual gene coordinates to extract).
 
 **`get_strategy`** calls `select_feature_type` once and returns both the routing decision and the selected feature type as a tuple, so the caller does not need to call `select_feature_type` again:
@@ -194,9 +194,9 @@ Reads the alias JSON config (e.g. `prrsv_alias.json`) and builds a **flat dict**
 
 `normalize_text()` is applied to every key before insertion and every lookup — strips whitespace, lowercases, removes spaces/hyphens/underscores. So `"GP-5 Protein"` and `"gp5protein"` hit the same entry.
 
-Two special sentinel values in the lookup:
-- **`"__ignored__"`** — feature should be skipped entirely (e.g. `"polyprotein"` wrapper CDS)
-- **`"__ambiguous__"`** — name is shared across multiple genes; user must resolve manually
+Special sentinel values in the lookup:
+- **`"__excluded__"`** — current sentinel for names that should be skipped during automatic alias mapping.
+- **`"__ignored__"`** / **`"__ambiguous__"`** — legacy sentinels accepted for old configs/tests and normalized to the same `name_source="excluded"` behavior.
 
 ---
 
@@ -215,8 +215,7 @@ for each field in [gene, product, label, standard_name, locus_tag, note]:
 multiple hits, same canonical → name_source = "alias",  unanimous, use it
 multiple hits, different canonicals → name_source = "alias_conflict_resolved",
                                       use the hit from the highest-priority field
-hit → "__ignored__"   → name_source = "ignored"
-hit → "__ambiguous__" → name_source = "ambiguous"
+hit → exclusion sentinel → name_source = "excluded"
 ```
 
 This multi-field strategy handles common GenBank inconsistencies — for example, a record with `/product="envelope protein"` (generic, not in alias) and `/note="ORF5"` (specific, in alias) will correctly resolve to `ORF5` via the `note` field fallback.
@@ -224,7 +223,7 @@ This multi-field strategy handles common GenBank inconsistencies — for example
 Always writes back to the feature dict:
 - `raw_name` — original display name before resolution
 - `name` — canonical key (or raw if unresolved)
-- `name_source` — `"alias"` | `"alias_conflict_resolved"` | `"raw"` | `"ignored"` | `"ambiguous"`
+- `name_source` — `"alias"` | `"alias_conflict_resolved"` | `"raw"` | `"excluded"`
 
 ---
 
@@ -238,8 +237,7 @@ Used when the query record already has usable annotation. No alignment needed.
 parse features from query record (CDS or mat_peptide)
   → apply_alias_to_features()       normalize names using the shared alias lookup
   → for each feature:
-      "ignored"    → skip entirely
-      "ambiguous"  → LiftedFeature(status="ambiguous_name")
+      "excluded"   → skip entirely
       "raw"        → LiftedFeature(status="unresolved_name")
       resolved, not in ref → LiftedFeature(status="not_in_reference")
       resolved, in ref     → slice query sequence at [start:end]
@@ -385,7 +383,7 @@ rescue_offset   # bp offset used to fix start codon (or None)
 |---|---|
 | `ok` | Name resolved and coordinates extracted |
 | `unresolved_name` | Name not found in alias lookup |
-| `ambiguous_name` | Name is known-ambiguous; user must disambiguate manually |
+| `unresolved_name` | Name is not mapped after excluded names are skipped |
 | `not_in_reference` | Name resolved but gene is absent from the chosen reference |
 
 ---
@@ -395,8 +393,7 @@ rescue_offset   # bp offset used to fix start codon (or None)
 ```json
 {
   "virus": "PRRSV",
-  "ignored_names": ["polyprotein", "nonstructural protein"],
-  "ambiguous_names": ["envelope protein", "glycoprotein"],
+  "excluded_names": ["polyprotein", "nonstructural protein"],
   "canonical_names": {
     "ORF5": [
       "GP5", "gp5", "orf5",
@@ -411,8 +408,7 @@ rescue_offset   # bp offset used to fix start codon (or None)
 ```
 
 - **`canonical_names`** — key is the output canonical name; list contains every known raw name variant that maps to it. The canonical key itself is also automatically included in the lookup.
-- **`ignored_names`** — names excluded from alias scanning entirely (e.g. `"polyprotein"`, a whole-genome wrapper CDS with no useful gene-level information).
-- **`ambiguous_names`** — names shared across multiple genes. Features matching these are flagged as `ambiguous_name` and shown to the user for manual disambiguation.
+- **`excluded_names`** — names excluded from alias scanning entirely (e.g. `"polyprotein"`, a whole-genome wrapper CDS with no useful gene-level information, or names that are too broad/context-dependent to become reusable aliases).
 
 PRRSV canonical naming convention: structural proteins use **ORF names** (`ORF2a`, `ORF2b`, `ORF3`–`ORF7`), replicase ORFs use `ORF1a` / `ORF1b` / `ORF1ab`. Individual nonstructural proteins processed from the polyprotein (NSP2–NSP12) retain **NSP names** since they have no individual ORF designation.
 
@@ -441,14 +437,14 @@ Shown when there are unrecognised names.
 
 **Ref panel** — lists ref names with `name_source == "raw"`. User can add them as new canonical entries (empty alias list) to the config file. Newly added names immediately appear in the query resolver dropdowns.
 
-**Query resolver** — for each unknown or ambiguous feature group:
+**Query resolver** — for each unknown feature group:
 - Shows **all candidate qualifier values** (e.g. `` `envelope protein` `ORF4` ``) so the user has full context
 - Dropdown to pick a canonical key (or ignore)
 - 💾 Save checkbox — if checked, **all candidate values** in the group are written to the alias config, not just the representative shown. This ensures future records using any variant of that name are resolved automatically.
 
 On Continue: all candidates are expanded into the session resolver dict, which is merged into the base alias lookup via `_build_effective_lookup()` for the current run.
 
-Optional **"Ask LLM to suggest mappings"** button pre-fills the dropdown/canonical for unknown and ambiguous rows using `review_unresolved_names()` — see "LLM-Assisted Alias Review" below. Advisory only; the user still confirms every row before Continue.
+Optional **"Ask LLM to suggest mappings"** button pre-fills the dropdown/canonical for unresolved rows using `review_unresolved_names()` — see "LLM-Assisted Alias Review" below. Advisory only; the user still confirms every row before Continue.
 
 ### Stage 3 — Running (transient)
 
@@ -474,12 +470,12 @@ Export:
 
 ## LLM-Assisted Alias Review — `llm/` + `alias/alias_payload.py`
 
-**Implemented and validated** (see `LLM_ALIAS_VALIDATION_REPORT.md` — 100% action accuracy on known cases, 100% accuracy on the confidence tier the UI actually auto-applies, 0 dangerous false positives on the PED test set). Off by default: set `VIRALIFT_LLM_ENABLED=1` + `OPENAI_API_KEY` in `.env` to turn it on. Without it, the pipeline behaves exactly as before — deterministic scoring + manual resolver only.
+**Implemented and validated** (see `docs/LLM_ALIAS_VALIDATION_REPORT.md` — 100% action accuracy on known cases, 100% accuracy on the confidence tier the UI actually auto-applies, 0 dangerous false positives on the PED test set). Off by default: set `VIRALIFT_LLM_ENABLED=1` + `OPENAI_API_KEY` in `.env` to turn it on. Without it, the pipeline behaves exactly as before — deterministic scoring + manual resolver only.
 
 **Two entry points, two payload shapes**, both built in `alias/alias_payload.py` and both advisory-only (the UI never auto-writes to the alias config without the confidence gate below):
 
 - **`review_uncertain_alias_suggestions()`** (`llm/alias_review.py`) — used by `ui/stages/bootstrap_alias.py` (brand-new virus). Reviews rows from `alias_bootstrap.build_coordinate_supported_alias_suggestions()` (tblastn + IoU-matched raw names) that the deterministic classifier flagged as uncertain.
-- **`review_unresolved_names()`** — used by `ui/stages/resolve.py`'s "Ask LLM to suggest mappings" button. Reviews names that never got a coordinate-backed suggestion at all (fully unknown or already-known-ambiguous).
+- **`review_unresolved_names()`** — used by `ui/stages/resolve.py`'s "Ask LLM to suggest mappings" button. Reviews names that never got a coordinate-backed suggestion at all.
 
 Never sends sequence data or full GenBank records — only raw qualifier text, field name, candidate canonical, coordinate evidence (IoU/coverage/identity), and the available canonical list.
 
@@ -490,15 +486,14 @@ Never sends sequence data or full GenBank records — only raw qualifier text, f
 - **Same ORF family root, different suffix** — e.g. raw `ORF1ab` vs. candidate canonical `ORF1a`: both reduce to family root `orf1`, but the exact text differs, so it's escalated even at `score=13`/`confidence=high`. This is the actual mechanism that catches PED's `ORF1ab`-vs-`ORF1a` annotation mismatch (see validation report) — the coordinate-based candidate can be wrong, and this rule is what stops it from being silently auto-saved.
 - Deterministic `ignore` on a name that still "looks like" a specific gene symbol (e.g. `ORF3`, `GP5`-shaped).
 
-**Response schema**: `recommendation` ∈ `{save_alias, ignore, skip, move_to_ambiguous}`, `confidence` ∈ `{low, medium, high}`, plus `canonical_name` and `reason`. Validated against the available canonical list — a `save_alias` pointing at a canonical that doesn't exist is dropped, never applied.
+**Response schema**: `recommendation` ∈ `{save_alias, ignore, skip}`, `confidence` ∈ `{low, medium, high}`, plus `canonical_name` and `reason`. Validated against the available canonical list — a `save_alias` pointing at a canonical that doesn't exist is dropped, never applied.
 
-**Confidence gating in the UI (`bootstrap_alias.py`)** — this is the actual safety mechanism, not just a display detail. Each suggestion row has a single **Action** dropdown (`Save alias` / `Save ambiguous` / `Save ignored` / `Skip this run` — a `SelectboxColumn`, not four independent checkboxes, so a row can never end up with two actions selected at once):
-- `save_alias` / `move_to_ambiguous` / `ignore` at `medium`/`high` confidence → pre-fills the matching Action option (`llm_canonical_name` must also be a real available canonical for `save_alias` to pre-fill).
+**Confidence gating in the UI (`bootstrap_alias.py`)** — this is the actual safety mechanism, not just a display detail. Each suggestion row has a single **Action** dropdown (`Save alias` / `Exclude` / `Skip this run` — a `SelectboxColumn`, not independent checkboxes, so a row can never end up with two actions selected at once):
+- `save_alias` / `ignore` at `medium`/`high` confidence → pre-fills the matching Action option (`llm_canonical_name` must also be a real available canonical for `save_alias` to pre-fill). In the UI, `ignore` writes to `excluded_names`.
 - `skip` at **any** confidence → pre-fills `Skip this run` (there's no risk in leaving a row unresolved, so this doesn't need the confidence gate).
-- Anything else (e.g. a `save_alias`/`ignore`/`move_to_ambiguous` recommendation at `low` confidence) → no pre-fill; falls back to whatever the deterministic scorer already had. In the PED validation, every wrong LLM recommendation came in at `low` confidence, so none of them were ever auto-applied.
-- `move_to_ambiguous` has its own dedicated Action (`Save ambiguous`) that writes straight to `ambiguous_names` via `apply_approved_alias_suggestions(..., ambiguous_rows=...)`. This used to be a known gap (an LLM `move_to_ambiguous` call, even when correct, had no path to persist — validated 100% accurate on the `mp` test case but silently discarded); it's now fixed. `resolve.py`'s dropdown still lacks a "mark ambiguous" option (only a canonical or a no-op "ignore") — that part of the gap remains open.
+- Anything else (e.g. a `save_alias`/`ignore` recommendation at `low` confidence) → no pre-fill; falls back to whatever the deterministic scorer already had. Legacy cached `move_to_ambiguous` responses are treated as `ignore`/Exclude.
 
-Details, per-case results, and the validation script live in `app/validation/07_llm_alias_validation/` and `LLM_ALIAS_VALIDATION_REPORT.md`.
+Details, per-case results, and the validation script live in `app/validation/07_llm_alias_validation/` and `docs/LLM_ALIAS_VALIDATION_REPORT.md`.
 
 ---
 

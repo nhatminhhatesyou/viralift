@@ -48,7 +48,7 @@ UI_TEXT = {
         "resolve_title": "Resolve gene names",
         "resolve_body": (
             "ViraLift found names that are not cleanly covered by the alias database. "
-            "Map only the names you trust; ignored names stay raw for this run."
+            "Map only the names you trust; excluded names are skipped from automatic alias matching."
         ),
         "reference": "Reference",
         "detected_virus": "Detected virus",
@@ -68,15 +68,15 @@ UI_TEXT = {
         "already_exists": "All selected names already exist in the config.",
         "unknown_query_intro": "The query file contains **{count} unrecognised name(s)** not found in the **{virus}** alias config. Decide what to do with each one before running.",
         "all_known": "All query gene names are already in the alias config. No query-side decisions needed.",
-        "ignore_option": "-- ignore (keep raw name) --",
-        "ambiguous_prefix": "Ambiguous",
+        "ignore_option": "-- exclude / keep raw name --",
+        "ambiguous_prefix": "Excluded",
         "unknown_prefix": "Unknown",
         "appears_in": "Appears in",
         "map_to_canonical": "Map to canonical",
         "save": "Save",
         "save_aliases": "Save aliases",
         "save_candidate_help": "Add only this candidate value to the alias config so it is recognised next time.",
-        "ambiguous_intro": "**{count} ambiguous name(s)**. These names appear in the alias config but are shared across multiple genes in **{virus}**. Select which gene each one refers to in this dataset.",
+        "ambiguous_intro": "**{count} excluded name(s)**. These names are configured to be skipped during automatic alias matching in **{virus}**. Select a canonical only if this dataset provides enough context.",
         "back": "Back",
         "continue": "Continue with these decisions",
         "aliases_saved": "{count} alias(es) saved to config",
@@ -161,7 +161,7 @@ UI_TEXT = {
         "status_no_hit": "No hit",
         "status_translation_fail": "Translation fail",
         "status_unresolved_name": "Unresolved name",
-        "status_ambiguous_name": "Ambiguous name",
+        "status_ambiguous_name": "Excluded name",
         "status_not_in_reference": "Not in reference",
         "tone_pass": "PASS",
         "tone_review": "REVIEW",

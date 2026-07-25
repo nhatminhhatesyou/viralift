@@ -13,8 +13,10 @@ from app.src.alias.alias_manager import (
 )
 from app.src.alias.gene_alias import (
     AMBIGUOUS_SENTINEL,
+    EXCLUDED_SENTINEL,
     IGNORED_SENTINEL,
     apply_alias_to_features,
+    get_excluded_names,
     load_alias_lookup,
     lookup_field_value,
     normalize_text,
@@ -104,9 +106,9 @@ def _continue_with_existing_alias_config(entry: Dict, save_keyword: Optional[str
 
     alias_lookup = load_alias_lookup(alias_config_path)
     ref_features = apply_alias_to_features(st.session_state.ref_features, alias_lookup)
-    ignored = _load_ignored_names(alias_config_path)
-    unknown = _scan_unknown_names(st.session_state.query_records, alias_lookup, ignored)
-    unknown_ref = _scan_unknown_ref_names(ref_features, ignored)
+    excluded = _load_excluded_names(alias_config_path)
+    unknown = _scan_unknown_names(st.session_state.query_records, alias_lookup, excluded)
+    unknown_ref = _scan_unknown_ref_names(ref_features, excluded)
 
     st.session_state.ref_features = ref_features
     st.session_state.alias_lookup = alias_lookup
@@ -136,25 +138,24 @@ def _selected_dataframe_rows(state) -> List[int]:
 def _scan_unknown_names(
     query_records: List[SeqRecord],
     alias_lookup: Dict[str, str],
-    ignored_names: set,
+    excluded_names: set,
 ) -> Dict[str, Dict]:
     """
     Return a dict keyed by representative name for every feature group in query
-    records that needs user resolution: either the name is completely unknown
-    (misses alias lookup entirely) or it is explicitly ambiguous (maps to
-    AMBIGUOUS_SENTINEL, shared by multiple genes).
+    records that needs user resolution because the name is completely unknown
+    (misses alias lookup entirely).
 
     Each value is:
         {
             "records":    [record_id, ...],   # records containing this feature
             "candidates": [val, ...],         # all qualifier values, priority order
-            "ambiguous":  bool,               # True means known-ambiguous; False means unknown
+            "ambiguous":  bool,               # legacy field, always False for excluded_names
         }
 
     Resolution logic mirrors apply_alias_to_feature:
         - ANY candidate hits a real canonical: feature is resolved, skip
-        - ALL candidates miss OR hit AMBIGUOUS: include (unknown or ambiguous)
-        - ALL candidates hit IGNORED: skip (intentionally excluded)
+        - ALL candidates miss: include for user review
+        - ALL candidates hit EXCLUDED: skip intentionally
     """
     result: Dict[str, Dict] = {}
 
@@ -185,33 +186,30 @@ def _scan_unknown_names(
 
             # If ANY candidate resolves to a real canonical, already handled, skip
             if any(
-                h is not None and h not in (AMBIGUOUS_SENTINEL, IGNORED_SENTINEL)
+                h is not None and h not in (AMBIGUOUS_SENTINEL, EXCLUDED_SENTINEL, IGNORED_SENTINEL)
                 for h in hits.values()
             ):
                 continue
 
-            # If ALL candidates resolve to IGNORED, skip entirely.
+            # If ALL candidates resolve to excluded, skip entirely.
             # Keep this in sync with alias matching: both sides use normalize_text,
             # so punctuation/case/spacing variants do not leak into Resolve.
-            if all(normalize_text(v) in ignored_names for v in candidates):
+            if all(normalize_text(v) in excluded_names for v in candidates):
                 continue
 
-            # Determine if this is ambiguous or fully unknown
-            is_ambiguous = any(h == AMBIGUOUS_SENTINEL for h in hits.values())
-
-            non_ignored_candidates = [
-                v for v in candidates if normalize_text(v) not in ignored_names
+            non_excluded_candidates = [
+                v for v in candidates if normalize_text(v) not in excluded_names
             ]
-            if not non_ignored_candidates:
+            if not non_excluded_candidates:
                 continue
 
-            representative = non_ignored_candidates[0]
+            representative = non_excluded_candidates[0]
 
             if representative not in result:
                 result[representative] = {
                     "records":   [],
-                    "candidates": non_ignored_candidates,
-                    "ambiguous": is_ambiguous,
+                    "candidates": non_excluded_candidates,
+                    "ambiguous": False,
                 }
             if rec.id not in result[representative]["records"]:
                 result[representative]["records"].append(rec.id)
@@ -219,10 +217,10 @@ def _scan_unknown_names(
     return result
 
 
-def _scan_unknown_ref_names(ref_features: list, ignored_names: set) -> List[str]:
+def _scan_unknown_ref_names(ref_features: list, excluded_names: set) -> List[str]:
     """
     Return a sorted list of ref feature raw names that were not resolved by the
-    alias DB (i.e. name_source == 'raw') and are not explicitly ignored.
+    alias DB (i.e. name_source == 'raw') and are not explicitly excluded.
     These will be lifted correctly (tblastn uses protein sequence), but their
     output name will just be the raw annotation name, no canonical key.
     """
@@ -231,7 +229,7 @@ def _scan_unknown_ref_names(ref_features: list, ignored_names: set) -> List[str]
         if f.get("name_source") != "raw":
             continue
         raw = f.get("raw_name") or f.get("name") or ""
-        if normalize_text(raw) in ignored_names:
+        if normalize_text(raw) in excluded_names:
             continue
         if raw and raw not in seen:
             seen.append(raw)
@@ -262,11 +260,16 @@ def _add_new_canonicals_to_config(
     return added
 
 
-def _load_ignored_names(alias_config_path: Optional[Path]) -> set:
+def _load_excluded_names(alias_config_path: Optional[Path]) -> set:
     if alias_config_path is None or not alias_config_path.exists():
         return set()
     cfg = manager_load_alias_config(alias_config_path)
-    return {normalize_text(n) for n in cfg.get("ignored_names", [])}
+    return {normalize_text(n) for n in get_excluded_names(cfg)}
+
+
+def _load_ignored_names(alias_config_path: Optional[Path]) -> set:
+    """Backward-compatible alias for older UI imports."""
+    return _load_excluded_names(alias_config_path)
 
 
 def _build_effective_lookup(

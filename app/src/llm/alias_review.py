@@ -24,6 +24,12 @@ def needs_llm_review(row: Dict) -> bool:
     confidence = row.get("confidence")
     raw_value = str(row.get("raw_value") or "")
 
+    # Already settled deterministically: a name that lands on many distinct
+    # genes by coordinate is a strain code / lab tag, excluded without an LLM
+    # call. Nothing for the model to add.
+    if row.get("cross_canonical_auto_excluded"):
+        return False
+
     if action == "manual_review" or confidence == "medium":
         return True
 
@@ -47,6 +53,7 @@ def review_uncertain_alias_suggestions(
     virus_name: str,
     canonical_names: Iterable[str],
     *,
+    excluded_names: Optional[Iterable[str]] = None,
     ignored_names: Optional[Iterable[str]] = None,
     ambiguous_names: Optional[Iterable[str]] = None,
     config: Optional[LLMConfig] = None,
@@ -89,8 +96,7 @@ def review_uncertain_alias_suggestions(
         virus_name=virus_name,
         canonical_names=list(canonical_names),
         suggestions=uncertain,
-        ignored_names=list(ignored_names or []),
-        ambiguous_names=list(ambiguous_names or []),
+        excluded_names=list(excluded_names or []) + list(ignored_names or []) + list(ambiguous_names or []),
     )
     cache_key = alias_review_cache_key(payload)
     if cache is not None and cache_key in cache:
@@ -120,6 +126,7 @@ def review_unresolved_names(
     virus_name: str,
     canonical_names: Iterable[str],
     *,
+    excluded_names: Optional[Iterable[str]] = None,
     ignored_names: Optional[Iterable[str]] = None,
     config: Optional[LLMConfig] = None,
     provider=None,
@@ -138,7 +145,7 @@ def review_unresolved_names(
         canonical_names=canonical_list,
         unknown_items=unknown_items,
         ambiguous_items=ambiguous_items,
-        ignored_names=list(ignored_names or []),
+        excluded_names=list(excluded_names or []) + list(ignored_names or []),
     )
     suggestions = payload.get("suggestions", [])[:config.max_rows]
     payload = {**payload, "suggestions": suggestions}

@@ -99,8 +99,118 @@ def load_alias_config(config_path: Path) -> Dict:
     return config_data
 
 
+EXCLUDED_SENTINEL  = "__excluded__"
 IGNORED_SENTINEL   = "__ignored__"
 AMBIGUOUS_SENTINEL = "__ambiguous__"
+EXCLUSION_SENTINELS = {EXCLUDED_SENTINEL, IGNORED_SENTINEL, AMBIGUOUS_SENTINEL}
+
+
+def get_excluded_names(config_data: Dict) -> List[str]:
+    """
+    Return the unified do-not-map name list.
+
+    `excluded_names` is the current config key. `ignored_names` and
+    `ambiguous_names` are accepted as legacy input so older configs continue to
+    behave the same until they are saved again by the manager.
+    """
+    result: List[str] = []
+    seen = set()
+    for field in ("excluded_names", "ignored_names", "ambiguous_names"):
+        for name in config_data.get(field, []) or []:
+            if not isinstance(name, str):
+                continue
+            key = normalize_text(name)
+            if key and key not in seen:
+                seen.add(key)
+                result.append(name)
+    return sorted(result, key=normalize_text)
+
+
+def canonical_entry_aliases(canonical_name: str, entry) -> List[str]:
+    """
+    Read the alias list of one canonical entry, in either supported shape.
+
+    Two shapes are accepted so configs can be migrated gradually:
+
+        "ORF1a": ["polyprotein 1a", ...]                        # legacy
+        "NSP2":  {"aliases": [...], "parent": "ORF1a"}          # current
+
+    The second shape adds `parent`, which records that this canonical lies
+    inside another one (a mature peptide within its polyprotein). `parent` is
+    metadata only: it never changes what an alias resolves to, so the flat
+    lookup is identical under both shapes.
+    """
+    if isinstance(entry, list):
+        aliases = entry
+    elif isinstance(entry, dict):
+        aliases = entry.get("aliases", [])
+        if not isinstance(aliases, list):
+            raise ValueError(
+                f"'aliases' for canonical name '{canonical_name}' must be a list."
+            )
+    else:
+        raise ValueError(
+            f"Entry for canonical name '{canonical_name}' must be a list of "
+            f"aliases or an object with an 'aliases' key. Got: {type(entry)}"
+        )
+    return aliases
+
+
+def canonical_entry_parent(entry) -> Optional[str]:
+    """Return the declared parent of a canonical entry, if any."""
+    if isinstance(entry, dict):
+        parent = entry.get("parent")
+        return parent if isinstance(parent, str) and parent else None
+    return None
+
+
+def build_parent_map(config_data: Dict) -> Dict[str, str]:
+    """
+    Map each canonical name to its parent, validating the hierarchy.
+
+    Raises when a parent does not exist or when the parent chain forms a cycle,
+    so a typo in a hand-edited config fails at load instead of silently
+    producing a broken containment relation.
+    """
+    canonical_names = config_data.get("canonical_names", {})
+    parents: Dict[str, str] = {}
+    for name, entry in canonical_names.items():
+        parent = canonical_entry_parent(entry)
+        if parent is None:
+            continue
+        if parent not in canonical_names:
+            raise ValueError(
+                f"Canonical '{name}' declares parent '{parent}', which is not a "
+                f"canonical name in this config."
+            )
+        parents[name] = parent
+
+    for name in parents:
+        seen = {name}
+        cursor = parents.get(name)
+        while cursor is not None:
+            if cursor in seen:
+                raise ValueError(
+                    f"Cycle in canonical parent chain involving '{name}'."
+                )
+            seen.add(cursor)
+            cursor = parents.get(cursor)
+    return parents
+
+
+def build_children_map(config_data: Dict) -> Dict[str, List[str]]:
+    """
+    Invert the parent map into {parent: [children]}.
+
+    Stored as `parent` on each child so a write only ever touches one entry;
+    this index exists for the read direction (UI trees, "what is inside X").
+    """
+    children: Dict[str, List[str]] = {}
+    for child, parent in build_parent_map(config_data).items():
+        children.setdefault(parent, []).append(child)
+    for names in children.values():
+        names.sort()
+    return children
 
 
 def build_alias_lookup(config_data: Dict) -> Dict[str, str]:
@@ -109,15 +219,13 @@ def build_alias_lookup(config_data: Dict) -> Dict[str, str]:
 
     Output format:
         normalized_alias    -> canonical_name
-        normalized_ignored  -> IGNORED_SENTINEL
-        normalized_ambiguous -> AMBIGUOUS_SENTINEL
+        normalized_excluded -> EXCLUDED_SENTINEL
 
     Conflict handling:
         If the same normalized alias appears under two different canonical names
         (i.e. a name was accidentally duplicated), a warning is emitted and the
-        alias is demoted to AMBIGUOUS_SENTINEL instead of raising an error.
-        Use the explicit "ambiguous_names" config key for names that are
-        intentionally ambiguous across multiple genes.
+        alias is demoted to AMBIGUOUS_SENTINEL instead of raising an error. Add
+        unsafe reusable names to "excluded_names" to suppress automatic mapping.
 
     Args:
         config_data: Parsed alias config dictionary
@@ -128,11 +236,8 @@ def build_alias_lookup(config_data: Dict) -> Dict[str, str]:
     lookup: Dict[str, str] = {}
     canonical_names = config_data.get("canonical_names", {})
 
-    for canonical_name, aliases in canonical_names.items():
-        if not isinstance(aliases, list):
-            raise ValueError(
-                f"Aliases for canonical name '{canonical_name}' must be a list."
-            )
+    for canonical_name, entry in canonical_names.items():
+        aliases = canonical_entry_aliases(canonical_name, entry)
 
         all_names = [canonical_name] + aliases
 
@@ -154,7 +259,7 @@ def build_alias_lookup(config_data: Dict) -> Dict[str, str]:
                     warnings.warn(
                         f"Alias conflict: '{alias}' (normalized: '{normalized_alias}') "
                         f"maps to both '{existing}' and '{canonical_name}' — "
-                        f"marked as ambiguous. Move it to 'ambiguous_names' in the "
+                        f"marked as ambiguous. Move it to 'excluded_names' in the "
                         f"alias config to suppress this warning.",
                         stacklevel=2,
                     )
@@ -164,18 +269,12 @@ def build_alias_lookup(config_data: Dict) -> Dict[str, str]:
 
             lookup[normalized_alias] = canonical_name
 
-    # Explicit ambiguous_names: names known to be shared across multiple genes
-    for ambiguous_name in config_data.get("ambiguous_names", []):
-        normalized = normalize_text(ambiguous_name)
-        if normalized:
-            lookup[normalized] = AMBIGUOUS_SENTINEL
-
-    # Ignored names: added last so they can override ambiguous if needed,
-    # but only if not already mapped to a real canonical
-    for ignored_name in config_data.get("ignored_names", []):
-        normalized = normalize_text(ignored_name)
+    # Excluded names: added last, but only if not already mapped to a real
+    # canonical. These are intentionally skipped during automatic mapping.
+    for excluded_name in get_excluded_names(config_data):
+        normalized = normalize_text(excluded_name)
         if normalized and normalized not in lookup:
-            lookup[normalized] = IGNORED_SENTINEL
+            lookup[normalized] = EXCLUDED_SENTINEL
 
     return lookup
 
@@ -186,7 +285,7 @@ def lookup_field_value(value: Optional[str], alias_lookup: Dict[str, str]) -> Op
 
     Tries the whole string first, then splits on ";" to handle compound
     note fields like "M; ORF6" or "GP5; ORF5; glycoprotein 5".
-    Prefers a real canonical over AMBIGUOUS/IGNORED sentinels.
+    Prefers a real canonical over exclusion sentinels.
 
     Args:
         value:        Raw qualifier string (e.g. "M; ORF6").
@@ -208,7 +307,7 @@ def lookup_field_value(value: Optional[str], alias_lookup: Dict[str, str]) -> Op
     if len(parts) <= 1:
         return None
 
-    _SPECIAL = (IGNORED_SENTINEL, AMBIGUOUS_SENTINEL)
+    _SPECIAL = EXCLUSION_SENTINELS
     best: Optional[str] = None
     for part in parts:
         canonical = alias_lookup.get(normalize_text(part))
@@ -254,15 +353,14 @@ def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
         - multiple hits, different canonicals → conflict; use the hit from the
           highest-priority field (first in _LOOKUP_QUALIFIER_KEYS order)
 
-        IGNORED_SENTINEL and AMBIGUOUS_SENTINEL hits are treated like misses for
-        canonical resolution but still propagate their respective name_source
-        values if they are the only result.
+        Exclusion sentinel hits are treated like misses for canonical resolution
+        but still propagate name_source="excluded" if they are the only result.
 
     Output fields added to feature dict:
         - raw_name   : original display name before any resolution
         - name       : canonical name (or raw_name if unresolved)
         - name_source: one of "alias", "alias_conflict_resolved",
-                       "ambiguous", "ignored", "raw"
+                       "excluded", "raw"
 
     Args:
         feature:      Feature dictionary produced by genbank_parser.
@@ -285,7 +383,7 @@ def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
         if canonical is not None:
             hits.append((field, value, canonical))
 
-    _SPECIAL = (IGNORED_SENTINEL, AMBIGUOUS_SENTINEL)
+    _SPECIAL = EXCLUSION_SENTINELS
 
     alias_source_value = None
 
@@ -300,20 +398,16 @@ def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
         if len(unique_canonicals) == 1:
             # All hits agree (or only one hit) → use it
             _, alias_source_value, canonical_name = hits[0]
-            if canonical_name == IGNORED_SENTINEL:
+            if canonical_name in EXCLUSION_SENTINELS:
                 canonical_name = raw_name
                 alias_source_value = None
-                name_source = "ignored"
-            elif canonical_name == AMBIGUOUS_SENTINEL:
-                canonical_name = raw_name
-                alias_source_value = None
-                name_source = "ambiguous"
+                name_source = "excluded"
             else:
                 name_source = "alias"
 
         else:
             # Conflict: multiple different canonicals.
-            # Priority: real canonical > ambiguous > ignored.
+            # Priority: real canonical > excluded/ambiguous placeholders.
             real_hits = [
                 (field, value, canonical)
                 for field, value, canonical in hits
@@ -325,19 +419,8 @@ def apply_alias_to_feature(feature: Dict, alias_lookup: Dict[str, str]) -> Dict:
                 _, alias_source_value, canonical_name = real_hits[0]
                 name_source = "alias_conflict_resolved"
             else:
-                # No real canonical hit. Check if any hit is ambiguous.
-                ambiguous_hits = [
-                    (field, value, canonical)
-                    for field, value, canonical in hits
-                    if canonical == AMBIGUOUS_SENTINEL
-                ]
-                if ambiguous_hits:
-                    canonical_name = raw_name
-                    name_source = "ambiguous"
-                else:
-                    # All hits were IGNORED_SENTINEL
-                    canonical_name = raw_name
-                    name_source = "ignored"
+                canonical_name = raw_name
+                name_source = "excluded"
 
     new_feature["raw_name"] = raw_name
     new_feature["alias_source_value"] = alias_source_value

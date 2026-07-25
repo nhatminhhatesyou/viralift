@@ -103,8 +103,7 @@ def build_uncertain_suggestion_review_payload(
     virus_name: str,
     canonical_names: List[str],
     suggestions: List[Dict],
-    ignored_names: Optional[List[str]] = None,
-    ambiguous_names: Optional[List[str]] = None,
+    excluded_names: Optional[List[str]] = None,
 ) -> Dict:
     """
     Build a compact payload for LLM review of uncertain alias suggestions.
@@ -117,27 +116,46 @@ def build_uncertain_suggestion_review_payload(
         "task": "review_uncertain_alias_suggestions",
         "virus": virus_name,
         "available_canonicals": canonical_names,
-        "ignored_names": ignored_names or [],
-        "ambiguous_names": ambiguous_names or [],
+        "excluded_names": excluded_names or [],
         "instructions": (
-            "Review only the supplied uncertain alias rows. Recommend save_alias "
-            "only when the raw alias clearly belongs to one available canonical. "
-            "Treat available_canonicals as authoritative. If matching_available_canonical "
-            "is present, prefer that canonical unless there is strong evidence of a true "
-            "shared/ambiguous name. query_name is weak context and may describe a parent "
-            "or combined ORF; do not reject a specific raw alias solely because query_name differs. "
-            "Generic means a broad description without a specific gene/ORF identifier, "
-            "for example 'polyprotein' or 'replicase polyprotein' alone. Names such as "
-            "'polyprotein 1a', 'polyprotein 1b', and 'polyprotein 1ab' are specific "
-            "and should usually map to ORF1a, ORF1b, and ORF1ab when coordinate evidence "
-            "or matching_available_canonical supports that target. Do not reject a "
-            "specific product name solely because it contains words like membrane, "
-            "envelope, glycoprotein, or polyprotein; names such as small membrane "
-            "protein or sM protein can be meaningful aliases when they consistently "
-            "support one canonical. Use shared_across_canonicals and "
-            "cross_canonical_targets as strong evidence for move_to_ambiguous. "
-            "Use ignore only for globally uninformative values, and skip when "
-            "evidence is weak or no available canonical fits."
+            "Each row is a raw string taken from the gene/product qualifier of an "
+            "annotated gene feature in a real record: it is the label some lab used "
+            "for a gene at those coordinates. Your job is to normalize these "
+            "inconsistent labels onto available_canonicals. "
+            # --- the central point: descriptive labels ARE the aliases --------
+            "CRUCIAL. Labs routinely name genes with plain descriptive phrases — a "
+            "membrane protein, a nucleocapsid protein, a glycoprotein, a matrix "
+            "protein, an envelope protein, a bare gene letter. These descriptive "
+            "labels ARE exactly the aliases this task exists to capture; they are NOT "
+            "'descriptive context' to be discarded. Sounding descriptive, functional, "
+            "or plain is NEVER by itself a reason to ignore or skip a row. If you drop "
+            "'membrane protein' or 'nucleocapsid protein' or a lone gene letter, the "
+            "records that use that label can never be resolved — which defeats the "
+            "whole purpose. "
+            # --- scope + decision rule, by evidence not by surface form -------
+            "SCOPE. This alias map applies ONLY to the virus in the 'virus' field; "
+            "every alias is looked up solely within this virus's available_canonicals. "
+            "So the test is not whether a label is unambiguous in general biology, but "
+            "whether it is unambiguous WITHIN this virus, decided by the evidence "
+            "fields. DECISION RULE: recommend save_alias to canonical_candidate "
+            "whenever canonical_candidate is set, iou is reasonably high, and "
+            "cross_canonical_target_count is 1 (no other available_canonical competes "
+            "for it) — regardless of how short, plain, abbreviated, or descriptive the "
+            "string is. If matching_available_canonical is present, prefer it. "
+            "query_name is weak context and may describe a parent or combined ORF; do "
+            "not reject a raw label solely because query_name differs. "
+            # --- what genuinely warrants ignore/skip --------------------------
+            "Use ignore ONLY for: (a) a label that resolves to more than one "
+            "available_canonical by coordinate — shared_across_canonicals true or "
+            "cross_canonical_target_count greater than 1 — which is genuinely "
+            "ambiguous within this virus; or (b) a string that is not a gene label at "
+            "all, such as a free-text comment, a mutation or assembly remark, or a "
+            "purely generic word with no coordinate resolution (for example "
+            "'polyprotein' or 'unknown protein' alone with no canonical_candidate). "
+            "Use skip only when there is no canonical_candidate and no available "
+            "canonical fits. Do NOT ignore or skip a label merely for being "
+            "descriptive, generic-sounding, short, or lacking an ORF number when the "
+            "coordinates already tie it to exactly one canonical."
         ),
         "suggestions": [
             _extract_suggestion_review_info(row, canonical_names)
@@ -151,7 +169,7 @@ def build_unresolved_name_review_payload(
     canonical_names: List[str],
     unknown_items: Dict[str, Dict],
     ambiguous_items: Optional[Dict[str, Dict]] = None,
-    ignored_names: Optional[List[str]] = None,
+    excluded_names: Optional[List[str]] = None,
 ) -> Dict:
     """
     Build a payload for LLM review of names that did not get coordinate-backed
@@ -184,7 +202,7 @@ def build_unresolved_name_review_payload(
         "task": "review_unresolved_names",
         "virus": virus_name,
         "available_canonicals": canonical_names,
-        "ignored_names": ignored_names or [],
+        "excluded_names": excluded_names or [],
         "instructions": (
             "Review unresolved query annotation names that were not resolved by the "
             "alias config and may not have coordinate-backed tblastn suggestions. "
@@ -192,16 +210,38 @@ def build_unresolved_name_review_payload(
             "candidate qualifiers clearly belongs to exactly one available canonical. "
             "Recommend ignore for broad descriptions, comments, locus-like values, "
             "or parent annotations that should not become a reusable alias. Recommend "
-            "skip when the evidence is insufficient. Use move_to_ambiguous when the "
-            "same raw name is genuinely shared across multiple genes. Treat "
+            "skip when the evidence is insufficient. Treat "
             "available_canonicals as authoritative and do not invent new canonicals. "
             "Use support_count and candidate_values_count as context: high support "
             "with one clear target can justify save_alias; high support with broad "
-            "or mixed wording is stronger evidence for ignore or move_to_ambiguous "
+            "or mixed wording is stronger evidence for ignore/exclude "
             "than for skip. "
-            "If a combined ORF name such as 'ORF1a/1b', 'ORF1a/b', or 'contains ORF1a "
-            "and ORF1b' appears and ORF1ab is available, prefer ORF1ab; otherwise skip "
-            "and let the user add a new canonical first."
+            "If a name explicitly denotes a span covering two or more adjacent "
+            "canonicals (for example by joining their identifiers with a slash, a "
+            "dash, or wording like 'contains X and Y'), prefer a single available "
+            "canonical that represents that combined span when one exists; otherwise "
+            "skip and let the user add a new canonical first. "
+            # --- positional evidence ---------------------------------------
+            "POSITIONAL EVIDENCE. Some rows carry coordinate context: feature_type, "
+            "start, end, length_bp, neighbor_before, neighbor_after, is_subfeature_of, "
+            "ref_slot_by_position and spans_reference_genes. When these are present they "
+            "outrank the wording of the name itself, because annotation strings are "
+            "submitted inconsistently while genomic position is not. Apply them as follows. "
+            "(1) If is_subfeature_of is set, the feature lies wholly inside another coding "
+            "feature, so it is a cleavage product or domain, not a gene: recommend ignore "
+            "even when the name looks specific and biologically real, for example a "
+            "polymerase or protease name sitting inside a replicase ORF. "
+            "(2) If ref_slot_by_position names exactly one available canonical, or if "
+            "neighbor_before and neighbor_after bracket exactly one missing slot in the "
+            "reference gene order, prefer save_alias to that canonical even when the raw "
+            "string is abbreviated, unfamiliar, or superficially suggests a different gene. "
+            "(3) If spans_reference_genes lists several adjacent reference genes and a "
+            "combined canonical covering them is available, prefer that combined canonical. "
+            "(4) Treat length_bp as a sanity check against the expected size of the "
+            "candidate canonical; a large mismatch is evidence against save_alias. "
+            "(5) When positional evidence and the name disagree, say so in reason and "
+            "follow the position. When positional evidence is absent, fall back to the "
+            "name-based rules above and stay conservative."
         ),
         "suggestions": unresolved_rows,
     }
@@ -214,6 +254,121 @@ def build_unresolved_name_review_payload(
 def get_unresolved_features(normalized_features: List[Dict]) -> List[Dict]:
     """Return features that were not resolved by alias lookup (name_source == 'raw')."""
     return [f for f in normalized_features if f.get("name_source") == "raw"]
+
+
+_POSITION_QUALIFIER_KEYS = ("gene", "product", "note", "standard_name", "label")
+
+
+def build_position_context(
+    records,
+    raw_value: str,
+    resolve_name,
+    ref_gene_order: Optional[List[str]] = None,
+    coding_types: Tuple[str, ...] = ("CDS",),
+) -> Dict:
+    """
+    Derive coordinate context for an unresolved annotation name.
+
+    Args:
+        records: iterable of SeqRecord to search for the raw name.
+        raw_value: the unresolved annotation string.
+        resolve_name: callable(str) -> Optional[str], maps a raw annotation
+            value to a canonical name (or None). Used only to name the
+            *neighbouring* features, never the row under review.
+        ref_gene_order: canonical gene order of the reference, 5' to 3'.
+            Used to turn a neighbour pair into a single missing slot.
+        coding_types: feature types treated as genes for neighbour/containment
+            logic. Anything outside this set can be a sub-feature.
+
+    Returns a dict suitable for `info["position"]`. Empty when the name is not
+    found. No ground-truth mapping of `raw_value` is consulted anywhere.
+    """
+    target = normalize_text(raw_value)
+    for record in records or []:
+        features = []
+        for feature in record.features:
+            if feature.type not in set(coding_types) | {"mat_peptide"}:
+                continue
+            values = [
+                str(value)
+                for key in _POSITION_QUALIFIER_KEYS
+                for value in feature.qualifiers.get(key, [])
+            ]
+            features.append({
+                "type": feature.type,
+                "start": int(feature.location.start) + 1,
+                "end": int(feature.location.end),
+                "values": values,
+                "canonical": next(
+                    (
+                        c for c in (resolve_name(v) for v in values)
+                        if c and not (str(c).startswith("__") and str(c).endswith("__"))
+                    ),
+                    None,
+                ),
+                "is_match": any(normalize_text(v) == target for v in values),
+            })
+
+        match = next((f for f in features if f["is_match"]), None)
+        if not match:
+            continue
+
+        coding = sorted(
+            (f for f in features if f["type"] in coding_types and f is not match),
+            key=lambda f: f["start"],
+        )
+        enclosing = next(
+            (
+                f for f in coding
+                if f["start"] <= match["start"] and f["end"] >= match["end"]
+                and (f["end"] - f["start"]) > (match["end"] - match["start"])
+            ),
+            None,
+        )
+        # Order by start rather than requiring disjoint ranges: overlapping
+        # reading frames are normal (coronavirus ORF3/E/M routinely overlap by
+        # a few dozen bp), and an end-based test silently drops the true
+        # neighbour in exactly those cases.
+        before = [f for f in coding if f["start"] < match["start"] and f["canonical"]]
+        after = [f for f in coding if f["start"] > match["start"] and f["canonical"]]
+
+        context = {
+            "feature_type": match["type"],
+            "start": match["start"],
+            "end": match["end"],
+            "genome_length": len(record.seq) if record.seq is not None else None,
+            "neighbor_before": before[-1]["canonical"] if before else None,
+            "neighbor_after": after[0]["canonical"] if after else None,
+            "is_subfeature_of": (
+                enclosing["canonical"] or "an unnamed coding feature"
+            ) if enclosing else None,
+        }
+        candidates = _slot_candidates(
+            context["neighbor_before"], context["neighbor_after"], ref_gene_order
+        )
+        context["slot_candidates"] = candidates
+        # Only commit to a single slot when the neighbours leave exactly one
+        # gap. A wider gap stays a candidate list so the model can weigh it
+        # against length_bp instead of being handed a guess.
+        context["ref_slot_by_position"] = candidates[0] if len(candidates) == 1 else None
+        return context
+    return {}
+
+
+def _slot_candidates(
+    before: Optional[str],
+    after: Optional[str],
+    ref_gene_order: Optional[List[str]],
+) -> List[str]:
+    """Reference genes lying strictly between two resolved neighbours."""
+    if not ref_gene_order:
+        return []
+    try:
+        i = ref_gene_order.index(before) if before else -1
+        j = ref_gene_order.index(after) if after else len(ref_gene_order)
+    except ValueError:
+        return []
+    return ref_gene_order[i + 1:j]
 
 
 def _extract_suggestion_review_info(row: Dict, canonical_names: Optional[List[str]] = None) -> Dict:
@@ -273,7 +428,53 @@ def _extract_unresolved_review_info(
         "has_multiple_candidate_values": len(candidates) > 1,
         "high_support_unresolved": len(info.get("records", [])) >= 3,
         "is_ambiguous": is_ambiguous,
+        # --- positional evidence -------------------------------------------
+        # A bare annotation string is often undecidable ("sM" could read as
+        # spike or membrane). Where the feature actually sits in the genome
+        # usually is decidable. These fields are optional: they only appear
+        # when the caller supplied coordinate context, so older callers keep
+        # working unchanged.
+        **_positional_evidence(info),
     }
+
+
+def _positional_evidence(info: Dict) -> Dict:
+    """
+    Emit coordinate-derived context for an unresolved name, when available.
+
+    Rationale: name-only review cannot distinguish a real gene alias from a
+    mature-peptide sub-part or resolve names whose wording collides with a
+    different canonical. Position can. Every field here is derived from the
+    query record's own annotation layout plus the reference gene order --
+    never from any ground-truth mapping of the name itself.
+    """
+    context = info.get("position") or {}
+    if not context:
+        return {}
+
+    start = context.get("start")
+    end = context.get("end")
+    evidence = {
+        "feature_type": context.get("feature_type"),
+        "start": start,
+        "end": end,
+        "length_bp": (end - start + 1) if (start is not None and end is not None) else None,
+        "genome_length_bp": context.get("genome_length"),
+        # Canonical names of the nearest already-resolved features on each
+        # side. With a known reference gene order this is often enough to
+        # pin the slot exactly.
+        "neighbor_before": context.get("neighbor_before"),
+        "neighbor_after": context.get("neighbor_after"),
+        # Set when this feature lies wholly inside another coding feature,
+        # i.e. it is a cleavage product / sub-part rather than a gene.
+        "is_subfeature_of": context.get("is_subfeature_of"),
+        # Which reference gene slot the coordinates fall into, by position
+        # only (no name matching involved).
+        "ref_slot_by_position": context.get("ref_slot_by_position"),
+        "slot_candidates": context.get("slot_candidates") or None,
+        "spans_reference_genes": context.get("spans_reference_genes") or None,
+    }
+    return {key: value for key, value in evidence.items() if value is not None}
 
 
 def _unresolved_review_id(representative: str) -> str:

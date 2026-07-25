@@ -1,6 +1,6 @@
 {
   "virus": "FMDV",
-  "ignored_names": [
+  "excluded_names": [
     "polyprotein"
   ],
   "notes": "Variants added from 100-seq validation: peptide-suffix names, compound names with semicolons",
@@ -14,7 +14,6 @@
       "La",
       "Lb",
       "L",
-      "pro peptide",
       "L-protease",
       "L-protein",
       "Lab peptide",
@@ -67,14 +66,8 @@
       "3B",
       "VPg",
       "3B1-3B3",
-      "3B1",
-      "3B2",
-      "3B3",
-      "VPg1",
-      "VPg2",
-      "VPg3",
-      "3B peptide",
       "3B1/3B2/3B3",
+      "3B peptide",
       "3B1/3B2/3B3 peptide",
       "3B peptide; 3B1/3B2/3B3 peptide"
     ],
@@ -84,7 +77,8 @@
       "protease 3C",
       "3C protease",
       "3C peptide",
-      "3C peptide; pro peptide"
+      "3C peptide; pro peptide",
+      "pro peptide"
     ],
     "3Dpol": [
       "3Dpol",
@@ -94,6 +88,18 @@
       "pol peptide",
       "3D peptide",
       "pol peptide; 3D peptide"
+    ],
+    "3B1": [
+      "3B1",
+      "VPg1"
+    ],
+    "3B2": [
+      "3B2",
+      "VPg2"
+    ],
+    "3B3": [
+      "3B3",
+      "VPg3"
     ]
   }
 }

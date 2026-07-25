@@ -120,7 +120,7 @@ def log_session_decisions(
     saved_set = set(saved_names)
     for raw_name, canonical in decisions.items():
         if canonical is None:
-            _logger.info("SESSION_DECISION | %r → (ignored, session only)", raw_name)
+            _logger.info("SESSION_DECISION | %r → (excluded, session only)", raw_name)
         elif raw_name in saved_set:
             _logger.info(
                 "SESSION_DECISION | %r → %s  [saved to config]", raw_name, canonical

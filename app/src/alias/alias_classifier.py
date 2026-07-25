@@ -36,9 +36,18 @@ DESCRIPTIVE_REVIEW_TERMS = {
     "nonstructural",
 }
 
+# Conservative descriptive synonyms → short canonical symbol. Only used to ADD
+# score when coordinate evidence already points the feature at that canonical, and
+# only fires when the canonical itself is the short symbol (e.g. corona-style E/M/N/S).
+#
+# Keep entries UNAMBIGUOUS. "envelope glycoprotein" is intentionally NOT here: without
+# a gene number it is ambiguous (in an arterivirus like PRRSV the glycosylated envelope
+# proteins are GP2-GP5, while E/ORF2b is the small *unglycosylated* envelope protein;
+# in a coronavirus the main envelope glycoprotein is the spike, not E). A bare
+# "envelope glycoprotein" should stay in each virus's `excluded_names` and only resolve
+# once an anchoring number is present (e.g. "envelope glycoprotein 5").
 DESCRIPTIVE_CANONICAL_ALIASES = {
     "envelope protein": {"E"},
-    "envelope glycoprotein": {"E"},
     "membrane protein": {"M"},
     "nucleocapsid protein": {"N"},
     "spike protein": {"S"},

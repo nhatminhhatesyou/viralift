@@ -10,10 +10,13 @@ def validate_cds_boundaries(sequence: Optional[str]) -> Dict:
     Validate that a CDS sequence has a proper start and stop codon.
 
     Returns a dict with:
-        valid           -- True if both start and stop codon are present
-        has_start_codon -- True if sequence starts with ATG
-        has_stop_codon  -- True if sequence ends with TAA/TAG/TGA
-        in_frame        -- True if sequence length is divisible by 3
+        valid             -- True if start + stop + in-frame AND no premature internal stop
+        has_start_codon   -- True if sequence starts with ATG
+        has_stop_codon    -- True if sequence ends with TAA/TAG/TGA
+        in_frame          -- True if sequence length is divisible by 3
+        has_internal_stop -- True if an in-frame stop occurs before the final codon
+                             (a real ORF terminates at its first in-frame stop, so an
+                             internal stop means the boundary over-ran the true end)
     """
     if not sequence or len(sequence) < 6:
         return {
@@ -21,6 +24,7 @@ def validate_cds_boundaries(sequence: Optional[str]) -> Dict:
             "has_start_codon": False,
             "has_stop_codon": False,
             "in_frame": False,
+            "has_internal_stop": False,
         }
 
     seq = sequence.upper()
@@ -28,12 +32,30 @@ def validate_cds_boundaries(sequence: Optional[str]) -> Dict:
     has_stop = seq[-3:] in STOP_CODONS
     in_frame = len(seq) % 3 == 0
 
+    has_internal_stop = in_frame and any(
+        seq[i:i + 3] in STOP_CODONS for i in range(0, len(seq) - 3, 3)
+    )
+
     return {
-        "valid": has_start and has_stop and in_frame,
+        "valid": has_start and has_stop and in_frame and not has_internal_stop,
         "has_start_codon": has_start,
         "has_stop_codon": has_stop,
         "in_frame": in_frame,
+        "has_internal_stop": has_internal_stop,
     }
+
+
+def first_inframe_stop_end(sequence: Optional[str]) -> Optional[int]:
+    """Length (bp, including the stop) up to and including the FIRST in-frame stop codon,
+    reading from the start of `sequence`. None if no in-frame stop is found. Used to trim
+    a lifted CDS that over-ran its true stop (e.g. ORF1a read past the frameshift stop)."""
+    if not sequence:
+        return None
+    seq = sequence.upper()
+    for i in range(0, len(seq) - 2, 3):
+        if seq[i:i + 3] in STOP_CODONS:
+            return i + 3
+    return None
 
 
 def rescue_start_codon(
@@ -109,7 +131,9 @@ def rescue_start_codon(
             expected_end = query_start + expected_length - 1
             add_candidate(query_start, expected_end, expected_end - query_end)
 
-    for offset in range(1, max_window + 1):
+    # Start at offset 0 so the anchored/lifted position itself is always a candidate
+    # (e.g. when the caller anchors the search exactly on the true start codon).
+    for offset in range(0, max_window + 1):
         for direction in (-1, +1):  # upstream first (more common for frameshift)
             if strand == "+":
                 new_start = query_start + direction * offset

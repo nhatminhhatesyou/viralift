@@ -4,7 +4,12 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-from app.src.alias.gene_alias import normalize_text
+from app.src.alias.gene_alias import (
+    canonical_entry_aliases,
+    canonical_entry_parent,
+    get_excluded_names,
+    normalize_text,
+)
 
 
 """
@@ -162,31 +167,37 @@ def save_alias_config(config_path: Path, config: Dict, create_backup: bool = Tru
 
 def alias_config_to_tables(config: Dict) -> Tuple[List[Dict], List[Dict], List[Dict]]:
     alias_rows = []
-    for canonical, aliases in sorted(config.get("canonical_names", {}).items()):
+    for canonical, entry in sorted(config.get("canonical_names", {}).items()):
         alias_rows.append({
             "canonical_name": canonical,
-            "aliases": "\n".join(aliases or []),
+            "aliases": "\n".join(canonical_entry_aliases(canonical, entry) or []),
+            "parent": canonical_entry_parent(entry) or "",
         })
 
-    ignored_rows = [
-        {"ignored_name": name}
-        for name in sorted(config.get("ignored_names", []), key=normalize_text)
+    excluded_rows = [
+        {"excluded_name": name}
+        for name in get_excluded_names(config)
     ]
-    ambiguous_rows = [
-        {"ambiguous_name": name}
-        for name in sorted(config.get("ambiguous_names", []), key=normalize_text)
-    ]
-    return alias_rows, ignored_rows, ambiguous_rows
+    return alias_rows, excluded_rows, []
 
 
 def tables_to_alias_config(
     original_config: Dict,
     alias_rows: List[Dict],
-    ignored_rows: List[Dict],
-    ambiguous_rows: List[Dict],
+    excluded_rows: Optional[List[Dict]] = None,
+    ignored_rows: Optional[List[Dict]] = None,
+    ambiguous_rows: Optional[List[Dict]] = None,
 ) -> Dict:
     config = dict(original_config)
-    canonical_names: Dict[str, List[str]] = {}
+    canonical_names: Dict = {}
+
+    # Parent links are not editable through the alias table, so carry them over
+    # from the config being edited. Without this, every UI save would silently
+    # flatten the containment hierarchy.
+    inherited_parents = {
+        name: canonical_entry_parent(entry)
+        for name, entry in (original_config.get("canonical_names", {}) or {}).items()
+    }
 
     for row in alias_rows:
         canonical = str(row.get("canonical_name") or "").strip()
@@ -194,20 +205,27 @@ def tables_to_alias_config(
             continue
         aliases = _split_multiline_values(row.get("aliases"))
         aliases = [alias for alias in aliases if normalize_text(alias) != normalize_text(canonical)]
-        existing = canonical_names.setdefault(canonical, [])
-        canonical_names[canonical] = _dedupe_strings([*existing, *aliases])
+        existing = canonical_entry_aliases(canonical, canonical_names.get(canonical, []))
+        merged = _dedupe_strings([*existing, *aliases])
+
+        parent = str(row.get("parent") or "").strip() or inherited_parents.get(canonical)
+        canonical_names[canonical] = (
+            {"aliases": merged, "parent": parent} if parent else merged
+        )
 
     config["canonical_names"] = canonical_names
-    config["ignored_names"] = _dedupe_strings(
-        row.get("ignored_name")
-        for row in ignored_rows
-        if row.get("ignored_name")
+    merged_excluded_rows = [
+        *(excluded_rows or []),
+        *(ignored_rows or []),
+        *(ambiguous_rows or []),
+    ]
+    config["excluded_names"] = _dedupe_strings(
+        row.get("excluded_name") or row.get("ignored_name") or row.get("ambiguous_name")
+        for row in merged_excluded_rows
+        if row.get("excluded_name") or row.get("ignored_name") or row.get("ambiguous_name")
     )
-    config["ambiguous_names"] = _dedupe_strings(
-        row.get("ambiguous_name")
-        for row in ambiguous_rows
-        if row.get("ambiguous_name")
-    )
+    config.pop("ignored_names", None)
+    config.pop("ambiguous_names", None)
     return config
 
 
@@ -239,19 +257,12 @@ def validate_alias_config(config: Dict) -> List[str]:
         )
         warnings.append(f"{names} maps to multiple canonicals: {canonicals}.")
 
-    ignored = {normalize_text(name): name for name in config.get("ignored_names", [])}
-    ambiguous = {normalize_text(name): name for name in config.get("ambiguous_names", [])}
+    excluded = {normalize_text(name): name for name in get_excluded_names(config)}
 
-    for norm, name in ignored.items():
+    for norm, name in excluded.items():
         if norm in alias_hits:
             canonicals = _format_canonical_set(alias_hits[norm]["canonicals"])
-            warnings.append(f"`{name}` is both ignored and an alias for {canonicals}.")
-    for norm, name in ambiguous.items():
-        if norm in alias_hits:
-            canonicals = _format_canonical_set(alias_hits[norm]["canonicals"])
-            warnings.append(f"`{name}` is both ambiguous and an alias for {canonicals}.")
-        if norm in ignored:
-            warnings.append(f"`{name}` is both ignored and ambiguous.")
+            warnings.append(f"`{name}` is both excluded and an alias for {canonicals}.")
 
     return warnings
 
@@ -273,20 +284,27 @@ def save_validated_alias_config(
     return save_alias_config(config_path, config, create_backup=create_backup)
 
 
-def move_ignored_to_alias(config: Dict, ignored_name: str, canonical_name: str) -> Dict:
-    ignored_norm = normalize_text(ignored_name)
+def move_excluded_to_alias(config: Dict, excluded_name: str, canonical_name: str) -> Dict:
+    excluded_norm = normalize_text(excluded_name)
     canonical_names = config.setdefault("canonical_names", {})
     aliases = canonical_names.setdefault(canonical_name, [])
 
-    if ignored_name and ignored_name not in aliases and normalize_text(ignored_name) != normalize_text(canonical_name):
-        aliases.append(ignored_name)
+    if excluded_name and excluded_name not in aliases and normalize_text(excluded_name) != normalize_text(canonical_name):
+        aliases.append(excluded_name)
 
-    config["ignored_names"] = [
+    config["excluded_names"] = [
         name
-        for name in config.get("ignored_names", [])
-        if normalize_text(name) != ignored_norm
+        for name in get_excluded_names(config)
+        if normalize_text(name) != excluded_norm
     ]
+    config.pop("ignored_names", None)
+    config.pop("ambiguous_names", None)
     return config
+
+
+def move_ignored_to_alias(config: Dict, ignored_name: str, canonical_name: str) -> Dict:
+    """Backward-compatible wrapper for the old function name."""
+    return move_excluded_to_alias(config, ignored_name, canonical_name)
 
 
 def _split_multiline_values(value) -> List[str]:

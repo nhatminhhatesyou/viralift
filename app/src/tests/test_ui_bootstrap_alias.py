@@ -65,12 +65,12 @@ def test_llm_save_ignored_when_canonical_not_available():
     assert _default_suggestion_action(row, CANONICALS) == "ignore"
 
 
-def test_llm_move_to_ambiguous_wins_at_medium_confidence():
+def test_legacy_llm_move_to_ambiguous_maps_to_exclude():
     row = _row(
         suggested_action="manual_review", default_save=False,
         llm_reviewed=True, llm_action="move_to_ambiguous", llm_confidence="medium",
     )
-    assert _default_suggestion_action(row, CANONICALS) == "ambiguous"
+    assert _default_suggestion_action(row, CANONICALS) == "ignore"
 
 
 def test_llm_skip_wins_regardless_of_confidence():

@@ -38,7 +38,7 @@ Example:
 ```text
 GP5 -> ORF5
 ORF5 protein -> ORF5
-major envelope glycoprotein -> may be ignored if too descriptive/generic
+major envelope glycoprotein -> may be excluded if too descriptive/generic
 ```
 
 The alias map is per virus, not shared across all viruses. A name like `envelope protein` may be too vague for one virus but map reliably to `E` in another when reference/query evidence is clear.
@@ -50,7 +50,7 @@ The Alias Manager lets you:
 - See which viruses currently have an alias config.
 - Fix canonical names and aliases when the tool maps incorrectly.
 - Delete aliases added by mistake.
-- Manage `ignored_names` and `ambiguous_names`.
+- Manage `excluded_names`: names that should be skipped during automatic alias mapping.
 - Edit the keywords used to auto-detect a virus.
 - Create an alias config for a new virus from the reference + query annotation.
 
@@ -66,8 +66,8 @@ In short: this is where you manage each virus's "gene-name dictionary".
 | `app/src/alias/alias_bootstrap.py` | Creates an alias config and suggests aliases for a new virus |
 | `app/src/alias/alias_classifier.py` | Rule-based scorer used by the bootstrap flow — see [The scoring formula](#the-scoring-formula) |
 | `app/src/llm/` (`config.py`, `provider.py`, `alias_review.py`) | Optional LLM second-opinion on uncertain suggestions — see [Optional LLM-assisted review](#optional-llm-assisted-review) |
-| `ui/stages/bootstrap_alias.py` | The alias-seed flow UI (new virus): generate suggestions, pick an Action per row (save/ambiguous/ignore/skip), save config |
-| `ui/stages/resolve.py` | The known-virus resolver UI: map unresolved/ambiguous names, optional "Ask LLM to suggest mappings" |
+| `ui/stages/bootstrap_alias.py` | The alias-seed flow UI (new virus): generate suggestions, pick an Action per row (save/exclude/skip), save config |
+| `ui/stages/resolve.py` | The known-virus resolver UI: map unresolved names, optional "Ask LLM to suggest mappings" |
 | `ui/alias_manager_page.py` | The standalone Alias Manager page (edit an existing config directly) |
 
 Each time an alias config is saved via the UI, the tool writes a backup in:
@@ -152,13 +152,13 @@ If the reference matches no virus in the registry, the tool enters the new-virus
 
 4. **Generate suggestions**
 
-   The tool runs tblastn from the reference onto each query record, then compares the coordinates against the real annotation in the query to find which names should be added as aliases. Each suggestion row gets one **Action** dropdown with exactly four choices: `Save alias`, `Save ambiguous` (writes to `ambiguous_names`), `Save ignored` (writes to `ignored_names`), or `Skip this run` (do nothing — the name stays unresolved and reappears on the next run). It's a single-select dropdown, not independent checkboxes, so a row can never end up with two actions at once.
+   The tool runs tblastn from the reference onto each query record, then compares the coordinates against the real annotation in the query to find which names should be added as aliases. Each suggestion row gets one **Action** dropdown with exactly three choices: `Save alias`, `Exclude` (writes to `excluded_names`), or `Skip this run` (do nothing — the name stays unresolved and reappears on the next run). It's a single-select dropdown, not independent checkboxes, so a row can never end up with two actions at once.
 
    If `VIRALIFT_LLM_ENABLED=1` is set, rows the deterministic scorer flags as uncertain (see [Optional LLM-assisted review](#optional-llm-assisted-review)) get an extra LLM opinion, and the Action dropdown is pre-filled accordingly — still fully editable before saving.
 
 5. **User approval**
 
-   Pick `Save alias` for any reasonable suggestion, `Save ignored` for names that are generic or wrong, `Save ambiguous` for names genuinely shared across multiple genes, or `Skip this run` for anything you're not ready to decide on. Review the pre-filled dropdown if LLM assist ran — it's advisory, not final.
+   Pick `Save alias` for any reasonable suggestion, `Exclude` for names that are generic, unsafe, or not reusable as aliases, or `Skip this run` for anything you're not ready to decide on. Review the pre-filled dropdown if LLM assist ran — it's advisory, not final.
 
 6. **Save config**
 
@@ -202,9 +202,9 @@ The user can:
 - Tick `Delete canonical` to remove the whole canonical name.
 - Add a new alias in the `Add canonical / alias` form.
 
-### Ignored names
+### Excluded names
 
-Holds names that should not be used to map a gene.
+Holds names that should not be used to automatically map a gene.
 
 Example:
 
@@ -213,26 +213,15 @@ protein
 glycoprotein
 unknown protein
 replicase polyprotein
-```
-
-These names are usually too generic. If put into the alias map, the tool could mis-map many different genes.
-
-Note: `envelope protein`, `membrane protein`, `nucleocapsid protein` do not always have to be ignored. For PED, these names have clear evidence and map respectively to `E`, `M`, `N`.
-
-### Ambiguous names
-
-Holds names that could map to several different genes.
-
-Example:
-
-```text
-envelope protein
+mp
 glycosylated membrane protein
 ```
 
-If a name could resemble ORF2, ORF5, or ORF6 depending on the virus/record, keep it ambiguous or send it to manual review.
+These names are usually too generic, too context-dependent, or unsafe as reusable aliases. If put into the alias map, the tool could mis-map many different genes.
 
-For example, PED has a raw gene `mp` in some records. `mp` could mean the ORF3 accessory membrane protein, but is also easily confused with membrane protein. So keeping `mp` in `ambiguous_names` is safer when it appears on its own.
+Note: `envelope protein`, `membrane protein`, `nucleocapsid protein` do not always have to be excluded. For PED, these names have clear evidence and map respectively to `E`, `M`, `N`.
+
+For example, PED has a raw gene `mp` in some records. `mp` could mean the ORF3 accessory membrane protein, but it is also easily confused with membrane protein. If the current evidence is not enough to make it a reusable alias, keep it in `excluded_names`.
 
 ### Raw JSON
 
@@ -261,9 +250,9 @@ GP5 -> ORF5
 ORF5 protein -> ORF5
 ```
 
-### Ignored name
+### Excluded name
 
-A name to skip because it carries too little information.
+A name to skip because it carries too little information or is too context-dependent.
 
 Example:
 
@@ -272,19 +261,10 @@ protein
 glycoprotein
 unknown protein
 replicase polyprotein
-```
-
-### Ambiguous name
-
-A name that carries information but is not certain enough to map to a single canonical.
-
-Example:
-
-```text
 glycosylated membrane protein
 ```
 
-This name could point to different genes depending on the virus or annotation convention.
+Excluded names are not exported as canonical aliases. During parsing, ViraLift simply ignores that qualifier value and tries other fields from the same feature.
 
 ## How the tool suggests aliases for a new virus
 
@@ -340,12 +320,15 @@ The decision `save_alias` / `manual_review` / `ignore` for each raw name is base
 | Raw name is an **exact match** of the canonical name | +5 |
 | Raw name **contains** the canonical name | +4 |
 | Short gene symbol matches the numeric part of the canonical (e.g. `GP5` ↔ `ORF5`) | +3 |
+| Controlled descriptive synonym exactly matches the canonical (e.g. `membrane protein` ↔ `M`, `nucleocapsid protein` ↔ `N`) | +5 |
 | Generic name: `protein`, `glycoprotein`, `polyprotein`, `envelope protein`… | −8 |
 | Biological descriptor word (`polymerase`, `capsid`, `nucleocapsid`…) **without** a specific gene name | −4 |
 | Biological descriptor word **with** a specific gene name | +1 |
 | Looks like a locus tag (e.g. `ABC_001234`) | −6 |
 
 > Note: the three items "exact match / contains / short symbol matches number" are mutually exclusive — only the first satisfied one is added. A name containing a digit (e.g. `ORF3`, `ORF1a`) is **not** treated as generic, even if it contains a word like `orf`.
+
+> The controlled descriptive-synonym table (`DESCRIPTIVE_CANONICAL_ALIASES` in `alias_classifier.py`) only holds **unambiguous** descriptions such as `membrane protein → M` and `nucleocapsid protein → N`, and only adds score when the coordinate-matched canonical is that exact symbol. `envelope glycoprotein` is deliberately **not** in the table: without a gene number it is ambiguous (in an arterivirus like PRRSV the glycosylated envelope proteins are `GP2`–`GP5`, while `E`/`ORF2b` is the small *unglycosylated* envelope protein). A bare `envelope glycoprotein` stays in `excluded_names` and only resolves once an anchoring number is present (e.g. `envelope glycoprotein 5 → ORF5`).
 
 **Decision thresholds** from the total score:
 
@@ -377,16 +360,16 @@ Design rationale: coordinate evidence (IoU) confirms *which feature* corresponds
 
 ## Optional LLM-assisted review
 
-Off by default (`VIRALIFT_LLM_ENABLED=0`). When enabled, an LLM gives a second opinion on rows the scoring formula above can't confidently resolve on its own — code in `app/src/llm/` + `app/src/alias/alias_payload.py`. It never sees sequence data or full GenBank records, only the raw qualifier text, field, candidate canonical, and coordinate evidence. It is validated on PED (see `LLM_ALIAS_VALIDATION_REPORT.md`) and used in two places:
+Off by default (`VIRALIFT_LLM_ENABLED=0`). When enabled, an LLM gives a second opinion on rows the scoring formula above can't confidently resolve on its own — code in `app/src/llm/` + `app/src/alias/alias_payload.py`. It never sees sequence data or full GenBank records, only the raw qualifier text, field, candidate canonical, and coordinate evidence. It is validated on PED (see `docs/LLM_ALIAS_VALIDATION_REPORT.md`) and used in two places:
 
 - **Alias-seed flow** (`ui/stages/bootstrap_alias.py`): reviews uncertain rows from step 4 above.
 - **Resolver** (`ui/stages/resolve.py`): "Ask LLM to suggest mappings" button for names that never got a coordinate-backed suggestion.
 
 Not every uncertain row is a low-score case. A row can score `≥ 8`/high confidence from the table above and still get escalated — for example when the raw name and the coordinate-matched canonical are in the **same ORF family but spelled differently** (`ORF1ab` vs. candidate `ORF1a`). This is exactly the granularity-mismatch trap described below: coordinate evidence alone can point at the wrong ORF sibling, so this case is always sent for review regardless of score.
 
-**Only `medium`/`high`-confidence `save_alias`/`move_to_ambiguous`/`ignore` recommendations get pre-filled into the Action dropdown.** An LLM `skip` always pre-fills regardless of confidence (there's nothing risky about leaving a row unresolved). Any other `low`-confidence recommendation changes nothing — the Action stays whatever the deterministic scorer already had. In PED testing, every incorrect LLM recommendation happened to be `low` confidence, so it was never auto-applied.
+**Only `medium`/`high`-confidence `save_alias` or `ignore` recommendations get pre-filled into the Action dropdown.** In the UI, `ignore` means **Exclude** and writes to `excluded_names`. An LLM `skip` always pre-fills regardless of confidence (there's nothing risky about leaving a row unresolved). Any other `low`-confidence recommendation changes nothing — the Action stays whatever the deterministic scorer already had. In PED testing, every incorrect LLM recommendation happened to be `low` confidence, so it was never auto-applied.
 
-`move_to_ambiguous` has its own Action option (`Save ambiguous`) that writes straight to `ambiguous_names` — it is no longer folded into the same bucket as `skip`/no-op. This was a real gap found during PED validation (an LLM `move_to_ambiguous` call that was correct 100% of the time on the `mp` test case still couldn't be persisted); it's now fixed in `ui/stages/bootstrap_alias.py`.
+Older cached LLM responses may still contain `move_to_ambiguous`; ViraLift treats that legacy action as **Exclude**. New prompts/schema use only `save_alias`, `ignore`, and `skip`.
 
 ## Granularity mismatch
 
@@ -485,7 +468,7 @@ nucleocapsid protein   -> N
 accessory protein 3a   -> ORF3
 ORF1a/1b, Pol1, ORF1ab -> ORF1ab
 HNZK1                  -> ignore
-mp                     -> ambiguous
+mp                     -> excluded
 ```
 
 Here `HNZK1` is a strain/isolate prefix that appears on many different genes, so it should not go into the alias.
@@ -504,19 +487,19 @@ HNZK1 maps to multiple canonicals: M, N, ORF3, S.
 
 This is usually because `HNZK1` is not a gene name but a strain/isolate prefix. Remove it from the alias.
 
-### `X is both ignored and an alias`
+### `X is both excluded and an alias`
 
-Means a name is both in `ignored_names` and in a canonical's aliases.
+Means a name is both in `excluded_names` and in a canonical's aliases.
 
 Example:
 
 ```text
-ORF3 is both ignored and an alias for ORF3.
+ORF3 is both excluded and an alias for ORF3.
 ```
 
 How to handle:
 
-- If `ORF3` is a real gene name: remove it from ignored.
+- If `ORF3` is a real gene name: remove it from excluded names.
 - If the name is too generic: remove it from the alias.
 
 ### No suggestions after clicking Generate suggestions

@@ -407,8 +407,7 @@ This pattern should be read as a boundary ambiguity / granularity issue before c
 | `low_coverage` | Hit coverage below the threshold | Yes |
 | `no_hit` | No tblastn hit found | Yes |
 | `translation_fail` | Reference feature could not be translated to protein | Yes |
-| `unresolved_name` | Query has a name that the alias config could not map | Yes |
-| `ambiguous_name` | Name is in the ambiguous list; the user must decide | Yes |
+| `unresolved_name` | Query has a name that the alias config could not map after excluded names were skipped | Yes |
 | `not_in_reference` | Query resolved to a canonical name, but the selected reference has no such gene | No; still counts as mapped/pass, but worth noting |
 
 Note: `not_in_reference` does not necessarily mean the tool is wrong. For example, the query has `ORF1ab` but the reference only has `ORF1a` and `ORF1b` — this is an annotation-granularity mismatch.

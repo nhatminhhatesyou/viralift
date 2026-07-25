@@ -23,6 +23,15 @@ ui = [
 dev = [
     "pytest>=7.4",
 ]
+# Validation / paper-reproduction notebooks. pysam is required by
+# app/src/alignment/sam_lifter.py for the minimap2 engine benchmark (unit 01).
+# External system requirement for unit 01: the `minimap2` executable on PATH.
+validation = [
+    "pysam>=0.22",
+    "pandas>=2.0,<3",
+    "matplotlib>=3.7",
+    "jupyter>=1.0",
+]
 
 [project.scripts]
 viralift = "app.src.main:main"

@@ -14,7 +14,7 @@ ViraLift is a Streamlit app with three modes, each with its own guide:
 | **Run pipeline** | Core processing: standardise names + assign annotation, export TSV/FASTA | [PIPELINE_RUNNER_GUIDE.md](PIPELINE_RUNNER_GUIDE.md) |
 | **Alias manager** | Manage the gene-name dictionary (canonical/alias) per virus | [ALIAS_MANAGER_GUIDE.md](ALIAS_MANAGER_GUIDE.md) |
 
-Deep technical docs about the code: [CODEBASE_GUIDE.md](CODEBASE_GUIDE.md). The Data crawler engine: [gbcrawler/README.md](gbcrawler/README.md).
+Deep technical docs about the code: [CODEBASE_GUIDE.md](CODEBASE_GUIDE.md). The Data crawler engine: [gbcrawler/README.md](gbcrawler/README.md). Internal validation & paper notes (Vietnamese): [docs/](docs/README.md).
 
 ## The problem
 
@@ -113,6 +113,7 @@ viralift/
 │   └── config/         # registry + per-virus alias config
 ├── gbcrawler/          # Data crawler engine (NCBI fetch + split)
 ├── ui/                 # Streamlit app (3 modes)
+├── docs/               # internal validation & paper notes (Vietnamese)
 ├── README.md           # this file
 ├── DATA_CRAWLER_GUIDE.md
 ├── PIPELINE_RUNNER_GUIDE.md

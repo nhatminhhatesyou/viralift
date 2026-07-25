@@ -4,6 +4,11 @@
 # strongly tied to Streamlit's browser-level theme setting, so they can stay dark
 # even when ViraLift's own theme is light. Checkbox lists and text areas are less
 # fancy, but they obey the app CSS and are easier to review/edit.
+#
+# Save model (single, predictable rule): every edit persists immediately and writes
+# a timestamped backup. Destructive actions (delete canonical / delete virus) ask
+# for confirmation first. Success is surfaced through a flash toast that survives the
+# rerun, so an action never looks like "nothing happened".
 
 import json
 from pathlib import Path
@@ -16,16 +21,31 @@ from app.src.alias.alias_manager import (
     alias_config_to_tables,
     list_registry_entries,
     load_alias_config as manager_load_alias_config,
-    move_ignored_to_alias,
+    move_excluded_to_alias,
     remove_registry_entry,
     resolve_config_path,
     save_alias_config as manager_save_alias_config,
     update_registry_entry,
     validate_alias_config,
 )
-from app.src.alias.gene_alias import normalize_text
+from app.src.alias.gene_alias import get_excluded_names, normalize_text
 from ui.components import _render_context_panel, _render_page_intro
 from ui.state import REGISTRY_PATH, ROOT
+
+
+# ── Flash feedback ──────────────────────────────────────────────────────
+# st.success() written right before st.rerun() is discarded by the rerun, so the
+# user never sees it. Stash the message and show it as a toast on the next run.
+
+def _flash(message: str, icon: str = "✅") -> None:
+    st.session_state["alias_manager_flash"] = (message, icon)
+
+
+def _render_flash() -> None:
+    payload = st.session_state.pop("alias_manager_flash", None)
+    if payload:
+        message, icon = payload
+        st.toast(message, icon=icon)
 
 
 def _scroll_to_top_once() -> None:
@@ -66,6 +86,18 @@ def _confirm_delete_virus_dialog(entry: Dict, archive_alias_config: bool) -> Non
         st.rerun()
     if delete_col.button("Yes, delete virus", type="primary", width="stretch"):
         _delete_virus_entry(entry, archive_alias_config)
+
+
+@st.dialog("Delete canonical?")
+def _confirm_delete_canonical_dialog(config_path: Path, config: Dict, canonical: str) -> None:
+    aliases = config.get("canonical_names", {}).get(canonical, []) or []
+    st.warning(f"Delete canonical `{canonical}` and its {len(aliases)} alias(es)?")
+    st.caption("This cannot be undone from the UI, but a backup is written first.")
+    cancel_col, delete_col = st.columns(2)
+    if cancel_col.button("Cancel", width="stretch"):
+        st.rerun()
+    if delete_col.button("Yes, delete canonical", type="primary", width="stretch"):
+        _delete_canonical_now(config_path, config, canonical)
 
 
 def _split_lines(raw_text: str) -> List[str]:
@@ -128,11 +160,8 @@ def _delete_aliases(config_path: Path, config: Dict, canonical: str, aliases: Li
         for alias in updated.get("canonical_names", {}).get(canonical, [])
         if normalize_text(alias) not in selected_norms
     ]
-    backup = manager_save_alias_config(config_path, updated)
-    st.success(
-        f"Deleted {len(aliases)} alias(es) from `{canonical}`. "
-        f"Backup: `{backup.name if backup else 'none'}`"
-    )
+    manager_save_alias_config(config_path, updated)
+    _flash(f"Removed {len(aliases)} alias(es) from {canonical}.", icon="🗑️")
     st.rerun()
 
 
@@ -153,11 +182,8 @@ def _add_aliases(config_path: Path, config: Dict, canonical: str, aliases: List[
         st.info("No new alias to add.")
         return
 
-    backup = manager_save_alias_config(config_path, updated)
-    st.success(
-        f"Added {len(added)} alias(es) to `{canonical}`. "
-        f"Backup: `{backup.name if backup else 'none'}`"
-    )
+    manager_save_alias_config(config_path, updated)
+    _flash(f"Added {len(added)} alias(es) to {canonical}.")
     st.rerun()
 
 
@@ -193,28 +219,58 @@ def _add_canonical(
             existing_norms.add(key)
 
     st.session_state.alias_manager_open_canonical = target
-    backup = manager_save_alias_config(config_path, updated)
-    action = "Updated" if existing_key else "Added"
-    st.success(
-        f"{action} canonical `{target}`. "
-        f"Backup: `{backup.name if backup else 'none'}`"
-    )
+    manager_save_alias_config(config_path, updated)
+    _flash(f"{'Updated' if existing_key else 'Added'} canonical {target}.")
+    st.rerun()
+
+
+def _delete_canonical_now(config_path: Path, config: Dict, canonical: str) -> None:
+    updated = _deepcopy_config(config)
+    updated.setdefault("canonical_names", {}).pop(canonical, None)
+    manager_save_alias_config(config_path, updated)
+    st.session_state.pop("alias_manager_open_canonical", None)
+    _flash(f"Deleted canonical {canonical}.", icon="🗑️")
     st.rerun()
 
 
 def _delete_names(config_path: Path, config: Dict, field: str, names: List[str], label: str) -> None:
     updated = _deepcopy_config(config)
     selected_norms = {normalize_text(name) for name in names}
+    source_names = get_excluded_names(updated) if field == "excluded_names" else updated.get(field, [])
     updated[field] = [
         name
-        for name in updated.get(field, [])
+        for name in source_names
         if normalize_text(name) not in selected_norms
     ]
-    backup = manager_save_alias_config(config_path, updated)
-    st.success(
-        f"Deleted {len(names)} {label}(s). "
-        f"Backup: `{backup.name if backup else 'none'}`"
-    )
+    if field == "excluded_names":
+        updated.pop("ignored_names", None)
+        updated.pop("ambiguous_names", None)
+    manager_save_alias_config(config_path, updated)
+    _flash(f"Removed {len(names)} {label}(s).", icon="🗑️")
+    st.rerun()
+
+
+def _add_excluded(config_path: Path, config: Dict, names: List[str]) -> None:
+    updated = _deepcopy_config(config)
+    existing = get_excluded_names(updated)
+    existing_norms = {normalize_text(name) for name in existing}
+    added = []
+    for name in names:
+        key = normalize_text(name)
+        if key and key not in existing_norms:
+            existing.append(name)
+            existing_norms.add(key)
+            added.append(name)
+
+    if not added:
+        st.info("No new excluded name to add.")
+        return
+
+    updated["excluded_names"] = sorted(existing, key=normalize_text)
+    updated.pop("ignored_names", None)
+    updated.pop("ambiguous_names", None)
+    manager_save_alias_config(config_path, updated)
+    _flash(f"Added {len(added)} excluded name(s).")
     st.rerun()
 
 
@@ -225,13 +281,13 @@ def _save_registry_entry(
     message: str,
 ) -> None:
     try:
-        backup = update_registry_entry(
+        update_registry_entry(
             REGISTRY_PATH,
             alias_config=alias_config,
             virus_name=virus_name.strip(),
             keywords=keywords,
         )
-        st.success(f"{message} Backup: `{backup.name if backup else 'none'}`")
+        _flash(message)
         st.rerun()
     except Exception as e:
         st.error(f"Could not save registry entry: {e}")
@@ -249,7 +305,7 @@ def _delete_registry_keywords(entry: Dict, virus_name: str, keywords: List[str])
         alias_config=entry.get("alias_config", ""),
         virus_name=virus_name,
         keywords=kept_keywords,
-        message=f"Deleted {len(keywords)} keyword(s).",
+        message=f"Removed {len(keywords)} keyword(s).",
     )
 
 
@@ -295,14 +351,35 @@ def _delete_virus_entry(entry: Dict, archive_alias_config: bool) -> None:
         st.error(f"Could not delete virus: {e}")
 
 
+def _virus_picker(entries: List[Dict]) -> Dict:
+    """Pick a virus by name (not by config file path)."""
+    def _label(index: int) -> str:
+        entry = entries[index]
+        name = entry.get("virus_name") or Path(entry.get("alias_config", "")).stem or "unknown"
+        keywords = entry.get("keywords", []) or []
+        return f"{name}  ·  {len(keywords)} keyword(s)"
+
+    selected_index = st.selectbox(
+        "Virus",
+        list(range(len(entries))),
+        index=0,
+        format_func=_label,
+        help="Select the virus alias map you want to review or edit.",
+    )
+    entry = entries[selected_index]
+    st.caption(f"Config file: `{Path(entry.get('alias_config', '')).name}`")
+    return entry
+
+
 def page_alias_manager():
     _scroll_to_top_once()
+    _render_flash()
     _render_page_intro(
         "Alias manager",
         "Review and edit alias maps",
         (
-            "Manage canonical names, aliases, ignored names, and ambiguous names. "
-            "Every save creates a timestamped backup beside the config file."
+            "Manage canonical names, aliases, and excluded names. "
+            "Every edit saves immediately and writes a timestamped backup."
         ),
         show_stages=False,
     )
@@ -320,17 +397,7 @@ def page_alias_manager():
         st.warning("No registered virus alias configs found.")
         return
 
-    options = [
-        f"{entry.get('virus_name', 'unknown')} - {entry.get('alias_config', '')}"
-        for entry in entries
-    ]
-    selected = st.selectbox(
-        "Choose virus",
-        options,
-        index=0,
-        help="Select the virus alias map you want to review or edit.",
-    )
-    entry = entries[options.index(selected)]
+    entry = _virus_picker(entries)
     config_path = resolve_config_path(Path(entry.get("alias_config", "")), ROOT)
     st.session_state.alias_manager_config_path = config_path
 
@@ -340,9 +407,8 @@ def page_alias_manager():
         st.error(f"Could not load alias config `{config_path}`: {e}")
         return
 
-    _, ignored_rows, ambiguous_rows = alias_config_to_tables(config)
-    ignored_existing = [row["ignored_name"] for row in ignored_rows]
-    ambiguous_existing = [row["ambiguous_name"] for row in ambiguous_rows]
+    _, excluded_rows, _ = alias_config_to_tables(config)
+    excluded_existing = [row["excluded_name"] for row in excluded_rows]
 
     canonical_names_map = config.get("canonical_names", {})
     total_aliases = sum(len(aliases or []) for aliases in canonical_names_map.values())
@@ -350,21 +416,21 @@ def page_alias_manager():
         ("Virus", entry.get("virus_name", config.get("virus", "unknown"))),
         ("Canonical", len(canonical_names_map)),
         ("Aliases", total_aliases),
-        ("Ignored", len(ignored_existing)),
-        ("Ambiguous", len(ambiguous_existing)),
+        ("Excluded", len(excluded_existing)),
     ])
 
-    tab_registry, tab_alias, tab_ignored, tab_ambiguous, tab_raw = st.tabs([
+    # Always-on health check so config issues are visible without hunting for a Save button.
+    config_warnings = validate_alias_config(config)
+    if config_warnings:
+        with st.expander(f"⚠ {len(config_warnings)} config warning(s)", expanded=False):
+            for warning in config_warnings:
+                st.markdown(f"- {warning}")
+
+    tab_registry, tab_alias, tab_excluded = st.tabs([
         "Registry",
         "Canonical aliases",
-        "Ignored names",
-        "Ambiguous names",
-        "Raw JSON",
+        "Excluded names",
     ])
-
-    deleted_canonicals: List[str] = []
-    edited_ignored_records = [{"ignored_name": name} for name in ignored_existing]
-    edited_ambiguous_records = [{"ambiguous_name": name} for name in ambiguous_existing]
 
     with tab_registry:
         st.caption("Auto-detection uses keywords. Virus name is the display label.")
@@ -386,7 +452,7 @@ def page_alias_manager():
             )
 
         st.markdown("**Detection keywords**")
-        st.caption("Tick keywords to delete them, or add one keyword per line below.")
+        st.caption("Tick keywords to remove them, or add one keyword per line below.")
         selected_keywords = _checkbox_list(
             entry.get("keywords", []),
             key_prefix=f"registry_keyword_select_{config_path}",
@@ -398,7 +464,7 @@ def page_alias_manager():
             )
 
         if st.button(
-            f"Delete selected ({len(selected_keywords)})",
+            f"Remove selected ({len(selected_keywords)})",
             disabled=not selected_keywords,
             key=f"delete_selected_registry_keywords_{config_path}",
         ):
@@ -448,8 +514,8 @@ def page_alias_manager():
 
     with tab_alias:
         st.caption(
-            "Each canonical has its own editor. Tick aliases to delete them immediately, "
-            "or add new aliases and click Save alias config at the bottom."
+            "Each canonical has its own editor. Ticking aliases and adding aliases "
+            "save immediately; deleting a canonical asks for confirmation first."
         )
         search_text = st.text_input(
             "Search canonical or alias",
@@ -457,54 +523,49 @@ def page_alias_manager():
             key=f"alias_manager_search_{config_path}",
         )
 
-        st.markdown("**Add new canonical**")
-        with st.form(f"alias_manager_add_canonical_form_{config_path}", clear_on_submit=True):
-            add_col1, add_col2 = st.columns([2, 3])
-            new_canonical = add_col1.text_input(
-                "Canonical name",
-                value="",
-                key=f"alias_manager_new_canonical_{config_path}",
-            ).strip()
-            new_canonical_aliases = add_col2.text_area(
-                "Initial aliases",
-                value="",
-                height=96,
-                help="Optional. One alias per line.",
-                key=f"alias_manager_new_canonical_aliases_{config_path}",
-            )
-            add_canonical_submitted = st.form_submit_button(
-                "Add canonical",
-                type="primary",
-            )
+        with st.expander("➕ Add new canonical", expanded=False):
+            with st.form(f"alias_manager_add_canonical_form_{config_path}", clear_on_submit=True):
+                add_col1, add_col2 = st.columns([2, 3])
+                new_canonical = add_col1.text_input(
+                    "Canonical name",
+                    value="",
+                    key=f"alias_manager_new_canonical_{config_path}",
+                ).strip()
+                new_canonical_aliases = add_col2.text_area(
+                    "Initial aliases",
+                    value="",
+                    height=96,
+                    help="Optional. One alias per line.",
+                    key=f"alias_manager_new_canonical_aliases_{config_path}",
+                )
+                add_canonical_submitted = st.form_submit_button(
+                    "Add canonical",
+                    type="primary",
+                )
 
-        if add_canonical_submitted:
-            _add_canonical(
-                config_path,
-                config,
-                new_canonical,
-                _split_lines(new_canonical_aliases),
-            )
+            if add_canonical_submitted:
+                _add_canonical(
+                    config_path,
+                    config,
+                    new_canonical,
+                    _split_lines(new_canonical_aliases),
+                )
 
         canonical_names = config.get("canonical_names", {})
         search_norm = normalize_text(search_text)
+        matches = 0
         for canonical in sorted(canonical_names, key=normalize_text):
             aliases = canonical_names.get(canonical, []) or []
             searchable = normalize_text(" ".join([canonical] + aliases))
             if search_norm and search_norm not in searchable:
                 continue
+            matches += 1
 
             should_expand = (
                 bool(search_norm)
                 or st.session_state.get("alias_manager_open_canonical") == canonical
             )
-            with st.expander(f"{canonical} - {len(aliases)} alias(es)", expanded=should_expand):
-                delete_canonical = st.checkbox(
-                    f"Delete canonical `{canonical}`",
-                    value=False,
-                    key=f"delete_canonical_{config_path}_{normalize_text(canonical)}",
-                    help="Removes this canonical and all aliases when you save.",
-                )
-
+            with st.expander(f"{canonical} — {len(aliases)} alias(es)", expanded=should_expand):
                 selected_aliases = _checkbox_list(
                     aliases,
                     key_prefix=f"alias_select_{config_path}_{normalize_text(canonical)}",
@@ -515,17 +576,22 @@ def page_alias_manager():
                         "Selected: " + ", ".join(f"`{alias}`" for alias in selected_aliases)
                     )
 
-                if st.button(
-                    f"Delete selected ({len(selected_aliases)})",
+                action_col, delete_col = st.columns([1, 1])
+                if action_col.button(
+                    f"Remove selected ({len(selected_aliases)})",
                     disabled=not selected_aliases,
                     key=f"delete_selected_aliases_{config_path}_{normalize_text(canonical)}",
+                    width="stretch",
                 ):
                     _delete_aliases(config_path, config, canonical, selected_aliases)
 
-                if delete_canonical:
-                    st.warning(f"`{canonical}` will be deleted on save.")
-                    deleted_canonicals.append(canonical)
-                    continue
+                if delete_col.button(
+                    "Delete canonical",
+                    key=f"delete_canonical_{config_path}_{normalize_text(canonical)}",
+                    help="Removes this canonical and all its aliases (asks for confirmation).",
+                    width="stretch",
+                ):
+                    _confirm_delete_canonical_dialog(config_path, config, canonical)
 
                 with st.form(
                     key=f"alias_add_form_{config_path}_{normalize_text(canonical)}",
@@ -538,9 +604,7 @@ def page_alias_manager():
                         placeholder="One alias per line",
                         key=f"alias_add_{config_path}_{normalize_text(canonical)}",
                     )
-                    add_submitted = st.form_submit_button(
-                        "Add aliases",
-                    )
+                    add_submitted = st.form_submit_button("Add aliases")
 
                 if add_submitted:
                     new_aliases = _split_lines(new_alias_text)
@@ -549,135 +613,83 @@ def page_alias_manager():
                         st.stop()
                     _add_aliases(config_path, config, canonical, new_aliases)
 
-    with tab_ignored:
-        st.caption("Names here are intentionally ignored by automatic alias matching.")
-        selected_ignored = _checkbox_list(
-            ignored_existing,
-            key_prefix=f"ignored_select_{config_path}",
-            empty_message="No ignored names yet.",
-        )
-        if selected_ignored:
-            st.caption("Selected: " + ", ".join(f"`{name}`" for name in selected_ignored))
-        if st.button(
-            f"Delete selected ({len(selected_ignored)})",
-            disabled=not selected_ignored,
-            key=f"delete_selected_ignored_{config_path}",
-        ):
-            _delete_names(config_path, config, "ignored_names", selected_ignored, "ignored name")
+        if search_norm and matches == 0:
+            st.caption("No canonical or alias matches your search.")
 
-        new_ignored_text = st.text_area(
-            "Add ignored names",
-            value="",
-            height=120,
-            placeholder="One ignored name per line",
-            key=f"alias_manager_ignored_add_{config_path}",
+    with tab_excluded:
+        st.caption(
+            "Names here are skipped during automatic alias matching. Use this for "
+            "generic, ambiguous, or unsafe names that should not become reusable aliases."
         )
-        edited_ignored_records = (
-            [{"ignored_name": name} for name in ignored_existing]
-            + [{"ignored_name": name} for name in _split_lines(new_ignored_text)]
+        selected_excluded = _checkbox_list(
+            excluded_existing,
+            key_prefix=f"excluded_select_{config_path}",
+            empty_message="No excluded names yet.",
         )
+        if selected_excluded:
+            st.caption("Selected: " + ", ".join(f"`{name}`" for name in selected_excluded))
+        if st.button(
+            f"Remove selected ({len(selected_excluded)})",
+            disabled=not selected_excluded,
+            key=f"delete_selected_excluded_{config_path}",
+        ):
+            _delete_names(config_path, config, "excluded_names", selected_excluded, "excluded name")
+
+        with st.form(f"alias_manager_excluded_add_form_{config_path}", clear_on_submit=True):
+            new_excluded_text = st.text_area(
+                "Add excluded names",
+                value="",
+                height=120,
+                placeholder="One excluded name per line",
+                key=f"alias_manager_excluded_add_{config_path}",
+            )
+            add_excluded_submitted = st.form_submit_button("Add excluded names", type="primary")
+
+        if add_excluded_submitted:
+            names = _split_lines(new_excluded_text)
+            if not names:
+                st.warning("Add at least one excluded name first.")
+                st.stop()
+            _add_excluded(config_path, config, names)
 
         st.divider()
-        st.markdown("**Move ignored name to alias**")
+        st.markdown("**Move excluded name to alias**")
         canonical_options = sorted(config.get("canonical_names", {}))
         c1, c2, c3 = st.columns([2, 2, 1])
-        ignored_choice = c1.selectbox(
-            "Ignored name",
-            ignored_existing,
-            key=f"move_ignored_name_{config_path}",
-        ) if ignored_existing else None
+        excluded_choice = c1.selectbox(
+            "Excluded name",
+            excluded_existing,
+            key=f"move_excluded_name_{config_path}",
+        ) if excluded_existing else None
         canonical_choice = c2.selectbox(
             "Canonical",
             canonical_options,
-            key=f"move_ignored_canonical_{config_path}",
+            key=f"move_excluded_canonical_{config_path}",
         ) if canonical_options else None
+        c3.markdown("<div style='height: 1.75rem'></div>", unsafe_allow_html=True)
         if c3.button(
             "Move",
-            disabled=not (ignored_choice and canonical_choice),
-            key=f"move_ignored_btn_{config_path}",
+            disabled=not (excluded_choice and canonical_choice),
+            key=f"move_excluded_btn_{config_path}",
+            width="stretch",
         ):
-            updated = move_ignored_to_alias(config, ignored_choice, canonical_choice)
+            updated = move_excluded_to_alias(config, excluded_choice, canonical_choice)
             warnings = validate_alias_config(updated)
             if warnings:
                 st.warning("\n".join(warnings))
             else:
-                backup = manager_save_alias_config(config_path, updated)
-                st.success(
-                    f"Moved `{ignored_choice}` to `{canonical_choice}`. "
-                    f"Backup: {backup.name if backup else 'none'}"
-                )
+                manager_save_alias_config(config_path, updated)
+                _flash(f"Moved {excluded_choice} to {canonical_choice}.")
                 st.rerun()
 
-    with tab_ambiguous:
-        st.caption("Ambiguous names are known shared terms that require user decision per dataset.")
-        selected_ambiguous = _checkbox_list(
-            ambiguous_existing,
-            key_prefix=f"ambiguous_select_{config_path}",
-            empty_message="No ambiguous names yet.",
+    # Advanced: raw config view + export. Not a daily-use surface, so it's collapsed.
+    with st.expander("Advanced — raw JSON & export", expanded=False):
+        st.download_button(
+            "Download alias config (JSON)",
+            data=json.dumps(config, ensure_ascii=False, indent=2),
+            file_name=config_path.name,
+            mime="application/json",
         )
-        if selected_ambiguous:
-            st.caption("Selected: " + ", ".join(f"`{name}`" for name in selected_ambiguous))
-        if st.button(
-            f"Delete selected ({len(selected_ambiguous)})",
-            disabled=not selected_ambiguous,
-            key=f"delete_selected_ambiguous_{config_path}",
-        ):
-            _delete_names(
-                config_path,
-                config,
-                "ambiguous_names",
-                selected_ambiguous,
-                "ambiguous name",
-            )
-
-        new_ambiguous_text = st.text_area(
-            "Add ambiguous names",
-            value="",
-            height=120,
-            placeholder="One ambiguous name per line",
-            key=f"alias_manager_ambiguous_add_{config_path}",
-        )
-        edited_ambiguous_records = (
-            [{"ambiguous_name": name} for name in ambiguous_existing]
-            + [{"ambiguous_name": name} for name in _split_lines(new_ambiguous_text)]
-        )
-
-    with tab_raw:
-        st.json(config)
-
-    st.divider()
-    updated_config = _deepcopy_config(config)
-    for canonical in deleted_canonicals:
-        updated_config.setdefault("canonical_names", {}).pop(canonical, None)
-    updated_config["ignored_names"] = _dedupe_values(
-        row.get("ignored_name")
-        for row in edited_ignored_records
-        if row.get("ignored_name")
-    )
-    updated_config["ambiguous_names"] = _dedupe_values(
-        row.get("ambiguous_name")
-        for row in edited_ambiguous_records
-        if row.get("ambiguous_name")
-    )
-    warnings = validate_alias_config(updated_config)
-    if warnings:
-        st.warning(
-            "Review before saving. These are warnings only; you can still save:\n\n"
-            + "\n".join(f"- {w}" for w in warnings)
-        )
-
-    save_col, reload_col = st.columns([3, 1])
-    if save_col.button(
-        "Save alias config",
-        type="primary",
-        width="stretch",
-    ):
-        try:
-            backup = manager_save_alias_config(config_path, updated_config)
-            st.success(f"Saved `{config_path.name}`. Backup created: `{backup.name if backup else 'none'}`")
+        if st.button("Reload from disk", key=f"alias_manager_reload_{config_path}"):
             st.rerun()
-        except Exception as e:
-            st.error(f"Could not save alias config: {e}")
-
-    if reload_col.button("Reload", width="stretch"):
-        st.rerun()
+        st.json(config)

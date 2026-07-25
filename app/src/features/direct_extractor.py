@@ -43,7 +43,6 @@ def direct_extract_with_alias(
         List of LiftedFeature objects with method="direct". Status values:
         - ok: name resolved and exists in the reference feature set
         - unresolved_name: name was not resolved by the alias lookup
-        - ambiguous_name: name is known ambiguous and needs user resolution
         - not_in_reference: name resolved, but the selected reference lacks it
     """
     if query_feature_type == "mat_peptide":
@@ -58,20 +57,18 @@ def direct_extract_with_alias(
     ref_by_name: Dict[str, Dict] = {f["name"]: f for f in ref_features}
     query_features = _collapse_duplicate_canonicals(query_features, ref_by_name)
 
-    ignored: List[str] = []
+    excluded: List[str] = []
     results: List[LiftedFeature] = []
     for qf in query_features:
-        if qf.get("name_source") == "ignored":
-            ignored.append(qf.get("raw_name") or qf["name"])
+        if qf.get("name_source") in {"excluded", "ignored", "ambiguous"}:
+            excluded.append(qf.get("raw_name") or qf["name"])
             continue
 
         name = qf["name"]
         name_source = qf.get("name_source")
         ref_match = ref_by_name.get(name)
 
-        if name_source == "ambiguous":
-            status = "ambiguous_name"
-        elif alias_lookup and name_source == "raw":
+        if alias_lookup and name_source == "raw":
             status = "unresolved_name"
         elif ref_match is None:
             status = "not_in_reference"
@@ -104,12 +101,12 @@ def direct_extract_with_alias(
             status=status,
         ))
 
-    if ignored:
+    if excluded:
         # Library code must not print directly — route through the shared logger
         # so callers (CLI, UI, other pipelines) control how this surfaces.
         _logger.info(
-            "IGNORED_FEATURES | record=%s | count=%d | names=%s",
-            query_record.id, len(ignored), ignored,
+            "EXCLUDED_FEATURES | record=%s | count=%d | names=%s",
+            query_record.id, len(excluded), excluded,
         )
 
     return results

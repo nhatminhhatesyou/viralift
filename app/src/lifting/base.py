@@ -9,6 +9,8 @@ TBLASTN_STATUSES = (
     "ok",
     "ok_rescued",
     "ok_extrapolated",
+    "ok_no_start_codon",
+    "ok_gap_filled",
     "invalid_boundaries",
     "low_coverage",
     "low_identity",
@@ -19,7 +21,6 @@ TBLASTN_STATUSES = (
 
 DIRECT_STATUSES = (
     "unresolved_name",
-    "ambiguous_name",
     "not_in_reference",
 )
 
@@ -32,6 +33,8 @@ STATUS_META = {
     "ok": {"label": "OK", "category": "pass", "is_pass": True},
     "ok_rescued": {"label": "OK (rescued)", "category": "pass", "is_pass": True},
     "ok_extrapolated": {"label": "OK (extrapolated)", "category": "pass", "is_pass": True},
+    "ok_no_start_codon": {"label": "OK (frameshift / no start codon)", "category": "pass", "is_pass": True},
+    "ok_gap_filled": {"label": "OK (gap-filled from neighbors)", "category": "pass", "is_pass": True},
     "invalid_boundaries": {"label": "Invalid boundaries", "category": "review", "is_pass": False},
     "low_coverage": {"label": "Low coverage", "category": "review", "is_pass": False},
     "low_identity": {"label": "Low identity", "category": "review", "is_pass": False},
@@ -39,7 +42,6 @@ STATUS_META = {
     "no_hit": {"label": "No hit", "category": "review", "is_pass": False},
     "translation_fail": {"label": "Translation fail", "category": "review", "is_pass": False},
     "unresolved_name": {"label": "Unresolved names", "category": "review", "is_pass": False},
-    "ambiguous_name": {"label": "Ambiguous names", "category": "review", "is_pass": False},
     "not_in_reference": {"label": "Not in reference", "category": "pass", "is_pass": True},
 }
 
@@ -84,6 +86,12 @@ class LiftedFeature:
     rescue_target: Optional[str] = None
     rescue_action: Optional[str] = None
 
+    # Diagnostics: raw merged-HSP coordinates (before any rescue/extrapolation) and
+    # how many N-terminal reference residues the HSP failed to align.
+    raw_start: Optional[int] = None
+    raw_end: Optional[int] = None
+    n_term_missing_aa: Optional[int] = None
+
     # Extra engine-specific info
     identity: Optional[float] = None     # tblastn: % identity of best HSP
     score: Optional[float] = None        # tblastn: bit score
@@ -107,6 +115,9 @@ class LiftedFeature:
             "rescue_offset": self.rescue_offset,
             "rescue_target": self.rescue_target,
             "rescue_action": self.rescue_action,
+            "raw_start": self.raw_start,
+            "raw_end": self.raw_end,
+            "n_term_missing_aa": self.n_term_missing_aa,
             "identity": self.identity,
             "score": self.score,
         }

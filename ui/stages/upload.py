@@ -8,7 +8,7 @@ from app.src.io.genbank_parser import load_genbank_records, load_single_genbank
 from app.src.io.run_logger import log_error
 from ui.components import _render_context_panel, _render_page_intro
 from ui.i18n import _t
-from ui.services import _load_ignored_names, _record_metadata_candidates, _save_upload, _scan_unknown_names, _scan_unknown_ref_names, _suggest_virus_name
+from ui.services import _load_excluded_names, _record_metadata_candidates, _save_upload, _scan_unknown_names, _scan_unknown_ref_names, _suggest_virus_name
 from ui.state import REGISTRY_PATH
 
 
@@ -116,9 +116,9 @@ def stage_upload():
                 canonical_list = sorted(set(alias_lookup.values())) if alias_lookup else []
 
                 # scan for unknown names in query records AND in ref
-                ignored = _load_ignored_names(alias_config_path)
-                unknown     = _scan_unknown_names(query_records, alias_lookup, ignored)
-                unknown_ref = _scan_unknown_ref_names(ref_features, ignored)
+                excluded = _load_excluded_names(alias_config_path)
+                unknown     = _scan_unknown_names(query_records, alias_lookup, excluded)
+                unknown_ref = _scan_unknown_ref_names(ref_features, excluded)
             except Exception as e:
                 log_error("loading UI inputs", e)
                 st.error(f"{_t('load_error')}: {e}")

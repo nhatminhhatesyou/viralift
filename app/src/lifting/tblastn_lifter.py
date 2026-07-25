@@ -32,7 +32,12 @@ from Bio import SeqIO
 from Bio.Blast import NCBIXML
 from Bio.SeqRecord import SeqRecord
 
-from app.src.lifting.validator import validate_cds_boundaries, rescue_start_codon, rescue_stop_codon
+from app.src.lifting.validator import (
+    validate_cds_boundaries,
+    rescue_start_codon,
+    rescue_stop_codon,
+    first_inframe_stop_end,
+)
 from app.src.lifting.base import LiftedFeature
 from app.src.io.run_logger import log_error
 
@@ -69,6 +74,21 @@ def ensure_tblastn_available() -> str:
 # ---------------------------------------------------------------------------
 # Translation
 # ---------------------------------------------------------------------------
+
+def ref_starts_with_atg(feature: Dict, ref_record: SeqRecord) -> bool:
+    """Does the reference feature's own CDS begin with an ATG start codon?
+
+    False for features the reference annotates without a canonical start (partial /
+    -1 PRF frameshift genes such as PRRSV ORF1b). Such genes have no ATG to rescue, so
+    the lifter keeps the homology-derived start instead of hunting one. Generic and
+    data-driven: no gene or virus name is referenced.
+    """
+    start, end = feature["start"] - 1, feature["end"]
+    nuc = ref_record.seq[start:end]
+    if feature.get("strand", "+") == "-":
+        nuc = nuc.reverse_complement()
+    return str(nuc[:3]).upper() == "ATG"
+
 
 def translate_feature(feature: Dict, ref_record: SeqRecord) -> Optional[str]:
     """
@@ -118,13 +138,117 @@ def _hsp_to_genome_coords(hsp) -> Tuple[int, int, str]:
         return hsp.sbjct_end, hsp.sbjct_start, "-"
 
 
+# An HSP implies a gene origin: subtract its offset along the reference protein
+# from its genomic position. Real HSPs of one gene agree on that origin; a
+# chance hit elsewhere in the genome does not. Tolerance is proportional to the
+# gene, because a long gene can carry proportionally larger indels. A -1
+# ribosomal frameshift inside a single reference protein (ORF1ab) shifts the
+# origin by exactly 1 bp, far inside this tolerance.
+_ORIGIN_TOLERANCE_FRACTION = 0.10
+_MIN_ORIGIN_TOLERANCE_BP = 150
+
+# Backstop. Viruses have no introns, so a gene occupies roughly ref_len bases.
+_MAX_SPAN_FACTOR = 2.0
+
+
+def _count_n_term_missing_aa(hsps: List, strand: str) -> Optional[int]:
+    """
+    How many N-terminal reference residues no HSP managed to align.
+
+    Diagnostic only. Returns None rather than raising when the HSP objects do
+    not carry the expected coordinate attributes.
+    """
+    try:
+        relevant = [
+            h for h in hsps
+            if (h.sbjct_start <= h.sbjct_end) == (strand == "+")
+        ] or list(hsps)
+        return max(0, min(min(h.query_start, h.query_end) for h in relevant) - 1)
+    except (AttributeError, TypeError, ValueError):
+        return None
+
+
+def _implied_origin(hsp, strand: str) -> int:
+    """Genomic position this HSP implies for the start of the reference protein."""
+    start, end, _ = _hsp_to_genome_coords(hsp)
+    offset = (min(hsp.query_start, hsp.query_end) - 1) * 3
+    return start - offset if strand == "+" else end + offset
+
+
+def _select_collinear_hsps(hsps: List, protein_length: int, strand: str) -> List:
+    """
+    Drop HSPs that are not collinear with the main alignment.
+
+    tblastn is a local aligner, so one gene normally yields several HSPs. It
+    also reports short chance matches elsewhere in the genome. Merging by
+    min(start)/max(end) swallows those, producing a span many times the gene
+    length; the protein-axis coverage check cannot see this because the real
+    HSPs already cover the whole protein.
+
+    Grouping by implied origin separates the two: genuine HSPs agree, outliers
+    do not. Uses only HSP coordinates, bit scores and the reference protein
+    length -- never the query's own annotation.
+    """
+    if len(hsps) <= 1:
+        return hsps
+
+    tolerance = max(
+        _MIN_ORIGIN_TOLERANCE_BP,
+        int(_ORIGIN_TOLERANCE_FRACTION * max(1, protein_length * 3)),
+    )
+    ordered = sorted(((_implied_origin(h, strand), h) for h in hsps), key=lambda p: p[0])
+
+    clusters = [[ordered[0]]]
+    for origin, hsp in ordered[1:]:
+        if origin - clusters[-1][-1][0] <= tolerance:
+            clusters[-1].append((origin, hsp))
+        else:
+            clusters.append([(origin, hsp)])
+
+    if len(clusters) == 1:
+        return hsps
+
+    def cluster_rank(cluster):
+        # Rank by reference protein actually explained, then by total bit
+        # score. Counting HSPs would be wrong: one real gene may produce two
+        # HSPs while noise produces three tiny ones.
+        covered = set()
+        for _, hsp in cluster:
+            lo, hi = sorted((hsp.query_start, hsp.query_end))
+            covered.update(range(lo, hi + 1))
+        return len(covered), sum(hsp.bits for _, hsp in cluster)
+
+    return [hsp for _, hsp in max(clusters, key=cluster_rank)]
+
+
+def _enforce_span_limit(hsps: List, protein_length: int) -> List:
+    """
+    Last-resort guard: shed edge HSPs while the span stays implausibly long.
+
+    Collinearity filtering handles the usual case; this catches leftovers whose
+    implied origins happen to fall within tolerance yet still stretch the span.
+    """
+    limit = max(1, int(protein_length * 3 * _MAX_SPAN_FACTOR))
+    kept = list(hsps)
+    while len(kept) > 1:
+        coords = [_hsp_to_genome_coords(h) for h in kept]
+        low, high = min(c[0] for c in coords), max(c[1] for c in coords)
+        if high - low + 1 <= limit:
+            break
+        edge = [h for h, c in zip(kept, coords) if c[0] == low or c[1] == high]
+        kept.remove(min(edge, key=lambda h: h.bits))
+    return kept
+
+
 def merge_hsps(hsps: List, protein_length: int) -> Tuple[int, int, str, float, float, float]:
     """
     Merge a list of HSPs into a single genomic span.
 
     Strategy:
         - Determine strand from majority vote
-        - Take min(start) and max(end) across all HSPs on that strand
+        - Discard HSPs not collinear with the main alignment, then any
+          remaining outlier that keeps the span implausibly long
+        - Take min(start) and max(end) across the surviving HSPs
         - Compute weighted average identity (by aligned length)
 
     Args:
@@ -145,6 +269,9 @@ def merge_hsps(hsps: List, protein_length: int) -> Tuple[int, int, str, float, f
     relevant = [h for h in hsps if (h.sbjct_start <= h.sbjct_end) == (strand == "+")]
     if not relevant:
         relevant = hsps
+
+    relevant = _select_collinear_hsps(relevant, protein_length, strand) or relevant
+    relevant = _enforce_span_limit(relevant, protein_length) or relevant
 
     coords = [_hsp_to_genome_coords(h) for h in relevant]
     merged_start = min(c[0] for c in coords)
@@ -340,6 +467,11 @@ def run_tblastn_batch(
     return hsps_by_id
 
 
+# Tolerated number of unaligned N-terminal reference residues before we suspect the
+# lifted start sits on an internal ATG and try to recover the true upstream start.
+_N_TERM_TRUST_AA = 3
+
+
 def _build_lifted_from_hsps(
     feature: Dict,
     hsps: List,
@@ -349,6 +481,7 @@ def _build_lifted_from_hsps(
     min_identity: float,
     rescue_window: int,
     validate_codons: bool,
+    ref_has_atg_start: bool = True,
 ) -> LiftedFeature:
     """
     Build a LiftedFeature from already-computed HSPs.
@@ -379,6 +512,12 @@ def _build_lifted_from_hsps(
         hsps,
         protein_length=protein_length,
     )
+    # Diagnostics: raw merged-HSP coords (pre-rescue) + unaligned N-terminal ref
+    # residues. Purely informational, so never let it break a real lift: HSP
+    # objects come from an external parser and may not expose these attributes.
+    base["raw_start"] = q_start
+    base["raw_end"] = q_end
+    base["n_term_missing_aa"] = _count_n_term_missing_aa(hsps, strand)
     n_term_extension = 0
     c_term_extension = 0
     stop_rescue_offset_bp = None
@@ -440,34 +579,129 @@ def _build_lifted_from_hsps(
             score=round(score, 1),
         )
 
+    # A real CDS ends at its FIRST in-frame stop. If the lifted end over-ran that stop
+    # (e.g. ORF1a read past the ORF1a/ORF1b frameshift stop, following a longer reference),
+    # the sequence contains internal stops. Trim the end back to the first in-frame stop.
+    # No-op for genes that already stop correctly, so it never regresses valid CDS.
+    # Only trim when the start is already a valid ATG, so the reading frame is anchored and
+    # the "first in-frame stop" is meaningful (genes whose start still needs rescue are
+    # handled by the start-rescue path below).
+    trim_len = first_inframe_stop_end(seq_str) if seq_str[:3] == "ATG" else None
+    if trim_len is not None and trim_len < len(seq_str):
+        if strand == "+":
+            q_end = q_start + trim_len - 1
+        else:
+            q_start = q_end - trim_len + 1
+        seq_str = extract_sequence(query_record, q_start, q_end, strand)
+
     validation = validate_cds_boundaries(seq_str)
 
-    if validation["valid"]:
-        rescued_by_stop = stop_rescue_offset_bp is not None
+    if not ref_has_atg_start:
+        # The reference feature itself has no ATG start (a -1 PRF / frameshift gene such as
+        # PRRSV ORF1b, annotated partial). There is no canonical start codon to rescue, so
+        # keep the homology-derived (HSP) start -- its coordinates follow the reference's
+        # convention -- instead of hunting an ATG and grabbing a wrong internal one. The end
+        # is still trimmed to the first in-frame stop (a real ORF end). Generic: triggered
+        # only by the reference annotation, no gene/virus name.
+        fs_trim = first_inframe_stop_end(seq_str)
+        if fs_trim is not None and fs_trim < len(seq_str):
+            if strand == "+":
+                q_end = q_start + fs_trim - 1
+            else:
+                q_start = q_end - fs_trim + 1
+            seq_str = extract_sequence(query_record, q_start, q_end, strand)
+            validation = validate_cds_boundaries(seq_str)
         return LiftedFeature(
             **base,
             query_start=q_start, query_end=q_end,
             sequence=seq_str, coverage=round(coverage, 4),
-            status="ok_rescued" if rescued_by_stop else "ok",
+            status="ok_no_start_codon",
+            has_start_codon=validation["has_start_codon"],
+            has_stop_codon=validation["has_stop_codon"],
+            in_frame=validation["in_frame"],
+            identity=round(identity * 100, 1),
+            score=round(score, 1),
+        )
+
+    # N-terminal reference residues the HSP failed to align. Derived ONLY from the
+    # reference-vs-query alignment (HSP query coordinates are positions on the reference
+    # protein), never from the truth annotation -- so this stays leakage-free. A large
+    # value means the lifted start may sit on an INTERNAL in-frame ATG: a truncated CDS
+    # that still validates. In that case we try to recover the true upstream start.
+    missing_n_aa = base.get("n_term_missing_aa") or 0
+
+    n_term_recovery_bp = None
+    if validation["valid"] and missing_n_aa > _N_TERM_TRUST_AA:
+        recovered = rescue_start_codon(
+            query_record, q_start, q_end, strand,
+            max_window=max(rescue_window, missing_n_aa * 3 + 30),
+            expected_length=protein_length * 3 + 3,
+        )
+        if recovered:
+            r_start, r_end, r_seq, r_offset = recovered
+            r_val = validate_cds_boundaries(r_seq)
+            expected = protein_length * 3 + 3
+            # adopt the recovered start only if it is a valid CDS AND lands closer to the
+            # reference-implied length (i.e. it genuinely restores the missing N-terminus,
+            # rather than swapping one wrong start for another)
+            if r_val["valid"] and abs(len(r_seq) - expected) < abs(len(seq_str) - expected):
+                q_start, q_end, seq_str, validation = r_start, r_end, r_seq, r_val
+                n_term_recovery_bp = r_offset
+
+    if validation["valid"]:
+        rescued = (stop_rescue_offset_bp is not None) or (n_term_recovery_bp is not None)
+        actions = []
+        if n_term_recovery_bp is not None:
+            actions.append(f"start {n_term_recovery_bp:+d} bp (N-term)")
+        if stop_rescue_offset_bp is not None:
+            actions.append(f"stop +{stop_rescue_offset_bp} bp")
+        return LiftedFeature(
+            **base,
+            query_start=q_start, query_end=q_end,
+            sequence=seq_str, coverage=round(coverage, 4),
+            status="ok_rescued" if rescued else "ok",
             has_start_codon=True, has_stop_codon=True,
             in_frame=validation["in_frame"],
-            rescue_offset=stop_rescue_offset_bp,
-            rescue_target="stop" if rescued_by_stop else None,
-            rescue_action=(
-                f"stop +{stop_rescue_offset_bp} bp"
-                if rescued_by_stop else None
+            rescue_offset=(n_term_recovery_bp if n_term_recovery_bp is not None else stop_rescue_offset_bp),
+            rescue_target=(
+                "start+stop" if (n_term_recovery_bp is not None and stop_rescue_offset_bp is not None)
+                else "start" if n_term_recovery_bp is not None
+                else "stop" if stop_rescue_offset_bp is not None else None
             ),
+            rescue_action="; ".join(actions) if actions else None,
             identity=round(identity * 100, 1),
             score=round(score, 1),
         )
 
     if not validation["has_start_codon"]:
+        # When the HSP left the N-terminus unaligned (a divergent front), the true start
+        # is ~missing_n_aa codons UPSTREAM of the lifted start. Anchor the ATG search
+        # there so we recover it, instead of grabbing a downstream internal ATG (which
+        # is what happens if we search around the HSP start). Uses only the ref-vs-query
+        # alignment (missing_n_aa), never the truth annotation -> leakage-free.
+        anchor_start, anchor_end = q_start, q_end
+        search_window = rescue_window
+        if missing_n_aa > _N_TERM_TRUST_AA:
+            # Anchor on the RAW HSP coordinates. A stop-rescue ran earlier from the
+            # (truncated) HSP start and may have extended the end downstream; scoring the
+            # start against that extended end biases toward the internal ATG. The raw HSP
+            # end reflects the true ORF extent, so the upstream true start wins. After the
+            # start is recovered, the stop is re-checked/rescued below.
+            raw_s = base.get("raw_start") or q_start
+            raw_e = base.get("raw_end") or q_end
+            if strand == "+":
+                anchor_start = max(1, raw_s - missing_n_aa * 3)
+                anchor_end = raw_e
+            else:
+                anchor_end = min(len(query_record.seq), raw_e + missing_n_aa * 3)
+                anchor_start = raw_s
+            search_window = missing_n_aa * 3 + 30
         rescued = rescue_start_codon(
             query_record,
-            q_start,
-            q_end,
+            anchor_start,
+            anchor_end,
             strand,
-            max_window=rescue_window,
+            max_window=search_window,
             expected_length=protein_length * 3 + 3,
         )
         if rescued:
@@ -514,6 +748,51 @@ def _build_lifted_from_hsps(
         identity=round(identity * 100, 1),
         score=round(score, 1),
     )
+
+
+def _fill_contiguous_gaps(
+    results: List[LiftedFeature],
+    ref_features: List[Dict],
+    query_record: SeqRecord,
+) -> List[LiftedFeature]:
+    """Recover a feature that failed to lift by placing it in the gap between its nearest
+    successfully-lifted neighbours -- but only when the REFERENCE annotates the features
+    contiguously (a polyprotein: each feature touches the next, ref_end == next ref_start - 1).
+
+    Mature peptides of a polyprotein are contiguous with no gaps, so a peptide too short or
+    divergent for tblastn to hit (e.g. FMDV 2A, 18 aa) is bounded exactly by its neighbours.
+    Uses only lifted-neighbour coordinates + the reference ordering -- never the truth
+    annotation (leakage-free). Generic: any contiguous polyprotein, no gene/virus name.
+    """
+    FAIL = {"no_hit", "low_coverage", "low_identity", "low_coverage_and_identity", "translation_fail"}
+    by_ref_end = {rf.get("end"): i for i, rf in enumerate(ref_features)}
+    by_ref_start = {rf.get("start"): i for i, rf in enumerate(ref_features)}
+    for i, lf in enumerate(results):
+        if lf.query_start is not None and lf.query_end is not None:
+            continue
+        if lf.status not in FAIL:
+            continue
+        rf = ref_features[i]
+        if rf.get("strand", "+") != "+":
+            continue  # + strand polyproteins; - strand handled by the normal path
+        li = by_ref_end.get(rf.get("start", 0) - 1)          # ref neighbour ending just before
+        ri = by_ref_start.get(rf.get("end", 0) + 1)          # ref neighbour starting just after
+        if li is None or ri is None:
+            continue
+        left, right = results[li], results[ri]
+        if left.query_end is None or right.query_start is None:
+            continue
+        new_start, new_end = left.query_end + 1, right.query_start - 1
+        if new_start > new_end:
+            continue
+        ref_len = rf["end"] - rf["start"] + 1
+        if not (0.5 * ref_len <= (new_end - new_start + 1) <= 1.5 * ref_len):
+            continue  # gap implausibly sized vs the reference peptide -> leave as failed
+        lf.query_start, lf.query_end = new_start, new_end
+        lf.sequence = extract_sequence(query_record, new_start, new_end, "+")
+        lf.coverage = 1.0
+        lf.status = "ok_gap_filled"
+    return results
 
 
 def lift_all_tblastn(
@@ -598,8 +877,13 @@ def lift_all_tblastn(
             min_identity=min_identity,
             rescue_window=rescue_window,
             validate_codons=validate_codons,
+            ref_has_atg_start=ref_starts_with_atg(feature, ref_record),
         ))
 
+    # Post-process: recover features that failed to lift (e.g. peptides too short for
+    # tblastn) from the gap between contiguous, successfully-lifted neighbours in a
+    # polyprotein. No-op unless the reference annotates features contiguously.
+    results = _fill_contiguous_gaps(results, ref_features, query_record)
     return results
 
 

@@ -36,7 +36,7 @@ def test_scan_unknown_names_skips_feature_resolved_by_semicolon_candidate():
     unknown = _scan_unknown_names(
         query_records=[record],
         alias_lookup=alias_lookup,
-        ignored_names=set(),
+        excluded_names=set(),
     )
 
     assert unknown == {}
@@ -51,7 +51,7 @@ def test_scan_unknown_names_keeps_feature_when_semicolon_candidate_is_unresolved
     unknown = _scan_unknown_names(
         query_records=[record],
         alias_lookup={},
-        ignored_names=set(),
+        excluded_names=set(),
     )
 
     assert unknown == {

@@ -145,7 +145,7 @@ def _alias_review_schema() -> Dict:
                         "review_id": {"type": "string"},
                         "recommendation": {
                             "type": "string",
-                            "enum": ["save_alias", "ignore", "skip", "move_to_ambiguous"],
+                            "enum": ["save_alias", "ignore", "skip"],
                         },
                         "canonical_name": {"type": ["string", "null"]},
                         "confidence": {

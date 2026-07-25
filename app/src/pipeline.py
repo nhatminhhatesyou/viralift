@@ -55,7 +55,16 @@ def run_pipeline(
         if progress_callback is not None:
             progress_callback(index - 1, total, query_record.id)
 
-        strategy, query_feature_type = get_strategy(query_record, alias_lookup)
+        # The reference defines the working level for the whole run. A query
+        # that happens to carry mature-peptide annotations must not silently
+        # switch level on its own: the resulting genes would have no reference
+        # counterpart, so asking for a gene like ORF5 across a corpus would
+        # return it for every record except that one.
+        strategy, query_feature_type = get_strategy(
+            query_record,
+            alias_lookup,
+            allowed_types=(ref_feature_type,) if ref_feature_type else None,
+        )
 
         try:
             if strategy == "direct":

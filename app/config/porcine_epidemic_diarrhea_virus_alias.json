@@ -1,0 +1,90 @@
+{
+  "virus": "Porcine epidemic diarrhea virus",
+  "notes": "Bootstrapped from reference feature names. Query aliases were added only after coordinate-supported user approval. | Validation pass: sM/small membrane protein moved to E (sM is a synonym of the coronavirus envelope protein, confirmed by literature and by genome position S-ORF3-E-M-N); full-replicase-span names (POL1/ORF1/polyprotein 1a/1b) mapped to ORF1ab; nsp*/RdRp/leader are mat_peptide sub-parts of ORF1ab and are excluded.",
+  "excluded_names": [
+    "101-bp deletion results in frameshift and premature termination",
+    "formerly known as growth-factor-like protein",
+    "gene",
+    "HNZK1",
+    "hypothetical protein",
+    "open reading frame",
+    "orf",
+    "polyprotein",
+    "protein",
+    "putative coronavirus nsp1",
+    "putative coronavirus nsp10 (MB, NTPase/HEL)",
+    "putative coronavirus nsp11",
+    "putative coronavirus nsp12",
+    "putative coronavirus nsp13",
+    "putative coronavirus nsp2 (3CL-PRO)",
+    "putative coronavirus nsp3 (HD2)",
+    "putative coronavirus nsp4",
+    "putative coronavirus nsp5",
+    "putative coronavirus nsp6",
+    "putative leader protein",
+    "putative protein",
+    "RNA-dependent RNA polymerase",
+    "truncated hypothetical protein",
+    "unknown",
+    "unknown protein",
+    "viral protein"
+  ],
+  "canonical_names": {
+    "ORF1a": [
+      "ORF1A",
+      "ORF1a polyprotein",
+      "ORF1a protein",
+      "polyprotein 1a"
+    ],
+    "ORF1b": [
+      "ORF1B",
+      "ORF1b polyprotein",
+      "polyprotein 1b"
+    ],
+    "S": [
+      "spike protein",
+      "S protein",
+      "spike glycoprotein"
+    ],
+    "ORF3": [
+      "ORF3 protein",
+      "ORF3; showed unexpected variability in cell culture-adapted virus",
+      "accessory protein 3a",
+      "mp",
+      "accessory membrane protein"
+    ],
+    "E": [
+      "E protein",
+      "envelope protein",
+      "sM",
+      "sM protein",
+      "small membrane protein"
+    ],
+    "M": [
+      "M protein",
+      "membrane protein"
+    ],
+    "N": [
+      "N protein",
+      "nucleocapsid protein",
+      "nucleoprotein"
+    ],
+    "ORF1ab": [
+      "ORF1a/1b polyprotein",
+      "contains ORF1a and ORF1b",
+      "ORF1a/1b",
+      "ORF1a/b",
+      "polyprotein 1ab",
+      "ORF 1a/1b",
+      "polyprotein ORF 1a/1b",
+      "ORF1ab polyprotein",
+      "ORF1ab protein",
+      "POL1",
+      "Pol1",
+      "ORF1",
+      "polyprotein 1a/1b",
+      "1a polyprotein and 1b polyprotein",
+      "replicase polyprotein"
+    ]
+  }
+}

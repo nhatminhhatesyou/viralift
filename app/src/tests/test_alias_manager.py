@@ -139,8 +139,9 @@ def test_apply_approved_alias_suggestions_creates_backup(tmp_path):
 
     saved = json.loads(config_path.read_text(encoding="utf-8"))
     assert saved["canonical_names"]["A"] == ["alpha"]
-    assert saved["ignored_names"] == ["ignored label"]
-    assert saved["ambiguous_names"] == ["shared label"]
+    assert saved["excluded_names"] == ["ignored label", "shared label"]
+    assert "ignored_names" not in saved
+    assert "ambiguous_names" not in saved
     backups = list((tmp_path / "backups").glob("virus_alias.*.json"))
     assert len(backups) == 1
 
@@ -153,10 +154,10 @@ def test_seed_alias_config_does_not_ignore_contextual_descriptions():
         virus_name="Test virus",
     )
 
-    ignored = set(config["ignored_names"])
-    assert "unknown" in ignored
-    assert "hypothetical protein" in ignored
-    assert "envelope protein" not in ignored
-    assert "membrane protein" not in ignored
-    assert "glycoprotein" not in ignored
-    assert "polyprotein" not in ignored
+    excluded = set(config["excluded_names"])
+    assert "unknown" in excluded
+    assert "hypothetical protein" in excluded
+    assert "envelope protein" not in excluded
+    assert "membrane protein" not in excluded
+    assert "glycoprotein" not in excluded
+    assert "polyprotein" not in excluded

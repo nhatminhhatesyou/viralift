@@ -45,7 +45,7 @@ def _score_feature_type(
 
     Higher is better. Alias-resolved names dominate raw names so a smaller set
     of recognised gene-level annotations is preferred over many unknown labels.
-    Ignored or ambiguous names count against the feature level.
+    Excluded names count against the feature level.
     """
     features = _parse_features_for_type(record, feature_type)
     if not features:
@@ -53,7 +53,7 @@ def _score_feature_type(
 
     from app.src.alias.gene_alias import apply_alias_to_feature
 
-    resolved_count = raw_count = ignored_or_ambiguous_count = 0
+    resolved_count = raw_count = excluded_count = 0
     for feature in features:
         resolved = apply_alias_to_feature(feature, alias_lookup)
         name_source = resolved.get("name_source")
@@ -61,15 +61,16 @@ def _score_feature_type(
             resolved_count += 1
         elif name_source == "raw":
             raw_count += 1
-        elif name_source in ("ignored", "ambiguous"):
-            ignored_or_ambiguous_count += 1
+        elif name_source in ("excluded", "ignored", "ambiguous"):
+            excluded_count += 1
 
-    return (resolved_count * 100) + raw_count - ignored_or_ambiguous_count
+    return (resolved_count * 100) + raw_count - excluded_count
 
 
 def select_feature_type(
     record: SeqRecord,
     alias_lookup: Optional[Dict] = None,
+    allowed_types: Optional[Tuple[str, ...]] = None,
 ) -> Optional[str]:
     """
     Choose which feature level (CDS or mat_peptide) to use for a record.
@@ -83,21 +84,30 @@ def select_feature_type(
     Args:
         record:       A Biopython SeqRecord.
         alias_lookup: Optional {normalised_name: canonical} dict.
+        allowed_types: Restrict the choice to these levels. Callers pass the
+            reference's own level so a query cannot switch to a level the
+            reference does not describe.
 
     Returns:
         "mat_peptide", "CDS", or None.
     """
+    candidates = allowed_types or ("mat_peptide", "CDS")
+
     if alias_lookup:
         scores = {
-            "mat_peptide": _score_feature_type(record, "mat_peptide", alias_lookup),
-            "CDS":         _score_feature_type(record, "CDS",         alias_lookup),
+            name: _score_feature_type(record, name, alias_lookup)
+            for name in candidates
         }
+        if not scores:
+            return None
         best_type, best_score = max(scores.items(), key=lambda x: x[1])
         return best_type if best_score > 0 else None
 
     # No alias lookup — existence check with polyprotein-shell guard.
-    if parse_mat_peptides(record):
+    if "mat_peptide" in candidates and parse_mat_peptides(record):
         return "mat_peptide"
+    if "CDS" not in candidates:
+        return None
     cds_list = parse_cds_features(record)
     if not cds_list:
         return None
@@ -111,6 +121,7 @@ def select_feature_type(
 def get_strategy(
     query_record: SeqRecord,
     alias_lookup: Optional[Dict] = None,
+    allowed_types: Optional[Tuple[str, ...]] = None,
 ) -> Tuple[Literal["direct", "tblastn"], Optional[str]]:
     """
     Decide whether to use direct extraction or tblastn lifting for a query record.
@@ -127,7 +138,7 @@ def get_strategy(
         ("direct", feature_type) — query has usable gene-level annotation.
         ("tblastn", None)        — query lacks annotation; lift from reference.
     """
-    feature_type = select_feature_type(query_record, alias_lookup)
+    feature_type = select_feature_type(query_record, alias_lookup, allowed_types)
     if feature_type is None:
         return "tblastn", None
     return "direct", feature_type
