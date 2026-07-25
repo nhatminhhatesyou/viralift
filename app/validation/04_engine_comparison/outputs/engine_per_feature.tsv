@@ -1,0 +1,841 @@
+virus	record_id	method	pred_name	source_name	pred_start	pred_end	strand	status	coverage	identity	score	truth_name	truth_start	truth_end	best_overlap_name	best_iou	iou	name_match	coord_correct	exact_match	failure_mode
+PRRS	OL771206.1	tblastn	ORF1a		190.0	7803.0	+	ok	1.0	81.2	4097.7				ORF1ab	0.6353	0.0	False	False	False	Possible overlap
+PRRS	OL771206.1	tblastn	ORF1b		7788.0	12173.0	+	invalid_boundaries	1.0	94.9	2910.2				ORF1ab	0.366	0.0	False	False	False	Possible overlap
+PRRS	OL771206.1	tblastn	ORF2a		12175.0	12945.0	+	ok	0.9961	87.5	451.1	ORF2a	12175.0	12945.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	OL771206.1	tblastn	ORF2b		12180.0	12401.0	+	ok	1.0	87.7	131.3				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	OL771206.1	tblastn	ORF3		12798.0	13562.0	+	ok	1.0	83.9	450.3	ORF3	12798.0	13562.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	OL771206.1	tblastn	ORF4		13343.0	13879.0	+	ok	1.0	88.8	331.3	ORF4	13343.0	13879.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	OL771206.1	tblastn	ORF5		13880.0	14482.0	+	ok	1.0	84.5	355.1	ORF5	13880.0	14482.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	OL771206.1	tblastn	ORF6		14467.0	14991.0	+	ok	1.0	91.4	310.5	ORF6	14467.0	14991.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	OL771206.1	tblastn	ORF7		14981.0	15352.0	+	ok	0.9431	92.2	228.4	ORF7	14981.0	15352.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	OL771206.1	minimap2	ORF1a	polyprotein 1a	3997.0	7803.0	+	low_coverage	0.5068						ORF1ab	0.3177	0.0	False	False	False	Possible overlap
+PRRS	OL771206.1	minimap2	ORF1b	polyprotein 1b	7788.0	12173.0	+	invalid_boundaries	1.0						ORF1ab	0.366	0.0	False	False	False	Possible overlap
+PRRS	OL771206.1	minimap2	ORF2a	glycosylated membrane protein	12175.0	12945.0	+	ok	1.0			ORF2a	12175.0	12945.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	OL771206.1	minimap2	ORF2b	envelope protein	12180.0	12401.0	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	OL771206.1	minimap2	ORF3	glycosylated membrane protein GP3	12798.0	13562.0	+	ok	1.0			ORF3	12798.0	13562.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	OL771206.1	minimap2	ORF4	glycosylated membrane protein GP4	13343.0	13879.0	+	ok	1.0			ORF4	13343.0	13879.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	OL771206.1	minimap2	ORF5	glycosylated membrane protein GP5	13880.0	14482.0	+	ok	1.0			ORF5	13880.0	14482.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	OL771206.1	minimap2	ORF6	unglycosylated membrane protein M	14467.0	14991.0	+	ok	1.0			ORF6	14467.0	14991.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	OL771206.1	minimap2	ORF7	nucleocapsid protein N	14981.0	15352.0	+	ok	1.0			ORF7	14981.0	15352.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	ON462046.1	tblastn	ORF1a		189.0	7793.0	+	ok	1.0	80.1	4033.8	ORF1a	189.0	7793.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	ON462046.1	tblastn	ORF1b		7778.0	12163.0	+	ok	1.0	95.6	2934.4	ORF1b	7775.0	12163.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	ON462046.1	tblastn	ORF2a		12165.0	12935.0	+	ok	0.9961	89.0	466.1	ORF2a	12165.0	12935.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	ON462046.1	tblastn	ORF2b		12170.0	12391.0	+	ok	1.0	89.0	131.7				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	ON462046.1	tblastn	ORF3		12788.0	13552.0	+	ok	1.0	87.8	469.9	ORF3	12788.0	13552.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	ON462046.1	tblastn	ORF4		13333.0	13869.0	+	ok	1.0	88.2	328.2	ORF4	13333.0	13869.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	ON462046.1	tblastn	ORF5		13880.0	14482.0	+	ok	1.0	83.5	346.3	ORF5	13880.0	14482.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	ON462046.1	tblastn	ORF6		14467.0	14991.0	+	ok	1.0	96.6	350.5	ORF6	14467.0	14991.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	ON462046.1	tblastn	ORF7		14981.0	15352.0	+	ok	0.9919	90.2	211.8	ORF7	14981.0	15352.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	ON462046.1	minimap2	ORF1a	polyprotein 1a	3987.0	7793.0	+	low_coverage	0.5068			ORF1a	189.0	7793.0	ORF1a	0.5006	0.5006	True	False	False	Wrong coords
+PRRS	ON462046.1	minimap2	ORF1b	polyprotein 1b	7778.0	12163.0	+	ok	1.0			ORF1b	7775.0	12163.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	ON462046.1	minimap2	ORF2a	glycosylated membrane protein	12165.0	12935.0	+	ok	1.0			ORF2a	12165.0	12935.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	ON462046.1	minimap2	ORF2b	envelope protein	12170.0	12391.0	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	ON462046.1	minimap2	ORF3	glycosylated membrane protein GP3	12788.0	13552.0	+	ok	1.0			ORF3	12788.0	13552.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	ON462046.1	minimap2	ORF4	glycosylated membrane protein GP4	13333.0	13869.0	+	ok	1.0			ORF4	13333.0	13869.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	ON462046.1	minimap2	ORF5	glycosylated membrane protein GP5	13880.0	14482.0	+	ok	1.0			ORF5	13880.0	14482.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	ON462046.1	minimap2	ORF6	unglycosylated membrane protein M	14467.0	14991.0	+	ok	1.0			ORF6	14467.0	14991.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	ON462046.1	minimap2	ORF7	nucleocapsid protein N	14981.0	15352.0	+	ok	1.0			ORF7	14981.0	15352.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	PV366449.1	tblastn	ORF1a		191.0	7804.0	+	ok	1.0	79.9	4043.0	ORF1a	191.0	7804.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	PV366449.1	tblastn	ORF1b		7789.0	12174.0	+	invalid_boundaries	1.0	95.3	2923.7	ORF1b	7792.0	12174.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	PV366449.1	tblastn	ORF2a		12176.0	12943.0	+	ok	0.9961	87.5	456.4	ORF2a	12176.0	12943.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	PV366449.1	tblastn	ORF2b		12181.0	12402.0	+	ok	1.0	90.4	134.8				ORF2a	0.2891	0.0	False	False	False	Possible overlap
+PRRS	PV366449.1	tblastn	ORF3		12799.0	13563.0	+	ok	1.0	87.0	471.9	ORF3	12799.0	13563.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	PV366449.1	tblastn	ORF4		13344.0	13880.0	+	ok	1.0	88.8	334.0	ORF4	13344.0	13880.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	PV366449.1	tblastn	ORF5		13891.0	14493.0	+	ok	1.0	79.5	327.0	ORF5	13891.0	14493.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	PV366449.1	tblastn	ORF6		14478.0	15002.0	+	ok	1.0	94.3	319.3	ORF6	14478.0	15002.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	PV366449.1	tblastn	ORF7		14992.0	15363.0	+	ok	1.0	88.6	230.7	ORF7	14992.0	15363.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	PV366449.1	minimap2	ORF1a	polyprotein 1a			+	unmapped	0.0			ORF1a	191.0	7804.0		0.0	0.0	True	False	False	Not lifted
+PRRS	PV366449.1	minimap2	ORF1b	polyprotein 1b	8620.0	9515.0	+	low_coverage	0.2043			ORF1b	7792.0	12174.0	ORF1b	0.2044	0.2044	True	False	False	Wrong coords
+PRRS	PV366449.1	minimap2	ORF2a	glycosylated membrane protein			+	unmapped	0.0			ORF2a	12176.0	12943.0		0.0	0.0	True	False	False	Not lifted
+PRRS	PV366449.1	minimap2	ORF2b	envelope protein			+	unmapped	0.0							0.0	0.0	False	False	False	Not lifted
+PRRS	PV366449.1	minimap2	ORF3	glycosylated membrane protein GP3			+	unmapped	0.0			ORF3	12799.0	13563.0		0.0	0.0	True	False	False	Not lifted
+PRRS	PV366449.1	minimap2	ORF4	glycosylated membrane protein GP4			+	unmapped	0.0			ORF4	13344.0	13880.0		0.0	0.0	True	False	False	Not lifted
+PRRS	PV366449.1	minimap2	ORF5	glycosylated membrane protein GP5			+	unmapped	0.0			ORF5	13891.0	14493.0		0.0	0.0	True	False	False	Not lifted
+PRRS	PV366449.1	minimap2	ORF6	unglycosylated membrane protein M			+	unmapped	0.0			ORF6	14478.0	15002.0		0.0	0.0	True	False	False	Not lifted
+PRRS	PV366449.1	minimap2	ORF7	nucleocapsid protein N			+	unmapped	0.0			ORF7	14992.0	15363.0		0.0	0.0	True	False	False	Not lifted
+PRRS	PX625953.1	tblastn	ORF1a		191.0	7810.0	+	ok	1.0	90.0	4545.7	ORF1a	191.0	7810.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	PX625953.1	tblastn	ORF1b		7795.0	12180.0	+	invalid_boundaries	1.0	98.1	2982.6	ORF1b	7789.0	12180.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	PX625953.1	tblastn	ORF2a		12205.0	12975.0	+	ok	0.9961	93.3	492.7	ORF2a	12205.0	12975.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	PX625953.1	tblastn	ORF2b		12210.0	12431.0	+	ok	1.0	93.2	134.8				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	PX625953.1	tblastn	ORF3		12828.0	13592.0	+	ok	1.0	88.2	476.1	ORF3	12828.0	13592.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	PX625953.1	tblastn	ORF4		13373.0	13909.0	+	ok	1.0	92.1	339.7	ORF4	13373.0	13909.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	PX625953.1	tblastn	ORF5		13920.0	14522.0	+	ok	0.995	86.9	357.8	ORF5	13920.0	14522.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	PX625953.1	tblastn	ORF6		14507.0	15031.0	+	ok	1.0	96.6	348.6	ORF6	14507.0	15031.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	PX625953.1	tblastn	ORF7		15064.0	15392.0	+	ok_rescued	0.8618	96.2	215.3	ORF7	15021.0	15392.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	PX625953.1	minimap2	ORF1a	polyprotein 1a			+	unmapped	0.0			ORF1a	191.0	7810.0		0.0	0.0	True	False	False	Not lifted
+PRRS	PX625953.1	minimap2	ORF1b	polyprotein 1b	8426.0	12180.0	+	ok_rescued	0.8564			ORF1b	7789.0	12180.0	ORF1b	0.855	0.855	True	False	False	Wrong coords
+PRRS	PX625953.1	minimap2	ORF2a	glycosylated membrane protein	12205.0	12958.0	+	invalid_boundaries	0.978			ORF2a	12205.0	12975.0	ORF2a	0.978	0.978	True	True	False	Boundary offset
+PRRS	PX625953.1	minimap2	ORF2b	envelope protein	12210.0	12431.0	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	PX625953.1	minimap2	ORF3	glycosylated membrane protein GP3	12828.0	12958.0	+	low_coverage	0.1712			ORF3	12828.0	13592.0	ORF3	0.1712	0.1712	True	False	False	Wrong coords
+PRRS	PX625953.1	minimap2	ORF4	glycosylated membrane protein GP4			+	unmapped	0.0			ORF4	13373.0	13909.0		0.0	0.0	True	False	False	Not lifted
+PRRS	PX625953.1	minimap2	ORF5	glycosylated membrane protein GP5			+	unmapped	0.0			ORF5	13920.0	14522.0		0.0	0.0	True	False	False	Not lifted
+PRRS	PX625953.1	minimap2	ORF6	unglycosylated membrane protein M			+	unmapped	0.0			ORF6	14507.0	15031.0		0.0	0.0	True	False	False	Not lifted
+PRRS	PX625953.1	minimap2	ORF7	nucleocapsid protein N			+	unmapped	0.0			ORF7	15021.0	15392.0		0.0	0.0	True	False	False	Not lifted
+PRRS	AF331831.1	tblastn	ORF1a		191.0	7699.0	+	ok	1.0	99.2	5087.3				ORF1b	1.0	0.0	False	False	False	Alias/name gap
+PRRS	AF331831.1	tblastn	ORF1b		7684.0	12069.0	+	invalid_boundaries	1.0	99.8	3030.0	ORF1b	191.0	7699.0	ORF1b	0.9986	0.0013	True	False	False	Wrong coords
+PRRS	AF331831.1	tblastn	ORF2a		12071.0	12841.0	+	ok	1.0	99.2	521.9	ORF2a	12071.0	12841.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	tblastn	ORF2b		12076.0	12297.0	+	ok	1.0	97.3	140.2	ORF2b	13786.0	14388.0	ORF2a	0.2879	0.0	True	False	False	Wrong coords
+PRRS	AF331831.1	tblastn	ORF3		12694.0	13458.0	+	ok	1.0	98.8	523.1	ORF3	12694.0	13458.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	tblastn	ORF4		13239.0	13775.0	+	ok	1.0	98.9	363.6	ORF4	13239.0	13775.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	tblastn	ORF5		13786.0	14388.0	+	ok	1.0	97.5	399.8				ORF2b	1.0	0.0	False	False	False	Alias/name gap
+PRRS	AF331831.1	tblastn	ORF6		14373.0	14897.0	+	ok	1.0	100.0	357.5	ORF6	14373.0	14897.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	tblastn	ORF7		14887.0	15258.0	+	ok	1.0	99.2	254.6	ORF7	14887.0	15258.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	minimap2	ORF1a	polyprotein 1a	191.0	7699.0	+	ok	0.9996						ORF1b	1.0	0.0	False	False	False	Alias/name gap
+PRRS	AF331831.1	minimap2	ORF1b	polyprotein 1b	7684.0	12069.0	+	invalid_boundaries	1.0			ORF1b	191.0	7699.0	ORF1b	0.9986	0.0013	True	False	False	Wrong coords
+PRRS	AF331831.1	minimap2	ORF2a	glycosylated membrane protein	12071.0	12841.0	+	ok	1.0			ORF2a	12071.0	12841.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	minimap2	ORF2b	envelope protein	12076.0	12297.0	+	ok	1.0			ORF2b	13786.0	14388.0	ORF2a	0.2879	0.0	True	False	False	Wrong coords
+PRRS	AF331831.1	minimap2	ORF3	glycosylated membrane protein GP3	12694.0	13458.0	+	ok	1.0			ORF3	12694.0	13458.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	minimap2	ORF4	glycosylated membrane protein GP4	13239.0	13775.0	+	ok	1.0			ORF4	13239.0	13775.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	minimap2	ORF5	glycosylated membrane protein GP5	13786.0	14388.0	+	ok	1.0						ORF2b	1.0	0.0	False	False	False	Alias/name gap
+PRRS	AF331831.1	minimap2	ORF6	unglycosylated membrane protein M	14373.0	14897.0	+	ok	1.0			ORF6	14373.0	14897.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	minimap2	ORF7	nucleocapsid protein N	14887.0	15258.0	+	ok	1.0			ORF7	14887.0	15258.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	tblastn	ORF1a		192.0	7685.0	+	ok	1.0	88.4	4425.2	ORF1a	192.0	7685.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	tblastn	ORF1b		7670.0	12055.0	+	invalid_boundaries	1.0	97.4	2975.3	ORF1b	7673.0	12055.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	AF494042.1	tblastn	ORF2a		12057.0	12827.0	+	ok	0.9961	94.1	490.3	ORF2a	12057.0	12827.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	tblastn	ORF2b		12062.0	12283.0	+	ok	1.0	90.4	131.7				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AF494042.1	tblastn	ORF3		12680.0	13444.0	+	ok	1.0	90.9	487.6	ORF3	12680.0	13444.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	tblastn	ORF4		13225.0	13761.0	+	ok	1.0	92.1	338.6	ORF4	13225.0	13761.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	tblastn	ORF5		13772.0	14374.0	+	ok	0.995	91.5	366.7	ORF5	13772.0	14374.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	tblastn	ORF6		14359.0	14883.0	+	ok	1.0	98.3	353.6	ORF6	14359.0	14883.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	tblastn	ORF7		14873.0	15244.0	+	ok	1.0	95.9	247.3	ORF7	14873.0	15244.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	minimap2	ORF1a	polyprotein 1a			+	unmapped	0.0			ORF1a	192.0	7685.0		0.0	0.0	True	False	False	Not lifted
+PRRS	AF494042.1	minimap2	ORF1b	polyprotein 1b	11576.0	12055.0	+	low_coverage	0.1094			ORF1b	7673.0	12055.0	ORF1b	0.1095	0.1095	True	False	False	Wrong coords
+PRRS	AF494042.1	minimap2	ORF2a	glycosylated membrane protein	12057.0	12827.0	+	ok	1.0			ORF2a	12057.0	12827.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	minimap2	ORF2b	envelope protein	12062.0	12283.0	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AF494042.1	minimap2	ORF3	glycosylated membrane protein GP3	12680.0	13230.0	+	low_coverage	0.7203			ORF3	12680.0	13444.0	ORF3	0.7203	0.7203	True	False	False	Wrong coords
+PRRS	AF494042.1	minimap2	ORF4	glycosylated membrane protein GP4	13225.0	13230.0	+	low_coverage	0.0112			ORF4	13225.0	13761.0	ORF4	0.0112	0.0112	True	False	False	Wrong coords
+PRRS	AF494042.1	minimap2	ORF5	glycosylated membrane protein GP5			+	unmapped	0.0			ORF5	13772.0	14374.0		0.0	0.0	True	False	False	Not lifted
+PRRS	AF494042.1	minimap2	ORF6	unglycosylated membrane protein M			+	unmapped	0.0			ORF6	14359.0	14883.0		0.0	0.0	True	False	False	Not lifted
+PRRS	AF494042.1	minimap2	ORF7	nucleocapsid protein N			+	unmapped	0.0			ORF7	14873.0	15244.0		0.0	0.0	True	False	False	Not lifted
+PRRS	AF176348.2	tblastn	ORF1a		190.0	7701.0	+	ok	1.0	98.9	5079.2	ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	tblastn	ORF1b		7686.0	12071.0	+	invalid_boundaries	1.0	99.5	3023.0	ORF1b	7680.0	12071.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	AF176348.2	tblastn	ORF2a		12073.0	12843.0	+	ok	1.0	97.7	514.2	ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	tblastn	ORF2b		12078.0	12299.0	+	ok	1.0	97.3	139.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AF176348.2	tblastn	ORF3		12696.0	13460.0	+	ok	1.0	98.4	520.8	ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	tblastn	ORF4		13241.0	13777.0	+	ok	1.0	97.8	359.0	ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	tblastn	ORF5		13788.0	14390.0	+	ok	1.0	97.0	393.7	ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	tblastn	ORF6		14375.0	14899.0	+	ok	1.0	98.9	354.0	ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	tblastn	ORF7		14889.0	15260.0	+	ok	1.0	99.2	254.6	ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	minimap2	ORF1a	polyprotein 1a	190.0	7701.0	+	ok	1.0			ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	minimap2	ORF1b	polyprotein 1b	7686.0	12071.0	+	invalid_boundaries	1.0			ORF1b	7680.0	12071.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	AF176348.2	minimap2	ORF2a	glycosylated membrane protein	12073.0	12843.0	+	ok	1.0			ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	minimap2	ORF2b	envelope protein	12078.0	12299.0	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AF176348.2	minimap2	ORF3	glycosylated membrane protein GP3	12696.0	13460.0	+	ok	1.0			ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	minimap2	ORF4	glycosylated membrane protein GP4	13241.0	13777.0	+	ok	1.0			ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	minimap2	ORF5	glycosylated membrane protein GP5	13788.0	14390.0	+	ok	1.0			ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	minimap2	ORF6	unglycosylated membrane protein M	14375.0	14899.0	+	ok	1.0			ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	minimap2	ORF7	nucleocapsid protein N	14889.0	15260.0	+	ok	1.0			ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	tblastn	ORF1a		190.0	7701.0	+	ok	1.0	86.5	4315.4	ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	tblastn	ORF1b		7686.0	12071.0	+	invalid_boundaries	1.0	96.5	2945.6	ORF1b	7689.0	12071.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	AY150312.1	tblastn	ORF2a		12073.0	12843.0	+	ok	1.0	93.0	489.6	ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	tblastn	ORF2b		12078.0	12299.0	+	ok	0.9863	88.9	130.2				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY150312.1	tblastn	ORF3		12696.0	13460.0	+	ok	1.0	90.2	481.5	ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	tblastn	ORF4		13241.0	13777.0	+	ok	1.0	91.6	339.0	ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	tblastn	ORF5		13788.0	14390.0	+	ok	0.995	87.9	360.9	ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	tblastn	ORF6		14375.0	14899.0	+	ok	1.0	97.7	351.3				ORF5	0.0144	0.0	False	False	False	Possible overlap
+PRRS	AY150312.1	tblastn	ORF7		14889.0	15260.0	+	ok	1.0	95.9	247.7					0.0	0.0	False	False	False	Not in truth
+PRRS	AY150312.1	minimap2	ORF1a	polyprotein 1a	3941.0	7701.0	+	low_coverage	0.5007			ORF1a	190.0	7701.0	ORF1a	0.5007	0.5007	True	False	False	Wrong coords
+PRRS	AY150312.1	minimap2	ORF1b	polyprotein 1b	7686.0	12071.0	+	invalid_boundaries	1.0			ORF1b	7689.0	12071.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	AY150312.1	minimap2	ORF2a	glycosylated membrane protein	12073.0	12843.0	+	ok	1.0			ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	minimap2	ORF2b	envelope protein	12078.0	12299.0	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY150312.1	minimap2	ORF3	glycosylated membrane protein GP3	12696.0	13460.0	+	ok	1.0			ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	minimap2	ORF4	glycosylated membrane protein GP4	13241.0	13777.0	+	ok	1.0			ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	minimap2	ORF5	glycosylated membrane protein GP5	13788.0	14390.0	+	ok	1.0			ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	minimap2	ORF6	unglycosylated membrane protein M	14375.0	14899.0	+	ok	1.0						ORF5	0.0144	0.0	False	False	False	Possible overlap
+PRRS	AY150312.1	minimap2	ORF7	nucleocapsid protein N	14889.0	15260.0	+	ok	1.0							0.0	0.0	False	False	False	Not in truth
+PRRS	DQ779791.1	tblastn	ORF1a		191.0	7810.0	+	ok	1.0	90.1	4576.5	ORF1a	191.0	7797.0	ORF1a	0.9983	0.9983	True	True	False	Boundary offset
+PRRS	DQ779791.1	tblastn	ORF1b		7795.0	12180.0	+	invalid_boundaries	1.0	98.4	2997.2	ORF1b	7870.0	12180.0	ORF1b	0.9829	0.9829	True	True	False	Boundary offset
+PRRS	DQ779791.1	tblastn	ORF2a		12182.0	12952.0	+	ok	0.9961	93.7	495.4	ORF2a	12182.0	12952.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	tblastn	ORF2b		12187.0	12408.0	+	ok	1.0	93.2	134.8				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ779791.1	tblastn	ORF3		12805.0	13569.0	+	ok	1.0	88.6	481.1	ORF3	12805.0	13569.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	tblastn	ORF4		13350.0	13886.0	+	ok	1.0	91.6	339.0	ORF4	13350.0	13886.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	tblastn	ORF5		13897.0	14499.0	+	ok	1.0	92.0	378.3	ORF5	13897.0	14499.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	tblastn	ORF6		14484.0	15008.0	+	ok	1.0	96.6	349.4	ORF6	14484.0	15008.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	tblastn	ORF7		14998.0	15369.0	+	ok	1.0	97.6	250.0	ORF7	14998.0	15369.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	minimap2	ORF1a	polyprotein 1a	6458.0	7810.0	+	low_coverage	0.1801			ORF1a	191.0	7797.0	ORF1a	0.1759	0.1759	True	False	False	Wrong coords
+PRRS	DQ779791.1	minimap2	ORF1b	polyprotein 1b	7795.0	12180.0	+	invalid_boundaries	1.0			ORF1b	7870.0	12180.0	ORF1b	0.9829	0.9829	True	True	False	Boundary offset
+PRRS	DQ779791.1	minimap2	ORF2a	glycosylated membrane protein	12182.0	12952.0	+	ok	1.0			ORF2a	12182.0	12952.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	minimap2	ORF2b	envelope protein	12187.0	12408.0	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ779791.1	minimap2	ORF3	glycosylated membrane protein GP3	12805.0	12996.0	+	low_coverage	0.251			ORF3	12805.0	13569.0	ORF3	0.251	0.251	True	False	False	Wrong coords
+PRRS	DQ779791.1	minimap2	ORF4	glycosylated membrane protein GP4			+	unmapped	0.0			ORF4	13350.0	13886.0		0.0	0.0	True	False	False	Not lifted
+PRRS	DQ779791.1	minimap2	ORF5	glycosylated membrane protein GP5			+	unmapped	0.0			ORF5	13897.0	14499.0		0.0	0.0	True	False	False	Not lifted
+PRRS	DQ779791.1	minimap2	ORF6	unglycosylated membrane protein M			+	unmapped	0.0			ORF6	14484.0	15008.0		0.0	0.0	True	False	False	Not lifted
+PRRS	DQ779791.1	minimap2	ORF7	nucleocapsid protein N			+	unmapped	0.0			ORF7	14998.0	15369.0		0.0	0.0	True	False	False	Not lifted
+PRRS	GQ914997.1	tblastn	ORF1a		191.0	7702.0	+	ok	1.0	98.6	5060.4				ORF1b	0.0003	0.0	False	False	False	Possible overlap
+PRRS	GQ914997.1	tblastn	ORF1b		7687.0	12072.0	+	invalid_boundaries	1.0	99.9	3032.7	ORF1b	7699.0	12072.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	GQ914997.1	tblastn	ORF2a		12074.0	12844.0	+	ok	1.0	100.0	525.0	ORF2a	12074.0	12844.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	GQ914997.1	tblastn	ORF2b		12079.0	12300.0	+	ok	1.0	97.3	140.2				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	GQ914997.1	tblastn	ORF3		12697.0	13461.0	+	ok	1.0	99.2	525.0	ORF3	12697.0	13461.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	GQ914997.1	tblastn	ORF4		13242.0	13778.0	+	ok	1.0	100.0	365.2	ORF4	13242.0	13778.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	GQ914997.1	tblastn	ORF5		13789.0	14391.0	+	ok	1.0	98.0	402.5	ORF5	13789.0	14391.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	GQ914997.1	tblastn	ORF6		14376.0	14900.0	+	ok	1.0	100.0	357.5	ORF6	14376.0	14900.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	GQ914997.1	tblastn	ORF7		14890.0	15261.0	+	ok	1.0	99.2	254.6	ORF7	14890.0	15261.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	GQ914997.1	minimap2	ORF1a	polyprotein 1a	7175.0	7702.0	+	low_coverage	0.0703						ORF1b	0.0008	0.0	False	False	False	Possible overlap
+PRRS	GQ914997.1	minimap2	ORF1b	polyprotein 1b	7687.0	12072.0	+	invalid_boundaries	1.0			ORF1b	7699.0	12072.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	GQ914997.1	minimap2	ORF2a	glycosylated membrane protein	12074.0	12844.0	+	ok	1.0			ORF2a	12074.0	12844.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	GQ914997.1	minimap2	ORF2b	envelope protein	12079.0	12300.0	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	GQ914997.1	minimap2	ORF3	glycosylated membrane protein GP3	12697.0	13461.0	+	ok	1.0			ORF3	12697.0	13461.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	GQ914997.1	minimap2	ORF4	glycosylated membrane protein GP4	13242.0	13778.0	+	ok	1.0			ORF4	13242.0	13778.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	GQ914997.1	minimap2	ORF5	glycosylated membrane protein GP5	13789.0	14391.0	+	ok	1.0			ORF5	13789.0	14391.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	GQ914997.1	minimap2	ORF6	unglycosylated membrane protein M	14376.0	14900.0	+	ok	1.0			ORF6	14376.0	14900.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	GQ914997.1	minimap2	ORF7	nucleocapsid protein N	14890.0	15261.0	+	ok	1.0			ORF7	14890.0	15261.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	JN662424.1	tblastn	ORF1a		191.0	7804.0	+	ok	1.0	82.1	4129.7	ORF1a	191.0	7804.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	JN662424.1	tblastn	ORF1b		7789.0	12174.0	+	invalid_boundaries	1.0	98.5	2997.2	ORF1b	7801.0	12174.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	JN662424.1	tblastn	ORF2a		12176.0	12946.0	+	ok	0.9961	89.0	465.3	ORF2a	12176.0	12946.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	JN662424.1	tblastn	ORF2b		12181.0	12402.0	+	ok	1.0	90.4	132.1				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	JN662424.1	tblastn	ORF3		12799.0	13563.0	+	ok	1.0	85.0	458.0	ORF3	12799.0	13563.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	JN662424.1	tblastn	ORF4		13344.0	13880.0	+	ok	1.0	87.6	327.8	ORF4	13344.0	13880.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	JN662424.1	tblastn	ORF5		13891.0	14493.0	+	ok	1.0	82.0	342.0	ORF5	13891.0	14493.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	JN662424.1	tblastn	ORF6		14478.0	15002.0	+	ok	1.0	96.0	348.2	ORF6	14478.0	15002.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	JN662424.1	tblastn	ORF7		14992.0	15363.0	+	ok	0.9837	90.9	200.3	ORF7	14992.0	15363.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	JN662424.1	minimap2	ORF1a	polyprotein 1a	7316.0	7804.0	+	low_coverage	0.0651			ORF1a	191.0	7804.0	ORF1a	0.0642	0.0642	True	False	False	Wrong coords
+PRRS	JN662424.1	minimap2	ORF1b	polyprotein 1b	7789.0	11105.0	+	low_coverage	0.7563			ORF1b	7801.0	12174.0	ORF1b	0.7535	0.7535	True	False	False	Wrong coords
+PRRS	JN662424.1	minimap2	ORF2a	glycosylated membrane protein			+	unmapped	0.0			ORF2a	12176.0	12946.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JN662424.1	minimap2	ORF2b	envelope protein			+	unmapped	0.0							0.0	0.0	False	False	False	Not lifted
+PRRS	JN662424.1	minimap2	ORF3	glycosylated membrane protein GP3			+	unmapped	0.0			ORF3	12799.0	13563.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JN662424.1	minimap2	ORF4	glycosylated membrane protein GP4			+	unmapped	0.0			ORF4	13344.0	13880.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JN662424.1	minimap2	ORF5	glycosylated membrane protein GP5			+	unmapped	0.0			ORF5	13891.0	14493.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JN662424.1	minimap2	ORF6	unglycosylated membrane protein M			+	unmapped	0.0			ORF6	14478.0	15002.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JN662424.1	minimap2	ORF7	nucleocapsid protein N			+	unmapped	0.0			ORF7	14992.0	15363.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JQ308798.1	tblastn	ORF1a		191.0	7804.0	+	ok	1.0	81.5	4106.2	ORF1a	191.0	7804.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	JQ308798.1	tblastn	ORF1b		7789.0	12174.0	+	invalid_boundaries	1.0	95.8	2932.9	ORF1b	7801.0	12174.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	JQ308798.1	tblastn	ORF2a		12176.0	12946.0	+	ok	0.9961	89.4	468.4	ORF2a	12176.0	12946.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	JQ308798.1	tblastn	ORF2b		12181.0	12402.0	+	ok	1.0	90.4	132.1				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	JQ308798.1	tblastn	ORF3		12799.0	13563.0	+	ok	1.0	85.8	462.2	ORF3	12799.0	13563.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	JQ308798.1	tblastn	ORF4		13344.0	13880.0	+	ok	1.0	88.2	328.6	ORF4	13344.0	13880.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	JQ308798.1	tblastn	ORF5		13891.0	14493.0	+	ok	1.0	81.5	341.3	ORF5	13891.0	14493.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	JQ308798.1	tblastn	ORF6		14478.0	15002.0	+	ok	1.0	96.0	347.4	ORF6	14478.0	15002.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	JQ308798.1	tblastn	ORF7		14992.0	15363.0	+	ok	0.9837	95.0	241.9	ORF7	14992.0	15363.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	JQ308798.1	minimap2	ORF1a	polyprotein 1a			+	unmapped	0.0			ORF1a	191.0	7804.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JQ308798.1	minimap2	ORF1b	polyprotein 1b			+	unmapped	0.0			ORF1b	7801.0	12174.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JQ308798.1	minimap2	ORF2a	glycosylated membrane protein			+	unmapped	0.0			ORF2a	12176.0	12946.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JQ308798.1	minimap2	ORF2b	envelope protein			+	unmapped	0.0							0.0	0.0	False	False	False	Not lifted
+PRRS	JQ308798.1	minimap2	ORF3	glycosylated membrane protein GP3			+	unmapped	0.0			ORF3	12799.0	13563.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JQ308798.1	minimap2	ORF4	glycosylated membrane protein GP4			+	unmapped	0.0			ORF4	13344.0	13880.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JQ308798.1	minimap2	ORF5	glycosylated membrane protein GP5			+	unmapped	0.0			ORF5	13891.0	14493.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JQ308798.1	minimap2	ORF6	unglycosylated membrane protein M	14687.0	15002.0	+	low_coverage	0.6019			ORF6	14478.0	15002.0	ORF6	0.6019	0.6019	True	False	False	Wrong coords
+PRRS	JQ308798.1	minimap2	ORF7	nucleocapsid protein N	14992.0	15363.0	+	ok	1.0			ORF7	14992.0	15363.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	JQ743666.1	tblastn	ORF1a		191.0	7804.0	+	ok	1.0	81.5	4106.2	ORF1a	191.0	7804.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	JQ743666.1	tblastn	ORF1b		7789.0	12174.0	+	invalid_boundaries	1.0	95.8	2932.9	ORF1b	7792.0	12174.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	JQ743666.1	tblastn	ORF2a		12176.0	12946.0	+	ok	0.9961	89.4	468.4	ORF2a	12176.0	12946.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	JQ743666.1	tblastn	ORF2b		12181.0	12402.0	+	ok	1.0	90.4	132.1				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	JQ743666.1	tblastn	ORF3		12799.0	13563.0	+	ok	1.0	85.8	462.2	ORF3	12799.0	13563.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	JQ743666.1	tblastn	ORF4		13344.0	13880.0	+	ok	1.0	88.2	328.6	ORF4	13344.0	13880.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	JQ743666.1	tblastn	ORF5		13891.0	14493.0	+	ok	1.0	81.5	341.3	ORF5	13891.0	14493.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	JQ743666.1	tblastn	ORF6		14478.0	15002.0	+	ok	1.0	96.0	347.4	ORF6	14478.0	15002.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	JQ743666.1	tblastn	ORF7		14992.0	15363.0	+	ok	0.9837	95.0	241.9	ORF7	14992.0	15363.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	JQ743666.1	minimap2	ORF1a	polyprotein 1a			+	unmapped	0.0			ORF1a	191.0	7804.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JQ743666.1	minimap2	ORF1b	polyprotein 1b			+	unmapped	0.0			ORF1b	7792.0	12174.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JQ743666.1	minimap2	ORF2a	glycosylated membrane protein			+	unmapped	0.0			ORF2a	12176.0	12946.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JQ743666.1	minimap2	ORF2b	envelope protein			+	unmapped	0.0							0.0	0.0	False	False	False	Not lifted
+PRRS	JQ743666.1	minimap2	ORF3	glycosylated membrane protein GP3			+	unmapped	0.0			ORF3	12799.0	13563.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JQ743666.1	minimap2	ORF4	glycosylated membrane protein GP4			+	unmapped	0.0			ORF4	13344.0	13880.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JQ743666.1	minimap2	ORF5	glycosylated membrane protein GP5			+	unmapped	0.0			ORF5	13891.0	14493.0		0.0	0.0	True	False	False	Not lifted
+PRRS	JQ743666.1	minimap2	ORF6	unglycosylated membrane protein M	14687.0	15002.0	+	low_coverage	0.6019			ORF6	14478.0	15002.0	ORF6	0.6019	0.6019	True	False	False	Wrong coords
+PRRS	JQ743666.1	minimap2	ORF7	nucleocapsid protein N	14992.0	15363.0	+	ok	1.0			ORF7	14992.0	15363.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	MN073127.1	tblastn	ORF1a		191.0	7810.0	+	ok	1.0	90.2	4572.3	ORF1a	191.0	7810.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	MN073127.1	tblastn	ORF1b		7795.0	12180.0	+	invalid_boundaries	1.0	98.6	3004.5	ORF1b	7792.0	12180.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	MN073127.1	tblastn	ORF2a		12205.0	12975.0	+	ok	0.9961	93.3	495.4	ORF2a	12205.0	12975.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	MN073127.1	tblastn	ORF2b		12210.0	12431.0	+	ok	1.0	93.2	134.8				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	MN073127.1	tblastn	ORF3		12828.0	13592.0	+	ok	0.9528	88.8	462.6	ORF3	12828.0	13592.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	MN073127.1	tblastn	ORF4		13373.0	13909.0	+	ok	1.0	91.6	334.7	ORF4	13373.0	13909.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	MN073127.1	tblastn	ORF5		13920.0	14522.0	+	ok	1.0	84.5	350.9	ORF5	13920.0	14522.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	MN073127.1	tblastn	ORF6		14507.0	15031.0	+	ok	1.0	95.4	345.1	ORF6	14507.0	15031.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	MN073127.1	tblastn	ORF7		15021.0	15392.0	+	ok	1.0	94.3	212.2	ORF7	15021.0	15392.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	MN073127.1	minimap2	ORF1a	polyprotein 1a	6458.0	7810.0	+	low_coverage	0.1801			ORF1a	191.0	7810.0	ORF1a	0.1776	0.1776	True	False	False	Wrong coords
+PRRS	MN073127.1	minimap2	ORF1b	polyprotein 1b	7795.0	12180.0	+	invalid_boundaries	1.0			ORF1b	7792.0	12180.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	MN073127.1	minimap2	ORF2a	glycosylated membrane protein	12205.0	12958.0	+	invalid_boundaries	0.978			ORF2a	12205.0	12975.0	ORF2a	0.978	0.978	True	True	False	Boundary offset
+PRRS	MN073127.1	minimap2	ORF2b	envelope protein	12210.0	12431.0	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	MN073127.1	minimap2	ORF3	glycosylated membrane protein GP3	12828.0	12958.0	+	low_coverage	0.1712			ORF3	12828.0	13592.0	ORF3	0.1712	0.1712	True	False	False	Wrong coords
+PRRS	MN073127.1	minimap2	ORF4	glycosylated membrane protein GP4			+	unmapped	0.0			ORF4	13373.0	13909.0		0.0	0.0	True	False	False	Not lifted
+PRRS	MN073127.1	minimap2	ORF5	glycosylated membrane protein GP5			+	unmapped	0.0			ORF5	13920.0	14522.0		0.0	0.0	True	False	False	Not lifted
+PRRS	MN073127.1	minimap2	ORF6	unglycosylated membrane protein M			+	unmapped	0.0			ORF6	14507.0	15031.0		0.0	0.0	True	False	False	Not lifted
+PRRS	MN073127.1	minimap2	ORF7	nucleocapsid protein N			+	unmapped	0.0			ORF7	15021.0	15392.0		0.0	0.0	True	False	False	Not lifted
+PRRS	MN073128.1	tblastn	ORF1a		175.0	7794.0	+	ok	1.0	90.3	4571.5	ORF1a	175.0	7794.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	MN073128.1	tblastn	ORF1b		7779.0	12164.0	+	invalid_boundaries	1.0	98.8	3005.3	ORF1b	7776.0	12164.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	MN073128.1	tblastn	ORF2a		12166.0	12936.0	+	ok	0.9961	92.5	490.3	ORF2a	12166.0	12936.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	MN073128.1	tblastn	ORF2b		12171.0	12392.0	+	ok	1.0	93.2	134.8				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	MN073128.1	tblastn	ORF3		12789.0	13553.0	+	ok	1.0	88.2	477.2	ORF3	12789.0	13553.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	MN073128.1	tblastn	ORF4		13334.0	13870.0	+	ok	1.0	92.1	340.9	ORF4	13334.0	13870.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	MN073128.1	tblastn	ORF5		13881.0	14483.0	+	ok	1.0	92.5	380.6	ORF5	13881.0	14483.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	MN073128.1	tblastn	ORF6		14468.0	14992.0	+	ok	1.0	96.6	349.4	ORF6	14468.0	14992.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	MN073128.1	tblastn	ORF7		14982.0	15353.0	+	ok	1.0	97.6	250.0	ORF7	14982.0	15353.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	MN073128.1	minimap2	ORF1a	polyprotein 1a	6442.0	7794.0	+	low_coverage	0.1801			ORF1a	175.0	7794.0	ORF1a	0.1776	0.1776	True	False	False	Wrong coords
+PRRS	MN073128.1	minimap2	ORF1b	polyprotein 1b	7779.0	12164.0	+	invalid_boundaries	1.0			ORF1b	7776.0	12164.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	MN073128.1	minimap2	ORF2a	glycosylated membrane protein	12166.0	12936.0	+	ok	1.0			ORF2a	12166.0	12936.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	MN073128.1	minimap2	ORF2b	envelope protein	12171.0	12392.0	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	MN073128.1	minimap2	ORF3	glycosylated membrane protein GP3	12789.0	12980.0	+	low_coverage	0.251			ORF3	12789.0	13553.0	ORF3	0.251	0.251	True	False	False	Wrong coords
+PRRS	MN073128.1	minimap2	ORF4	glycosylated membrane protein GP4			+	unmapped	0.0			ORF4	13334.0	13870.0		0.0	0.0	True	False	False	Not lifted
+PRRS	MN073128.1	minimap2	ORF5	glycosylated membrane protein GP5			+	unmapped	0.0			ORF5	13881.0	14483.0		0.0	0.0	True	False	False	Not lifted
+PRRS	MN073128.1	minimap2	ORF6	unglycosylated membrane protein M			+	unmapped	0.0			ORF6	14468.0	14992.0		0.0	0.0	True	False	False	Not lifted
+PRRS	MN073128.1	minimap2	ORF7	nucleocapsid protein N			+	unmapped	0.0			ORF7	14982.0	15353.0		0.0	0.0	True	False	False	Not lifted
+PRRS	MN073129.1	tblastn	ORF1a		191.0	7810.0	+	ok	1.0	90.3	4571.5	ORF1a	191.0	7810.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	MN073129.1	tblastn	ORF1b		7795.0	12180.0	+	invalid_boundaries	1.0	98.8	3005.3	ORF1b	7792.0	12180.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	MN073129.1	tblastn	ORF2a		12182.0	12952.0	+	ok	0.9961	92.5	490.3	ORF2a	12182.0	12952.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	MN073129.1	tblastn	ORF2b		12187.0	12408.0	+	ok	1.0	93.2	134.8				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	MN073129.1	tblastn	ORF3		12805.0	13569.0	+	ok	1.0	88.2	477.2	ORF3	12805.0	13569.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	MN073129.1	tblastn	ORF4		13350.0	13886.0	+	ok	1.0	92.1	340.9	ORF4	13350.0	13886.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	MN073129.1	tblastn	ORF5		13897.0	14499.0	+	ok	1.0	92.5	380.6	ORF5	13897.0	14499.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	MN073129.1	tblastn	ORF6		14484.0	15008.0	+	ok	1.0	96.6	349.4	ORF6	14484.0	15008.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	MN073129.1	tblastn	ORF7		14998.0	15369.0	+	ok	1.0	97.6	250.0	ORF7	14998.0	15369.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	MN073129.1	minimap2	ORF1a	polyprotein 1a	6458.0	7810.0	+	low_coverage	0.1801			ORF1a	191.0	7810.0	ORF1a	0.1776	0.1776	True	False	False	Wrong coords
+PRRS	MN073129.1	minimap2	ORF1b	polyprotein 1b	7795.0	12180.0	+	invalid_boundaries	1.0			ORF1b	7792.0	12180.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	MN073129.1	minimap2	ORF2a	glycosylated membrane protein	12182.0	12952.0	+	ok	1.0			ORF2a	12182.0	12952.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	MN073129.1	minimap2	ORF2b	envelope protein	12187.0	12408.0	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	MN073129.1	minimap2	ORF3	glycosylated membrane protein GP3	12805.0	12996.0	+	low_coverage	0.251			ORF3	12805.0	13569.0	ORF3	0.251	0.251	True	False	False	Wrong coords
+PRRS	MN073129.1	minimap2	ORF4	glycosylated membrane protein GP4			+	unmapped	0.0			ORF4	13350.0	13886.0		0.0	0.0	True	False	False	Not lifted
+PRRS	MN073129.1	minimap2	ORF5	glycosylated membrane protein GP5			+	unmapped	0.0			ORF5	13897.0	14499.0		0.0	0.0	True	False	False	Not lifted
+PRRS	MN073129.1	minimap2	ORF6	unglycosylated membrane protein M			+	unmapped	0.0			ORF6	14484.0	15008.0		0.0	0.0	True	False	False	Not lifted
+PRRS	MN073129.1	minimap2	ORF7	nucleocapsid protein N			+	unmapped	0.0			ORF7	14998.0	15369.0		0.0	0.0	True	False	False	Not lifted
+PRRS	MK780824.1	tblastn	ORF1a		189.0	7733.0	+	ok	1.0	79.6	4028.0	ORF1a	189.0	7733.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	MK780824.1	tblastn	ORF1b		7718.0	12103.0	+	invalid_boundaries	1.0	95.6	2923.7				ORF1ab	0.9973	0.0	False	False	False	Alias/name gap
+PRRS	MK780824.1	tblastn	ORF2a		12105.0	12875.0	+	ok	0.9961	87.8	459.5	ORF2a	12105.0	12875.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	MK780824.1	tblastn	ORF2b		12110.0	12331.0	+	ok	1.0	90.4	132.1				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	MK780824.1	tblastn	ORF3		12728.0	13492.0	+	ok	1.0	85.4	458.4	ORF3	12728.0	13492.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	MK780824.1	tblastn	ORF4		13273.0	13809.0	+	ok	1.0	88.2	316.2	ORF4	13273.0	13809.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	MK780824.1	tblastn	ORF5		13820.0	14422.0	+	ok	0.995	79.9	333.2	ORF5	13820.0	14422.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	MK780824.1	tblastn	ORF6		14407.0	14931.0	+	ok	1.0	94.8	322.8	ORF6	14407.0	14931.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	MK780824.1	tblastn	ORF7		14921.0	15292.0	+	ok	0.9837	93.4	207.2	ORF7	14921.0	15292.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	MK780824.1	minimap2	ORF1a	polyprotein 1a	3906.0	7733.0	+	low_coverage	0.5096			ORF1a	189.0	7733.0	ORF1a	0.5074	0.5074	True	False	False	Wrong coords
+PRRS	MK780824.1	minimap2	ORF1b	polyprotein 1b	7718.0	12103.0	+	invalid_boundaries	1.0						ORF1ab	0.9973	0.0	False	False	False	Alias/name gap
+PRRS	MK780824.1	minimap2	ORF2a	glycosylated membrane protein	12105.0	12875.0	+	ok	1.0			ORF2a	12105.0	12875.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	MK780824.1	minimap2	ORF2b	envelope protein	12110.0	12331.0	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	MK780824.1	minimap2	ORF3	glycosylated membrane protein GP3	12728.0	13492.0	+	ok	1.0			ORF3	12728.0	13492.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	MK780824.1	minimap2	ORF4	glycosylated membrane protein GP4	13273.0	13809.0	+	ok	1.0			ORF4	13273.0	13809.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	MK780824.1	minimap2	ORF5	glycosylated membrane protein GP5	13820.0	14422.0	+	ok	1.0			ORF5	13820.0	14422.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	MK780824.1	minimap2	ORF6	unglycosylated membrane protein M	14407.0	14931.0	+	ok	1.0			ORF6	14407.0	14931.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	MK780824.1	minimap2	ORF7	nucleocapsid protein N	14921.0	15292.0	+	ok	1.0			ORF7	14921.0	15292.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	OL439476.1	tblastn	ORF1a		191.0	7804.0	+	ok	1.0	80.0	4094.7	ORF1a	191.0	7804.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	OL439476.1	tblastn	ORF1b		7789.0	12174.0	+	invalid_boundaries	1.0	95.4	2921.3	ORF1b	7792.0	12174.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	OL439476.1	tblastn	ORF2a		12176.0	12946.0	+	ok	0.9961	85.9	449.1	ORF2a	12176.0	12946.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	OL439476.1	tblastn	ORF2b		12181.0	12402.0	+	ok	1.0	90.4	133.7				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	OL439476.1	tblastn	ORF3		12799.0	13563.0	+	ok	1.0	87.0	473.4	ORF3	12799.0	13563.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	OL439476.1	tblastn	ORF4		13344.0	13880.0	+	ok	1.0	89.3	334.0	ORF4	13344.0	13880.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	OL439476.1	tblastn	ORF5		13891.0	14493.0	+	ok	1.0	79.5	329.3	ORF5	13891.0	14493.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	OL439476.1	tblastn	ORF6		14478.0	15002.0	+	ok	1.0	94.8	321.2	ORF6	14478.0	15002.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	OL439476.1	tblastn	ORF7		14992.0	15363.0	+	ok	1.0	88.6	230.7	ORF7	14992.0	15363.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	OL439476.1	minimap2	ORF1a	polyprotein 1a			+	unmapped	0.0			ORF1a	191.0	7804.0		0.0	0.0	True	False	False	Not lifted
+PRRS	OL439476.1	minimap2	ORF1b	polyprotein 1b	8620.0	9515.0	+	low_coverage	0.2043			ORF1b	7792.0	12174.0	ORF1b	0.2044	0.2044	True	False	False	Wrong coords
+PRRS	OL439476.1	minimap2	ORF2a	glycosylated membrane protein			+	unmapped	0.0			ORF2a	12176.0	12946.0		0.0	0.0	True	False	False	Not lifted
+PRRS	OL439476.1	minimap2	ORF2b	envelope protein			+	unmapped	0.0							0.0	0.0	False	False	False	Not lifted
+PRRS	OL439476.1	minimap2	ORF3	glycosylated membrane protein GP3			+	unmapped	0.0			ORF3	12799.0	13563.0		0.0	0.0	True	False	False	Not lifted
+PRRS	OL439476.1	minimap2	ORF4	glycosylated membrane protein GP4			+	unmapped	0.0			ORF4	13344.0	13880.0		0.0	0.0	True	False	False	Not lifted
+PRRS	OL439476.1	minimap2	ORF5	glycosylated membrane protein GP5			+	unmapped	0.0			ORF5	13891.0	14493.0		0.0	0.0	True	False	False	Not lifted
+PRRS	OL439476.1	minimap2	ORF6	unglycosylated membrane protein M			+	unmapped	0.0			ORF6	14478.0	15002.0		0.0	0.0	True	False	False	Not lifted
+PRRS	OL439476.1	minimap2	ORF7	nucleocapsid protein N			+	unmapped	0.0			ORF7	14992.0	15363.0		0.0	0.0	True	False	False	Not lifted
+PRRS	OM201187.1	tblastn	ORF1a		171.0	7778.0	+	ok	1.0	80.6	4070.8	ORF1a	171.0	7778.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	OM201187.1	tblastn	ORF1b		7763.0	12148.0	+	invalid_boundaries	1.0	95.5	2926.3	ORF1b	7772.0	12148.0	ORF1b	0.9979	0.9979	True	True	False	Boundary offset
+PRRS	OM201187.1	tblastn	ORF2a		12150.0	12920.0	+	ok	0.9961	88.2	459.5	ORF2a	12150.0	12920.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	OM201187.1	tblastn	ORF2b		12155.0	12376.0	+	ok	1.0	89.0	131.7				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	OM201187.1	tblastn	ORF3		12773.0	13537.0	+	ok	1.0	85.4	458.0	ORF3	12773.0	13537.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	OM201187.1	tblastn	ORF4		13318.0	13854.0	+	ok	1.0	88.8	332.0	ORF4	13318.0	13854.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	OM201187.1	tblastn	ORF5		13865.0	14467.0	+	ok	1.0	81.5	339.0	ORF5	13865.0	14467.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	OM201187.1	tblastn	ORF6		14452.0	14976.0	+	ok	1.0	95.4	348.2	ORF6	14452.0	14976.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	OM201187.1	tblastn	ORF7		14966.0	15337.0	+	ok	0.9837	89.3	230.7	ORF7	14966.0	15337.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	OM201187.1	minimap2	ORF1a	polyprotein 1a	4023.0	7778.0	+	low_coverage	0.5			ORF1a	171.0	7778.0	ORF1a	0.4937	0.4937	True	False	False	Wrong coords
+PRRS	OM201187.1	minimap2	ORF1b	polyprotein 1b	7763.0	12148.0	+	invalid_boundaries	1.0			ORF1b	7772.0	12148.0	ORF1b	0.9979	0.9979	True	True	False	Boundary offset
+PRRS	OM201187.1	minimap2	ORF2a	glycosylated membrane protein	12150.0	12920.0	+	ok	1.0			ORF2a	12150.0	12920.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	OM201187.1	minimap2	ORF2b	envelope protein	12155.0	12376.0	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	OM201187.1	minimap2	ORF3	glycosylated membrane protein GP3	12773.0	13537.0	+	ok	1.0			ORF3	12773.0	13537.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	OM201187.1	minimap2	ORF4	glycosylated membrane protein GP4	13318.0	13854.0	+	ok	1.0			ORF4	13318.0	13854.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	OM201187.1	minimap2	ORF5	glycosylated membrane protein GP5	13865.0	14467.0	+	ok	1.0			ORF5	13865.0	14467.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	OM201187.1	minimap2	ORF6	unglycosylated membrane protein M	14452.0	14976.0	+	ok	1.0			ORF6	14452.0	14976.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	OM201187.1	minimap2	ORF7	nucleocapsid protein N	14966.0	15337.0	+	ok	1.0			ORF7	14966.0	15337.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	tblastn	ORF1a		191.0	7810.0	+	ok	1.0	90.1	4576.5	ORF1a	191.0	7810.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	tblastn	ORF1b		7795.0	12180.0	+	invalid_boundaries	1.0	98.4	2997.2	ORF1b	7789.0	12180.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	AF184212.1	tblastn	ORF2a		12182.0	12952.0	+	ok	0.9961	93.7	495.4	ORF2a	12182.0	12952.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	tblastn	ORF2b		12187.0	12408.0	+	ok	1.0	93.2	134.8				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AF184212.1	tblastn	ORF3		12805.0	13569.0	+	ok	1.0	88.6	481.1	ORF3	12805.0	13569.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	tblastn	ORF4		13350.0	13886.0	+	ok	1.0	91.6	339.0	ORF4	13350.0	13886.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	tblastn	ORF5		13897.0	14499.0	+	ok	1.0	92.0	378.3	ORF5	13897.0	14499.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	tblastn	ORF6		14484.0	15008.0	+	ok	1.0	96.6	349.4	ORF6	14484.0	15008.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	tblastn	ORF7		14998.0	15369.0	+	ok	1.0	97.6	250.0	ORF7	14998.0	15369.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	minimap2	ORF1a	polyprotein 1a	6458.0	7810.0	+	low_coverage	0.1801			ORF1a	191.0	7810.0	ORF1a	0.1776	0.1776	True	False	False	Wrong coords
+PRRS	AF184212.1	minimap2	ORF1b	polyprotein 1b	7795.0	12180.0	+	invalid_boundaries	1.0			ORF1b	7789.0	12180.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	AF184212.1	minimap2	ORF2a	glycosylated membrane protein	12182.0	12952.0	+	ok	1.0			ORF2a	12182.0	12952.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	minimap2	ORF2b	envelope protein	12187.0	12408.0	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AF184212.1	minimap2	ORF3	glycosylated membrane protein GP3	12805.0	12996.0	+	low_coverage	0.251			ORF3	12805.0	13569.0	ORF3	0.251	0.251	True	False	False	Wrong coords
+PRRS	AF184212.1	minimap2	ORF4	glycosylated membrane protein GP4			+	unmapped	0.0			ORF4	13350.0	13886.0		0.0	0.0	True	False	False	Not lifted
+PRRS	AF184212.1	minimap2	ORF5	glycosylated membrane protein GP5			+	unmapped	0.0			ORF5	13897.0	14499.0		0.0	0.0	True	False	False	Not lifted
+PRRS	AF184212.1	minimap2	ORF6	unglycosylated membrane protein M			+	unmapped	0.0			ORF6	14484.0	15008.0		0.0	0.0	True	False	False	Not lifted
+PRRS	AF184212.1	minimap2	ORF7	nucleocapsid protein N			+	unmapped	0.0			ORF7	14998.0	15369.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868532.1	tblastn	Lpro		1093.0	1695.0	+	ok	1.0	90.0	395.2	Lpro	1093.0	1695.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	ON868532.1	tblastn	VP4		1696.0	1950.0	+	ok	1.0	98.8	168.3	VP4	1696.0	1950.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868532.1	tblastn	VP2		1951.0	2604.0	+	ok	1.0	99.5	454.1	VP2	1951.0	2604.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868532.1	tblastn	VP3		2605.0	3264.0	+	ok	1.0	98.2	453.0	VP3	2605.0	3264.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868532.1	tblastn	VP1		3265.0	3897.0	+	ok	1.0	94.8	414.8	VP1	3265.0	3897.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868532.1	tblastn	2A		3898.0	3951.0	+	ok	1.0	100.0	40.8	2A	3898.0	3951.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868532.1	tblastn	2B		3952.0	4413.0	+	ok	1.0	97.4	306.6	2B	3952.0	4413.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868532.1	tblastn	2C		4414.0	5367.0	+	ok	1.0	96.9	658.7	2C	4414.0	5367.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868532.1	tblastn	3A		5368.0	5826.0	+	ok	1.0	92.2	292.0	3A	5368.0	5826.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868532.1	tblastn	3B		5827.0	6039.0	+	ok	1.0	95.8	132.1	3B	5827.0	6039.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868532.1	tblastn	3Cpro		6040.0	6678.0	+	ok	1.0	97.7	439.1	3Cpro	6040.0	6678.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868532.1	tblastn	3Dpol		6679.0	8088.0	+	ok	1.0	98.3	972.2	3Dpol	6679.0	8088.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868532.1	minimap2	Lpro	Lab			+	unmapped	0.0			Lpro	1093.0	1695.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868532.1	minimap2	VP4	VP4			+	unmapped	0.0			VP4	1696.0	1950.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868532.1	minimap2	VP2	VP2			+	unmapped	0.0			VP2	1951.0	2604.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868532.1	minimap2	VP3	VP3			+	unmapped	0.0			VP3	2605.0	3264.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868532.1	minimap2	VP1	VP1			+	unmapped	0.0			VP1	3265.0	3897.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868532.1	minimap2	2A	2A			+	unmapped	0.0			2A	3898.0	3951.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868532.1	minimap2	2B	2B			+	unmapped	0.0			2B	3952.0	4413.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868532.1	minimap2	2C	2C			+	unmapped	0.0			2C	4414.0	5367.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868532.1	minimap2	3A	3A			+	unmapped	0.0			3A	5368.0	5826.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868532.1	minimap2	3B	3B			+	unmapped	0.0			3B	5827.0	6039.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868532.1	minimap2	3Cpro	3C			+	unmapped	0.0			3Cpro	6040.0	6678.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868532.1	minimap2	3Dpol	3D	7588.0	8088.0	+	low_coverage	0.3553			3Dpol	6679.0	8088.0	3Dpol	0.3553	0.3553	True	False	False	Wrong coords
+FMD	ON868541.1	tblastn	Lpro		1090.0	1692.0	+	ok	1.0	90.0	397.5	Lpro	1090.0	1692.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	ON868541.1	tblastn	VP4		1693.0	1947.0	+	ok	1.0	98.8	168.3	VP4	1693.0	1947.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868541.1	tblastn	VP2		1948.0	2601.0	+	ok	1.0	99.1	452.2	VP2	1948.0	2601.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868541.1	tblastn	VP3		2602.0	3261.0	+	ok	1.0	98.2	454.5	VP3	2602.0	3261.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868541.1	tblastn	VP1		3262.0	3894.0	+	ok	1.0	95.3	416.4	VP1	3262.0	3894.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868541.1	tblastn	2A		3895.0	3948.0	+	ok	1.0	100.0	41.2	2A	3895.0	3948.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868541.1	tblastn	2B		3949.0	4410.0	+	ok	1.0	97.4	307.0	2B	3949.0	4410.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868541.1	tblastn	2C		4411.0	5364.0	+	ok	1.0	97.2	659.4	2C	4411.0	5364.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868541.1	tblastn	3A		5365.0	5823.0	+	ok	1.0	92.2	292.0	3A	5365.0	5823.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868541.1	tblastn	3B		5824.0	6036.0	+	ok	1.0	95.8	132.1	3B	5824.0	6036.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868541.1	tblastn	3Cpro		6037.0	6675.0	+	ok	1.0	98.1	441.0	3Cpro	6037.0	6675.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868541.1	tblastn	3Dpol		6676.0	8085.0	+	ok	1.0	98.3	974.2	3Dpol	6676.0	8085.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868541.1	minimap2	Lpro	Lab			+	unmapped	0.0			Lpro	1090.0	1692.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868541.1	minimap2	VP4	VP4			+	unmapped	0.0			VP4	1693.0	1947.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868541.1	minimap2	VP2	VP2			+	unmapped	0.0			VP2	1948.0	2601.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868541.1	minimap2	VP3	VP3			+	unmapped	0.0			VP3	2602.0	3261.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868541.1	minimap2	VP1	VP1			+	unmapped	0.0			VP1	3262.0	3894.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868541.1	minimap2	2A	2A			+	unmapped	0.0			2A	3895.0	3948.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868541.1	minimap2	2B	2B			+	unmapped	0.0			2B	3949.0	4410.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868541.1	minimap2	2C	2C			+	unmapped	0.0			2C	4411.0	5364.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868541.1	minimap2	3A	3A			+	unmapped	0.0			3A	5365.0	5823.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868541.1	minimap2	3B	3B			+	unmapped	0.0			3B	5824.0	6036.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868541.1	minimap2	3Cpro	3C			+	unmapped	0.0			3Cpro	6037.0	6675.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868541.1	minimap2	3Dpol	3D	7604.0	8085.0	+	low_coverage	0.3418			3Dpol	6676.0	8085.0	3Dpol	0.3418	0.3418	True	False	False	Wrong coords
+FMD	ON868559.1	tblastn	Lpro		1097.0	1687.0	+	ok	0.9801	90.4	389.4	Lpro	1085.0	1687.0	Lpro	0.9801	0.9801	True	True	False	Boundary offset
+FMD	ON868559.1	tblastn	VP4		1688.0	1942.0	+	ok	1.0	98.8	168.3	VP4	1688.0	1942.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868559.1	tblastn	VP2		1943.0	2596.0	+	ok	1.0	99.1	452.6	VP2	1943.0	2596.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868559.1	tblastn	VP3		2597.0	3256.0	+	ok	1.0	97.3	452.6	VP3	2597.0	3256.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868559.1	tblastn	VP1		3257.0	3889.0	+	ok	1.0	93.8	411.4	VP1	3257.0	3889.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868559.1	tblastn	2A		3890.0	3943.0	+	ok	1.0	100.0	40.8	2A	3890.0	3943.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868559.1	tblastn	2B		3944.0	4405.0	+	ok	1.0	97.4	306.6	2B	3944.0	4405.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868559.1	tblastn	2C		4406.0	5359.0	+	ok	1.0	97.5	661.0	2C	4406.0	5359.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868559.1	tblastn	3A		5360.0	5818.0	+	ok	1.0	92.2	292.0	3A	5360.0	5818.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868559.1	tblastn	3B		5819.0	6031.0	+	ok	1.0	95.8	132.1	3B	5819.0	6031.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868559.1	tblastn	3Cpro		6032.0	6670.0	+	ok	1.0	98.1	441.0	3Cpro	6032.0	6670.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868559.1	tblastn	3Dpol		6671.0	8080.0	+	ok	1.0	98.3	973.0	3Dpol	6671.0	8080.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868559.1	minimap2	Lpro	Lab			+	unmapped	0.0			Lpro	1085.0	1687.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868559.1	minimap2	VP4	VP4			+	unmapped	0.0			VP4	1688.0	1942.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868559.1	minimap2	VP2	VP2			+	unmapped	0.0			VP2	1943.0	2596.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868559.1	minimap2	VP3	VP3			+	unmapped	0.0			VP3	2597.0	3256.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868559.1	minimap2	VP1	VP1			+	unmapped	0.0			VP1	3257.0	3889.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868559.1	minimap2	2A	2A			+	unmapped	0.0			2A	3890.0	3943.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868559.1	minimap2	2B	2B			+	unmapped	0.0			2B	3944.0	4405.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868559.1	minimap2	2C	2C			+	unmapped	0.0			2C	4406.0	5359.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868559.1	minimap2	3A	3A			+	unmapped	0.0			3A	5360.0	5818.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868559.1	minimap2	3B	3B			+	unmapped	0.0			3B	5819.0	6031.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868559.1	minimap2	3Cpro	3C			+	unmapped	0.0			3Cpro	6032.0	6670.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868559.1	minimap2	3Dpol	3D	7659.0	8080.0	+	low_coverage	0.2993			3Dpol	6671.0	8080.0	3Dpol	0.2993	0.2993	True	False	False	Wrong coords
+FMD	ON868564.1	tblastn	Lpro		1102.0	1692.0	+	ok	0.9801	89.8	388.7	Lpro	1090.0	1692.0	Lpro	0.9801	0.9801	True	True	False	Boundary offset
+FMD	ON868564.1	tblastn	VP4		1693.0	1947.0	+	ok	1.0	98.8	168.3	VP4	1693.0	1947.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868564.1	tblastn	VP2		1948.0	2601.0	+	ok	1.0	98.6	448.0	VP2	1948.0	2601.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868564.1	tblastn	VP3		2602.0	3261.0	+	ok	1.0	97.3	450.3	VP3	2602.0	3261.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868564.1	tblastn	VP1		3262.0	3894.0	+	ok	1.0	95.7	418.7	VP1	3262.0	3894.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868564.1	tblastn	2A		3895.0	3948.0	+	ok	1.0	100.0	41.2	2A	3895.0	3948.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868564.1	tblastn	2B		3949.0	4410.0	+	ok	1.0	96.8	305.8	2B	3949.0	4410.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868564.1	tblastn	2C		4411.0	5364.0	+	ok	1.0	96.9	655.6	2C	4411.0	5364.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868564.1	tblastn	3A		5365.0	5823.0	+	ok	1.0	91.5	290.8	3A	5365.0	5823.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868564.1	tblastn	3B		5824.0	6036.0	+	ok	1.0	95.8	132.1	3B	5824.0	6036.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868564.1	tblastn	3Cpro		6037.0	6675.0	+	ok	1.0	98.1	441.4	3Cpro	6037.0	6675.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868564.1	tblastn	3Dpol		6676.0	8085.0	+	ok	1.0	98.5	976.1	3Dpol	6676.0	8085.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868564.1	minimap2	Lpro	Lab			+	unmapped	0.0			Lpro	1090.0	1692.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868564.1	minimap2	VP4	VP4			+	unmapped	0.0			VP4	1693.0	1947.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868564.1	minimap2	VP2	VP2			+	unmapped	0.0			VP2	1948.0	2601.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868564.1	minimap2	VP3	VP3			+	unmapped	0.0			VP3	2602.0	3261.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868564.1	minimap2	VP1	VP1			+	unmapped	0.0			VP1	3262.0	3894.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868564.1	minimap2	2A	2A			+	unmapped	0.0			2A	3895.0	3948.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868564.1	minimap2	2B	2B			+	unmapped	0.0			2B	3949.0	4410.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868564.1	minimap2	2C	2C			+	unmapped	0.0			2C	4411.0	5364.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868564.1	minimap2	3A	3A			+	unmapped	0.0			3A	5365.0	5823.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868564.1	minimap2	3B	3B			+	unmapped	0.0			3B	5824.0	6036.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868564.1	minimap2	3Cpro	3C			+	unmapped	0.0			3Cpro	6037.0	6675.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868564.1	minimap2	3Dpol	3D	7664.0	8085.0	+	low_coverage	0.2993			3Dpol	6676.0	8085.0	3Dpol	0.2993	0.2993	True	False	False	Wrong coords
+FMD	ON868571.1	tblastn	Lpro		1093.0	1695.0	+	ok	1.0	89.1	393.3	Lpro	1093.0	1695.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	tblastn	VP4		1696.0	1950.0	+	ok	1.0	98.8	168.3	VP4	1696.0	1950.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	tblastn	VP2		1951.0	2604.0	+	ok	1.0	98.2	450.7	VP2	1951.0	2604.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	tblastn	VP3		2605.0	3264.0	+	ok	1.0	97.7	453.0	VP3	2605.0	3264.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	tblastn	VP1		3265.0	3897.0	+	ok	1.0	94.8	415.6	VP1	3265.0	3897.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	tblastn	2A		3898.0	3951.0	+	ok	1.0	100.0	41.2	2A	3898.0	3951.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	tblastn	2B		3952.0	4413.0	+	ok	1.0	97.4	307.0	2B	3952.0	4413.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	tblastn	2C		4414.0	5367.0	+	ok	1.0	97.2	659.4	2C	4414.0	5367.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	tblastn	3A		5368.0	5826.0	+	ok	1.0	90.8	288.1	3A	5368.0	5826.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	tblastn	3B		5827.0	6039.0	+	ok	1.0	94.4	131.3	3B	5827.0	6039.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	tblastn	3Cpro		6040.0	6678.0	+	ok	1.0	98.1	441.4	3Cpro	6040.0	6678.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	tblastn	3Dpol		6679.0	8088.0	+	ok	1.0	98.1	970.3	3Dpol	6679.0	8088.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	minimap2	Lpro	Lab	1510.0	1695.0	+	low_coverage	0.3085			Lpro	1093.0	1695.0	Lpro	0.3085	0.3085	True	False	False	Wrong coords
+FMD	ON868571.1	minimap2	VP4	VP4	1696.0	1950.0	+	ok	1.0			VP4	1696.0	1950.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	minimap2	VP2	VP2	1951.0	2604.0	+	ok	1.0			VP2	1951.0	2604.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	minimap2	VP3	VP3	2605.0	3264.0	+	ok	1.0			VP3	2605.0	3264.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	minimap2	VP1	VP1	3265.0	3897.0	+	ok	1.0			VP1	3265.0	3897.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	minimap2	2A	2A	3898.0	3951.0	+	ok	1.0			2A	3898.0	3951.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	minimap2	2B	2B	3952.0	4413.0	+	ok	1.0			2B	3952.0	4413.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	minimap2	2C	2C	4414.0	5367.0	+	ok	1.0			2C	4414.0	5367.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	minimap2	3A	3A	5368.0	5826.0	+	ok	1.0			3A	5368.0	5826.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	minimap2	3B	3B	5827.0	6039.0	+	ok	1.0			3B	5827.0	6039.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	minimap2	3Cpro	3C	6040.0	6678.0	+	ok	1.0			3Cpro	6040.0	6678.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868571.1	minimap2	3Dpol	3D	6679.0	8088.0	+	ok	1.0			3Dpol	6679.0	8088.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868574.1	tblastn	Lpro		1092.0	1694.0	+	ok	1.0	90.0	394.4	Lpro	1092.0	1694.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	ON868574.1	tblastn	VP4		1695.0	1949.0	+	ok	1.0	98.8	168.3	VP4	1695.0	1949.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868574.1	tblastn	VP2		1950.0	2603.0	+	ok	1.0	98.6	450.7	VP2	1950.0	2603.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868574.1	tblastn	VP3		2604.0	3263.0	+	ok	1.0	96.8	450.7	VP3	2604.0	3263.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868574.1	tblastn	VP1		3264.0	3896.0	+	ok	1.0	96.2	420.2	VP1	3264.0	3896.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868574.1	tblastn	2A		3897.0	3950.0	+	ok	1.0	100.0	41.2	2A	3897.0	3950.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868574.1	tblastn	2B		3951.0	4412.0	+	ok	1.0	96.1	303.9	2B	3951.0	4412.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868574.1	tblastn	2C		4413.0	5366.0	+	ok	1.0	96.2	656.8	2C	4413.0	5366.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868574.1	tblastn	3A		5367.0	5825.0	+	ok	1.0	91.5	290.0	3A	5367.0	5825.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868574.1	tblastn	3B		5826.0	6038.0	+	ok	1.0	95.8	132.1	3B	5826.0	6038.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868574.1	tblastn	3Cpro		6039.0	6677.0	+	ok	1.0	98.1	441.0	3Cpro	6039.0	6677.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868574.1	tblastn	3Dpol		6678.0	8087.0	+	ok	1.0	98.3	971.8	3Dpol	6678.0	8087.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868574.1	minimap2	Lpro	Lab			+	unmapped	0.0			Lpro	1092.0	1694.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868574.1	minimap2	VP4	VP4			+	unmapped	0.0			VP4	1695.0	1949.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868574.1	minimap2	VP2	VP2			+	unmapped	0.0			VP2	1950.0	2603.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868574.1	minimap2	VP3	VP3			+	unmapped	0.0			VP3	2604.0	3263.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868574.1	minimap2	VP1	VP1			+	unmapped	0.0			VP1	3264.0	3896.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868574.1	minimap2	2A	2A			+	unmapped	0.0			2A	3897.0	3950.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868574.1	minimap2	2B	2B			+	unmapped	0.0			2B	3951.0	4412.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868574.1	minimap2	2C	2C			+	unmapped	0.0			2C	4413.0	5366.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868574.1	minimap2	3A	3A			+	unmapped	0.0			3A	5367.0	5825.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868574.1	minimap2	3B	3B			+	unmapped	0.0			3B	5826.0	6038.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868574.1	minimap2	3Cpro	3C			+	unmapped	0.0			3Cpro	6039.0	6677.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868574.1	minimap2	3Dpol	3D	7606.0	8087.0	+	low_coverage	0.3418			3Dpol	6678.0	8087.0	3Dpol	0.3418	0.3418	True	False	False	Wrong coords
+FMD	ON868581.1	tblastn	Lpro		1093.0	1695.0	+	ok	1.0	90.5	396.7	Lpro	1093.0	1695.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	tblastn	VP4		1696.0	1950.0	+	ok	1.0	98.8	168.3	VP4	1696.0	1950.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	tblastn	VP2		1951.0	2604.0	+	ok	1.0	97.7	448.0	VP2	1951.0	2604.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	tblastn	VP3		2605.0	3264.0	+	ok	1.0	97.3	451.4	VP3	2605.0	3264.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	tblastn	VP1		3265.0	3897.0	+	ok	1.0	96.7	419.9	VP1	3265.0	3897.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	tblastn	2A		3898.0	3951.0	+	ok	1.0	100.0	40.8	2A	3898.0	3951.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	tblastn	2B		3952.0	4413.0	+	ok	1.0	96.1	304.3	2B	3952.0	4413.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	tblastn	2C		4414.0	5367.0	+	ok	1.0	96.9	657.9	2C	4414.0	5367.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	tblastn	3A		5368.0	5826.0	+	ok	1.0	91.5	293.9	3A	5368.0	5826.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	tblastn	3B		5827.0	6039.0	+	ok	1.0	97.2	135.2	3B	5827.0	6039.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	tblastn	3Cpro		6040.0	6678.0	+	ok	1.0	98.6	443.0	3Cpro	6040.0	6678.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	tblastn	3Dpol		6679.0	8088.0	+	ok	1.0	97.9	970.7	3Dpol	6679.0	8088.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	minimap2	Lpro	Lab	1427.0	1695.0	+	low_coverage	0.4461			Lpro	1093.0	1695.0	Lpro	0.4461	0.4461	True	False	False	Wrong coords
+FMD	ON868581.1	minimap2	VP4	VP4	1696.0	1950.0	+	ok	1.0			VP4	1696.0	1950.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	minimap2	VP2	VP2	1951.0	2604.0	+	ok	1.0			VP2	1951.0	2604.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	minimap2	VP3	VP3	2605.0	3264.0	+	ok	1.0			VP3	2605.0	3264.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	minimap2	VP1	VP1	3265.0	3897.0	+	ok	1.0			VP1	3265.0	3897.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	minimap2	2A	2A	3898.0	3951.0	+	ok	1.0			2A	3898.0	3951.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	minimap2	2B	2B	3952.0	4413.0	+	ok	1.0			2B	3952.0	4413.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	minimap2	2C	2C	4414.0	5367.0	+	ok	1.0			2C	4414.0	5367.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	minimap2	3A	3A	5368.0	5826.0	+	ok	1.0			3A	5368.0	5826.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	minimap2	3B	3B	5827.0	6039.0	+	ok	1.0			3B	5827.0	6039.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	minimap2	3Cpro	3C	6040.0	6678.0	+	ok	1.0			3Cpro	6040.0	6678.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868581.1	minimap2	3Dpol	3D	6679.0	8088.0	+	ok	1.0			3Dpol	6679.0	8088.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	tblastn	Lpro		1090.0	1692.0	+	ok	1.0	91.5	399.8	Lpro	1090.0	1692.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	tblastn	VP4		1693.0	1947.0	+	ok	1.0	98.8	168.3	VP4	1693.0	1947.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	tblastn	VP2		1948.0	2601.0	+	ok	1.0	97.7	446.8	VP2	1948.0	2601.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	tblastn	VP3		2602.0	3261.0	+	ok	1.0	97.3	451.8	VP3	2602.0	3261.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	tblastn	VP1		3262.0	3894.0	+	ok	1.0	95.7	417.2	VP1	3262.0	3894.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	tblastn	2A		3895.0	3948.0	+	ok	1.0	100.0	40.8	2A	3895.0	3948.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	tblastn	2B		3949.0	4410.0	+	ok	1.0	96.8	305.4	2B	3949.0	4410.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	tblastn	2C		4411.0	5364.0	+	ok	1.0	97.5	661.0	2C	4411.0	5364.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	tblastn	3A		5365.0	5823.0	+	ok	1.0	91.5	290.8	3A	5365.0	5823.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	tblastn	3B		5824.0	6036.0	+	ok	1.0	95.8	132.1	3B	5824.0	6036.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	tblastn	3Cpro		6037.0	6675.0	+	ok	1.0	98.1	439.1	3Cpro	6037.0	6675.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	tblastn	3Dpol		6676.0	8085.0	+	ok	1.0	97.9	971.8	3Dpol	6676.0	8085.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	minimap2	Lpro	Lab	1424.0	1692.0	+	low_coverage	0.4461			Lpro	1090.0	1692.0	Lpro	0.4461	0.4461	True	False	False	Wrong coords
+FMD	ON868582.1	minimap2	VP4	VP4	1693.0	1947.0	+	ok	1.0			VP4	1693.0	1947.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	minimap2	VP2	VP2	1948.0	2601.0	+	ok	1.0			VP2	1948.0	2601.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	minimap2	VP3	VP3	2602.0	3261.0	+	ok	1.0			VP3	2602.0	3261.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	minimap2	VP1	VP1	3262.0	3894.0	+	ok	1.0			VP1	3262.0	3894.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	minimap2	2A	2A	3895.0	3948.0	+	ok	1.0			2A	3895.0	3948.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	minimap2	2B	2B	3949.0	4410.0	+	ok	1.0			2B	3949.0	4410.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	minimap2	2C	2C	4411.0	5364.0	+	ok	1.0			2C	4411.0	5364.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	minimap2	3A	3A	5365.0	5823.0	+	ok	1.0			3A	5365.0	5823.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	minimap2	3B	3B	5824.0	6036.0	+	ok	1.0			3B	5824.0	6036.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	minimap2	3Cpro	3C	6037.0	6675.0	+	ok	1.0			3Cpro	6037.0	6675.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868582.1	minimap2	3Dpol	3D	6676.0	8085.0	+	ok	1.0			3Dpol	6676.0	8085.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	tblastn	Lpro		1093.0	1695.0	+	ok	1.0	90.5	396.7	Lpro	1093.0	1695.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	tblastn	VP4		1696.0	1950.0	+	ok	1.0	98.8	168.3	VP4	1696.0	1950.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	tblastn	VP2		1951.0	2604.0	+	ok	1.0	98.2	448.7	VP2	1951.0	2604.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	tblastn	VP3		2605.0	3264.0	+	ok	1.0	98.2	453.8	VP3	2605.0	3264.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	tblastn	VP1		3265.0	3897.0	+	ok	1.0	95.3	417.2	VP1	3265.0	3897.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	tblastn	2A		3898.0	3951.0	+	ok	1.0	100.0	40.8	2A	3898.0	3951.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	tblastn	2B		3952.0	4413.0	+	ok	1.0	96.1	304.7	2B	3952.0	4413.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	tblastn	2C		4414.0	5367.0	+	ok	1.0	97.5	661.0	2C	4414.0	5367.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	tblastn	3A		5368.0	5826.0	+	ok	1.0	92.2	293.5	3A	5368.0	5826.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	tblastn	3B		5827.0	6039.0	+	ok	1.0	97.2	135.6	3B	5827.0	6039.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	tblastn	3Cpro		6040.0	6678.0	+	ok	1.0	96.7	434.5	3Cpro	6040.0	6678.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	tblastn	3Dpol		6679.0	8088.0	+	ok	1.0	98.7	976.5	3Dpol	6679.0	8088.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	minimap2	Lpro	Lab	1540.0	1695.0	+	low_coverage	0.2587			Lpro	1093.0	1695.0	Lpro	0.2587	0.2587	True	False	False	Wrong coords
+FMD	ON868586.1	minimap2	VP4	VP4	1696.0	1950.0	+	ok	1.0			VP4	1696.0	1950.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	minimap2	VP2	VP2	1951.0	2604.0	+	ok	1.0			VP2	1951.0	2604.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	minimap2	VP3	VP3	2605.0	3264.0	+	ok	1.0			VP3	2605.0	3264.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	minimap2	VP1	VP1	3265.0	3897.0	+	ok	1.0			VP1	3265.0	3897.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	minimap2	2A	2A	3898.0	3951.0	+	ok	1.0			2A	3898.0	3951.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	minimap2	2B	2B	3952.0	4413.0	+	ok	1.0			2B	3952.0	4413.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	minimap2	2C	2C	4414.0	5367.0	+	ok	1.0			2C	4414.0	5367.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	minimap2	3A	3A	5368.0	5826.0	+	ok	1.0			3A	5368.0	5826.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	minimap2	3B	3B	5827.0	6039.0	+	ok	1.0			3B	5827.0	6039.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	minimap2	3Cpro	3C	6040.0	6678.0	+	ok	1.0			3Cpro	6040.0	6678.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868586.1	minimap2	3Dpol	3D	6679.0	8088.0	+	ok	1.0			3Dpol	6679.0	8088.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868593.1	tblastn	Lpro		1086.0	1688.0	+	ok	1.0	85.1	378.6	Lpro	1086.0	1688.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	ON868593.1	tblastn	VP4		1689.0	1943.0	+	ok	1.0	98.8	169.1	VP4	1689.0	1943.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868593.1	tblastn	VP2		1944.0	2597.0	+	ok	1.0	95.0	438.0	VP2	1944.0	2597.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868593.1	tblastn	VP3		2598.0	3257.0	+	ok	1.0	95.9	443.0	VP3	2598.0	3257.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868593.1	tblastn	VP1		3258.0	3890.0	+	ok	1.0	90.0	391.0	VP1	3258.0	3890.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868593.1	tblastn	2A		3894.0	3944.0	+	ok	0.9444	100.0	39.3	2A	3891.0	3944.0	2A	0.9444	0.9444	True	True	False	Boundary offset
+FMD	ON868593.1	tblastn	2B		3945.0	4406.0	+	ok	1.0	96.8	304.3	2B	3945.0	4406.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868593.1	tblastn	2C		4407.0	5360.0	+	ok	1.0	97.2	662.1	2C	4407.0	5360.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868593.1	tblastn	3A		5361.0	5819.0	+	ok	1.0	88.9	281.6	3A	5361.0	5819.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868593.1	tblastn	3B		5820.0	6032.0	+	ok	1.0	90.1	128.3	3B	5820.0	6032.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868593.1	tblastn	3Cpro		6033.0	6671.0	+	ok	1.0	98.1	438.3	3Cpro	6033.0	6671.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868593.1	tblastn	3Dpol		6672.0	8081.0	+	ok	1.0	97.7	968.0	3Dpol	6672.0	8081.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868593.1	minimap2	Lpro	Lab			+	unmapped	0.0			Lpro	1086.0	1688.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868593.1	minimap2	VP4	VP4			+	unmapped	0.0			VP4	1689.0	1943.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868593.1	minimap2	VP2	VP2			+	unmapped	0.0			VP2	1944.0	2597.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868593.1	minimap2	VP3	VP3			+	unmapped	0.0			VP3	2598.0	3257.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868593.1	minimap2	VP1	VP1			+	unmapped	0.0			VP1	3258.0	3890.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868593.1	minimap2	2A	2A			+	unmapped	0.0			2A	3891.0	3944.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868593.1	minimap2	2B	2B			+	unmapped	0.0			2B	3945.0	4406.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868593.1	minimap2	2C	2C			+	unmapped	0.0			2C	4407.0	5360.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868593.1	minimap2	3A	3A			+	unmapped	0.0			3A	5361.0	5819.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868593.1	minimap2	3B	3B			+	unmapped	0.0			3B	5820.0	6032.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868593.1	minimap2	3Cpro	3C			+	unmapped	0.0			3Cpro	6033.0	6671.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868593.1	minimap2	3Dpol	3D	7125.0	8081.0	+	low_coverage	0.6787			3Dpol	6672.0	8081.0	3Dpol	0.6787	0.6787	True	False	False	Wrong coords
+FMD	ON868598.1	tblastn	Lpro		1085.0	1687.0	+	ok	1.0	85.1	378.6	Lpro	1085.0	1687.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	ON868598.1	tblastn	VP4		1688.0	1942.0	+	ok	1.0	98.8	169.1	VP4	1688.0	1942.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868598.1	tblastn	VP2		1943.0	2596.0	+	ok	1.0	94.5	436.0	VP2	1943.0	2596.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868598.1	tblastn	VP3		2597.0	3256.0	+	ok	1.0	95.9	443.0	VP3	2597.0	3256.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868598.1	tblastn	VP1		3257.0	3889.0	+	ok	1.0	90.0	391.0	VP1	3257.0	3889.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868598.1	tblastn	2A		3893.0	3943.0	+	ok	0.9444	100.0	39.3	2A	3890.0	3943.0	2A	0.9444	0.9444	True	True	False	Boundary offset
+FMD	ON868598.1	tblastn	2B		3944.0	4405.0	+	ok	1.0	96.8	304.3	2B	3944.0	4405.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868598.1	tblastn	2C		4406.0	5359.0	+	ok	1.0	97.2	662.1	2C	4406.0	5359.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868598.1	tblastn	3A		5360.0	5818.0	+	ok	1.0	88.9	281.6	3A	5360.0	5818.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868598.1	tblastn	3B		5819.0	6031.0	+	ok	1.0	90.1	128.3	3B	5819.0	6031.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868598.1	tblastn	3Cpro		6032.0	6670.0	+	ok	1.0	98.1	438.3	3Cpro	6032.0	6670.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868598.1	tblastn	3Dpol		6671.0	8080.0	+	ok	1.0	97.7	968.0	3Dpol	6671.0	8080.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868598.1	minimap2	Lpro	Lab			+	unmapped	0.0			Lpro	1085.0	1687.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868598.1	minimap2	VP4	VP4			+	unmapped	0.0			VP4	1688.0	1942.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868598.1	minimap2	VP2	VP2			+	unmapped	0.0			VP2	1943.0	2596.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868598.1	minimap2	VP3	VP3			+	unmapped	0.0			VP3	2597.0	3256.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868598.1	minimap2	VP1	VP1			+	unmapped	0.0			VP1	3257.0	3889.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868598.1	minimap2	2A	2A			+	unmapped	0.0			2A	3890.0	3943.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868598.1	minimap2	2B	2B			+	unmapped	0.0			2B	3944.0	4405.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868598.1	minimap2	2C	2C			+	unmapped	0.0			2C	4406.0	5359.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868598.1	minimap2	3A	3A			+	unmapped	0.0			3A	5360.0	5818.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868598.1	minimap2	3B	3B			+	unmapped	0.0			3B	5819.0	6031.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868598.1	minimap2	3Cpro	3C			+	unmapped	0.0			3Cpro	6032.0	6670.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868598.1	minimap2	3Dpol	3D	7124.0	8080.0	+	low_coverage	0.6787			3Dpol	6671.0	8080.0	3Dpol	0.6787	0.6787	True	False	False	Wrong coords
+FMD	ON868603.1	tblastn	Lpro		1086.0	1688.0	+	ok	1.0	85.6	378.6	Lpro	1086.0	1688.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	ON868603.1	tblastn	VP4		1689.0	1943.0	+	ok	1.0	98.8	169.1	VP4	1689.0	1943.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868603.1	tblastn	VP2		1944.0	2597.0	+	ok	1.0	95.0	439.1	VP2	1944.0	2597.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868603.1	tblastn	VP3		2598.0	3257.0	+	ok	1.0	95.9	443.0	VP3	2598.0	3257.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868603.1	tblastn	VP1		3258.0	3890.0	+	ok	1.0	90.0	391.0	VP1	3258.0	3890.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868603.1	tblastn	2A		3894.0	3944.0	+	ok	0.9444	100.0	39.3	2A	3891.0	3944.0	2A	0.9444	0.9444	True	True	False	Boundary offset
+FMD	ON868603.1	tblastn	2B		3945.0	4406.0	+	ok	1.0	96.8	303.9	2B	3945.0	4406.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868603.1	tblastn	2C		4407.0	5360.0	+	ok	1.0	97.5	663.7	2C	4407.0	5360.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868603.1	tblastn	3A		5361.0	5819.0	+	ok	1.0	88.9	280.8	3A	5361.0	5819.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868603.1	tblastn	3B		5820.0	6032.0	+	ok	1.0	90.1	128.3	3B	5820.0	6032.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868603.1	tblastn	3Cpro		6033.0	6671.0	+	ok	1.0	98.1	438.0	3Cpro	6033.0	6671.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868603.1	tblastn	3Dpol		6672.0	8081.0	+	ok	1.0	97.2	963.8	3Dpol	6672.0	8081.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868603.1	minimap2	Lpro	Lab			+	unmapped	0.0			Lpro	1086.0	1688.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868603.1	minimap2	VP4	VP4			+	unmapped	0.0			VP4	1689.0	1943.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868603.1	minimap2	VP2	VP2			+	unmapped	0.0			VP2	1944.0	2597.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868603.1	minimap2	VP3	VP3			+	unmapped	0.0			VP3	2598.0	3257.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868603.1	minimap2	VP1	VP1			+	unmapped	0.0			VP1	3258.0	3890.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868603.1	minimap2	2A	2A			+	unmapped	0.0			2A	3891.0	3944.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868603.1	minimap2	2B	2B			+	unmapped	0.0			2B	3945.0	4406.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868603.1	minimap2	2C	2C			+	unmapped	0.0			2C	4407.0	5360.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868603.1	minimap2	3A	3A			+	unmapped	0.0			3A	5361.0	5819.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868603.1	minimap2	3B	3B			+	unmapped	0.0			3B	5820.0	6032.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868603.1	minimap2	3Cpro	3C			+	unmapped	0.0			3Cpro	6033.0	6671.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868603.1	minimap2	3Dpol	3D	7125.0	8081.0	+	low_coverage	0.6787			3Dpol	6672.0	8081.0	3Dpol	0.6787	0.6787	True	False	False	Wrong coords
+FMD	ON868604.1	tblastn	Lpro		1089.0	1691.0	+	ok	1.0	85.1	378.3	Lpro	1089.0	1691.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	ON868604.1	tblastn	VP4		1692.0	1946.0	+	ok	1.0	98.8	169.1	VP4	1692.0	1946.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868604.1	tblastn	VP2		1947.0	2600.0	+	ok	1.0	95.4	440.7	VP2	1947.0	2600.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868604.1	tblastn	VP3		2601.0	3260.0	+	ok	1.0	95.9	443.0	VP3	2601.0	3260.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868604.1	tblastn	VP1		3261.0	3893.0	+	ok	1.0	89.6	389.8	VP1	3261.0	3893.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868604.1	tblastn	2A		3897.0	3947.0	+	ok	0.9444	100.0	39.3	2A	3894.0	3947.0	2A	0.9444	0.9444	True	True	False	Boundary offset
+FMD	ON868604.1	tblastn	2B		3948.0	4409.0	+	ok	1.0	96.8	303.9	2B	3948.0	4409.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868604.1	tblastn	2C		4410.0	5363.0	+	ok	1.0	97.5	663.7	2C	4410.0	5363.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868604.1	tblastn	3A		5364.0	5822.0	+	ok	1.0	89.5	283.1	3A	5364.0	5822.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868604.1	tblastn	3B		5823.0	6035.0	+	ok	1.0	88.7	127.5	3B	5823.0	6035.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868604.1	tblastn	3Cpro		6036.0	6674.0	+	ok	1.0	97.7	436.4	3Cpro	6036.0	6674.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868604.1	tblastn	3Dpol		6675.0	8084.0	+	ok	1.0	97.0	961.8	3Dpol	6675.0	8084.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868604.1	minimap2	Lpro	Lab			+	unmapped	0.0			Lpro	1089.0	1691.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868604.1	minimap2	VP4	VP4			+	unmapped	0.0			VP4	1692.0	1946.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868604.1	minimap2	VP2	VP2			+	unmapped	0.0			VP2	1947.0	2600.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868604.1	minimap2	VP3	VP3			+	unmapped	0.0			VP3	2601.0	3260.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868604.1	minimap2	VP1	VP1			+	unmapped	0.0			VP1	3261.0	3893.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868604.1	minimap2	2A	2A			+	unmapped	0.0			2A	3894.0	3947.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868604.1	minimap2	2B	2B			+	unmapped	0.0			2B	3948.0	4409.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868604.1	minimap2	2C	2C			+	unmapped	0.0			2C	4410.0	5363.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868604.1	minimap2	3A	3A			+	unmapped	0.0			3A	5364.0	5822.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868604.1	minimap2	3B	3B			+	unmapped	0.0			3B	5823.0	6035.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868604.1	minimap2	3Cpro	3C			+	unmapped	0.0			3Cpro	6036.0	6674.0		0.0	0.0	True	False	False	Not lifted
+FMD	ON868604.1	minimap2	3Dpol	3D	7560.0	8084.0	+	low_coverage	0.3723			3Dpol	6675.0	8084.0	3Dpol	0.3723	0.3723	True	False	False	Wrong coords
+FMD	AJ539137.1	tblastn	Lpro		1092.0	1694.0	+	ok	1.0	90.5	397.9	Lpro	6039.0	6677.0	Lpro	1.0	0.0	True	False	False	Wrong coords
+FMD	AJ539137.1	tblastn	VP4		1695.0	1949.0	+	ok	1.0	98.8	168.3	VP4	1695.0	1949.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	tblastn	VP2		1950.0	2603.0	+	ok	1.0	98.2	448.0	VP2	1950.0	2603.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	tblastn	VP3		2604.0	3263.0	+	ok	1.0	99.5	459.1	VP3	2604.0	3263.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	tblastn	VP1		3264.0	3896.0	+	ok	1.0	97.2	423.3	VP1	3264.0	3896.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	tblastn	2A		3897.0	3950.0	+	ok	1.0	94.4	39.3	2A	3897.0	3950.0	2A	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	tblastn	2B		3951.0	4412.0	+	ok	1.0	99.4	310.8	2B	3951.0	4412.0	2B	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	tblastn	2C		4413.0	5366.0	+	ok	1.0	98.4	666.8	2C	4413.0	5366.0	2C	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	tblastn	3A		5367.0	5825.0	+	ok	1.0	93.5	295.4	3A	5367.0	5825.0	3A	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	tblastn	3B		5826.0	6038.0	+	ok	1.0	94.4	114.4	3B	5895.0	5966.0	3B	0.338	0.338	True	False	False	Wrong coords
+FMD	AJ539137.1	tblastn	3Cpro		6039.0	6677.0	+	ok	1.0	98.6	441.4				Lpro	1.0	0.0	False	False	False	Alias/name gap
+FMD	AJ539137.1	tblastn	3Dpol		6678.0	8087.0	+	ok	1.0	97.2	965.7	3Dpol	6678.0	8087.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	minimap2	Lpro	Lab	1561.0	1694.0	+	low_coverage	0.2222			Lpro	6039.0	6677.0	Lpro	0.2222	0.0	True	False	False	Wrong coords
+FMD	AJ539137.1	minimap2	VP4	VP4	1695.0	1949.0	+	ok	1.0			VP4	1695.0	1949.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	minimap2	VP2	VP2	1950.0	2603.0	+	ok	1.0			VP2	1950.0	2603.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	minimap2	VP3	VP3	2604.0	3263.0	+	ok	1.0			VP3	2604.0	3263.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	minimap2	VP1	VP1	3264.0	3896.0	+	ok	1.0			VP1	3264.0	3896.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	minimap2	2A	2A	3897.0	3950.0	+	ok	1.0			2A	3897.0	3950.0	2A	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	minimap2	2B	2B	3951.0	4412.0	+	ok	1.0			2B	3951.0	4412.0	2B	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	minimap2	2C	2C	4413.0	5366.0	+	ok	1.0			2C	4413.0	5366.0	2C	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	minimap2	3A	3A	5367.0	5825.0	+	ok	1.0			3A	5367.0	5825.0	3A	1.0	1.0	True	True	True	Correct
+FMD	AJ539137.1	minimap2	3B	3B	5826.0	6038.0	+	ok	1.0			3B	5895.0	5966.0	3B	0.338	0.338	True	False	False	Wrong coords
+FMD	AJ539137.1	minimap2	3Cpro	3C	6039.0	6677.0	+	ok	1.0						Lpro	1.0	0.0	False	False	False	Alias/name gap
+FMD	AJ539137.1	minimap2	3Dpol	3D	6678.0	8087.0	+	ok	1.0			3Dpol	6678.0	8087.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	AJ539140.1	tblastn	Lpro		1092.0	1694.0	+	ok	1.0	90.5	397.5	Lpro	6039.0	6677.0	Lpro	1.0	0.0	True	False	False	Wrong coords
+FMD	AJ539140.1	tblastn	VP4		1695.0	1949.0	+	ok	1.0	98.8	168.7	VP4	1695.0	1949.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	AJ539140.1	tblastn	VP2		1950.0	2603.0	+	ok	1.0	97.7	443.7	VP2	1950.0	2603.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	AJ539140.1	tblastn	VP3		2604.0	3263.0	+	ok	1.0	99.1	456.1	VP3	2604.0	3263.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	AJ539140.1	tblastn	VP1		3264.0	3896.0	+	ok	1.0	98.1	427.6	VP1	3264.0	3896.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	AJ539140.1	tblastn	2A		3897.0	3950.0	+	ok	1.0	100.0	40.8	2A	3897.0	3950.0	2A	1.0	1.0	True	True	True	Correct
+FMD	AJ539140.1	tblastn	2B		3951.0	4412.0	+	ok	1.0	99.4	310.5	2B	3951.0	4412.0	2B	1.0	1.0	True	True	True	Correct
+FMD	AJ539140.1	tblastn	2C		4413.0	5366.0	+	ok	1.0	98.7	669.1	2C	4413.0	5366.0	2C	1.0	1.0	True	True	True	Correct
+FMD	AJ539140.1	tblastn	3A		5367.0	5825.0	+	ok	1.0	92.8	294.7	3A	5367.0	5825.0	3A	1.0	1.0	True	True	True	Correct
+FMD	AJ539140.1	tblastn	3B		5826.0	6038.0	+	ok	1.0	93.0	112.8	3B	5895.0	5966.0	3B	0.338	0.338	True	False	False	Wrong coords
+FMD	AJ539140.1	tblastn	3Cpro		6039.0	6677.0	+	ok	1.0	98.6	439.9				Lpro	1.0	0.0	False	False	False	Alias/name gap
+FMD	AJ539140.1	tblastn	3Dpol		6678.0	8087.0	+	ok	1.0	97.9	969.9	3Dpol	6678.0	8087.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	AJ539140.1	minimap2	Lpro	Lab			+	unmapped	0.0			Lpro	6039.0	6677.0		0.0	0.0	True	False	False	Not lifted
+FMD	AJ539140.1	minimap2	VP4	VP4			+	unmapped	0.0			VP4	1695.0	1949.0		0.0	0.0	True	False	False	Not lifted
+FMD	AJ539140.1	minimap2	VP2	VP2			+	unmapped	0.0			VP2	1950.0	2603.0		0.0	0.0	True	False	False	Not lifted
+FMD	AJ539140.1	minimap2	VP3	VP3			+	unmapped	0.0			VP3	2604.0	3263.0		0.0	0.0	True	False	False	Not lifted
+FMD	AJ539140.1	minimap2	VP1	VP1			+	unmapped	0.0			VP1	3264.0	3896.0		0.0	0.0	True	False	False	Not lifted
+FMD	AJ539140.1	minimap2	2A	2A			+	unmapped	0.0			2A	3897.0	3950.0		0.0	0.0	True	False	False	Not lifted
+FMD	AJ539140.1	minimap2	2B	2B			+	unmapped	0.0			2B	3951.0	4412.0		0.0	0.0	True	False	False	Not lifted
+FMD	AJ539140.1	minimap2	2C	2C			+	unmapped	0.0			2C	4413.0	5366.0		0.0	0.0	True	False	False	Not lifted
+FMD	AJ539140.1	minimap2	3A	3A			+	unmapped	0.0			3A	5367.0	5825.0		0.0	0.0	True	False	False	Not lifted
+FMD	AJ539140.1	minimap2	3B	3B			+	unmapped	0.0			3B	5895.0	5966.0		0.0	0.0	True	False	False	Not lifted
+FMD	AJ539140.1	minimap2	3Cpro	3C			+	unmapped	0.0							0.0	0.0	False	False	False	Not lifted
+FMD	AJ539140.1	minimap2	3Dpol	3D	6942.0	8087.0	+	ok	0.8128			3Dpol	6678.0	8087.0	3Dpol	0.8128	0.8128	True	False	False	Wrong coords
+FMD	FJ175663.1	tblastn	Lpro		1181.0	1783.0	+	ok	1.0	99.5	431.4	Lpro	1181.0	1783.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	tblastn	VP4		1784.0	2038.0	+	ok	1.0	100.0	169.5	VP4	1784.0	2038.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	tblastn	VP2		2039.0	2692.0	+	ok	1.0	99.5	454.9	VP2	2039.0	2692.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	tblastn	VP3		2693.0	3352.0	+	ok	1.0	100.0	461.5	VP3	2693.0	3352.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	tblastn	VP1		3353.0	3985.0	+	ok	1.0	99.5	436.8	VP1	3353.0	3985.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	tblastn	2A		3986.0	4039.0	+	ok	1.0	88.9	37.0	2A	3986.0	4039.0	2A	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	tblastn	2B		4040.0	4501.0	+	ok	1.0	99.4	310.8	2B	4040.0	4501.0	2B	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	tblastn	2C		4502.0	5455.0	+	ok	1.0	100.0	673.7	2C	4502.0	5455.0	2C	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	tblastn	3A		5456.0	5914.0	+	ok	1.0	98.0	306.6	3A	5456.0	5914.0	3A	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	tblastn	3B		5915.0	6127.0	+	ok	1.0	100.0	141.0	3B	5915.0	6127.0	3B	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	tblastn	3Cpro		6128.0	6766.0	+	ok	1.0	98.6	441.8	3Cpro	6128.0	6766.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	tblastn	3Dpol		6767.0	8176.0	+	ok	1.0	98.9	975.7	3Dpol	6767.0	8176.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	minimap2	Lpro	Lab	1181.0	1783.0	+	ok	1.0			Lpro	1181.0	1783.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	minimap2	VP4	VP4	1784.0	2038.0	+	ok	1.0			VP4	1784.0	2038.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	minimap2	VP2	VP2	2039.0	2692.0	+	ok	1.0			VP2	2039.0	2692.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	minimap2	VP3	VP3	2693.0	3352.0	+	ok	1.0			VP3	2693.0	3352.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	minimap2	VP1	VP1	3353.0	3985.0	+	ok	1.0			VP1	3353.0	3985.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	minimap2	2A	2A	3986.0	4039.0	+	ok	1.0			2A	3986.0	4039.0	2A	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	minimap2	2B	2B	4040.0	4501.0	+	ok	1.0			2B	4040.0	4501.0	2B	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	minimap2	2C	2C	4502.0	5455.0	+	ok	1.0			2C	4502.0	5455.0	2C	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	minimap2	3A	3A	5456.0	5914.0	+	ok	1.0			3A	5456.0	5914.0	3A	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	minimap2	3B	3B	5915.0	6127.0	+	ok	1.0			3B	5915.0	6127.0	3B	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	minimap2	3Cpro	3C	6128.0	6766.0	+	ok	1.0			3Cpro	6128.0	6766.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	FJ175663.1	minimap2	3Dpol	3D	6767.0	8176.0	+	ok	1.0			3Dpol	6767.0	8176.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	tblastn	Lpro		1181.0	1783.0	+	ok	1.0	99.5	431.4	Lpro	1181.0	1783.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	tblastn	VP4		1784.0	2038.0	+	ok	1.0	100.0	169.5	VP4	1784.0	2038.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	tblastn	VP2		2039.0	2692.0	+	ok	1.0	100.0	455.7	VP2	2039.0	2692.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	tblastn	VP3		2693.0	3352.0	+	ok	1.0	100.0	461.5	VP3	2693.0	3352.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	tblastn	VP1		3353.0	3985.0	+	ok	1.0	99.5	436.4	VP1	3353.0	3985.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	tblastn	2A				+	no_hit	0.0			2A	3986.0	4039.0		0.0	0.0	True	False	False	Not lifted
+FMD	FJ175666.1	tblastn	2B		4040.0	4501.0	+	ok	1.0	98.7	308.5	2B	4040.0	4501.0	2B	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	tblastn	2C		4502.0	5455.0	+	ok	1.0	100.0	674.1	2C	4502.0	5455.0	2C	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	tblastn	3A		5456.0	5914.0	+	ok	1.0	98.0	306.6	3A	5456.0	5914.0	3A	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	tblastn	3B		5915.0	6127.0	+	ok	1.0	100.0	141.0	3B	5915.0	6127.0	3B	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	tblastn	3Cpro		6128.0	6766.0	+	ok	1.0	99.1	443.7	3Cpro	6128.0	6766.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	tblastn	3Dpol		6767.0	8176.0	+	ok	1.0	100.0	985.3	3Dpol	6767.0	8176.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	minimap2	Lpro	Lab	1181.0	1783.0	+	ok	1.0			Lpro	1181.0	1783.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	minimap2	VP4	VP4	1784.0	2038.0	+	ok	1.0			VP4	1784.0	2038.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	minimap2	VP2	VP2	2039.0	2692.0	+	ok	1.0			VP2	2039.0	2692.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	minimap2	VP3	VP3	2693.0	3352.0	+	ok	1.0			VP3	2693.0	3352.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	minimap2	VP1	VP1	3353.0	3985.0	+	ok	1.0			VP1	3353.0	3985.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	minimap2	2A	2A	3986.0	4039.0	+	ok	1.0			2A	3986.0	4039.0	2A	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	minimap2	2B	2B	4040.0	4501.0	+	ok	1.0			2B	4040.0	4501.0	2B	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	minimap2	2C	2C	4502.0	5455.0	+	ok	1.0			2C	4502.0	5455.0	2C	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	minimap2	3A	3A	5456.0	5914.0	+	ok	1.0			3A	5456.0	5914.0	3A	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	minimap2	3B	3B	5915.0	6127.0	+	ok	1.0			3B	5915.0	6127.0	3B	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	minimap2	3Cpro	3C	6128.0	6766.0	+	ok	1.0			3Cpro	6128.0	6766.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	FJ175666.1	minimap2	3Dpol	3D	6767.0	8176.0	+	ok	1.0			3Dpol	6767.0	8176.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	tblastn	Lpro		1181.0	1783.0	+	ok	1.0	99.5	430.6	Lpro	1181.0	1783.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	tblastn	VP4		1784.0	2038.0	+	ok	1.0	98.8	168.7	VP4	1784.0	2038.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	tblastn	VP2		2039.0	2692.0	+	ok	1.0	98.6	450.3	VP2	2039.0	2692.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	tblastn	VP3		2693.0	3352.0	+	ok	1.0	99.5	459.9	VP3	2693.0	3352.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	tblastn	VP1		3353.0	3985.0	+	ok	1.0	98.1	428.3	VP1	3353.0	3985.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	tblastn	2A		3986.0	4039.0	+	ok	1.0	100.0	40.8	2A	3986.0	4039.0	2A	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	tblastn	2B		4040.0	4501.0	+	ok	1.0	96.1	302.0	2B	4040.0	4501.0	2B	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	tblastn	2C		4502.0	5455.0	+	ok	1.0	97.8	664.5	2C	4502.0	5455.0	2C	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	tblastn	3A		5456.0	5914.0	+	ok	1.0	92.8	295.4	3A	5456.0	5914.0	3A	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	tblastn	3B		5915.0	6127.0	+	ok	1.0	95.8	134.8	3B	5915.0	6127.0	3B	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	tblastn	3Cpro		6128.0	6766.0	+	ok	1.0	99.1	443.4	3Cpro	6128.0	6766.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	tblastn	3Dpol		6767.0	8176.0	+	ok	1.0	98.7	979.2	3Dpol	6767.0	8176.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	minimap2	Lpro	Lab	1181.0	1783.0	+	ok	1.0			Lpro	1181.0	1783.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	minimap2	VP4	VP4	1784.0	2038.0	+	ok	1.0			VP4	1784.0	2038.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	minimap2	VP2	VP2	2039.0	2692.0	+	ok	1.0			VP2	2039.0	2692.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	minimap2	VP3	VP3	2693.0	3352.0	+	ok	1.0			VP3	2693.0	3352.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	minimap2	VP1	VP1	3353.0	3985.0	+	ok	1.0			VP1	3353.0	3985.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	minimap2	2A	2A	3986.0	4039.0	+	ok	1.0			2A	3986.0	4039.0	2A	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	minimap2	2B	2B	4040.0	4501.0	+	ok	1.0			2B	4040.0	4501.0	2B	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	minimap2	2C	2C	4502.0	5455.0	+	ok	1.0			2C	4502.0	5455.0	2C	1.0	1.0	True	True	True	Correct
+FMD	GU384683.1	minimap2	3A	3A	5456.0	5726.0	+	low_coverage	0.5904			3A	5456.0	5914.0	3A	0.5904	0.5904	True	False	False	Wrong coords
+FMD	GU384683.1	minimap2	3B	3B			+	unmapped	0.0			3B	5915.0	6127.0		0.0	0.0	True	False	False	Not lifted
+FMD	GU384683.1	minimap2	3Cpro	3C			+	unmapped	0.0			3Cpro	6128.0	6766.0		0.0	0.0	True	False	False	Not lifted
+FMD	GU384683.1	minimap2	3Dpol	3D			+	unmapped	0.0			3Dpol	6767.0	8176.0		0.0	0.0	True	False	False	Not lifted
+FMD	MT863268.1	tblastn	Lpro		1029.0	1625.0	+	ok	1.0	84.2	360.5	Lpro	1029.0	1625.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	tblastn	VP4		1626.0	1880.0	+	ok	1.0	97.6	167.5	VP4	1626.0	1880.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	tblastn	VP2		1881.0	2534.0	+	ok	1.0	83.5	379.0	VP2	1881.0	2534.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	tblastn	VP3		2535.0	3197.0	+	ok	1.0	81.0	385.6	VP3	2535.0	3197.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	tblastn	VP1		3198.0	3830.0	+	ok	1.0	72.2	307.0	VP1	3198.0	3830.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	tblastn	2A		3831.0	3884.0	+	ok	1.0	100.0	40.8	2A	3831.0	3884.0	2A	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	tblastn	2B		3885.0	4346.0	+	ok	1.0	98.7	309.7	2B	3885.0	4346.0	2B	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	tblastn	2C		4347.0	5300.0	+	ok	1.0	97.8	661.4	2C	4347.0	5300.0	2C	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	tblastn	3A		5301.0	5759.0	+	ok	1.0	88.9	282.0	3A	5301.0	5759.0	3A	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	tblastn	3B		5760.0	5972.0	+	ok	1.0	90.1	129.8	3B	5829.0	5900.0	3B	0.338	0.338	True	False	False	Wrong coords
+FMD	MT863268.1	tblastn	3Cpro		5973.0	6611.0	+	ok	1.0	96.7	435.3	3Cpro	5973.0	6611.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	tblastn	3Dpol		6612.0	8021.0	+	ok	1.0	97.7	967.6	3Dpol	6612.0	8021.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	minimap2	Lpro	Lab			+	unmapped	0.0			Lpro	1029.0	1625.0		0.0	0.0	True	False	False	Not lifted
+FMD	MT863268.1	minimap2	VP4	VP4			+	unmapped	0.0			VP4	1626.0	1880.0		0.0	0.0	True	False	False	Not lifted
+FMD	MT863268.1	minimap2	VP2	VP2			+	unmapped	0.0			VP2	1881.0	2534.0		0.0	0.0	True	False	False	Not lifted
+FMD	MT863268.1	minimap2	VP3	VP3			+	unmapped	0.0			VP3	2535.0	3197.0		0.0	0.0	True	False	False	Not lifted
+FMD	MT863268.1	minimap2	VP1	VP1			+	unmapped	0.0			VP1	3198.0	3830.0		0.0	0.0	True	False	False	Not lifted
+FMD	MT863268.1	minimap2	2A	2A	3849.0	3884.0	+	low_coverage	0.6667			2A	3831.0	3884.0	2A	0.6667	0.6667	True	False	False	Wrong coords
+FMD	MT863268.1	minimap2	2B	2B	3885.0	4346.0	+	ok	1.0			2B	3885.0	4346.0	2B	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	minimap2	2C	2C	4347.0	5300.0	+	ok	1.0			2C	4347.0	5300.0	2C	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	minimap2	3A	3A	5301.0	5759.0	+	ok	1.0			3A	5301.0	5759.0	3A	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	minimap2	3B	3B	5760.0	5972.0	+	ok	1.0			3B	5829.0	5900.0	3B	0.338	0.338	True	False	False	Wrong coords
+FMD	MT863268.1	minimap2	3Cpro	3C	5973.0	6611.0	+	ok	1.0			3Cpro	5973.0	6611.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	MT863268.1	minimap2	3Dpol	3D	6612.0	8021.0	+	ok	1.0			3Dpol	6612.0	8021.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	tblastn	Lpro		1093.0	1695.0	+	ok	1.0	90.0	395.6	Lpro	1093.0	1695.0	Lpro	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	tblastn	VP4		1696.0	1950.0	+	ok	1.0	98.8	168.7	VP4	1696.0	1950.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	tblastn	VP2		1951.0	2604.0	+	ok	1.0	99.1	452.2	VP2	1951.0	2604.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	tblastn	VP3		2605.0	3264.0	+	ok	1.0	97.7	453.0	VP3	2605.0	3264.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	tblastn	VP1		3265.0	3897.0	+	ok	1.0	95.3	415.2	VP1	3265.0	3897.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	tblastn	2A		3898.0	3951.0	+	ok	1.0	100.0	40.8	2A	3898.0	3951.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	tblastn	2B		3952.0	4413.0	+	ok	1.0	96.8	306.2	2B	3952.0	4413.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	tblastn	2C		4414.0	5367.0	+	ok	1.0	97.5	661.0	2C	4414.0	5367.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	tblastn	3A		5368.0	5826.0	+	ok	1.0	92.2	292.0	3A	5368.0	5826.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	tblastn	3B		5827.0	6039.0	+	ok	1.0	95.8	132.1	3B	5827.0	6039.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	tblastn	3Cpro		6040.0	6678.0	+	ok	1.0	97.2	438.3	3Cpro	6040.0	6678.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	tblastn	3Dpol		6679.0	8088.0	+	ok	1.0	98.3	974.2	3Dpol	6679.0	8088.0	3Dpol	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	minimap2	Lpro	Lab	1510.0	1695.0	+	low_coverage	0.3085			Lpro	1093.0	1695.0	Lpro	0.3085	0.3085	True	False	False	Wrong coords
+FMD	ON868540.1	minimap2	VP4	VP4	1696.0	1950.0	+	ok	1.0			VP4	1696.0	1950.0	VP4	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	minimap2	VP2	VP2	1951.0	2604.0	+	ok	1.0			VP2	1951.0	2604.0	VP2	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	minimap2	VP3	VP3	2605.0	3264.0	+	ok	1.0			VP3	2605.0	3264.0	VP3	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	minimap2	VP1	VP1	3265.0	3897.0	+	ok	0.9858			VP1	3265.0	3897.0	VP1	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	minimap2	2A	2A	3898.0	3951.0	+	ok	1.0			2A	3898.0	3951.0	2A	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	minimap2	2B	2B	3952.0	4413.0	+	ok	1.0			2B	3952.0	4413.0	2B	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	minimap2	2C	2C	4414.0	5367.0	+	ok	1.0			2C	4414.0	5367.0	2C	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	minimap2	3A	3A	5368.0	5826.0	+	ok	1.0			3A	5368.0	5826.0	3A	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	minimap2	3B	3B	5827.0	6039.0	+	ok	1.0			3B	5827.0	6039.0	3B	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	minimap2	3Cpro	3C	6040.0	6678.0	+	ok	1.0			3Cpro	6040.0	6678.0	3Cpro	1.0	1.0	True	True	True	Correct
+FMD	ON868540.1	minimap2	3Dpol	3D	6679.0	8088.0	+	ok	1.0			3Dpol	6679.0	8088.0	3Dpol	1.0	1.0	True	True	True	Correct

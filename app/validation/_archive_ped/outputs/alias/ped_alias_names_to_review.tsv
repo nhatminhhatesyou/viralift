@@ -1,0 +1,11 @@
+status	field	raw_value	resolved_to	count	records
+ambiguous	gene	mp	ambiguous	2	LT898413.1, MF577027.1
+ignored	product	replicase polyprotein	ignored	35	LT898413.1, OP894120.1, OR085232.1, OR085240.1, OR085242.1, OR085246.1, OR085251.1, OR085255.1 ...
+ignored	product	hypothetical protein	ignored	32	JX112709.1, JX489155.1, KC210147.1, KM189367.2, KM609208.1, KM609213.1, KP765609.1, KX981440.1 ...
+ignored	product	polyprotein	ignored	22	JX112709.1, KC210147.1, KP765609.1, KX550281.1, KX981440.1, KY007139.1, KY928065.1, KY963963.1 ...
+ignored	gene	HNZK1	ignored	5	OQ979200.1
+ignored	product	unknown	ignored	2	AF353511.1, EF185992.1
+unresolved	note	101-bp deletion results in frameshift and premature termination	unresolved	1	PV533621.1
+unresolved	note	1a polyprotein and 1b polyprotein	unresolved	1	JX112709.1
+unresolved	note	contains ORF1a and ORF1b	unresolved	1	KY928065.1
+unresolved	product	truncated hypothetical protein	unresolved	1	PV533621.1

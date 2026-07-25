@@ -1,0 +1,7 @@
+ref_name	changed_cases	exact_improved	baseline_exact	coord_improved	baseline_coord	exact_delta_within_changed	coord_delta_within_changed
+ORF7	25	25	0	25	0	25	25
+ORF2b	4	3	0	3	3	3	0
+ORF5	4	4	0	4	4	4	0
+ORF6	3	3	0	3	3	3	0
+ORF1b	1	0	0	0	0	0	0
+ORF4	1	1	0	1	1	1	0

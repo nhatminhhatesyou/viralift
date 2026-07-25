@@ -1,0 +1,10 @@
+ref_name	baseline_truth_available_records	baseline_all_records	baseline_lifted_with_truth	baseline_not_lifted_with_truth	baseline_exact_correct	baseline_coord_correct	baseline_exact_wrong_or_nonexact	baseline_coord_wrong_or_missing	baseline_extra_predictions_without_truth	baseline_records_without_truth	baseline_exact_pct_on_truth	baseline_coord_pct_on_truth	experiment_truth_available_records	experiment_all_records	experiment_lifted_with_truth	experiment_not_lifted_with_truth	experiment_exact_correct	experiment_coord_correct	experiment_exact_wrong_or_nonexact	experiment_coord_wrong_or_missing	experiment_extra_predictions_without_truth	experiment_records_without_truth	experiment_exact_pct_on_truth	experiment_coord_pct_on_truth	exact_correct_delta	coord_correct_delta	exact_wrong_or_nonexact_delta	coord_wrong_or_missing_delta	exact_pct_on_truth_delta	coord_pct_on_truth_delta
+ORF7	94	95	94	0	66	66	28	28	1	1	70.21	70.21	94	95	94	0	91	91	3	3	1	1	96.81	96.81	25	25	-25	-25	26.6	26.6
+ORF5	95	95	95	0	91	95	4	0	0	0	95.79	100.0	95	95	95	0	95	95	0	0	0	0	100.0	100.0	4	0	-4	0	4.21	0.0
+ORF2b	48	95	48	0	45	48	3	0	47	47	93.75	100.0	48	95	48	0	48	48	0	0	47	47	100.0	100.0	3	0	-3	0	6.25	0.0
+ORF6	94	95	94	0	91	94	3	0	1	1	96.81	100.0	94	95	94	0	94	94	0	0	1	1	100.0	100.0	3	0	-3	0	3.19	0.0
+ORF4	95	95	95	0	94	95	1	0	0	0	98.95	100.0	95	95	95	0	95	95	0	0	0	0	100.0	100.0	1	0	-1	0	1.05	0.0
+ORF1a	62	95	62	0	61	62	1	0	33	33	98.39	100.0	62	95	62	0	61	62	1	0	33	33	98.39	100.0	0	0	0	0	0.0	0.0
+ORF1b	83	95	83	0	0	83	83	0	12	12	0.0	100.0	83	95	83	0	0	83	83	0	12	12	0.0	100.0	0	0	0	0	0.0	0.0
+ORF2a	95	95	95	0	95	95	0	0	0	0	100.0	100.0	95	95	95	0	95	95	0	0	0	0	100.0	100.0	0	0	0	0	0.0	0.0
+ORF3	95	95	95	0	95	95	0	0	0	0	100.0	100.0	95	95	95	0	95	95	0	0	0	0	100.0	100.0	0	0	0	0	0.0	0.0

@@ -1,0 +1,3 @@
+final_blame	cases	pct_of_failures	pct_of_all_predictions
+ref_truth	28	43.75	2.43
+tool	36	56.25	3.12

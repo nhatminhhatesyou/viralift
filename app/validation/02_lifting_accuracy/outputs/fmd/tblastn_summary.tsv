@@ -1,0 +1,2 @@
+virus	method	total	exact	coord_correct	mean_iou	exact_pct	coord_pct
+fmd	tblastn	1176	1137	1169	0.9936	96.68	99.4

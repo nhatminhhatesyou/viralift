@@ -1,0 +1,13 @@
+virus	failure_mode	count
+FMD	Correct	1110
+FMD	Boundary offset	43
+FMD	Wrong coords	19
+FMD	Not in truth	2
+FMD	Not lifted	1
+FMD	Possible overlap	1
+PRRS	Correct	618
+PRRS	Possible overlap	124
+PRRS	Boundary offset	96
+PRRS	Wrong coords	34
+PRRS	Alias/name gap	27
+PRRS	Not in truth	1

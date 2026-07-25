@@ -1,0 +1,11 @@
+ref	pred_name	failure_mode	status	cases	mean_iou	median_delta_start	median_delta_end	examples
+ref_1	ORF1b	Boundary offset	ok	1	0.983	135.0	0.0	MF577027.1
+ref_1	ORF1b	Wrong coords	ok	1	0.3847	12518.0	0.0	KX550281.1
+ref_1	ORF3	Boundary offset	invalid_boundaries	1	0.9605	0.0	26.0	MF462814.1
+ref_1	S	Boundary offset	invalid_boundaries	1	0.9832	69.0	0.0	MF577027.1
+ref_1	S	Boundary offset	ok	1	0.9928	0.0	30.0	KP765609.1
+ref_2	ORF1b	Boundary offset	invalid_boundaries	1	0.9908	-74.0	0.0	MF577027.1
+ref_2	ORF1b	Wrong coords	invalid_boundaries	1	0.395	12309.0	0.0	KX550281.1
+ref_2	ORF3	Boundary offset	invalid_boundaries	1	0.9605	0.0	26.0	MF462814.1
+ref_2	S	Boundary offset	invalid_boundaries	1	0.9832	69.0	0.0	MF577027.1
+ref_2	S	Boundary offset	ok	1	0.9928	0.0	30.0	KP765609.1

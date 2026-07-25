@@ -1,0 +1,11 @@
+ref	ref_record	record_id	method	ref_name	pred_name	source_name	pred_start	pred_end	strand	status	coverage	identity	score	truth_name	truth_start	truth_end	best_overlap_name	best_iou	iou	name_match	coord_correct	exact_match	failure_mode	delta_start	delta_end
+ref_1	PZ105934.1	KP765609.1	tblastn	S	S		20634	24800	+	ok	1.0	96.7	2754.2	S	20634.0	24770.0	S	0.9928	0.9928	True	True	False	Boundary offset	0.0	30.0
+ref_1	PZ105934.1	KX550281.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok	1.0	99.8	5427.1	ORF1b	293.0	20637.0	ORF1b	0.3847	0.3847	True	False	False	Wrong coords	12518.0	0.0
+ref_1	PZ105934.1	MF577027.1	tblastn	ORF1b	ORF1b		12810	20636	+	ok	1.0	98.6	5382.0	ORF1b	12675.0	20636.0	ORF1b	0.983	0.983	True	True	False	Boundary offset	135.0	0.0
+ref_1	PZ105934.1	MF577027.1	tblastn	S	S		20702	24751	+	invalid_boundaries	0.982	59.4	1574.7	S	20633.0	24751.0	S	0.9832	0.9832	True	True	False	Boundary offset	69.0	0.0
+ref_1	PZ105934.1	MF462814.1	tblastn	ORF3	ORF3		24793	25451	+	invalid_boundaries	0.9777	99.1	335.1	ORF3	24793.0	25425.0	ORF3	0.9605	0.9605	True	True	False	Boundary offset	0.0	26.0
+ref_2	PV974486.1	KP765609.1	tblastn	S	S		20634	24800	+	ok	1.0	93.1	2580.1	S	20634.0	24770.0	S	0.9928	0.9928	True	True	False	Boundary offset	0.0	30.0
+ref_2	PV974486.1	KX550281.1	tblastn	ORF1b	ORF1b		12602	20637	+	invalid_boundaries	1.0	99.8	5569.2	ORF1b	293.0	20637.0	ORF1b	0.395	0.395	True	False	False	Wrong coords	12309.0	0.0
+ref_2	PV974486.1	MF577027.1	tblastn	ORF1b	ORF1b		12601	20636	+	invalid_boundaries	1.0	98.7	5522.6	ORF1b	12675.0	20636.0	ORF1b	0.9908	0.9908	True	True	False	Boundary offset	-74.0	0.0
+ref_2	PV974486.1	MF577027.1	tblastn	S	S		20702	24751	+	invalid_boundaries	0.9819	60.1	1590.1	S	20633.0	24751.0	S	0.9832	0.9832	True	True	False	Boundary offset	69.0	0.0
+ref_2	PV974486.1	MF462814.1	tblastn	ORF3	ORF3		24793	25451	+	invalid_boundaries	0.9777	99.1	335.1	ORF3	24793.0	25425.0	ORF3	0.9605	0.9605	True	True	False	Boundary offset	0.0	26.0

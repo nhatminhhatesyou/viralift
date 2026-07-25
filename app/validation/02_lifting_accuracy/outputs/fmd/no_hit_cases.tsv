@@ -1,0 +1,2 @@
+record_id	ref_name	pred_name	truth_name	best_overlap_name	pred_start	pred_end	truth_start	truth_end	delta_start	delta_end	pred_minus_truth_len	pred_minus_ref_len	iou	coverage	identity	codon_valid	status	failure_mode
+FJ175666.1	2A	2A	2A				3986.0	4039.0					0.0	0.0		True	no_hit	Not lifted

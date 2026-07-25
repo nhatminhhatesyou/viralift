@@ -1,0 +1,23 @@
+virus	method	failure_mode	count	total	pct
+FMD	minimap2	Alias/name gap	1	240	0.42
+FMD	minimap2	Correct	101	240	42.08
+FMD	minimap2	Not lifted	118	240	49.17
+FMD	minimap2	Wrong coords	20	240	8.33
+FMD	tblastn	Alias/name gap	2	240	0.83
+FMD	tblastn	Boundary offset	6	240	2.5
+FMD	tblastn	Correct	226	240	94.17
+FMD	tblastn	Not lifted	1	240	0.42
+FMD	tblastn	Wrong coords	5	240	2.08
+PRRS	minimap2	Alias/name gap	3	180	1.67
+PRRS	minimap2	Boundary offset	12	180	6.67
+PRRS	minimap2	Correct	53	180	29.44
+PRRS	minimap2	Not in truth	1	180	0.56
+PRRS	minimap2	Not lifted	66	180	36.67
+PRRS	minimap2	Possible overlap	18	180	10.0
+PRRS	minimap2	Wrong coords	27	180	15.0
+PRRS	tblastn	Alias/name gap	3	180	1.67
+PRRS	tblastn	Boundary offset	18	180	10.0
+PRRS	tblastn	Correct	132	180	73.33
+PRRS	tblastn	Not in truth	1	180	0.56
+PRRS	tblastn	Possible overlap	23	180	12.78
+PRRS	tblastn	Wrong coords	3	180	1.67

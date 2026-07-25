@@ -1,0 +1,15 @@
+paper_section	validation_unit	notebook_or_script	primary_outputs	question_answered
+Dataset	app/validation/00_dataset_curation	README.md	accession manifest / strict-clean matrix	Which records are valid ground truth for accuracy claims?
+Alias normalisation	app/validation/02_alias_coverage	output-only archived analysis	outputs/alias_summary_overall.tsv; outputs/alias_coverage_heatmap.png	How much GenBank name variation is resolved by alias maps?
+Alias normalisation	app/validation/06_ped_validation	ped_alias_validation.ipynb	outputs/alias/ped_alias_overall_summary.tsv; outputs/alias/ped_alias_overall_resolution.png	Does the PEDV alias map resolve enough query/reference names?
+Engine benchmark	app/validation/01_engine_lifting_minimap_vs_tblastn	output-only archived analysis	outputs/engine_summary.tsv; outputs/engine_accuracy.png	Why choose tblastn instead of minimap2?
+Core accuracy	app/validation/04_tblastn_truth_breakdown_100seq	output-only archived strict-clean analysis	tiers/strict_clean/summary_outputs/fmd_prrsv_overall_accuracy.tsv	What is FMDV/PRRSV exact and coordinate-correct accuracy?
+Core accuracy	app/validation/06_ped_validation	ped_tblastn_validation_updated.ipynb	outputs/tblastn_postupdate/ped_tblastn_overall_accuracy_full100.tsv	What is PEDV exact and coordinate-correct accuracy after updates?
+Per-gene breakdown	app/validation/04_tblastn_truth_breakdown_100seq	output-only archived strict-clean analysis	tiers/strict_clean/summary_outputs/fmd_prrsv_per_gene_accuracy.tsv	Which genes pass/fail most often in FMDV and PRRSV?
+Per-gene breakdown	app/validation/06_ped_validation	ped_tblastn_validation_updated.ipynb	outputs/tblastn_postupdate/ped_tblastn_per_gene_accuracy_full100.tsv	Which PEDV genes pass/fail most often?
+Ablation	app/validation/04_tblastn_truth_breakdown_100seq	output-only archived strict-clean analysis	tiers/strict_clean/prrsv_start_rescue_full_outputs/prrsv_start_rescue_per_gene_comparison.tsv	How much does PRRSV start-rescue improve accuracy?
+Ablation	app/validation/04_tblastn_truth_breakdown_100seq	output-only archived strict-clean analysis	tiers/strict_clean/terminal_extrapolation_outputs/fmd_final_cause_comparison.tsv	How much does FMDV terminal extrapolation improve accuracy?
+Ablation	app/validation/06_ped_validation	ped_tblastn_validation.ipynb; ped_tblastn_validation_updated.ipynb	outputs/tblastn_preupdate; outputs/tblastn_postupdate	How did PEDV accuracy change after alias/tool updates?
+External baseline	app/validation/05_gatu_export_and_compare	output-only exported cases	outputs/gatu_manifest.csv; outputs/gatu_inputs/	Which cases are ready for GATU/manual external comparison?
+End-to-end	app/validation/03_end_to_end_pipeline_100seq	output-only archived analysis	outputs/e2e_summary.tsv; outputs/e2e_status_summary.tsv	Does the full pipeline work, not just tblastn lifting?
+LLM alias review	app/validation/07_llm_alias_validation	build_dataset.py; run_llm_validation.py	outputs/summary.tsv; outputs/track_a_results.tsv; outputs/track_b_results.tsv	How accurate is optional LLM-assisted alias review?

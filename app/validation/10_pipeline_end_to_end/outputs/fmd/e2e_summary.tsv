@@ -1,0 +1,2 @@
+virus	method	total	exact	coord_correct	mean_iou	exact_pct	coord_pct
+FMD	direct	1178	1173	1173	0.9958	99.58	99.58

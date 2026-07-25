@@ -1,0 +1,364 @@
+raw_value	norm	coord_canonical	iou	cross_canon_n	det_action	llm_reviewed	llm_action	llm_confidence	operative	llm_reason
+polyprotein ORF1a	polyproteinorf1a	ORF1a	1.0	1	save_alias	False			save_alias	
+polyprotein ORF1b	polyproteinorf1b	ORF1b	0.9986	1	save_alias	False			save_alias	
+ORF1a	orf1a	ORF1a	1.0	1	save_alias	False			save_alias	
+ORF1b	orf1b	ORF1b	0.9973	1	save_alias	False			save_alias	
+ORF2a	orf2a	ORF2a	1.0	1	save_alias	False			save_alias	
+ORF2b	orf2b	ORF2b	1.0	1	save_alias	False			save_alias	
+ORF3	orf3	ORF3	1.0	1	save_alias	False			save_alias	
+ORF4	orf4	ORF4	1.0	1	save_alias	False			save_alias	
+ORF5	orf5	ORF5	1.0	1	save_alias	False			save_alias	
+ORF6	orf6	ORF6	1.0	1	save_alias	False			save_alias	
+ORF7	orf7	ORF7	1.0	1	save_alias	False			save_alias	
+ORF1ab	orf1ab	ORF1a	1.0	1	save_alias	False			save_alias	
+GP3	gp3	ORF3	1.0	1	save_alias	False			save_alias	
+GP4	gp4	ORF4	1.0	1	save_alias	False			save_alias	
+GP5	gp5	ORF5	1.0	1	save_alias	False			save_alias	
+nonstructural polyprotein 1A	nonstructuralpolyprotein1a	ORF1a	1.0	1	save_alias	False			save_alias	
+replicase polyprotein 1A	replicasepolyprotein1a	ORF1a	1.0	1	save_alias	False			save_alias	
+nonstructual polyprotein 1B	nonstructualpolyprotein1b	ORF1b	0.9979	1	save_alias	False			save_alias	
+replicase polyprotein 1B	replicasepolyprotein1b	ORF1b	0.9979	1	save_alias	False			save_alias	
+ORF1a	orf1a	ORF1a	1.0	1	save_alias	False			save_alias	
+ORF1a	orf1a	ORF1a	1.0	1	save_alias	False			save_alias	
+ORF1a polyprotein	orf1apolyprotein	ORF1a	1.0	1	save_alias	False			save_alias	
+ORF1a polyprotein	orf1apolyprotein	ORF1a	1.0	1	save_alias	False			save_alias	
+ORF1a polyprotein; polypeptide precursor of non-structural proteins NSP1 through NSP8	orf1apolyprotein;polypeptideprecursorofnonstructuralproteinsnsp1throughnsp8	ORF1a	1.0	1	save_alias	False			save_alias	
+ORF1a; papain-like cysteine protease alpha and beta; cysteine proteas; serine protease	orf1a;papainlikecysteineproteasealphaandbeta;cysteineproteas;serineprotease	ORF1a	1.0	1	save_alias	False			save_alias	
+ORF1a; papain-like cysteine protease alpha and beta; cysteine protease; serine protease	orf1a;papainlikecysteineproteasealphaandbeta;cysteineprotease;serineprotease	ORF1a	1.0	1	save_alias	False			save_alias	
+ORF1a; papain-like cysteine protease alpha and beta; cysteine protease; serine protease protease	orf1a;papainlikecysteineproteasealphaandbeta;cysteineprotease;serineproteaseprotease	ORF1a	1.0	1	save_alias	False			save_alias	
+ORF1a; polypeptide precursor of non-structural proteins NSP1-NSP8	orf1a;polypeptideprecursorofnonstructuralproteinsnsp1nsp8	ORF1a	1.0	1	save_alias	False			save_alias	
+non-structural protein ORF1a	nonstructuralproteinorf1a	ORF1a	1.0	1	save_alias	False			save_alias	
+non-structural protein; ORF1a	nonstructuralprotein;orf1a	ORF1a	1.0	1	save_alias	False			save_alias	
+nonstructural polyprotein 1A; encodes papain-like cysteine protease, cysteine protease and 3C-like serine protease; ORF1A	nonstructuralpolyprotein1a;encodespapainlikecysteineprotease,cysteineproteaseand3clikeserineprotease;orf1a	ORF1a	1.0	1	save_alias	False			save_alias	
+nonstructural proteins ORF1a	nonstructuralproteinsorf1a	ORF1a	1.0	1	save_alias	False			save_alias	
+papain-like cysteine protease; ORF1a	papainlikecysteineprotease;orf1a	ORF1a	1.0	1	save_alias	False			save_alias	
+unusual cysteine protease/serine protease; ORF1a	unusualcysteineprotease/serineprotease;orf1a	ORF1a	1.0	1	save_alias	False			save_alias	
+ORF1b	orf1b	ORF1b	0.9986	1	save_alias	False			save_alias	
+ORF1b	orf1b	ORF1b	0.9986	1	save_alias	False			save_alias	
+ORF1b polyprotein	orf1bpolyprotein	ORF1b	0.9986	1	save_alias	False			save_alias	
+ORF1b translated through a ribosomal frameshift at ORF1a/1b junction; polypeptide precursor of non-structural proteins NSP9 through NSP12	orf1btranslatedthrougharibosomalframeshiftatorf1a/1bjunction;polypeptideprecursorofnonstructuralproteinsnsp9throughnsp12	ORF1b	0.9986	1	save_alias	False			save_alias	
+ORF1b; RNA dependent RNA polymerase; helicase	orf1b;rnadependentrnapolymerase;helicase	ORF1b	0.9993	1	save_alias	False			save_alias	
+ORF1b; helicase	orf1b;helicase	ORF1b	0.9986	1	save_alias	False			save_alias	
+ORF1b; polypeptide precursor of non-structural proteins NSP9-NSP12, RNA-dependent RNA polymerase/helicase; expression occurs due to an upstream ribosomal frameshift	orf1b;polypeptideprecursorofnonstructuralproteinsnsp9nsp12,rnadependentrnapolymerase/helicase;expressionoccursduetoanupstreamribosomalframeshift	ORF1b	0.9973	1	save_alias	False			save_alias	
+ORF1b; zinc-finger protein; helicase; expressed through -1 ribosomal frameshift	orf1b;zincfingerprotein;helicase;expressedthrough1ribosomalframeshift	ORF1b	0.9993	1	save_alias	False			save_alias	
+ORF1b; zinc-finger protein; helicase; expression occurs due to an upstream ribosomal frameshift	orf1b;zincfingerprotein;helicase;expressionoccursduetoanupstreamribosomalframeshift	ORF1b	0.9973	1	save_alias	False			save_alias	
+non-structural protein ORF1b	nonstructuralproteinorf1b	ORF1b	0.9973	1	save_alias	False			save_alias	
+nonstructual polyprotein 1B; encodes RNA dependent-RNA polymerase, helicase, zinc finger and conserved nidovirus motifs; ORF1B expressed by a ribosomal frameshifting mechanism	nonstructualpolyprotein1b;encodesrnadependentrnapolymerase,helicase,zincfingerandconservednidovirusmotifs;orf1bexpressedbyaribosomalframeshiftingmechanism	ORF1b	0.9979	1	save_alias	False			save_alias	
+nonstructural proteins ORF1b	nonstructuralproteinsorf1b	ORF1b	0.9973	1	save_alias	False			save_alias	
+zinc-finger protein; helicase; ribosomal; ORF1b	zincfingerprotein;helicase;ribosomal;orf1b	ORF1b	0.9973	1	save_alias	False			save_alias	
+ORF2a	orf2a	ORF2a	1.0	1	save_alias	False			save_alias	
+ORF2a	orf2a	ORF2a	1.0	1	save_alias	False			save_alias	
+ORF2a glycosylated membrane protein	orf2aglycosylatedmembraneprotein	ORF2a	1.0	1	save_alias	False			save_alias	
+envelope glycoprotein; ORF2a	envelopeglycoprotein;orf2a	ORF2a	1.0	1	save_alias	False			save_alias	
+structural glycoprotein; ORF2a	structuralglycoprotein;orf2a	ORF2a	1.0	1	save_alias	False			save_alias	
+ORF2B; unglycosylated membrane protein	orf2b;unglycosylatedmembraneprotein	ORF2b	1.0	1	save_alias	False			save_alias	
+ORF2b	orf2b	ORF2b	1.0	1	save_alias	False			save_alias	
+ORF2b	orf2b	ORF2b	1.0	1	save_alias	False			save_alias	
+small envelope protein; ORF2b	smallenvelopeprotein;orf2b	ORF2b	1.0	1	save_alias	False			save_alias	
+structural membrane protein; ORF2b	structuralmembraneprotein;orf2b	ORF2b	1.0	1	save_alias	False			save_alias	
+ORF3	orf3	ORF3	1.0	1	save_alias	False			save_alias	
+ORF3	orf3	ORF3	1.0	1	save_alias	False			save_alias	
+ORF3 glycosylated membrane protein	orf3glycosylatedmembraneprotein	ORF3	1.0	1	save_alias	False			save_alias	
+ORF3; glycosylated membrane protein	orf3;glycosylatedmembraneprotein	ORF3	1.0	1	save_alias	False			save_alias	
+ORF3; viral envelope glycoprotein	orf3;viralenvelopeglycoprotein	ORF3	1.0	1	save_alias	False			save_alias	
+envelope glycoprotein; ORF3	envelopeglycoprotein;orf3	ORF3	1.0	1	save_alias	False			save_alias	
+glycosylated membrane protein; ORF3	glycosylatedmembraneprotein;orf3	ORF3	1.0	1	save_alias	False			save_alias	
+ORF4	orf4	ORF4	1.0	1	save_alias	False			save_alias	
+ORF4	orf4	ORF4	1.0	1	save_alias	False			save_alias	
+ORF4 glycosylated membrane protein	orf4glycosylatedmembraneprotein	ORF4	1.0	1	save_alias	False			save_alias	
+ORF4; glycosylated membrane protein	orf4;glycosylatedmembraneprotein	ORF4	1.0	1	save_alias	False			save_alias	
+ORF4; viral envelope glycoprotein	orf4;viralenvelopeglycoprotein	ORF4	1.0	1	save_alias	False			save_alias	
+envelope glycoprotein; ORF4	envelopeglycoprotein;orf4	ORF4	1.0	1	save_alias	False			save_alias	
+glycosylated membrane portein; ORF4	glycosylatedmembraneportein;orf4	ORF4	1.0	1	save_alias	False			save_alias	
+glycosylated membrane protein; ORF4	glycosylatedmembraneprotein;orf4	ORF4	1.0	1	save_alias	False			save_alias	
+structural glycoprotein; ORF4	structuralglycoprotein;orf4	ORF4	1.0	1	save_alias	False			save_alias	
+ORF5	orf5	ORF5	1.0	1	save_alias	False			save_alias	
+ORF5	orf5	ORF5	1.0	1	save_alias	False			save_alias	
+ORF5 glycosylated membrane protein	orf5glycosylatedmembraneprotein	ORF5	1.0	1	save_alias	False			save_alias	
+ORF5; glycosylated membrane protein	orf5;glycosylatedmembraneprotein	ORF5	1.0	1	save_alias	False			save_alias	
+ORF5; glycosylated; major viral attachment protein; disulfide linked to M matrix protein	orf5;glycosylated;majorviralattachmentprotein;disulfidelinkedtommatrixprotein	ORF5	1.0	1	save_alias	False			save_alias	
+ORF5; viral envelope glycoprotein; major viral attachment protein; disulfide linked to Membrane protein coded for by ORF6	orf5;viralenvelopeglycoprotein;majorviralattachmentprotein;disulfidelinkedtomembraneproteincodedforbyorf6	ORF5	1.0	1	save_alias	False			save_alias	
+glycosylated membrane portein; ORF5	glycosylatedmembraneportein;orf5	ORF5	1.0	1	save_alias	False			save_alias	
+glycosylated membrane protein; ORF5	glycosylatedmembraneprotein;orf5	ORF5	1.0	1	save_alias	False			save_alias	
+major envelope glycoprotein; disulfide linked to the M protein; contains neutralizing epitope; ORF5	majorenvelopeglycoprotein;disulfidelinkedtothemprotein;containsneutralizingepitope;orf5	ORF5	1.0	1	save_alias	False			save_alias	
+putative viral attachment protein, disulfide linked to Membrane protein; ORF5	putativeviralattachmentprotein,disulfidelinkedtomembraneprotein;orf5	ORF5	1.0	1	save_alias	False			save_alias	
+structural glycoprotein; ORF5	structuralglycoprotein;orf5	ORF5	1.0	1	save_alias	False			save_alias	
+ORF6	orf6	ORF6	1.0	1	save_alias	False			save_alias	
+ORF6	orf6	ORF6	1.0	1	save_alias	False			save_alias	
+ORF6 matrix protein	orf6matrixprotein	ORF6	1.0	1	save_alias	False			save_alias	
+matrix protein; ORF6	matrixprotein;orf6	ORF6	1.0	1	save_alias	False			save_alias	
+unglycosylated membrane protein; disulfide linked to the GP5 protein; ORF6	unglycosylatedmembraneprotein;disulfidelinkedtothegp5protein;orf6	ORF6	1.0	1	save_alias	False			save_alias	
+ORF7	orf7	ORF7	1.0	1	save_alias	False			save_alias	
+ORF7	orf7	ORF7	1.0	1	save_alias	False			save_alias	
+ORF7 nucleocapsid protein	orf7nucleocapsidprotein	ORF7	1.0	1	save_alias	False			save_alias	
+nucleocapsid protein; ORF7	nucleocapsidprotein;orf7	ORF7	1.0	1	save_alias	False			save_alias	
+structural protein; N; ORF7	structuralprotein;n;orf7	ORF7	1.0	1	save_alias	False			save_alias	
+ORF1a protein	orf1aprotein	ORF1a	1.0	1	save_alias	False			save_alias	
+ORF1a; proteinase	orf1a;proteinase	ORF1a	1.0	1	save_alias	False			save_alias	
+proteinase; ORF1a	proteinase;orf1a	ORF1a	1.0	1	save_alias	False			save_alias	
+ORF1B expressed by a ribosomal frameshifting mechanism	orf1bexpressedbyaribosomalframeshiftingmechanism	ORF1b	0.9979	1	save_alias	False			save_alias	
+ORF1b protein	orf1bprotein	ORF1b	0.9973	1	save_alias	False			save_alias	
+ORF1b translated through a ribosomal frameshift at ORF1a/1b junction	orf1btranslatedthrougharibosomalframeshiftatorf1a/1bjunction	ORF1b	0.9986	1	save_alias	False			save_alias	
+protein kinase; ORF1b	proteinkinase;orf1b	ORF1b	0.9993	1	save_alias	False			save_alias	
+translated through ribosomal frameshift at ORF1a/ORF1b junction	translatedthroughribosomalframeshiftatorf1a/orf1bjunction	ORF1b	0.9986	1	save_alias	False			save_alias	
+GP2a envelope protein	gp2aenvelopeprotein	ORF2a	1.0	1	save_alias	False			save_alias	
+ORF2a; glycosylated	orf2a;glycosylated	ORF2a	1.0	1	save_alias	False			save_alias	
+GP2b envelope protein	gp2benvelopeprotein	ORF2b	1.0	1	save_alias	False			save_alias	
+ORF2b structual protein	orf2bstructualprotein	ORF2b	1.0	1	save_alias	False			save_alias	
+ORF2b; non-glycosylated	orf2b;nonglycosylated	ORF2b	1.0	1	save_alias	False			save_alias	
+envelope protein GP2b	envelopeproteingp2b	ORF2b	1.0	1	save_alias	False			save_alias	
+protein 2b; ORF2b	protein2b;orf2b	ORF2b	1.0	1	save_alias	False			save_alias	
+GP3 envelope protein	gp3envelopeprotein	ORF3	1.0	1	save_alias	False			save_alias	
+GP3 envelope protein	gp3envelopeprotein	ORF3	1.0	1	save_alias	False			save_alias	
+GP3; ORF3	gp3;orf3	ORF3	1.0	1	save_alias	False			save_alias	
+N-glycosylated envelope protein GP3	nglycosylatedenvelopeproteingp3	ORF3	1.0	1	save_alias	False			save_alias	
+ORF3; glycosylated	orf3;glycosylated	ORF3	1.0	1	save_alias	False			save_alias	
+envelope glycoprotein GP3	envelopeglycoproteingp3	ORF3	1.0	1	save_alias	False			save_alias	
+envelope protein GP3	envelopeproteingp3	ORF3	1.0	1	save_alias	False			save_alias	
+glycosylated envelope protein GP3	glycosylatedenvelopeproteingp3	ORF3	1.0	1	save_alias	False			save_alias	
+glycosylated membrane protein GP3	glycosylatedmembraneproteingp3	ORF3	1.0	1	save_alias	False			save_alias	
+glycosylated; ORF3	glycosylated;orf3	ORF3	1.0	1	save_alias	False			save_alias	
+GP4 envelope protein	gp4envelopeprotein	ORF4	1.0	1	save_alias	False			save_alias	
+GP4; ORF4	gp4;orf4	ORF4	1.0	1	save_alias	False			save_alias	
+N-glycosylated envelope protein GP4	nglycosylatedenvelopeproteingp4	ORF4	1.0	1	save_alias	False			save_alias	
+ORF4; glycosylated	orf4;glycosylated	ORF4	1.0	1	save_alias	False			save_alias	
+envelope glycoprotein GP4	envelopeglycoproteingp4	ORF4	1.0	1	save_alias	False			save_alias	
+envelope protein GP4	envelopeproteingp4	ORF4	1.0	1	save_alias	False			save_alias	
+glycosylated envelope protein GP4	glycosylatedenvelopeproteingp4	ORF4	1.0	1	save_alias	False			save_alias	
+glycosylated membrane protein GP4	glycosylatedmembraneproteingp4	ORF4	1.0	1	save_alias	False			save_alias	
+glycosylated; ORF4	glycosylated;orf4	ORF4	1.0	1	save_alias	False			save_alias	
+GP5 envelope protein	gp5envelopeprotein	ORF5	1.0	1	save_alias	False			save_alias	
+GP5 glycosylated envelope protein	gp5glycosylatedenvelopeprotein	ORF5	1.0	1	save_alias	False			save_alias	
+GP5 glycosylated envelope protein	gp5glycosylatedenvelopeprotein	ORF5	1.0	1	save_alias	False			save_alias	
+GP5; ORF5	gp5;orf5	ORF5	1.0	1	save_alias	False			save_alias	
+N-glycosylated envelope protein GP5	nglycosylatedenvelopeproteingp5	ORF5	1.0	1	save_alias	False			save_alias	
+ORF5; glycosylated	orf5;glycosylated	ORF5	1.0	1	save_alias	False			save_alias	
+envelope glycoprotein GP5	envelopeglycoproteingp5	ORF5	1.0	1	save_alias	False			save_alias	
+envelope protein GP5	envelopeproteingp5	ORF5	1.0	1	save_alias	False			save_alias	
+glycosylated envelope protein GP5	glycosylatedenvelopeproteingp5	ORF5	1.0	1	save_alias	False			save_alias	
+glycosylated membrane protein GP5	glycosylatedmembraneproteingp5	ORF5	1.0	1	save_alias	False			save_alias	
+glycosylated; ORF5	glycosylated;orf5	ORF5	1.0	1	save_alias	False			save_alias	
+M; ORF6	m;orf6	ORF6	1.0	1	save_alias	False			save_alias	
+ORF6; disulfide linked to GP5	orf6;disulfidelinkedtogp5	ORF6	1.0	1	save_alias	False			save_alias	
+membrane protein GP6	membraneproteingp6	ORF6	1.0	1	save_alias	False			save_alias	
+nonglycosylate; ORF6	nonglycosylate;orf6	ORF6	1.0	1	save_alias	False			save_alias	
+N; ORF7	n;orf7	ORF7	1.0	1	save_alias	False			save_alias	
+ORF7; icosahedral symmetry	orf7;icosahedralsymmetry	ORF7	1.0	1	save_alias	False			save_alias	
+GP2a	gp2a	ORF2a	1.0	1	save_alias	False			save_alias	
+2b	2b	ORF2b	1.0	1	save_alias	False			save_alias	
+GP2b	gp2b	ORF2b	1.0	1	save_alias	False			save_alias	
+protein 2b	protein2b	ORF2b	1.0	1	save_alias	False			save_alias	
+GP3	gp3	ORF3	1.0	1	save_alias	False			save_alias	
+GP3	gp3	ORF3	1.0	1	save_alias	False			save_alias	
+GP4	gp4	ORF4	1.0	1	save_alias	False			save_alias	
+GP4	gp4	ORF4	1.0	1	save_alias	False			save_alias	
+GP4 protein	gp4protein	ORF4	1.0	1	save_alias	False			save_alias	
+GP5	gp5	ORF5	1.0	1	save_alias	False			save_alias	
+GP5	gp5	ORF5	1.0	1	save_alias	False			save_alias	
+cysteine proteas	cysteineproteas	ORF1a	1.0	1	manual_review	False			manual_review	
+proteinase	proteinase	ORF1a	1.0	1	manual_review	False			manual_review	
+proteinase	proteinase	ORF1a	1.0	1	manual_review	False			manual_review	
+expressed through -1 ribosomal frameshift	expressedthrough1ribosomalframeshift	ORF1b	0.9993	1	manual_review	False			manual_review	
+expression occurs due to an upstream ribosomal frameshift	expressionoccursduetoanupstreamribosomalframeshift	ORF1b	0.9973	1	manual_review	False			manual_review	
+nidovirus-like domain	nidoviruslikedomain	ORF1b	0.9973	1	manual_review	False			manual_review	
+nidovirus-like domain protein	nidoviruslikedomainprotein	ORF1b	0.9973	1	manual_review	False			manual_review	
+protein kinase	proteinkinase	ORF1b	0.9993	1	manual_review	False			manual_review	
+ribosomal	ribosomal	ORF1b	0.9973	1	manual_review	False			manual_review	
+translated by ribosomal frameshift	translatedbyribosomalframeshift	ORF1b	0.9973	1	manual_review	False			manual_review	
+translated through a ribosomal frameshift at ORF1a/1b junction	translatedthrougharibosomalframeshiftatorf1a/1bjunction	ORF1b	0.9986	1	manual_review	False			manual_review	
+zinc-finger protein	zincfingerprotein	ORF1b	0.9986	1	manual_review	False			manual_review	
+GP2	gp2	ORF2a	1.0	1	manual_review	False			manual_review	
+GP2	gp2	ORF2a	1.0	1	manual_review	False			manual_review	
+GP2	gp2	ORF2a	1.0	1	manual_review	False			manual_review	
+GP2; ORF2	gp2;orf2	ORF2a	1.0	1	manual_review	False			manual_review	
+ORF2	orf2	ORF2a	1.0	1	manual_review	False			manual_review	
+ORF2	orf2	ORF2a	1.0	1	manual_review	False			manual_review	
+ORF2	orf2	ORF2a	1.0	1	manual_review	False			manual_review	
+ORF2; glycosylated	orf2;glycosylated	ORF2a	1.0	1	manual_review	False			manual_review	
+glycosylated; ORF2	glycosylated;orf2	ORF2a	1.0	1	manual_review	False			manual_review	
+E	e	ORF2b	1.0	2	manual_review	False			manual_review	
+E	e	ORF2b	1.0	1	manual_review	False			manual_review	
+E protein	eprotein	ORF2b	1.0	1	manual_review	False			manual_review	
+E; unglycosylated	e;unglycosylated	ORF2b	1.0	1	manual_review	False			manual_review	
+non-glycosylated	nonglycosylated	ORF2b	1.0	1	manual_review	False			manual_review	
+non-glycosylated protein 2b	nonglycosylatedprotein2b	ORF2b	1.0	1	manual_review	False			manual_review	
+protein E	proteine	ORF2b	1.0	1	manual_review	False			manual_review	
+unglycosylated	unglycosylated	ORF2b	1.0	2	manual_review	False			manual_review	
+E	e	ORF5	1.0	2	manual_review	False			manual_review	
+contains neutralizing epitope	containsneutralizingepitope	ORF5	1.0	1	manual_review	False			manual_review	
+disulfide linked to the M protein	disulfidelinkedtothemprotein	ORF5	1.0	1	manual_review	False			manual_review	
+has neutralizing epitope	hasneutralizingepitope	ORF5	1.0	1	manual_review	False			manual_review	
+M	m	ORF6	1.0	1	manual_review	False			manual_review	
+M	m	ORF6	1.0	1	manual_review	False			manual_review	
+M	m	ORF6	1.0	1	manual_review	False			manual_review	
+M protein	mprotein	ORF6	1.0	1	manual_review	False			manual_review	
+disulfide linked to GP5	disulfidelinkedtogp5	ORF6	1.0	1	manual_review	False			manual_review	
+disulfide linked to GP5; ORF5	disulfidelinkedtogp5;orf5	ORF6	1.0	1	manual_review	False			manual_review	
+disulfide linked to the GP5 protein	disulfidelinkedtothegp5protein	ORF6	1.0	1	manual_review	False			manual_review	
+nonglycosylate	nonglycosylate	ORF6	1.0	2	manual_review	False			manual_review	
+unglycosylated	unglycosylated	ORF6	1.0	2	manual_review	False			manual_review	
+N	n	ORF7	1.0	1	manual_review	False			manual_review	
+N	n	ORF7	1.0	1	manual_review	False			manual_review	
+N	n	ORF7	1.0	1	manual_review	False			manual_review	
+N protein	nprotein	ORF7	1.0	1	manual_review	False			manual_review	
+N protein	nprotein	ORF7	1.0	1	manual_review	False			manual_review	
+icosahedral symmetry	icosahedralsymmetry	ORF7	1.0	1	manual_review	False			manual_review	
+nonglycosylate	nonglycosylate	ORF7	1.0	2	manual_review	False			manual_review	
+RNA polymerase	rnapolymerase	ORF1a	1.0	2	manual_review	False			manual_review	
+polyprotein	polyprotein	ORF1a	1.0	2	manual_review	False			manual_review	
+RNA polymerase	rnapolymerase	ORF1b	0.9986	2	manual_review	False			manual_review	
+polyprotein	polyprotein	ORF1b	0.9986	2	manual_review	False			manual_review	
+envelope glycoprotein	envelopeglycoprotein	ORF2a	1.0	2	manual_review	False			manual_review	
+envelope protein E	envelopeproteine	ORF2b	1.0	2	manual_review	False			manual_review	
+structural membrane protein	structuralmembraneprotein	ORF2b	1.0	2	manual_review	False			manual_review	
+unglycosylated membrane protein	unglycosylatedmembraneprotein	ORF2b	1.0	2	manual_review	False			manual_review	
+envelope glycoprotein	envelopeglycoprotein	ORF3	1.0	2	manual_review	False			manual_review	
+glycosylated membrane portein	glycosylatedmembraneportein	ORF4	1.0	2	manual_review	False			manual_review	
+envelope protein E	envelopeproteine	ORF5	1.0	2	manual_review	False			manual_review	
+glycosylated membrane portein	glycosylatedmembraneportein	ORF5	1.0	2	manual_review	False			manual_review	
+structural membrane protein	structuralmembraneprotein	ORF6	1.0	2	manual_review	False			manual_review	
+unglycosylated membrane protein	unglycosylatedmembraneprotein	ORF6	1.0	2	manual_review	False			manual_review	
+1a replicase protein	1areplicaseprotein	ORF1a	1.0	1	ignore	False			ignore	
+1a replicase protein; papain-like cysteine/serine protease	1areplicaseprotein;papainlikecysteine/serineprotease	ORF1a	1.0	1	ignore	False			ignore	
+contains 1a replicase protein	contains1areplicaseprotein	ORF1a	1.0	1	ignore	False			ignore	
+contains 1a replicase protein; papain-like cysteine protease; serine protease	contains1areplicaseprotein;papainlikecysteineprotease;serineprotease	ORF1a	1.0	1	ignore	False			ignore	
+contains papain-like cysteine protease	containspapainlikecysteineprotease	ORF1a	1.0	1	ignore	False			ignore	
+cysteine protease	cysteineprotease	ORF1a	1.0	1	ignore	False			ignore	
+cysteine protease/serine protease	cysteineprotease/serineprotease	ORF1a	1.0	1	ignore	False			ignore	
+cysteine protease/serine protease	cysteineprotease/serineprotease	ORF1a	1.0	1	ignore	False			ignore	
+cysteine/serine protease	cysteine/serineprotease	ORF1a	1.0	1	ignore	False			ignore	
+cysteine/serine protease	cysteine/serineprotease	ORF1a	1.0	1	ignore	False			ignore	
+encodes papain-like cycteine protease, 3C-like cysteine protease and serine protease	encodespapainlikecycteineprotease,3clikecysteineproteaseandserineprotease	ORF1a	1.0	1	ignore	False			ignore	
+encodes papain-like cysteine protease, cysteine protease and 3C-like serine protease	encodespapainlikecysteineprotease,cysteineproteaseand3clikeserineprotease	ORF1a	1.0	1	ignore	False			ignore	
+non-structural protein	nonstructuralprotein	ORF1a	1.0	1	ignore	False			ignore	
+non-structural protein	nonstructuralprotein	ORF1a	1.0	1	ignore	False			ignore	
+nonstructural polyprotein 1A; encodes papain-like cysteine protease, cysteine protease and 3C-like serine protease	nonstructuralpolyprotein1a;encodespapainlikecysteineprotease,cysteineproteaseand3clikeserineprotease	ORF1a	1.0	1	ignore	False			ignore	
+papain-like cysteine protease	papainlikecysteineprotease	ORF1a	1.0	1	ignore	False			ignore	
+papain-like cysteine protease	papainlikecysteineprotease	ORF1a	1.0	1	ignore	False			ignore	
+papain-like cysteine protease alpha and beta	papainlikecysteineproteasealphaandbeta	ORF1a	1.0	1	ignore	False			ignore	
+papain-like cysteine/serine protease	papainlikecysteine/serineprotease	ORF1a	1.0	1	ignore	False			ignore	
+papain/chymotrypsin-like cystein protease	papain/chymotrypsinlikecysteinprotease	ORF1a	1.0	1	ignore	False			ignore	
+papain/chymotrypsin-like cystein protease; serine protease	papain/chymotrypsinlikecysteinprotease;serineprotease	ORF1a	1.0	1	ignore	False			ignore	
+polypeptide precursor of non-structural proteins NSP1 through NSP8	polypeptideprecursorofnonstructuralproteinsnsp1throughnsp8	ORF1a	1.0	1	ignore	False			ignore	
+polypeptide precursor of non-structural proteins NSP1 through NSP8	polypeptideprecursorofnonstructuralproteinsnsp1throughnsp8	ORF1a	1.0	1	ignore	False			ignore	
+polypeptide precursor of non-structural proteins NSP1-NSP8	polypeptideprecursorofnonstructuralproteinsnsp1nsp8	ORF1a	1.0	1	ignore	False			ignore	
+replicase polyprotein	replicasepolyprotein	ORF1a	1.0	1	ignore	False			ignore	
+serine protease	serineprotease	ORF1a	1.0	1	ignore	False			ignore	
+serine protease protease	serineproteaseprotease	ORF1a	1.0	1	ignore	False			ignore	
+unusual cysteine protease/serine protease	unusualcysteineprotease/serineprotease	ORF1a	1.0	1	ignore	False			ignore	
+1b replicase protein	1breplicaseprotein	ORF1b	0.9973	1	ignore	False			ignore	
+1b replicase protein; RNA dependent RNA polymerase; zinc-finger protein; helicase; nidovirus-like domain	1breplicaseprotein;rnadependentrnapolymerase;zincfingerprotein;helicase;nidoviruslikedomain	ORF1b	0.9973	1	ignore	False			ignore	
+RNA dependent RNA polymerase	rnadependentrnapolymerase	ORF1b	0.9986	1	ignore	False			ignore	
+RNA dependent RNA polymerase/helicase	rnadependentrnapolymerase/helicase	ORF1b	0.9986	1	ignore	False			ignore	
+RNA dependent RNA polymerase/zinc-finger/helicase	rnadependentrnapolymerase/zincfinger/helicase	ORF1b	0.9986	1	ignore	False			ignore	
+RNA dependent RNA polymerase; zinc-finger protein; helicase	rnadependentrnapolymerase;zincfingerprotein;helicase	ORF1b	0.9986	1	ignore	False			ignore	
+RNA-dependent RNA polymerase	rnadependentrnapolymerase	ORF1b	0.9973	1	ignore	False			ignore	
+RNA-dependent RNA polymerase/helicase	rnadependentrnapolymerase/helicase	ORF1b	0.9993	1	ignore	False			ignore	
+RNA-dependent RNA polymerase/helicase; translated by ribosomal frameshift	rnadependentrnapolymerase/helicase;translatedbyribosomalframeshift	ORF1b	0.9973	1	ignore	False			ignore	
+contains 1b replicase protein	contains1breplicaseprotein	ORF1b	0.9973	1	ignore	False			ignore	
+contains 1b replicase protein; RNA dependent RNA polymerase; zinc-finger protein; helicase; nidovirus-like domain protein	contains1breplicaseprotein;rnadependentrnapolymerase;zincfingerprotein;helicase;nidoviruslikedomainprotein	ORF1b	0.9973	1	ignore	False			ignore	
+contains RNA-dependent RNA polymerase	containsrnadependentrnapolymerase	ORF1b	0.9986	1	ignore	False			ignore	
+encodes RNA dependent-RNA polymerase, helicase, zinc finger and conserved nidovirus motifs	encodesrnadependentrnapolymerase,helicase,zincfingerandconservednidovirusmotifs	ORF1b	0.9979	1	ignore	False			ignore	
+encodes polymerase, helicase and zinc finger	encodespolymerase,helicaseandzincfinger	ORF1b	0.9973	1	ignore	False			ignore	
+encodes polymerase, helicase and zinc finger; expression occurs due to an upstream ribosomal frameshift	encodespolymerase,helicaseandzincfinger;expressionoccursduetoanupstreamribosomalframeshift	ORF1b	0.9973	1	ignore	False			ignore	
+encodes polymerase, helicase, zinc finger and nidovirus motifs	encodespolymerase,helicase,zincfingerandnidovirusmotifs	ORF1b	0.9979	1	ignore	False			ignore	
+helicase	helicase	ORF1b	0.9986	1	ignore	False			ignore	
+helicase	helicase	ORF1b	0.9986	1	ignore	False			ignore	
+helicase; zinc-finger protein	helicase;zincfingerprotein	ORF1b	0.9986	1	ignore	False			ignore	
+nonstructual polyprotein 1B; encodes polymerase, helicase, zinc finger and nidovirus motifs; expression occurs due to an upstream ribosomal frameshift	nonstructualpolyprotein1b;encodespolymerase,helicase,zincfingerandnidovirusmotifs;expressionoccursduetoanupstreamribosomalframeshift	ORF1b	0.9979	1	ignore	False			ignore	
+polypeptide precursor of non-structural proteins NSP9 through NSP12	polypeptideprecursorofnonstructuralproteinsnsp9throughnsp12	ORF1b	0.9993	1	ignore	False			ignore	
+polypeptide precursor of non-structural proteins NSP9 through NSP12	polypeptideprecursorofnonstructuralproteinsnsp9throughnsp12	ORF1b	0.9993	1	ignore	False			ignore	
+polypeptide precursor of non-structural proteins NSP9-NSP12, RNA-dependent RNA polymerase/helicase	polypeptideprecursorofnonstructuralproteinsnsp9nsp12,rnadependentrnapolymerase/helicase	ORF1b	0.9973	1	ignore	False			ignore	
+zinc-finger/helicase	zincfinger/helicase	ORF1b	0.9973	1	ignore	False			ignore	
+zinc-finger/helicase; RNA dependent RNA polymerase	zincfinger/helicase;rnadependentrnapolymerase	ORF1b	0.9973	1	ignore	False			ignore	
+GP2 envelope protein	gp2envelopeprotein	ORF2a	1.0	1	ignore	False			ignore	
+GP2 envelope protein	gp2envelopeprotein	ORF2a	1.0	1	ignore	False			ignore	
+GP2 envelope protein; ORF2	gp2envelopeprotein;orf2	ORF2a	1.0	1	ignore	False			ignore	
+GP2 glycosylated envelope protein	gp2glycosylatedenvelopeprotein	ORF2a	1.0	1	ignore	False			ignore	
+GP2 glycosylated envelope protein	gp2glycosylatedenvelopeprotein	ORF2a	1.0	1	ignore	False			ignore	
+GP2; viral envelope glycoprotein	gp2;viralenvelopeglycoprotein	ORF2a	1.0	1	ignore	False			ignore	
+N-glycosylated envelope protein GP2	nglycosylatedenvelopeproteingp2	ORF2a	1.0	1	ignore	False			ignore	
+ORF2; glycosylated membrane protein	orf2;glycosylatedmembraneprotein	ORF2a	1.0	1	ignore	False			ignore	
+envelope glycoprotein GP2	envelopeglycoproteingp2	ORF2a	1.0	1	ignore	False			ignore	
+envelope protein GP2	envelopeproteingp2	ORF2a	1.0	1	ignore	False			ignore	
+envelope protein; ORF2	envelopeprotein;orf2	ORF2a	1.0	1	ignore	False			ignore	
+glycoprotein 2	glycoprotein2	ORF2a	1.0	1	ignore	False			ignore	
+glycoprotein 2a	glycoprotein2a	ORF2a	1.0	1	ignore	False			ignore	
+glycosylated envelope protein GP2	glycosylatedenvelopeproteingp2	ORF2a	1.0	1	ignore	False			ignore	
+small envelope protein	smallenvelopeprotein	ORF2b	1.0	1	ignore	False			ignore	
+unglycosylated envelope protein	unglycosylatedenvelopeprotein	ORF2b	1.0	1	ignore	False			ignore	
+unglycosylated viral envelope protein	unglycosylatedviralenvelopeprotein	ORF2b	1.0	1	ignore	False			ignore	
+glycoprotein 3	glycoprotein3	ORF3	1.0	1	ignore	False			ignore	
+glycoprotein 4	glycoprotein4	ORF4	1.0	1	ignore	False			ignore	
+disulfide linked to M matrix protein	disulfidelinkedtommatrixprotein	ORF5	1.0	1	ignore	False			ignore	
+disulfide linked to Membrane protein coded for by ORF6	disulfidelinkedtomembraneproteincodedforbyorf6	ORF5	1.0	1	ignore	False			ignore	
+glycoprotein 5	glycoprotein5	ORF5	1.0	1	ignore	False			ignore	
+glycosylated; presumed cell attachment protein	glycosylated;presumedcellattachmentprotein	ORF5	1.0	1	ignore	False			ignore	
+major envelope glycoprotein	majorenvelopeglycoprotein	ORF5	1.0	1	ignore	False			ignore	
+major envelope glycoprotein	majorenvelopeglycoprotein	ORF5	1.0	1	ignore	False			ignore	
+major envelope glycoprotein; has neutralizing epitope; disulfide linked to the M protein	majorenvelopeglycoprotein;hasneutralizingepitope;disulfidelinkedtothemprotein	ORF5	1.0	1	ignore	False			ignore	
+major viral attachment protein	majorviralattachmentprotein	ORF5	1.0	1	ignore	False			ignore	
+presumed cell attachment protein	presumedcellattachmentprotein	ORF5	1.0	1	ignore	False			ignore	
+putative viral attachment protein, disulfide linked to Membrane protein	putativeviralattachmentprotein,disulfidelinkedtomembraneprotein	ORF5	1.0	1	ignore	False			ignore	
+structural glycoprotein; viral attachment protein	structuralglycoprotein;viralattachmentprotein	ORF5	1.0	1	ignore	False			ignore	
+viral attachment protein	viralattachmentprotein	ORF5	1.0	1	ignore	False			ignore	
+M matrix protein	mmatrixprotein	ORF6	1.0	1	ignore	False			ignore	
+M membrane protein	mmembraneprotein	ORF6	1.0	1	ignore	False			ignore	
+matrix protein	matrixprotein	ORF6	1.0	1	ignore	False			ignore	
+matrix protein	matrixprotein	ORF6	1.0	1	ignore	False			ignore	
+matrix protein M	matrixproteinm	ORF6	1.0	1	ignore	False			ignore	
+membrane envelope protein	membraneenvelopeprotein	ORF6	1.0	1	ignore	False			ignore	
+membrane protein	membraneprotein	ORF6	1.0	1	ignore	False			ignore	
+membrane protein M	membraneproteinm	ORF6	1.0	1	ignore	False			ignore	
+membrane protein M	membraneproteinm	ORF6	1.0	1	ignore	False			ignore	
+non-glycosylated membrane protein	nonglycosylatedmembraneprotein	ORF6	1.0	1	ignore	False			ignore	
+structural membrane protein	structuralmembraneprotein	ORF6	1.0	1	ignore	False			ignore	
+structural membrane protein; M	structuralmembraneprotein;m	ORF6	1.0	1	ignore	False			ignore	
+unglycosylated membrane protein; disulfide linked to the GP5 protein	unglycosylatedmembraneprotein;disulfidelinkedtothegp5protein	ORF6	1.0	1	ignore	False			ignore	
+unglycosylated; matrix protein; M	unglycosylated;matrixprotein;m	ORF6	1.0	1	ignore	False			ignore	
+N nucleocapsid protein	nnucleocapsidprotein	ORF7	1.0	1	ignore	False			ignore	
+nucleocapsid	nucleocapsid	ORF7	1.0	1	ignore	False			ignore	
+nucleocapsid protein	nucleocapsidprotein	ORF7	1.0	1	ignore	False			ignore	
+nucleocapsid protein	nucleocapsidprotein	ORF7	1.0	1	ignore	False			ignore	
+nucleocapsid protein N	nucleocapsidproteinn	ORF7	1.0	1	ignore	False			ignore	
+nucleocapsid protein N	nucleocapsidproteinn	ORF7	1.0	1	ignore	False			ignore	
+structural protein	structuralprotein	ORF7	1.0	1	ignore	False			ignore	
+structural protein; N	structuralprotein;n	ORF7	1.0	1	ignore	False			ignore	
+envelope glycoprotein	envelopeglycoprotein	ORF2a	1.0	3	ignore	False			ignore	
+envelope protein	envelopeprotein	ORF2a	1.0	6	ignore	False			ignore	
+envelope protein	envelopeprotein	ORF2a	1.0	4	ignore	False			ignore	
+glycoprotein	glycoprotein	ORF2a	1.0	4	ignore	False			ignore	
+glycosylated	glycosylated	ORF2a	1.0	4	ignore	False			ignore	
+glycosylated membrane protein	glycosylatedmembraneprotein	ORF2a	1.0	4	ignore	False			ignore	
+glycosylated membrane protein	glycosylatedmembraneprotein	ORF2a	1.0	4	ignore	False			ignore	
+structural glycoprotein	structuralglycoprotein	ORF2a	1.0	4	ignore	False			ignore	
+viral envelope glycoprotein	viralenvelopeglycoprotein	ORF2a	1.0	4	ignore	False			ignore	
+envelope protein	envelopeprotein	ORF2b	1.0	6	ignore	False			ignore	
+envelope glycoprotein	envelopeglycoprotein	ORF3	1.0	3	ignore	False			ignore	
+envelope protein	envelopeprotein	ORF3	1.0	6	ignore	False			ignore	
+envelope protein	envelopeprotein	ORF3	1.0	4	ignore	False			ignore	
+glycoprotein	glycoprotein	ORF3	1.0	4	ignore	False			ignore	
+glycosylated	glycosylated	ORF3	1.0	4	ignore	False			ignore	
+glycosylated membrane protein	glycosylatedmembraneprotein	ORF3	1.0	4	ignore	False			ignore	
+glycosylated membrane protein	glycosylatedmembraneprotein	ORF3	1.0	4	ignore	False			ignore	
+structural glycoprotein	structuralglycoprotein	ORF3	1.0	4	ignore	False			ignore	
+viral envelope glycoprotein	viralenvelopeglycoprotein	ORF3	1.0	4	ignore	False			ignore	
+envelope glycoprotein	envelopeglycoprotein	ORF4	1.0	3	ignore	False			ignore	
+envelope protein	envelopeprotein	ORF4	1.0	6	ignore	False			ignore	
+envelope protein	envelopeprotein	ORF4	1.0	4	ignore	False			ignore	
+glycoprotein	glycoprotein	ORF4	1.0	4	ignore	False			ignore	
+glycosylated	glycosylated	ORF4	1.0	4	ignore	False			ignore	
+glycosylated membrane protein	glycosylatedmembraneprotein	ORF4	1.0	4	ignore	False			ignore	
+glycosylated membrane protein	glycosylatedmembraneprotein	ORF4	1.0	4	ignore	False			ignore	
+structural glycoprotein	structuralglycoprotein	ORF4	1.0	4	ignore	False			ignore	
+viral envelope glycoprotein	viralenvelopeglycoprotein	ORF4	1.0	4	ignore	False			ignore	
+envelope protein	envelopeprotein	ORF5	1.0	6	ignore	False			ignore	
+envelope protein	envelopeprotein	ORF5	1.0	4	ignore	False			ignore	
+glycoprotein	glycoprotein	ORF5	1.0	4	ignore	False			ignore	
+glycosylated	glycosylated	ORF5	1.0	4	ignore	False			ignore	
+glycosylated membrane protein	glycosylatedmembraneprotein	ORF5	1.0	4	ignore	False			ignore	
+glycosylated membrane protein	glycosylatedmembraneprotein	ORF5	1.0	4	ignore	False			ignore	
+structural glycoprotein	structuralglycoprotein	ORF5	1.0	4	ignore	False			ignore	
+viral envelope glycoprotein	viralenvelopeglycoprotein	ORF5	1.0	4	ignore	False			ignore	
+envelope protein	envelopeprotein	ORF6	1.0	6	ignore	False			ignore	
+unknown protein	unknownprotein	ORF2b	1.0	1	ignore	False			ignore	

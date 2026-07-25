@@ -1,0 +1,901 @@
+virus	record_id	method	pred_name	source_name	pred_start	pred_end	strand	status	coverage	identity	score	truth_name	truth_start	truth_end	best_overlap_name	best_iou	iou	name_match	coord_correct	exact_match	failure_mode
+PRRS	AF184212.1	tblastn	ORF1a		191	7810	+	ok	1.0	90.1	4576.5	ORF1a	191.0	7810.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	tblastn	ORF1b		7795	12180	+	invalid_boundaries	1.0	98.4	2997.2	ORF1b	7789.0	12180.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	AF184212.1	tblastn	ORF2a		12182	12952	+	ok	0.9961	93.7	495.4	ORF2a	12182.0	12952.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	tblastn	ORF2b		12187	12408	+	ok	1.0	93.2	134.8				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AF184212.1	tblastn	ORF3		12805	13569	+	ok	1.0	88.6	481.1	ORF3	12805.0	13569.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	tblastn	ORF4		13350	13886	+	ok	1.0	91.6	339.0	ORF4	13350.0	13886.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	tblastn	ORF5		13897	14499	+	ok	1.0	92.0	378.3	ORF5	13897.0	14499.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	tblastn	ORF6		14484	15008	+	ok	1.0	96.6	349.4	ORF6	14484.0	15008.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	tblastn	ORF7		14998	15369	+	ok	1.0	97.6	250.0	ORF7	14998.0	15369.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	tblastn	ORF1a		166	7677	+	ok	1.0	99.6	5116.6	ORF1a	166.0	7677.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	tblastn	ORF1b		7662	12047	+	invalid_boundaries	1.0	99.9	3034.6	ORF1b	7656.0	12047.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	AF159149.1	tblastn	ORF2a		12049	12819	+	ok	1.0	99.2	521.9	ORF2a	12049.0	12819.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	tblastn	ORF2b		12054	12275	+	ok	1.0	97.3	140.2				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AF159149.1	tblastn	ORF3		12672	13436	+	ok	1.0	98.8	523.1	ORF3	12672.0	13436.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	tblastn	ORF4		13217	13753	+	ok	1.0	99.4	364.4	ORF4	13217.0	13753.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	tblastn	ORF5		13764	14366	+	ok	1.0	98.5	404.1	ORF5	13764.0	14366.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	tblastn	ORF6		14351	14875	+	ok	1.0	100.0	357.5	ORF6	14351.0	14875.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	tblastn	ORF7		14865	15236	+	ok	1.0	99.2	254.6	ORF7	14865.0	15236.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	tblastn	ORF1a		191	7699	+	ok	1.0	99.2	5087.3				ORF1b	1.0	0.0	False	False	False	Alias/name gap
+PRRS	AF331831.1	tblastn	ORF1b		7684	12069	+	invalid_boundaries	1.0	99.8	3030.0	ORF1b	191.0	7699.0	ORF1b	0.9986	0.0013	True	False	False	Wrong coords
+PRRS	AF331831.1	tblastn	ORF2a		12071	12841	+	ok	1.0	99.2	521.9	ORF2a	12071.0	12841.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	tblastn	ORF2b		12076	12297	+	ok	1.0	97.3	140.2	ORF2b	13786.0	14388.0	ORF2a	0.2879	0.0	True	False	False	Wrong coords
+PRRS	AF331831.1	tblastn	ORF3		12694	13458	+	ok	1.0	98.8	523.1	ORF3	12694.0	13458.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	tblastn	ORF4		13239	13775	+	ok	1.0	98.9	363.6	ORF4	13239.0	13775.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	tblastn	ORF5		13786	14388	+	ok	1.0	97.5	399.8				ORF2b	1.0	0.0	False	False	False	Alias/name gap
+PRRS	AF331831.1	tblastn	ORF6		14373	14897	+	ok	1.0	100.0	357.5	ORF6	14373.0	14897.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	tblastn	ORF7		14887	15258	+	ok	1.0	99.2	254.6	ORF7	14887.0	15258.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	tblastn	ORF1a		168	7679	+	ok	1.0	88.3	4413.2	ORF1a	168.0	7679.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	tblastn	ORF1b		7664	12049	+	invalid_boundaries	1.0	96.9	2960.2	ORF1b	7658.0	12049.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	AF325691.1	tblastn	ORF2a		12051	12821	+	ok	1.0	92.6	486.5	ORF2a	12051.0	12821.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	tblastn	ORF2b		12056	12277	+	ok	1.0	87.7	130.2				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AF325691.1	tblastn	ORF3		12674	13438	+	ok	1.0	89.8	479.9	ORF3	12674.0	13438.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	tblastn	ORF4		13219	13755	+	ok	1.0	91.6	336.3	ORF4	13219.0	13755.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	tblastn	ORF5		13766	14368	+	ok	0.995	85.9	356.7	ORF5	13766.0	14368.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	tblastn	ORF6		14353	14877	+	ok	1.0	98.3	353.6	ORF6	14353.0	14877.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	tblastn	ORF7		14867	15238	+	ok	1.0	95.9	245.4	ORF7	14867.0	15238.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	tblastn	ORF1a		191	7702	+	ok	1.0	88.9	4431.3	ORF1a	191.0	7702.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	tblastn	ORF1b		7687	12072	+	invalid_boundaries	1.0	96.7	2952.5	ORF1b	7699.0	12072.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	AY032626.1	tblastn	ORF2a		12074	12844	+	ok	1.0	93.8	494.2	ORF2a	12074.0	12844.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	tblastn	ORF2b		12079	12300	+	ok	1.0	89.0	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY032626.1	tblastn	ORF3		12697	13461	+	ok	1.0	90.2	481.5	ORF3	12697.0	13461.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	tblastn	ORF4		13242	13778	+	ok	1.0	91.6	339.0	ORF4	13242.0	13778.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	tblastn	ORF5		13789	14391	+	ok	0.995	91.5	377.5	ORF5	13789.0	14391.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	tblastn	ORF6		14376	14900	+	ok	1.0	97.1	350.1	ORF6	14376.0	14900.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	tblastn	ORF7		14890	15261	+	ok	1.0	95.9	247.7	ORF7	14890.0	15261.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	tblastn	ORF1a		192	7685	+	ok	1.0	88.4	4425.2	ORF1a	192.0	7685.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	tblastn	ORF1b		7670	12055	+	invalid_boundaries	1.0	97.4	2975.3	ORF1b	7673.0	12055.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	AF494042.1	tblastn	ORF2a		12057	12827	+	ok	0.9961	94.1	490.3	ORF2a	12057.0	12827.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	tblastn	ORF2b		12062	12283	+	ok	1.0	90.4	131.7				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AF494042.1	tblastn	ORF3		12680	13444	+	ok	1.0	90.9	487.6	ORF3	12680.0	13444.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	tblastn	ORF4		13225	13761	+	ok	1.0	92.1	338.6	ORF4	13225.0	13761.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	tblastn	ORF5		13772	14374	+	ok	0.995	91.5	366.7	ORF5	13772.0	14374.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	tblastn	ORF6		14359	14883	+	ok	1.0	98.3	353.6	ORF6	14359.0	14883.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	tblastn	ORF7		14873	15244	+	ok	1.0	95.9	247.3	ORF7	14873.0	15244.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	tblastn	ORF1a		190	7701	+	ok	1.0	98.9	5079.2	ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	tblastn	ORF1b		7686	12071	+	invalid_boundaries	1.0	99.5	3023.0	ORF1b	7680.0	12071.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	AF176348.2	tblastn	ORF2a		12073	12843	+	ok	1.0	97.7	514.2	ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	tblastn	ORF2b		12078	12299	+	ok	1.0	97.3	139.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AF176348.2	tblastn	ORF3		12696	13460	+	ok	1.0	98.4	520.8	ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	tblastn	ORF4		13241	13777	+	ok	1.0	97.8	359.0	ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	tblastn	ORF5		13788	14390	+	ok	1.0	97.0	393.7	ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	tblastn	ORF6		14375	14899	+	ok	1.0	98.9	354.0	ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	tblastn	ORF7		14889	15260	+	ok	1.0	99.2	254.6	ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	tblastn	ORF1a		190	7701	+	ok	1.0	86.5	4315.4	ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	tblastn	ORF1b		7686	12071	+	invalid_boundaries	1.0	96.5	2945.6	ORF1b	7689.0	12071.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	AY150312.1	tblastn	ORF2a		12073	12843	+	ok	1.0	93.0	489.6	ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	tblastn	ORF2b		12078	12299	+	ok	0.9863	88.9	130.2				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY150312.1	tblastn	ORF3		12696	13460	+	ok	1.0	90.2	481.5	ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	tblastn	ORF4		13241	13777	+	ok	1.0	91.6	339.0	ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	tblastn	ORF5		13788	14390	+	ok	0.995	87.9	360.9	ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	tblastn	ORF6		14375	14899	+	ok	1.0	97.7	351.3				ORF5	0.0144	0.0	False	False	False	Possible overlap
+PRRS	AY150312.1	tblastn	ORF7		14889	15260	+	ok	1.0	95.9	247.7					0.0	0.0	False	False	False	Not in truth
+PRRS	AY150564.1	tblastn	ORF1a		191	7702	+	ok	1.0	99.4	5103.5	ORF1a	191.0	7702.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY150564.1	tblastn	ORF1b		7687	12072	+	invalid_boundaries	1.0	99.8	3031.5	ORF1b	7699.0	12072.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	AY150564.1	tblastn	ORF2a		12074	12844	+	ok	1.0	98.4	518.5	ORF2a	12074.0	12844.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY150564.1	tblastn	ORF2b		12079	12300	+	ok	1.0	97.3	139.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY150564.1	tblastn	ORF3		12697	13461	+	ok	1.0	98.0	520.0	ORF3	12697.0	13461.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY150564.1	tblastn	ORF4		13242	13778	+	ok	1.0	98.9	361.7	ORF4	13242.0	13778.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY150564.1	tblastn	ORF5		13789	14391	+	ok	1.0	97.5	399.1	ORF5	13789.0	14391.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY150564.1	tblastn	ORF6		14376	14900	+	ok	1.0	99.4	356.3	ORF6	14376.0	14900.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY150564.1	tblastn	ORF7		14890	15261	+	ok	1.0	99.2	254.6	ORF7	14890.0	15261.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	tblastn	ORF1a		191	7666	+	ok	1.0	86.9	4353.1	ORF1a	191.0	7666.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	tblastn	ORF1b		7651	12036	+	invalid_boundaries	1.0	96.4	2946.4	ORF1b	7645.0	12036.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	AY262352.1	tblastn	ORF2a		12038	12808	+	ok	1.0	91.0	479.9	ORF2a	12038.0	12808.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	tblastn	ORF2b		12043	12264	+	ok	1.0	90.4	132.1				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY262352.1	tblastn	ORF3		12661	13422	+	ok	0.9528	90.5	459.5	ORF3	12661.0	13422.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	tblastn	ORF4		13203	13739	+	ok	1.0	89.9	332.8	ORF4	13203.0	13739.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	tblastn	ORF5		13750	14352	+	ok	0.995	89.4	367.5	ORF5	13750.0	14352.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	tblastn	ORF6		14337	14861	+	ok	1.0	97.7	351.3	ORF6	14337.0	14861.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	tblastn	ORF7		14851	15222	+	ok	1.0	94.3	245.0	ORF7	14851.0	15222.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY366525.1	tblastn	ORF1a		222	7361	+	ok	0.8598	51.0	1574.7	ORF1a	222.0	7361.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY366525.1	tblastn	ORF1b		7349	11734	+	invalid_boundaries	0.9979	68.1	2028.8	ORF1b	7358.0	11734.0	ORF1b	0.9979	0.9979	True	True	False	Boundary offset
+PRRS	AY366525.1	tblastn	ORF2a		11745	12494	+	ok	0.9609	62.6	313.5	ORF2a	11745.0	12494.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY366525.1	tblastn	ORF2b		11745	11962	+	ok_rescued	0.9863	73.6	111.7				ORF2a	0.2907	0.0	False	False	False	Possible overlap
+PRRS	AY366525.1	tblastn	ORF3		12353	13150	+	ok	0.9606	59.4	302.4	ORF3	12353.0	13150.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY366525.1	tblastn	ORF4		12895	13446	+	ok	1.0	69.9	266.9	ORF4	12895.0	13446.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY366525.1	tblastn	ORF5		13448	14048	+	ok_rescued	0.98	56.3	228.4	ORF5	13443.0	14048.0	ORF5	0.9917	0.9917	True	True	False	Boundary offset
+PRRS	AY366525.1	tblastn	ORF6		14049	14557	+	ok_rescued	0.977	78.8	289.3	ORF6	14036.0	14557.0	ORF6	0.9751	0.9751	True	True	False	Boundary offset
+PRRS	AY366525.1	tblastn	ORF7		14595	14933	+	ok_rescued	0.8943	64.5	151.0	ORF7	14547.0	14933.0	ORF7	0.876	0.876	True	False	False	Wrong coords
+PRRS	AY457635.1	tblastn	ORF1a		189	7700	+	ok	1.0	98.3	5054.6	ORF1a	189.0	7700.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY457635.1	tblastn	ORF1b		7685	12070	+	invalid_boundaries	1.0	99.7	3028.4	ORF1b	7679.0	12070.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	AY457635.1	tblastn	ORF2a		12072	12842	+	ok	1.0	98.8	519.6	ORF2a	12072.0	12842.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY457635.1	tblastn	ORF2b		12077	12298	+	ok	1.0	98.6	140.2				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY457635.1	tblastn	ORF3		12695	13459	+	ok	1.0	98.0	516.5	ORF3	12695.0	13459.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY457635.1	tblastn	ORF4		13240	13776	+	ok	1.0	98.3	359.0	ORF4	13240.0	13776.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY457635.1	tblastn	ORF5		13787	14389	+	ok	1.0	95.5	392.9	ORF5	13787.0	14389.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY457635.1	tblastn	ORF6		14374	14898	+	ok	1.0	99.4	356.3	ORF6	14374.0	14898.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY457635.1	tblastn	ORF7		14888	15259	+	ok	1.0	98.4	251.1	ORF7	14888.0	15259.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	tblastn	ORF1a		192	7703	+	ok	1.0	88.1	4395.1	ORF1a	192.0	7703.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	tblastn	ORF1b		7688	12073	+	invalid_boundaries	1.0	97.3	2974.5	ORF1b	7700.0	12073.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	AY424271.1	tblastn	ORF2a		12075	12845	+	ok	1.0	92.6	486.9	ORF2a	12075.0	12845.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	tblastn	ORF2b		12080	12301	+	ok	1.0	91.8	133.7				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY424271.1	tblastn	ORF3		12698	13462	+	ok	1.0	89.4	480.7	ORF3	12698.0	13462.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	tblastn	ORF4		13243	13779	+	ok	1.0	90.4	337.4	ORF4	13243.0	13779.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	tblastn	ORF5		13790	14392	+	ok	0.995	91.0	375.2	ORF5	13790.0	14392.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	tblastn	ORF6		14377	14901	+	ok	1.0	97.1	348.2	ORF6	14377.0	14901.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	tblastn	ORF7		14891	15262	+	ok	1.0	93.5	239.6	ORF7	14891.0	15262.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	tblastn	ORF1a		192	7703	+	ok	1.0	88.1	4397.8	ORF1a	192.0	7703.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	tblastn	ORF1b		7688	12073	+	invalid_boundaries	1.0	97.3	2974.5	ORF1b	7682.0	12073.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	AY545985.1	tblastn	ORF2a		12075	12845	+	ok	1.0	93.0	488.8	ORF2a	12075.0	12845.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	tblastn	ORF2b		12080	12301	+	ok	1.0	91.8	133.7				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY545985.1	tblastn	ORF3		12698	13462	+	ok	1.0	89.4	480.7	ORF3	12698.0	13462.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	tblastn	ORF4		13243	13779	+	ok	1.0	90.4	337.4	ORF4	13243.0	13779.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	tblastn	ORF5		13790	14392	+	ok	0.995	91.0	375.2	ORF5	13790.0	14392.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	tblastn	ORF6		14377	14901	+	ok	1.0	97.1	348.2	ORF6	14377.0	14901.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	tblastn	ORF7		14891	15262	+	ok	1.0	93.5	239.6	ORF7	14891.0	15262.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	tblastn	ORF1a		190	7701	+	ok	1.0	99.1	5089.6	ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	tblastn	ORF1b		7686	12071	+	invalid_boundaries	1.0	99.7	3026.9	ORF1b	7698.0	12071.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	AY585241.1	tblastn	ORF2a		12073	12843	+	ok	1.0	98.8	520.0	ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	tblastn	ORF2b		12078	12299	+	ok	1.0	97.3	139.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY585241.1	tblastn	ORF3		12696	13460	+	ok	1.0	98.8	523.1	ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	tblastn	ORF4		13241	13777	+	ok	1.0	98.9	361.7	ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	tblastn	ORF5		13788	14390	+	ok	1.0	98.0	401.0	ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	tblastn	ORF6		14375	14899	+	ok	1.0	99.4	356.3	ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	tblastn	ORF7		14889	15260	+	ok	1.0	99.2	254.6	ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	tblastn	ORF1a		190	7701	+	ok	1.0	99.1	5089.6	ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	tblastn	ORF1b		7686	12071	+	invalid_boundaries	1.0	99.7	3026.9	ORF1b	7698.0	12071.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	AY612613.1	tblastn	ORF2a		12073	12843	+	ok	1.0	98.8	520.0	ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	tblastn	ORF2b		12078	12299	+	ok	1.0	97.3	139.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY612613.1	tblastn	ORF3		12696	13460	+	ok	1.0	98.8	523.1	ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	tblastn	ORF4		13241	13777	+	ok	1.0	98.9	361.7	ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	tblastn	ORF5		13788	14390	+	ok	1.0	98.0	401.0	ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	tblastn	ORF6		14375	14899	+	ok	1.0	99.4	356.3	ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	tblastn	ORF7		14889	15260	+	ok	1.0	99.2	254.6	ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	tblastn	ORF1a		190	7701	+	ok	1.0	99.5	5107.7	ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	tblastn	ORF1b		7686	12071	+	invalid_boundaries	1.0	99.7	3028.0	ORF1b	7680.0	12071.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	DQ056373.1	tblastn	ORF2a		12073	12843	+	ok	1.0	98.8	520.8	ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	tblastn	ORF2b		12078	12299	+	ok	1.0	98.6	141.7				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ056373.1	tblastn	ORF3		12696	13460	+	ok	1.0	98.8	523.1	ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	tblastn	ORF4		13241	13777	+	ok	1.0	99.4	364.4	ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	tblastn	ORF5		13788	14390	+	ok	1.0	98.5	404.1	ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	tblastn	ORF6		14375	14899	+	ok	1.0	98.9	352.1	ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	tblastn	ORF7		14889	15260	+	ok	1.0	99.2	254.6	ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF066183.4	tblastn	ORF1a		191	7702	+	ok	1.0	99.6	5116.2				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	AF066183.4	tblastn	ORF1b		7687	12072	+	invalid_boundaries	1.0	99.9	3034.6	ORF1b	7699.0	12072.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	AF066183.4	tblastn	ORF2a		12074	12844	+	ok	1.0	98.8	520.8	ORF2a	12074.0	12844.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF066183.4	tblastn	ORF2b		12079	12300	+	ok	1.0	97.3	140.2				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AF066183.4	tblastn	ORF3		12697	13461	+	ok	1.0	98.4	522.7	ORF3	12697.0	13461.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF066183.4	tblastn	ORF4		13242	13778	+	ok	1.0	98.9	361.7	ORF4	13242.0	13778.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF066183.4	tblastn	ORF5		13789	14391	+	ok	1.0	98.5	404.1	ORF5	13789.0	14391.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF066183.4	tblastn	ORF6		14376	14900	+	ok	1.0	100.0	357.5	ORF6	14376.0	14900.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF066183.4	tblastn	ORF7		14890	15261	+	ok	1.0	99.2	254.6	ORF7	14890.0	15261.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ176019.1	tblastn	ORF1a		191	7309	+	ok	0.9557	84.6	2835.4				ORF1ab	0.6196	0.0	False	False	False	Possible overlap
+PRRS	DQ176019.1	tblastn	ORF1b		7294	11679	+	invalid_boundaries	1.0	95.3	2921.7				ORF1ab	0.3818	0.0	False	False	False	Possible overlap
+PRRS	DQ176019.1	tblastn	ORF2a		11681	12451	+	ok	1.0	89.1	470.7	ORF2a	11681.0	12451.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ176019.1	tblastn	ORF2b		11686	11907	+	ok	1.0	91.8	134.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ176019.1	tblastn	ORF3		12304	13068	+	ok	1.0	87.4	467.2	ORF3	12304.0	13068.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ176019.1	tblastn	ORF4		12849	13385	+	ok	1.0	91.0	334.0	ORF4	12849.0	13385.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ176019.1	tblastn	ORF5		13396	13998	+	ok	1.0	84.5	350.5	ORF5	13396.0	13998.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ176019.1	tblastn	ORF6		13983	14507	+	ok	1.0	95.4	345.1	ORF6	13983.0	14507.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ176019.1	tblastn	ORF7		14497	14868	+	ok	1.0	94.3	212.2	ORF7	14497.0	14868.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ176020.1	tblastn	ORF1a		191	7309	+	ok	0.9557	86.3	2866.3				ORF1ab	0.6196	0.0	False	False	False	Possible overlap
+PRRS	DQ176020.1	tblastn	ORF1b		7294	11679	+	invalid_boundaries	1.0	95.3	2922.1				ORF1ab	0.3818	0.0	False	False	False	Possible overlap
+PRRS	DQ176020.1	tblastn	ORF2a		11681	12451	+	ok	1.0	87.5	460.7	ORF2a	11681.0	12451.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ176020.1	tblastn	ORF2b		11686	11907	+	ok	1.0	91.8	134.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ176020.1	tblastn	ORF3		12304	13068	+	ok	0.9528	89.7	455.7	ORF3	12304.0	13068.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ176020.1	tblastn	ORF4		12849	13385	+	ok	1.0	90.4	331.3	ORF4	12849.0	13385.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ176020.1	tblastn	ORF5		13396	13998	+	ok	1.0	85.0	353.6	ORF5	13396.0	13998.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ176020.1	tblastn	ORF6		13983	14507	+	ok	1.0	95.4	345.1	ORF6	13983.0	14507.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ176020.1	tblastn	ORF7		14497	14868	+	ok	1.0	93.5	219.2	ORF7	14497.0	14868.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ176021.1	tblastn	ORF1a		190	7701	+	ok	1.0	99.5	5110.0				ORF1ab	0.6322	0.0	False	False	False	Possible overlap
+PRRS	DQ176021.1	tblastn	ORF1b		7686	12071	+	invalid_boundaries	1.0	99.5	3021.1				ORF1ab	0.3691	0.0	False	False	False	Possible overlap
+PRRS	DQ176021.1	tblastn	ORF2a		12073	12843	+	ok	1.0	98.4	518.5	ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ176021.1	tblastn	ORF2b		12078	12299	+	ok	1.0	97.3	139.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ176021.1	tblastn	ORF3		12696	13460	+	ok	1.0	97.6	518.5	ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ176021.1	tblastn	ORF4		13241	13777	+	ok	1.0	98.9	361.7	ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ176021.1	tblastn	ORF5		13788	14390	+	ok	1.0	97.5	399.1	ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ176021.1	tblastn	ORF6		14375	14899	+	ok	1.0	99.4	356.3	ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ176021.1	tblastn	ORF7		14889	15260	+	ok	1.0	99.2	254.6	ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ217415.1	tblastn	ORF1a		176	7687	+	ok	1.0	99.5	5110.0				ORF1ab	0.6322	0.0	False	False	False	Possible overlap
+PRRS	DQ217415.1	tblastn	ORF1b		7672	12057	+	invalid_boundaries	1.0	99.5	3021.1				ORF1ab	0.3691	0.0	False	False	False	Possible overlap
+PRRS	DQ217415.1	tblastn	ORF2a		12059	12829	+	ok	1.0	98.4	518.5	ORF2a	12059.0	12829.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ217415.1	tblastn	ORF2b		12064	12285	+	ok	1.0	97.3	139.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ217415.1	tblastn	ORF3		12682	13446	+	ok	1.0	97.6	518.5	ORF3	12682.0	13446.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ217415.1	tblastn	ORF4		13227	13763	+	ok	1.0	98.9	361.7	ORF4	13227.0	13763.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ217415.1	tblastn	ORF5		13774	14376	+	ok	1.0	97.5	399.1	ORF5	13774.0	14376.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ217415.1	tblastn	ORF6		14361	14885	+	ok	1.0	99.4	356.3	ORF6	14361.0	14885.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ217415.1	tblastn	ORF7		14875	15246	+	ok	1.0	99.2	254.6	ORF7	14875.0	15246.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	tblastn	ORF1a		190	7701	+	ok	1.0	99.2	5092.7	ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	tblastn	ORF1b		7686	12071	+	invalid_boundaries	1.0	99.9	3032.3	ORF1b	7698.0	12071.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	DQ459471.1	tblastn	ORF2a		12073	12843	+	ok	1.0	99.2	520.8	ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	tblastn	ORF2b		12078	12299	+	ok	1.0	97.3	140.2				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ459471.1	tblastn	ORF3		12696	13460	+	ok	1.0	98.4	520.4	ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	tblastn	ORF4		13241	13777	+	ok	1.0	98.9	362.1	ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	tblastn	ORF5		13788	14390	+	ok	1.0	98.0	401.4	ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	tblastn	ORF6		14375	14899	+	ok	1.0	100.0	357.5	ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	tblastn	ORF7		14889	15260	+	ok	1.0	99.2	254.6	ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	tblastn	ORF1a		190	7701	+	ok	1.0	93.5	4721.4	ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	tblastn	ORF1b		7686	12071	+	invalid_boundaries	1.0	98.4	2996.1	ORF1b	7698.0	12071.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	DQ473474.1	tblastn	ORF2a		12073	12843	+	ok	1.0	94.9	506.9	ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	tblastn	ORF2b		12078	12299	+	ok	1.0	95.9	136.7				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ473474.1	tblastn	ORF3		12696	13460	+	ok	1.0	92.5	494.6	ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	tblastn	ORF4		13241	13777	+	ok	1.0	92.1	339.7	ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	tblastn	ORF5		13788	14390	+	ok	1.0	88.5	352.1	ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	tblastn	ORF6		14375	14899	+	ok	1.0	98.3	353.2	ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	tblastn	ORF7		14889	15260	+	ok	1.0	98.4	253.1	ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ489311.1	tblastn	ORF1a		222	7361	+	ok	0.8458	51.2	1565.0	ORF1a	222.0	7361.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	DQ489311.1	tblastn	ORF1b		7349	11734	+	invalid_boundaries	0.9979	68.2	2027.3	ORF1b	7358.0	11734.0	ORF1b	0.9979	0.9979	True	True	False	Boundary offset
+PRRS	DQ489311.1	tblastn	ORF2a		11745	12494	+	ok	0.9609	63.0	311.2	ORF2a	11745.0	12494.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ489311.1	tblastn	ORF2b		11745	11962	+	ok_rescued	0.9726	74.6	111.3				ORF2a	0.2907	0.0	False	False	False	Possible overlap
+PRRS	DQ489311.1	tblastn	ORF3		12353	13150	+	ok	0.9724	61.1	312.0	ORF3	12353.0	13150.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ489311.1	tblastn	ORF4		12895	13446	+	ok	1.0	67.8	258.1	ORF4	12895.0	13446.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ489311.1	tblastn	ORF5		13448	14048	+	ok_rescued	0.98	56.9	227.3	ORF5	13443.0	14048.0	ORF5	0.9917	0.9917	True	True	False	Boundary offset
+PRRS	DQ489311.1	tblastn	ORF6		14036	14557	+	ok_rescued	0.977	77.6	284.6	ORF6	14036.0	14557.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ489311.1	tblastn	ORF7		14595	14933	+	ok_rescued	0.8943	64.5	151.4	ORF7	14547.0	14933.0	ORF7	0.876	0.876	True	False	False	Wrong coords
+PRRS	DQ779791.1	tblastn	ORF1a		191	7810	+	ok	1.0	90.1	4576.5	ORF1a	191.0	7797.0	ORF1a	0.9983	0.9983	True	True	False	Boundary offset
+PRRS	DQ779791.1	tblastn	ORF1b		7795	12180	+	invalid_boundaries	1.0	98.4	2997.2	ORF1b	7870.0	12180.0	ORF1b	0.9829	0.9829	True	True	False	Boundary offset
+PRRS	DQ779791.1	tblastn	ORF2a		12182	12952	+	ok	0.9961	93.7	495.4	ORF2a	12182.0	12952.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	tblastn	ORF2b		12187	12408	+	ok	1.0	93.2	134.8				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ779791.1	tblastn	ORF3		12805	13569	+	ok	1.0	88.6	481.1	ORF3	12805.0	13569.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	tblastn	ORF4		13350	13886	+	ok	1.0	91.6	339.0	ORF4	13350.0	13886.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	tblastn	ORF5		13897	14499	+	ok	1.0	92.0	378.3	ORF5	13897.0	14499.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	tblastn	ORF6		14484	15008	+	ok	1.0	96.6	349.4	ORF6	14484.0	15008.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	tblastn	ORF7		14998	15369	+	ok	1.0	97.6	250.0	ORF7	14998.0	15369.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ864705.1	tblastn	ORF1a		145	7335	+	ok	0.8338	52.2	1570.1	ORF1a	145.0	7335.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	DQ864705.1	tblastn	ORF1b		7323	11708	+	invalid_boundaries	0.9979	68.2	2030.8	ORF1b	7317.0	11708.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	DQ864705.1	tblastn	ORF2a		11719	12468	+	ok	0.9609	61.8	308.9	ORF2a	11719.0	12468.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ864705.1	tblastn	ORF2b		11719	11936	+	ok_rescued	0.9726	73.2	109.4				ORF2a	0.2907	0.0	False	False	False	Possible overlap
+PRRS	DQ864705.1	tblastn	ORF3		12327	13124	+	ok_rescued	0.9331	59.5	298.9	ORF3	12327.0	13124.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ864705.1	tblastn	ORF4		12914	13420	+	ok_rescued	0.9213	69.8	245.4	ORF4	12869.0	13420.0	ORF4	0.9185	0.9185	True	True	False	Boundary offset
+PRRS	DQ864705.1	tblastn	ORF5		13422	14022	+	ok_rescued	0.98	57.4	224.2	ORF5	13417.0	14022.0	ORF5	0.9917	0.9917	True	True	False	Boundary offset
+PRRS	DQ864705.1	tblastn	ORF6		14023	14531	+	ok_rescued	0.977	78.2	287.3	ORF6	14010.0	14531.0	ORF6	0.9751	0.9751	True	True	False	Boundary offset
+PRRS	DQ864705.1	tblastn	ORF7		14569	14907	+	ok_rescued	0.8943	64.5	151.0	ORF7	14521.0	14907.0	ORF7	0.876	0.876	True	False	False	Wrong coords
+PRRS	DQ988080.1	tblastn	ORF1a		192	7703	+	ok	1.0	87.9	4404.4	ORF1a	192.0	7703.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	DQ988080.1	tblastn	ORF1b		7688	12073	+	invalid_boundaries	1.0	97.0	2969.5	ORF1b	7700.0	12073.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	DQ988080.1	tblastn	ORF2a		12075	12845	+	ok	1.0	92.2	485.3	ORF2a	12075.0	12845.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ988080.1	tblastn	ORF2b		12080	12301	+	ok	1.0	91.8	133.7				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ988080.1	tblastn	ORF3		12698	13462	+	ok	1.0	87.8	474.2	ORF3	12698.0	13462.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ988080.1	tblastn	ORF4		13243	13779	+	ok	1.0	89.9	334.3	ORF4	13243.0	13779.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ988080.1	tblastn	ORF5		13790	14392	+	ok	0.995	90.5	373.6	ORF5	13790.0	14392.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ988080.1	tblastn	ORF6		14377	14901	+	ok	1.0	96.6	344.7	ORF6	14377.0	14901.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ988080.1	tblastn	ORF7		14891	15262	+	ok	1.0	93.5	239.6	ORF7	14891.0	15262.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.5	4254.1	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.6	2954.1	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EF075945.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF075945.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.0	464.5	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	tblastn	ORF4		13151	13687	+	ok	1.0	90.4	331.6	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EF112445.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.4	4225.6	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF112445.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.4	2948.7	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EF112445.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF112445.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF112445.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.4	466.8	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF112445.1	tblastn	ORF4		13151	13687	+	ok	1.0	89.9	331.3	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF112445.1	tblastn	ORF5		13698	14300	+	ok	0.995	86.9	356.3	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF112445.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF112445.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EF112446.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.6	4259.1	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF112446.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.6	2954.1	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EF112446.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF112446.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF112446.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.4	466.8	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF112446.1	tblastn	ORF4		13151	13687	+	ok	1.0	91.0	334.7	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF112446.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF112446.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF112446.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EF112447.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.5	4246.8	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF112447.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.6	2951.0	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EF112447.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF112447.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF112447.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.4	467.6	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF112447.1	tblastn	ORF4		13151	13687	+	ok	1.0	91.6	336.6	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF112447.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF112447.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.0	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF112447.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EF153486.1	tblastn	ORF1a		190	7701	+	ok	1.0	98.9	5080.0				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF153486.1	tblastn	ORF1b		7686	12071	+	invalid_boundaries	1.0	99.6	3024.6	ORF1b	7698.0	12071.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF153486.1	tblastn	ORF2a		12073	12843	+	ok	1.0	98.8	520.4	ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF153486.1	tblastn	ORF2b		12078	12299	+	ok	1.0	100.0	143.3				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF153486.1	tblastn	ORF3		12696	13460	+	ok	1.0	98.0	518.9	ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF153486.1	tblastn	ORF4		13241	13777	+	ok	1.0	98.3	361.7	ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF153486.1	tblastn	ORF5		13788	14390	+	ok	1.0	98.5	402.1	ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF153486.1	tblastn	ORF6		14375	14899	+	ok	1.0	100.0	357.5	ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF153486.1	tblastn	ORF7		14889	15260	+	ok	1.0	98.4	252.7	ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF484031.1	tblastn	ORF1a		191	7309	+	ok	0.9557	83.9	2808.9				ORF1ab	0.6196	0.0	False	False	False	Possible overlap
+PRRS	EF484031.1	tblastn	ORF1b		7294	11679	+	invalid_boundaries	1.0	95.4	2925.2				ORF1ab	0.3818	0.0	False	False	False	Possible overlap
+PRRS	EF484031.1	tblastn	ORF2a		11681	12451	+	ok	1.0	88.3	467.6	ORF2a	11681.0	12451.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF484031.1	tblastn	ORF2b		11686	11907	+	ok	1.0	91.8	134.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF484031.1	tblastn	ORF3		12304	13068	+	ok	0.9528	89.7	456.4	ORF3	12304.0	13068.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF484031.1	tblastn	ORF4		12849	13385	+	ok	1.0	91.0	334.0	ORF4	12849.0	13385.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF484031.1	tblastn	ORF5		13396	13998	+	ok	1.0	85.0	353.2	ORF5	13396.0	13998.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF484031.1	tblastn	ORF6		13983	14507	+	ok	1.0	95.4	345.1	ORF6	13983.0	14507.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF484031.1	tblastn	ORF7		14497	14868	+	ok	1.0	94.3	212.2	ORF7	14497.0	14868.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF484033.1	tblastn	ORF1a		191	7702	+	ok	1.0	99.6	5118.1				ORF1ab	0.6322	0.0	False	False	False	Possible overlap
+PRRS	EF484033.1	tblastn	ORF1b		7687	12072	+	invalid_boundaries	1.0	99.9	3034.6				ORF1ab	0.3691	0.0	False	False	False	Possible overlap
+PRRS	EF484033.1	tblastn	ORF2a		12074	12844	+	ok	1.0	99.2	521.9	ORF2a	12074.0	12844.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF484033.1	tblastn	ORF2b		12079	12300	+	ok	1.0	97.3	140.2				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF484033.1	tblastn	ORF3		12697	13461	+	ok	1.0	98.0	520.8	ORF3	12697.0	13461.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF484033.1	tblastn	ORF4		13242	13778	+	ok	1.0	98.9	361.7	ORF4	13242.0	13778.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF484033.1	tblastn	ORF5		13789	14391	+	ok	1.0	98.5	404.1	ORF5	13789.0	14391.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF484033.1	tblastn	ORF6		14376	14900	+	ok	1.0	100.0	357.5	ORF6	14376.0	14900.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF484033.1	tblastn	ORF7		14890	15261	+	ok	1.0	99.2	254.6	ORF7	14890.0	15261.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.3	4262.2	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.7	2956.0	ORF1b	7590.0	11981.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	EF488048.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	91.8	484.6	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF488048.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.4	466.8	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	tblastn	ORF4		13151	13687	+	ok	1.0	91.0	334.7	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EF488739.1	tblastn	ORF1a		191	7309	+	ok	0.9557	83.9	2809.6				ORF1ab	0.6196	0.0	False	False	False	Possible overlap
+PRRS	EF488739.1	tblastn	ORF1b		7294	11679	+	invalid_boundaries	1.0	95.6	2931.3				ORF1ab	0.3818	0.0	False	False	False	Possible overlap
+PRRS	EF488739.1	tblastn	ORF2a		11681	12451	+	ok	1.0	88.3	467.6	ORF2a	11681.0	12451.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF488739.1	tblastn	ORF2b		11686	11907	+	ok	1.0	91.8	134.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF488739.1	tblastn	ORF3		12304	13068	+	ok	0.9528	89.7	456.4	ORF3	12304.0	13068.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF488739.1	tblastn	ORF4		12849	13385	+	ok	1.0	91.0	334.0	ORF4	12849.0	13385.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF488739.1	tblastn	ORF5		13396	13998	+	ok	1.0	85.0	353.2	ORF5	13396.0	13998.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF488739.1	tblastn	ORF6		13983	14507	+	ok	1.0	95.4	345.1	ORF6	13983.0	14507.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF488739.1	tblastn	ORF7		14497	14868	+	ok	1.0	94.3	212.2	ORF7	14497.0	14868.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.5	4251.4	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.6	2950.6	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EF635006.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	91.8	485.0	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF635006.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.8	468.4	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	tblastn	ORF4		13151	13687	+	ok	1.0	92.1	339.3	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EF641008.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.6	4259.9	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF641008.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.9	2957.9	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EF641008.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF641008.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF641008.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.8	468.4	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF641008.1	tblastn	ORF4		13151	13687	+	ok	1.0	91.6	335.9	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF641008.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF641008.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF641008.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	91.5	200.7	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EF517962.1	tblastn	ORF1a		190	7611	+	ok	1.0	84.7	4197.5	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF517962.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.4	2946.4	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EF517962.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF517962.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF517962.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.8	468.4	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF517962.1	tblastn	ORF4		13151	13687	+	ok	1.0	91.0	334.7	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF517962.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF517962.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF517962.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EF532801.1	tblastn	ORF1a		1	7512	+	ok	1.0	87.9	4407.8				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532801.1	tblastn	ORF1b		7497	11882	+	invalid_boundaries	1.0	97.0	2969.5	ORF1b	7509.0	11882.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532801.1	tblastn	ORF2a		11884	12654	+	ok	1.0	92.6	486.9	ORF2a	11884.0	12654.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532801.1	tblastn	ORF2b		11889	12110	+	ok	1.0	91.8	133.7				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532801.1	tblastn	ORF3		12507	13271	+	ok	1.0	88.2	476.5	ORF3	12507.0	13271.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532801.1	tblastn	ORF4		13052	13588	+	ok	1.0	89.9	334.3	ORF4	13052.0	13588.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532801.1	tblastn	ORF5		13599	14201	+	ok	0.995	89.9	372.1	ORF5	13599.0	14201.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532801.1	tblastn	ORF6		14186	14710	+	ok	1.0	96.6	344.7	ORF6	14186.0	14710.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532801.1	tblastn	ORF7		14700	15071	+	ok	1.0	93.5	239.6	ORF7	14700.0	15071.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532802.1	tblastn	ORF1a		22	7140	+	ok	0.9557	83.3	2786.5				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532802.1	tblastn	ORF1b		7125	11510	+	invalid_boundaries	1.0	95.4	2930.6	ORF1b	7137.0	11510.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532802.1	tblastn	ORF2a		11512	12282	+	ok	1.0	87.5	461.8	ORF2a	11512.0	12282.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532802.1	tblastn	ORF2b		11517	11738	+	ok	1.0	90.4	133.3				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532802.1	tblastn	ORF3		12135	12899	+	ok	0.9528	88.8	449.1	ORF3	12135.0	12899.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532802.1	tblastn	ORF4		12680	13216	+	ok	1.0	89.3	327.8	ORF4	12680.0	13216.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532802.1	tblastn	ORF5		13227	13829	+	ok	1.0	84.5	350.9	ORF5	13227.0	13829.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532802.1	tblastn	ORF6		13814	14338	+	ok	1.0	94.8	320.5	ORF6	13814.0	14338.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532802.1	tblastn	ORF7		14328	14699	+	ok	1.0	91.9	238.0	ORF7	14328.0	14699.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532803.1	tblastn	ORF1a		1	7116	+	ok	0.9557	83.0	2780.0				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532803.1	tblastn	ORF1b		7101	11486	+	invalid_boundaries	1.0	95.5	2931.7	ORF1b	7113.0	11486.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532803.1	tblastn	ORF2a		11488	12258	+	ok	1.0	88.7	467.2	ORF2a	11488.0	12258.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532803.1	tblastn	ORF2b		11493	11714	+	ok	1.0	90.4	133.3				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532803.1	tblastn	ORF3		12111	12875	+	ok	0.9528	89.3	453.0	ORF3	12111.0	12875.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532803.1	tblastn	ORF4		12656	13192	+	ok	1.0	89.9	330.5	ORF4	12656.0	13192.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532803.1	tblastn	ORF5		13203	13805	+	ok	1.0	85.0	354.4	ORF5	13203.0	13805.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532803.1	tblastn	ORF6		13790	14314	+	ok	1.0	95.4	345.1	ORF6	13790.0	14314.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532803.1	tblastn	ORF7		14304	14675	+	ok	1.0	93.5	218.4	ORF7	14304.0	14675.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532804.1	tblastn	ORF1a		1	7119	+	ok	0.9557	83.8	2793.8				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532804.1	tblastn	ORF1b		7104	11489	+	invalid_boundaries	1.0	95.1	2915.9	ORF1b	7116.0	11489.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532804.1	tblastn	ORF2a		11491	12261	+	ok	1.0	89.1	470.7	ORF2a	11491.0	12261.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532804.1	tblastn	ORF2b		11496	11717	+	ok	1.0	91.8	134.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532804.1	tblastn	ORF3		12114	12878	+	ok	1.0	87.4	467.2	ORF3	12114.0	12878.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532804.1	tblastn	ORF4		12659	13195	+	ok	1.0	91.0	334.0	ORF4	12659.0	13195.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532804.1	tblastn	ORF5		13206	13808	+	ok	1.0	85.5	356.3	ORF5	13206.0	13808.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532804.1	tblastn	ORF6		13793	14317	+	ok	1.0	95.4	345.1	ORF6	13793.0	14317.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532804.1	tblastn	ORF7		14307	14678	+	ok	1.0	94.3	212.2	ORF7	14307.0	14678.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532805.1	tblastn	ORF1a		1	7506	+	ok	1.0	86.1	4304.6				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532805.1	tblastn	ORF1b		7491	11876	+	invalid_boundaries	1.0	96.5	2954.5	ORF1b	7503.0	11876.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532805.1	tblastn	ORF2a		11878	12648	+	ok	0.9961	89.0	459.1	ORF2a	11878.0	12648.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532805.1	tblastn	ORF2b		11883	12104	+	ok	1.0	87.7	129.4				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532805.1	tblastn	ORF3		12501	13265	+	ok	1.0	82.7	449.9	ORF3	12501.0	13265.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532805.1	tblastn	ORF4		13046	13582	+	ok	1.0	90.4	327.8	ORF4	13046.0	13582.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532805.1	tblastn	ORF5		13593	14195	+	ok	1.0	86.0	360.9	ORF5	13593.0	14195.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532805.1	tblastn	ORF6		14180	14704	+	ok	1.0	96.6	347.8	ORF6	14180.0	14704.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532805.1	tblastn	ORF7		14694	15065	+	ok	1.0	93.5	242.3	ORF7	14694.0	15065.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532806.1	tblastn	ORF1a		1	7119	+	ok	0.9557	83.8	2793.8				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532806.1	tblastn	ORF1b		7104	11489	+	invalid_boundaries	1.0	95.2	2920.2	ORF1b	7116.0	11489.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532806.1	tblastn	ORF2a		11491	12261	+	ok	1.0	87.5	461.1	ORF2a	11491.0	12261.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532806.1	tblastn	ORF2b		11496	11717	+	ok	1.0	91.8	134.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532806.1	tblastn	ORF3		12114	12878	+	ok	1.0	85.8	457.6	ORF3	12114.0	12878.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532806.1	tblastn	ORF4		12659	13195	+	ok	1.0	91.0	334.0	ORF4	12659.0	13195.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532806.1	tblastn	ORF5		13206	13808	+	ok	1.0	84.5	350.9	ORF5	13206.0	13808.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532806.1	tblastn	ORF6		13793	14317	+	ok	1.0	95.4	345.1	ORF6	13793.0	14317.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532806.1	tblastn	ORF7		14307	14678	+	ok	1.0	94.3	212.2	ORF7	14307.0	14678.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532807.1	tblastn	ORF1a		61	7179	+	ok	0.9557	83.8	2793.1				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532807.1	tblastn	ORF1b		7164	11549	+	invalid_boundaries	1.0	95.1	2918.6	ORF1b	7176.0	11549.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532807.1	tblastn	ORF2a		11551	12321	+	ok	1.0	89.1	470.7	ORF2a	11551.0	12321.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532807.1	tblastn	ORF2b		11556	11777	+	ok	1.0	91.8	134.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532807.1	tblastn	ORF3		12174	12938	+	ok	1.0	87.4	467.2	ORF3	12174.0	12938.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532807.1	tblastn	ORF4		12719	13255	+	ok	1.0	91.0	334.0	ORF4	12719.0	13255.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532807.1	tblastn	ORF5		13266	13868	+	ok	1.0	85.5	356.3	ORF5	13266.0	13868.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532807.1	tblastn	ORF6		13853	14377	+	ok	1.0	95.4	345.1	ORF6	13853.0	14377.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532807.1	tblastn	ORF7		14367	14738	+	ok	1.0	94.3	212.2	ORF7	14367.0	14738.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532808.1	tblastn	ORF1a		28	7533	+	ok	1.0	86.0	4301.5				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532808.1	tblastn	ORF1b		7518	11903	+	invalid_boundaries	1.0	96.5	2954.5	ORF1b	7530.0	11903.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532808.1	tblastn	ORF2a		11905	12675	+	ok	0.9961	88.2	455.7	ORF2a	11905.0	12675.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532808.1	tblastn	ORF2b		11910	12131	+	ok	1.0	87.7	129.4				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532808.1	tblastn	ORF3		12528	13292	+	ok	1.0	82.3	444.9	ORF3	12528.0	13292.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532808.1	tblastn	ORF4		13073	13609	+	ok	1.0	90.4	327.8	ORF4	13073.0	13609.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532808.1	tblastn	ORF5		13620	14222	+	ok	1.0	86.0	360.9	ORF5	13620.0	14222.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532808.1	tblastn	ORF6		14207	14731	+	ok	1.0	96.6	347.8	ORF6	14207.0	14731.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532808.1	tblastn	ORF7		14721	15092	+	ok	1.0	93.5	242.3	ORF7	14721.0	15092.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532809.1	tblastn	ORF1a		1	7506	+	ok	1.0	85.9	4293.4				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532809.1	tblastn	ORF1b		7491	11876	+	invalid_boundaries	1.0	96.5	2954.8	ORF1b	7503.0	11876.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532809.1	tblastn	ORF2a		11878	12648	+	ok	0.9961	89.8	462.2	ORF2a	11878.0	12648.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532809.1	tblastn	ORF2b		11883	12104	+	ok	1.0	87.7	130.6				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532809.1	tblastn	ORF3		12501	13265	+	ok	1.0	82.3	446.8	ORF3	12501.0	13265.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532809.1	tblastn	ORF4		13046	13582	+	ok	1.0	90.4	327.8	ORF4	13046.0	13582.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532809.1	tblastn	ORF5		13593	14195	+	ok	1.0	85.5	359.8	ORF5	13593.0	14195.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532809.1	tblastn	ORF6		14180	14704	+	ok	1.0	96.0	345.9	ORF6	14180.0	14704.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532809.1	tblastn	ORF7		14694	15065	+	ok	1.0	93.5	242.3	ORF7	14694.0	15065.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532810.1	tblastn	ORF1a		28	7146	+	ok	0.9557	83.3	2782.3				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532810.1	tblastn	ORF1b		7131	11516	+	invalid_boundaries	1.0	95.7	2932.9	ORF1b	7143.0	11516.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532810.1	tblastn	ORF2a		11518	12288	+	ok	0.9961	89.0	469.2	ORF2a	11518.0	12288.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532810.1	tblastn	ORF2b		11523	11744	+	ok	1.0	93.2	134.8				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532810.1	tblastn	ORF3		12141	12905	+	ok	1.0	88.6	474.6	ORF3	12141.0	12905.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532810.1	tblastn	ORF4		12686	13222	+	ok	1.0	87.6	328.2	ORF4	12686.0	13222.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532810.1	tblastn	ORF5		13233	13835	+	ok	1.0	85.5	335.5	ORF5	13233.0	13835.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532810.1	tblastn	ORF6		13820	14344	+	ok	1.0	94.8	318.5	ORF6	13820.0	14344.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532810.1	tblastn	ORF7		14334	14705	+	ok	1.0	91.9	209.1	ORF7	14334.0	14705.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532811.1	tblastn	ORF1a		27	7145	+	ok	0.9557	83.1	2785.0				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532811.1	tblastn	ORF1b		7130	11515	+	invalid_boundaries	1.0	94.9	2902.1	ORF1b	7142.0	11515.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532811.1	tblastn	ORF2a		11517	12287	+	ok	0.9961	89.0	469.5	ORF2a	11517.0	12287.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532811.1	tblastn	ORF2b		11522	11743	+	ok	1.0	93.2	135.2				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532811.1	tblastn	ORF3		12140	12904	+	ok	1.0	88.2	471.9	ORF3	12140.0	12904.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532811.1	tblastn	ORF4		12685	13221	+	ok	1.0	87.6	328.2	ORF4	12685.0	13221.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532811.1	tblastn	ORF5		13232	13834	+	ok	1.0	86.5	340.1	ORF5	13232.0	13834.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532811.1	tblastn	ORF6		13819	14343	+	ok	1.0	94.8	318.5	ORF6	13819.0	14343.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532811.1	tblastn	ORF7		14333	14704	+	ok	1.0	91.9	209.1	ORF7	14333.0	14704.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532812.1	tblastn	ORF1a		6	7049	+	ok	0.9557	83.0	2768.8				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532812.1	tblastn	ORF1b		7034	11419	+	invalid_boundaries	1.0	95.6	2929.8	ORF1b	7046.0	11419.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532812.1	tblastn	ORF2a		11421	12191	+	ok	1.0	89.5	469.5	ORF2a	11421.0	12191.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532812.1	tblastn	ORF2b		11426	11647	+	ok	1.0	91.8	134.4				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532812.1	tblastn	ORF3		12044	12808	+	ok	0.9528	91.3	464.2	ORF3	12044.0	12808.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532812.1	tblastn	ORF4		12589	13125	+	ok	1.0	90.4	332.0	ORF4	12589.0	13125.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532812.1	tblastn	ORF5		13136	13738	+	ok	1.0	86.0	354.4	ORF5	13136.0	13738.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532812.1	tblastn	ORF6		13723	14247	+	ok	1.0	94.3	317.8	ORF6	13723.0	14247.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532812.1	tblastn	ORF7		14237	14608	+	ok	1.0	93.5	209.9	ORF7	14237.0	14608.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532813.1	tblastn	ORF1a		60	7571	+	ok	1.0	85.1	4288.8				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532813.1	tblastn	ORF1b		7556	11941	+	invalid_boundaries	1.0	95.3	2930.2	ORF1b	7568.0	11941.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532813.1	tblastn	ORF2a		11943	12713	+	ok	1.0	93.8	495.4	ORF2a	11943.0	12713.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532813.1	tblastn	ORF2b		11948	12169	+	ok	1.0	93.2	134.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532813.1	tblastn	ORF3		12566	13330	+	ok	1.0	87.8	471.9	ORF3	12566.0	13330.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532813.1	tblastn	ORF4		13111	13647	+	ok	1.0	92.7	341.7	ORF4	13111.0	13647.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532813.1	tblastn	ORF5		13658	14260	+	ok	1.0	87.0	365.5	ORF5	13658.0	14260.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532813.1	tblastn	ORF6		14245	14769	+	ok	1.0	94.8	318.5	ORF6	14245.0	14769.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532813.1	tblastn	ORF7		14759	15130	+	ok	0.9919	92.6	183.3	ORF7	14759.0	15130.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532814.1	tblastn	ORF1a		30	7112	+	ok	0.9557	82.9	2774.6				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532814.1	tblastn	ORF1b		7097	11485	+	invalid_boundaries	0.9925	95.9	2920.6	ORF1b	7109.0	11485.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532814.1	tblastn	ORF2a		11482	12252	+	ok	1.0	87.1	461.1	ORF2a	11482.0	12252.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532814.1	tblastn	ORF2b		11487	11708	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532814.1	tblastn	ORF3		12105	12869	+	ok	0.9528	86.4	438.7	ORF3	12105.0	12869.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532814.1	tblastn	ORF4		12650	13186	+	ok	1.0	89.9	332.0	ORF4	12650.0	13186.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532814.1	tblastn	ORF5		13197	13799	+	ok	1.0	83.5	347.8	ORF5	13197.0	13799.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532814.1	tblastn	ORF6		13784	14308	+	ok	1.0	95.4	345.1	ORF6	13784.0	14308.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532814.1	tblastn	ORF7		14298	14669	+	ok	1.0	94.3	212.2	ORF7	14298.0	14669.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532815.1	tblastn	ORF1a		30	7109	+	ok	0.9557	82.6	2756.5				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532815.1	tblastn	ORF1b		7121	11479	+	ok_rescued	1.0	95.6	2937.1	ORF1b	7106.0	11479.0	ORF1b	0.9966	0.9966	True	True	False	Boundary offset
+PRRS	EF532815.1	tblastn	ORF2a		11481	12251	+	ok	1.0	87.5	462.6	ORF2a	11481.0	12251.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532815.1	tblastn	ORF2b		11486	11707	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532815.1	tblastn	ORF3		12104	12868	+	ok	0.9528	86.8	439.9	ORF3	12104.0	12868.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532815.1	tblastn	ORF4		12649	13185	+	ok	1.0	89.9	331.6	ORF4	12649.0	13185.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532815.1	tblastn	ORF5		13196	13798	+	ok	1.0	83.0	347.1	ORF5	13196.0	13798.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532815.1	tblastn	ORF6		13783	14307	+	ok	1.0	95.4	345.1	ORF6	13783.0	14307.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532815.1	tblastn	ORF7		14297	14668	+	ok	1.0	94.3	212.2	ORF7	14297.0	14668.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532816.1	tblastn	ORF1a		6	7517	+	ok	1.0	96.0	4937.9				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532816.1	tblastn	ORF1b		7502	11887	+	invalid_boundaries	1.0	98.6	3007.2	ORF1b	7514.0	11887.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532816.1	tblastn	ORF2a		11889	12659	+	ok	0.9961	95.7	503.1	ORF2a	11889.0	12659.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532816.1	tblastn	ORF2b		11894	12115	+	ok	1.0	97.3	139.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532816.1	tblastn	ORF3		12512	13276	+	ok	1.0	96.1	508.1	ORF3	12512.0	13276.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532816.1	tblastn	ORF4		13057	13593	+	ok	1.0	94.9	350.1	ORF4	13057.0	13593.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532816.1	tblastn	ORF5		13604	14206	+	ok	1.0	96.0	378.6	ORF5	13604.0	14206.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532816.1	tblastn	ORF6		14191	14715	+	ok	1.0	98.3	353.6	ORF6	14191.0	14715.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532816.1	tblastn	ORF7		14705	15076	+	ok	1.0	98.4	252.3	ORF7	14705.0	15076.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532817.1	tblastn	ORF1a		21	7139	+	ok	0.9557	83.7	2823.1				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532817.1	tblastn	ORF1b		7124	11509	+	invalid_boundaries	1.0	95.6	2931.7	ORF1b	7136.0	11509.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532817.1	tblastn	ORF2a		11511	12281	+	ok	1.0	87.9	466.1	ORF2a	11511.0	12281.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532817.1	tblastn	ORF2b		11516	11737	+	ok	1.0	93.2	134.4				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532817.1	tblastn	ORF3		12134	12898	+	ok	0.9528	88.8	453.0	ORF3	12134.0	12898.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532817.1	tblastn	ORF4		12679	13215	+	ok	1.0	91.0	333.6	ORF4	12679.0	13215.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532817.1	tblastn	ORF5		13226	13828	+	ok	1.0	84.5	351.7	ORF5	13226.0	13828.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532817.1	tblastn	ORF6		13813	14337	+	ok	1.0	94.8	319.3	ORF6	13813.0	14337.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532817.1	tblastn	ORF7		14327	14698	+	ok	1.0	95.1	247.7	ORF7	14327.0	14698.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532818.1	tblastn	ORF1a		21	7139	+	ok	0.9557	83.5	2795.0				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532818.1	tblastn	ORF1b		7124	11509	+	invalid_boundaries	1.0	95.4	2928.3	ORF1b	7136.0	11509.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532818.1	tblastn	ORF2a		11511	12281	+	ok	1.0	87.9	464.9	ORF2a	11511.0	12281.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532818.1	tblastn	ORF2b		11516	11737	+	ok	1.0	90.4	133.7				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532818.1	tblastn	ORF3		12134	12898	+	ok	0.9528	89.3	454.5	ORF3	12134.0	12898.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532818.1	tblastn	ORF4		12679	13215	+	ok	1.0	91.6	334.7	ORF4	12679.0	13215.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532818.1	tblastn	ORF5		13226	13828	+	ok	1.0	84.0	346.7	ORF5	13226.0	13828.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532818.1	tblastn	ORF6		13813	14337	+	ok	1.0	95.4	345.1	ORF6	13813.0	14337.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532818.1	tblastn	ORF7		14327	14698	+	ok	1.0	94.3	212.2	ORF7	14327.0	14698.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532819.1	tblastn	ORF1a		1	7113	+	ok_rescued	0.9545	84.4	2820.4				ORF1ab	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EF532819.1	tblastn	ORF1b		7098	11483	+	invalid_boundaries	1.0	94.9	2912.1	ORF1b	7110.0	11483.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EF532819.1	tblastn	ORF2a		11485	12255	+	ok	1.0	88.7	472.2	ORF2a	11485.0	12255.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532819.1	tblastn	ORF2b		11490	11711	+	ok	1.0	90.4	134.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532819.1	tblastn	ORF3		12108	12872	+	ok	0.9528	88.4	450.7	ORF3	12108.0	12872.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532819.1	tblastn	ORF4		12653	13189	+	ok	1.0	89.9	332.4	ORF4	12653.0	13189.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532819.1	tblastn	ORF5		13200	13802	+	ok	1.0	83.5	347.8	ORF5	13200.0	13802.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532819.1	tblastn	ORF6		13787	14311	+	ok	1.0	95.4	345.1	ORF6	13787.0	14311.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532819.1	tblastn	ORF7		14301	14672	+	ok	1.0	93.5	211.1	ORF7	14301.0	14672.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU076704.1	tblastn	ORF1a		222	7412	+	ok	0.8781	50.0	1557.7	ORF1a	222.0	7412.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU076704.1	tblastn	ORF1b		7400	11785	+	invalid_boundaries	0.9979	68.4	2047.7	ORF1b	7394.0	11785.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	EU076704.1	tblastn	ORF2a		11796	12545	+	ok	0.9609	64.6	320.5	ORF2a	11796.0	12545.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU076704.1	tblastn	ORF2b		11796	12013	+	ok_rescued	0.9726	76.1	106.7				ORF2a	0.2907	0.0	False	False	False	Possible overlap
+PRRS	EU076704.1	tblastn	ORF3		12404	13177	+	ok_rescued	0.9055	61.7	295.0	ORF3	12404.0	13177.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU076704.1	tblastn	ORF4		12946	13473	+	ok	1.0	67.0	251.5	ORF4	12946.0	13473.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU076704.1	tblastn	ORF5		13475	14075	+	ok_rescued	0.98	56.6	222.2	ORF5	13470.0	14075.0	ORF5	0.9917	0.9917	True	True	False	Boundary offset
+PRRS	EU076704.1	tblastn	ORF6		14076	14584	+	ok_rescued	0.977	79.4	291.6	ORF6	14063.0	14584.0	ORF6	0.9751	0.9751	True	True	False	Boundary offset
+PRRS	EU076704.1	tblastn	ORF7		14574	14960	+	ok_rescued	0.9593	60.0	148.7	ORF7	14574.0	14960.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.5	4256.8	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.5	2947.5	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU097706.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.5	490.0	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU097706.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.8	468.4	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	tblastn	ORF4		13151	13687	+	ok	1.0	90.4	333.6	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU097707.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.5	4252.2	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU097707.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.6	2952.2	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU097707.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.5	490.0	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU097707.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU097707.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.8	468.4	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU097707.1	tblastn	ORF4		13151	13687	+	ok	1.0	90.4	333.6	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU097707.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU097707.1	tblastn	ORF6		14285	14809	+	ok	1.0	96.6	347.4	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU097707.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EF535999.1	tblastn	ORF1a		30	7148	+	ok	0.9557	83.7	2790.8				ORF1ab	0.6196	0.0	False	False	False	Possible overlap
+PRRS	EF535999.1	tblastn	ORF1b		7133	11518	+	invalid_boundaries	1.0	95.0	2911.3				ORF1ab	0.3818	0.0	False	False	False	Possible overlap
+PRRS	EF535999.1	tblastn	ORF2a		11520	12290	+	ok	1.0	89.1	470.7	ORF2a	11520.0	12290.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF535999.1	tblastn	ORF2b		11525	11746	+	ok	1.0	91.8	134.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF535999.1	tblastn	ORF3		12143	12907	+	ok	1.0	87.4	467.2	ORF3	12143.0	12907.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF535999.1	tblastn	ORF4		12688	13224	+	ok	1.0	91.0	334.0	ORF4	12688.0	13224.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF535999.1	tblastn	ORF5		13235	13837	+	ok	1.0	84.5	350.9	ORF5	13235.0	13837.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF535999.1	tblastn	ORF6		13822	14346	+	ok	1.0	95.4	345.1	ORF6	13822.0	14346.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF535999.1	tblastn	ORF7		14336	14707	+	ok	1.0	94.3	212.2	ORF7	14336.0	14707.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF536000.1	tblastn	ORF1a		25	7536	+	ok	1.0	87.3	4346.2				ORF1ab	0.6322	0.0	False	False	False	Possible overlap
+PRRS	EF536000.1	tblastn	ORF1b		7521	11906	+	invalid_boundaries	1.0	96.6	2958.7				ORF1ab	0.3691	0.0	False	False	False	Possible overlap
+PRRS	EF536000.1	tblastn	ORF2a		11908	12678	+	ok	1.0	91.8	483.4	ORF2a	11908.0	12678.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF536000.1	tblastn	ORF2b		11913	12134	+	ok	1.0	90.4	132.9				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF536000.1	tblastn	ORF3		12531	13295	+	ok	1.0	89.8	483.8	ORF3	12531.0	13295.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF536000.1	tblastn	ORF4		13076	13612	+	ok	1.0	92.1	342.0	ORF4	13076.0	13612.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF536000.1	tblastn	ORF5		13623	14225	+	ok	1.0	90.5	370.5	ORF5	13623.0	14225.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF536000.1	tblastn	ORF6		14210	14734	+	ok	1.0	99.4	356.3	ORF6	14210.0	14734.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF536000.1	tblastn	ORF7		14724	15095	+	ok	1.0	96.7	249.6	ORF7	14724.0	15095.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF536001.1	tblastn	ORF1a		20	7531	+	ok	1.0	98.6	5054.2				ORF1ab	0.6322	0.0	False	False	False	Possible overlap
+PRRS	EF536001.1	tblastn	ORF1b		7516	11901	+	invalid_boundaries	1.0	99.5	3021.5				ORF1ab	0.3691	0.0	False	False	False	Possible overlap
+PRRS	EF536001.1	tblastn	ORF2a		11903	12673	+	ok	1.0	98.0	518.1	ORF2a	11903.0	12673.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF536001.1	tblastn	ORF2b		11908	12129	+	ok	1.0	95.9	138.3				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF536001.1	tblastn	ORF3		12526	13290	+	ok	1.0	98.4	521.9	ORF3	12526.0	13290.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF536001.1	tblastn	ORF4		13071	13607	+	ok	1.0	98.3	360.5	ORF4	13071.0	13607.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF536001.1	tblastn	ORF5		13618	14220	+	ok	1.0	96.5	396.7	ORF5	13618.0	14220.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF536001.1	tblastn	ORF6		14205	14729	+	ok	1.0	98.9	352.4	ORF6	14205.0	14729.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF536001.1	tblastn	ORF7		14719	15090	+	ok	1.0	99.2	254.6	ORF7	14719.0	15090.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF536002.1	tblastn	ORF1a		25	7536	+	ok	1.0	85.0	4275.3				ORF1ab	0.6322	0.0	False	False	False	Possible overlap
+PRRS	EF536002.1	tblastn	ORF1b		7507	11906	+	ok_rescued	1.0	93.0	2842.4				ORF1ab	0.3703	0.0	False	False	False	Possible overlap
+PRRS	EF536002.1	tblastn	ORF2a		11908	12678	+	ok	0.9961	89.4	468.4	ORF2a	11908.0	12678.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF536002.1	tblastn	ORF2b		11913	12134	+	ok	1.0	89.0	129.4				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF536002.1	tblastn	ORF3		12531	13295	+	ok	1.0	86.6	472.6	ORF3	12531.0	13295.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF536002.1	tblastn	ORF4		13076	13612	+	ok	1.0	88.2	324.3	ORF4	13076.0	13612.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF536002.1	tblastn	ORF5		13623	14225	+	ok	1.0	85.5	359.0	ORF5	13623.0	14225.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF536002.1	tblastn	ORF6		14210	14734	+	ok	1.0	94.3	317.8	ORF6	14210.0	14734.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF536002.1	tblastn	ORF7		14724	15095	+	ok	1.0	87.0	199.9	ORF7	14724.0	15095.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF536003.1	tblastn	ORF1a		20	7531	+	ok	1.0	99.2	5094.2				ORF1ab	0.6322	0.0	False	False	False	Possible overlap
+PRRS	EF536003.1	tblastn	ORF1b		7516	11901	+	invalid_boundaries	1.0	99.7	3031.5				ORF1ab	0.3691	0.0	False	False	False	Possible overlap
+PRRS	EF536003.1	tblastn	ORF2a		11903	12673	+	ok	1.0	98.4	519.6	ORF2a	11903.0	12673.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF536003.1	tblastn	ORF2b		11908	12129	+	ok	1.0	97.3	139.8				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF536003.1	tblastn	ORF3		12526	13290	+	ok	1.0	98.8	523.9	ORF3	12526.0	13290.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF536003.1	tblastn	ORF4		13071	13607	+	ok	1.0	98.9	361.7	ORF4	13071.0	13607.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF536003.1	tblastn	ORF5		13618	14220	+	ok	1.0	97.0	395.6	ORF5	13618.0	14220.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF536003.1	tblastn	ORF6		14205	14729	+	ok	1.0	99.4	356.3	ORF6	14205.0	14729.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF536003.1	tblastn	ORF7		14719	15090	+	ok	1.0	100.0	256.5	ORF7	14719.0	15090.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU106888.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.4	4241.4				non-structural protein	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EU106888.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.5	2949.8	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU106888.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	91.8	486.5	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU106888.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU106888.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.4	465.7	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU106888.1	tblastn	ORF4		13151	13687	+	ok	1.0	89.9	330.1	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU106888.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU106888.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU106888.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU109502.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.7	4234.9	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU109502.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.4	2948.7	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU109502.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU109502.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU109502.1	tblastn	ORF3		12606	13370	+	ok	1.0	88.2	470.7	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU109502.1	tblastn	ORF4		13151	13687	+	ok	1.0	91.6	336.6	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU109502.1	tblastn	ORF5		13698	14300	+	ok	0.995	86.9	357.5	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU109502.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU109502.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU109503.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.6	4278.8	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU109503.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.7	2954.1	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU109503.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU109503.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU109503.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.0	461.5	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU109503.1	tblastn	ORF4		13151	13687	+	ok	1.0	89.9	332.8	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU109503.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU109503.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU109503.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU144079.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.4	4243.7	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU144079.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.5	2947.5	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU144079.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU144079.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU144079.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.8	468.4	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU144079.1	tblastn	ORF4		13151	13687	+	ok	1.0	91.0	334.7	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU144079.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.9	361.3	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU144079.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU144079.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	95.3	214.5	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU187484.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.3	4251.1	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU187484.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.4	2947.2	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU187484.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	91.8	483.0	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU187484.1	tblastn	ORF2b		11988	12209	+	ok	1.0	89.0	131.0				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU187484.1	tblastn	ORF3		12606	13370	+	ok	1.0	86.6	462.6	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU187484.1	tblastn	ORF4		13151	13687	+	ok	1.0	89.3	328.2	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU187484.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU187484.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU187484.1	tblastn	ORF7		14799	15170	+	ok	1.0	93.5	216.1	ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.5	4256.8	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.7	2954.5	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU200961.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU200961.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.8	469.5	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	tblastn	ORF4		13151	13687	+	ok	1.0	91.0	334.7	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	tblastn	ORF5		13698	14300	+	ok	1.0	86.5	358.2	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU200962.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.5	4246.4	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU200962.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.7	2952.9	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU200962.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU200962.1	tblastn	ORF2b		11988	12209	+	ok	1.0	89.0	130.6				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU200962.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.4	466.8	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU200962.1	tblastn	ORF4		13151	13687	+	ok	1.0	90.4	333.2	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU200962.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.9	361.3	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU200962.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU200962.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU236259.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.4	4221.4				non-structural protein	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EU236259.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.5	2949.8	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU236259.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU236259.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU236259.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.8	468.8	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU236259.1	tblastn	ORF4		13151	13687	+	ok	1.0	89.9	331.3	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU236259.1	tblastn	ORF5		13698	14300	+	ok	0.995	86.9	356.3	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU236259.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU236259.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	95.3	212.2	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU360128.1	tblastn	ORF1a		191	7699	+	ok	1.0	99.5	5105.8	ORF1a	191.0	7699.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU360128.1	tblastn	ORF1b		7684	12069	+	invalid_boundaries	1.0	99.9	3034.6	ORF1b	7696.0	12069.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EU360128.1	tblastn	ORF2a		12071	12841	+	ok	1.0	99.2	521.9	ORF2a	12071.0	12841.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU360128.1	tblastn	ORF2b		12076	12297	+	ok	1.0	97.3	140.2				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU360128.1	tblastn	ORF3		12694	13458	+	ok	1.0	98.8	523.1	ORF3	12694.0	13458.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU360128.1	tblastn	ORF4		13239	13775	+	ok	1.0	99.4	364.4	ORF4	13239.0	13775.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU360128.1	tblastn	ORF5		13786	14388	+	ok	1.0	98.0	402.5	ORF5	13786.0	14388.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU360128.1	tblastn	ORF6		14373	14897	+	ok	1.0	100.0	357.5	ORF6	14373.0	14897.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU360128.1	tblastn	ORF7		14887	15258	+	ok	1.0	99.2	254.6	ORF7	14887.0	15258.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	tblastn	ORF1a		191	7636	+	ok	1.0	98.6	5049.6	ORF1a	191.0	7636.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	tblastn	ORF1b		7621	12006	+	invalid_boundaries	1.0	99.9	3034.6	ORF1b	7633.0	12006.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EU360129.1	tblastn	ORF2a		12008	12778	+	ok	1.0	99.2	521.9	ORF2a	12008.0	12778.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	tblastn	ORF2b		12013	12234	+	ok	1.0	97.3	140.2				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU360129.1	tblastn	ORF3		12631	13395	+	ok	1.0	98.8	523.1	ORF3	12631.0	13395.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	tblastn	ORF4		13176	13712	+	ok	1.0	99.4	364.4	ORF4	13176.0	13712.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	tblastn	ORF5		13723	14325	+	ok	1.0	98.0	402.5	ORF5	13723.0	14325.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	tblastn	ORF6		14310	14834	+	ok	1.0	100.0	357.5	ORF6	14310.0	14834.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	tblastn	ORF7		14824	15195	+	ok	1.0	99.2	254.6	ORF7	14824.0	15195.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	tblastn	ORF1a		190	7701	+	ok	1.0	87.0	4343.1	ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	tblastn	ORF1b		7686	12068	+	invalid_boundaries	1.0	96.6	2944.4	ORF1b	7698.0	12068.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EU360130.1	tblastn	ORF2a		12070	12840	+	ok	1.0	92.6	489.6	ORF2a	12070.0	12840.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	tblastn	ORF2b		12075	12296	+	ok	1.0	90.4	133.3				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU360130.1	tblastn	ORF3		12693	13457	+	ok	1.0	90.9	485.7	ORF3	12693.0	13457.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	tblastn	ORF4		13238	13774	+	ok	1.0	90.4	334.7	ORF4	13238.0	13774.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	tblastn	ORF5		13785	14387	+	ok	0.995	87.9	362.1	ORF5	13785.0	14387.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	tblastn	ORF6		14372	14896	+	ok	1.0	97.7	351.3	ORF6	14372.0	14896.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	tblastn	ORF7		14886	15257	+	ok	1.0	95.9	247.7	ORF7	14886.0	15257.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	tblastn	ORF1a		190	7497	+	ok	0.9948	84.7	2765.7	ORF1a	190.0	7497.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	tblastn	ORF1b		7482	11867	+	invalid_boundaries	1.0	96.2	2934.4	ORF1b	7485.0	11867.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU262603.1	tblastn	ORF2a		11869	12639	+	ok	1.0	91.0	478.8	ORF2a	11869.0	12639.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	tblastn	ORF2b		11874	12095	+	ok	1.0	90.4	133.3				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU262603.1	tblastn	ORF3		12492	13256	+	ok	1.0	85.8	460.3	ORF3	12492.0	13256.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	tblastn	ORF4		13037	13573	+	ok	1.0	88.8	328.9	ORF4	13037.0	13573.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	tblastn	ORF5		13584	14186	+	ok	1.0	87.5	362.8	ORF5	13584.0	14186.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	tblastn	ORF6		14171	14695	+	ok	1.0	96.0	346.3	ORF6	14171.0	14695.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	tblastn	ORF7		14685	15056	+	ok	1.0	92.7	206.1	ORF7	14685.0	15056.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.3	4228.7	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.4	2945.6	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU624117.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.5	490.3	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU624117.1	tblastn	ORF3		12606	13370	+	ok	1.0	88.2	472.2	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	tblastn	ORF4		13151	13687	+	ok	1.0	91.0	334.7	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	359.4	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	tblastn	ORF6		14285	14809	+	ok	1.0	96.6	347.8	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU708726.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.7	4288.0	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU708726.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.6	2954.5	ORF1b	7590.0	11981.0	ORF1b	0.9986	0.9986	True	True	False	Boundary offset
+PRRS	EU708726.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU708726.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU708726.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.8	468.4	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU708726.1	tblastn	ORF4		13151	13687	+	ok	1.0	91.0	334.7	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU708726.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU708726.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU708726.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	AB288356.1	tblastn	ORF1a		189	7691	+	ok	1.0	84.8	4281.5	ORF1a	189.0	7691.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AB288356.1	tblastn	ORF1b		7676	12061	+	invalid_boundaries	1.0	97.3	2970.6	ORF1b	7688.0	12061.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	AB288356.1	tblastn	ORF2a		12063	12830	+	ok	0.9961	93.3	491.9	ORF2a	12063.0	12830.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AB288356.1	tblastn	ORF2b		12068	12289	+	ok	1.0	94.5	136.3				ORF2a	0.2891	0.0	False	False	False	Possible overlap
+PRRS	AB288356.1	tblastn	ORF3		12686	13450	+	ok	1.0	88.2	481.9	ORF3	12686.0	13450.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AB288356.1	tblastn	ORF4		13231	13767	+	ok	1.0	92.1	339.3	ORF4	13231.0	13767.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AB288356.1	tblastn	ORF5		13778	14380	+	ok	1.0	88.5	361.7	ORF5	13778.0	14380.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AB288356.1	tblastn	ORF6		14365	14889	+	ok	1.0	96.6	349.0	ORF6	14365.0	14889.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AB288356.1	tblastn	ORF7		14879	15250	+	ok	1.0	95.9	245.4	ORF7	14879.0	15250.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU825723.1	tblastn	ORF1a		190	7611	+	ok	0.9996	85.5	4245.3				non-structural protein	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EU825723.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.5	2949.1	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU825723.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	485.0	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU825723.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU825723.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.8	468.4	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU825723.1	tblastn	ORF4		13151	13687	+	ok	1.0	90.4	333.2	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU825723.1	tblastn	ORF5		13698	14300	+	ok	0.995	86.9	356.3	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU825723.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU825723.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU825724.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.4	4241.4				non-structural protein	1.0	0.0	False	False	False	Alias/name gap
+PRRS	EU825724.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.6	2950.2	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU825724.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU825724.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU825724.1	tblastn	ORF3		12606	13370	+	ok	1.0	88.2	472.2	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU825724.1	tblastn	ORF4		13151	13687	+	ok	1.0	92.1	339.3	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU825724.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU825724.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU825724.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU860248.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.6	4258.0	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU860248.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.6	2954.5	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU860248.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU860248.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU860248.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.8	468.4	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU860248.1	tblastn	ORF4		13151	13687	+	ok	1.0	91.6	336.6	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU860248.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU860248.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU860248.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU860249.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.6	4270.3	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU860249.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.7	2954.5	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU860249.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU860249.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU860249.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.8	468.4	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU860249.1	tblastn	ORF4		13151	13687	+	ok	1.0	91.0	334.7	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU860249.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU860249.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU860249.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU807840.1	tblastn	ORF1a		191	7699	+	ok	1.0	88.6	4420.5	ORF1a	191.0	7699.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	tblastn	ORF1b		7684	12069	+	invalid_boundaries	1.0	96.7	2954.8	ORF1b	7696.0	12069.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EU807840.1	tblastn	ORF2a		12071	12841	+	ok	1.0	92.6	487.3	ORF2a	12071.0	12841.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	tblastn	ORF2b		12076	12297	+	ok	1.0	87.7	130.2				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU807840.1	tblastn	ORF3		12694	13458	+	ok	1.0	90.2	483.8	ORF3	12694.0	13458.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	tblastn	ORF4		13239	13775	+	ok	1.0	91.0	336.6	ORF4	13239.0	13775.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	tblastn	ORF5		13786	14388	+	ok	0.995	89.9	369.4	ORF5	13786.0	14388.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	tblastn	ORF6		14373	14897	+	ok	1.0	97.1	347.8	ORF6	14373.0	14897.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	tblastn	ORF7		14887	15258	+	ok	1.0	95.9	247.3	ORF7	14887.0	15258.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	tblastn	ORF1a		190	7506	+	ok	1.0	84.2	4170.2	ORF1a	190.0	7506.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	tblastn	ORF1b		7491	11876	+	invalid_boundaries	1.0	96.3	2946.4	ORF1b	7494.0	11876.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU864231.1	tblastn	ORF2a		11878	12648	+	ok	0.9961	91.8	483.8	ORF2a	11878.0	12648.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	tblastn	ORF2b		11883	12104	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU864231.1	tblastn	ORF3		12501	13265	+	ok	1.0	87.4	466.8	ORF3	12501.0	13265.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	tblastn	ORF4		13046	13582	+	ok	1.0	91.0	334.7	ORF4	13046.0	13582.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	tblastn	ORF5		13593	14195	+	ok	0.995	87.4	359.4	ORF5	13593.0	14195.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	tblastn	ORF6		14180	14704	+	ok	1.0	97.1	349.7	ORF6	14180.0	14704.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	tblastn	ORF7		14694	15065	+	ok	1.0	95.1	246.1	ORF7	14694.0	15065.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	tblastn	ORF1a		191	7702	+	ok	1.0	85.7	4278.8	ORF1a	191.0	7702.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	tblastn	ORF1b		7687	12072	+	invalid_boundaries	1.0	96.6	2950.2	ORF1b	7699.0	12072.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	EU864232.1	tblastn	ORF2a		12074	12844	+	ok	1.0	91.0	479.9	ORF2a	12074.0	12844.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	tblastn	ORF2b		12079	12300	+	ok	1.0	90.4	133.3				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU864232.1	tblastn	ORF3		12697	13461	+	ok	1.0	90.9	485.7	ORF3	12697.0	13461.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	tblastn	ORF4		13242	13778	+	ok	1.0	89.9	331.3	ORF4	13242.0	13778.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	tblastn	ORF5		13789	14391	+	ok	0.995	89.4	368.6	ORF5	13789.0	14391.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	tblastn	ORF6		14376	14900	+	ok	1.0	97.7	351.3	ORF6	14376.0	14900.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	tblastn	ORF7		14890	15261	+	ok	1.0	95.1	246.9	ORF7	14890.0	15261.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	tblastn	ORF1a		190	7611	+	ok	1.0	85.6	4257.2	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.7	2956.4	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU864233.1	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU864233.1	tblastn	ORF3		12606	13370	+	ok	1.0	87.4	465.3	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	tblastn	ORF4		13151	13687	+	ok	1.0	92.1	339.3	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	tblastn	ORF6		14285	14809	+	ok	1.0	97.1	349.7	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU880431.2	tblastn	ORF1a		190	7611	+	ok	1.0	84.9	4244.5	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU880431.2	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.1	2939.1	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU880431.2	tblastn	ORF2a		11983	12753	+	ok	0.9961	91.0	480.3	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU880431.2	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU880431.2	tblastn	ORF3		12606	13370	+	ok	1.0	86.6	459.9	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU880431.2	tblastn	ORF4		13151	13687	+	ok	1.0	89.9	332.8	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU880431.2	tblastn	ORF5		13698	14300	+	ok	0.995	85.9	352.4	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU880431.2	tblastn	ORF6		14285	14809	+	ok	1.0	96.6	347.8	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU880431.2	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU880432.2	tblastn	ORF1a		190	7611	+	ok	1.0	84.8	4214.8	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU880432.2	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.0	2936.4	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU880432.2	tblastn	ORF2a		11983	12753	+	ok	0.9961	91.4	483.0	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU880432.2	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU880432.2	tblastn	ORF3		12606	13370	+	ok	1.0	87.4	466.8	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU880432.2	tblastn	ORF4		13151	13687	+	ok	1.0	90.4	333.6	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU880432.2	tblastn	ORF5		13698	14300	+	ok	0.995	85.9	352.4	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU880432.2	tblastn	ORF6		14285	14809	+	ok	1.0	96.0	345.5	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU880432.2	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU880433.2	tblastn	ORF1a		190	7611	+	ok	1.0	84.9	4224.9	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU880433.2	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.2	2942.5	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU880433.2	tblastn	ORF2a		11983	12753	+	ok	0.9961	91.0	480.3	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU880433.2	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU880433.2	tblastn	ORF3		12606	13370	+	ok	1.0	87.4	466.8	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU880433.2	tblastn	ORF4		13151	13687	+	ok	1.0	91.6	335.9	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU880433.2	tblastn	ORF5		13698	14300	+	ok	0.995	85.9	352.4	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU880433.2	tblastn	ORF6		14285	14809	+	ok	1.0	96.6	347.8	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU880433.2	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	91.5	200.7	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU880434.2	tblastn	ORF1a		190	7611	+	ok	1.0	84.1	4194.8	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU880434.2	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	95.1	2899.8	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU880434.2	tblastn	ORF2a		11983	12753	+	ok	0.9961	91.0	479.6	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU880434.2	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU880434.2	tblastn	ORF3		12606	13370	+	ok	1.0	87.4	466.8	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU880434.2	tblastn	ORF4		13151	13687	+	ok	1.0	91.0	334.7	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU880434.2	tblastn	ORF5		13698	14300	+	ok	0.995	85.4	349.4	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU880434.2	tblastn	ORF6		14285	14809	+	ok	1.0	96.0	344.4	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU880434.2	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	94.3	208.8	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	EU678352.2	tblastn	ORF1a		190	7611	+	ok	1.0	83.3	4118.1	ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU678352.2	tblastn	ORF1b		7596	11981	+	invalid_boundaries	1.0	96.5	2949.1	ORF1b	7599.0	11981.0	ORF1b	0.9993	0.9993	True	True	False	Boundary offset
+PRRS	EU678352.2	tblastn	ORF2a		11983	12753	+	ok	0.9961	92.2	486.9	ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU678352.2	tblastn	ORF2b		11988	12209	+	ok	1.0	90.4	132.5				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU678352.2	tblastn	ORF3		12606	13370	+	ok	1.0	87.4	464.9	ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU678352.2	tblastn	ORF4		13151	13687	+	ok	1.0	89.9	332.8	ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU678352.2	tblastn	ORF5		13698	14300	+	ok	0.995	87.4	360.1	ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU678352.2	tblastn	ORF6		14285	14809	+	ok	1.0	96.0	346.3	ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU678352.2	tblastn	ORF7		14842	15170	+	ok_rescued	0.8618	96.2	215.3	ORF7	14799.0	15170.0	ORF7	0.8844	0.8844	True	False	False	Wrong coords
+PRRS	AB811785.1	tblastn	ORF1a		164	7666	+	ok	1.0	84.8	4286.9	ORF1a	164.0	7666.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AB811785.1	tblastn	ORF1b		7651	12036	+	invalid_boundaries	1.0	97.2	2966.8	ORF1b	7663.0	12036.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	AB811785.1	tblastn	ORF2a		12038	12805	+	ok	0.9961	93.7	495.0	ORF2a	12038.0	12805.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AB811785.1	tblastn	ORF2b		12043	12264	+	ok	1.0	94.5	136.3				ORF2a	0.2891	0.0	False	False	False	Possible overlap
+PRRS	AB811785.1	tblastn	ORF3		12661	13425	+	ok	1.0	87.8	478.8	ORF3	12661.0	13425.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AB811785.1	tblastn	ORF4		13206	13742	+	ok	1.0	92.1	339.3	ORF4	13206.0	13742.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AB811785.1	tblastn	ORF5		13753	14355	+	ok	1.0	88.5	362.1	ORF5	13753.0	14355.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AB811785.1	tblastn	ORF6		14340	14864	+	ok	1.0	96.6	349.0	ORF6	14340.0	14864.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AB811785.1	tblastn	ORF7		14854	15225	+	ok	1.0	96.7	248.4	ORF7	14854.0	15225.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	tblastn	ORF1a		165	7667	+	ok	1.0	83.1	4212.9	ORF1a	165.0	7667.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	tblastn	ORF1b		7652	12037	+	invalid_boundaries	1.0	97.3	2971.4	ORF1b	7664.0	12037.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	AB811786.1	tblastn	ORF2a		12039	12809	+	ok	0.9961	89.4	471.5	ORF2a	12039.0	12809.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	tblastn	ORF2b		12044	12265	+	ok	1.0	87.7	129.8				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AB811786.1	tblastn	ORF3		12662	13426	+	ok	1.0	85.4	457.2	ORF3	12662.0	13426.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	tblastn	ORF4		13207	13743	+	ok	1.0	90.4	330.9	ORF4	13207.0	13743.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	tblastn	ORF5		13754	14356	+	ok	1.0	89.0	369.4	ORF5	13754.0	14356.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	tblastn	ORF6		14341	14865	+	ok	1.0	95.4	342.8	ORF6	14341.0	14865.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	tblastn	ORF7		14855	15226	+	ok	1.0	91.1	211.8	ORF7	14855.0	15226.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	tblastn	ORF1a		165	7667	+	ok	1.0	96.5	4947.9	ORF1a	165.0	7667.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	tblastn	ORF1b		7652	12037	+	invalid_boundaries	1.0	99.1	3014.2	ORF1b	7664.0	12037.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	AB811787.1	tblastn	ORF2a		12039	12809	+	ok	1.0	94.1	500.4	ORF2a	12039.0	12809.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	tblastn	ORF2b		12044	12265	+	ok	1.0	93.2	133.7				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AB811787.1	tblastn	ORF3		12662	13426	+	ok	1.0	93.7	501.9	ORF3	12662.0	13426.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	tblastn	ORF4		13207	13743	+	ok	1.0	96.6	354.0	ORF4	13207.0	13743.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	tblastn	ORF5		13754	14353	+	ok	1.0	91.5	372.9	ORF5	13754.0	14353.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	tblastn	ORF6		14338	14862	+	ok	1.0	98.3	353.2	ORF6	14338.0	14862.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	tblastn	ORF7		14852	15223	+	ok	1.0	98.4	253.1	ORF7	14852.0	15223.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	tblastn	ORF1a		166	7668	+	ok	1.0	80.5	4052.3	ORF1a	166.0	7668.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	tblastn	ORF1b		7653	12038	+	invalid_boundaries	1.0	95.1	2923.7	ORF1b	7665.0	12038.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	AB811788.1	tblastn	ORF2a		12040	12810	+	ok	0.9961	91.4	478.4	ORF2a	12040.0	12810.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	tblastn	ORF2b		12045	12266	+	ok	1.0	87.7	130.6				ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AB811788.1	tblastn	ORF3		12663	13427	+	ok	1.0	89.0	479.9	ORF3	12663.0	13427.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	tblastn	ORF4		13208	13744	+	ok	1.0	92.1	341.3	ORF4	13208.0	13744.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	tblastn	ORF5		13755	14357	+	ok	1.0	86.0	354.0	ORF5	13755.0	14357.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	tblastn	ORF6		14342	14866	+	ok	1.0	97.1	349.4	ORF6	14342.0	14866.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	tblastn	ORF7		14856	15227	+	ok	1.0	95.1	245.4	ORF7	14856.0	15227.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	tblastn	ORF1a		166	7647	+	ok	1.0	81.1	4131.2	ORF1a	166.0	7647.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	tblastn	ORF1b		7632	12017	+	invalid_boundaries	1.0	96.2	2943.7	ORF1b	7644.0	12017.0	ORF1b	0.9973	0.9973	True	True	False	Boundary offset
+PRRS	AB811789.1	tblastn	ORF2a		12019	12786	+	ok	0.9961	92.2	489.6	ORF2a	12019.0	12786.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	tblastn	ORF2b		12024	12245	+	ok	1.0	91.8	134.0				ORF2a	0.2891	0.0	False	False	False	Possible overlap
+PRRS	AB811789.1	tblastn	ORF3		12642	13406	+	ok	1.0	85.4	461.5	ORF3	12642.0	13406.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	tblastn	ORF4		13187	13723	+	ok	1.0	92.1	345.5	ORF4	13187.0	13723.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	tblastn	ORF5		13734	14336	+	ok	1.0	86.5	358.2	ORF5	13734.0	14336.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	tblastn	ORF6		14321	14845	+	ok	1.0	95.4	343.2	ORF6	14321.0	14845.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	tblastn	ORF7		14835	15203	+	ok	1.0	91.1	232.3	ORF7	14835.0	15203.0	ORF7	1.0	1.0	True	True	True	Correct

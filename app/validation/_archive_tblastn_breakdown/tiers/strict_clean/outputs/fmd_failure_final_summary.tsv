@@ -1,0 +1,10 @@
+final_blame	final_cause	cases	pct_of_failures	pct_of_all_predictions
+ref_truth	ref_query_boundary_convention_mismatch	25	39.06	2.17
+ref_truth	truth_feature_absent	3	4.69	0.26
+tool	n_terminal_truncation_12bp	15	23.44	1.3
+tool	short_peptide_boundary_offset	9	14.06	0.78
+tool	minor_vp1_boundary_offset	8	12.5	0.69
+tool	boundary_offset_matches_neither_ref_nor_truth	1	1.56	0.09
+tool	major_c_terminal_truncation	1	1.56	0.09
+tool	minor_c_terminal_truncation_3bp	1	1.56	0.09
+tool	no_hit	1	1.56	0.09

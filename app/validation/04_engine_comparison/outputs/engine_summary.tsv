@@ -1,0 +1,5 @@
+virus	method	total	exact	coord_correct	mean_iou	exact_pct	coord_pct
+FMD	minimap2	240	101	101	0.4565	42.08	42.08
+FMD	tblastn	240	226	232	0.9698	94.17	96.67
+PRRS	minimap2	180	53	65	0.4072	29.44	36.11
+PRRS	tblastn	180	132	150	0.838	73.33	83.33

@@ -1,0 +1,4 @@
+record_id	method	ref_name	pred_name	source_name	pred_start	pred_end	strand	status	coverage	identity	score	truth_name	truth_start	truth_end	best_overlap_name	best_iou	iou	name_match	coord_correct	exact_match	failure_mode	delta_start	delta_end	pred_len	truth_len	ref_len	pred_minus_ref_len	truth_minus_ref_len
+AY366525.1	tblastn_orf7_rescue_experiment	ORF7	ORF7		14595	14933	+	ok_rescued	0.8943	64.5	151.0	ORF7	14547	14933	ORF7	0.876	0.876	True	False	False	Wrong coords	48	0	339	387	372	-33	15
+DQ489311.1	tblastn_orf7_rescue_experiment	ORF7	ORF7		14595	14933	+	ok_rescued	0.8943	64.5	151.4	ORF7	14547	14933	ORF7	0.876	0.876	True	False	False	Wrong coords	48	0	339	387	372	-33	15
+DQ864705.1	tblastn_orf7_rescue_experiment	ORF7	ORF7		14569	14907	+	ok_rescued	0.8943	64.5	151.0	ORF7	14521	14907	ORF7	0.876	0.876	True	False	False	Wrong coords	48	0	339	387	372	-33	15

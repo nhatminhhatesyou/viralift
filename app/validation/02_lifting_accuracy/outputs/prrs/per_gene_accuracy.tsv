@@ -1,0 +1,10 @@
+gene	total	exact	coord_only	failed	no_hit	extra_predictions_without_truth	exact_pct	coord_only_pct	failed_pct	accuracy_pct
+ORF1a	62	61	1	0	0	38	98.39	1.61	0.0	100.0
+ORF1b	88	0	87	1	0	12	0.0	98.86	1.14	98.86
+ORF2a	100	100	0	0	0	0	100.0	0.0	0.0	100.0
+ORF2b	49	48	0	1	0	51	97.96	0.0	2.04	97.96
+ORF3	100	100	0	0	0	0	100.0	0.0	0.0	100.0
+ORF4	100	100	0	0	0	0	100.0	0.0	0.0	100.0
+ORF5	99	99	0	0	0	1	100.0	0.0	0.0	100.0
+ORF6	99	99	0	0	0	1	100.0	0.0	0.0	100.0
+ORF7	99	99	0	0	0	1	100.0	0.0	0.0	100.0

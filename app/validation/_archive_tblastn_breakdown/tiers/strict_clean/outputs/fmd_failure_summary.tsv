@@ -1,0 +1,10 @@
+ref_name	non_exact_cases	ref_len	pred_len_pattern	truth_len_pattern	pred_minus_ref_len_pattern	truth_minus_ref_len_pattern	delta_start_pattern	delta_end_pattern	main_failure_mode	main_length_bucket	main_fmd_bucket	main_evidence	mean_iou	mean_best_iou
+2A	25	54	51, 54	48, 54	-3, 0	-6, 0	-6, -3, 3	0	Wrong coords	prediction_matches_ref_query_truth_differs	likely_validation_artifact	Prediction length matches ref; query truth uses a different feature length/boundary.	0.8732	0.8732
+VP1	18	633	median 633; range 468..648	median 639; range 627..654	median 0; range -165..15	median 6; range -6..21	0, 3	-6, 0	Boundary offset	prediction_matches_ref_query_truth_differs	likely_validation_artifact	Prediction length matches ref; query truth uses a different feature length/boundary.	0.9358	0.9358
+Lpro	14	603	582, 591	597, 603	-21, -12	-6, 0	0, 12	-15, 0	Boundary offset	prediction_differs_ref_and_truth	manual_review	Prediction length matches neither ref nor query truth; likely tool/rescue-side coordinate issue.	0.9797	0.9797
+3Cpro	2	639	627	639	-12	0	12	0	Boundary offset	prediction_differs_ref_and_truth	manual_review	Prediction length matches neither ref nor query truth; likely tool/rescue-side coordinate issue.	0.9812	0.9812
+3A	1	459	318	429	-141	-30	0	-111	Wrong coords	manual_review	likely_tool_error	Start matches truth but C-terminus is 111 bp short; likely tool/HSP/rescue-side truncation.	0.7413	0.7413
+3B	1	213	210	213	-3	0	0	-3	Boundary offset	prediction_differs_ref_and_truth	manual_review	Prediction length matches neither ref nor query truth; likely tool/rescue-side coordinate issue.	0.9859	0.9859
+VP2	1	654	654	954	0	300	300	0	Wrong coords	prediction_matches_ref_query_truth_differs	likely_validation_artifact	Prediction length matches ref; query truth uses a different feature length/boundary.	0.6855	0.6855
+VP3	1	660	234		-426				Not in truth	truth_absent	likely_validation_artifact	No same-name truth feature in query annotation.	0.0	0.0
+VP4	1	255	255		0				Possible overlap	truth_absent	likely_validation_artifact	No same-name truth feature in query annotation.	0.0	0.2673

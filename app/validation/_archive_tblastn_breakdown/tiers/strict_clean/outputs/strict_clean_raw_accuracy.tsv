@@ -1,0 +1,3 @@
+virus	total	exact_match	coord_correct	coord_only	failed_coord_or_name	exact_pct	coord_pct	failed_pct
+FMD	1152	1088	1131	43	21	94.44	98.18	1.82
+PRRS	855	593	685	92	170	69.36	80.12	19.88

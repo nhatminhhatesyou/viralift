@@ -1,0 +1,602 @@
+record_id	truth_name	source	start	end	length	raw_name	gene	product	note
+EF185992.1	POL1	raw	297	20641	20345	POL1	POL1	Pol1	
+EF185992.1	S	alias	20638	24789	4152	S	S	S protein	spike protein
+EF185992.1	ORF3	alias_conflict_resolved	24789	25463	675	unknown		unknown	ORF3
+EF185992.1	sM	raw	25444	25674	231	sM	sM	sM protein	small membrane protein
+EF185992.1	M	alias	25682	26362	681	M	M	M protein	membrane protein
+EF185992.1	N	alias	26374	27699	1326	N	N	N protein	nucleocapsid protein
+KM189367.2	ORF1a/1b polyprotein	raw	293	20637	20345	ORF1a/1b polyprotein		ORF1a/1b polyprotein	
+KM189367.2	S	alias	20634	24794	4161	S	S	spike protein	
+KM189367.2	ORF3	alias_conflict_resolved	24794	25468	675	hypothetical protein		hypothetical protein	ORF3
+KM189367.2	E	alias	25449	25679	231	E	E	envelope protein	
+KM189367.2	M	alias	25687	26367	681	M	M	membrane protein	
+KM189367.2	N	alias	26379	27704	1326	N	N	nucleoprotein	
+KP765609.1	ORF1ab	alias_conflict_resolved	293	20637	20345	polyprotein		polyprotein	ORF1ab
+KP765609.1	S	alias	20634	24770	4137	spike protein		spike protein	S protein
+KP765609.1	ORF3	alias_conflict_resolved	24800	25474	675	hypothetical protein		hypothetical protein	ORF3
+KP765609.1	E	alias	25455	25685	231	envelope protein		envelope protein	E protein
+KP765609.1	M	alias	25693	26373	681	membrane protein		membrane protein	M protein
+KP765609.1	N	alias	26385	27710	1326	nucleocapsid protein		nucleocapsid protein	N protein
+KU252649.1	ORF1	raw	314	20658	20345	ORF1		ORF1	
+KU252649.1	S	alias	20655	24815	4161	spike protein		spike protein	
+KU252649.1	ORF3	alias	24815	25489	675	ORF3		ORF3	
+KU252649.1	E	alias	25470	25700	231	envelope protein		envelope protein	
+KU252649.1	M	alias	25708	26388	681	membrane protein		membrane protein	
+KU252649.1	N	alias	26400	27725	1326	nucleocapsid protein		nucleocapsid protein	
+KX981440.1	ORF1ab	alias_conflict_resolved	284	20628	20345	polyprotein		polyprotein	ORF1ab; 1a polyprotein and 1b polyprotein
+KX981440.1	S	alias	20625	24779	4155	spike protein		spike protein	S
+KX981440.1	ORF3	alias_conflict_resolved	24779	25453	675	hypothetical protein		hypothetical protein	ORF3
+KX981440.1	E	alias	25434	25664	231	envelope protein		envelope protein	E
+KX981440.1	M	alias	25672	26352	681	membrane protein		membrane protein	M
+KX981440.1	N	alias	26364	27689	1326	nucleocapsid protein		nucleocapsid protein	N
+KX550281.1	ORF1b	alias_conflict_resolved	293	20637	20345	ORF1b	ORF1b	polyprotein	
+KX550281.1	S	alias	20634	24794	4161	S	S	spike protein	
+KX550281.1	ORF3	alias	24794	25468	675	ORF3	ORF3	ORF3 protein	
+KX550281.1	E	alias	25449	25679	231	E	E	envelope protein	
+KX550281.1	M	alias	25687	26367	681	M	M	membrane protein	
+KX550281.1	N	alias	26379	27704	1326	N	N	nucleocapsid protein	
+KY928065.1	polyprotein	ignored	293	20636	20344	polyprotein		polyprotein	contains ORF1a and ORF1b
+KY928065.1	S	alias	20633	24790	4158	spike protein		spike protein	S
+KY928065.1	ORF3	alias_conflict_resolved	24790	25464	675	hypothetical protein		hypothetical protein	ORF3
+KY928065.1	E	alias	25445	25675	231	envelope protein		envelope protein	E
+KY928065.1	M	alias	25683	26363	681	membrane protein		membrane protein	M
+KY928065.1	N	alias	26375	27700	1326	nucleocapsid protein		nucleocapsid protein	N
+KY963963.1	ORF1a/1b	ignored	293	20637	20345	ORF1a/1b	ORF1a/1b	polyprotein	
+KY963963.1	S	alias	20634	24809	4176	S	S	spike protein	
+KY963963.1	ORF3	alias_conflict_resolved	24809	25483	675	ORF3	ORF3	hypothetical protein	
+KY963963.1	E	alias	25464	25694	231	E	E	envelope protein	
+KY963963.1	M	alias	25702	26382	681	M	M	membrane protein	
+KY963963.1	N	alias	26394	27719	1326	N	N	nucleocapsid protein	
+MF577027.1	ORF1a	alias	292	12645	12354	ORF1A		ORF1A	
+MF577027.1	ORF1b	alias	12675	20636	7962	ORF1B		ORF1B	
+MF577027.1	S	alias	20633	24751	4119	S	S	spike protein	
+MF577027.1	ORF3	alias_conflict_resolved	24751	25425	675	mp	mp	accessory membrane protein	ORF3
+MF577027.1	E	alias	25406	25636	231	E	E	envelope protein	
+MF577027.1	M	alias	25644	26324	681	M	M	membrane protein	
+MF577027.1	N	alias	26336	27640	1305	N	N	nucleocapsid protein	
+MF462814.1	ORF1a/b	raw	301	20636	20336	ORF1a/b		ORF1a/b	
+MF462814.1	S	alias	20633	24793	4161	spike protein		spike protein	
+MF462814.1	ORF3	alias	24793	25425	633	ORF3		ORF3	
+MF462814.1	E	alias	25432	25662	231	envelope protein		envelope protein	
+MF462814.1	M	alias	25670	26350	681	membrane protein		membrane protein	
+MF462814.1	N	alias	26362	27687	1326	nucleocapsid protein		nucleocapsid protein	
+KY007139.1	ORF1ab	alias_conflict_resolved	293	20616	20324	ORF1ab	ORF1ab	polyprotein	
+KY007139.1	S	alias	20613	24773	4161	S	S	spike protein	
+KY007139.1	ORF3	alias	24773	25447	675	ORF3	ORF3	ORF3 protein	
+KY007139.1	E	alias	25428	25658	231	E	E	envelope protein	
+KY007139.1	M	alias	25666	26346	681	M	M	membrane protein	
+KY007139.1	N	alias	26358	27683	1326	N	N	nucleocapsid protein	
+MF375374.1	ORF1ab	alias	293	20637	20345	ORF1ab	ORF1ab	polyprotein 1ab	
+MF375374.1	S	alias	20634	24794	4161	S	S	spike protein	
+MF375374.1	ORF3	alias_conflict_resolved	24794	25468	675	ORF3	ORF3	hypothetical protein	ORF3 protein
+MF375374.1	E	alias	25449	25679	231	E	E	envelope protein	
+MF375374.1	M	alias	25687	26367	681	M	M	membrane protein	
+MF375374.1	N	alias	26379	27704	1326	N	N	nucleocapsid protein	
+MH052683.1	ORF1a/1b	ignored	293	20637	20345	ORF1a/1b	ORF1a/1b	polyprotein	
+MH052683.1	S	alias	20634	24794	4161	S	S	spike protein	
+MH052683.1	ORF3	alias_conflict_resolved	24794	25468	675	ORF3	ORF3	hypothetical protein	
+MH052683.1	E	alias	25449	25679	231	E	E	envelope protein	
+MH052683.1	M	alias	25687	26367	681	M	M	membrane protein	
+MH052683.1	N	alias	26379	27704	1326	N	N	nucleocapsid protein	
+MG546687.1	polyprotein	ignored	293	20637	20345	polyprotein		polyprotein	
+MG546687.1	S	alias	20634	24794	4161	S	S	spike protein	
+MG546687.1	ORF3	alias_conflict_resolved	24794	25468	675	ORF3	ORF3	hypothetical protein	
+MG546687.1	E	alias	25449	25679	231	E	E	envelope protein	
+MG546687.1	M	alias	25687	26367	681	M	M	membrane protein	
+MG546687.1	N	alias	26379	27704	1326	N	N	nucleocapsid protein	
+MK644603.1	ORF1ab	alias_conflict_resolved	293	20637	20345	polyprotein		polyprotein	ORF1ab
+MK644603.1	S	alias	20634	24791	4158	spike protein		spike protein	S
+MK644603.1	ORF3	alias_conflict_resolved	24791	25465	675	hypothetical protein		hypothetical protein	ORF3
+MK644603.1	E	alias	25446	25676	231	envelope protein		envelope protein	E
+MK644603.1	M	alias	25684	26364	681	membrane protein		membrane protein	M
+MK644603.1	N	alias	26376	27701	1326	nucleocapsid protein		nucleocapsid protein	N
+MK071637.1	ORF1ab	alias_conflict_resolved	280	20624	20345	polyprotein		polyprotein	ORF1ab
+MK071637.1	S	alias	20621	24772	4152	spike protein		spike protein	
+MK071637.1	ORF3	alias	24772	25446	675	ORF3 protein		ORF3 protein	
+MK071637.1	E	alias	25427	25657	231	envelope protein		envelope protein	
+MK071637.1	M	alias	25665	26345	681	membrane protein		membrane protein	
+MK071637.1	N	alias	26357	27682	1326	nucleocapsid protein		nucleocapsid protein	
+MN759311.1	ORF1ab	alias_conflict_resolved	293	20637	20345	ORF1ab	ORF1ab	polyprotein	
+MN759311.1	S	alias	20634	24791	4158	S	S	spike protein	
+MN759311.1	ORF3	alias_conflict_resolved	24791	25465	675	ORF3	ORF3	accessory membrane protein	
+MN759311.1	E	alias	25446	25676	231	E	E	envelope protein	
+MN759311.1	M	alias	25684	26364	681	M	M	membrane protein	
+MN759311.1	N	alias	26376	27701	1326	N	N	nucleocapsid protein	
+LR812926.1	Pol1	raw	295	20639	20345	Pol1		Pol1	
+LR812926.1	S	alias	20636	24787	4152	spike protein		spike protein	
+LR812926.1	hypothetical protein	ignored	24787	25461	675	hypothetical protein		hypothetical protein	
+LR812926.1	E	alias	25442	25672	231	envelope protein		envelope protein	
+LR812926.1	M	alias	25680	26360	681	membrane protein		membrane protein	
+LR812926.1	N	alias	26372	27697	1326	nucleocapsid protein		nucleocapsid protein	
+LR812930.1	Pol1	raw	405	20749	20345	Pol1		Pol1	
+LR812930.1	S	alias	20746	24897	4152	spike protein		spike protein	
+LR812930.1	hypothetical protein	ignored	24897	25571	675	hypothetical protein		hypothetical protein	
+LR812930.1	E	alias	25552	25782	231	envelope protein		envelope protein	
+LR812930.1	M	alias	25790	26470	681	membrane protein		membrane protein	
+LR812930.1	N	alias	26482	27807	1326	nucleocapsid protein		nucleocapsid protein	
+LR812932.1	Pol1	raw	296	20640	20345	Pol1		Pol1	
+LR812932.1	S	alias	20637	24788	4152	spike protein		spike protein	
+LR812932.1	hypothetical protein	ignored	24788	25462	675	hypothetical protein		hypothetical protein	
+LR812932.1	E	alias	25443	25673	231	envelope protein		envelope protein	
+LR812932.1	M	alias	25681	26361	681	membrane protein		membrane protein	
+LR812932.1	N	alias	26373	27698	1326	nucleocapsid protein		nucleocapsid protein	
+MT263014.1	polyprotein 1ab	raw	293	20637	20345	polyprotein 1ab		polyprotein 1ab	ORF1a/b
+MT263014.1	S	alias	20634	24794	4161	spike protein		spike protein	
+MT263014.1	ORF3	alias	24794	25468	675	ORF3 protein		ORF3 protein	
+MT263014.1	E	alias	25449	25685	237	E protein		E protein	
+MT263014.1	M	alias	25693	26373	681	M protein		M protein	
+MT263014.1	N	alias	26385	27710	1326	N protein		N protein	
+MT646162.1	ORF1ab	alias_conflict_resolved	301	20645	20345	polyprotein		polyprotein	ORF1ab
+MT646162.1	S	alias	20642	24802	4161	spike protein		spike protein	
+MT646162.1	ORF3	alias_conflict_resolved	24802	25476	675	hypothetical protein		hypothetical protein	ORF3
+MT646162.1	E	alias	25457	25687	231	envelope protein		envelope protein	
+MT646162.1	M	alias	25695	26375	681	membrane protein		membrane protein	
+MT646162.1	N	alias	26387	27712	1326	nucleocapsid protein		nucleocapsid protein	
+MW143085.1	ORF1ab	alias_conflict_resolved	293	20637	20345	ORF1ab	ORF1ab	polyprotein	
+MW143085.1	S	alias	20634	24791	4158	S	S	spike protein	
+MW143085.1	ORF3	alias	24791	25465	675	ORF3	ORF3	ORF3 protein	
+MW143085.1	E	alias	25446	25676	231	E	E	E protein	
+MW143085.1	M	alias	25684	26364	681	M	M	M protein	
+MW143085.1	N	alias	26376	27701	1326	N	N	N protein	
+OM393722.1	ORF 1a/1b	raw	294	20639	20346	ORF 1a/1b	ORF 1a/1b	polyprotein ORF 1a/1b	
+OM393722.1	S	alias	20636	24793	4158	S	S	spike protein	
+OM393722.1	ORF3	alias_conflict_resolved	24793	25467	675	ORF3	ORF3	hypothetical protein	
+OM393722.1	E	alias	25448	25678	231	E	E	envelope protein	
+OM393722.1	M	alias	25686	26366	681	M	M	membrane protein	
+OM393722.1	N	alias	26378	27703	1326	N	N	nucleocapsid protein	
+OL347994.1	ORF1ab polyprotein	raw	293	20637	20345	ORF1ab polyprotein		ORF1ab polyprotein	
+OL347994.1	ORF1a	alias	293	12646	12354	ORF1a polyprotein		ORF1a polyprotein	
+OL347994.1	S	alias	20634	24794	4161	S protein		S protein	
+OL347994.1	ORF3	alias	24794	25468	675	ORF3 protein		ORF3 protein	
+OL347994.1	E	alias	25449	25679	231	E protein		E protein	
+OL347994.1	M	alias	25687	26367	681	M protein		M protein	
+OL347994.1	N	alias	26379	27704	1326	N protein		N protein	
+OP326239.1	ORF1ab	alias	293	20637	20345	ORF1ab	ORF1ab	ORF1ab protein	
+OP326239.1	ORF1ab	alias_conflict_resolved	293	12646	12354	ORF1ab	ORF1ab	ORF1a protein	
+OP326239.1	S	alias	20634	24857	4224	S	S	spike protein	
+OP326239.1	ORF3	alias_conflict_resolved	24857	25291	435	ORF3	ORF3	accessory membrane protein	
+OP326239.1	E	alias	25511	25741	231	E	E	envelope protein	
+OP326239.1	M	alias	25749	26429	681	M	M	membrane protein	
+OP326239.1	N	alias	26441	27766	1326	N	N	nucleocapsid protein	
+OQ589489.1	ORF1ab protein	raw	293	20637	20345	ORF1ab protein		ORF1ab protein	
+OQ589489.1	ORF1a	alias	293	12646	12354	ORF1a protein		ORF1a protein	
+OQ589489.1	S	alias	20634	24803	4170	spike protein		spike protein	S
+OQ589489.1	ORF3	alias_conflict_resolved	24803	25477	675	hypothetical protein		hypothetical protein	ORF3
+OQ589489.1	E	alias	25458	25688	231	envelope protein		envelope protein	E
+OQ589489.1	M	alias	25696	26373	678	membrane protein		membrane protein	M
+OQ589489.1	N	alias	26385	27710	1326	nucleocapsid protein		nucleocapsid protein	N
+OP784565.1	ORF1ab	alias	293	20634	20342	ORF1ab		ORF1ab	
+OP784565.1	ORF1a	alias	293	12643	12351	ORF1a		ORF1a	
+OP784565.1	S	alias	20631	24794	4164	S		S	
+OP784565.1	ORF3	alias	24794	25468	675	ORF3		ORF3	
+OP784565.1	E	alias	25449	25679	231	E		E	
+OP784565.1	M	alias	25687	26367	681	M		M	
+OP784565.1	N	alias	26379	27704	1326	N		N	
+ON075821.1	S	alias	20659	24819	4161	S	S	spike protein	
+ON075821.1	ORF3	alias	24819	25493	675	ORF3	ORF3	ORF3 protein	
+ON075821.1	E	alias	25474	25704	231	E	E	envelope protein	
+ON075821.1	M	alias	25712	26392	681	M	M	membrane protein	
+ON075821.1	N	alias	26404	27729	1326	N	N	nucleocapsid protein	
+OP894120.1	ORF1ab	alias_conflict_resolved	306	12659	12354	ORF1ab	ORF1ab	replicase polyprotein	ORF1a
+OP894120.1	S	alias	20647	24804	4158	S	S	spike protein	
+OP894120.1	ORF3	alias_conflict_resolved	24804	25478	675	ORF3	ORF3	hypothetical protein	
+OP894120.1	E	alias	25459	25689	231	E	E	envelope protein	
+OP894120.1	M	alias	25697	26377	681	M	M	membrane protein	
+OP894120.1	N	alias	26389	27714	1326	N	N	nucleocapsid protein	
+OQ378935.1	ORF1ab	alias_conflict_resolved	346	12696	12351	ORF1ab	ORF1ab	ORF1a protein	
+OQ378935.1	S	alias	20684	24844	4161	S	S	spike glycoprotein	
+OQ979200.1	S	alias	20634	24791	4158	HNZK1	HNZK1	spike protein	
+OQ979200.1	HNZK1	ignored	24791	25465	675	HNZK1	HNZK1	hypothetical protein	
+OQ979200.1	E	alias	25446	25676	231	HNZK1	HNZK1	envelope protein	
+OQ979200.1	M	alias	25684	26364	681	HNZK1	HNZK1	membrane protein	
+OQ979200.1	N	alias	26376	27701	1326	HNZK1	HNZK1	nucleocapsid protein	
+PP668229.1	S	alias	20628	24785	4158	S		S	
+PP668229.1	ORF3	alias	24785	25459	675	ORF3		ORF3	
+PP668229.1	E	alias	25440	25670	231	E		E	
+PP668229.1	M	alias	25678	26358	681	M		M	
+PP668229.1	N	alias	26370	27695	1326	N		N	
+PP668230.1	S	alias	20628	24785	4158	S		S	
+PP668230.1	ORF3	alias	24785	25459	675	ORF3		ORF3	
+PP668230.1	E	alias	25440	25670	231	E		E	
+PP668230.1	M	alias	25678	26358	681	M		M	
+PP668230.1	N	alias	26370	27695	1326	N		N	
+PP690526.1	ORF1ab	alias	293	20637	20345	ORF1ab	ORF1ab	ORF1ab polyprotein	
+PP690526.1	ORF1ab	alias_conflict_resolved	293	12646	12354	ORF1ab	ORF1ab	ORF1a protein	
+PP690526.1	S	alias	20634	24794	4161	S	S	spike protein	
+PP690526.1	ORF3	alias_conflict_resolved	24794	25468	675	ORF3	ORF3	hypothetical protein	
+PP690526.1	E	alias	25449	25679	231	E	E	envelope protein	
+PP690526.1	M	alias	25687	26379	693	M	M	membrane protein	
+PP690526.1	N	alias	26391	27716	1326	N	N	nucleocapsid protein	
+PP690527.1	ORF1ab	alias_conflict_resolved	293	20637	20345	ORF1ab	ORF1ab	polyprotein	
+PP690527.1	ORF1ab	alias_conflict_resolved	293	12646	12354	ORF1ab	ORF1ab	ORF1a protein	
+PP690527.1	S	alias	20634	24791	4158	S	S	spike protein	
+PP690527.1	ORF3	alias_conflict_resolved	24791	25465	675	ORF3	ORF3	hypothetical protein	
+PP690527.1	E	alias	25446	25676	231	E	E	envelope protein	
+PP690527.1	M	alias	25684	26364	681	M	M	membrane protein	
+PP690527.1	N	alias	26376	27701	1326	N	N	nucleocapsid protein	
+OR085232.1	ORF1ab	alias_conflict_resolved	382	20726	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085232.1	S	alias	20723	24880	4158	S	S	spike protein	
+OR085232.1	ORF3	alias	24880	25554	675	ORF3	ORF3	accessory protein 3a	
+OR085232.1	E	alias	25535	25765	231	E	E	envelope protein	
+OR085232.1	M	alias	25773	26453	681	M	M	membrane protein	
+OR085232.1	N	alias	26465	27790	1326	N	N	nucleocapsid protein	
+OR085240.1	ORF1ab	alias_conflict_resolved	371	20715	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085240.1	S	alias	20712	24860	4149	S	S	spike protein	
+OR085240.1	ORF3	alias	24860	25534	675	ORF3	ORF3	accessory protein 3a	
+OR085240.1	E	alias	25515	25745	231	E	E	envelope protein	
+OR085240.1	M	alias	25753	26433	681	M	M	membrane protein	
+OR085240.1	N	alias	26445	27770	1326	N	N	nucleocapsid protein	
+OR085242.1	ORF1ab	alias_conflict_resolved	416	20760	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085242.1	S	alias	20757	24905	4149	S	S	spike protein	
+OR085242.1	ORF3	alias	24905	25579	675	ORF3	ORF3	accessory protein 3a	
+OR085242.1	E	alias	25560	25790	231	E	E	envelope protein	
+OR085242.1	M	alias	25798	26478	681	M	M	membrane protein	
+OR085242.1	N	alias	26490	27815	1326	N	N	nucleocapsid protein	
+OR085246.1	ORF1ab	alias_conflict_resolved	417	20761	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085246.1	S	alias	20758	24909	4152	S	S	spike protein	
+OR085246.1	ORF3	alias	24909	25583	675	ORF3	ORF3	accessory protein 3a	
+OR085246.1	E	alias	25564	25794	231	E	E	envelope protein	
+OR085246.1	M	alias	25802	26482	681	M	M	membrane protein	
+OR085246.1	N	alias	26494	27816	1323	N	N	nucleocapsid protein	
+OR085251.1	ORF1ab	alias_conflict_resolved	417	20761	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085251.1	S	alias	20758	24918	4161	S	S	spike protein	
+OR085251.1	ORF3	alias	24918	25592	675	ORF3	ORF3	accessory protein 3a	
+OR085251.1	E	alias	25573	25803	231	E	E	envelope protein	
+OR085251.1	M	alias	25811	26491	681	M	M	membrane protein	
+OR085251.1	N	alias	26503	27828	1326	N	N	nucleocapsid protein	
+OR085255.1	ORF1ab	alias_conflict_resolved	417	20761	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085255.1	S	alias	20758	24918	4161	S	S	spike protein	
+OR085255.1	ORF3	alias	24918	25592	675	ORF3	ORF3	accessory protein 3a	
+OR085255.1	E	alias	25573	25803	231	E	E	envelope protein	
+OR085255.1	M	alias	25811	26491	681	M	M	membrane protein	
+OR085255.1	N	alias	26503	27828	1326	N	N	nucleocapsid protein	
+OR085269.1	ORF1ab	alias_conflict_resolved	315	20659	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085269.1	S	alias	20656	24816	4161	S	S	spike protein	
+OR085269.1	ORF3	alias	24816	25490	675	ORF3	ORF3	accessory protein 3a	
+OR085269.1	E	alias	25471	25701	231	E	E	envelope protein	
+OR085269.1	M	alias	25709	26389	681	M	M	membrane protein	
+OR085269.1	N	alias	26401	27726	1326	N	N	nucleocapsid protein	
+OR085277.1	ORF1ab	alias_conflict_resolved	378	20722	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085277.1	S	alias	20719	24879	4161	S	S	spike protein	
+OR085277.1	ORF3	alias	24879	25553	675	ORF3	ORF3	accessory protein 3a	
+OR085277.1	E	alias	25534	25764	231	E	E	envelope protein	
+OR085277.1	M	alias	25772	26452	681	M	M	membrane protein	
+OR085277.1	N	alias	26464	27789	1326	N	N	nucleocapsid protein	
+OR085278.1	ORF1ab	alias_conflict_resolved	407	20751	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085278.1	S	alias	20748	24908	4161	S	S	spike protein	
+OR085278.1	ORF3	alias	24908	25582	675	ORF3	ORF3	accessory protein 3a	
+OR085278.1	E	alias	25563	25793	231	E	E	envelope protein	
+OR085278.1	M	alias	25801	26481	681	M	M	membrane protein	
+OR085278.1	N	alias	26493	27818	1326	N	N	nucleocapsid protein	
+OR085279.1	ORF1ab	alias_conflict_resolved	280	20624	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085279.1	S	alias	20621	24781	4161	S	S	spike protein	
+OR085279.1	ORF3	alias	24781	25455	675	ORF3	ORF3	accessory protein 3a	
+OR085279.1	E	alias	25436	25666	231	E	E	envelope protein	
+OR085279.1	M	alias	25674	26354	681	M	M	membrane protein	
+OR085279.1	N	alias	26366	27691	1326	N	N	nucleocapsid protein	
+OR085281.1	ORF1ab	alias_conflict_resolved	417	20761	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085281.1	S	alias	20758	24918	4161	S	S	spike protein	
+OR085281.1	ORF3	alias	24918	25592	675	ORF3	ORF3	accessory protein 3a	
+OR085281.1	E	alias	25573	25803	231	E	E	envelope protein	
+OR085281.1	M	alias	25811	26491	681	M	M	membrane protein	
+OR085281.1	N	alias	26503	27828	1326	N	N	nucleocapsid protein	
+OR085283.1	ORF1ab	alias_conflict_resolved	313	20657	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085283.1	S	alias	20654	24814	4161	S	S	spike protein	
+OR085283.1	ORF3	alias	24814	25488	675	ORF3	ORF3	accessory protein 3a	
+OR085283.1	E	alias	25469	25699	231	E	E	envelope protein	
+OR085283.1	M	alias	25707	26387	681	M	M	membrane protein	
+OR085283.1	N	alias	26399	27724	1326	N	N	nucleocapsid protein	
+OR085297.1	ORF1ab	alias_conflict_resolved	279	20617	20339	ORF1ab	ORF1ab	replicase polyprotein	
+OR085297.1	S	alias	20614	24771	4158	S	S	spike protein	
+OR085297.1	ORF3	alias	24771	25445	675	ORF3	ORF3	accessory protein 3a	
+OR085297.1	E	alias	25426	25656	231	E	E	envelope protein	
+OR085297.1	M	alias	25664	26344	681	M	M	membrane protein	
+OR085297.1	N	alias	26356	27681	1326	N	N	nucleocapsid protein	
+OR085300.1	ORF1ab	alias_conflict_resolved	368	20712	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085300.1	S	alias	20709	24869	4161	S	S	spike protein	
+OR085300.1	ORF3	alias	24869	25543	675	ORF3	ORF3	accessory protein 3a	
+OR085300.1	E	alias	25524	25754	231	E	E	envelope protein	
+OR085300.1	M	alias	25762	26439	678	M	M	membrane protein	
+OR085300.1	N	alias	26451	27776	1326	N	N	nucleocapsid protein	
+OR085304.1	ORF1ab	alias_conflict_resolved	375	20719	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085304.1	S	alias	20716	24873	4158	S	S	spike protein	
+OR085304.1	ORF3	alias	24873	25547	675	ORF3	ORF3	accessory protein 3a	
+OR085304.1	E	alias	25528	25758	231	E	E	envelope protein	
+OR085304.1	M	alias	25766	26446	681	M	M	membrane protein	
+OR085304.1	N	alias	26458	27783	1326	N	N	nucleocapsid protein	
+OR085308.1	ORF1ab	alias_conflict_resolved	370	20714	20345	ORF1ab	ORF1ab	replicase polyprotein	
+OR085308.1	S	alias	20711	24868	4158	S	S	spike protein	
+OR085308.1	ORF3	alias	24868	25542	675	ORF3	ORF3	accessory protein 3a	
+OR085308.1	E	alias	25523	25753	231	E	E	envelope protein	
+OR085308.1	M	alias	25761	26441	681	M	M	membrane protein	
+OR085308.1	N	alias	26453	27778	1326	N	N	nucleocapsid protein	
+PP987385.1	polyprotein	ignored	293	12646	12354	polyprotein		polyprotein	
+PP987385.1	ORF1b	alias	12811	20637	7827	ORF1b polyprotein		ORF1b polyprotein	
+PP987385.1	S	alias	20634	24794	4161	spike protein		spike protein	
+PP987385.1	ORF3	alias	24794	25468	675	ORF3 protein		ORF3 protein	ORF3
+PP987385.1	E	alias	25449	25679	231	envelope protein		envelope protein	
+PP987385.1	M	alias	25687	26367	681	membrane protein		membrane protein	
+PP987385.1	N	alias	26379	27704	1326	nucleocapsid protein		nucleocapsid protein	
+PQ682538.1	ORF1ab polyprotein	raw	341	20685	20345	ORF1ab polyprotein		ORF1ab polyprotein	
+PQ682538.1	S	alias	20682	24839	4158	spike protein		spike protein	
+PQ682538.1	ORF3	alias_conflict_resolved	24839	25513	675	hypothetical protein		hypothetical protein	ORF3
+PQ682538.1	E	alias	25494	25724	231	envelope protein		envelope protein	
+PQ682538.1	M	alias	25732	26412	681	membrane protein		membrane protein	
+PQ682538.1	N	alias	26424	27749	1326	nucleocapsid protein		nucleocapsid protein	
+PQ878525.1	ORF1ab	alias	294	20638	20345	ORF1ab		ORF1ab	
+PQ878525.1	ORF1b	alias	12602	20638	8037	ORF1b		ORF1b	
+PQ878525.1	S	alias	20635	24783	4149	spike protein		spike protein	
+PQ878525.1	ORF3	alias	24783	25457	675	ORF3		ORF3	
+PQ878525.1	E	alias	25438	25668	231	envelope protein		envelope protein	
+PQ878525.1	M	alias	25676	26356	681	membrane protein		membrane protein	
+PQ878525.1	N	alias	26368	27693	1326	nucleocapsid protein		nucleocapsid protein	
+PV036765.1	ORF1ab	alias_conflict_resolved	306	20650	20345	polyprotein		polyprotein	1a polyprotein and 1b polyprotein; ORF1ab
+PV036765.1	S	alias	20647	24804	4158	spike protein		spike protein	
+PV036765.1	ORF3	alias_conflict_resolved	24804	25478	675	hypothetical protein		hypothetical protein	ORF3
+PV036765.1	E	alias	25459	25689	231	envelope protein		envelope protein	
+PV036765.1	M	alias	25697	26377	681	membrane protein		membrane protein	
+PV036765.1	N	alias	26389	27714	1326	nucleocapsid protein		nucleocapsid protein	
+PV536067.1	ORF1ab	alias_conflict_resolved	294	20659	20366	ORF1ab	ORF1ab	replicase polyprotein	
+PV536067.1	S	alias	20656	24816	4161	S	S	spike protein	
+PV536067.1	ORF3	alias	24816	25490	675	ORF3	ORF3	accessory protein 3a	
+PV536067.1	E	alias	25471	25701	231	E	E	envelope protein	
+PV536067.1	M	alias	25709	26389	681	M	M	membrane protein	
+PV536067.1	N	alias	26401	27726	1326	N	N	nucleocapsid protein	
+PV536074.1	ORF1ab	alias_conflict_resolved	290	20634	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536074.1	S	alias	20631	24779	4149	S	S	spike protein	
+PV536074.1	ORF3	alias	24779	25453	675	ORF3	ORF3	accessory protein 3a	
+PV536074.1	E	alias	25434	25664	231	E	E	envelope protein	
+PV536074.1	M	alias	25672	26352	681	M	M	membrane protein	
+PV536074.1	N	alias	26364	27689	1326	N	N	nucleocapsid protein	
+PV536079.1	ORF1ab	alias_conflict_resolved	363	20707	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536079.1	S	alias	20704	24861	4158	S	S	spike protein	
+PV536079.1	ORF3	alias	24861	25535	675	ORF3	ORF3	accessory protein 3a	
+PV536079.1	E	alias	25516	25746	231	E	E	envelope protein	
+PV536079.1	M	alias	25754	26434	681	M	M	membrane protein	
+PV536079.1	N	alias	26446	27771	1326	N	N	nucleocapsid protein	
+PV536082.1	ORF1ab	alias_conflict_resolved	314	20658	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536082.1	S	alias	20655	24815	4161	S	S	spike protein	
+PV536082.1	ORF3	alias	24815	25489	675	ORF3	ORF3	accessory protein 3a	
+PV536082.1	E	alias	25470	25700	231	E	E	envelope protein	
+PV536082.1	M	alias	25708	26388	681	M	M	membrane protein	
+PV536082.1	N	alias	26400	27725	1326	N	N	nucleocapsid protein	
+PV536087.1	ORF1ab	alias_conflict_resolved	379	20723	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536087.1	S	alias	20720	24880	4161	S	S	spike protein	
+PV536087.1	ORF3	alias	24880	25554	675	ORF3	ORF3	accessory protein 3a	
+PV536087.1	E	alias	25535	25765	231	E	E	envelope protein	
+PV536087.1	M	alias	25773	26453	681	M	M	membrane protein	
+PV536087.1	N	alias	26465	27790	1326	N	N	nucleocapsid protein	
+PV536089.1	ORF1ab	alias_conflict_resolved	408	20752	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536089.1	S	alias	20749	24909	4161	S	S	spike protein	
+PV536089.1	ORF3	alias	24909	25583	675	ORF3	ORF3	accessory protein 3a	
+PV536089.1	E	alias	25564	25794	231	E	E	envelope protein	
+PV536089.1	M	alias	25802	26482	681	M	M	membrane protein	
+PV536089.1	N	alias	26494	27819	1326	N	N	nucleocapsid protein	
+PV536091.1	ORF1ab	alias_conflict_resolved	308	20652	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536091.1	S	alias	20649	24800	4152	S	S	spike protein	
+PV536091.1	ORF3	alias	24800	25474	675	ORF3	ORF3	accessory protein 3a	
+PV536091.1	E	alias	25455	25685	231	E	E	envelope protein	
+PV536091.1	M	alias	25693	26373	681	M	M	membrane protein	
+PV536091.1	N	alias	26385	27710	1326	N	N	nucleocapsid protein	
+PV536097.1	ORF1ab	alias_conflict_resolved	295	20639	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536097.1	S	alias	20636	24793	4158	S	S	spike protein	
+PV536097.1	ORF3	alias	24793	25467	675	ORF3	ORF3	accessory protein 3a	
+PV536097.1	E	alias	25448	25678	231	E	E	envelope protein	
+PV536097.1	M	alias	25686	26366	681	M	M	membrane protein	
+PV536097.1	N	alias	26378	27703	1326	N	N	nucleocapsid protein	
+PV536098.1	ORF1ab	alias_conflict_resolved	453	20797	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536098.1	S	alias	20794	24954	4161	S	S	spike protein	
+PV536098.1	ORF3	alias	24954	25628	675	ORF3	ORF3	accessory protein 3a	
+PV536098.1	E	alias	25609	25839	231	E	E	envelope protein	
+PV536098.1	M	alias	25847	26527	681	M	M	membrane protein	
+PV536098.1	N	alias	26539	27864	1326	N	N	nucleocapsid protein	
+PV536099.1	ORF1ab	alias_conflict_resolved	518	20862	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536099.1	S	alias	20859	25007	4149	S	S	spike protein	
+PV536099.1	ORF3	alias	25007	25681	675	ORF3	ORF3	accessory protein 3a	
+PV536099.1	E	alias	25662	25892	231	E	E	envelope protein	
+PV536099.1	M	alias	25900	26580	681	M	M	membrane protein	
+PV536099.1	N	alias	26592	27917	1326	N	N	nucleocapsid protein	
+PV536108.1	ORF1ab	alias_conflict_resolved	293	20637	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536108.1	S	alias	20634	24794	4161	S	S	spike protein	
+PV536108.1	ORF3	alias	24794	25468	675	ORF3	ORF3	accessory protein 3a	
+PV536108.1	E	alias	25449	25679	231	E	E	envelope protein	
+PV536108.1	M	alias	25687	26367	681	M	M	membrane protein	
+PV536108.1	N	alias	26379	27704	1326	N	N	nucleocapsid protein	
+PV536110.1	ORF1ab	alias_conflict_resolved	289	20633	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536110.1	S	alias	20630	24790	4161	S	S	spike protein	
+PV536110.1	ORF3	alias	24790	25464	675	ORF3	ORF3	accessory protein 3a	
+PV536110.1	E	alias	25445	25675	231	E	E	envelope protein	
+PV536110.1	M	alias	25683	26363	681	M	M	membrane protein	
+PV536110.1	N	alias	26375	27700	1326	N	N	nucleocapsid protein	
+PV536111.1	ORF1ab	alias_conflict_resolved	359	20703	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536111.1	S	alias	20700	24860	4161	S	S	spike protein	
+PV536111.1	ORF3	alias	24860	25534	675	ORF3	ORF3	accessory protein 3a	
+PV536111.1	E	alias	25515	25745	231	E	E	envelope protein	
+PV536111.1	M	alias	25753	26433	681	M	M	membrane protein	
+PV536111.1	N	alias	26445	27770	1326	N	N	nucleocapsid protein	
+PV536112.1	ORF1ab	alias_conflict_resolved	519	20863	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536112.1	S	alias	20860	25017	4158	S	S	spike protein	
+PV536112.1	ORF3	alias	25017	25691	675	ORF3	ORF3	accessory protein 3a	
+PV536112.1	E	alias	25672	25902	231	E	E	envelope protein	
+PV536112.1	M	alias	25910	26590	681	M	M	membrane protein	
+PV536112.1	N	alias	26602	27921	1320	N	N	nucleocapsid protein	
+PV536113.1	ORF1ab	alias_conflict_resolved	499	20843	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536113.1	S	alias	20840	24997	4158	S	S	spike protein	
+PV536113.1	ORF3	alias	24997	25671	675	ORF3	ORF3	accessory protein 3a	
+PV536113.1	E	alias	25652	25882	231	E	E	envelope protein	
+PV536113.1	M	alias	25890	26570	681	M	M	membrane protein	
+PV536113.1	N	alias	26582	27901	1320	N	N	nucleocapsid protein	
+PV536114.1	ORF1ab	alias_conflict_resolved	364	20708	20345	ORF1ab	ORF1ab	replicase polyprotein	
+PV536114.1	S	alias	20705	24862	4158	S	S	spike protein	
+PV536114.1	ORF3	alias	24862	25536	675	ORF3	ORF3	accessory protein 3a	
+PV536114.1	E	alias	25517	25747	231	E	E	envelope protein	
+PV536114.1	M	alias	25755	26435	681	M	M	membrane protein	
+PV536114.1	N	alias	26447	27766	1320	N	N	nucleocapsid protein	
+PV536121.1	ORF1ab	alias_conflict_resolved	454	20789	20336	ORF1ab	ORF1ab	replicase polyprotein	
+PV536121.1	S	alias	20786	24943	4158	S	S	spike protein	
+PV536121.1	ORF3	alias	24943	25617	675	ORF3	ORF3	accessory protein 3a	
+PV536121.1	E	alias	25598	25828	231	E	E	envelope protein	
+PV536121.1	M	alias	25836	26516	681	M	M	membrane protein	
+PV536121.1	N	alias	26528	27853	1326	N	N	nucleocapsid protein	
+PV974486.1	ORF1a	alias	271	12624	12354	ORF1a	ORF1a	polyprotein 1a	
+PV974486.1	ORF1b	alias	12594	20615	8022	ORF1b	ORF1b	polyprotein 1b	
+PV974486.1	S	alias	20612	24760	4149	S	S	spike protein	
+PV974486.1	ORF3	alias_conflict_resolved	24760	25434	675	ORF3	ORF3	hypothetical protein	
+PV974486.1	E	alias	25415	25645	231	E	E	envelope protein	
+PV974486.1	M	alias	25653	26333	681	M	M	membrane protein	
+PV974486.1	N	alias	26345	27670	1326	N	N	nucleocapsid protein	
+PX146708.1	ORF1a	alias_conflict_resolved	294	12647	12354	polyprotein		polyprotein	ORF1a
+PX146708.1	ORF1b	alias	12812	20257	7446	ORF1b		ORF1b	
+PX146708.1	S	alias	20639	24799	4161	spike protein		spike protein	S
+PX146708.1	ORF3	alias_conflict_resolved	24799	25473	675	hypothetical protein		hypothetical protein	ORF3
+PX146708.1	E	alias	25454	25684	231	envelope protein		envelope protein	E
+PX146708.1	M	alias	25692	26372	681	membrane protein		membrane protein	M
+PX146708.1	N	alias	26384	27709	1326	nucleocapsid protein		nucleocapsid protein	N
+PV125746.1	ORF1ab polyprotein	raw	330	20674	20345	ORF1ab polyprotein		ORF1ab polyprotein	
+PV125746.1	ORF1a	alias	330	12683	12354	ORF1a polyprotein		ORF1a polyprotein	
+PV125746.1	S	alias	20671	24831	4161	spike protein		spike protein	S
+PV125746.1	ORF3	alias	24831	25505	675	ORF3 protein		ORF3 protein	
+PV125746.1	E	alias	25486	25716	231	envelope protein		envelope protein	E
+PV125746.1	M	alias	25724	26404	681	membrane protein		membrane protein	M
+PV125746.1	N	alias	26416	27741	1326	nucleocapsid protein		nucleocapsid protein	N
+PV533621.1	ORF1a/1b	raw	346	20690	20345	ORF1a/1b	ORF1a/1b	polyprotein 1a/1b	
+PV533621.1	S	alias	20687	24844	4158	S	S	spike protein	
+PV533621.1	ORF3	alias	24844	25092	249	ORF3	ORF3	truncated hypothetical protein	101-bp deletion results in frameshift and premature termination
+PV533621.1	E	alias	25398	25628	231	E	E	envelope protein	
+PV533621.1	M	alias	25636	26316	681	M	M	membrane protein	
+PV533621.1	N	alias	26328	27653	1326	N	N	nucleocapsid protein	
+PX475711.1	ORF1ab	alias_conflict_resolved	293	20637	20345	polyprotein		polyprotein	ORF1ab
+PX475711.1	S	alias	20634	24794	4161	spike protein		spike protein	
+PX475711.1	hypothetical protein	ignored	24794	25468	675	hypothetical protein		hypothetical protein	
+PX475711.1	E	alias	25449	25679	231	envelope protein		envelope protein	
+PX475711.1	M	alias	25687	26367	681	membrane protein		membrane protein	
+PX475711.1	N	alias	26379	27704	1326	nucleocapsid protein		nucleocapsid protein	
+PV982377.1	ORF1ab	alias	293	20637	20345	polyprotein 1ab		polyprotein 1ab	ORF1ab
+PV982377.1	ORF1a	alias	293	12646	12354	polyprotein 1a		polyprotein 1a	ORF1a
+PV982377.1	S	alias	20634	24794	4161	spike protein		spike protein	
+PV982377.1	ORF3	alias_conflict_resolved	24794	25468	675	hypothetical protein		hypothetical protein	ORF3
+PV982377.1	E	alias	25449	25679	231	envelope protein		envelope protein	
+PV982377.1	M	alias	25687	26367	681	membrane protein		membrane protein	
+PV982377.1	N	alias	26379	27704	1326	nucleocapsid protein		nucleocapsid protein	
+PX482648.1	ORF1ab	alias	332	20676	20345	ORF1ab	ORF1ab	ORF1ab	
+PX482648.1	ORF1a	alias	332	12685	12354	ORF1a	ORF1a	ORF1a	
+PX482648.1	S	alias	20673	24833	4161	S	S	spike protein	
+PX482648.1	ORF3	alias	24833	25507	675	ORF3	ORF3	ORF3	
+PX482648.1	E	alias	25488	25718	231	E	E	envelope protein	
+PX482648.1	M	alias	25726	26406	681	M	M	membrane protein	
+PX482648.1	N	alias	26418	27743	1326	N	N	nucleocapsid protein	
+PX482650.1	ORF1ab	alias	281	20622	20342	ORF1ab	ORF1ab	ORF1ab	
+PX482650.1	ORF1a	alias	281	12631	12351	ORF1a	ORF1a	ORF1a	
+PX482650.1	S	alias	20619	24779	4161	S	S	spike protein	
+PX482650.1	ORF3	alias	24779	25453	675	ORF3	ORF3	ORF3	
+PX482650.1	E	alias	25434	25664	231	E	E	envelope protein	
+PX482650.1	M	alias	25672	26352	681	M	M	membrane protein	
+PX482650.1	N	alias	26364	27689	1326	N	N	nucleocapsid protein	
+PX482651.1	ORF1ab	alias	462	20806	20345	ORF1ab	ORF1ab	ORF1ab	
+PX482651.1	ORF1a	alias	462	12815	12354	ORF1a	ORF1a	ORF1a	
+PX482651.1	S	alias	20803	24960	4158	S	S	spike protein	
+PX482651.1	ORF3	alias	24960	25634	675	ORF3	ORF3	ORF3	
+PX482651.1	E	alias	25615	25845	231	E	E	envelope protein	
+PX482651.1	M	alias	25853	26533	681	M	M	membrane protein	
+PX482651.1	N	alias	26545	27870	1326	N	N	nucleocapsid protein	
+PX482652.1	ORF1ab	alias	335	20679	20345	ORF1ab	ORF1ab	ORF1ab	
+PX482652.1	ORF1a	alias	335	12688	12354	ORF1a	ORF1a	ORF1a	
+PX482652.1	S	alias	20676	24833	4158	S	S	spike protein	
+PX482652.1	ORF3	alias	24833	25507	675	ORF3	ORF3	ORF3	
+PX482652.1	E	alias	25488	25718	231	E	E	envelope protein	
+PX482652.1	M	alias	25726	26406	681	M	M	membrane protein	
+PX482652.1	N	alias	26418	27743	1326	N	N	nucleocapsid protein	
+PX482653.1	ORF1ab	alias	473	20817	20345	ORF1ab	ORF1ab	ORF1ab	
+PX482653.1	ORF1a	alias	473	12826	12354	ORF1a	ORF1a	ORF1a	
+PX482653.1	S	alias	20814	24974	4161	S	S	spike protein	
+PX482653.1	ORF3	alias	24974	25648	675	ORF3	ORF3	ORF3	
+PX482653.1	E	alias	25629	25859	231	E	E	envelope protein	
+PX482653.1	M	alias	25867	26547	681	M	M	membrane protein	
+PX482653.1	N	alias	26559	27884	1326	N	N	nucleocapsid protein	
+PX482655.1	ORF1ab	alias	274	20615	20342	ORF1ab	ORF1ab	ORF1ab	
+PX482655.1	ORF1a	alias	274	12624	12351	ORF1a	ORF1a	ORF1a	
+PX482655.1	S	alias	20612	24772	4161	S	S	spike protein	
+PX482655.1	ORF3	alias	24772	25446	675	ORF3	ORF3	ORF3	
+PX482655.1	E	alias	25427	25657	231	E	E	envelope protein	
+PX482655.1	M	alias	25665	26345	681	M	M	membrane protein	
+PX482655.1	N	alias	26357	27682	1326	N	N	nucleocapsid protein	
+PZ188955.1	ORF1ab	alias	312	20656	20345	ORF1ab	ORF1ab	Pol1	
+PZ188955.1	S	alias	20653	24813	4161	S	S	spike protein	
+PZ188955.1	ORF3	alias	24813	25487	675	ORF3	ORF3	ORF3 protein	
+PZ188955.1	E	alias	25468	25698	231	E	E	envelope protein	
+PZ188955.1	M	alias	25706	26386	681	M	M	membrane protein	
+PZ188955.1	N	alias	26398	27723	1326	N	N	nucleocapsid protein	
+PZ105934.1	ORF1a	alias	293	12646	12354	ORF1a	ORF1a	polyprotein 1a	
+PZ105934.1	ORF1b	alias	12811	20637	7827	ORF1b	ORF1b	polyprotein 1b	
+PZ105934.1	S	alias	20634	24794	4161	S	S	spike protein	
+PZ105934.1	ORF3	alias	24794	25468	675	ORF3	ORF3	accessory protein 3a	
+PZ105934.1	E	alias	25449	25679	231	E	E	envelope protein	
+PZ105934.1	M	alias	25687	26367	681	M	M	membrane protein	
+PZ105934.1	N	alias	26379	27704	1326	N	N	nucleocapsid protein	
+AF353511.1	Pol1	raw	297	20641	20345	Pol1		Pol1	
+AF353511.1	S	alias	20638	24789	4152	spike protein		spike protein	
+AF353511.1	ORF3	alias_conflict_resolved	24789	25463	675	unknown		unknown	ORF3; showed unexpected variability in cell culture-adapted virus
+AF353511.1	E	alias	25444	25674	231	envelope protein		envelope protein	
+AF353511.1	M	alias	25682	26362	681	membrane protein		membrane protein	
+AF353511.1	N	alias	26374	27699	1326	nucleocapsid protein		nucleocapsid protein	
+JX112709.1	ORF1ab	alias_conflict_resolved	293	20637	20345	ORF1ab	ORF1ab	polyprotein	1a polyprotein and 1b polyprotein
+JX112709.1	S	alias	20634	24791	4158	S	S	spike protein	
+JX112709.1	ORF3	alias_conflict_resolved	24791	25465	675	ORF3	ORF3	hypothetical protein	ORF3 protein
+JX112709.1	E	alias	25446	25676	231	E	E	E protein	
+JX112709.1	M	alias	25684	26364	681	M	M	M protein	
+JX112709.1	N	alias	26376	27701	1326	N	N	N protein	
+JX489155.1	ORF1ab	alias	293	20637	20345	Pol1	Pol1	polyprotein 1ab	ORF1ab
+JX489155.1	S	alias	20634	24791	4158	S	S	spike protein	
+JX489155.1	ORF3	alias_conflict_resolved	24791	25465	675	ORF3	ORF3	hypothetical protein	
+JX489155.1	E	alias	25446	25676	231	E	E	envelope protein	
+JX489155.1	M	alias	25684	26364	681	M	M	membrane protein	
+JX489155.1	N	alias	26376	27701	1326	N	N	nucleocapsid protein	
+KC210147.1	ORF1ab	alias_conflict_resolved	292	20636	20345	polyprotein		polyprotein	1a polyprotein and 1b polyprotein; ORF1ab
+KC210147.1	S	alias	20633	24793	4161	spike protein		spike protein	
+KC210147.1	ORF3	alias_conflict_resolved	24793	25467	675	hypothetical protein		hypothetical protein	ORF3
+KC210147.1	E	alias	25448	25678	231	envelope protein		envelope protein	
+KC210147.1	M	alias	25686	26366	681	membrane protein		membrane protein	
+KC210147.1	N	alias	26378	27703	1326	nucleocapsid protein		nucleocapsid protein	
+KM609208.1	ORF1	raw	293	20637	20345	ORF1	ORF1	ORF1a/b	
+KM609208.1	S	alias	20634	24794	4161	S	S	spike protein	
+KM609208.1	ORF3	alias_conflict_resolved	24794	25468	675	ORF3	ORF3	hypothetical protein	
+KM609208.1	E	alias	25449	25679	231	E	E	envelope protein	
+KM609208.1	M	alias	25687	26367	681	M	M	membrane protein	
+KM609208.1	N	alias	26379	27704	1326	N	N	nucleocapsid protein	
+KM609213.1	ORF1	raw	293	20637	20345	ORF1	ORF1	ORF1a/b	
+KM609213.1	S	alias	20634	24794	4161	S	S	spike protein	
+KM609213.1	ORF3	alias_conflict_resolved	24794	25468	675	ORF3	ORF3	hypothetical protein	
+KM609213.1	E	alias	25449	25679	231	E	E	envelope protein	
+KM609213.1	M	alias	25687	26367	681	M	M	membrane protein	
+KM609213.1	N	alias	26379	27704	1326	N	N	nucleocapsid protein	
+LT898413.1	ORF1	ignored	293	20637	20345	ORF1	ORF1	replicase polyprotein	
+LT898413.1	S	alias	20634	24785	4152	S	S	spike protein	
+LT898413.1	mp	ignored	24785	25459	675	mp	mp	accessory membrane protein	
+LT898413.1	E	alias	25440	25670	231	E	E	envelope protein	
+LT898413.1	M	alias	25678	26358	681	M	M	membrane protein	
+LT898413.1	N	alias	26370	27695	1326	N	N	nucleocapsid protein	
+MF737355.1	ORF1a/1b	ignored	293	20637	20345	ORF1a/1b	ORF1a/1b	polyprotein	
+MF737355.1	S	alias	20634	24794	4161	S	S	spike protein	
+MF737355.1	ORF3	alias_conflict_resolved	24794	25468	675	ORF3	ORF3	hypothetical protein	
+MF737355.1	E	alias	25449	25679	231	E	E	envelope protein	
+MF737355.1	M	alias	25687	26367	681	M	M	membrane protein	
+MF737355.1	N	alias	26379	27704	1326	N	N	nucleocapsid protein	
+OL762457.1	ORF1a	alias_conflict_resolved	293	12643	12351	polyprotein		polyprotein	ORF1a
+OL762457.1	ORF1b	alias	12808	20634	7827	ORF1b		ORF1b	
+OL762457.1	S	alias	20631	24791	4161	spike protein		spike protein	
+OL762457.1	ORF3	alias	24791	25465	675	accessory protein 3a		accessory protein 3a	
+OL762457.1	E	alias	25446	25676	231	E protein		E protein	
+OL762457.1	M	alias	25684	26364	681	M protein		M protein	
+OL762457.1	N	alias	26376	27701	1326	nucleocapsid protein		nucleocapsid protein	
+OR234022.1	ORF1ab polyprotein	raw	293	20637	20345	ORF1ab polyprotein		ORF1ab polyprotein	
+OR234022.1	S	alias	20634	24791	4158	spike protein		spike protein	
+OR234022.1	ORF3	alias	24791	25465	675	ORF3 protein		ORF3 protein	
+OR234022.1	E	alias	25446	25676	231	E protein		E protein	
+OR234022.1	M	alias	25684	26379	696	M protein		M protein	
+OR234022.1	N	alias	26391	27716	1326	N protein		N protein	
+PP107944.1	ORF1a/b	raw	299	20640	20342	ORF1a/b		ORF1a/b	
+PP107944.1	ORF1a	alias	299	12649	12351	ORF1a		ORF1a	
+PP107944.1	ORF3	alias	24806	25480	675	ORF3		ORF3	
+PP107944.1	E	alias	25461	25691	231	envelope protein		envelope protein	
+PP107944.1	M	alias	25699	26379	681	membrane protein		membrane protein	
+PP107944.1	N	alias	26391	27716	1326	nucleocapsid protein		nucleocapsid protein	

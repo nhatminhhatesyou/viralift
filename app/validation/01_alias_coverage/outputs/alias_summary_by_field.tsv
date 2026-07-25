@@ -1,0 +1,8 @@
+virus	feature_type	field	total	canonical	ambiguous	ignored	unresolved	coverage_pct	actionable_total	actionable_coverage_pct
+FMD	CDS	product	100	0	0	100	0	0.0	0	
+FMD	mat_peptide	product	1178	1178	0	0	0	100.0	1178	100.0
+PRRS	CDS	gene	183	183	0	0	0	100.0	183	100.0
+PRRS	CDS	note	720	643	52	24	1	89.31	696	92.39
+PRRS	CDS	product	836	768	27	40	1	91.87	796	96.48
+PRRS	mat_peptide	note	8	5	0	2	1	62.5	6	83.33
+PRRS	mat_peptide	product	12	10	0	2	0	83.33	10	100.0

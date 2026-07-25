@@ -1,0 +1,344 @@
+virus	feature_type	field	status	resolved_to	raw_value	count
+FMD	CDS	product	ignored	ignored	polyprotein	100
+FMD	mat_peptide	product	canonical	2A	2A	50
+FMD	mat_peptide	product	canonical	2B	2B	50
+FMD	mat_peptide	product	canonical	2C	2C	50
+FMD	mat_peptide	product	canonical	3A	3A	50
+FMD	mat_peptide	product	canonical	3Cpro	3C	50
+FMD	mat_peptide	product	canonical	3Dpol	3D	50
+FMD	mat_peptide	product	canonical	VP2	VP2	50
+FMD	mat_peptide	product	canonical	VP4	VP4	50
+FMD	mat_peptide	product	canonical	VP1	VP1	49
+FMD	mat_peptide	product	canonical	VP3	VP3	49
+FMD	mat_peptide	product	canonical	2A	2A peptide	48
+FMD	mat_peptide	product	canonical	2B	2B peptide	48
+FMD	mat_peptide	product	canonical	2C	2C peptide	48
+FMD	mat_peptide	product	canonical	3A	3A peptide	48
+FMD	mat_peptide	product	canonical	VP1	VP1 peptide	48
+FMD	mat_peptide	product	canonical	VP2	VP2 peptide	48
+FMD	mat_peptide	product	canonical	VP3	VP3 peptide	48
+FMD	mat_peptide	product	canonical	VP4	VP4 peptide	48
+FMD	mat_peptide	product	canonical	3Cpro	3C peptide	27
+FMD	mat_peptide	product	canonical	3Dpol	3D peptide	27
+FMD	mat_peptide	product	canonical	Lpro	Lab peptide	27
+FMD	mat_peptide	product	canonical	3B	3B	23
+FMD	mat_peptide	product	canonical	3B	3B1-3B3	23
+FMD	mat_peptide	product	canonical	3B	3B1/3B2/3B3 peptide	23
+FMD	mat_peptide	product	canonical	Lpro	L	23
+FMD	mat_peptide	product	canonical	3B	3B peptide; 3B1/3B2/3B3 peptide	21
+FMD	mat_peptide	product	canonical	3Cpro	3C peptide; pro peptide	21
+FMD	mat_peptide	product	canonical	Lpro	Lab peptide; leader peptide	21
+FMD	mat_peptide	product	canonical	3Dpol	pol peptide; 3D peptide	21
+FMD	mat_peptide	product	canonical	Lpro	Lab	20
+FMD	mat_peptide	product	canonical	3B	3B peptide	4
+FMD	mat_peptide	product	canonical	3B	3B1	2
+FMD	mat_peptide	product	canonical	3B	3B1/3B2/3B3	2
+FMD	mat_peptide	product	canonical	3B	3B2	2
+FMD	mat_peptide	product	canonical	3B	3B3	2
+FMD	mat_peptide	product	canonical	Lpro	L-protease	2
+FMD	mat_peptide	product	canonical	Lpro	L-protein	2
+FMD	mat_peptide	product	canonical	Lpro	leader	2
+FMD	mat_peptide	product	canonical	Lpro	LAB	1
+PRRS	CDS	note	canonical	ORF7	ORF7	56
+PRRS	CDS	note	canonical	ORF6	ORF6	55
+PRRS	CDS	product	canonical	ORF1b	RNA-dependent RNA polymerase	48
+PRRS	CDS	product	canonical	ORF7	nucleocapsid protein	46
+PRRS	CDS	product	canonical	ORF3	GP3 envelope protein	44
+PRRS	CDS	product	canonical	ORF6	matrix protein	35
+PRRS	CDS	product	canonical	ORF4	GP4	33
+PRRS	CDS	product	canonical	ORF4	GP4 envelope protein	32
+PRRS	CDS	product	canonical	ORF5	GP5 envelope protein	32
+PRRS	CDS	product	canonical	ORF3	GP3	30
+PRRS	CDS	product	canonical	ORF5	GP5	29
+PRRS	CDS	note	canonical	ORF3	ORF3	29
+PRRS	CDS	note	canonical	ORF4	ORF4	29
+PRRS	CDS	note	canonical	ORF5	ORF5	27
+PRRS	CDS	note	canonical	ORF2a	ORF2	26
+PRRS	CDS	note	canonical	ORF2b	ORF2b	26
+PRRS	CDS	note	canonical	ORF3	ORF3; glycosylated	26
+PRRS	CDS	product	canonical	ORF2b	GP2b envelope protein	25
+PRRS	CDS	note	canonical	ORF2a	ORF2a; glycosylated	25
+PRRS	CDS	note	canonical	ORF4	ORF4; glycosylated	25
+PRRS	CDS	note	canonical	ORF5	ORF5; glycosylated	25
+PRRS	CDS	product	canonical	ORF2a	GP2a envelope protein	24
+PRRS	CDS	product	canonical	ORF2a	GP2	23
+PRRS	CDS	note	canonical	ORF1b	ORF1b	22
+PRRS	CDS	product	ignored	ignored	non-structural protein	22
+PRRS	CDS	product	canonical	ORF1ab	replicase polyprotein	22
+PRRS	CDS	note	canonical	ORF1b	ORF1b; zinc-finger protein; helicase; expression occurs due to an upstream ribosomal frameshift	20
+PRRS	CDS	gene	canonical	ORF3	ORF3	20
+PRRS	CDS	gene	canonical	ORF4	ORF4	20
+PRRS	CDS	gene	canonical	ORF5	ORF5	20
+PRRS	CDS	product	canonical	ORF7	N nucleocapsid protein	19
+PRRS	CDS	gene	canonical	ORF6	ORF6	19
+PRRS	CDS	gene	canonical	ORF7	ORF7	19
+PRRS	CDS	product	ambiguous	ambiguous	glycosylated membrane protein	18
+PRRS	CDS	note	ambiguous	ambiguous	structural glycoprotein	18
+PRRS	CDS	product	canonical	ORF2a	GP2 envelope protein	16
+PRRS	CDS	product	canonical	ORF6	M matrix protein	16
+PRRS	CDS	gene	canonical	ORF1a	ORF1a	16
+PRRS	CDS	gene	canonical	ORF1b	ORF1b	16
+PRRS	CDS	note	canonical	ORF1a	ORF1a	15
+PRRS	CDS	note	canonical	ORF1a	ORF1a; papain-like cysteine protease alpha and beta; cysteine protease; serine protease protease	15
+PRRS	CDS	product	canonical	ORF7	nucleocapsid protein N	15
+PRRS	CDS	note	ambiguous	ambiguous	glycosylated membrane protein	13
+PRRS	CDS	product	canonical	ORF5	GP5 glycosylated envelope protein	12
+PRRS	CDS	product	canonical	ORF1a	ORF1a polyprotein	12
+PRRS	CDS	product	canonical	ORF1b	ORF1b polyprotein	12
+PRRS	CDS	gene	canonical	ORF2b	ORF2b	12
+PRRS	CDS	product	canonical	ORF2a	GP2 glycosylated envelope protein	11
+PRRS	CDS	gene	canonical	ORF2a	ORF2a	11
+PRRS	CDS	product	ignored	ignored	proteinase	11
+PRRS	CDS	gene	canonical	ORF2a	ORF2	10
+PRRS	CDS	product	canonical	ORF4	GP4 protein	9
+PRRS	CDS	product	canonical	ORF1b	RNA dependent RNA polymerase	9
+PRRS	CDS	product	canonical	ORF6	membrane protein	9
+PRRS	CDS	product	canonical	ORF6	M	8
+PRRS	CDS	note	canonical	ORF6	M; ORF6	8
+PRRS	CDS	product	canonical	ORF7	N	8
+PRRS	CDS	note	canonical	ORF3	glycosylated membrane protein; ORF3	8
+PRRS	CDS	product	canonical	ORF6	membrane protein M	8
+PRRS	CDS	note	canonical	ORF7	N; ORF7	7
+PRRS	CDS	product	canonical	ORF1a	ORF1a	7
+PRRS	CDS	gene	canonical	ORF1ab	ORF1ab	7
+PRRS	CDS	product	ambiguous	ambiguous	envelope protein	7
+PRRS	CDS	product	canonical	ORF6	matrix protein M	7
+PRRS	CDS	product	canonical	ORF1ab	polyprotein	7
+PRRS	CDS	product	canonical	ORF1ab	ORF1ab polyprotein	6
+PRRS	CDS	product	canonical	ORF1b	ORF1b	6
+PRRS	CDS	product	canonical	ORF6	ORF6	6
+PRRS	CDS	product	canonical	ORF7	ORF7	6
+PRRS	CDS	note	ambiguous	ambiguous	glycosylated	6
+PRRS	CDS	note	canonical	ORF4	glycosylated membrane protein; ORF4	6
+PRRS	CDS	note	canonical	ORF5	glycosylated membrane protein; ORF5	6
+PRRS	CDS	note	canonical	ORF1a	non-structural protein; ORF1a	6
+PRRS	CDS	note	canonical	ORF1b	protein kinase; ORF1b	6
+PRRS	CDS	note	ignored	ignored	proteinase	6
+PRRS	CDS	product	canonical	ORF2a	GP2a	5
+PRRS	CDS	product	canonical	ORF6	M membrane protein	5
+PRRS	CDS	note	canonical	ORF1a	ORF1a; papain-like cysteine protease alpha and beta; cysteine protease; serine protease	5
+PRRS	CDS	product	canonical	ORF3	ORF3	5
+PRRS	CDS	product	canonical	ORF4	ORF4	5
+PRRS	CDS	product	canonical	ORF5	ORF5	5
+PRRS	CDS	product	canonical	ORF2a	envelope protein GP2	5
+PRRS	CDS	product	canonical	ORF3	glycosylated membrane protein GP3	5
+PRRS	CDS	product	canonical	ORF4	glycosylated membrane protein GP4	5
+PRRS	CDS	product	canonical	ORF5	glycosylated membrane protein GP5	5
+PRRS	CDS	note	canonical	ORF1a	proteinase; ORF1a	5
+PRRS	CDS	note	canonical	ORF1b	replicase; RNA-dependent RNA polymerase; ORF1ab; contains papain-like cysteine protease alpha and beta, cysteine protease, serine protease, zinc-finger protein, and helicase	5
+PRRS	CDS	note	ignored	ignored	structural membrane protein	5
+PRRS	CDS	note	canonical	ORF6	structural membrane protein; M	5
+PRRS	CDS	note	canonical	ORF7	structural protein; N	5
+PRRS	CDS	product	canonical	ORF2b	2b	4
+PRRS	CDS	note	canonical	ORF2a	GP2 envelope protein; ORF2	4
+PRRS	CDS	product	canonical	ORF2b	GP2b	4
+PRRS	CDS	note	canonical	ORF5	ORF5; glycosylated membrane protein	4
+PRRS	CDS	product	canonical	ORF1b	RNA polymerase	4
+PRRS	CDS	note	ignored	ignored	cysteine protease/serine protease	4
+PRRS	CDS	note	ambiguous	ambiguous	envelope protein	4
+PRRS	CDS	note	canonical	ORF2a	envelope protein; ORF2	4
+PRRS	CDS	note	ambiguous	ambiguous	glycoprotein	4
+PRRS	CDS	product	canonical	ORF7	nucleocapsid	4
+PRRS	CDS	note	canonical	ORF2a	GP2 envelope protein	3
+PRRS	CDS	note	canonical	ORF1a	ORF1a; polypeptide precursor of non-structural proteins NSP1-NSP8	3
+PRRS	CDS	note	canonical	ORF1b	ORF1b; polypeptide precursor of non-structural proteins NSP9-NSP12, RNA-dependent RNA polymerase/helicase; expression occurs due to an upstream ribosomal frameshift	3
+PRRS	CDS	product	canonical	ORF2a	ORF2	3
+PRRS	CDS	note	canonical	ORF2a	ORF2; glycosylated membrane protein	3
+PRRS	CDS	note	canonical	ORF2b	ORF2B; unglycosylated membrane protein	3
+PRRS	CDS	note	canonical	ORF2a	ORF2a	3
+PRRS	CDS	product	canonical	ORF2b	ORF2b	3
+PRRS	CDS	note	canonical	ORF3	ORF3; glycosylated membrane protein	3
+PRRS	CDS	note	canonical	ORF4	ORF4; glycosylated membrane protein	3
+PRRS	CDS	note	ignored	ignored	cysteine/serine protease	3
+PRRS	CDS	note	ambiguous	ambiguous	envelope glycoprotein	3
+PRRS	CDS	product	canonical	ORF2b	envelope protein GP2b	3
+PRRS	CDS	product	canonical	ORF4	glycoprotein 4	3
+PRRS	CDS	product	canonical	ORF5	glycoprotein 5	3
+PRRS	CDS	note	canonical	ORF7	nucleocapsid protein; ORF7	3
+PRRS	CDS	product	canonical	ORF1a	papain-like cysteine protease	3
+PRRS	CDS	note	canonical	ORF1a	papain-like cysteine protease; ORF1a	3
+PRRS	CDS	note	canonical	ORF1ab	replicase polyprotein; two papain-like cysteine protease domains; unusual cysteine/serine protease domain; serine/3C-like protease domain; slippery sequence causes -1 frameshift; contains polymerase, helicase, cysteine/histidine-rich domain, XendoU domains	3
+PRRS	CDS	note	ambiguous	ambiguous	structural glycoprotein; viral attachment protein	3
+PRRS	CDS	product	canonical	ORF2b	E	2
+PRRS	CDS	gene	canonical	ORF3	GP3	2
+PRRS	CDS	gene	canonical	ORF4	GP4	2
+PRRS	CDS	gene	canonical	ORF5	GP5	2
+PRRS	CDS	gene	canonical	ORF6	M	2
+PRRS	CDS	gene	canonical	ORF7	N	2
+PRRS	CDS	note	canonical	ORF2a	ORF2; glycosylated	2
+PRRS	CDS	product	canonical	ORF2a	ORF2a	2
+PRRS	CDS	note	canonical	ORF6	ORF6; disulfide linked to GP5	2
+PRRS	CDS	note	canonical	ORF7	ORF7; icosahedral symmetry	2
+PRRS	CDS	note	canonical	ORF1b	RNA dependent RNA polymerase/zinc-finger/helicase	2
+PRRS	CDS	product	canonical	ORF1b	RNA-dependent RNA polymerase/helicase	2
+PRRS	CDS	product	ignored	ignored	cysteine/serine protease	2
+PRRS	CDS	product	ambiguous	ambiguous	envelope glycoprotein	2
+PRRS	CDS	product	canonical	ORF2a	envelope glycoprotein GP2	2
+PRRS	CDS	product	canonical	ORF3	envelope glycoprotein GP3	2
+PRRS	CDS	product	canonical	ORF4	envelope glycoprotein GP4	2
+PRRS	CDS	product	canonical	ORF2b	envelope protein E	2
+PRRS	CDS	product	canonical	ORF3	envelope protein GP3	2
+PRRS	CDS	product	canonical	ORF4	envelope protein GP4	2
+PRRS	CDS	product	canonical	ORF5	envelope protein GP5	2
+PRRS	CDS	product	canonical	ORF3	glycoprotein 3	2
+PRRS	CDS	note	canonical	ORF4	glycosylated membrane portein; ORF4	2
+PRRS	CDS	note	canonical	ORF5	glycosylated membrane portein; ORF5	2
+PRRS	CDS	note	canonical	ORF6	matrix protein; ORF6	2
+PRRS	CDS	note	canonical	ORF7	nucleocapsid protein	2
+PRRS	CDS	product	canonical	ORF1a	replicase polyprotein 1A	2
+PRRS	CDS	product	canonical	ORF1b	replicase polyprotein 1B	2
+PRRS	CDS	note	canonical	ORF1b	replicase; RNA-dependent RNA polymerase; includes two papain-like cysteine protease motifs, cysteine protease/serine protease motif, serine protease motifs, and cysteine/histidine rich, helicase, polymerase, and XendoU domains	2
+PRRS	CDS	product	ignored	ignored	unknown protein	2
+PRRS	CDS	note	canonical	ORF1a	1a replicase protein; papain-like cysteine/serine protease	1
+PRRS	CDS	note	canonical	ORF1b	1b replicase protein; RNA dependent RNA polymerase; zinc-finger protein; helicase; nidovirus-like domain	1
+PRRS	mat_peptide	note	ignored	ignored	3C-like serine proteinase	1
+PRRS	CDS	product	canonical	ORF2b	E protein	1
+PRRS	CDS	note	canonical	ORF2b	E; unglycosylated	1
+PRRS	CDS	gene	canonical	ORF2a	GP2	1
+PRRS	CDS	note	canonical	ORF2a	GP2 glycosylated envelope protein	1
+PRRS	CDS	note	canonical	ORF2a	GP2; ORF2	1
+PRRS	CDS	note	canonical	ORF2a	GP2; viral envelope glycoprotein	1
+PRRS	CDS	product	canonical	ORF2a	GP2a glycosylated envelope protein	1
+PRRS	CDS	note	canonical	ORF3	GP3 envelope protein	1
+PRRS	CDS	note	canonical	ORF3	GP3; ORF3	1
+PRRS	CDS	note	canonical	ORF4	GP4	1
+PRRS	CDS	note	canonical	ORF4	GP4; ORF4	1
+PRRS	CDS	note	canonical	ORF5	GP5 glycosylated envelope protein	1
+PRRS	CDS	note	canonical	ORF5	GP5; ORF5	1
+PRRS	CDS	note	canonical	ORF6	M protein	1
+PRRS	CDS	note	canonical	ORF7	N	1
+PRRS	CDS	note	canonical	ORF7	N protein	1
+PRRS	CDS	product	canonical	ORF7	N protein	1
+PRRS	CDS	product	canonical	ORF2a	N-glycosylated envelope protein GP2	1
+PRRS	CDS	product	canonical	ORF3	N-glycosylated envelope protein GP3	1
+PRRS	CDS	product	canonical	ORF4	N-glycosylated envelope protein GP4	1
+PRRS	CDS	product	canonical	ORF5	N-glycosylated envelope protein GP5	1
+PRRS	CDS	gene	canonical	ORF1a	ORF1A	1
+PRRS	CDS	gene	canonical	ORF1b	ORF1B	1
+PRRS	CDS	note	canonical	ORF1a	ORF1a polyprotein; polypeptide precursor of non-structural proteins NSP1 through NSP8	1
+PRRS	CDS	product	canonical	ORF1a	ORF1a protein	1
+PRRS	CDS	note	canonical	ORF1a	ORF1a; papain-like cysteine protease alpha and beta; cysteine proteas; serine protease	1
+PRRS	CDS	note	canonical	ORF1a	ORF1a; proteinase	1
+PRRS	CDS	product	canonical	ORF1b	ORF1b protein	1
+PRRS	CDS	note	canonical	ORF1b	ORF1b translated through a ribosomal frameshift at ORF1a/1b junction; polypeptide precursor of non-structural proteins NSP9 through NSP12	1
+PRRS	CDS	note	canonical	ORF1b	ORF1b; RNA dependent RNA polymerase; helicase	1
+PRRS	CDS	note	canonical	ORF1b	ORF1b; helicase	1
+PRRS	CDS	note	canonical	ORF1b	ORF1b; zinc-finger protein; helicase; expressed through -1 ribosomal frameshift	1
+PRRS	CDS	note	canonical	ORF1b	ORF1b;zinc-finger protein;helicase;expression occurs due to an upstream ribosomal frameshift	1
+PRRS	CDS	note	canonical	ORF2a	ORF2a glycosylated membrane protein	1
+PRRS	CDS	product	canonical	ORF2b	ORF2b structual protein	1
+PRRS	CDS	note	canonical	ORF2b	ORF2b; non-glycosylated	1
+PRRS	CDS	note	canonical	ORF3	ORF3 glycosylated membrane protein	1
+PRRS	CDS	note	canonical	ORF3	ORF3; viral envelope glycoprotein	1
+PRRS	CDS	note	canonical	ORF4	ORF4 glycosylated membrane protein	1
+PRRS	CDS	note	canonical	ORF4	ORF4; viral envelope glycoprotein	1
+PRRS	CDS	note	canonical	ORF5	ORF5 glycosylated membrane protein	1
+PRRS	CDS	note	canonical	ORF5	ORF5; glycosylated; major viral attachment protein; disulfide linked to M matrix protein	1
+PRRS	CDS	note	canonical	ORF5	ORF5; viral envelope glycoprotein; major viral attachment protein; disulfide linked to Membrane protein coded for by ORF6	1
+PRRS	CDS	note	canonical	ORF6	ORF6 matrix protein	1
+PRRS	CDS	note	canonical	ORF7	ORF7 nucleocapsid protein	1
+PRRS	CDS	note	canonical	ORF4	Orf4	1
+PRRS	CDS	note	canonical	ORF6	Orf6	1
+PRRS	CDS	note	canonical	ORF7	Orf7	1
+PRRS	CDS	note	canonical	ORF1b	RNA dependent RNA polymerase/helicase	1
+PRRS	CDS	note	canonical	ORF1b	RNA dependent RNA polymerase; zinc-finger protein; helicase	1
+PRRS	mat_peptide	note	canonical	ORF1b	RNA-dependent RNA polymerase	1
+PRRS	CDS	note	canonical	ORF1b	RNA-dependent RNA polymerase/helicase	1
+PRRS	CDS	note	canonical	ORF1b	RNA-dependent RNA polymerase/helicase; translated by ribosomal frameshift	1
+PRRS	CDS	note	canonical	ORF1b	RNA-dependent RNA polymerase; ORF1; includes two papain-like cysteine protease motifs, cysteine protease/serine protease motif, serine protease motifs, and cysteine/histidine rich, helicase, polymerase and endoribonuclease motifs; -1 ribosomal frameshift	1
+PRRS	CDS	note	canonical	ORF1a	contains 1a replicase protein; papain-like cysteine protease; serine protease	1
+PRRS	CDS	note	canonical	ORF1b	contains 1b replicase protein; RNA dependent RNA polymerase; zinc-finger protein; helicase; nidovirus-like domain protein	1
+PRRS	CDS	note	canonical	ORF1b	contains RNA-dependent RNA polymerase	1
+PRRS	mat_peptide	note	canonical	ORF1a	contains cysteine proteinase 2 domain (CP2) that mediates cleavage at the C-terminus; N-terminus is the product of proteinase PCP1b	1
+PRRS	CDS	note	canonical	ORF1a	contains papain-like cysteine protease	1
+PRRS	mat_peptide	note	canonical	ORF1a	contains papain-like cysteine proteinase domains 1a (PCP1a) and 1b (PCP1b); cleavage at the C-terminus is mediated by PCP1b	1
+PRRS	CDS	product	ignored	ignored	cysteine protease/serine protease	1
+PRRS	CDS	note	canonical	ORF5	disulfide linked to GP5; ORF5	1
+PRRS	CDS	note	canonical	ORF1a	encodes papain-like cycteine protease, 3C-like cysteine protease and serine protease	1
+PRRS	CDS	note	canonical	ORF1b	encodes polymerase, helicase and zinc finger; expression occurs due to an upstream ribosomal frameshift	1
+PRRS	CDS	product	canonical	ORF5	envelope glycoprotein GP5	1
+PRRS	CDS	note	canonical	ORF2a	envelope glycoprotein; ORF2a	1
+PRRS	CDS	note	canonical	ORF3	envelope glycoprotein; ORF3	1
+PRRS	CDS	note	canonical	ORF4	envelope glycoprotein; ORF4	1
+PRRS	CDS	product	canonical	ORF2a	glycoprotein 2	1
+PRRS	CDS	product	canonical	ORF2a	glycoprotein 2a	1
+PRRS	CDS	product	canonical	ORF2a	glycosylated envelope protein GP2	1
+PRRS	CDS	product	canonical	ORF3	glycosylated envelope protein GP3	1
+PRRS	CDS	product	canonical	ORF4	glycosylated envelope protein GP4	1
+PRRS	CDS	product	canonical	ORF5	glycosylated envelope protein GP5	1
+PRRS	CDS	note	canonical	ORF2a	glycosylated; ORF2	1
+PRRS	CDS	note	canonical	ORF3	glycosylated; ORF3	1
+PRRS	CDS	note	canonical	ORF4	glycosylated; ORF4	1
+PRRS	CDS	note	canonical	ORF5	glycosylated; ORF5	1
+PRRS	CDS	note	ambiguous	ambiguous	glycosylated; presumed cell attachment protein	1
+PRRS	CDS	product	unresolved	unresolved	helicase	1
+PRRS	CDS	note	canonical	ORF1b	helicase; zinc-finger protein	1
+PRRS	mat_peptide	note	unresolved	unresolved	hydrophobic protein	1
+PRRS	mat_peptide	note	canonical	ORF2b	hydrophobic protein 2	1
+PRRS	CDS	product	canonical	ORF5	major envelope glycoprotein	1
+PRRS	CDS	note	canonical	ORF5	major envelope glycoprotein; disulfide linked to the M protein; contains neutralizing epitope; ORF5	1
+PRRS	CDS	note	canonical	ORF5	major envelope glycoprotein; has neutralizing epitope; disulfide linked to the M protein	1
+PRRS	CDS	note	canonical	ORF6	matrix protein	1
+PRRS	CDS	product	canonical	ORF6	membrane envelope protein	1
+PRRS	CDS	product	canonical	ORF6	membrane protein GP6	1
+PRRS	CDS	note	canonical	ORF6	membrane protein M	1
+PRRS	CDS	product	canonical	ORF6	non-glycosylated membrane protein	1
+PRRS	CDS	note	canonical	ORF2b	non-glycosylated protein 2b	1
+PRRS	CDS	product	canonical	ORF1a	non-structural protein ORF1a	1
+PRRS	CDS	product	canonical	ORF1b	non-structural protein ORF1b	1
+PRRS	CDS	note	ignored	ignored	nonglycosylate	1
+PRRS	CDS	note	canonical	ORF6	nonglycosylate; ORF6	1
+PRRS	CDS	note	canonical	ORF1b	nonstructual polyprotein 1B; encodes RNA dependent-RNA polymerase, helicase, zinc finger and conserved nidovirus motifs; ORF1B expressed by a ribosomal frameshifting mechanism	1
+PRRS	CDS	note	canonical	ORF1b	nonstructual polyprotein 1B; encodes polymerase, helicase, zinc finger and nidovirus motifs; expression occurs due to an upstream ribosomal frameshift	1
+PRRS	CDS	note	canonical	ORF1a	nonstructural polyprotein 1A; encodes papain-like cysteine protease, cysteine protease and 3C-like serine protease	1
+PRRS	CDS	note	canonical	ORF1a	nonstructural polyprotein 1A; encodes papain-like cysteine protease, cysteine protease and 3C-like serine protease; ORF1A	1
+PRRS	CDS	product	ignored	ignored	nonstructural protein	1
+PRRS	CDS	product	canonical	ORF1a	nonstructural proteins ORF1a	1
+PRRS	CDS	product	canonical	ORF1b	nonstructural proteins ORF1b	1
+PRRS	mat_peptide	product	ignored	ignored	nsp1	1
+PRRS	mat_peptide	product	canonical	NSP10	nsp10	1
+PRRS	mat_peptide	product	canonical	NSP11	nsp11	1
+PRRS	mat_peptide	product	canonical	NSP12	nsp12	1
+PRRS	mat_peptide	product	canonical	NSP2	nsp2	1
+PRRS	mat_peptide	product	canonical	NSP3	nsp3	1
+PRRS	mat_peptide	product	canonical	NSP4	nsp4	1
+PRRS	mat_peptide	product	canonical	NSP5	nsp5	1
+PRRS	mat_peptide	product	canonical	NSP6	nsp6	1
+PRRS	mat_peptide	product	ignored	ignored	nsp7	1
+PRRS	mat_peptide	product	canonical	NSP8	nsp8	1
+PRRS	mat_peptide	product	canonical	NSP9	nsp9	1
+PRRS	CDS	note	canonical	ORF7	nucleocapsid protein N	1
+PRRS	CDS	note	ignored	ignored	papain/chymotrypsin-like cystein protease; serine protease	1
+PRRS	CDS	note	canonical	ORF1a	polypeptide precursor of non-structural proteins NSP1 through NSP8	1
+PRRS	CDS	product	canonical	ORF1a	polypeptide precursor of non-structural proteins NSP1 through NSP8	1
+PRRS	CDS	note	canonical	ORF1b	polypeptide precursor of non-structural proteins NSP9 through NSP12	1
+PRRS	CDS	product	canonical	ORF1b	polypeptide precursor of non-structural proteins NSP9 through NSP12	1
+PRRS	CDS	product	canonical	ORF1a	polyprotein ORF1a	1
+PRRS	CDS	product	canonical	ORF1b	polyprotein ORF1b	1
+PRRS	CDS	note	canonical	ORF2b	protein 2b; ORF2b	1
+PRRS	CDS	product	canonical	ORF2b	protein E	1
+PRRS	CDS	note	ignored	ignored	protein kinase	1
+PRRS	CDS	note	canonical	ORF5	putative viral attachment protein, disulfide linked to Membrane protein; ORF5	1
+PRRS	CDS	note	canonical	ORF1ab	replicase; ORF1ab; RNA-dependent RNA polymerase; ORF1ab includes two papain-like cysteine protease motifs, cysteine protease/serine protease motif, serine protease motifs, and cysteine/histidine-rich, helicase, polymerase, and XendoU domains	1
+PRRS	mat_peptide	note	ignored	ignored	similar to Coronavirus protein	1
+PRRS	CDS	note	canonical	ORF2b	small envelope protein	1
+PRRS	CDS	note	canonical	ORF2b	small envelope protein; ORF2b	1
+PRRS	CDS	note	canonical	ORF2a	structural glycoprotein; ORF2a	1
+PRRS	CDS	note	canonical	ORF4	structural glycoprotein; ORF4	1
+PRRS	CDS	note	canonical	ORF5	structural glycoprotein; ORF5	1
+PRRS	CDS	product	ignored	ignored	structural membrane protein	1
+PRRS	CDS	note	canonical	ORF2b	structural membrane protein; ORF2b	1
+PRRS	CDS	note	canonical	ORF7	structural protein; N; ORF7	1
+PRRS	CDS	note	ignored	ignored	translated through a ribosomal frameshift at ORF1a/1b junction	1
+PRRS	CDS	note	ignored	ignored	translated through ribosomal frameshift at ORF1a/ORF1b junction	1
+PRRS	CDS	product	canonical	ORF2b	unglycosylated envelope protein	1
+PRRS	CDS	note	canonical	ORF6	unglycosylated membrane protein; disulfide linked to the GP5 protein	1
+PRRS	CDS	note	canonical	ORF6	unglycosylated membrane protein; disulfide linked to the GP5 protein; ORF6	1
+PRRS	CDS	note	canonical	ORF2b	unglycosylated viral envelope protein	1
+PRRS	CDS	note	canonical	ORF6	unglycosylated; matrix protein; M	1
+PRRS	CDS	note	ignored	ignored	unusual cysteine protease/serine protease	1
+PRRS	CDS	note	canonical	ORF1a	unusual cysteine protease/serine protease; ORF1a	1
+PRRS	CDS	note	unresolved	unresolved	zinc finger protein	1
+PRRS	CDS	note	canonical	ORF1b	zinc-finger protein; helicase; ribosomal; ORF1b	1
+PRRS	mat_peptide	note	canonical	ORF1b	zinc-finger/helicase	1
+PRRS	CDS	note	canonical	ORF1b	zinc-finger/helicase; RNA dependent RNA polymerase	1

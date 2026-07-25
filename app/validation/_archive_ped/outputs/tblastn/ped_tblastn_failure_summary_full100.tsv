@@ -1,0 +1,18 @@
+ref	pred_name	failure_mode	status	cases	mean_iou	median_delta_start	median_delta_end	examples
+ref_1	ORF1b	Boundary offset	ok_rescued	3	0.9775	195.0	0.0	MF577027.1, PQ878525.1, PV974486.1
+ref_1	ORF3	Wrong coords	invalid_boundaries	2	0.511	0.0	325.5	OP326239.1, PV533621.1
+ref_1	S	Boundary offset	ok_rescued	2	0.992	-18.0	15.0	KP765609.1, MF577027.1
+ref_1	N	Boundary offset	ok_rescued	1	0.9886	0.0	15.0	MF577027.1
+ref_1	N	Wrong coords	ok_rescued	1	0.0478	-26442.0	0.0	OR085251.1
+ref_1	ORF1b	Boundary offset	invalid_boundaries	1	0.9508	0.0	385.0	PX146708.1
+ref_1	ORF1b	Wrong coords	ok_rescued	1	0.3847	12518.0	0.0	KX550281.1
+ref_1	ORF3	Boundary offset	invalid_boundaries	1	0.935	0.0	44.0	MF462814.1
+ref_1	S	Wrong coords	invalid_boundaries	1	0.1668	-20792.0	0.0	PV536098.1
+ref_2	ORF1b	Boundary offset	ok_rescued	4	0.9647	165.0	0.0	MF577027.1, PQ878525.1, PV974486.1, PX146708.1
+ref_2	ORF3	Wrong coords	invalid_boundaries	2	0.511	0.0	325.5	OP326239.1, PV533621.1
+ref_2	S	Boundary offset	ok_rescued	2	0.992	-18.0	15.0	KP765609.1, MF577027.1
+ref_2	N	Boundary offset	ok_rescued	1	0.9886	0.0	15.0	MF577027.1
+ref_2	N	Wrong coords	ok_rescued	1	0.0478	-26442.0	0.0	OR085251.1
+ref_2	ORF1b	Wrong coords	ok_rescued	1	0.3847	12518.0	0.0	KX550281.1
+ref_2	ORF3	Boundary offset	invalid_boundaries	1	0.935	0.0	44.0	MF462814.1
+ref_2	S	Wrong coords	invalid_boundaries	1	0.1668	-20792.0	0.0	PV536098.1

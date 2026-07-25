@@ -1,0 +1,70 @@
+{
+  "virus": "FMDV",
+  "notes": "Bootstrapped from reference feature names. Review aliases before production use.",
+  "excluded_names": [
+    "gene",
+    "hypothetical protein",
+    "open reading frame",
+    "orf",
+    "protein",
+    "putative protein",
+    "unknown",
+    "unknown protein",
+    "viral protein"
+  ],
+  "canonical_names": {
+    "Lpro": [
+      "L-protease",
+      "L-protein",
+      "L",
+      "Lab",
+      "Lab peptide",
+      "Lab peptide; leader peptide",
+      "leader",
+      "leader peptide"
+    ],
+    "VP4": [
+      "VP4 peptide"
+    ],
+    "VP2": [
+      "VP2 peptide"
+    ],
+    "VP3": [
+      "VP3 peptide"
+    ],
+    "VP1": [
+      "VP1 peptide"
+    ],
+    "2A": [
+      "2A peptide"
+    ],
+    "2B": [
+      "2B peptide"
+    ],
+    "2C": [
+      "2C peptide"
+    ],
+    "3A": [
+      "3A peptide"
+    ],
+    "3B": [
+      "3B peptide",
+      "3B peptide; 3B1/3B2/3B3 peptide",
+      "3B1-3B3",
+      "3B1/3B2/3B3",
+      "3B1/3B2/3B3 peptide"
+    ],
+    "3Cpro": [
+      "3C",
+      "3C peptide",
+      "3C peptide; pro peptide",
+      "pro peptide"
+    ],
+    "3Dpol": [
+      "3D",
+      "3D peptide",
+      "pol peptide",
+      "pol peptide; 3D peptide"
+    ]
+  }
+}

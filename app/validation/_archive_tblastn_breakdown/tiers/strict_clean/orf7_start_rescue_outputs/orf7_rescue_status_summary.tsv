@@ -1,0 +1,4 @@
+status	failure_mode	cases
+ok	Correct	65
+ok_rescued	Correct	26
+ok_rescued	Wrong coords	3

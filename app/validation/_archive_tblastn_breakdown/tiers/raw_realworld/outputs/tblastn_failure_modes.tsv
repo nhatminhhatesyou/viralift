@@ -1,0 +1,13 @@
+virus	failure_mode	count	total	pct
+FMD	Correct	1110	1176	94.39
+FMD	Boundary offset	43	1176	3.66
+FMD	Wrong coords	19	1176	1.62
+FMD	Not in truth	2	1176	0.17
+FMD	Not lifted	1	1176	0.09
+FMD	Possible overlap	1	1176	0.09
+PRRS	Correct	618	900	68.67
+PRRS	Possible overlap	124	900	13.78
+PRRS	Boundary offset	96	900	10.67
+PRRS	Wrong coords	34	900	3.78
+PRRS	Alias/name gap	27	900	3.0
+PRRS	Not in truth	1	900	0.11

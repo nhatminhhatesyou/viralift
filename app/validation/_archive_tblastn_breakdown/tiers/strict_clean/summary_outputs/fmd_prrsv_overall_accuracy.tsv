@@ -1,0 +1,4 @@
+virus	total	exact	coord_only	coord_correct	failed	exact_pct	coord_only_pct	failed_pct	accuracy_pct
+FMD	1149	1114	16	1130	19	96.95	1.39	1.65	98.35
+PRRSV	761	674	84	758	3	88.57	11.04	0.39	99.61
+ALL	1910	1788	100	1888	22	93.61	5.24	1.15	98.85

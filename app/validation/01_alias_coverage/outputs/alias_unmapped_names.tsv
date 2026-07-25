@@ -1,0 +1,37 @@
+virus	feature_type	field	status	raw_value	count	occurrence_pct_of_virus
+FMD	CDS	product	ignored	polyprotein	100	7.82
+PRRS	CDS	product	ambiguous	glycosylated membrane protein	18	1.02
+PRRS	CDS	note	ambiguous	structural glycoprotein	18	1.02
+PRRS	CDS	note	ambiguous	glycosylated membrane protein	13	0.74
+PRRS	CDS	product	ambiguous	envelope protein	7	0.4
+PRRS	CDS	note	ambiguous	glycosylated	6	0.34
+PRRS	CDS	note	ambiguous	envelope protein	4	0.23
+PRRS	CDS	note	ambiguous	glycoprotein	4	0.23
+PRRS	CDS	note	ambiguous	envelope glycoprotein	3	0.17
+PRRS	CDS	note	ambiguous	structural glycoprotein; viral attachment protein	3	0.17
+PRRS	CDS	product	ambiguous	envelope glycoprotein	2	0.11
+PRRS	CDS	note	ambiguous	glycosylated; presumed cell attachment protein	1	0.06
+PRRS	CDS	product	ignored	non-structural protein	22	1.25
+PRRS	CDS	product	ignored	proteinase	11	0.63
+PRRS	CDS	note	ignored	proteinase	6	0.34
+PRRS	CDS	note	ignored	structural membrane protein	5	0.28
+PRRS	CDS	note	ignored	cysteine protease/serine protease	4	0.23
+PRRS	CDS	note	ignored	cysteine/serine protease	3	0.17
+PRRS	CDS	product	ignored	cysteine/serine protease	2	0.11
+PRRS	CDS	product	ignored	unknown protein	2	0.11
+PRRS	mat_peptide	note	ignored	3C-like serine proteinase	1	0.06
+PRRS	CDS	product	ignored	cysteine protease/serine protease	1	0.06
+PRRS	CDS	note	ignored	nonglycosylate	1	0.06
+PRRS	CDS	product	ignored	nonstructural protein	1	0.06
+PRRS	mat_peptide	product	ignored	nsp1	1	0.06
+PRRS	mat_peptide	product	ignored	nsp7	1	0.06
+PRRS	CDS	note	ignored	papain/chymotrypsin-like cystein protease; serine protease	1	0.06
+PRRS	CDS	note	ignored	protein kinase	1	0.06
+PRRS	mat_peptide	note	ignored	similar to Coronavirus protein	1	0.06
+PRRS	CDS	product	ignored	structural membrane protein	1	0.06
+PRRS	CDS	note	ignored	translated through a ribosomal frameshift at ORF1a/1b junction	1	0.06
+PRRS	CDS	note	ignored	translated through ribosomal frameshift at ORF1a/ORF1b junction	1	0.06
+PRRS	CDS	note	ignored	unusual cysteine protease/serine protease	1	0.06
+PRRS	CDS	product	unresolved	helicase	1	0.06
+PRRS	mat_peptide	note	unresolved	hydrophobic protein	1	0.06
+PRRS	CDS	note	unresolved	zinc finger protein	1	0.06

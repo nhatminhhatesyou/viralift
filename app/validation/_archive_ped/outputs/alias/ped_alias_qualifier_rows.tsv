@@ -1,0 +1,1106 @@
+dataset	record_id	feature_name_raw	feature_start	feature_end	field	raw_value	resolved_to	status
+reference	PZ105934.1	ORF1a	293	12646	gene	ORF1a	ORF1a	canonical
+reference	PZ105934.1	ORF1a	293	12646	product	polyprotein 1a	ORF1a	canonical
+reference	PZ105934.1	ORF1b	12811	20637	gene	ORF1b	ORF1b	canonical
+reference	PZ105934.1	ORF1b	12811	20637	product	polyprotein 1b	ORF1b	canonical
+reference	PZ105934.1	S	20634	24794	gene	S	S	canonical
+reference	PZ105934.1	S	20634	24794	product	spike protein	S	canonical
+reference	PZ105934.1	ORF3	24794	25468	gene	ORF3	ORF3	canonical
+reference	PZ105934.1	ORF3	24794	25468	product	accessory protein 3a	ORF3	canonical
+reference	PZ105934.1	E	25449	25679	gene	E	E	canonical
+reference	PZ105934.1	E	25449	25679	product	envelope protein	E	canonical
+reference	PZ105934.1	M	25687	26367	gene	M	M	canonical
+reference	PZ105934.1	M	25687	26367	product	membrane protein	M	canonical
+reference	PZ105934.1	N	26379	27704	gene	N	N	canonical
+reference	PZ105934.1	N	26379	27704	product	nucleocapsid protein	N	canonical
+reference	PV974486.1	ORF1a	271	12624	gene	ORF1a	ORF1a	canonical
+reference	PV974486.1	ORF1a	271	12624	product	polyprotein 1a	ORF1a	canonical
+reference	PV974486.1	ORF1b	12594	20615	gene	ORF1b	ORF1b	canonical
+reference	PV974486.1	ORF1b	12594	20615	product	polyprotein 1b	ORF1b	canonical
+reference	PV974486.1	S	20612	24760	gene	S	S	canonical
+reference	PV974486.1	S	20612	24760	product	spike protein	S	canonical
+reference	PV974486.1	ORF3	24760	25434	gene	ORF3	ORF3	canonical
+reference	PV974486.1	ORF3	24760	25434	product	hypothetical protein	ignored	ignored
+reference	PV974486.1	E	25415	25645	gene	E	E	canonical
+reference	PV974486.1	E	25415	25645	product	envelope protein	E	canonical
+reference	PV974486.1	M	25653	26333	gene	M	M	canonical
+reference	PV974486.1	M	25653	26333	product	membrane protein	M	canonical
+reference	PV974486.1	N	26345	27670	gene	N	N	canonical
+reference	PV974486.1	N	26345	27670	product	nucleocapsid protein	N	canonical
+query_100	EF185992.1	POL1	297	20641	gene	POL1	ORF1ab	canonical
+query_100	EF185992.1	POL1	297	20641	product	Pol1	ORF1ab	canonical
+query_100	EF185992.1	S	20638	24789	gene	S	S	canonical
+query_100	EF185992.1	S	20638	24789	product	S protein	S	canonical
+query_100	EF185992.1	S	20638	24789	note	spike protein	S	canonical
+query_100	EF185992.1	unknown	24789	25463	product	unknown	ignored	ignored
+query_100	EF185992.1	unknown	24789	25463	note	ORF3	ORF3	canonical
+query_100	EF185992.1	sM	25444	25674	gene	sM	E	canonical
+query_100	EF185992.1	sM	25444	25674	product	sM protein	E	canonical
+query_100	EF185992.1	sM	25444	25674	note	small membrane protein	E	canonical
+query_100	EF185992.1	M	25682	26362	gene	M	M	canonical
+query_100	EF185992.1	M	25682	26362	product	M protein	M	canonical
+query_100	EF185992.1	M	25682	26362	note	membrane protein	M	canonical
+query_100	EF185992.1	N	26374	27699	gene	N	N	canonical
+query_100	EF185992.1	N	26374	27699	product	N protein	N	canonical
+query_100	EF185992.1	N	26374	27699	note	nucleocapsid protein	N	canonical
+query_100	KM189367.2	ORF1a/1b polyprotein	293	20637	product	ORF1a/1b polyprotein	ORF1ab	canonical
+query_100	KM189367.2	S	20634	24794	gene	S	S	canonical
+query_100	KM189367.2	S	20634	24794	product	spike protein	S	canonical
+query_100	KM189367.2	hypothetical protein	24794	25468	product	hypothetical protein	ignored	ignored
+query_100	KM189367.2	hypothetical protein	24794	25468	note	ORF3	ORF3	canonical
+query_100	KM189367.2	E	25449	25679	gene	E	E	canonical
+query_100	KM189367.2	E	25449	25679	product	envelope protein	E	canonical
+query_100	KM189367.2	M	25687	26367	gene	M	M	canonical
+query_100	KM189367.2	M	25687	26367	product	membrane protein	M	canonical
+query_100	KM189367.2	N	26379	27704	gene	N	N	canonical
+query_100	KM189367.2	N	26379	27704	product	nucleoprotein	N	canonical
+query_100	KP765609.1	polyprotein	293	20637	product	polyprotein	ignored	ignored
+query_100	KP765609.1	polyprotein	293	20637	note	ORF1ab	ORF1ab	canonical
+query_100	KP765609.1	spike protein	20634	24770	product	spike protein	S	canonical
+query_100	KP765609.1	spike protein	20634	24770	note	S protein	S	canonical
+query_100	KP765609.1	hypothetical protein	24800	25474	product	hypothetical protein	ignored	ignored
+query_100	KP765609.1	hypothetical protein	24800	25474	note	ORF3	ORF3	canonical
+query_100	KP765609.1	envelope protein	25455	25685	product	envelope protein	E	canonical
+query_100	KP765609.1	envelope protein	25455	25685	note	E protein	E	canonical
+query_100	KP765609.1	membrane protein	25693	26373	product	membrane protein	M	canonical
+query_100	KP765609.1	membrane protein	25693	26373	note	M protein	M	canonical
+query_100	KP765609.1	nucleocapsid protein	26385	27710	product	nucleocapsid protein	N	canonical
+query_100	KP765609.1	nucleocapsid protein	26385	27710	note	N protein	N	canonical
+query_100	KU252649.1	ORF1	314	20658	product	ORF1	ORF1ab	canonical
+query_100	KU252649.1	spike protein	20655	24815	product	spike protein	S	canonical
+query_100	KU252649.1	ORF3	24815	25489	product	ORF3	ORF3	canonical
+query_100	KU252649.1	envelope protein	25470	25700	product	envelope protein	E	canonical
+query_100	KU252649.1	membrane protein	25708	26388	product	membrane protein	M	canonical
+query_100	KU252649.1	nucleocapsid protein	26400	27725	product	nucleocapsid protein	N	canonical
+query_100	KX981440.1	polyprotein	284	20628	product	polyprotein	ignored	ignored
+query_100	KX981440.1	polyprotein	284	20628	note	ORF1ab; 1a polyprotein and 1b polyprotein	ORF1ab	canonical
+query_100	KX981440.1	spike protein	20625	24779	product	spike protein	S	canonical
+query_100	KX981440.1	spike protein	20625	24779	note	S	S	canonical
+query_100	KX981440.1	hypothetical protein	24779	25453	product	hypothetical protein	ignored	ignored
+query_100	KX981440.1	hypothetical protein	24779	25453	note	ORF3	ORF3	canonical
+query_100	KX981440.1	envelope protein	25434	25664	product	envelope protein	E	canonical
+query_100	KX981440.1	envelope protein	25434	25664	note	E	E	canonical
+query_100	KX981440.1	membrane protein	25672	26352	product	membrane protein	M	canonical
+query_100	KX981440.1	membrane protein	25672	26352	note	M	M	canonical
+query_100	KX981440.1	nucleocapsid protein	26364	27689	product	nucleocapsid protein	N	canonical
+query_100	KX981440.1	nucleocapsid protein	26364	27689	note	N	N	canonical
+query_100	KX550281.1	ORF1b	293	20637	gene	ORF1b	ORF1b	canonical
+query_100	KX550281.1	ORF1b	293	20637	product	polyprotein	ignored	ignored
+query_100	KX550281.1	S	20634	24794	gene	S	S	canonical
+query_100	KX550281.1	S	20634	24794	product	spike protein	S	canonical
+query_100	KX550281.1	ORF3	24794	25468	gene	ORF3	ORF3	canonical
+query_100	KX550281.1	ORF3	24794	25468	product	ORF3 protein	ORF3	canonical
+query_100	KX550281.1	E	25449	25679	gene	E	E	canonical
+query_100	KX550281.1	E	25449	25679	product	envelope protein	E	canonical
+query_100	KX550281.1	M	25687	26367	gene	M	M	canonical
+query_100	KX550281.1	M	25687	26367	product	membrane protein	M	canonical
+query_100	KX550281.1	N	26379	27704	gene	N	N	canonical
+query_100	KX550281.1	N	26379	27704	product	nucleocapsid protein	N	canonical
+query_100	KY928065.1	polyprotein	293	20636	product	polyprotein	ignored	ignored
+query_100	KY928065.1	polyprotein	293	20636	note	contains ORF1a and ORF1b	unresolved	unresolved
+query_100	KY928065.1	spike protein	20633	24790	product	spike protein	S	canonical
+query_100	KY928065.1	spike protein	20633	24790	note	S	S	canonical
+query_100	KY928065.1	hypothetical protein	24790	25464	product	hypothetical protein	ignored	ignored
+query_100	KY928065.1	hypothetical protein	24790	25464	note	ORF3	ORF3	canonical
+query_100	KY928065.1	envelope protein	25445	25675	product	envelope protein	E	canonical
+query_100	KY928065.1	envelope protein	25445	25675	note	E	E	canonical
+query_100	KY928065.1	membrane protein	25683	26363	product	membrane protein	M	canonical
+query_100	KY928065.1	membrane protein	25683	26363	note	M	M	canonical
+query_100	KY928065.1	nucleocapsid protein	26375	27700	product	nucleocapsid protein	N	canonical
+query_100	KY928065.1	nucleocapsid protein	26375	27700	note	N	N	canonical
+query_100	KY963963.1	ORF1a/1b	293	20637	gene	ORF1a/1b	ORF1ab	canonical
+query_100	KY963963.1	ORF1a/1b	293	20637	product	polyprotein	ignored	ignored
+query_100	KY963963.1	S	20634	24809	gene	S	S	canonical
+query_100	KY963963.1	S	20634	24809	product	spike protein	S	canonical
+query_100	KY963963.1	ORF3	24809	25483	gene	ORF3	ORF3	canonical
+query_100	KY963963.1	ORF3	24809	25483	product	hypothetical protein	ignored	ignored
+query_100	KY963963.1	E	25464	25694	gene	E	E	canonical
+query_100	KY963963.1	E	25464	25694	product	envelope protein	E	canonical
+query_100	KY963963.1	M	25702	26382	gene	M	M	canonical
+query_100	KY963963.1	M	25702	26382	product	membrane protein	M	canonical
+query_100	KY963963.1	N	26394	27719	gene	N	N	canonical
+query_100	KY963963.1	N	26394	27719	product	nucleocapsid protein	N	canonical
+query_100	MF577027.1	ORF1A	292	12645	product	ORF1A	ORF1a	canonical
+query_100	MF577027.1	ORF1B	12675	20636	product	ORF1B	ORF1b	canonical
+query_100	MF577027.1	S	20633	24751	gene	S	S	canonical
+query_100	MF577027.1	S	20633	24751	product	spike protein	S	canonical
+query_100	MF577027.1	mp	24751	25425	gene	mp	ambiguous	ambiguous
+query_100	MF577027.1	mp	24751	25425	product	accessory membrane protein	ORF3	canonical
+query_100	MF577027.1	mp	24751	25425	note	ORF3	ORF3	canonical
+query_100	MF577027.1	E	25406	25636	gene	E	E	canonical
+query_100	MF577027.1	E	25406	25636	product	envelope protein	E	canonical
+query_100	MF577027.1	M	25644	26324	gene	M	M	canonical
+query_100	MF577027.1	M	25644	26324	product	membrane protein	M	canonical
+query_100	MF577027.1	N	26336	27640	gene	N	N	canonical
+query_100	MF577027.1	N	26336	27640	product	nucleocapsid protein	N	canonical
+query_100	MF462814.1	ORF1a/b	301	20636	product	ORF1a/b	ORF1ab	canonical
+query_100	MF462814.1	spike protein	20633	24793	product	spike protein	S	canonical
+query_100	MF462814.1	ORF3	24793	25425	product	ORF3	ORF3	canonical
+query_100	MF462814.1	envelope protein	25432	25662	product	envelope protein	E	canonical
+query_100	MF462814.1	membrane protein	25670	26350	product	membrane protein	M	canonical
+query_100	MF462814.1	nucleocapsid protein	26362	27687	product	nucleocapsid protein	N	canonical
+query_100	KY007139.1	ORF1ab	293	20616	gene	ORF1ab	ORF1ab	canonical
+query_100	KY007139.1	ORF1ab	293	20616	product	polyprotein	ignored	ignored
+query_100	KY007139.1	S	20613	24773	gene	S	S	canonical
+query_100	KY007139.1	S	20613	24773	product	spike protein	S	canonical
+query_100	KY007139.1	ORF3	24773	25447	gene	ORF3	ORF3	canonical
+query_100	KY007139.1	ORF3	24773	25447	product	ORF3 protein	ORF3	canonical
+query_100	KY007139.1	E	25428	25658	gene	E	E	canonical
+query_100	KY007139.1	E	25428	25658	product	envelope protein	E	canonical
+query_100	KY007139.1	M	25666	26346	gene	M	M	canonical
+query_100	KY007139.1	M	25666	26346	product	membrane protein	M	canonical
+query_100	KY007139.1	N	26358	27683	gene	N	N	canonical
+query_100	KY007139.1	N	26358	27683	product	nucleocapsid protein	N	canonical
+query_100	MF375374.1	ORF1ab	293	20637	gene	ORF1ab	ORF1ab	canonical
+query_100	MF375374.1	ORF1ab	293	20637	product	polyprotein 1ab	ORF1ab	canonical
+query_100	MF375374.1	S	20634	24794	gene	S	S	canonical
+query_100	MF375374.1	S	20634	24794	product	spike protein	S	canonical
+query_100	MF375374.1	ORF3	24794	25468	gene	ORF3	ORF3	canonical
+query_100	MF375374.1	ORF3	24794	25468	product	hypothetical protein	ignored	ignored
+query_100	MF375374.1	ORF3	24794	25468	note	ORF3 protein	ORF3	canonical
+query_100	MF375374.1	E	25449	25679	gene	E	E	canonical
+query_100	MF375374.1	E	25449	25679	product	envelope protein	E	canonical
+query_100	MF375374.1	M	25687	26367	gene	M	M	canonical
+query_100	MF375374.1	M	25687	26367	product	membrane protein	M	canonical
+query_100	MF375374.1	N	26379	27704	gene	N	N	canonical
+query_100	MF375374.1	N	26379	27704	product	nucleocapsid protein	N	canonical
+query_100	MH052683.1	ORF1a/1b	293	20637	gene	ORF1a/1b	ORF1ab	canonical
+query_100	MH052683.1	ORF1a/1b	293	20637	product	polyprotein	ignored	ignored
+query_100	MH052683.1	S	20634	24794	gene	S	S	canonical
+query_100	MH052683.1	S	20634	24794	product	spike protein	S	canonical
+query_100	MH052683.1	ORF3	24794	25468	gene	ORF3	ORF3	canonical
+query_100	MH052683.1	ORF3	24794	25468	product	hypothetical protein	ignored	ignored
+query_100	MH052683.1	E	25449	25679	gene	E	E	canonical
+query_100	MH052683.1	E	25449	25679	product	envelope protein	E	canonical
+query_100	MH052683.1	M	25687	26367	gene	M	M	canonical
+query_100	MH052683.1	M	25687	26367	product	membrane protein	M	canonical
+query_100	MH052683.1	N	26379	27704	gene	N	N	canonical
+query_100	MH052683.1	N	26379	27704	product	nucleocapsid protein	N	canonical
+query_100	MG546687.1	polyprotein	293	20637	product	polyprotein	ignored	ignored
+query_100	MG546687.1	S	20634	24794	gene	S	S	canonical
+query_100	MG546687.1	S	20634	24794	product	spike protein	S	canonical
+query_100	MG546687.1	ORF3	24794	25468	gene	ORF3	ORF3	canonical
+query_100	MG546687.1	ORF3	24794	25468	product	hypothetical protein	ignored	ignored
+query_100	MG546687.1	E	25449	25679	gene	E	E	canonical
+query_100	MG546687.1	E	25449	25679	product	envelope protein	E	canonical
+query_100	MG546687.1	M	25687	26367	gene	M	M	canonical
+query_100	MG546687.1	M	25687	26367	product	membrane protein	M	canonical
+query_100	MG546687.1	N	26379	27704	gene	N	N	canonical
+query_100	MG546687.1	N	26379	27704	product	nucleocapsid protein	N	canonical
+query_100	MK644603.1	polyprotein	293	20637	product	polyprotein	ignored	ignored
+query_100	MK644603.1	polyprotein	293	20637	note	ORF1ab	ORF1ab	canonical
+query_100	MK644603.1	spike protein	20634	24791	product	spike protein	S	canonical
+query_100	MK644603.1	spike protein	20634	24791	note	S	S	canonical
+query_100	MK644603.1	hypothetical protein	24791	25465	product	hypothetical protein	ignored	ignored
+query_100	MK644603.1	hypothetical protein	24791	25465	note	ORF3	ORF3	canonical
+query_100	MK644603.1	envelope protein	25446	25676	product	envelope protein	E	canonical
+query_100	MK644603.1	envelope protein	25446	25676	note	E	E	canonical
+query_100	MK644603.1	membrane protein	25684	26364	product	membrane protein	M	canonical
+query_100	MK644603.1	membrane protein	25684	26364	note	M	M	canonical
+query_100	MK644603.1	nucleocapsid protein	26376	27701	product	nucleocapsid protein	N	canonical
+query_100	MK644603.1	nucleocapsid protein	26376	27701	note	N	N	canonical
+query_100	MK071637.1	polyprotein	280	20624	product	polyprotein	ignored	ignored
+query_100	MK071637.1	polyprotein	280	20624	note	ORF1ab	ORF1ab	canonical
+query_100	MK071637.1	spike protein	20621	24772	product	spike protein	S	canonical
+query_100	MK071637.1	ORF3 protein	24772	25446	product	ORF3 protein	ORF3	canonical
+query_100	MK071637.1	envelope protein	25427	25657	product	envelope protein	E	canonical
+query_100	MK071637.1	membrane protein	25665	26345	product	membrane protein	M	canonical
+query_100	MK071637.1	nucleocapsid protein	26357	27682	product	nucleocapsid protein	N	canonical
+query_100	MN759311.1	ORF1ab	293	20637	gene	ORF1ab	ORF1ab	canonical
+query_100	MN759311.1	ORF1ab	293	20637	product	polyprotein	ignored	ignored
+query_100	MN759311.1	S	20634	24791	gene	S	S	canonical
+query_100	MN759311.1	S	20634	24791	product	spike protein	S	canonical
+query_100	MN759311.1	ORF3	24791	25465	gene	ORF3	ORF3	canonical
+query_100	MN759311.1	ORF3	24791	25465	product	accessory membrane protein	ORF3	canonical
+query_100	MN759311.1	E	25446	25676	gene	E	E	canonical
+query_100	MN759311.1	E	25446	25676	product	envelope protein	E	canonical
+query_100	MN759311.1	M	25684	26364	gene	M	M	canonical
+query_100	MN759311.1	M	25684	26364	product	membrane protein	M	canonical
+query_100	MN759311.1	N	26376	27701	gene	N	N	canonical
+query_100	MN759311.1	N	26376	27701	product	nucleocapsid protein	N	canonical
+query_100	LR812926.1	Pol1	295	20639	product	Pol1	ORF1ab	canonical
+query_100	LR812926.1	spike protein	20636	24787	product	spike protein	S	canonical
+query_100	LR812926.1	hypothetical protein	24787	25461	product	hypothetical protein	ignored	ignored
+query_100	LR812926.1	envelope protein	25442	25672	product	envelope protein	E	canonical
+query_100	LR812926.1	membrane protein	25680	26360	product	membrane protein	M	canonical
+query_100	LR812926.1	nucleocapsid protein	26372	27697	product	nucleocapsid protein	N	canonical
+query_100	LR812930.1	Pol1	405	20749	product	Pol1	ORF1ab	canonical
+query_100	LR812930.1	spike protein	20746	24897	product	spike protein	S	canonical
+query_100	LR812930.1	hypothetical protein	24897	25571	product	hypothetical protein	ignored	ignored
+query_100	LR812930.1	envelope protein	25552	25782	product	envelope protein	E	canonical
+query_100	LR812930.1	membrane protein	25790	26470	product	membrane protein	M	canonical
+query_100	LR812930.1	nucleocapsid protein	26482	27807	product	nucleocapsid protein	N	canonical
+query_100	LR812932.1	Pol1	296	20640	product	Pol1	ORF1ab	canonical
+query_100	LR812932.1	spike protein	20637	24788	product	spike protein	S	canonical
+query_100	LR812932.1	hypothetical protein	24788	25462	product	hypothetical protein	ignored	ignored
+query_100	LR812932.1	envelope protein	25443	25673	product	envelope protein	E	canonical
+query_100	LR812932.1	membrane protein	25681	26361	product	membrane protein	M	canonical
+query_100	LR812932.1	nucleocapsid protein	26373	27698	product	nucleocapsid protein	N	canonical
+query_100	MT263014.1	polyprotein 1ab	293	20637	product	polyprotein 1ab	ORF1ab	canonical
+query_100	MT263014.1	polyprotein 1ab	293	20637	note	ORF1a/b	ORF1ab	canonical
+query_100	MT263014.1	spike protein	20634	24794	product	spike protein	S	canonical
+query_100	MT263014.1	ORF3 protein	24794	25468	product	ORF3 protein	ORF3	canonical
+query_100	MT263014.1	E protein	25449	25685	product	E protein	E	canonical
+query_100	MT263014.1	M protein	25693	26373	product	M protein	M	canonical
+query_100	MT263014.1	N protein	26385	27710	product	N protein	N	canonical
+query_100	MT646162.1	polyprotein	301	20645	product	polyprotein	ignored	ignored
+query_100	MT646162.1	polyprotein	301	20645	note	ORF1ab	ORF1ab	canonical
+query_100	MT646162.1	spike protein	20642	24802	product	spike protein	S	canonical
+query_100	MT646162.1	hypothetical protein	24802	25476	product	hypothetical protein	ignored	ignored
+query_100	MT646162.1	hypothetical protein	24802	25476	note	ORF3	ORF3	canonical
+query_100	MT646162.1	envelope protein	25457	25687	product	envelope protein	E	canonical
+query_100	MT646162.1	membrane protein	25695	26375	product	membrane protein	M	canonical
+query_100	MT646162.1	nucleocapsid protein	26387	27712	product	nucleocapsid protein	N	canonical
+query_100	MW143085.1	ORF1ab	293	20637	gene	ORF1ab	ORF1ab	canonical
+query_100	MW143085.1	ORF1ab	293	20637	product	polyprotein	ignored	ignored
+query_100	MW143085.1	S	20634	24791	gene	S	S	canonical
+query_100	MW143085.1	S	20634	24791	product	spike protein	S	canonical
+query_100	MW143085.1	ORF3	24791	25465	gene	ORF3	ORF3	canonical
+query_100	MW143085.1	ORF3	24791	25465	product	ORF3 protein	ORF3	canonical
+query_100	MW143085.1	E	25446	25676	gene	E	E	canonical
+query_100	MW143085.1	E	25446	25676	product	E protein	E	canonical
+query_100	MW143085.1	M	25684	26364	gene	M	M	canonical
+query_100	MW143085.1	M	25684	26364	product	M protein	M	canonical
+query_100	MW143085.1	N	26376	27701	gene	N	N	canonical
+query_100	MW143085.1	N	26376	27701	product	N protein	N	canonical
+query_100	OM393722.1	ORF 1a/1b	294	20639	gene	ORF 1a/1b	ORF1ab	canonical
+query_100	OM393722.1	ORF 1a/1b	294	20639	product	polyprotein ORF 1a/1b	ORF1ab	canonical
+query_100	OM393722.1	S	20636	24793	gene	S	S	canonical
+query_100	OM393722.1	S	20636	24793	product	spike protein	S	canonical
+query_100	OM393722.1	ORF3	24793	25467	gene	ORF3	ORF3	canonical
+query_100	OM393722.1	ORF3	24793	25467	product	hypothetical protein	ignored	ignored
+query_100	OM393722.1	E	25448	25678	gene	E	E	canonical
+query_100	OM393722.1	E	25448	25678	product	envelope protein	E	canonical
+query_100	OM393722.1	M	25686	26366	gene	M	M	canonical
+query_100	OM393722.1	M	25686	26366	product	membrane protein	M	canonical
+query_100	OM393722.1	N	26378	27703	gene	N	N	canonical
+query_100	OM393722.1	N	26378	27703	product	nucleocapsid protein	N	canonical
+query_100	OL347994.1	ORF1ab polyprotein	293	20637	product	ORF1ab polyprotein	ORF1ab	canonical
+query_100	OL347994.1	ORF1a polyprotein	293	12646	product	ORF1a polyprotein	ORF1a	canonical
+query_100	OL347994.1	S protein	20634	24794	product	S protein	S	canonical
+query_100	OL347994.1	ORF3 protein	24794	25468	product	ORF3 protein	ORF3	canonical
+query_100	OL347994.1	E protein	25449	25679	product	E protein	E	canonical
+query_100	OL347994.1	M protein	25687	26367	product	M protein	M	canonical
+query_100	OL347994.1	N protein	26379	27704	product	N protein	N	canonical
+query_100	OP326239.1	ORF1ab	293	20637	gene	ORF1ab	ORF1ab	canonical
+query_100	OP326239.1	ORF1ab	293	20637	product	ORF1ab protein	ORF1ab	canonical
+query_100	OP326239.1	ORF1ab	293	12646	gene	ORF1ab	ORF1ab	canonical
+query_100	OP326239.1	ORF1ab	293	12646	product	ORF1a protein	ORF1a	canonical
+query_100	OP326239.1	S	20634	24857	gene	S	S	canonical
+query_100	OP326239.1	S	20634	24857	product	spike protein	S	canonical
+query_100	OP326239.1	ORF3	24857	25291	gene	ORF3	ORF3	canonical
+query_100	OP326239.1	ORF3	24857	25291	product	accessory membrane protein	ORF3	canonical
+query_100	OP326239.1	E	25511	25741	gene	E	E	canonical
+query_100	OP326239.1	E	25511	25741	product	envelope protein	E	canonical
+query_100	OP326239.1	M	25749	26429	gene	M	M	canonical
+query_100	OP326239.1	M	25749	26429	product	membrane protein	M	canonical
+query_100	OP326239.1	N	26441	27766	gene	N	N	canonical
+query_100	OP326239.1	N	26441	27766	product	nucleocapsid protein	N	canonical
+query_100	OQ589489.1	ORF1ab protein	293	20637	product	ORF1ab protein	ORF1ab	canonical
+query_100	OQ589489.1	ORF1a protein	293	12646	product	ORF1a protein	ORF1a	canonical
+query_100	OQ589489.1	spike protein	20634	24803	product	spike protein	S	canonical
+query_100	OQ589489.1	spike protein	20634	24803	note	S	S	canonical
+query_100	OQ589489.1	hypothetical protein	24803	25477	product	hypothetical protein	ignored	ignored
+query_100	OQ589489.1	hypothetical protein	24803	25477	note	ORF3	ORF3	canonical
+query_100	OQ589489.1	envelope protein	25458	25688	product	envelope protein	E	canonical
+query_100	OQ589489.1	envelope protein	25458	25688	note	E	E	canonical
+query_100	OQ589489.1	membrane protein	25696	26373	product	membrane protein	M	canonical
+query_100	OQ589489.1	membrane protein	25696	26373	note	M	M	canonical
+query_100	OQ589489.1	nucleocapsid protein	26385	27710	product	nucleocapsid protein	N	canonical
+query_100	OQ589489.1	nucleocapsid protein	26385	27710	note	N	N	canonical
+query_100	OP784565.1	ORF1ab	293	20634	product	ORF1ab	ORF1ab	canonical
+query_100	OP784565.1	ORF1a	293	12643	product	ORF1a	ORF1a	canonical
+query_100	OP784565.1	S	20631	24794	product	S	S	canonical
+query_100	OP784565.1	ORF3	24794	25468	product	ORF3	ORF3	canonical
+query_100	OP784565.1	E	25449	25679	product	E	E	canonical
+query_100	OP784565.1	M	25687	26367	product	M	M	canonical
+query_100	OP784565.1	N	26379	27704	product	N	N	canonical
+query_100	ON075821.1	S	20659	24819	gene	S	S	canonical
+query_100	ON075821.1	S	20659	24819	product	spike protein	S	canonical
+query_100	ON075821.1	ORF3	24819	25493	gene	ORF3	ORF3	canonical
+query_100	ON075821.1	ORF3	24819	25493	product	ORF3 protein	ORF3	canonical
+query_100	ON075821.1	E	25474	25704	gene	E	E	canonical
+query_100	ON075821.1	E	25474	25704	product	envelope protein	E	canonical
+query_100	ON075821.1	M	25712	26392	gene	M	M	canonical
+query_100	ON075821.1	M	25712	26392	product	membrane protein	M	canonical
+query_100	ON075821.1	N	26404	27729	gene	N	N	canonical
+query_100	ON075821.1	N	26404	27729	product	nucleocapsid protein	N	canonical
+query_100	OP894120.1	ORF1ab	306	12659	gene	ORF1ab	ORF1ab	canonical
+query_100	OP894120.1	ORF1ab	306	12659	product	replicase polyprotein	ignored	ignored
+query_100	OP894120.1	ORF1ab	306	12659	note	ORF1a	ORF1a	canonical
+query_100	OP894120.1	S	20647	24804	gene	S	S	canonical
+query_100	OP894120.1	S	20647	24804	product	spike protein	S	canonical
+query_100	OP894120.1	ORF3	24804	25478	gene	ORF3	ORF3	canonical
+query_100	OP894120.1	ORF3	24804	25478	product	hypothetical protein	ignored	ignored
+query_100	OP894120.1	E	25459	25689	gene	E	E	canonical
+query_100	OP894120.1	E	25459	25689	product	envelope protein	E	canonical
+query_100	OP894120.1	M	25697	26377	gene	M	M	canonical
+query_100	OP894120.1	M	25697	26377	product	membrane protein	M	canonical
+query_100	OP894120.1	N	26389	27714	gene	N	N	canonical
+query_100	OP894120.1	N	26389	27714	product	nucleocapsid protein	N	canonical
+query_100	OQ378935.1	ORF1ab	346	12696	gene	ORF1ab	ORF1ab	canonical
+query_100	OQ378935.1	ORF1ab	346	12696	product	ORF1a protein	ORF1a	canonical
+query_100	OQ378935.1	S	20684	24844	gene	S	S	canonical
+query_100	OQ378935.1	S	20684	24844	product	spike glycoprotein	S	canonical
+query_100	OQ979200.1	HNZK1	20634	24791	gene	HNZK1	ignored	ignored
+query_100	OQ979200.1	HNZK1	20634	24791	product	spike protein	S	canonical
+query_100	OQ979200.1	HNZK1	24791	25465	gene	HNZK1	ignored	ignored
+query_100	OQ979200.1	HNZK1	24791	25465	product	hypothetical protein	ignored	ignored
+query_100	OQ979200.1	HNZK1	25446	25676	gene	HNZK1	ignored	ignored
+query_100	OQ979200.1	HNZK1	25446	25676	product	envelope protein	E	canonical
+query_100	OQ979200.1	HNZK1	25684	26364	gene	HNZK1	ignored	ignored
+query_100	OQ979200.1	HNZK1	25684	26364	product	membrane protein	M	canonical
+query_100	OQ979200.1	HNZK1	26376	27701	gene	HNZK1	ignored	ignored
+query_100	OQ979200.1	HNZK1	26376	27701	product	nucleocapsid protein	N	canonical
+query_100	PP668229.1	S	20628	24785	product	S	S	canonical
+query_100	PP668229.1	ORF3	24785	25459	product	ORF3	ORF3	canonical
+query_100	PP668229.1	E	25440	25670	product	E	E	canonical
+query_100	PP668229.1	M	25678	26358	product	M	M	canonical
+query_100	PP668229.1	N	26370	27695	product	N	N	canonical
+query_100	PP668230.1	S	20628	24785	product	S	S	canonical
+query_100	PP668230.1	ORF3	24785	25459	product	ORF3	ORF3	canonical
+query_100	PP668230.1	E	25440	25670	product	E	E	canonical
+query_100	PP668230.1	M	25678	26358	product	M	M	canonical
+query_100	PP668230.1	N	26370	27695	product	N	N	canonical
+query_100	PP690526.1	ORF1ab	293	20637	gene	ORF1ab	ORF1ab	canonical
+query_100	PP690526.1	ORF1ab	293	20637	product	ORF1ab polyprotein	ORF1ab	canonical
+query_100	PP690526.1	ORF1ab	293	12646	gene	ORF1ab	ORF1ab	canonical
+query_100	PP690526.1	ORF1ab	293	12646	product	ORF1a protein	ORF1a	canonical
+query_100	PP690526.1	S	20634	24794	gene	S	S	canonical
+query_100	PP690526.1	S	20634	24794	product	spike protein	S	canonical
+query_100	PP690526.1	ORF3	24794	25468	gene	ORF3	ORF3	canonical
+query_100	PP690526.1	ORF3	24794	25468	product	hypothetical protein	ignored	ignored
+query_100	PP690526.1	E	25449	25679	gene	E	E	canonical
+query_100	PP690526.1	E	25449	25679	product	envelope protein	E	canonical
+query_100	PP690526.1	M	25687	26379	gene	M	M	canonical
+query_100	PP690526.1	M	25687	26379	product	membrane protein	M	canonical
+query_100	PP690526.1	N	26391	27716	gene	N	N	canonical
+query_100	PP690526.1	N	26391	27716	product	nucleocapsid protein	N	canonical
+query_100	PP690527.1	ORF1ab	293	20637	gene	ORF1ab	ORF1ab	canonical
+query_100	PP690527.1	ORF1ab	293	20637	product	polyprotein	ignored	ignored
+query_100	PP690527.1	ORF1ab	293	12646	gene	ORF1ab	ORF1ab	canonical
+query_100	PP690527.1	ORF1ab	293	12646	product	ORF1a protein	ORF1a	canonical
+query_100	PP690527.1	S	20634	24791	gene	S	S	canonical
+query_100	PP690527.1	S	20634	24791	product	spike protein	S	canonical
+query_100	PP690527.1	ORF3	24791	25465	gene	ORF3	ORF3	canonical
+query_100	PP690527.1	ORF3	24791	25465	product	hypothetical protein	ignored	ignored
+query_100	PP690527.1	E	25446	25676	gene	E	E	canonical
+query_100	PP690527.1	E	25446	25676	product	envelope protein	E	canonical
+query_100	PP690527.1	M	25684	26364	gene	M	M	canonical
+query_100	PP690527.1	M	25684	26364	product	membrane protein	M	canonical
+query_100	PP690527.1	N	26376	27701	gene	N	N	canonical
+query_100	PP690527.1	N	26376	27701	product	nucleocapsid protein	N	canonical
+query_100	OR085232.1	ORF1ab	382	20726	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085232.1	ORF1ab	382	20726	product	replicase polyprotein	ignored	ignored
+query_100	OR085232.1	S	20723	24880	gene	S	S	canonical
+query_100	OR085232.1	S	20723	24880	product	spike protein	S	canonical
+query_100	OR085232.1	ORF3	24880	25554	gene	ORF3	ORF3	canonical
+query_100	OR085232.1	ORF3	24880	25554	product	accessory protein 3a	ORF3	canonical
+query_100	OR085232.1	E	25535	25765	gene	E	E	canonical
+query_100	OR085232.1	E	25535	25765	product	envelope protein	E	canonical
+query_100	OR085232.1	M	25773	26453	gene	M	M	canonical
+query_100	OR085232.1	M	25773	26453	product	membrane protein	M	canonical
+query_100	OR085232.1	N	26465	27790	gene	N	N	canonical
+query_100	OR085232.1	N	26465	27790	product	nucleocapsid protein	N	canonical
+query_100	OR085240.1	ORF1ab	371	20715	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085240.1	ORF1ab	371	20715	product	replicase polyprotein	ignored	ignored
+query_100	OR085240.1	S	20712	24860	gene	S	S	canonical
+query_100	OR085240.1	S	20712	24860	product	spike protein	S	canonical
+query_100	OR085240.1	ORF3	24860	25534	gene	ORF3	ORF3	canonical
+query_100	OR085240.1	ORF3	24860	25534	product	accessory protein 3a	ORF3	canonical
+query_100	OR085240.1	E	25515	25745	gene	E	E	canonical
+query_100	OR085240.1	E	25515	25745	product	envelope protein	E	canonical
+query_100	OR085240.1	M	25753	26433	gene	M	M	canonical
+query_100	OR085240.1	M	25753	26433	product	membrane protein	M	canonical
+query_100	OR085240.1	N	26445	27770	gene	N	N	canonical
+query_100	OR085240.1	N	26445	27770	product	nucleocapsid protein	N	canonical
+query_100	OR085242.1	ORF1ab	416	20760	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085242.1	ORF1ab	416	20760	product	replicase polyprotein	ignored	ignored
+query_100	OR085242.1	S	20757	24905	gene	S	S	canonical
+query_100	OR085242.1	S	20757	24905	product	spike protein	S	canonical
+query_100	OR085242.1	ORF3	24905	25579	gene	ORF3	ORF3	canonical
+query_100	OR085242.1	ORF3	24905	25579	product	accessory protein 3a	ORF3	canonical
+query_100	OR085242.1	E	25560	25790	gene	E	E	canonical
+query_100	OR085242.1	E	25560	25790	product	envelope protein	E	canonical
+query_100	OR085242.1	M	25798	26478	gene	M	M	canonical
+query_100	OR085242.1	M	25798	26478	product	membrane protein	M	canonical
+query_100	OR085242.1	N	26490	27815	gene	N	N	canonical
+query_100	OR085242.1	N	26490	27815	product	nucleocapsid protein	N	canonical
+query_100	OR085246.1	ORF1ab	417	20761	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085246.1	ORF1ab	417	20761	product	replicase polyprotein	ignored	ignored
+query_100	OR085246.1	S	20758	24909	gene	S	S	canonical
+query_100	OR085246.1	S	20758	24909	product	spike protein	S	canonical
+query_100	OR085246.1	ORF3	24909	25583	gene	ORF3	ORF3	canonical
+query_100	OR085246.1	ORF3	24909	25583	product	accessory protein 3a	ORF3	canonical
+query_100	OR085246.1	E	25564	25794	gene	E	E	canonical
+query_100	OR085246.1	E	25564	25794	product	envelope protein	E	canonical
+query_100	OR085246.1	M	25802	26482	gene	M	M	canonical
+query_100	OR085246.1	M	25802	26482	product	membrane protein	M	canonical
+query_100	OR085246.1	N	26494	27816	gene	N	N	canonical
+query_100	OR085246.1	N	26494	27816	product	nucleocapsid protein	N	canonical
+query_100	OR085251.1	ORF1ab	417	20761	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085251.1	ORF1ab	417	20761	product	replicase polyprotein	ignored	ignored
+query_100	OR085251.1	S	20758	24918	gene	S	S	canonical
+query_100	OR085251.1	S	20758	24918	product	spike protein	S	canonical
+query_100	OR085251.1	ORF3	24918	25592	gene	ORF3	ORF3	canonical
+query_100	OR085251.1	ORF3	24918	25592	product	accessory protein 3a	ORF3	canonical
+query_100	OR085251.1	E	25573	25803	gene	E	E	canonical
+query_100	OR085251.1	E	25573	25803	product	envelope protein	E	canonical
+query_100	OR085251.1	M	25811	26491	gene	M	M	canonical
+query_100	OR085251.1	M	25811	26491	product	membrane protein	M	canonical
+query_100	OR085251.1	N	26503	27828	gene	N	N	canonical
+query_100	OR085251.1	N	26503	27828	product	nucleocapsid protein	N	canonical
+query_100	OR085255.1	ORF1ab	417	20761	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085255.1	ORF1ab	417	20761	product	replicase polyprotein	ignored	ignored
+query_100	OR085255.1	S	20758	24918	gene	S	S	canonical
+query_100	OR085255.1	S	20758	24918	product	spike protein	S	canonical
+query_100	OR085255.1	ORF3	24918	25592	gene	ORF3	ORF3	canonical
+query_100	OR085255.1	ORF3	24918	25592	product	accessory protein 3a	ORF3	canonical
+query_100	OR085255.1	E	25573	25803	gene	E	E	canonical
+query_100	OR085255.1	E	25573	25803	product	envelope protein	E	canonical
+query_100	OR085255.1	M	25811	26491	gene	M	M	canonical
+query_100	OR085255.1	M	25811	26491	product	membrane protein	M	canonical
+query_100	OR085255.1	N	26503	27828	gene	N	N	canonical
+query_100	OR085255.1	N	26503	27828	product	nucleocapsid protein	N	canonical
+query_100	OR085269.1	ORF1ab	315	20659	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085269.1	ORF1ab	315	20659	product	replicase polyprotein	ignored	ignored
+query_100	OR085269.1	S	20656	24816	gene	S	S	canonical
+query_100	OR085269.1	S	20656	24816	product	spike protein	S	canonical
+query_100	OR085269.1	ORF3	24816	25490	gene	ORF3	ORF3	canonical
+query_100	OR085269.1	ORF3	24816	25490	product	accessory protein 3a	ORF3	canonical
+query_100	OR085269.1	E	25471	25701	gene	E	E	canonical
+query_100	OR085269.1	E	25471	25701	product	envelope protein	E	canonical
+query_100	OR085269.1	M	25709	26389	gene	M	M	canonical
+query_100	OR085269.1	M	25709	26389	product	membrane protein	M	canonical
+query_100	OR085269.1	N	26401	27726	gene	N	N	canonical
+query_100	OR085269.1	N	26401	27726	product	nucleocapsid protein	N	canonical
+query_100	OR085277.1	ORF1ab	378	20722	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085277.1	ORF1ab	378	20722	product	replicase polyprotein	ignored	ignored
+query_100	OR085277.1	S	20719	24879	gene	S	S	canonical
+query_100	OR085277.1	S	20719	24879	product	spike protein	S	canonical
+query_100	OR085277.1	ORF3	24879	25553	gene	ORF3	ORF3	canonical
+query_100	OR085277.1	ORF3	24879	25553	product	accessory protein 3a	ORF3	canonical
+query_100	OR085277.1	E	25534	25764	gene	E	E	canonical
+query_100	OR085277.1	E	25534	25764	product	envelope protein	E	canonical
+query_100	OR085277.1	M	25772	26452	gene	M	M	canonical
+query_100	OR085277.1	M	25772	26452	product	membrane protein	M	canonical
+query_100	OR085277.1	N	26464	27789	gene	N	N	canonical
+query_100	OR085277.1	N	26464	27789	product	nucleocapsid protein	N	canonical
+query_100	OR085278.1	ORF1ab	407	20751	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085278.1	ORF1ab	407	20751	product	replicase polyprotein	ignored	ignored
+query_100	OR085278.1	S	20748	24908	gene	S	S	canonical
+query_100	OR085278.1	S	20748	24908	product	spike protein	S	canonical
+query_100	OR085278.1	ORF3	24908	25582	gene	ORF3	ORF3	canonical
+query_100	OR085278.1	ORF3	24908	25582	product	accessory protein 3a	ORF3	canonical
+query_100	OR085278.1	E	25563	25793	gene	E	E	canonical
+query_100	OR085278.1	E	25563	25793	product	envelope protein	E	canonical
+query_100	OR085278.1	M	25801	26481	gene	M	M	canonical
+query_100	OR085278.1	M	25801	26481	product	membrane protein	M	canonical
+query_100	OR085278.1	N	26493	27818	gene	N	N	canonical
+query_100	OR085278.1	N	26493	27818	product	nucleocapsid protein	N	canonical
+query_100	OR085279.1	ORF1ab	280	20624	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085279.1	ORF1ab	280	20624	product	replicase polyprotein	ignored	ignored
+query_100	OR085279.1	S	20621	24781	gene	S	S	canonical
+query_100	OR085279.1	S	20621	24781	product	spike protein	S	canonical
+query_100	OR085279.1	ORF3	24781	25455	gene	ORF3	ORF3	canonical
+query_100	OR085279.1	ORF3	24781	25455	product	accessory protein 3a	ORF3	canonical
+query_100	OR085279.1	E	25436	25666	gene	E	E	canonical
+query_100	OR085279.1	E	25436	25666	product	envelope protein	E	canonical
+query_100	OR085279.1	M	25674	26354	gene	M	M	canonical
+query_100	OR085279.1	M	25674	26354	product	membrane protein	M	canonical
+query_100	OR085279.1	N	26366	27691	gene	N	N	canonical
+query_100	OR085279.1	N	26366	27691	product	nucleocapsid protein	N	canonical
+query_100	OR085281.1	ORF1ab	417	20761	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085281.1	ORF1ab	417	20761	product	replicase polyprotein	ignored	ignored
+query_100	OR085281.1	S	20758	24918	gene	S	S	canonical
+query_100	OR085281.1	S	20758	24918	product	spike protein	S	canonical
+query_100	OR085281.1	ORF3	24918	25592	gene	ORF3	ORF3	canonical
+query_100	OR085281.1	ORF3	24918	25592	product	accessory protein 3a	ORF3	canonical
+query_100	OR085281.1	E	25573	25803	gene	E	E	canonical
+query_100	OR085281.1	E	25573	25803	product	envelope protein	E	canonical
+query_100	OR085281.1	M	25811	26491	gene	M	M	canonical
+query_100	OR085281.1	M	25811	26491	product	membrane protein	M	canonical
+query_100	OR085281.1	N	26503	27828	gene	N	N	canonical
+query_100	OR085281.1	N	26503	27828	product	nucleocapsid protein	N	canonical
+query_100	OR085283.1	ORF1ab	313	20657	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085283.1	ORF1ab	313	20657	product	replicase polyprotein	ignored	ignored
+query_100	OR085283.1	S	20654	24814	gene	S	S	canonical
+query_100	OR085283.1	S	20654	24814	product	spike protein	S	canonical
+query_100	OR085283.1	ORF3	24814	25488	gene	ORF3	ORF3	canonical
+query_100	OR085283.1	ORF3	24814	25488	product	accessory protein 3a	ORF3	canonical
+query_100	OR085283.1	E	25469	25699	gene	E	E	canonical
+query_100	OR085283.1	E	25469	25699	product	envelope protein	E	canonical
+query_100	OR085283.1	M	25707	26387	gene	M	M	canonical
+query_100	OR085283.1	M	25707	26387	product	membrane protein	M	canonical
+query_100	OR085283.1	N	26399	27724	gene	N	N	canonical
+query_100	OR085283.1	N	26399	27724	product	nucleocapsid protein	N	canonical
+query_100	OR085297.1	ORF1ab	279	20617	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085297.1	ORF1ab	279	20617	product	replicase polyprotein	ignored	ignored
+query_100	OR085297.1	S	20614	24771	gene	S	S	canonical
+query_100	OR085297.1	S	20614	24771	product	spike protein	S	canonical
+query_100	OR085297.1	ORF3	24771	25445	gene	ORF3	ORF3	canonical
+query_100	OR085297.1	ORF3	24771	25445	product	accessory protein 3a	ORF3	canonical
+query_100	OR085297.1	E	25426	25656	gene	E	E	canonical
+query_100	OR085297.1	E	25426	25656	product	envelope protein	E	canonical
+query_100	OR085297.1	M	25664	26344	gene	M	M	canonical
+query_100	OR085297.1	M	25664	26344	product	membrane protein	M	canonical
+query_100	OR085297.1	N	26356	27681	gene	N	N	canonical
+query_100	OR085297.1	N	26356	27681	product	nucleocapsid protein	N	canonical
+query_100	OR085300.1	ORF1ab	368	20712	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085300.1	ORF1ab	368	20712	product	replicase polyprotein	ignored	ignored
+query_100	OR085300.1	S	20709	24869	gene	S	S	canonical
+query_100	OR085300.1	S	20709	24869	product	spike protein	S	canonical
+query_100	OR085300.1	ORF3	24869	25543	gene	ORF3	ORF3	canonical
+query_100	OR085300.1	ORF3	24869	25543	product	accessory protein 3a	ORF3	canonical
+query_100	OR085300.1	E	25524	25754	gene	E	E	canonical
+query_100	OR085300.1	E	25524	25754	product	envelope protein	E	canonical
+query_100	OR085300.1	M	25762	26439	gene	M	M	canonical
+query_100	OR085300.1	M	25762	26439	product	membrane protein	M	canonical
+query_100	OR085300.1	N	26451	27776	gene	N	N	canonical
+query_100	OR085300.1	N	26451	27776	product	nucleocapsid protein	N	canonical
+query_100	OR085304.1	ORF1ab	375	20719	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085304.1	ORF1ab	375	20719	product	replicase polyprotein	ignored	ignored
+query_100	OR085304.1	S	20716	24873	gene	S	S	canonical
+query_100	OR085304.1	S	20716	24873	product	spike protein	S	canonical
+query_100	OR085304.1	ORF3	24873	25547	gene	ORF3	ORF3	canonical
+query_100	OR085304.1	ORF3	24873	25547	product	accessory protein 3a	ORF3	canonical
+query_100	OR085304.1	E	25528	25758	gene	E	E	canonical
+query_100	OR085304.1	E	25528	25758	product	envelope protein	E	canonical
+query_100	OR085304.1	M	25766	26446	gene	M	M	canonical
+query_100	OR085304.1	M	25766	26446	product	membrane protein	M	canonical
+query_100	OR085304.1	N	26458	27783	gene	N	N	canonical
+query_100	OR085304.1	N	26458	27783	product	nucleocapsid protein	N	canonical
+query_100	OR085308.1	ORF1ab	370	20714	gene	ORF1ab	ORF1ab	canonical
+query_100	OR085308.1	ORF1ab	370	20714	product	replicase polyprotein	ignored	ignored
+query_100	OR085308.1	S	20711	24868	gene	S	S	canonical
+query_100	OR085308.1	S	20711	24868	product	spike protein	S	canonical
+query_100	OR085308.1	ORF3	24868	25542	gene	ORF3	ORF3	canonical
+query_100	OR085308.1	ORF3	24868	25542	product	accessory protein 3a	ORF3	canonical
+query_100	OR085308.1	E	25523	25753	gene	E	E	canonical
+query_100	OR085308.1	E	25523	25753	product	envelope protein	E	canonical
+query_100	OR085308.1	M	25761	26441	gene	M	M	canonical
+query_100	OR085308.1	M	25761	26441	product	membrane protein	M	canonical
+query_100	OR085308.1	N	26453	27778	gene	N	N	canonical
+query_100	OR085308.1	N	26453	27778	product	nucleocapsid protein	N	canonical
+query_100	PP987385.1	polyprotein	293	12646	product	polyprotein	ignored	ignored
+query_100	PP987385.1	ORF1b polyprotein	12811	20637	product	ORF1b polyprotein	ORF1b	canonical
+query_100	PP987385.1	spike protein	20634	24794	product	spike protein	S	canonical
+query_100	PP987385.1	ORF3 protein	24794	25468	product	ORF3 protein	ORF3	canonical
+query_100	PP987385.1	ORF3 protein	24794	25468	note	ORF3	ORF3	canonical
+query_100	PP987385.1	envelope protein	25449	25679	product	envelope protein	E	canonical
+query_100	PP987385.1	membrane protein	25687	26367	product	membrane protein	M	canonical
+query_100	PP987385.1	nucleocapsid protein	26379	27704	product	nucleocapsid protein	N	canonical
+query_100	PQ682538.1	ORF1ab polyprotein	341	20685	product	ORF1ab polyprotein	ORF1ab	canonical
+query_100	PQ682538.1	spike protein	20682	24839	product	spike protein	S	canonical
+query_100	PQ682538.1	hypothetical protein	24839	25513	product	hypothetical protein	ignored	ignored
+query_100	PQ682538.1	hypothetical protein	24839	25513	note	ORF3	ORF3	canonical
+query_100	PQ682538.1	envelope protein	25494	25724	product	envelope protein	E	canonical
+query_100	PQ682538.1	membrane protein	25732	26412	product	membrane protein	M	canonical
+query_100	PQ682538.1	nucleocapsid protein	26424	27749	product	nucleocapsid protein	N	canonical
+query_100	PQ878525.1	ORF1ab	294	20638	product	ORF1ab	ORF1ab	canonical
+query_100	PQ878525.1	ORF1b	12602	20638	product	ORF1b	ORF1b	canonical
+query_100	PQ878525.1	spike protein	20635	24783	product	spike protein	S	canonical
+query_100	PQ878525.1	ORF3	24783	25457	product	ORF3	ORF3	canonical
+query_100	PQ878525.1	envelope protein	25438	25668	product	envelope protein	E	canonical
+query_100	PQ878525.1	membrane protein	25676	26356	product	membrane protein	M	canonical
+query_100	PQ878525.1	nucleocapsid protein	26368	27693	product	nucleocapsid protein	N	canonical
+query_100	PV036765.1	polyprotein	306	20650	product	polyprotein	ignored	ignored
+query_100	PV036765.1	polyprotein	306	20650	note	1a polyprotein and 1b polyprotein; ORF1ab	ORF1ab	canonical
+query_100	PV036765.1	spike protein	20647	24804	product	spike protein	S	canonical
+query_100	PV036765.1	hypothetical protein	24804	25478	product	hypothetical protein	ignored	ignored
+query_100	PV036765.1	hypothetical protein	24804	25478	note	ORF3	ORF3	canonical
+query_100	PV036765.1	envelope protein	25459	25689	product	envelope protein	E	canonical
+query_100	PV036765.1	membrane protein	25697	26377	product	membrane protein	M	canonical
+query_100	PV036765.1	nucleocapsid protein	26389	27714	product	nucleocapsid protein	N	canonical
+query_100	PV536067.1	ORF1ab	294	20659	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536067.1	ORF1ab	294	20659	product	replicase polyprotein	ignored	ignored
+query_100	PV536067.1	S	20656	24816	gene	S	S	canonical
+query_100	PV536067.1	S	20656	24816	product	spike protein	S	canonical
+query_100	PV536067.1	ORF3	24816	25490	gene	ORF3	ORF3	canonical
+query_100	PV536067.1	ORF3	24816	25490	product	accessory protein 3a	ORF3	canonical
+query_100	PV536067.1	E	25471	25701	gene	E	E	canonical
+query_100	PV536067.1	E	25471	25701	product	envelope protein	E	canonical
+query_100	PV536067.1	M	25709	26389	gene	M	M	canonical
+query_100	PV536067.1	M	25709	26389	product	membrane protein	M	canonical
+query_100	PV536067.1	N	26401	27726	gene	N	N	canonical
+query_100	PV536067.1	N	26401	27726	product	nucleocapsid protein	N	canonical
+query_100	PV536074.1	ORF1ab	290	20634	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536074.1	ORF1ab	290	20634	product	replicase polyprotein	ignored	ignored
+query_100	PV536074.1	S	20631	24779	gene	S	S	canonical
+query_100	PV536074.1	S	20631	24779	product	spike protein	S	canonical
+query_100	PV536074.1	ORF3	24779	25453	gene	ORF3	ORF3	canonical
+query_100	PV536074.1	ORF3	24779	25453	product	accessory protein 3a	ORF3	canonical
+query_100	PV536074.1	E	25434	25664	gene	E	E	canonical
+query_100	PV536074.1	E	25434	25664	product	envelope protein	E	canonical
+query_100	PV536074.1	M	25672	26352	gene	M	M	canonical
+query_100	PV536074.1	M	25672	26352	product	membrane protein	M	canonical
+query_100	PV536074.1	N	26364	27689	gene	N	N	canonical
+query_100	PV536074.1	N	26364	27689	product	nucleocapsid protein	N	canonical
+query_100	PV536079.1	ORF1ab	363	20707	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536079.1	ORF1ab	363	20707	product	replicase polyprotein	ignored	ignored
+query_100	PV536079.1	S	20704	24861	gene	S	S	canonical
+query_100	PV536079.1	S	20704	24861	product	spike protein	S	canonical
+query_100	PV536079.1	ORF3	24861	25535	gene	ORF3	ORF3	canonical
+query_100	PV536079.1	ORF3	24861	25535	product	accessory protein 3a	ORF3	canonical
+query_100	PV536079.1	E	25516	25746	gene	E	E	canonical
+query_100	PV536079.1	E	25516	25746	product	envelope protein	E	canonical
+query_100	PV536079.1	M	25754	26434	gene	M	M	canonical
+query_100	PV536079.1	M	25754	26434	product	membrane protein	M	canonical
+query_100	PV536079.1	N	26446	27771	gene	N	N	canonical
+query_100	PV536079.1	N	26446	27771	product	nucleocapsid protein	N	canonical
+query_100	PV536082.1	ORF1ab	314	20658	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536082.1	ORF1ab	314	20658	product	replicase polyprotein	ignored	ignored
+query_100	PV536082.1	S	20655	24815	gene	S	S	canonical
+query_100	PV536082.1	S	20655	24815	product	spike protein	S	canonical
+query_100	PV536082.1	ORF3	24815	25489	gene	ORF3	ORF3	canonical
+query_100	PV536082.1	ORF3	24815	25489	product	accessory protein 3a	ORF3	canonical
+query_100	PV536082.1	E	25470	25700	gene	E	E	canonical
+query_100	PV536082.1	E	25470	25700	product	envelope protein	E	canonical
+query_100	PV536082.1	M	25708	26388	gene	M	M	canonical
+query_100	PV536082.1	M	25708	26388	product	membrane protein	M	canonical
+query_100	PV536082.1	N	26400	27725	gene	N	N	canonical
+query_100	PV536082.1	N	26400	27725	product	nucleocapsid protein	N	canonical
+query_100	PV536087.1	ORF1ab	379	20723	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536087.1	ORF1ab	379	20723	product	replicase polyprotein	ignored	ignored
+query_100	PV536087.1	S	20720	24880	gene	S	S	canonical
+query_100	PV536087.1	S	20720	24880	product	spike protein	S	canonical
+query_100	PV536087.1	ORF3	24880	25554	gene	ORF3	ORF3	canonical
+query_100	PV536087.1	ORF3	24880	25554	product	accessory protein 3a	ORF3	canonical
+query_100	PV536087.1	E	25535	25765	gene	E	E	canonical
+query_100	PV536087.1	E	25535	25765	product	envelope protein	E	canonical
+query_100	PV536087.1	M	25773	26453	gene	M	M	canonical
+query_100	PV536087.1	M	25773	26453	product	membrane protein	M	canonical
+query_100	PV536087.1	N	26465	27790	gene	N	N	canonical
+query_100	PV536087.1	N	26465	27790	product	nucleocapsid protein	N	canonical
+query_100	PV536089.1	ORF1ab	408	20752	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536089.1	ORF1ab	408	20752	product	replicase polyprotein	ignored	ignored
+query_100	PV536089.1	S	20749	24909	gene	S	S	canonical
+query_100	PV536089.1	S	20749	24909	product	spike protein	S	canonical
+query_100	PV536089.1	ORF3	24909	25583	gene	ORF3	ORF3	canonical
+query_100	PV536089.1	ORF3	24909	25583	product	accessory protein 3a	ORF3	canonical
+query_100	PV536089.1	E	25564	25794	gene	E	E	canonical
+query_100	PV536089.1	E	25564	25794	product	envelope protein	E	canonical
+query_100	PV536089.1	M	25802	26482	gene	M	M	canonical
+query_100	PV536089.1	M	25802	26482	product	membrane protein	M	canonical
+query_100	PV536089.1	N	26494	27819	gene	N	N	canonical
+query_100	PV536089.1	N	26494	27819	product	nucleocapsid protein	N	canonical
+query_100	PV536091.1	ORF1ab	308	20652	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536091.1	ORF1ab	308	20652	product	replicase polyprotein	ignored	ignored
+query_100	PV536091.1	S	20649	24800	gene	S	S	canonical
+query_100	PV536091.1	S	20649	24800	product	spike protein	S	canonical
+query_100	PV536091.1	ORF3	24800	25474	gene	ORF3	ORF3	canonical
+query_100	PV536091.1	ORF3	24800	25474	product	accessory protein 3a	ORF3	canonical
+query_100	PV536091.1	E	25455	25685	gene	E	E	canonical
+query_100	PV536091.1	E	25455	25685	product	envelope protein	E	canonical
+query_100	PV536091.1	M	25693	26373	gene	M	M	canonical
+query_100	PV536091.1	M	25693	26373	product	membrane protein	M	canonical
+query_100	PV536091.1	N	26385	27710	gene	N	N	canonical
+query_100	PV536091.1	N	26385	27710	product	nucleocapsid protein	N	canonical
+query_100	PV536097.1	ORF1ab	295	20639	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536097.1	ORF1ab	295	20639	product	replicase polyprotein	ignored	ignored
+query_100	PV536097.1	S	20636	24793	gene	S	S	canonical
+query_100	PV536097.1	S	20636	24793	product	spike protein	S	canonical
+query_100	PV536097.1	ORF3	24793	25467	gene	ORF3	ORF3	canonical
+query_100	PV536097.1	ORF3	24793	25467	product	accessory protein 3a	ORF3	canonical
+query_100	PV536097.1	E	25448	25678	gene	E	E	canonical
+query_100	PV536097.1	E	25448	25678	product	envelope protein	E	canonical
+query_100	PV536097.1	M	25686	26366	gene	M	M	canonical
+query_100	PV536097.1	M	25686	26366	product	membrane protein	M	canonical
+query_100	PV536097.1	N	26378	27703	gene	N	N	canonical
+query_100	PV536097.1	N	26378	27703	product	nucleocapsid protein	N	canonical
+query_100	PV536098.1	ORF1ab	453	20797	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536098.1	ORF1ab	453	20797	product	replicase polyprotein	ignored	ignored
+query_100	PV536098.1	S	20794	24954	gene	S	S	canonical
+query_100	PV536098.1	S	20794	24954	product	spike protein	S	canonical
+query_100	PV536098.1	ORF3	24954	25628	gene	ORF3	ORF3	canonical
+query_100	PV536098.1	ORF3	24954	25628	product	accessory protein 3a	ORF3	canonical
+query_100	PV536098.1	E	25609	25839	gene	E	E	canonical
+query_100	PV536098.1	E	25609	25839	product	envelope protein	E	canonical
+query_100	PV536098.1	M	25847	26527	gene	M	M	canonical
+query_100	PV536098.1	M	25847	26527	product	membrane protein	M	canonical
+query_100	PV536098.1	N	26539	27864	gene	N	N	canonical
+query_100	PV536098.1	N	26539	27864	product	nucleocapsid protein	N	canonical
+query_100	PV536099.1	ORF1ab	518	20862	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536099.1	ORF1ab	518	20862	product	replicase polyprotein	ignored	ignored
+query_100	PV536099.1	S	20859	25007	gene	S	S	canonical
+query_100	PV536099.1	S	20859	25007	product	spike protein	S	canonical
+query_100	PV536099.1	ORF3	25007	25681	gene	ORF3	ORF3	canonical
+query_100	PV536099.1	ORF3	25007	25681	product	accessory protein 3a	ORF3	canonical
+query_100	PV536099.1	E	25662	25892	gene	E	E	canonical
+query_100	PV536099.1	E	25662	25892	product	envelope protein	E	canonical
+query_100	PV536099.1	M	25900	26580	gene	M	M	canonical
+query_100	PV536099.1	M	25900	26580	product	membrane protein	M	canonical
+query_100	PV536099.1	N	26592	27917	gene	N	N	canonical
+query_100	PV536099.1	N	26592	27917	product	nucleocapsid protein	N	canonical
+query_100	PV536108.1	ORF1ab	293	20637	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536108.1	ORF1ab	293	20637	product	replicase polyprotein	ignored	ignored
+query_100	PV536108.1	S	20634	24794	gene	S	S	canonical
+query_100	PV536108.1	S	20634	24794	product	spike protein	S	canonical
+query_100	PV536108.1	ORF3	24794	25468	gene	ORF3	ORF3	canonical
+query_100	PV536108.1	ORF3	24794	25468	product	accessory protein 3a	ORF3	canonical
+query_100	PV536108.1	E	25449	25679	gene	E	E	canonical
+query_100	PV536108.1	E	25449	25679	product	envelope protein	E	canonical
+query_100	PV536108.1	M	25687	26367	gene	M	M	canonical
+query_100	PV536108.1	M	25687	26367	product	membrane protein	M	canonical
+query_100	PV536108.1	N	26379	27704	gene	N	N	canonical
+query_100	PV536108.1	N	26379	27704	product	nucleocapsid protein	N	canonical
+query_100	PV536110.1	ORF1ab	289	20633	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536110.1	ORF1ab	289	20633	product	replicase polyprotein	ignored	ignored
+query_100	PV536110.1	S	20630	24790	gene	S	S	canonical
+query_100	PV536110.1	S	20630	24790	product	spike protein	S	canonical
+query_100	PV536110.1	ORF3	24790	25464	gene	ORF3	ORF3	canonical
+query_100	PV536110.1	ORF3	24790	25464	product	accessory protein 3a	ORF3	canonical
+query_100	PV536110.1	E	25445	25675	gene	E	E	canonical
+query_100	PV536110.1	E	25445	25675	product	envelope protein	E	canonical
+query_100	PV536110.1	M	25683	26363	gene	M	M	canonical
+query_100	PV536110.1	M	25683	26363	product	membrane protein	M	canonical
+query_100	PV536110.1	N	26375	27700	gene	N	N	canonical
+query_100	PV536110.1	N	26375	27700	product	nucleocapsid protein	N	canonical
+query_100	PV536111.1	ORF1ab	359	20703	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536111.1	ORF1ab	359	20703	product	replicase polyprotein	ignored	ignored
+query_100	PV536111.1	S	20700	24860	gene	S	S	canonical
+query_100	PV536111.1	S	20700	24860	product	spike protein	S	canonical
+query_100	PV536111.1	ORF3	24860	25534	gene	ORF3	ORF3	canonical
+query_100	PV536111.1	ORF3	24860	25534	product	accessory protein 3a	ORF3	canonical
+query_100	PV536111.1	E	25515	25745	gene	E	E	canonical
+query_100	PV536111.1	E	25515	25745	product	envelope protein	E	canonical
+query_100	PV536111.1	M	25753	26433	gene	M	M	canonical
+query_100	PV536111.1	M	25753	26433	product	membrane protein	M	canonical
+query_100	PV536111.1	N	26445	27770	gene	N	N	canonical
+query_100	PV536111.1	N	26445	27770	product	nucleocapsid protein	N	canonical
+query_100	PV536112.1	ORF1ab	519	20863	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536112.1	ORF1ab	519	20863	product	replicase polyprotein	ignored	ignored
+query_100	PV536112.1	S	20860	25017	gene	S	S	canonical
+query_100	PV536112.1	S	20860	25017	product	spike protein	S	canonical
+query_100	PV536112.1	ORF3	25017	25691	gene	ORF3	ORF3	canonical
+query_100	PV536112.1	ORF3	25017	25691	product	accessory protein 3a	ORF3	canonical
+query_100	PV536112.1	E	25672	25902	gene	E	E	canonical
+query_100	PV536112.1	E	25672	25902	product	envelope protein	E	canonical
+query_100	PV536112.1	M	25910	26590	gene	M	M	canonical
+query_100	PV536112.1	M	25910	26590	product	membrane protein	M	canonical
+query_100	PV536112.1	N	26602	27921	gene	N	N	canonical
+query_100	PV536112.1	N	26602	27921	product	nucleocapsid protein	N	canonical
+query_100	PV536113.1	ORF1ab	499	20843	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536113.1	ORF1ab	499	20843	product	replicase polyprotein	ignored	ignored
+query_100	PV536113.1	S	20840	24997	gene	S	S	canonical
+query_100	PV536113.1	S	20840	24997	product	spike protein	S	canonical
+query_100	PV536113.1	ORF3	24997	25671	gene	ORF3	ORF3	canonical
+query_100	PV536113.1	ORF3	24997	25671	product	accessory protein 3a	ORF3	canonical
+query_100	PV536113.1	E	25652	25882	gene	E	E	canonical
+query_100	PV536113.1	E	25652	25882	product	envelope protein	E	canonical
+query_100	PV536113.1	M	25890	26570	gene	M	M	canonical
+query_100	PV536113.1	M	25890	26570	product	membrane protein	M	canonical
+query_100	PV536113.1	N	26582	27901	gene	N	N	canonical
+query_100	PV536113.1	N	26582	27901	product	nucleocapsid protein	N	canonical
+query_100	PV536114.1	ORF1ab	364	20708	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536114.1	ORF1ab	364	20708	product	replicase polyprotein	ignored	ignored
+query_100	PV536114.1	S	20705	24862	gene	S	S	canonical
+query_100	PV536114.1	S	20705	24862	product	spike protein	S	canonical
+query_100	PV536114.1	ORF3	24862	25536	gene	ORF3	ORF3	canonical
+query_100	PV536114.1	ORF3	24862	25536	product	accessory protein 3a	ORF3	canonical
+query_100	PV536114.1	E	25517	25747	gene	E	E	canonical
+query_100	PV536114.1	E	25517	25747	product	envelope protein	E	canonical
+query_100	PV536114.1	M	25755	26435	gene	M	M	canonical
+query_100	PV536114.1	M	25755	26435	product	membrane protein	M	canonical
+query_100	PV536114.1	N	26447	27766	gene	N	N	canonical
+query_100	PV536114.1	N	26447	27766	product	nucleocapsid protein	N	canonical
+query_100	PV536121.1	ORF1ab	454	20789	gene	ORF1ab	ORF1ab	canonical
+query_100	PV536121.1	ORF1ab	454	20789	product	replicase polyprotein	ignored	ignored
+query_100	PV536121.1	S	20786	24943	gene	S	S	canonical
+query_100	PV536121.1	S	20786	24943	product	spike protein	S	canonical
+query_100	PV536121.1	ORF3	24943	25617	gene	ORF3	ORF3	canonical
+query_100	PV536121.1	ORF3	24943	25617	product	accessory protein 3a	ORF3	canonical
+query_100	PV536121.1	E	25598	25828	gene	E	E	canonical
+query_100	PV536121.1	E	25598	25828	product	envelope protein	E	canonical
+query_100	PV536121.1	M	25836	26516	gene	M	M	canonical
+query_100	PV536121.1	M	25836	26516	product	membrane protein	M	canonical
+query_100	PV536121.1	N	26528	27853	gene	N	N	canonical
+query_100	PV536121.1	N	26528	27853	product	nucleocapsid protein	N	canonical
+query_100	PV974486.1	ORF1a	271	12624	gene	ORF1a	ORF1a	canonical
+query_100	PV974486.1	ORF1a	271	12624	product	polyprotein 1a	ORF1a	canonical
+query_100	PV974486.1	ORF1b	12594	20615	gene	ORF1b	ORF1b	canonical
+query_100	PV974486.1	ORF1b	12594	20615	product	polyprotein 1b	ORF1b	canonical
+query_100	PV974486.1	S	20612	24760	gene	S	S	canonical
+query_100	PV974486.1	S	20612	24760	product	spike protein	S	canonical
+query_100	PV974486.1	ORF3	24760	25434	gene	ORF3	ORF3	canonical
+query_100	PV974486.1	ORF3	24760	25434	product	hypothetical protein	ignored	ignored
+query_100	PV974486.1	E	25415	25645	gene	E	E	canonical
+query_100	PV974486.1	E	25415	25645	product	envelope protein	E	canonical
+query_100	PV974486.1	M	25653	26333	gene	M	M	canonical
+query_100	PV974486.1	M	25653	26333	product	membrane protein	M	canonical
+query_100	PV974486.1	N	26345	27670	gene	N	N	canonical
+query_100	PV974486.1	N	26345	27670	product	nucleocapsid protein	N	canonical
+query_100	PX146708.1	polyprotein	294	12647	product	polyprotein	ignored	ignored
+query_100	PX146708.1	polyprotein	294	12647	note	ORF1a	ORF1a	canonical
+query_100	PX146708.1	ORF1b	12812	20257	product	ORF1b	ORF1b	canonical
+query_100	PX146708.1	spike protein	20639	24799	product	spike protein	S	canonical
+query_100	PX146708.1	spike protein	20639	24799	note	S	S	canonical
+query_100	PX146708.1	hypothetical protein	24799	25473	product	hypothetical protein	ignored	ignored
+query_100	PX146708.1	hypothetical protein	24799	25473	note	ORF3	ORF3	canonical
+query_100	PX146708.1	envelope protein	25454	25684	product	envelope protein	E	canonical
+query_100	PX146708.1	envelope protein	25454	25684	note	E	E	canonical
+query_100	PX146708.1	membrane protein	25692	26372	product	membrane protein	M	canonical
+query_100	PX146708.1	membrane protein	25692	26372	note	M	M	canonical
+query_100	PX146708.1	nucleocapsid protein	26384	27709	product	nucleocapsid protein	N	canonical
+query_100	PX146708.1	nucleocapsid protein	26384	27709	note	N	N	canonical
+query_100	PV125746.1	ORF1ab polyprotein	330	20674	product	ORF1ab polyprotein	ORF1ab	canonical
+query_100	PV125746.1	ORF1a polyprotein	330	12683	product	ORF1a polyprotein	ORF1a	canonical
+query_100	PV125746.1	spike protein	20671	24831	product	spike protein	S	canonical
+query_100	PV125746.1	spike protein	20671	24831	note	S	S	canonical
+query_100	PV125746.1	ORF3 protein	24831	25505	product	ORF3 protein	ORF3	canonical
+query_100	PV125746.1	envelope protein	25486	25716	product	envelope protein	E	canonical
+query_100	PV125746.1	envelope protein	25486	25716	note	E	E	canonical
+query_100	PV125746.1	membrane protein	25724	26404	product	membrane protein	M	canonical
+query_100	PV125746.1	membrane protein	25724	26404	note	M	M	canonical
+query_100	PV125746.1	nucleocapsid protein	26416	27741	product	nucleocapsid protein	N	canonical
+query_100	PV125746.1	nucleocapsid protein	26416	27741	note	N	N	canonical
+query_100	PV533621.1	ORF1a/1b	346	20690	gene	ORF1a/1b	ORF1ab	canonical
+query_100	PV533621.1	ORF1a/1b	346	20690	product	polyprotein 1a/1b	ORF1ab	canonical
+query_100	PV533621.1	S	20687	24844	gene	S	S	canonical
+query_100	PV533621.1	S	20687	24844	product	spike protein	S	canonical
+query_100	PV533621.1	ORF3	24844	25092	gene	ORF3	ORF3	canonical
+query_100	PV533621.1	ORF3	24844	25092	product	truncated hypothetical protein	unresolved	unresolved
+query_100	PV533621.1	ORF3	24844	25092	note	101-bp deletion results in frameshift and premature termination	unresolved	unresolved
+query_100	PV533621.1	E	25398	25628	gene	E	E	canonical
+query_100	PV533621.1	E	25398	25628	product	envelope protein	E	canonical
+query_100	PV533621.1	M	25636	26316	gene	M	M	canonical
+query_100	PV533621.1	M	25636	26316	product	membrane protein	M	canonical
+query_100	PV533621.1	N	26328	27653	gene	N	N	canonical
+query_100	PV533621.1	N	26328	27653	product	nucleocapsid protein	N	canonical
+query_100	PX475711.1	polyprotein	293	20637	product	polyprotein	ignored	ignored
+query_100	PX475711.1	polyprotein	293	20637	note	ORF1ab	ORF1ab	canonical
+query_100	PX475711.1	spike protein	20634	24794	product	spike protein	S	canonical
+query_100	PX475711.1	hypothetical protein	24794	25468	product	hypothetical protein	ignored	ignored
+query_100	PX475711.1	envelope protein	25449	25679	product	envelope protein	E	canonical
+query_100	PX475711.1	membrane protein	25687	26367	product	membrane protein	M	canonical
+query_100	PX475711.1	nucleocapsid protein	26379	27704	product	nucleocapsid protein	N	canonical
+query_100	PV982377.1	polyprotein 1ab	293	20637	product	polyprotein 1ab	ORF1ab	canonical
+query_100	PV982377.1	polyprotein 1ab	293	20637	note	ORF1ab	ORF1ab	canonical
+query_100	PV982377.1	polyprotein 1a	293	12646	product	polyprotein 1a	ORF1a	canonical
+query_100	PV982377.1	polyprotein 1a	293	12646	note	ORF1a	ORF1a	canonical
+query_100	PV982377.1	spike protein	20634	24794	product	spike protein	S	canonical
+query_100	PV982377.1	hypothetical protein	24794	25468	product	hypothetical protein	ignored	ignored
+query_100	PV982377.1	hypothetical protein	24794	25468	note	ORF3	ORF3	canonical
+query_100	PV982377.1	envelope protein	25449	25679	product	envelope protein	E	canonical
+query_100	PV982377.1	membrane protein	25687	26367	product	membrane protein	M	canonical
+query_100	PV982377.1	nucleocapsid protein	26379	27704	product	nucleocapsid protein	N	canonical
+query_100	PX482648.1	ORF1ab	332	20676	gene	ORF1ab	ORF1ab	canonical
+query_100	PX482648.1	ORF1ab	332	20676	product	ORF1ab	ORF1ab	canonical
+query_100	PX482648.1	ORF1a	332	12685	gene	ORF1a	ORF1a	canonical
+query_100	PX482648.1	ORF1a	332	12685	product	ORF1a	ORF1a	canonical
+query_100	PX482648.1	S	20673	24833	gene	S	S	canonical
+query_100	PX482648.1	S	20673	24833	product	spike protein	S	canonical
+query_100	PX482648.1	ORF3	24833	25507	gene	ORF3	ORF3	canonical
+query_100	PX482648.1	ORF3	24833	25507	product	ORF3	ORF3	canonical
+query_100	PX482648.1	E	25488	25718	gene	E	E	canonical
+query_100	PX482648.1	E	25488	25718	product	envelope protein	E	canonical
+query_100	PX482648.1	M	25726	26406	gene	M	M	canonical
+query_100	PX482648.1	M	25726	26406	product	membrane protein	M	canonical
+query_100	PX482648.1	N	26418	27743	gene	N	N	canonical
+query_100	PX482648.1	N	26418	27743	product	nucleocapsid protein	N	canonical
+query_100	PX482650.1	ORF1ab	281	20622	gene	ORF1ab	ORF1ab	canonical
+query_100	PX482650.1	ORF1ab	281	20622	product	ORF1ab	ORF1ab	canonical
+query_100	PX482650.1	ORF1a	281	12631	gene	ORF1a	ORF1a	canonical
+query_100	PX482650.1	ORF1a	281	12631	product	ORF1a	ORF1a	canonical
+query_100	PX482650.1	S	20619	24779	gene	S	S	canonical
+query_100	PX482650.1	S	20619	24779	product	spike protein	S	canonical
+query_100	PX482650.1	ORF3	24779	25453	gene	ORF3	ORF3	canonical
+query_100	PX482650.1	ORF3	24779	25453	product	ORF3	ORF3	canonical
+query_100	PX482650.1	E	25434	25664	gene	E	E	canonical
+query_100	PX482650.1	E	25434	25664	product	envelope protein	E	canonical
+query_100	PX482650.1	M	25672	26352	gene	M	M	canonical
+query_100	PX482650.1	M	25672	26352	product	membrane protein	M	canonical
+query_100	PX482650.1	N	26364	27689	gene	N	N	canonical
+query_100	PX482650.1	N	26364	27689	product	nucleocapsid protein	N	canonical
+query_100	PX482651.1	ORF1ab	462	20806	gene	ORF1ab	ORF1ab	canonical
+query_100	PX482651.1	ORF1ab	462	20806	product	ORF1ab	ORF1ab	canonical
+query_100	PX482651.1	ORF1a	462	12815	gene	ORF1a	ORF1a	canonical
+query_100	PX482651.1	ORF1a	462	12815	product	ORF1a	ORF1a	canonical
+query_100	PX482651.1	S	20803	24960	gene	S	S	canonical
+query_100	PX482651.1	S	20803	24960	product	spike protein	S	canonical
+query_100	PX482651.1	ORF3	24960	25634	gene	ORF3	ORF3	canonical
+query_100	PX482651.1	ORF3	24960	25634	product	ORF3	ORF3	canonical
+query_100	PX482651.1	E	25615	25845	gene	E	E	canonical
+query_100	PX482651.1	E	25615	25845	product	envelope protein	E	canonical
+query_100	PX482651.1	M	25853	26533	gene	M	M	canonical
+query_100	PX482651.1	M	25853	26533	product	membrane protein	M	canonical
+query_100	PX482651.1	N	26545	27870	gene	N	N	canonical
+query_100	PX482651.1	N	26545	27870	product	nucleocapsid protein	N	canonical
+query_100	PX482652.1	ORF1ab	335	20679	gene	ORF1ab	ORF1ab	canonical
+query_100	PX482652.1	ORF1ab	335	20679	product	ORF1ab	ORF1ab	canonical
+query_100	PX482652.1	ORF1a	335	12688	gene	ORF1a	ORF1a	canonical
+query_100	PX482652.1	ORF1a	335	12688	product	ORF1a	ORF1a	canonical
+query_100	PX482652.1	S	20676	24833	gene	S	S	canonical
+query_100	PX482652.1	S	20676	24833	product	spike protein	S	canonical
+query_100	PX482652.1	ORF3	24833	25507	gene	ORF3	ORF3	canonical
+query_100	PX482652.1	ORF3	24833	25507	product	ORF3	ORF3	canonical
+query_100	PX482652.1	E	25488	25718	gene	E	E	canonical
+query_100	PX482652.1	E	25488	25718	product	envelope protein	E	canonical
+query_100	PX482652.1	M	25726	26406	gene	M	M	canonical
+query_100	PX482652.1	M	25726	26406	product	membrane protein	M	canonical
+query_100	PX482652.1	N	26418	27743	gene	N	N	canonical
+query_100	PX482652.1	N	26418	27743	product	nucleocapsid protein	N	canonical
+query_100	PX482653.1	ORF1ab	473	20817	gene	ORF1ab	ORF1ab	canonical
+query_100	PX482653.1	ORF1ab	473	20817	product	ORF1ab	ORF1ab	canonical
+query_100	PX482653.1	ORF1a	473	12826	gene	ORF1a	ORF1a	canonical
+query_100	PX482653.1	ORF1a	473	12826	product	ORF1a	ORF1a	canonical
+query_100	PX482653.1	S	20814	24974	gene	S	S	canonical
+query_100	PX482653.1	S	20814	24974	product	spike protein	S	canonical
+query_100	PX482653.1	ORF3	24974	25648	gene	ORF3	ORF3	canonical
+query_100	PX482653.1	ORF3	24974	25648	product	ORF3	ORF3	canonical
+query_100	PX482653.1	E	25629	25859	gene	E	E	canonical
+query_100	PX482653.1	E	25629	25859	product	envelope protein	E	canonical
+query_100	PX482653.1	M	25867	26547	gene	M	M	canonical
+query_100	PX482653.1	M	25867	26547	product	membrane protein	M	canonical
+query_100	PX482653.1	N	26559	27884	gene	N	N	canonical
+query_100	PX482653.1	N	26559	27884	product	nucleocapsid protein	N	canonical
+query_100	PX482655.1	ORF1ab	274	20615	gene	ORF1ab	ORF1ab	canonical
+query_100	PX482655.1	ORF1ab	274	20615	product	ORF1ab	ORF1ab	canonical
+query_100	PX482655.1	ORF1a	274	12624	gene	ORF1a	ORF1a	canonical
+query_100	PX482655.1	ORF1a	274	12624	product	ORF1a	ORF1a	canonical
+query_100	PX482655.1	S	20612	24772	gene	S	S	canonical
+query_100	PX482655.1	S	20612	24772	product	spike protein	S	canonical
+query_100	PX482655.1	ORF3	24772	25446	gene	ORF3	ORF3	canonical
+query_100	PX482655.1	ORF3	24772	25446	product	ORF3	ORF3	canonical
+query_100	PX482655.1	E	25427	25657	gene	E	E	canonical
+query_100	PX482655.1	E	25427	25657	product	envelope protein	E	canonical
+query_100	PX482655.1	M	25665	26345	gene	M	M	canonical
+query_100	PX482655.1	M	25665	26345	product	membrane protein	M	canonical
+query_100	PX482655.1	N	26357	27682	gene	N	N	canonical
+query_100	PX482655.1	N	26357	27682	product	nucleocapsid protein	N	canonical
+query_100	PZ188955.1	ORF1ab	312	20656	gene	ORF1ab	ORF1ab	canonical
+query_100	PZ188955.1	ORF1ab	312	20656	product	Pol1	ORF1ab	canonical
+query_100	PZ188955.1	S	20653	24813	gene	S	S	canonical
+query_100	PZ188955.1	S	20653	24813	product	spike protein	S	canonical
+query_100	PZ188955.1	ORF3	24813	25487	gene	ORF3	ORF3	canonical
+query_100	PZ188955.1	ORF3	24813	25487	product	ORF3 protein	ORF3	canonical
+query_100	PZ188955.1	E	25468	25698	gene	E	E	canonical
+query_100	PZ188955.1	E	25468	25698	product	envelope protein	E	canonical
+query_100	PZ188955.1	M	25706	26386	gene	M	M	canonical
+query_100	PZ188955.1	M	25706	26386	product	membrane protein	M	canonical
+query_100	PZ188955.1	N	26398	27723	gene	N	N	canonical
+query_100	PZ188955.1	N	26398	27723	product	nucleocapsid protein	N	canonical
+query_100	PZ105934.1	ORF1a	293	12646	gene	ORF1a	ORF1a	canonical
+query_100	PZ105934.1	ORF1a	293	12646	product	polyprotein 1a	ORF1a	canonical
+query_100	PZ105934.1	ORF1b	12811	20637	gene	ORF1b	ORF1b	canonical
+query_100	PZ105934.1	ORF1b	12811	20637	product	polyprotein 1b	ORF1b	canonical
+query_100	PZ105934.1	S	20634	24794	gene	S	S	canonical
+query_100	PZ105934.1	S	20634	24794	product	spike protein	S	canonical
+query_100	PZ105934.1	ORF3	24794	25468	gene	ORF3	ORF3	canonical
+query_100	PZ105934.1	ORF3	24794	25468	product	accessory protein 3a	ORF3	canonical
+query_100	PZ105934.1	E	25449	25679	gene	E	E	canonical
+query_100	PZ105934.1	E	25449	25679	product	envelope protein	E	canonical
+query_100	PZ105934.1	M	25687	26367	gene	M	M	canonical
+query_100	PZ105934.1	M	25687	26367	product	membrane protein	M	canonical
+query_100	PZ105934.1	N	26379	27704	gene	N	N	canonical
+query_100	PZ105934.1	N	26379	27704	product	nucleocapsid protein	N	canonical
+query_100	AF353511.1	Pol1	297	20641	product	Pol1	ORF1ab	canonical
+query_100	AF353511.1	spike protein	20638	24789	product	spike protein	S	canonical
+query_100	AF353511.1	unknown	24789	25463	product	unknown	ignored	ignored
+query_100	AF353511.1	unknown	24789	25463	note	ORF3; showed unexpected variability in cell culture-adapted virus	ORF3	canonical
+query_100	AF353511.1	envelope protein	25444	25674	product	envelope protein	E	canonical
+query_100	AF353511.1	membrane protein	25682	26362	product	membrane protein	M	canonical
+query_100	AF353511.1	nucleocapsid protein	26374	27699	product	nucleocapsid protein	N	canonical
+query_100	JX112709.1	ORF1ab	293	20637	gene	ORF1ab	ORF1ab	canonical
+query_100	JX112709.1	ORF1ab	293	20637	product	polyprotein	ignored	ignored
+query_100	JX112709.1	ORF1ab	293	20637	note	1a polyprotein and 1b polyprotein	unresolved	unresolved
+query_100	JX112709.1	S	20634	24791	gene	S	S	canonical
+query_100	JX112709.1	S	20634	24791	product	spike protein	S	canonical
+query_100	JX112709.1	ORF3	24791	25465	gene	ORF3	ORF3	canonical
+query_100	JX112709.1	ORF3	24791	25465	product	hypothetical protein	ignored	ignored
+query_100	JX112709.1	ORF3	24791	25465	note	ORF3 protein	ORF3	canonical
+query_100	JX112709.1	E	25446	25676	gene	E	E	canonical
+query_100	JX112709.1	E	25446	25676	product	E protein	E	canonical
+query_100	JX112709.1	M	25684	26364	gene	M	M	canonical
+query_100	JX112709.1	M	25684	26364	product	M protein	M	canonical
+query_100	JX112709.1	N	26376	27701	gene	N	N	canonical
+query_100	JX112709.1	N	26376	27701	product	N protein	N	canonical
+query_100	JX489155.1	Pol1	293	20637	gene	Pol1	ORF1ab	canonical
+query_100	JX489155.1	Pol1	293	20637	product	polyprotein 1ab	ORF1ab	canonical
+query_100	JX489155.1	Pol1	293	20637	note	ORF1ab	ORF1ab	canonical
+query_100	JX489155.1	S	20634	24791	gene	S	S	canonical
+query_100	JX489155.1	S	20634	24791	product	spike protein	S	canonical
+query_100	JX489155.1	ORF3	24791	25465	gene	ORF3	ORF3	canonical
+query_100	JX489155.1	ORF3	24791	25465	product	hypothetical protein	ignored	ignored
+query_100	JX489155.1	E	25446	25676	gene	E	E	canonical
+query_100	JX489155.1	E	25446	25676	product	envelope protein	E	canonical
+query_100	JX489155.1	M	25684	26364	gene	M	M	canonical
+query_100	JX489155.1	M	25684	26364	product	membrane protein	M	canonical
+query_100	JX489155.1	N	26376	27701	gene	N	N	canonical
+query_100	JX489155.1	N	26376	27701	product	nucleocapsid protein	N	canonical
+query_100	KC210147.1	polyprotein	292	20636	product	polyprotein	ignored	ignored
+query_100	KC210147.1	polyprotein	292	20636	note	1a polyprotein and 1b polyprotein; ORF1ab	ORF1ab	canonical
+query_100	KC210147.1	spike protein	20633	24793	product	spike protein	S	canonical
+query_100	KC210147.1	hypothetical protein	24793	25467	product	hypothetical protein	ignored	ignored
+query_100	KC210147.1	hypothetical protein	24793	25467	note	ORF3	ORF3	canonical
+query_100	KC210147.1	envelope protein	25448	25678	product	envelope protein	E	canonical
+query_100	KC210147.1	membrane protein	25686	26366	product	membrane protein	M	canonical
+query_100	KC210147.1	nucleocapsid protein	26378	27703	product	nucleocapsid protein	N	canonical
+query_100	KM609208.1	ORF1	293	20637	gene	ORF1	ORF1ab	canonical
+query_100	KM609208.1	ORF1	293	20637	product	ORF1a/b	ORF1ab	canonical
+query_100	KM609208.1	S	20634	24794	gene	S	S	canonical
+query_100	KM609208.1	S	20634	24794	product	spike protein	S	canonical
+query_100	KM609208.1	ORF3	24794	25468	gene	ORF3	ORF3	canonical
+query_100	KM609208.1	ORF3	24794	25468	product	hypothetical protein	ignored	ignored
+query_100	KM609208.1	E	25449	25679	gene	E	E	canonical
+query_100	KM609208.1	E	25449	25679	product	envelope protein	E	canonical
+query_100	KM609208.1	M	25687	26367	gene	M	M	canonical
+query_100	KM609208.1	M	25687	26367	product	membrane protein	M	canonical
+query_100	KM609208.1	N	26379	27704	gene	N	N	canonical
+query_100	KM609208.1	N	26379	27704	product	nucleocapsid protein	N	canonical
+query_100	KM609213.1	ORF1	293	20637	gene	ORF1	ORF1ab	canonical
+query_100	KM609213.1	ORF1	293	20637	product	ORF1a/b	ORF1ab	canonical
+query_100	KM609213.1	S	20634	24794	gene	S	S	canonical
+query_100	KM609213.1	S	20634	24794	product	spike protein	S	canonical
+query_100	KM609213.1	ORF3	24794	25468	gene	ORF3	ORF3	canonical
+query_100	KM609213.1	ORF3	24794	25468	product	hypothetical protein	ignored	ignored
+query_100	KM609213.1	E	25449	25679	gene	E	E	canonical
+query_100	KM609213.1	E	25449	25679	product	envelope protein	E	canonical
+query_100	KM609213.1	M	25687	26367	gene	M	M	canonical
+query_100	KM609213.1	M	25687	26367	product	membrane protein	M	canonical
+query_100	KM609213.1	N	26379	27704	gene	N	N	canonical
+query_100	KM609213.1	N	26379	27704	product	nucleocapsid protein	N	canonical
+query_100	LT898413.1	ORF1	293	20637	gene	ORF1	ORF1ab	canonical
+query_100	LT898413.1	ORF1	293	20637	product	replicase polyprotein	ignored	ignored
+query_100	LT898413.1	S	20634	24785	gene	S	S	canonical
+query_100	LT898413.1	S	20634	24785	product	spike protein	S	canonical
+query_100	LT898413.1	mp	24785	25459	gene	mp	ambiguous	ambiguous
+query_100	LT898413.1	mp	24785	25459	product	accessory membrane protein	ORF3	canonical
+query_100	LT898413.1	E	25440	25670	gene	E	E	canonical
+query_100	LT898413.1	E	25440	25670	product	envelope protein	E	canonical
+query_100	LT898413.1	M	25678	26358	gene	M	M	canonical
+query_100	LT898413.1	M	25678	26358	product	membrane protein	M	canonical
+query_100	LT898413.1	N	26370	27695	gene	N	N	canonical
+query_100	LT898413.1	N	26370	27695	product	nucleocapsid protein	N	canonical
+query_100	MF737355.1	ORF1a/1b	293	20637	gene	ORF1a/1b	ORF1ab	canonical
+query_100	MF737355.1	ORF1a/1b	293	20637	product	polyprotein	ignored	ignored
+query_100	MF737355.1	S	20634	24794	gene	S	S	canonical
+query_100	MF737355.1	S	20634	24794	product	spike protein	S	canonical
+query_100	MF737355.1	ORF3	24794	25468	gene	ORF3	ORF3	canonical
+query_100	MF737355.1	ORF3	24794	25468	product	hypothetical protein	ignored	ignored
+query_100	MF737355.1	E	25449	25679	gene	E	E	canonical
+query_100	MF737355.1	E	25449	25679	product	envelope protein	E	canonical
+query_100	MF737355.1	M	25687	26367	gene	M	M	canonical
+query_100	MF737355.1	M	25687	26367	product	membrane protein	M	canonical
+query_100	MF737355.1	N	26379	27704	gene	N	N	canonical
+query_100	MF737355.1	N	26379	27704	product	nucleocapsid protein	N	canonical
+query_100	OL762457.1	polyprotein	293	12643	product	polyprotein	ignored	ignored
+query_100	OL762457.1	polyprotein	293	12643	note	ORF1a	ORF1a	canonical
+query_100	OL762457.1	ORF1b	12808	20634	product	ORF1b	ORF1b	canonical
+query_100	OL762457.1	spike protein	20631	24791	product	spike protein	S	canonical
+query_100	OL762457.1	accessory protein 3a	24791	25465	product	accessory protein 3a	ORF3	canonical
+query_100	OL762457.1	E protein	25446	25676	product	E protein	E	canonical
+query_100	OL762457.1	M protein	25684	26364	product	M protein	M	canonical
+query_100	OL762457.1	nucleocapsid protein	26376	27701	product	nucleocapsid protein	N	canonical
+query_100	OR234022.1	ORF1ab polyprotein	293	20637	product	ORF1ab polyprotein	ORF1ab	canonical
+query_100	OR234022.1	spike protein	20634	24791	product	spike protein	S	canonical
+query_100	OR234022.1	ORF3 protein	24791	25465	product	ORF3 protein	ORF3	canonical
+query_100	OR234022.1	E protein	25446	25676	product	E protein	E	canonical
+query_100	OR234022.1	M protein	25684	26379	product	M protein	M	canonical
+query_100	OR234022.1	N protein	26391	27716	product	N protein	N	canonical
+query_100	PP107944.1	ORF1a/b	299	20640	product	ORF1a/b	ORF1ab	canonical
+query_100	PP107944.1	ORF1a	299	12649	product	ORF1a	ORF1a	canonical
+query_100	PP107944.1	ORF3	24806	25480	product	ORF3	ORF3	canonical
+query_100	PP107944.1	envelope protein	25461	25691	product	envelope protein	E	canonical
+query_100	PP107944.1	membrane protein	25699	26379	product	membrane protein	M	canonical
+query_100	PP107944.1	nucleocapsid protein	26391	27716	product	nucleocapsid protein	N	canonical

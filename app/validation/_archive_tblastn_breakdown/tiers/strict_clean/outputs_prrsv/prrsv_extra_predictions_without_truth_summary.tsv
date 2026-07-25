@@ -1,0 +1,7 @@
+pred_name	best_overlap_name	failure_mode	cases	pred_minus_ref_pattern	mean_best_iou
+ORF2b	ORF2a	Possible overlap	47	-4:1, 0:46	0.288
+ORF1a	ORF1ab	Alias/name gap	23	-468:1, -432:1, -429:1, -399:1, -396:1, -393:9, -6:3, 0:6	1.0
+ORF1b	ORF1ab	Possible overlap	12	0:11, 14:1	0.3745
+ORF1a	ORF1ab	Possible overlap	10	-393:4, 0:6	0.6272
+ORF6	ORF5	Possible overlap	1	0:1	0.0144
+ORF7		Not in truth	1	0:1	0.0

@@ -1,0 +1,7 @@
+final_blame	final_cause	cases	genes	main_failure_mode	main_status	delta_start_pattern	delta_end_pattern	pred_minus_ref_pattern	truth_minus_ref_pattern	mean_iou	mean_best_iou	percent_of_non_exact
+ref_truth	orf2b_truth_absent_overlaps_orf2a	95	ORF2b	Possible overlap	ok			-4:4, 0:91		0.0	0.2881	36.26
+ref_truth	orf1b_frameshift_start_boundary_convention	83	ORF1b	Boundary offset	invalid_boundaries	-75:1, -12:39, -9:2, -3:28, 6:12, 15:1	0:83	-27:1, -3:1, 0:80, 3:1	-75:1, -15:1, -12:38, -9:3, -3:28, 6:12	0.998	0.998	31.68
+ref_truth	orf1a_orf1b_vs_orf1ab_granularity_mismatch	45	ORF1a, ORF1b	Possible overlap	ok			-468:1, -432:1, -429:1, -399:1, -396:1, -393:13, -6:3, 0:23, 14:1		0.0	0.7337	17.18
+ref_truth	truth_feature_absent	2	ORF6, ORF7	Possible overlap	ok			0:2		0.0	0.0072	0.76
+tool	orf7_n_terminal_boundary_offset	28	ORF7	Wrong coords	ok_rescued	43:25, 48:3	0:28	-43:25, -33:3	0:25, 15:3	0.8835	0.8835	10.69
+tool	minor_boundary_offset_matches_neither_ref_nor_truth	9	ORF1a, ORF4, ORF5, ORF6	Boundary offset	ok_rescued	0:1, 5:4, 13:3, 45:1	0:8, 13:1	-30:1, -16:3, -2:4, 108:1	-3:3, 3:4, 15:1, 95:1	0.9788	0.9788	3.44

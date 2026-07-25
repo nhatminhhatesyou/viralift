@@ -1,0 +1,4 @@
+virus	method	status	count
+FMD	direct	ok	1178
+PRRS	direct	ok	788
+PRRS	direct	not_in_reference	45

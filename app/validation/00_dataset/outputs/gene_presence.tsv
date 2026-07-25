@@ -1,0 +1,54 @@
+virus	gene	records_with_truth
+FMDV	polyprotein	100
+PEDV	E	68
+PEDV	E protein	4
+PEDV	HNZK1	1
+PEDV	M	69
+PEDV	M protein	4
+PEDV	N	69
+PEDV	N protein	3
+PEDV	ORF 1a/1b	1
+PEDV	ORF1	4
+PEDV	ORF1A	1
+PEDV	ORF1B	1
+PEDV	ORF1a	10
+PEDV	ORF1a polyprotein	2
+PEDV	ORF1a protein	1
+PEDV	ORF1a/1b	4
+PEDV	ORF1a/1b polyprotein	1
+PEDV	ORF1a/b	2
+PEDV	ORF1ab	52
+PEDV	ORF1ab polyprotein	4
+PEDV	ORF1ab protein	1
+PEDV	ORF1b	6
+PEDV	ORF1b polyprotein	1
+PEDV	ORF3	69
+PEDV	ORF3 protein	6
+PEDV	POL1	1
+PEDV	Pol1	5
+PEDV	S	70
+PEDV	S protein	1
+PEDV	accessory protein 3a	1
+PEDV	envelope protein	23
+PEDV	hypothetical protein	16
+PEDV	membrane protein	23
+PEDV	mp	2
+PEDV	nucleocapsid protein	24
+PEDV	polyprotein	13
+PEDV	polyprotein 1a	1
+PEDV	polyprotein 1ab	2
+PEDV	sM	1
+PEDV	spike protein	25
+PEDV	unknown	2
+PRRSV	ORF1a	62
+PRRSV	ORF1ab	33
+PRRSV	ORF1b	88
+PRRSV	ORF2	60
+PRRSV	ORF2a	40
+PRRSV	ORF2b	49
+PRRSV	ORF3	100
+PRRSV	ORF4	100
+PRRSV	ORF5	99
+PRRSV	ORF6	99
+PRRSV	ORF7	99
+PRRSV	non-structural protein	4

@@ -1,0 +1,8 @@
+pred_name	non_exact_cases	truth_absent_cases	main_failure_mode	main_status	main_best_overlap	delta_start_pattern	delta_end_pattern	pred_minus_ref_pattern	truth_minus_ref_pattern	mean_iou	mean_best_iou
+ORF1b	95	12	Boundary offset	invalid_boundaries	ORF1b	-75:1, -12:39, -9:2, -3:28, 6:12, 15:1	0:83	-27:1, -3:1, 0:91, 3:1, 14:1	-75:1, -15:1, -12:38, -9:3, -3:28, 6:12	0.8719	0.9192
+ORF2b	50	47	Possible overlap	ok	ORF2a	-5:3	0:3	-4:4, 0:46	-9:3	0.0586	0.3294
+ORF1a	34	33	Alias/name gap	ok	ORF1ab	0:1	13:1	-468:1, -432:1, -429:1, -399:1, -396:1, -393:13, -6:3, 0:12, 108:1	95:1	0.0294	0.8903
+ORF7	29	1	Wrong coords	ok_rescued	ORF7	43:25, 48:3	0:28	-43:25, -33:3, 0:1	0:25, 15:3	0.853	0.853
+ORF5	4	0	Boundary offset	ok_rescued	ORF5	5:4	0:4	-2:4	3:4	0.9917	0.9917
+ORF6	4	1	Boundary offset	ok_rescued	ORF6	13:3	0:3	-16:3, 0:1	-3:3	0.7313	0.7349
+ORF4	1	0	Boundary offset	ok_rescued	ORF4	45:1	0:1	-30:1	15:1	0.9185	0.9185

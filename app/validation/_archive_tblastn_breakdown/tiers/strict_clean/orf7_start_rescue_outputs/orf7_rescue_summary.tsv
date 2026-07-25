@@ -1,0 +1,4 @@
+pred_name	status	failure_mode	total	exact	coord_correct	mean_iou	exact_pct	coord_pct
+ORF7	ok	Correct	65	65	65	1.0	100.0	100.0
+ORF7	ok_rescued	Correct	26	26	26	1.0	100.0	100.0
+ORF7	ok_rescued	Wrong coords	3	0	0	0.876	0.0	0.0

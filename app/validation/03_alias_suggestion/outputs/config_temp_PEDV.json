@@ -1,0 +1,56 @@
+{
+  "virus": "PEDV",
+  "notes": "Bootstrapped from reference feature names. Review aliases before production use.",
+  "excluded_names": [
+    "accessory membrane protein",
+    "gene",
+    "HNZK1",
+    "hypothetical protein",
+    "open reading frame",
+    "orf",
+    "polyprotein",
+    "protein",
+    "putative protein",
+    "replicase polyprotein",
+    "small membrane protein",
+    "unknown",
+    "unknown protein",
+    "viral protein"
+  ],
+  "canonical_names": {
+    "ORF1a": [
+      "ORF1ab",
+      "polyprotein 1a",
+      "ORF1A",
+      "ORF1a polyprotein",
+      "ORF1a protein"
+    ],
+    "ORF1b": [
+      "polyprotein 1b",
+      "ORF1B",
+      "ORF1b polyprotein"
+    ],
+    "S": [
+      "spike glycoprotein",
+      "spike protein",
+      "S protein"
+    ],
+    "ORF3": [
+      "ORF3 protein",
+      "ORF3; showed unexpected variability in cell culture-adapted virus",
+      "accessory protein 3a"
+    ],
+    "E": [
+      "envelope protein",
+      "E protein"
+    ],
+    "M": [
+      "membrane protein",
+      "M protein"
+    ],
+    "N": [
+      "nucleocapsid protein",
+      "N protein"
+    ]
+  }
+}

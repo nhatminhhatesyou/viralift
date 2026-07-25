@@ -1,0 +1,1373 @@
+ref	ref_record	record_id	method	ref_name	pred_name	source_name	pred_start	pred_end	strand	status	coverage	identity	score	truth_name	truth_start	truth_end	best_overlap_name	best_iou	iou	name_match	coord_correct	exact_match	failure_mode
+ref_1	PZ105934.1	EF185992.1	tblastn	ORF1a	ORF1a		297	12650	+	ok_rescued	1.0	96.9	8240.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	EF185992.1	tblastn	ORF1b	ORF1b		12815	20641	+	ok_rescued	1.0	99.1	5397.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	EF185992.1	tblastn	S	S		20638	24789	+	ok_rescued	1.0	91.8	2522.3	S	20638.0	24789.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	EF185992.1	tblastn	ORF3	ORF3		24789	25463	+	ok_rescued	1.0	94.6	429.9	ORF3	24789.0	25463.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	EF185992.1	tblastn	E	E		25444	25674	+	ok_rescued	1.0	94.7	119.4				ORF3	0.0226	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	EF185992.1	tblastn	M	M		25682	26362	+	ok_rescued	1.0	96.5	440.3	M	25682.0	26362.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	EF185992.1	tblastn	N	N		26374	27699	+	ok_rescued	1.0	96.1	864.0	N	26374.0	27699.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM189367.2	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.8	8395.8					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KM189367.2	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.7	5425.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KM189367.2	tblastn	S	S		20634	24794	+	ok_rescued	1.0	98.3	2808.5	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM189367.2	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM189367.2	tblastn	E	E		25449	25679	+	ok_rescued	1.0	98.7	151.8	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM189367.2	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM189367.2	tblastn	N	N		26379	27704	+	ok_rescued	1.0	99.3	893.3	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KP765609.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.6	8371.9					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KP765609.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.6	5420.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KP765609.1	tblastn	S	S		20634	24800	+	ok_rescued	1.0	96.7	2754.2	S	20634.0	24770.0	S	0.9928	0.9928	True	True	False	Boundary offset
+ref_1	PZ105934.1	KP765609.1	tblastn	ORF3	ORF3		24800	25474	+	ok_rescued	1.0	96.4	435.3	ORF3	24800.0	25474.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KP765609.1	tblastn	E	E		25455	25685	+	ok_rescued	1.0	97.4	148.7	E	25455.0	25685.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KP765609.1	tblastn	M	M		25693	26373	+	ok_rescued	1.0	98.2	453.0	M	25693.0	26373.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KP765609.1	tblastn	N	N		26385	27710	+	ok_rescued	1.0	97.1	875.5	N	26385.0	27710.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KU252649.1	tblastn	ORF1a	ORF1a		314	12667	+	ok_rescued	1.0	98.8	8393.1					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KU252649.1	tblastn	ORF1b	ORF1b		12832	20658	+	ok_rescued	1.0	99.8	5429.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KU252649.1	tblastn	S	S		20655	24815	+	ok_rescued	1.0	98.8	2819.7	S	20655.0	24815.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KU252649.1	tblastn	ORF3	ORF3		24815	25489	+	ok_rescued	1.0	100.0	453.0	ORF3	24815.0	25489.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KU252649.1	tblastn	E	E		25470	25700	+	ok_rescued	1.0	98.7	151.8	E	25470.0	25700.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KU252649.1	tblastn	M	M		25708	26388	+	ok_rescued	1.0	99.6	457.2	M	25708.0	26388.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KU252649.1	tblastn	N	N		26400	27725	+	ok_rescued	1.0	99.8	897.1	N	26400.0	27725.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX981440.1	tblastn	ORF1a	ORF1a		284	12637	+	ok_rescued	1.0	98.6	8374.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KX981440.1	tblastn	ORF1b	ORF1b		12802	20628	+	ok_rescued	1.0	99.9	5435.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KX981440.1	tblastn	S	S		20625	24779	+	ok_rescued	1.0	97.3	2782.7	S	20625.0	24779.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX981440.1	tblastn	ORF3	ORF3		24779	25453	+	ok_rescued	1.0	100.0	453.0	ORF3	24779.0	25453.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX981440.1	tblastn	E	E		25434	25664	+	ok_rescued	1.0	98.7	151.8	E	25434.0	25664.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX981440.1	tblastn	M	M		25672	26352	+	ok_rescued	1.0	99.6	457.2	M	25672.0	26352.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX981440.1	tblastn	N	N		26364	27689	+	ok_rescued	1.0	100.0	899.0	N	26364.0	27689.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX550281.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.0	8406.2				ORF1b	0.6072	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KX550281.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.8	5427.1	ORF1b	293.0	20637.0	ORF1b	0.3847	0.3847	True	False	False	Wrong coords
+ref_1	PZ105934.1	KX550281.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	98.1	2808.9	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX550281.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX550281.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	98.7	151.8	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX550281.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX550281.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	99.8	896.3	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY928065.1	tblastn	ORF1a	ORF1a		293	12655	+	ok_rescued	0.9966	98.1	8309.1					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KY928065.1	tblastn	ORF1b	ORF1b		12810	20636	+	ok_rescued	1.0	99.8	5429.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KY928065.1	tblastn	S	S		20633	24790	+	ok_rescued	1.0	97.6	2783.4	S	20633.0	24790.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY928065.1	tblastn	ORF3	ORF3		24790	25464	+	ok_rescued	1.0	96.4	438.0	ORF3	24790.0	25464.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY928065.1	tblastn	E	E		25445	25675	+	ok_rescued	1.0	98.7	151.8	E	25445.0	25675.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY928065.1	tblastn	M	M		25683	26363	+	ok_rescued	1.0	98.2	453.0	M	25683.0	26363.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY928065.1	tblastn	N	N		26375	27700	+	ok_rescued	1.0	98.0	881.7	N	26375.0	27700.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY963963.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.5	8370.0					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KY963963.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.5	5414.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KY963963.1	tblastn	S	S		20634	24809	+	ok_rescued	1.0	97.4	2787.7	S	20634.0	24809.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY963963.1	tblastn	ORF3	ORF3		24809	25483	+	ok_rescued	1.0	99.6	450.7	ORF3	24809.0	25483.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY963963.1	tblastn	E	E		25464	25694	+	ok_rescued	1.0	98.7	151.8	E	25464.0	25694.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY963963.1	tblastn	M	M		25702	26382	+	ok_rescued	1.0	99.6	457.2	M	25702.0	26382.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY963963.1	tblastn	N	N		26394	27719	+	ok_rescued	1.0	98.4	886.3	N	26394.0	27719.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF577027.1	tblastn	ORF1a	ORF1a		292	12645	+	ok_rescued	1.0	97.2	8263.3	ORF1a	292.0	12645.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF577027.1	tblastn	ORF1b	ORF1b		12810	20636	+	ok_rescued	1.0	98.6	5382.0	ORF1b	12675.0	20636.0	ORF1b	0.983	0.983	True	True	False	Boundary offset
+ref_1	PZ105934.1	MF577027.1	tblastn	S	S		20597	24751	+	ok_rescued	0.982	59.4	1574.7	S	20633.0	24751.0	S	0.9913	0.9913	True	True	False	Boundary offset
+ref_1	PZ105934.1	MF577027.1	tblastn	ORF3	ORF3		24751	25425	+	ok_rescued	1.0	98.7	448.7	ORF3	24751.0	25425.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF577027.1	tblastn	E	E		25406	25636	+	ok_rescued	1.0	94.7	148.3	E	25406.0	25636.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF577027.1	tblastn	M	M		25644	26324	+	ok_rescued	1.0	97.3	449.1	M	25644.0	26324.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF577027.1	tblastn	N	N		26336	27655	+	ok_rescued	1.0	94.1	837.4	N	26336.0	27640.0	N	0.9886	0.9886	True	True	False	Boundary offset
+ref_1	PZ105934.1	MF462814.1	tblastn	ORF1a	ORF1a		301	12645	+	ok_rescued	1.0	99.0	8395.4					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	MF462814.1	tblastn	ORF1b	ORF1b		12810	20636	+	ok_rescued	1.0	99.8	5429.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	MF462814.1	tblastn	S	S		20633	24793	+	ok_rescued	1.0	98.0	2795.4	S	20633.0	24793.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF462814.1	tblastn	ORF3	ORF3		24793	25469	+	invalid_boundaries	0.9777	99.1	335.1	ORF3	24793.0	25425.0	ORF3	0.935	0.935	True	True	False	Boundary offset
+ref_1	PZ105934.1	MF462814.1	tblastn	E	E		25432	25662	+	ok_rescued	1.0	97.4	150.2	E	25432.0	25662.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF462814.1	tblastn	M	M		25670	26350	+	ok_rescued	1.0	99.1	455.3	M	25670.0	26350.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF462814.1	tblastn	N	N		26362	27687	+	ok_rescued	1.0	99.1	891.3	N	26362.0	27687.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY007139.1	tblastn	ORF1a	ORF1a		293	12625	+	ok_rescued	1.0	98.3	8348.8					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KY007139.1	tblastn	ORF1b	ORF1b		12790	20616	+	ok_rescued	1.0	99.4	5414.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KY007139.1	tblastn	S	S		20613	24773	+	ok_rescued	1.0	98.1	2799.2	S	20613.0	24773.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY007139.1	tblastn	ORF3	ORF3		24773	25447	+	ok_rescued	1.0	100.0	453.0	ORF3	24773.0	25447.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY007139.1	tblastn	E	E		25428	25658	+	ok_rescued	1.0	97.4	148.7	E	25428.0	25658.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY007139.1	tblastn	M	M		25666	26346	+	ok_rescued	1.0	99.1	454.9	M	25666.0	26346.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY007139.1	tblastn	N	N		26358	27683	+	ok_rescued	1.0	98.6	888.3	N	26358.0	27683.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF375374.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.2	8427.0					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	MF375374.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.6	5423.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	MF375374.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	98.1	2801.2	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF375374.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF375374.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	98.7	151.8	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF375374.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF375374.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	99.8	896.7	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MH052683.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.7	8382.7					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	MH052683.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.7	5423.6				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	MH052683.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	98.1	2804.6	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MH052683.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MH052683.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	98.7	151.8	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MH052683.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MH052683.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	98.9	890.2	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MG546687.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.9	8395.0					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	MG546687.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.5	5418.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	MG546687.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	97.9	2796.5	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MG546687.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MG546687.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	98.7	151.8	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MG546687.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.1	454.9	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MG546687.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	98.9	891.0	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MK644603.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.2	8346.1					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	MK644603.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.4	5418.6				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	MK644603.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	96.8	2756.9	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MK644603.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	96.9	438.0	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MK644603.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	98.7	151.8	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MK644603.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	98.2	453.0	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MK644603.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	98.4	889.0	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MK071637.1	tblastn	ORF1a	ORF1a		280	12633	+	ok_rescued	1.0	98.9	8396.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	MK071637.1	tblastn	ORF1b	ORF1b		12798	20624	+	ok_rescued	1.0	99.8	5427.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	MK071637.1	tblastn	S	S		20621	24772	+	ok_rescued	1.0	94.9	2619.3	S	20621.0	24772.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MK071637.1	tblastn	ORF3	ORF3		24772	25446	+	ok_rescued	1.0	100.0	453.0	ORF3	24772.0	25446.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MK071637.1	tblastn	E	E		25427	25657	+	ok_rescued	1.0	98.7	151.8	E	25427.0	25657.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MK071637.1	tblastn	M	M		25665	26345	+	ok_rescued	1.0	99.6	457.2	M	25665.0	26345.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MK071637.1	tblastn	N	N		26357	27682	+	ok_rescued	1.0	98.9	889.8	N	26357.0	27682.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MN759311.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.3	8353.8					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	MN759311.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.5	5415.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	MN759311.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	97.3	2771.9	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MN759311.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	96.4	435.3	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MN759311.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	97.4	148.7	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MN759311.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	98.2	453.0	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MN759311.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	97.3	878.6	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LR812926.1	tblastn	ORF1a	ORF1a		295	12648	+	ok_rescued	1.0	98.8	8394.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	LR812926.1	tblastn	ORF1b	ORF1b		12813	20639	+	ok_rescued	1.0	99.4	5408.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	LR812926.1	tblastn	S	S		20636	24787	+	ok_rescued	1.0	94.3	2608.2	S	20636.0	24787.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LR812926.1	tblastn	ORF3	ORF3		24787	25461	+	ok_rescued	1.0	99.1	451.4				E	0.0226	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	LR812926.1	tblastn	E	E		25442	25672	+	ok_rescued	1.0	98.7	151.8	E	25442.0	25672.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LR812926.1	tblastn	M	M		25680	26360	+	ok_rescued	1.0	99.6	457.2	M	25680.0	26360.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LR812926.1	tblastn	N	N		26372	27697	+	ok_rescued	1.0	99.1	887.1	N	26372.0	27697.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LR812930.1	tblastn	ORF1a	ORF1a		405	12758	+	ok_rescued	1.0	98.8	8394.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	LR812930.1	tblastn	ORF1b	ORF1b		12923	20749	+	ok_rescued	1.0	99.4	5408.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	LR812930.1	tblastn	S	S		20746	24897	+	ok_rescued	1.0	94.3	2608.2	S	20746.0	24897.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LR812930.1	tblastn	ORF3	ORF3		24897	25571	+	ok_rescued	1.0	99.1	451.4				E	0.0226	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	LR812930.1	tblastn	E	E		25552	25782	+	ok_rescued	1.0	98.7	151.8	E	25552.0	25782.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LR812930.1	tblastn	M	M		25790	26470	+	ok_rescued	1.0	99.6	457.2	M	25790.0	26470.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LR812930.1	tblastn	N	N		26482	27807	+	ok_rescued	1.0	99.1	887.1	N	26482.0	27807.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LR812932.1	tblastn	ORF1a	ORF1a		296	12649	+	ok_rescued	1.0	98.8	8394.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	LR812932.1	tblastn	ORF1b	ORF1b		12814	20640	+	ok_rescued	1.0	99.4	5408.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	LR812932.1	tblastn	S	S		20637	24788	+	ok_rescued	1.0	94.3	2608.2	S	20637.0	24788.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LR812932.1	tblastn	ORF3	ORF3		24788	25462	+	ok_rescued	1.0	99.1	451.4				E	0.0226	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	LR812932.1	tblastn	E	E		25443	25673	+	ok_rescued	1.0	98.7	151.8	E	25443.0	25673.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LR812932.1	tblastn	M	M		25681	26361	+	ok_rescued	1.0	99.6	457.2	M	25681.0	26361.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LR812932.1	tblastn	N	N		26373	27698	+	ok_rescued	1.0	99.1	887.1	N	26373.0	27698.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MT263014.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.8	8392.3					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	MT263014.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.5	5414.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	MT263014.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	97.9	2798.1	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MT263014.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	99.1	446.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MT263014.1	tblastn	E	E		25449	25685	+	ok_rescued	1.0	96.2	146.7	E	25449.0	25685.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MT263014.1	tblastn	M	M		25693	26373	+	ok_rescued	1.0	99.6	457.2	M	25693.0	26373.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MT263014.1	tblastn	N	N		26385	27710	+	ok_rescued	1.0	99.5	894.0	N	26385.0	27710.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MT646162.1	tblastn	ORF1a	ORF1a		301	12654	+	ok_rescued	1.0	99.1	8417.4					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	MT646162.1	tblastn	ORF1b	ORF1b		12819	20645	+	ok_rescued	1.0	99.8	5429.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	MT646162.1	tblastn	S	S		20642	24802	+	ok_rescued	1.0	98.2	2808.1	S	20642.0	24802.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MT646162.1	tblastn	ORF3	ORF3		24802	25476	+	ok_rescued	1.0	100.0	453.0	ORF3	24802.0	25476.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MT646162.1	tblastn	E	E		25457	25687	+	ok_rescued	1.0	98.7	151.8	E	25457.0	25687.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MT646162.1	tblastn	M	M		25695	26375	+	ok_rescued	1.0	99.6	457.2	M	25695.0	26375.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MT646162.1	tblastn	N	N		26387	27712	+	ok_rescued	1.0	99.3	893.3	N	26387.0	27712.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MW143085.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.0	8396.2					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	MW143085.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.7	5426.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	MW143085.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	97.4	2777.7	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MW143085.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	97.3	439.9	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MW143085.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	98.7	151.8	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MW143085.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	100.0	457.2	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MW143085.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	98.4	885.9	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OM393722.1	tblastn	ORF1a	ORF1a		294	12605	+	invalid_boundaries	0.9966	98.9	8369.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OM393722.1	tblastn	ORF1b	ORF1b		12813	20639	+	ok_rescued	1.0	99.9	5434.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OM393722.1	tblastn	S	S		20636	24793	+	ok_rescued	1.0	97.8	2785.8	S	20636.0	24793.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OM393722.1	tblastn	ORF3	ORF3		24793	25467	+	ok_rescued	1.0	96.9	439.1	ORF3	24793.0	25467.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OM393722.1	tblastn	E	E		25448	25678	+	ok_rescued	1.0	98.7	151.8	E	25448.0	25678.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OM393722.1	tblastn	M	M		25686	26366	+	ok_rescued	1.0	97.8	449.5	M	25686.0	26366.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OM393722.1	tblastn	N	N		26378	27703	+	ok_rescued	1.0	99.1	894.0	N	26378.0	27703.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OL347994.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.2	8341.1	ORF1a	293.0	12646.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OL347994.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.6	5420.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OL347994.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	97.8	2797.7	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OL347994.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	96.9	438.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OL347994.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	97.4	151.0	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OL347994.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	98.2	453.0	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OL347994.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	97.5	881.7	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP326239.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.7	8393.9					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OP326239.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.6	5422.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OP326239.1	tblastn	S	S		20634	24857	+	ok_rescued	1.0	95.5	2749.9	S	20634.0	24857.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP326239.1	tblastn	ORF3	ORF3		24857	25530	+	invalid_boundaries	1.0	94.0	268.9	ORF3	24857.0	25291.0	ORF3	0.6454	0.6454	True	False	False	Wrong coords
+ref_1	PZ105934.1	OP326239.1	tblastn	E	E		25511	25741	+	ok_rescued	1.0	96.1	148.7	E	25511.0	25741.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP326239.1	tblastn	M	M		25749	26429	+	ok_rescued	1.0	99.1	454.9	M	25749.0	26429.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP326239.1	tblastn	N	N		26441	27766	+	ok_rescued	1.0	98.6	886.3	N	26441.0	27766.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OQ589489.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.2	8350.3	ORF1a	293.0	12646.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OQ589489.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.4	5411.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OQ589489.1	tblastn	S	S		20634	24803	+	ok_rescued	1.0	96.8	2758.4	S	20634.0	24803.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OQ589489.1	tblastn	ORF3	ORF3		24803	25477	+	ok_rescued	1.0	96.9	438.0	ORF3	24803.0	25477.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OQ589489.1	tblastn	E	E		25458	25688	+	ok_rescued	1.0	97.4	148.7	E	25458.0	25688.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OQ589489.1	tblastn	M	M		25696	26373	+	ok_rescued	0.9956	96.9	445.7	M	25696.0	26373.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OQ589489.1	tblastn	N	N		26385	27710	+	ok_rescued	1.0	97.3	878.6	N	26385.0	27710.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP784565.1	tblastn	ORF1a	ORF1a		293	12643	+	ok_rescued	1.0	98.8	8387.3	ORF1a	293.0	12643.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP784565.1	tblastn	ORF1b	ORF1b		12808	20634	+	ok_rescued	1.0	99.7	5422.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OP784565.1	tblastn	S	S		20631	24794	+	ok_rescued	1.0	96.8	2762.6	S	20631.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP784565.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	99.1	449.1	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP784565.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	96.1	146.7	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP784565.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.1	455.3	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP784565.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	98.6	885.9	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	ON075821.1	tblastn	ORF1a	ORF1a		293	12643	+	invalid_boundaries	1.0	98.7	8377.7					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	ON075821.1	tblastn	ORF1b	ORF1b		12836	20662	+	ok_rescued	1.0	99.4	5417.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	ON075821.1	tblastn	S	S		20659	24819	+	ok_rescued	1.0	97.7	2793.8	S	20659.0	24819.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	ON075821.1	tblastn	ORF3	ORF3		24819	25493	+	ok_rescued	1.0	99.6	450.3	ORF3	24819.0	25493.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	ON075821.1	tblastn	E	E		25474	25704	+	ok_rescued	1.0	97.4	149.1	E	25474.0	25704.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	ON075821.1	tblastn	M	M		25712	26392	+	ok_rescued	1.0	99.6	457.2	M	25712.0	26392.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	ON075821.1	tblastn	N	N		26404	27729	+	ok_rescued	1.0	99.8	897.1	N	26404.0	27729.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP894120.1	tblastn	ORF1a	ORF1a		306	12659	+	ok_rescued	1.0	98.3	8353.8					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OP894120.1	tblastn	ORF1b	ORF1b		12824	20650	+	ok_rescued	1.0	99.5	5414.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OP894120.1	tblastn	S	S		20647	24804	+	ok_rescued	1.0	97.2	2767.3	S	20647.0	24804.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP894120.1	tblastn	ORF3	ORF3		24804	25478	+	ok_rescued	1.0	96.9	438.0	ORF3	24804.0	25478.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP894120.1	tblastn	E	E		25459	25689	+	ok_rescued	1.0	97.4	148.7	E	25459.0	25689.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP894120.1	tblastn	M	M		25697	26377	+	ok_rescued	1.0	98.2	453.0	M	25697.0	26377.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OP894120.1	tblastn	N	N		26389	27714	+	ok_rescued	1.0	97.3	878.6	N	26389.0	27714.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OQ378935.1	tblastn	ORF1a	ORF1a		346	12696	+	ok_rescued	1.0	99.0	8405.4					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OQ378935.1	tblastn	ORF1b	ORF1b		12861	20687	+	ok_rescued	1.0	99.8	5432.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OQ378935.1	tblastn	S	S		20684	24844	+	ok_rescued	1.0	98.5	2812.7	S	20684.0	24844.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OQ378935.1	tblastn	ORF3	ORF3		24899	25574	+	invalid_boundaries	0.9911	100.0	277.7					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OQ378935.1	tblastn	E	E		25552	25782	+	ok_rescued	1.0	97.4	150.2					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OQ378935.1	tblastn	M	M		25790	26470	+	ok_rescued	1.0	100.0	457.2					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OQ378935.1	tblastn	N	N		26482	27807	+	ok_rescued	1.0	99.8	895.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OQ979200.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.2	8350.7					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OQ979200.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.8	5425.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OQ979200.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	97.3	2775.0	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OQ979200.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	96.9	438.0				E	0.0226	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OQ979200.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	97.4	149.8	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OQ979200.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	97.8	451.1	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OQ979200.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	97.3	879.0	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP668229.1	tblastn	ORF1a	ORF1a		287	12640	+	ok_rescued	1.0	98.8	8391.2					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PP668229.1	tblastn	ORF1b	ORF1b		12805	20631	+	ok_rescued	1.0	99.9	5436.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PP668229.1	tblastn	S	S		20628	24785	+	ok_rescued	1.0	97.9	2788.8	S	20628.0	24785.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP668229.1	tblastn	ORF3	ORF3		24785	25459	+	ok_rescued	1.0	96.9	439.1	ORF3	24785.0	25459.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP668229.1	tblastn	E	E		25440	25670	+	ok_rescued	1.0	97.4	150.6	E	25440.0	25670.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP668229.1	tblastn	M	M		25678	26358	+	ok_rescued	1.0	98.2	453.0	M	25678.0	26358.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP668229.1	tblastn	N	N		26370	27695	+	ok_rescued	1.0	99.1	894.0	N	26370.0	27695.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP668230.1	tblastn	ORF1a	ORF1a		287	12640	+	ok_rescued	1.0	98.8	8388.9					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PP668230.1	tblastn	ORF1b	ORF1b		12805	20631	+	ok_rescued	1.0	99.9	5436.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PP668230.1	tblastn	S	S		20628	24785	+	ok_rescued	1.0	97.8	2786.5	S	20628.0	24785.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP668230.1	tblastn	ORF3	ORF3		24785	25459	+	ok_rescued	1.0	96.9	439.1	ORF3	24785.0	25459.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP668230.1	tblastn	E	E		25440	25670	+	ok_rescued	1.0	97.4	150.6	E	25440.0	25670.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP668230.1	tblastn	M	M		25678	26358	+	ok_rescued	1.0	98.2	453.0	M	25678.0	26358.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP668230.1	tblastn	N	N		26370	27695	+	ok_rescued	1.0	99.1	894.0	N	26370.0	27695.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP690526.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.0	8330.3					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PP690526.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.5	5417.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PP690526.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	92.7	2578.9	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP690526.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	99.1	448.4	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP690526.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	94.7	122.5	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP690526.1	tblastn	M	M		25687	26379	+	ok_rescued	1.0	94.8	440.3	M	25687.0	26379.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP690526.1	tblastn	N	N		26391	27716	+	ok_rescued	1.0	97.1	874.8	N	26391.0	27716.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP690527.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.9	8405.0					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PP690527.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.8	5431.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PP690527.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	97.6	2788.1	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP690527.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	95.5	428.7	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP690527.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	97.4	149.8	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP690527.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	98.2	453.0	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP690527.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	99.1	894.0	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085232.1	tblastn	ORF1a	ORF1a		382	12735	+	ok_rescued	1.0	98.7	8388.9					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085232.1	tblastn	ORF1b	ORF1b		12900	20726	+	ok_rescued	1.0	99.8	5429.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085232.1	tblastn	S	S		20723	24880	+	ok_rescued	1.0	97.3	2777.3	S	20723.0	24880.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085232.1	tblastn	ORF3	ORF3		24880	25554	+	ok_rescued	1.0	96.9	439.1	ORF3	24880.0	25554.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085232.1	tblastn	E	E		25535	25765	+	ok_rescued	1.0	98.7	151.8	E	25535.0	25765.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085232.1	tblastn	M	M		25773	26453	+	ok_rescued	1.0	98.0	453.0	M	25773.0	26453.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085232.1	tblastn	N	N		26465	27790	+	ok_rescued	1.0	98.4	889.8	N	26465.0	27790.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085240.1	tblastn	ORF1a	ORF1a		371	12724	+	ok_rescued	1.0	99.0	8404.3					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085240.1	tblastn	ORF1b	ORF1b		12889	20715	+	ok_rescued	1.0	99.9	5436.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085240.1	tblastn	S	S		20712	24860	+	ok_rescued	1.0	95.3	2705.2	S	20712.0	24860.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085240.1	tblastn	ORF3	ORF3		24860	25534	+	ok_rescued	1.0	100.0	453.0	ORF3	24860.0	25534.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085240.1	tblastn	E	E		25515	25745	+	ok_rescued	1.0	98.7	151.8	E	25515.0	25745.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085240.1	tblastn	M	M		25753	26433	+	ok_rescued	1.0	100.0	457.2	M	25753.0	26433.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085240.1	tblastn	N	N		26445	27770	+	ok_rescued	1.0	99.5	895.2	N	26445.0	27770.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085242.1	tblastn	ORF1a	ORF1a		416	12769	+	ok_rescued	1.0	99.1	8413.1					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085242.1	tblastn	ORF1b	ORF1b		12934	20760	+	ok_rescued	1.0	99.8	5426.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085242.1	tblastn	S	S		20757	24905	+	ok_rescued	1.0	95.4	2709.9	S	20757.0	24905.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085242.1	tblastn	ORF3	ORF3		24905	25579	+	ok_rescued	1.0	99.6	450.7	ORF3	24905.0	25579.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085242.1	tblastn	E	E		25560	25790	+	ok_rescued	1.0	98.7	151.8	E	25560.0	25790.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085242.1	tblastn	M	M		25798	26478	+	ok_rescued	1.0	100.0	457.2	M	25798.0	26478.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085242.1	tblastn	N	N		26490	27815	+	ok_rescued	1.0	100.0	899.0	N	26490.0	27815.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085246.1	tblastn	ORF1a	ORF1a		417	12770	+	ok_rescued	1.0	98.8	8408.1					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085246.1	tblastn	ORF1b	ORF1b		12935	20761	+	ok_rescued	1.0	99.8	5424.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085246.1	tblastn	S	S		20758	24909	+	ok_rescued	1.0	98.0	2796.5	S	20758.0	24909.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085246.1	tblastn	ORF3	ORF3		24909	25583	+	ok_rescued	1.0	99.1	448.0	ORF3	24909.0	25583.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085246.1	tblastn	E	E		25564	25794	+	ok_rescued	1.0	98.7	151.8	E	25564.0	25794.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085246.1	tblastn	M	M		25802	26482	+	ok_rescued	1.0	100.0	457.2	M	25802.0	26482.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085246.1	tblastn	N	N		26494	27816	+	ok_rescued	0.9955	99.5	890.6	N	26494.0	27816.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085251.1	tblastn	ORF1a	ORF1a		417	12770	+	ok_rescued	1.0	99.3	8422.4					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085251.1	tblastn	ORF1b	ORF1b		12935	20761	+	ok_rescued	1.0	99.8	5428.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085251.1	tblastn	S	S		20758	24918	+	ok_rescued	1.0	98.5	2816.2	S	20758.0	24918.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085251.1	tblastn	ORF3	ORF3		24918	25592	+	ok_rescued	1.0	99.6	451.1	ORF3	24918.0	25592.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085251.1	tblastn	E	E		25573	25803	+	ok_rescued	1.0	98.7	151.8	E	25573.0	25803.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085251.1	tblastn	M	M		25811	26491	+	ok_rescued	1.0	100.0	457.2	M	25811.0	26491.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085251.1	tblastn	N	N		61	27828	+	ok_rescued	1.0	99.4	897.5	N	26503.0	27828.0	S	0.1498	0.0478	True	False	False	Wrong coords
+ref_1	PZ105934.1	OR085255.1	tblastn	ORF1a	ORF1a		417	12770	+	ok_rescued	1.0	98.9	8402.0					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085255.1	tblastn	ORF1b	ORF1b		12935	20761	+	ok_rescued	1.0	99.7	5422.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085255.1	tblastn	S	S		20758	24918	+	ok_rescued	1.0	98.4	2813.5	S	20758.0	24918.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085255.1	tblastn	ORF3	ORF3		24918	25592	+	ok_rescued	1.0	100.0	453.0	ORF3	24918.0	25592.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085255.1	tblastn	E	E		25573	25803	+	ok_rescued	1.0	98.7	151.8	E	25573.0	25803.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085255.1	tblastn	M	M		25811	26491	+	ok_rescued	1.0	99.6	456.8	M	25811.0	26491.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085255.1	tblastn	N	N		26503	27828	+	ok_rescued	1.0	99.8	896.3	N	26503.0	27828.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085269.1	tblastn	ORF1a	ORF1a		315	12668	+	ok_rescued	1.0	99.0	8408.5					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085269.1	tblastn	ORF1b	ORF1b		12833	20659	+	ok_rescued	1.0	99.8	5432.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085269.1	tblastn	S	S		20656	24816	+	ok_rescued	1.0	99.0	2828.5	S	20656.0	24816.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085269.1	tblastn	ORF3	ORF3		24816	25490	+	ok_rescued	1.0	99.6	451.1	ORF3	24816.0	25490.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085269.1	tblastn	E	E		25471	25701	+	ok_rescued	1.0	97.4	150.2	E	25471.0	25701.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085269.1	tblastn	M	M		25709	26389	+	ok_rescued	1.0	99.6	455.3	M	25709.0	26389.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085269.1	tblastn	N	N		26401	27726	+	ok_rescued	1.0	99.8	896.7	N	26401.0	27726.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085277.1	tblastn	ORF1a	ORF1a		378	12731	+	ok_rescued	1.0	98.4	8361.5					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085277.1	tblastn	ORF1b	ORF1b		12896	20722	+	ok_rescued	1.0	98.9	5412.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085277.1	tblastn	S	S		20719	24879	+	ok_rescued	1.0	98.3	2811.9	S	20719.0	24879.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085277.1	tblastn	ORF3	ORF3		24879	25553	+	ok_rescued	1.0	100.0	453.0	ORF3	24879.0	25553.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085277.1	tblastn	E	E		25534	25764	+	ok_rescued	1.0	97.4	150.2	E	25534.0	25764.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085277.1	tblastn	M	M		25772	26452	+	ok_rescued	1.0	99.6	456.4	M	25772.0	26452.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085277.1	tblastn	N	N		26464	27789	+	ok_rescued	1.0	98.6	887.5	N	26464.0	27789.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085278.1	tblastn	ORF1a	ORF1a		407	12760	+	ok_rescued	1.0	98.4	8361.5					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085278.1	tblastn	ORF1b	ORF1b		12925	20751	+	ok_rescued	1.0	99.5	5412.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085278.1	tblastn	S	S		20748	24908	+	ok_rescued	1.0	98.4	2813.1	S	20748.0	24908.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085278.1	tblastn	ORF3	ORF3		24908	25582	+	ok_rescued	1.0	100.0	453.0	ORF3	24908.0	25582.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085278.1	tblastn	E	E		25563	25793	+	ok_rescued	1.0	97.4	150.2	E	25563.0	25793.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085278.1	tblastn	M	M		25801	26481	+	ok_rescued	1.0	99.6	456.4	M	25801.0	26481.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085278.1	tblastn	N	N		26493	27818	+	ok_rescued	1.0	98.6	887.5	N	26493.0	27818.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085279.1	tblastn	ORF1a	ORF1a		280	12633	+	ok_rescued	1.0	98.4	8361.5					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085279.1	tblastn	ORF1b	ORF1b		12798	20624	+	ok_rescued	1.0	99.5	5412.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085279.1	tblastn	S	S		20621	24781	+	ok_rescued	1.0	98.4	2813.1	S	20621.0	24781.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085279.1	tblastn	ORF3	ORF3		24781	25455	+	ok_rescued	1.0	100.0	453.0	ORF3	24781.0	25455.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085279.1	tblastn	E	E		25436	25666	+	ok_rescued	1.0	97.4	150.2	E	25436.0	25666.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085279.1	tblastn	M	M		25674	26354	+	ok_rescued	1.0	99.6	456.4	M	25674.0	26354.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085279.1	tblastn	N	N		26366	27691	+	ok_rescued	1.0	98.6	887.5	N	26366.0	27691.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085281.1	tblastn	ORF1a	ORF1a		417	12770	+	ok_rescued	1.0	98.9	8397.3					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085281.1	tblastn	ORF1b	ORF1b		12935	20761	+	ok_rescued	1.0	99.5	5415.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085281.1	tblastn	S	S		20758	24918	+	ok_rescued	1.0	98.5	2812.3	S	20758.0	24918.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085281.1	tblastn	ORF3	ORF3		24918	25592	+	ok_rescued	1.0	100.0	453.0	ORF3	24918.0	25592.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085281.1	tblastn	E	E		25573	25803	+	ok_rescued	1.0	98.7	151.8	E	25573.0	25803.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085281.1	tblastn	M	M		25811	26491	+	ok_rescued	1.0	100.0	457.2	M	25811.0	26491.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085281.1	tblastn	N	N		26503	27828	+	ok_rescued	1.0	100.0	899.0	N	26503.0	27828.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085283.1	tblastn	ORF1a	ORF1a		313	12666	+	ok_rescued	1.0	98.9	8386.9					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085283.1	tblastn	ORF1b	ORF1b		12831	20657	+	ok_rescued	1.0	99.5	5415.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085283.1	tblastn	S	S		20654	24814	+	ok_rescued	1.0	98.6	2814.6	S	20654.0	24814.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085283.1	tblastn	ORF3	ORF3		24814	25488	+	ok_rescued	1.0	100.0	453.0	ORF3	24814.0	25488.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085283.1	tblastn	E	E		25469	25699	+	ok_rescued	1.0	98.7	151.8	E	25469.0	25699.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085283.1	tblastn	M	M		25707	26387	+	ok_rescued	1.0	100.0	457.2	M	25707.0	26387.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085283.1	tblastn	N	N		26399	27724	+	ok_rescued	1.0	100.0	899.0	N	26399.0	27724.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085297.1	tblastn	ORF1a	ORF1a		279	12626	+	ok_rescued	1.0	98.2	8342.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085297.1	tblastn	ORF1b	ORF1b		12791	20617	+	ok_rescued	1.0	99.6	5421.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085297.1	tblastn	S	S		20614	24771	+	ok_rescued	1.0	97.6	2783.4	S	20614.0	24771.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085297.1	tblastn	ORF3	ORF3		24771	25445	+	ok_rescued	1.0	97.3	439.9	ORF3	24771.0	25445.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085297.1	tblastn	E	E		25426	25656	+	ok_rescued	1.0	97.4	149.4	E	25426.0	25656.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085297.1	tblastn	M	M		25664	26344	+	ok_rescued	1.0	100.0	457.2	M	25664.0	26344.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085297.1	tblastn	N	N		26356	27681	+	ok_rescued	1.0	99.8	897.1	N	26356.0	27681.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085300.1	tblastn	ORF1a	ORF1a		368	12721	+	ok_rescued	1.0	98.2	8344.2					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085300.1	tblastn	ORF1b	ORF1b		12886	20712	+	ok_rescued	1.0	99.5	5413.6				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085300.1	tblastn	S	S		20709	24869	+	ok_rescued	1.0	96.8	2758.8	S	20709.0	24869.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085300.1	tblastn	ORF3	ORF3		24869	25543	+	ok_rescued	1.0	96.9	438.0	ORF3	24869.0	25543.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085300.1	tblastn	E	E		25524	25754	+	ok_rescued	1.0	97.4	150.2	E	25524.0	25754.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085300.1	tblastn	M	M		25762	26439	+	ok_rescued	0.9956	96.9	446.4	M	25762.0	26439.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085300.1	tblastn	N	N		26451	27776	+	ok_rescued	1.0	97.3	878.6	N	26451.0	27776.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085304.1	tblastn	ORF1a	ORF1a		375	12728	+	ok_rescued	1.0	98.3	8347.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085304.1	tblastn	ORF1b	ORF1b		12893	20719	+	ok_rescued	1.0	99.5	5415.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085304.1	tblastn	S	S		20716	24873	+	ok_rescued	1.0	97.0	2763.4	S	20716.0	24873.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085304.1	tblastn	ORF3	ORF3		24873	25547	+	ok_rescued	1.0	96.9	438.0	ORF3	24873.0	25547.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085304.1	tblastn	E	E		25528	25758	+	ok_rescued	1.0	98.7	151.8	E	25528.0	25758.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085304.1	tblastn	M	M		25766	26446	+	ok_rescued	1.0	98.2	453.0	M	25766.0	26446.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085304.1	tblastn	N	N		26458	27783	+	ok_rescued	1.0	96.8	874.8	N	26458.0	27783.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085308.1	tblastn	ORF1a	ORF1a		370	12723	+	ok_rescued	1.0	98.2	8345.0					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR085308.1	tblastn	ORF1b	ORF1b		12888	20714	+	ok_rescued	1.0	99.5	5415.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR085308.1	tblastn	S	S		20711	24868	+	ok_rescued	1.0	97.0	2765.7	S	20711.0	24868.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085308.1	tblastn	ORF3	ORF3		24868	25542	+	ok_rescued	1.0	96.9	438.0	ORF3	24868.0	25542.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085308.1	tblastn	E	E		25523	25753	+	ok_rescued	1.0	98.7	151.8	E	25523.0	25753.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085308.1	tblastn	M	M		25761	26441	+	ok_rescued	1.0	98.2	453.0	M	25761.0	26441.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR085308.1	tblastn	N	N		26453	27778	+	ok_rescued	1.0	97.3	878.6	N	26453.0	27778.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP987385.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.1	8412.0					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PP987385.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.8	5433.2	ORF1b	12811.0	20637.0	ORF1b	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP987385.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	98.8	2825.0	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP987385.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP987385.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	98.7	151.8	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP987385.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP987385.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	99.8	897.5	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PQ682538.1	tblastn	ORF1a	ORF1a		341	12694	+	ok_rescued	1.0	98.3	8352.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PQ682538.1	tblastn	ORF1b	ORF1b		12859	20685	+	ok_rescued	1.0	99.8	5427.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PQ682538.1	tblastn	S	S		20682	24839	+	ok_rescued	1.0	97.8	2783.8	S	20682.0	24839.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PQ682538.1	tblastn	ORF3	ORF3		24839	25513	+	ok_rescued	1.0	97.3	441.0	ORF3	24839.0	25513.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PQ682538.1	tblastn	E	E		25494	25724	+	ok_rescued	1.0	98.7	151.8	E	25494.0	25724.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PQ682538.1	tblastn	M	M		25732	26412	+	ok_rescued	1.0	98.2	453.0	M	25732.0	26412.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PQ682538.1	tblastn	N	N		26424	27749	+	ok_rescued	1.0	98.6	890.2	N	26424.0	27749.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PQ878525.1	tblastn	ORF1a	ORF1a		294	12647	+	ok_rescued	1.0	99.4	8433.9				ORF1b	0.0023	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PQ878525.1	tblastn	ORF1b	ORF1b		12812	20638	+	ok_rescued	1.0	99.8	5431.3	ORF1b	12602.0	20638.0	ORF1b	0.9739	0.9739	True	True	False	Boundary offset
+ref_1	PZ105934.1	PQ878525.1	tblastn	S	S		20635	24783	+	ok_rescued	1.0	95.5	2710.6	S	20635.0	24783.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PQ878525.1	tblastn	ORF3	ORF3		24783	25457	+	ok_rescued	1.0	100.0	453.0	ORF3	24783.0	25457.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PQ878525.1	tblastn	E	E		25438	25668	+	ok_rescued	1.0	100.0	152.1	E	25438.0	25668.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PQ878525.1	tblastn	M	M		25676	26356	+	ok_rescued	1.0	100.0	457.2	M	25676.0	26356.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PQ878525.1	tblastn	N	N		26368	27693	+	ok_rescued	1.0	99.5	896.7	N	26368.0	27693.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV036765.1	tblastn	ORF1a	ORF1a		306	12659	+	ok_rescued	1.0	98.5	8373.1					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV036765.1	tblastn	ORF1b	ORF1b		12824	20650	+	ok_rescued	1.0	99.5	5420.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV036765.1	tblastn	S	S		20647	24804	+	ok_rescued	1.0	97.2	2773.0	S	20647.0	24804.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV036765.1	tblastn	ORF3	ORF3		24804	25478	+	ok_rescued	1.0	96.9	438.3	ORF3	24804.0	25478.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV036765.1	tblastn	E	E		25459	25689	+	ok_rescued	1.0	98.7	151.8	E	25459.0	25689.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV036765.1	tblastn	M	M		25697	26377	+	ok_rescued	1.0	99.1	454.5	M	25697.0	26377.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV036765.1	tblastn	N	N		26389	27714	+	ok_rescued	1.0	98.2	884.0	N	26389.0	27714.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536067.1	tblastn	ORF1a	ORF1a		294	28147	+	invalid_boundaries	1.0	98.5	8374.2				S	0.1494	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536067.1	tblastn	ORF1b	ORF1b		12833	20659	+	ok_rescued	1.0	99.8	5430.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536067.1	tblastn	S	S		20656	24816	+	ok_rescued	1.0	98.1	2800.4	S	20656.0	24816.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536067.1	tblastn	ORF3	ORF3		24816	25490	+	ok_rescued	1.0	99.6	451.4	ORF3	24816.0	25490.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536067.1	tblastn	E	E		25471	25701	+	ok_rescued	1.0	98.7	151.8	E	25471.0	25701.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536067.1	tblastn	M	M		25709	26389	+	ok_rescued	1.0	99.6	454.5	M	25709.0	26389.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536067.1	tblastn	N	N		26401	27726	+	ok_rescued	1.0	99.3	894.8	N	26401.0	27726.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536074.1	tblastn	ORF1a	ORF1a		290	12643	+	ok_rescued	1.0	98.9	8402.0					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536074.1	tblastn	ORF1b	ORF1b		12808	20634	+	ok_rescued	1.0	99.8	5435.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536074.1	tblastn	S	S		20631	24779	+	ok_rescued	1.0	95.1	2702.6	S	20631.0	24779.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536074.1	tblastn	ORF3	ORF3		24779	25453	+	ok_rescued	1.0	99.6	451.1	ORF3	24779.0	25453.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536074.1	tblastn	E	E		25434	25664	+	ok_rescued	1.0	98.7	151.8	E	25434.0	25664.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536074.1	tblastn	M	M		25672	26352	+	ok_rescued	1.0	100.0	457.2	M	25672.0	26352.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536074.1	tblastn	N	N		26364	27689	+	ok_rescued	1.0	99.8	897.5	N	26364.0	27689.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536079.1	tblastn	ORF1a	ORF1a		363	12716	+	ok_rescued	1.0	98.2	8345.7					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536079.1	tblastn	ORF1b	ORF1b		12881	20707	+	ok_rescued	1.0	99.5	5415.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536079.1	tblastn	S	S		20704	24861	+	ok_rescued	1.0	97.0	2763.4	S	20704.0	24861.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536079.1	tblastn	ORF3	ORF3		24861	25535	+	ok_rescued	1.0	96.9	438.0	ORF3	24861.0	25535.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536079.1	tblastn	E	E		25516	25746	+	ok_rescued	1.0	98.7	151.8	E	25516.0	25746.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536079.1	tblastn	M	M		25754	26434	+	ok_rescued	1.0	98.2	453.0	M	25754.0	26434.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536079.1	tblastn	N	N		26446	27771	+	ok_rescued	1.0	96.8	874.8	N	26446.0	27771.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536082.1	tblastn	ORF1a	ORF1a		314	12667	+	ok_rescued	1.0	98.8	8381.5					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536082.1	tblastn	ORF1b	ORF1b		12832	20658	+	ok_rescued	1.0	99.5	5418.6				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536082.1	tblastn	S	S		20655	24815	+	ok_rescued	1.0	98.2	2806.9	S	20655.0	24815.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536082.1	tblastn	ORF3	ORF3		24815	25489	+	ok_rescued	1.0	99.6	451.4	ORF3	24815.0	25489.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536082.1	tblastn	E	E		25470	25700	+	ok_rescued	1.0	98.7	151.8	E	25470.0	25700.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536082.1	tblastn	M	M		25708	26388	+	ok_rescued	1.0	99.1	455.3	M	25708.0	26388.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536082.1	tblastn	N	N		26400	27725	+	ok_rescued	1.0	99.5	894.8	N	26400.0	27725.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536087.1	tblastn	ORF1a	ORF1a		2	12732	+	invalid_boundaries	1.0	99.0	8402.3					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536087.1	tblastn	ORF1b	ORF1b		12897	20723	+	ok_rescued	1.0	99.8	5431.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536087.1	tblastn	S	S		20720	24880	+	ok_rescued	1.0	98.3	2810.4	S	20720.0	24880.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536087.1	tblastn	ORF3	ORF3		24880	25554	+	ok_rescued	1.0	100.0	453.0	ORF3	24880.0	25554.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536087.1	tblastn	E	E		25535	25765	+	ok_rescued	1.0	98.7	151.8	E	25535.0	25765.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536087.1	tblastn	M	M		25773	26453	+	ok_rescued	1.0	99.1	455.3	M	25773.0	26453.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536087.1	tblastn	N	N		26465	27790	+	ok_rescued	1.0	99.5	895.2	N	26465.0	27790.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536089.1	tblastn	ORF1a	ORF1a		408	12761	+	ok_rescued	1.0	98.7	8395.4					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536089.1	tblastn	ORF1b	ORF1b		12926	20752	+	ok_rescued	1.0	99.7	5429.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536089.1	tblastn	S	S		20749	24909	+	ok_rescued	1.0	98.3	2810.4	S	20749.0	24909.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536089.1	tblastn	ORF3	ORF3		24909	25583	+	ok_rescued	1.0	100.0	453.0	ORF3	24909.0	25583.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536089.1	tblastn	E	E		25564	25794	+	ok_rescued	1.0	98.7	151.8	E	25564.0	25794.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536089.1	tblastn	M	M		25802	26482	+	ok_rescued	1.0	99.1	455.3	M	25802.0	26482.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536089.1	tblastn	N	N		26494	27819	+	ok_rescued	1.0	99.5	895.2	N	26494.0	27819.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536091.1	tblastn	ORF1a	ORF1a		308	12661	+	ok_rescued	1.0	98.8	8393.9					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536091.1	tblastn	ORF1b	ORF1b		12826	20652	+	ok_rescued	1.0	99.8	5429.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536091.1	tblastn	S	S		20649	24800	+	ok_rescued	1.0	95.2	2701.0	S	20649.0	24800.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536091.1	tblastn	ORF3	ORF3		24800	25474	+	ok_rescued	1.0	99.6	452.2	ORF3	24800.0	25474.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536091.1	tblastn	E	E		25455	25685	+	ok_rescued	1.0	98.7	151.8	E	25455.0	25685.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536091.1	tblastn	M	M		25693	26373	+	ok_rescued	1.0	99.6	453.8	M	25693.0	26373.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536091.1	tblastn	N	N		26385	27710	+	ok_rescued	1.0	99.8	895.6	N	26385.0	27710.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536097.1	tblastn	ORF1a	ORF1a		295	12648	+	ok_rescued	1.0	98.7	8384.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536097.1	tblastn	ORF1b	ORF1b		12813	20639	+	ok_rescued	1.0	99.9	5435.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536097.1	tblastn	S	S		20636	24793	+	ok_rescued	1.0	97.9	2791.5	S	20636.0	24793.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536097.1	tblastn	ORF3	ORF3		24793	25467	+	ok_rescued	1.0	96.9	439.1	ORF3	24793.0	25467.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536097.1	tblastn	E	E		25448	25678	+	ok_rescued	1.0	98.7	151.8	E	25448.0	25678.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536097.1	tblastn	M	M		25686	26366	+	ok_rescued	1.0	98.2	453.0	M	25686.0	26366.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536097.1	tblastn	N	N		26378	27703	+	ok_rescued	1.0	98.4	888.3	N	26378.0	27703.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536098.1	tblastn	ORF1a	ORF1a		453	12806	+	ok_rescued	1.0	99.1	8408.5					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536098.1	tblastn	ORF1b	ORF1b		12971	20797	+	ok_rescued	1.0	99.8	5431.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536098.1	tblastn	S	S		2	24954	+	invalid_boundaries	1.0	97.7	2822.3	S	20794.0	24954.0	S	0.1668	0.1668	True	False	False	Wrong coords
+ref_1	PZ105934.1	PV536098.1	tblastn	ORF3	ORF3		24954	25628	+	ok_rescued	1.0	100.0	453.0	ORF3	24954.0	25628.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536098.1	tblastn	E	E		25609	25839	+	ok_rescued	1.0	98.7	151.8	E	25609.0	25839.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536098.1	tblastn	M	M		25847	26527	+	ok_rescued	1.0	100.0	457.2	M	25847.0	26527.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536098.1	tblastn	N	N		26539	27864	+	ok_rescued	1.0	100.0	899.0	N	26539.0	27864.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536099.1	tblastn	ORF1a	ORF1a		518	12871	+	ok_rescued	1.0	98.9	8396.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536099.1	tblastn	ORF1b	ORF1b		13036	20862	+	ok_rescued	1.0	99.8	5426.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536099.1	tblastn	S	S		20859	25007	+	ok_rescued	1.0	95.4	2707.6	S	20859.0	25007.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536099.1	tblastn	ORF3	ORF3		25007	25681	+	ok_rescued	1.0	100.0	453.0	ORF3	25007.0	25681.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536099.1	tblastn	E	E		25662	25892	+	ok_rescued	1.0	98.7	151.8	E	25662.0	25892.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536099.1	tblastn	M	M		25900	26580	+	ok_rescued	1.0	100.0	457.2	M	25900.0	26580.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536099.1	tblastn	N	N		26592	27917	+	ok_rescued	1.0	99.8	897.1	N	26592.0	27917.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536108.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.4	8364.2					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536108.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.4	5411.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536108.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	97.6	2786.9	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536108.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	99.1	449.1	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536108.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	98.7	151.8	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536108.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	97.3	450.7	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536108.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	98.0	880.9	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536110.1	tblastn	ORF1a	ORF1a		289	12642	+	ok_rescued	1.0	98.8	8386.9					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536110.1	tblastn	ORF1b	ORF1b		12807	20633	+	ok_rescued	1.0	99.7	5422.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536110.1	tblastn	S	S		20630	24790	+	ok_rescued	1.0	98.3	2808.9	S	20630.0	24790.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536110.1	tblastn	ORF3	ORF3		24790	25464	+	ok_rescued	1.0	96.0	436.0	ORF3	24790.0	25464.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536110.1	tblastn	E	E		25445	25675	+	ok_rescued	1.0	98.7	151.8	E	25445.0	25675.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536110.1	tblastn	M	M		25683	26363	+	ok_rescued	1.0	100.0	457.6	M	25683.0	26363.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536110.1	tblastn	N	N		26375	27700	+	ok_rescued	1.0	99.8	896.7	N	26375.0	27700.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536111.1	tblastn	ORF1a	ORF1a		359	12712	+	ok_rescued	1.0	98.8	8386.9					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536111.1	tblastn	ORF1b	ORF1b		12877	20703	+	ok_rescued	1.0	99.7	5422.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536111.1	tblastn	S	S		20700	24860	+	ok_rescued	1.0	98.3	2808.9	S	20700.0	24860.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536111.1	tblastn	ORF3	ORF3		24860	25534	+	ok_rescued	1.0	96.0	436.0	ORF3	24860.0	25534.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536111.1	tblastn	E	E		25515	25745	+	ok_rescued	1.0	98.7	151.8	E	25515.0	25745.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536111.1	tblastn	M	M		25753	26433	+	ok_rescued	1.0	100.0	457.6	M	25753.0	26433.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536111.1	tblastn	N	N		26445	27770	+	ok_rescued	1.0	99.8	896.7	N	26445.0	27770.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536112.1	tblastn	ORF1a	ORF1a		196	28314	+	invalid_boundaries	1.0	98.1	8391.6				S	0.1479	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536112.1	tblastn	ORF1b	ORF1b		13037	20863	+	ok_rescued	1.0	99.5	5424.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536112.1	tblastn	S	S		20860	25017	+	ok_rescued	1.0	97.0	2764.6	S	20860.0	25017.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536112.1	tblastn	ORF3	ORF3		25017	25691	+	ok_rescued	1.0	96.9	439.1	ORF3	25017.0	25691.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536112.1	tblastn	E	E		25672	25902	+	ok_rescued	1.0	98.7	151.8	E	25672.0	25902.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536112.1	tblastn	M	M		25910	26590	+	ok_rescued	1.0	99.1	454.9	M	25910.0	26590.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536112.1	tblastn	N	N		26602	27921	+	ok_rescued	1.0	98.6	882.5	N	26602.0	27921.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536113.1	tblastn	ORF1a	ORF1a		499	12852	+	ok_rescued	1.0	98.5	8391.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536113.1	tblastn	ORF1b	ORF1b		13017	20843	+	ok_rescued	1.0	99.5	5424.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536113.1	tblastn	S	S		20840	24997	+	ok_rescued	1.0	97.0	2764.6	S	20840.0	24997.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536113.1	tblastn	ORF3	ORF3		24997	25671	+	ok_rescued	1.0	96.9	439.1	ORF3	24997.0	25671.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536113.1	tblastn	E	E		25652	25882	+	ok_rescued	1.0	98.7	151.8	E	25652.0	25882.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536113.1	tblastn	M	M		25890	26570	+	ok_rescued	1.0	99.1	454.9	M	25890.0	26570.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536113.1	tblastn	N	N		26582	27901	+	ok_rescued	1.0	98.6	882.5	N	26582.0	27901.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536114.1	tblastn	ORF1a	ORF1a		364	12717	+	ok_rescued	1.0	98.7	8391.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536114.1	tblastn	ORF1b	ORF1b		12882	20708	+	ok_rescued	1.0	99.5	5424.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536114.1	tblastn	S	S		20705	24862	+	ok_rescued	1.0	97.0	2764.6	S	20705.0	24862.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536114.1	tblastn	ORF3	ORF3		24862	25536	+	ok_rescued	1.0	96.9	439.1	ORF3	24862.0	25536.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536114.1	tblastn	E	E		25517	25747	+	ok_rescued	1.0	98.7	151.8	E	25517.0	25747.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536114.1	tblastn	M	M		25755	26435	+	ok_rescued	1.0	99.1	454.9	M	25755.0	26435.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536114.1	tblastn	N	N		26447	27766	+	ok_rescued	1.0	98.6	882.5	N	26447.0	27766.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536121.1	tblastn	ORF1a	ORF1a		454	12798	+	ok_rescued	1.0	98.2	8339.2					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV536121.1	tblastn	ORF1b	ORF1b		12963	20789	+	ok_rescued	1.0	99.6	5421.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV536121.1	tblastn	S	S		20786	24943	+	ok_rescued	1.0	97.5	2780.0	S	20786.0	24943.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536121.1	tblastn	ORF3	ORF3		24943	25617	+	ok_rescued	1.0	97.3	439.9	ORF3	24943.0	25617.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536121.1	tblastn	E	E		25598	25828	+	ok_rescued	1.0	97.4	149.4	E	25598.0	25828.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536121.1	tblastn	M	M		25836	26516	+	ok_rescued	1.0	100.0	457.2	M	25836.0	26516.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV536121.1	tblastn	N	N		26528	27853	+	ok_rescued	1.0	99.8	897.1	N	26528.0	27853.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV974486.1	tblastn	ORF1a	ORF1a		271	12624	+	ok_rescued	1.0	99.1	8417.8	ORF1a	271.0	12624.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV974486.1	tblastn	ORF1b	ORF1b		12789	20615	+	ok_rescued	1.0	99.8	5431.3	ORF1b	12594.0	20615.0	ORF1b	0.9757	0.9757	True	True	False	Boundary offset
+ref_1	PZ105934.1	PV974486.1	tblastn	S	S		20612	24760	+	ok_rescued	1.0	94.6	2610.1	S	20612.0	24760.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV974486.1	tblastn	ORF3	ORF3		24760	25434	+	ok_rescued	1.0	100.0	453.0	ORF3	24760.0	25434.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV974486.1	tblastn	E	E		25415	25645	+	ok_rescued	1.0	98.7	151.8	E	25415.0	25645.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV974486.1	tblastn	M	M		25653	26333	+	ok_rescued	1.0	100.0	457.2	M	25653.0	26333.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV974486.1	tblastn	N	N		26345	27670	+	ok_rescued	1.0	100.0	899.0	N	26345.0	27670.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX146708.1	tblastn	ORF1a	ORF1a		294	12647	+	ok_rescued	1.0	98.7	8386.2	ORF1a	294.0	12647.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX146708.1	tblastn	ORF1b	ORF1b		12812	20642	+	invalid_boundaries	0.9988	99.8	5160.9	ORF1b	12812.0	20257.0	ORF1b	0.9508	0.9508	True	True	False	Boundary offset
+ref_1	PZ105934.1	PX146708.1	tblastn	S	S		20639	24799	+	ok_rescued	1.0	99.0	2827.0	S	20639.0	24799.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX146708.1	tblastn	ORF3	ORF3		24799	25473	+	ok_rescued	1.0	99.6	449.5	ORF3	24799.0	25473.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX146708.1	tblastn	E	E		25454	25684	+	ok_rescued	1.0	100.0	152.1	E	25454.0	25684.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX146708.1	tblastn	M	M		25692	26372	+	ok_rescued	1.0	100.0	457.2	M	25692.0	26372.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX146708.1	tblastn	N	N		26384	27709	+	ok_rescued	1.0	99.3	894.8	N	26384.0	27709.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV125746.1	tblastn	ORF1a	ORF1a		330	12683	+	ok_rescued	1.0	98.4	8356.5	ORF1a	330.0	12683.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV125746.1	tblastn	ORF1b	ORF1b		12848	20674	+	ok_rescued	1.0	99.8	5435.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV125746.1	tblastn	S	S		20671	24831	+	ok_rescued	1.0	98.3	2811.9	S	20671.0	24831.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV125746.1	tblastn	ORF3	ORF3		24831	25505	+	ok_rescued	1.0	100.0	453.0	ORF3	24831.0	25505.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV125746.1	tblastn	E	E		25486	25716	+	ok_rescued	1.0	97.4	147.9	E	25486.0	25716.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV125746.1	tblastn	M	M		25724	26404	+	ok_rescued	1.0	100.0	457.2	M	25724.0	26404.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV125746.1	tblastn	N	N		26416	27741	+	ok_rescued	1.0	99.3	894.4	N	26416.0	27741.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV533621.1	tblastn	ORF1a	ORF1a		346	12699	+	ok_rescued	1.0	98.8	8392.7					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PV533621.1	tblastn	ORF1b	ORF1b		12864	20690	+	ok_rescued	1.0	99.8	5432.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV533621.1	tblastn	S	S		20687	24844	+	ok_rescued	1.0	97.7	2782.7	S	20687.0	24844.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV533621.1	tblastn	ORF3	ORF3		24844	25504	+	invalid_boundaries	0.933	88.8	247.3	ORF3	24844.0	25092.0	ORF3	0.3767	0.3767	True	False	False	Wrong coords
+ref_1	PZ105934.1	PV533621.1	tblastn	E	E		25398	25628	+	ok_rescued	1.0	98.7	151.8	E	25398.0	25628.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV533621.1	tblastn	M	M		25636	26316	+	ok_rescued	1.0	97.8	450.3	M	25636.0	26316.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV533621.1	tblastn	N	N		26328	27653	+	ok_rescued	1.0	98.2	886.3	N	26328.0	27653.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX475711.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.8	8397.0					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PX475711.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.8	5424.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PX475711.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	97.8	2798.8	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX475711.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0				E	0.0226	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PX475711.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	98.7	151.8	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX475711.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.1	454.9	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX475711.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	99.8	897.1	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV982377.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.4	8354.2	ORF1a	293.0	12646.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV982377.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.8	5431.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PV982377.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	98.4	2812.7	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV982377.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV982377.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	97.4	150.2	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV982377.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	100.0	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PV982377.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	99.3	892.5	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482648.1	tblastn	ORF1a	ORF1a		332	12685	+	ok_rescued	1.0	98.6	8374.2	ORF1a	332.0	12685.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482648.1	tblastn	ORF1b	ORF1b		12850	20676	+	ok_rescued	1.0	99.9	5435.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PX482648.1	tblastn	S	S		20673	24833	+	ok_rescued	1.0	98.7	2820.8	S	20673.0	24833.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482648.1	tblastn	ORF3	ORF3		24833	25507	+	ok_rescued	1.0	100.0	453.0	ORF3	24833.0	25507.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482648.1	tblastn	E	E		25488	25718	+	ok_rescued	1.0	98.7	151.8	E	25488.0	25718.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482648.1	tblastn	M	M		25726	26406	+	ok_rescued	1.0	100.0	457.2	M	25726.0	26406.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482648.1	tblastn	N	N		26418	27743	+	ok_rescued	1.0	99.5	894.4	N	26418.0	27743.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482650.1	tblastn	ORF1a	ORF1a		281	12631	+	ok_rescued	1.0	99.1	8404.3	ORF1a	281.0	12631.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482650.1	tblastn	ORF1b	ORF1b		12796	20622	+	ok_rescued	1.0	99.8	5430.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PX482650.1	tblastn	S	S		20619	24779	+	ok_rescued	1.0	98.6	2812.7	S	20619.0	24779.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482650.1	tblastn	ORF3	ORF3		24779	25453	+	ok_rescued	1.0	100.0	453.0	ORF3	24779.0	25453.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482650.1	tblastn	E	E		25434	25664	+	ok_rescued	1.0	98.7	151.8	E	25434.0	25664.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482650.1	tblastn	M	M		25672	26352	+	ok_rescued	1.0	100.0	457.2	M	25672.0	26352.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482650.1	tblastn	N	N		26364	27689	+	ok_rescued	1.0	99.8	897.5	N	26364.0	27689.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482651.1	tblastn	ORF1a	ORF1a		462	12815	+	ok_rescued	1.0	98.3	8358.8	ORF1a	462.0	12815.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482651.1	tblastn	ORF1b	ORF1b		12980	20806	+	ok_rescued	1.0	99.8	5425.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PX482651.1	tblastn	S	S		20803	24960	+	ok_rescued	1.0	97.4	2781.1	S	20803.0	24960.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482651.1	tblastn	ORF3	ORF3		24960	25634	+	ok_rescued	1.0	97.3	439.9	ORF3	24960.0	25634.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482651.1	tblastn	E	E		25615	25845	+	ok_rescued	1.0	97.4	150.2	E	25615.0	25845.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482651.1	tblastn	M	M		25853	26533	+	ok_rescued	1.0	97.8	451.1	M	25853.0	26533.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482651.1	tblastn	N	N		26545	27870	+	ok_rescued	1.0	97.7	881.3	N	26545.0	27870.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482652.1	tblastn	ORF1a	ORF1a		335	12688	+	ok_rescued	1.0	99.0	8402.3	ORF1a	335.0	12688.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482652.1	tblastn	ORF1b	ORF1b		12853	20679	+	ok_rescued	1.0	99.8	5433.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PX482652.1	tblastn	S	S		20676	24833	+	ok_rescued	1.0	98.1	2797.7	S	20676.0	24833.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482652.1	tblastn	ORF3	ORF3		24833	25507	+	ok_rescued	1.0	99.1	449.1	ORF3	24833.0	25507.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482652.1	tblastn	E	E		25488	25718	+	ok_rescued	1.0	97.4	150.6	E	25488.0	25718.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482652.1	tblastn	M	M		25726	26406	+	ok_rescued	1.0	99.6	457.2	M	25726.0	26406.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482652.1	tblastn	N	N		26418	27743	+	ok_rescued	1.0	99.3	891.7	N	26418.0	27743.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482653.1	tblastn	ORF1a	ORF1a		473	12826	+	ok_rescued	1.0	99.1	8412.7	ORF1a	473.0	12826.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482653.1	tblastn	ORF1b	ORF1b		12991	20817	+	ok_rescued	1.0	99.8	5431.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PX482653.1	tblastn	S	S		20814	24974	+	ok_rescued	1.0	98.9	2826.6	S	20814.0	24974.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482653.1	tblastn	ORF3	ORF3		24974	25648	+	ok_rescued	1.0	100.0	453.0	ORF3	24974.0	25648.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482653.1	tblastn	E	E		25629	25859	+	ok_rescued	1.0	100.0	152.1	E	25629.0	25859.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482653.1	tblastn	M	M		25867	26547	+	ok_rescued	1.0	100.0	457.2	M	25867.0	26547.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482653.1	tblastn	N	N		26559	27884	+	ok_rescued	1.0	99.8	896.3	N	26559.0	27884.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482655.1	tblastn	ORF1a	ORF1a		274	12624	+	ok_rescued	1.0	99.0	8400.8	ORF1a	274.0	12624.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482655.1	tblastn	ORF1b	ORF1b		12789	20615	+	ok_rescued	1.0	99.8	5433.6				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PX482655.1	tblastn	S	S		20612	24772	+	ok_rescued	1.0	98.6	2820.0	S	20612.0	24772.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482655.1	tblastn	ORF3	ORF3		24772	25446	+	ok_rescued	1.0	99.6	448.7	ORF3	24772.0	25446.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482655.1	tblastn	E	E		25427	25657	+	ok_rescued	1.0	100.0	152.1	E	25427.0	25657.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482655.1	tblastn	M	M		25665	26345	+	ok_rescued	1.0	100.0	457.2	M	25665.0	26345.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PX482655.1	tblastn	N	N		26357	27682	+	ok_rescued	1.0	99.8	896.0	N	26357.0	27682.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PZ188955.1	tblastn	ORF1a	ORF1a		312	12665	+	ok_rescued	1.0	99.2	8415.4					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PZ188955.1	tblastn	ORF1b	ORF1b		12830	20656	+	ok_rescued	1.0	99.8	5432.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PZ188955.1	tblastn	S	S		20653	24813	+	ok_rescued	1.0	98.8	2824.7	S	20653.0	24813.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PZ188955.1	tblastn	ORF3	ORF3		24813	25487	+	ok_rescued	1.0	99.6	449.5	ORF3	24813.0	25487.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PZ188955.1	tblastn	E	E		25468	25698	+	ok_rescued	1.0	100.0	152.1	E	25468.0	25698.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PZ188955.1	tblastn	M	M		25706	26386	+	ok_rescued	1.0	100.0	457.2	M	25706.0	26386.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PZ188955.1	tblastn	N	N		26398	27723	+	ok_rescued	1.0	99.1	892.1	N	26398.0	27723.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PZ105934.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	100.0	8485.5	ORF1a	293.0	12646.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PZ105934.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	100.0	5444.0	ORF1b	12811.0	20637.0	ORF1b	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PZ105934.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	100.0	2852.4	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PZ105934.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PZ105934.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	100.0	152.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PZ105934.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	100.0	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PZ105934.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	100.0	899.0	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	AF353511.1	tblastn	ORF1a	ORF1a		297	12650	+	ok_rescued	1.0	97.2	8271.4					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	AF353511.1	tblastn	ORF1b	ORF1b		12815	20641	+	ok_rescued	1.0	99.3	5409.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	AF353511.1	tblastn	S	S		20638	24789	+	ok_rescued	1.0	92.7	2553.9	S	20638.0	24789.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	AF353511.1	tblastn	ORF3	ORF3		24789	25463	+	ok_rescued	1.0	96.4	440.3	ORF3	24789.0	25463.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	AF353511.1	tblastn	E	E		25444	25674	+	ok_rescued	1.0	97.4	149.8	E	25444.0	25674.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	AF353511.1	tblastn	M	M		25682	26362	+	ok_rescued	1.0	98.2	452.6	M	25682.0	26362.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	AF353511.1	tblastn	N	N		26374	27699	+	ok_rescued	1.0	96.6	867.5	N	26374.0	27699.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	JX112709.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.4	8360.7					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	JX112709.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.5	5415.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	JX112709.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	97.4	2773.4	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	JX112709.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	96.4	436.0	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	JX112709.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	98.7	151.8	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	JX112709.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	97.3	449.9	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	JX112709.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	97.1	875.9	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	JX489155.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.8	8388.5					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	JX489155.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.7	5420.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	JX489155.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	97.6	2785.4	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	JX489155.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	97.3	439.9	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	JX489155.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	98.7	151.8	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	JX489155.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	98.2	453.0	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	JX489155.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	97.1	876.7	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KC210147.1	tblastn	ORF1a	ORF1a		292	12645	+	ok_rescued	1.0	99.2	8423.1					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KC210147.1	tblastn	ORF1b	ORF1b		12810	20636	+	ok_rescued	1.0	99.7	5428.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KC210147.1	tblastn	S	S		20633	24793	+	ok_rescued	1.0	98.6	2817.7	S	20633.0	24793.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KC210147.1	tblastn	ORF3	ORF3		24793	25467	+	ok_rescued	1.0	100.0	453.0	ORF3	24793.0	25467.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KC210147.1	tblastn	E	E		25448	25678	+	ok_rescued	1.0	98.7	151.8	E	25448.0	25678.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KC210147.1	tblastn	M	M		25686	26366	+	ok_rescued	1.0	99.6	457.2	M	25686.0	26366.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KC210147.1	tblastn	N	N		26378	27703	+	ok_rescued	1.0	99.3	893.3	N	26378.0	27703.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM609208.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.9	8402.7					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KM609208.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.7	5427.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KM609208.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	97.5	2784.2	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM609208.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	98.7	445.7	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM609208.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	96.1	122.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM609208.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.1	455.7	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM609208.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	99.1	892.5	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM609213.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.5	8362.7					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KM609213.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.8	5424.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KM609213.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	98.6	2817.3	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM609213.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM609213.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	98.7	151.8	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM609213.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM609213.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	100.0	899.0	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LT898413.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.0	8403.5					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	LT898413.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.6	5417.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	LT898413.1	tblastn	S	S		20634	24785	+	ok_rescued	1.0	95.0	2700.2	S	20634.0	24785.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LT898413.1	tblastn	ORF3	ORF3		24785	25459	+	ok_rescued	1.0	99.6	451.8				E	0.0226	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	LT898413.1	tblastn	E	E		25440	25670	+	ok_rescued	1.0	98.7	151.8	E	25440.0	25670.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LT898413.1	tblastn	M	M		25678	26358	+	ok_rescued	1.0	99.6	457.2	M	25678.0	26358.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	LT898413.1	tblastn	N	N		26370	27695	+	ok_rescued	1.0	99.8	896.3	N	26370.0	27695.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF737355.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.4	8374.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	MF737355.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.7	5427.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	MF737355.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	95.3	2719.9	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF737355.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	99.1	449.1	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF737355.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	97.4	149.8	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF737355.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	98.2	452.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF737355.1	tblastn	N	N		26379	27704	+	ok_rescued	0.9977	98.0	882.1	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OL762457.1	tblastn	ORF1a	ORF1a		293	12643	+	ok_rescued	1.0	99.0	8402.3	ORF1a	293.0	12643.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OL762457.1	tblastn	ORF1b	ORF1b		12808	20634	+	ok_rescued	1.0	99.9	5436.3	ORF1b	12808.0	20634.0	ORF1b	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OL762457.1	tblastn	S	S		20631	24791	+	ok_rescued	1.0	98.9	2826.6	S	20631.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OL762457.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	93.8	422.6	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OL762457.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	98.7	151.8	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OL762457.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	100.0	457.2	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OL762457.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	99.5	893.6	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR234022.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.3	8356.5					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	OR234022.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.6	5413.6				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	OR234022.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	97.2	2768.4	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR234022.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	97.3	439.9	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR234022.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	96.1	147.9	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR234022.1	tblastn	M	M		25684	26379	+	ok_rescued	1.0	96.1	447.2	M	25684.0	26379.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	OR234022.1	tblastn	N	N		26391	27716	+	ok_rescued	1.0	98.6	890.2	N	26391.0	27716.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP107944.1	tblastn	ORF1a	ORF1a		299	12649	+	ok_rescued	1.0	98.5	8359.6	ORF1a	299.0	12649.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP107944.1	tblastn	ORF1b	ORF1b		12814	20640	+	ok_rescued	1.0	99.7	5427.4					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	PP107944.1	tblastn	S	S		20637	24806	+	ok_rescued	1.0	95.8	2746.5				ORF3	0.0002	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	PP107944.1	tblastn	ORF3	ORF3		24806	25480	+	ok_rescued	1.0	99.6	449.1	ORF3	24806.0	25480.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP107944.1	tblastn	E	E		25461	25691	+	ok_rescued	1.0	97.4	147.9	E	25461.0	25691.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP107944.1	tblastn	M	M		25699	26379	+	ok_rescued	1.0	98.7	454.1	M	25699.0	26379.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	PP107944.1	tblastn	N	N		26391	27716	+	ok_rescued	1.0	98.9	888.3	N	26391.0	27716.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	EF185992.1	tblastn	ORF1a	ORF1a		297	12650	+	ok_rescued	1.0	97.3	8277.1					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	EF185992.1	tblastn	ORF1b	ORF1b		12815	20641	+	ok_rescued	1.0	99.1	5535.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	EF185992.1	tblastn	S	S		20638	24789	+	ok_rescued	1.0	93.3	2577.0	S	20638.0	24789.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	EF185992.1	tblastn	ORF3	ORF3		24789	25463	+	ok_rescued	1.0	94.6	429.9	ORF3	24789.0	25463.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	EF185992.1	tblastn	E	E		25444	25674	+	ok_rescued	1.0	96.1	119.8				ORF3	0.0226	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	EF185992.1	tblastn	M	M		25682	26362	+	ok_rescued	1.0	96.5	440.3	M	25682.0	26362.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	EF185992.1	tblastn	N	N		26374	27699	+	ok_rescued	1.0	96.1	864.0	N	26374.0	27699.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM189367.2	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.2	8437.0					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KM189367.2	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.7	5566.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KM189367.2	tblastn	S	S		20634	24794	+	ok_rescued	1.0	94.7	2611.2	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM189367.2	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM189367.2	tblastn	E	E		25449	25679	+	ok_rescued	1.0	100.0	152.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM189367.2	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM189367.2	tblastn	N	N		26379	27704	+	ok_rescued	1.0	99.3	893.3	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KP765609.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.0	8403.9					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KP765609.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.6	5563.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KP765609.1	tblastn	S	S		20634	24800	+	ok_rescued	1.0	93.1	2580.1	S	20634.0	24770.0	S	0.9928	0.9928	True	True	False	Boundary offset
+ref_2	PV974486.1	KP765609.1	tblastn	ORF3	ORF3		24800	25474	+	ok_rescued	1.0	96.4	435.3	ORF3	24800.0	25474.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KP765609.1	tblastn	E	E		25455	25685	+	ok_rescued	1.0	98.7	149.1	E	25455.0	25685.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KP765609.1	tblastn	M	M		25693	26373	+	ok_rescued	1.0	98.2	453.0	M	25693.0	26373.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KP765609.1	tblastn	N	N		26385	27710	+	ok_rescued	1.0	97.1	875.5	N	26385.0	27710.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KU252649.1	tblastn	ORF1a	ORF1a		314	12667	+	ok_rescued	1.0	99.1	8434.7					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KU252649.1	tblastn	ORF1b	ORF1b		12832	20658	+	ok_rescued	1.0	99.9	5571.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KU252649.1	tblastn	S	S		20655	24815	+	ok_rescued	1.0	95.2	2701.0	S	20655.0	24815.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KU252649.1	tblastn	ORF3	ORF3		24815	25489	+	ok_rescued	1.0	100.0	453.0	ORF3	24815.0	25489.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KU252649.1	tblastn	E	E		25470	25700	+	ok_rescued	1.0	100.0	152.1	E	25470.0	25700.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KU252649.1	tblastn	M	M		25708	26388	+	ok_rescued	1.0	99.6	457.2	M	25708.0	26388.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KU252649.1	tblastn	N	N		26400	27725	+	ok_rescued	1.0	99.8	897.1	N	26400.0	27725.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX981440.1	tblastn	ORF1a	ORF1a		284	12637	+	ok_rescued	1.0	98.9	8412.4					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KX981440.1	tblastn	ORF1b	ORF1b		12802	20628	+	ok_rescued	1.0	99.9	5574.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KX981440.1	tblastn	S	S		20625	24779	+	ok_rescued	1.0	94.5	2615.9	S	20625.0	24779.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX981440.1	tblastn	ORF3	ORF3		24779	25453	+	ok_rescued	1.0	100.0	453.0	ORF3	24779.0	25453.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX981440.1	tblastn	E	E		25434	25664	+	ok_rescued	1.0	100.0	152.1	E	25434.0	25664.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX981440.1	tblastn	M	M		25672	26352	+	ok_rescued	1.0	99.6	457.2	M	25672.0	26352.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX981440.1	tblastn	N	N		26364	27689	+	ok_rescued	1.0	100.0	899.0	N	26364.0	27689.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX550281.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.4	8452.4				ORF1b	0.6072	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KX550281.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.8	5569.2	ORF1b	293.0	20637.0	ORF1b	0.3847	0.3847	True	False	False	Wrong coords
+ref_2	PV974486.1	KX550281.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	95.0	2629.7	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX550281.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX550281.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	100.0	152.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX550281.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX550281.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	99.8	896.3	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY928065.1	tblastn	ORF1a	ORF1a		293	12655	+	ok_rescued	0.9966	98.4	8341.1					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KY928065.1	tblastn	ORF1b	ORF1b		12561	20636	+	ok_rescued	1.0	99.7	5562.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KY928065.1	tblastn	S	S		20633	24790	+	ok_rescued	1.0	93.9	2592.0	S	20633.0	24790.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY928065.1	tblastn	ORF3	ORF3		24790	25464	+	ok_rescued	1.0	96.4	438.0	ORF3	24790.0	25464.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY928065.1	tblastn	E	E		25445	25675	+	ok_rescued	1.0	100.0	152.1	E	25445.0	25675.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY928065.1	tblastn	M	M		25683	26363	+	ok_rescued	1.0	98.2	453.0	M	25683.0	26363.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY928065.1	tblastn	N	N		26375	27700	+	ok_rescued	1.0	98.0	881.7	N	26375.0	27700.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY963963.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.9	8407.7					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KY963963.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.5	5557.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KY963963.1	tblastn	S	S		20634	24809	+	ok_rescued	1.0	93.7	2599.3	S	20634.0	24809.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY963963.1	tblastn	ORF3	ORF3		24809	25483	+	ok_rescued	1.0	99.6	450.7	ORF3	24809.0	25483.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY963963.1	tblastn	E	E		25464	25694	+	ok_rescued	1.0	100.0	152.1	E	25464.0	25694.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY963963.1	tblastn	M	M		25702	26382	+	ok_rescued	1.0	99.6	457.2	M	25702.0	26382.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY963963.1	tblastn	N	N		26394	27719	+	ok_rescued	1.0	98.4	886.3	N	26394.0	27719.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF577027.1	tblastn	ORF1a	ORF1a		292	12645	+	ok_rescued	1.0	97.5	8299.5	ORF1a	292.0	12645.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF577027.1	tblastn	ORF1b	ORF1b		12810	20636	+	ok_rescued	1.0	98.7	5522.6	ORF1b	12675.0	20636.0	ORF1b	0.983	0.983	True	True	False	Boundary offset
+ref_2	PV974486.1	MF577027.1	tblastn	S	S		20597	24751	+	ok_rescued	0.9819	60.1	1590.1	S	20633.0	24751.0	S	0.9913	0.9913	True	True	False	Boundary offset
+ref_2	PV974486.1	MF577027.1	tblastn	ORF3	ORF3		24751	25425	+	ok_rescued	1.0	98.7	448.7	ORF3	24751.0	25425.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF577027.1	tblastn	E	E		25406	25636	+	ok_rescued	1.0	96.1	148.7	E	25406.0	25636.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF577027.1	tblastn	M	M		25644	26324	+	ok_rescued	1.0	97.3	449.1	M	25644.0	26324.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF577027.1	tblastn	N	N		26336	27655	+	ok_rescued	1.0	94.1	837.4	N	26336.0	27640.0	N	0.9886	0.9886	True	True	False	Boundary offset
+ref_2	PV974486.1	MF462814.1	tblastn	ORF1a	ORF1a		301	12645	+	ok_rescued	1.0	99.3	8436.6					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	MF462814.1	tblastn	ORF1b	ORF1b		12810	20636	+	ok_rescued	1.0	99.8	5570.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	MF462814.1	tblastn	S	S		20633	24793	+	ok_rescued	1.0	94.3	2599.7	S	20633.0	24793.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF462814.1	tblastn	ORF3	ORF3		24793	25469	+	invalid_boundaries	0.9777	99.1	335.1	ORF3	24793.0	25425.0	ORF3	0.935	0.935	True	True	False	Boundary offset
+ref_2	PV974486.1	MF462814.1	tblastn	E	E		25432	25662	+	ok_rescued	1.0	98.7	150.6	E	25432.0	25662.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF462814.1	tblastn	M	M		25670	26350	+	ok_rescued	1.0	99.1	455.3	M	25670.0	26350.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF462814.1	tblastn	N	N		26362	27687	+	ok_rescued	1.0	99.1	891.3	N	26362.0	27687.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY007139.1	tblastn	ORF1a	ORF1a		293	12625	+	ok_rescued	1.0	98.7	8391.2					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KY007139.1	tblastn	ORF1b	ORF1b		12790	20616	+	ok_rescued	1.0	99.4	5553.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KY007139.1	tblastn	S	S		20613	24773	+	ok_rescued	1.0	94.2	2607.8	S	20613.0	24773.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY007139.1	tblastn	ORF3	ORF3		24773	25447	+	ok_rescued	1.0	100.0	453.0	ORF3	24773.0	25447.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY007139.1	tblastn	E	E		25428	25658	+	ok_rescued	1.0	98.7	149.1	E	25428.0	25658.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY007139.1	tblastn	M	M		25666	26346	+	ok_rescued	1.0	99.1	454.9	M	25666.0	26346.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY007139.1	tblastn	N	N		26358	27683	+	ok_rescued	1.0	98.6	888.3	N	26358.0	27683.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF375374.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.6	8467.4					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	MF375374.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.6	5563.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	MF375374.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	94.9	2615.9	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF375374.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF375374.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	100.0	152.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF375374.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF375374.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	99.8	896.7	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MH052683.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.0	8412.4					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	MH052683.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.7	5564.6				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	MH052683.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	94.8	2618.2	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MH052683.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MH052683.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	100.0	152.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MH052683.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MH052683.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	98.9	890.2	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MG546687.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.3	8436.2					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	MG546687.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.5	5554.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	MG546687.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	94.4	2611.6	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MG546687.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MG546687.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	100.0	152.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MG546687.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.1	454.9	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MG546687.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	98.9	891.0	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MK644603.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.4	8372.3					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	MK644603.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.4	5556.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	MK644603.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	93.2	2583.5	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MK644603.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	96.9	438.0	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MK644603.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	100.0	152.1	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MK644603.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	98.2	453.0	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MK644603.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	98.4	889.0	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MK071637.1	tblastn	ORF1a	ORF1a		280	12633	+	ok_rescued	1.0	99.2	8434.3					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	MK071637.1	tblastn	ORF1b	ORF1b		12798	20624	+	ok_rescued	1.0	99.8	5569.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	MK071637.1	tblastn	S	S		20621	24772	+	ok_rescued	1.0	96.7	2754.2	S	20621.0	24772.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MK071637.1	tblastn	ORF3	ORF3		24772	25446	+	ok_rescued	1.0	100.0	453.0	ORF3	24772.0	25446.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MK071637.1	tblastn	E	E		25427	25657	+	ok_rescued	1.0	100.0	152.1	E	25427.0	25657.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MK071637.1	tblastn	M	M		25665	26345	+	ok_rescued	1.0	99.6	457.2	M	25665.0	26345.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MK071637.1	tblastn	N	N		26357	27682	+	ok_rescued	1.0	98.9	889.8	N	26357.0	27682.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MN759311.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.7	8389.6					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	MN759311.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.6	5558.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	MN759311.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	93.7	2580.1	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MN759311.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	96.4	435.3	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MN759311.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	98.7	149.1	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MN759311.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	98.2	453.0	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MN759311.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	97.3	878.6	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LR812926.1	tblastn	ORF1a	ORF1a		295	12648	+	ok_rescued	1.0	99.1	8434.7					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	LR812926.1	tblastn	ORF1b	ORF1b		12813	20639	+	ok_rescued	1.0	99.4	5548.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	LR812926.1	tblastn	S	S		20636	24787	+	ok_rescued	1.0	96.7	2759.9	S	20636.0	24787.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LR812926.1	tblastn	ORF3	ORF3		24787	25461	+	ok_rescued	1.0	99.1	451.4				E	0.0226	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	LR812926.1	tblastn	E	E		25442	25672	+	ok_rescued	1.0	100.0	152.1	E	25442.0	25672.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LR812926.1	tblastn	M	M		25680	26360	+	ok_rescued	1.0	99.6	457.2	M	25680.0	26360.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LR812926.1	tblastn	N	N		26372	27697	+	ok_rescued	1.0	99.1	887.1	N	26372.0	27697.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LR812930.1	tblastn	ORF1a	ORF1a		405	12758	+	ok_rescued	1.0	99.1	8434.7					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	LR812930.1	tblastn	ORF1b	ORF1b		12923	20749	+	ok_rescued	1.0	99.4	5548.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	LR812930.1	tblastn	S	S		20746	24897	+	ok_rescued	1.0	96.7	2759.9	S	20746.0	24897.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LR812930.1	tblastn	ORF3	ORF3		24897	25571	+	ok_rescued	1.0	99.1	451.4				E	0.0226	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	LR812930.1	tblastn	E	E		25552	25782	+	ok_rescued	1.0	100.0	152.1	E	25552.0	25782.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LR812930.1	tblastn	M	M		25790	26470	+	ok_rescued	1.0	99.6	457.2	M	25790.0	26470.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LR812930.1	tblastn	N	N		26482	27807	+	ok_rescued	1.0	99.1	887.1	N	26482.0	27807.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LR812932.1	tblastn	ORF1a	ORF1a		296	12649	+	ok_rescued	1.0	99.1	8434.7					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	LR812932.1	tblastn	ORF1b	ORF1b		12814	20640	+	ok_rescued	1.0	99.4	5548.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	LR812932.1	tblastn	S	S		20637	24788	+	ok_rescued	1.0	96.7	2759.9	S	20637.0	24788.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LR812932.1	tblastn	ORF3	ORF3		24788	25462	+	ok_rescued	1.0	99.1	451.4				E	0.0226	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	LR812932.1	tblastn	E	E		25443	25673	+	ok_rescued	1.0	100.0	152.1	E	25443.0	25673.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LR812932.1	tblastn	M	M		25681	26361	+	ok_rescued	1.0	99.6	457.2	M	25681.0	26361.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LR812932.1	tblastn	N	N		26373	27698	+	ok_rescued	1.0	99.1	887.1	N	26373.0	27698.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MT263014.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.1	8427.8					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	MT263014.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.5	5549.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	MT263014.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	94.2	2599.3	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MT263014.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	99.1	446.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MT263014.1	tblastn	E	E		25449	25685	+	ok_rescued	1.0	97.4	147.1	E	25449.0	25685.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MT263014.1	tblastn	M	M		25693	26373	+	ok_rescued	1.0	99.6	457.2	M	25693.0	26373.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MT263014.1	tblastn	N	N		26385	27710	+	ok_rescued	1.0	99.5	894.0	N	26385.0	27710.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MT646162.1	tblastn	ORF1a	ORF1a		301	12654	+	ok_rescued	1.0	99.4	8449.3					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	MT646162.1	tblastn	ORF1b	ORF1b		12819	20645	+	ok_rescued	1.0	99.8	5570.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	MT646162.1	tblastn	S	S		20642	24802	+	ok_rescued	1.0	94.7	2627.4	S	20642.0	24802.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MT646162.1	tblastn	ORF3	ORF3		24802	25476	+	ok_rescued	1.0	100.0	453.0	ORF3	24802.0	25476.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MT646162.1	tblastn	E	E		25457	25687	+	ok_rescued	1.0	100.0	152.1	E	25457.0	25687.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MT646162.1	tblastn	M	M		25695	26375	+	ok_rescued	1.0	99.6	457.2	M	25695.0	26375.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MT646162.1	tblastn	N	N		26387	27712	+	ok_rescued	1.0	99.3	893.3	N	26387.0	27712.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MW143085.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.4	8436.6					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	MW143085.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.7	5561.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	MW143085.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	93.8	2574.3	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MW143085.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	97.3	439.9	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MW143085.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	100.0	152.1	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MW143085.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	100.0	457.2	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MW143085.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	98.4	885.9	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OM393722.1	tblastn	ORF1a	ORF1a		294	12605	+	invalid_boundaries	0.9966	99.2	8409.7					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OM393722.1	tblastn	ORF1b	ORF1b		12588	20639	+	ok_rescued	1.0	99.8	5570.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OM393722.1	tblastn	S	S		20636	24793	+	ok_rescued	1.0	94.2	2594.3	S	20636.0	24793.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OM393722.1	tblastn	ORF3	ORF3		24793	25467	+	ok_rescued	1.0	96.9	439.1	ORF3	24793.0	25467.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OM393722.1	tblastn	E	E		25448	25678	+	ok_rescued	1.0	100.0	152.1	E	25448.0	25678.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OM393722.1	tblastn	M	M		25686	26366	+	ok_rescued	1.0	97.8	449.5	M	25686.0	26366.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OM393722.1	tblastn	N	N		26378	27703	+	ok_rescued	1.0	99.1	894.0	N	26378.0	27703.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OL347994.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.5	8379.6	ORF1a	293.0	12646.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OL347994.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.6	5558.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OL347994.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	94.1	2616.7	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OL347994.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	96.9	438.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OL347994.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	98.7	151.4	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OL347994.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	98.2	453.0	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OL347994.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	97.5	881.7	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP326239.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.1	8434.3					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OP326239.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.6	5562.6				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OP326239.1	tblastn	S	S		20634	24857	+	ok_rescued	1.0	92.1	2574.7	S	20634.0	24857.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP326239.1	tblastn	ORF3	ORF3		24857	25530	+	invalid_boundaries	1.0	94.0	268.9	ORF3	24857.0	25291.0	ORF3	0.6454	0.6454	True	False	False	Wrong coords
+ref_2	PV974486.1	OP326239.1	tblastn	E	E		25511	25741	+	ok_rescued	1.0	97.4	149.1	E	25511.0	25741.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP326239.1	tblastn	M	M		25749	26429	+	ok_rescued	1.0	99.1	454.9	M	25749.0	26429.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP326239.1	tblastn	N	N		26441	27766	+	ok_rescued	1.0	98.6	886.3	N	26441.0	27766.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OQ589489.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.6	8387.7	ORF1a	293.0	12646.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OQ589489.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.4	5552.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OQ589489.1	tblastn	S	S		20634	24803	+	ok_rescued	1.0	93.2	2566.6	S	20634.0	24803.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OQ589489.1	tblastn	ORF3	ORF3		24803	25477	+	ok_rescued	1.0	96.9	438.0	ORF3	24803.0	25477.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OQ589489.1	tblastn	E	E		25458	25688	+	ok_rescued	1.0	98.7	149.1	E	25458.0	25688.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OQ589489.1	tblastn	M	M		25696	26373	+	ok_rescued	0.9956	96.9	445.7	M	25696.0	26373.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OQ589489.1	tblastn	N	N		26385	27710	+	ok_rescued	1.0	97.3	878.6	N	26385.0	27710.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP784565.1	tblastn	ORF1a	ORF1a		293	12643	+	ok_rescued	1.0	99.1	8419.7	ORF1a	293.0	12643.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP784565.1	tblastn	ORF1b	ORF1b		12808	20634	+	ok_rescued	1.0	99.7	5564.6				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OP784565.1	tblastn	S	S		20631	24794	+	ok_rescued	1.0	93.4	2568.1	S	20631.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP784565.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	99.1	449.1	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP784565.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	97.4	147.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP784565.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.1	455.3	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP784565.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	98.6	885.9	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	ON075821.1	tblastn	ORF1a	ORF1a		293	12643	+	invalid_boundaries	1.0	99.2	8422.8					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	ON075821.1	tblastn	ORF1b	ORF1b		12599	20662	+	ok_rescued	1.0	99.5	5556.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	ON075821.1	tblastn	S	S		20659	24819	+	ok_rescued	1.0	94.2	2615.5	S	20659.0	24819.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	ON075821.1	tblastn	ORF3	ORF3		24819	25493	+	ok_rescued	1.0	99.6	450.3	ORF3	24819.0	25493.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	ON075821.1	tblastn	E	E		25474	25704	+	ok_rescued	1.0	98.7	149.4	E	25474.0	25704.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	ON075821.1	tblastn	M	M		25712	26392	+	ok_rescued	1.0	99.6	457.2	M	25712.0	26392.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	ON075821.1	tblastn	N	N		26404	27729	+	ok_rescued	1.0	99.8	897.1	N	26404.0	27729.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP894120.1	tblastn	ORF1a	ORF1a		306	12659	+	ok_rescued	1.0	98.7	8389.6					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OP894120.1	tblastn	ORF1b	ORF1b		12824	20650	+	ok_rescued	1.0	99.5	5557.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OP894120.1	tblastn	S	S		20647	24804	+	ok_rescued	1.0	93.6	2579.3	S	20647.0	24804.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP894120.1	tblastn	ORF3	ORF3		24804	25478	+	ok_rescued	1.0	96.9	438.0	ORF3	24804.0	25478.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP894120.1	tblastn	E	E		25459	25689	+	ok_rescued	1.0	98.7	149.1	E	25459.0	25689.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP894120.1	tblastn	M	M		25697	26377	+	ok_rescued	1.0	98.2	453.0	M	25697.0	26377.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OP894120.1	tblastn	N	N		26389	27714	+	ok_rescued	1.0	97.3	878.6	N	26389.0	27714.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OQ378935.1	tblastn	ORF1a	ORF1a		346	12696	+	ok_rescued	1.0	99.5	8445.5					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OQ378935.1	tblastn	ORF1b	ORF1b		12861	20687	+	ok_rescued	1.0	99.8	5568.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OQ378935.1	tblastn	S	S		20684	24844	+	ok_rescued	1.0	95.0	2692.2	S	20684.0	24844.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OQ378935.1	tblastn	ORF3	ORF3		24899	25574	+	invalid_boundaries	0.9911	100.0	277.7					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OQ378935.1	tblastn	E	E		25552	25782	+	ok_rescued	1.0	98.7	150.6					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OQ378935.1	tblastn	M	M		25790	26470	+	ok_rescued	1.0	100.0	457.2					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OQ378935.1	tblastn	N	N		26482	27807	+	ok_rescued	1.0	99.8	895.6					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OQ979200.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.5	8385.8					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OQ979200.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.8	5569.6				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OQ979200.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	93.5	2581.2	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OQ979200.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	96.9	438.0				E	0.0226	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OQ979200.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	98.7	150.2	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OQ979200.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	97.8	451.1	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OQ979200.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	97.3	879.0	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP668229.1	tblastn	ORF1a	ORF1a		287	12640	+	ok_rescued	1.0	99.2	8428.9					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PP668229.1	tblastn	ORF1b	ORF1b		12805	20631	+	ok_rescued	1.0	99.9	5571.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PP668229.1	tblastn	S	S		20628	24785	+	ok_rescued	1.0	94.2	2597.8	S	20628.0	24785.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP668229.1	tblastn	ORF3	ORF3		24785	25459	+	ok_rescued	1.0	96.9	439.1	ORF3	24785.0	25459.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP668229.1	tblastn	E	E		25440	25670	+	ok_rescued	1.0	98.7	151.4	E	25440.0	25670.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP668229.1	tblastn	M	M		25678	26358	+	ok_rescued	1.0	98.2	453.0	M	25678.0	26358.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP668229.1	tblastn	N	N		26370	27695	+	ok_rescued	1.0	99.1	894.0	N	26370.0	27695.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP668230.1	tblastn	ORF1a	ORF1a		287	12640	+	ok_rescued	1.0	99.1	8426.6					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PP668230.1	tblastn	ORF1b	ORF1b		12805	20631	+	ok_rescued	1.0	99.9	5571.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PP668230.1	tblastn	S	S		20628	24785	+	ok_rescued	1.0	94.2	2598.9	S	20628.0	24785.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP668230.1	tblastn	ORF3	ORF3		24785	25459	+	ok_rescued	1.0	96.9	439.1	ORF3	24785.0	25459.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP668230.1	tblastn	E	E		25440	25670	+	ok_rescued	1.0	98.7	151.4	E	25440.0	25670.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP668230.1	tblastn	M	M		25678	26358	+	ok_rescued	1.0	98.2	453.0	M	25678.0	26358.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP668230.1	tblastn	N	N		26370	27695	+	ok_rescued	1.0	99.1	894.0	N	26370.0	27695.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP690526.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.3	8366.5					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PP690526.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.5	5556.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PP690526.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	93.4	2599.3	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP690526.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	99.1	448.4	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP690526.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	96.1	149.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP690526.1	tblastn	M	M		25687	26379	+	ok_rescued	1.0	94.8	440.3	M	25687.0	26379.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP690526.1	tblastn	N	N		26391	27716	+	ok_rescued	1.0	97.1	874.8	N	26391.0	27716.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP690527.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.3	8447.8					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PP690527.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.8	5565.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PP690527.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	94.2	2600.8	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP690527.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	95.5	428.7	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP690527.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	98.7	150.2	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP690527.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	98.2	453.0	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP690527.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	99.1	894.0	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085232.1	tblastn	ORF1a	ORF1a		382	12735	+	ok_rescued	1.0	99.1	8429.3					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085232.1	tblastn	ORF1b	ORF1b		12900	20726	+	ok_rescued	1.0	99.8	5566.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085232.1	tblastn	S	S		20723	24880	+	ok_rescued	1.0	93.6	2592.4	S	20723.0	24880.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085232.1	tblastn	ORF3	ORF3		24880	25554	+	ok_rescued	1.0	96.9	439.1	ORF3	24880.0	25554.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085232.1	tblastn	E	E		25535	25765	+	ok_rescued	1.0	100.0	152.1	E	25535.0	25765.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085232.1	tblastn	M	M		25773	26453	+	ok_rescued	1.0	98.0	453.0	M	25773.0	26453.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085232.1	tblastn	N	N		26465	27790	+	ok_rescued	1.0	98.4	889.8	N	26465.0	27790.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085240.1	tblastn	ORF1a	ORF1a		371	12724	+	ok_rescued	1.0	99.6	8457.0					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085240.1	tblastn	ORF1b	ORF1b		12889	20715	+	ok_rescued	1.0	99.8	5571.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085240.1	tblastn	S	S		20712	24860	+	ok_rescued	1.0	97.4	2768.4	S	20712.0	24860.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085240.1	tblastn	ORF3	ORF3		24860	25534	+	ok_rescued	1.0	100.0	453.0	ORF3	24860.0	25534.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085240.1	tblastn	E	E		25515	25745	+	ok_rescued	1.0	100.0	152.1	E	25515.0	25745.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085240.1	tblastn	M	M		25753	26433	+	ok_rescued	1.0	100.0	457.2	M	25753.0	26433.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085240.1	tblastn	N	N		26445	27770	+	ok_rescued	1.0	99.5	895.2	N	26445.0	27770.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085242.1	tblastn	ORF1a	ORF1a		416	12769	+	ok_rescued	1.0	99.1	8429.7					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085242.1	tblastn	ORF1b	ORF1b		12934	20760	+	ok_rescued	1.0	99.8	5570.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085242.1	tblastn	S	S		20757	24905	+	ok_rescued	1.0	97.8	2778.8	S	20757.0	24905.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085242.1	tblastn	ORF3	ORF3		24905	25579	+	ok_rescued	1.0	99.6	450.7	ORF3	24905.0	25579.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085242.1	tblastn	E	E		25560	25790	+	ok_rescued	1.0	100.0	152.1	E	25560.0	25790.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085242.1	tblastn	M	M		25798	26478	+	ok_rescued	1.0	100.0	457.2	M	25798.0	26478.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085242.1	tblastn	N	N		26490	27815	+	ok_rescued	1.0	100.0	899.0	N	26490.0	27815.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085246.1	tblastn	ORF1a	ORF1a		417	12770	+	ok_rescued	1.0	99.2	8448.6					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085246.1	tblastn	ORF1b	ORF1b		12935	20761	+	ok_rescued	1.0	99.8	5568.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085246.1	tblastn	S	S		20758	24909	+	ok_rescued	1.0	93.9	2586.6	S	20758.0	24909.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085246.1	tblastn	ORF3	ORF3		24909	25583	+	ok_rescued	1.0	99.1	448.0	ORF3	24909.0	25583.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085246.1	tblastn	E	E		25564	25794	+	ok_rescued	1.0	100.0	152.1	E	25564.0	25794.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085246.1	tblastn	M	M		25802	26482	+	ok_rescued	1.0	100.0	457.2	M	25802.0	26482.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085246.1	tblastn	N	N		26494	27816	+	ok_rescued	0.9955	99.5	890.6	N	26494.0	27816.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085251.1	tblastn	ORF1a	ORF1a		417	12770	+	ok_rescued	1.0	99.3	8446.3					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085251.1	tblastn	ORF1b	ORF1b		12935	20761	+	ok_rescued	1.0	99.8	5566.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085251.1	tblastn	S	S		20758	24918	+	ok_rescued	1.0	95.3	2700.6	S	20758.0	24918.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085251.1	tblastn	ORF3	ORF3		24918	25592	+	ok_rescued	1.0	99.6	451.1	ORF3	24918.0	25592.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085251.1	tblastn	E	E		25573	25803	+	ok_rescued	1.0	100.0	152.1	E	25573.0	25803.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085251.1	tblastn	M	M		25811	26491	+	ok_rescued	1.0	100.0	457.2	M	25811.0	26491.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085251.1	tblastn	N	N		61	27828	+	ok_rescued	1.0	99.4	897.5	N	26503.0	27828.0	S	0.1498	0.0478	True	False	False	Wrong coords
+ref_2	PV974486.1	OR085255.1	tblastn	ORF1a	ORF1a		417	12770	+	ok_rescued	1.0	99.6	8454.0					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085255.1	tblastn	ORF1b	ORF1b		12935	20761	+	ok_rescued	1.0	99.7	5566.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085255.1	tblastn	S	S		20758	24918	+	ok_rescued	1.0	95.3	2698.7	S	20758.0	24918.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085255.1	tblastn	ORF3	ORF3		24918	25592	+	ok_rescued	1.0	100.0	453.0	ORF3	24918.0	25592.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085255.1	tblastn	E	E		25573	25803	+	ok_rescued	1.0	100.0	152.1	E	25573.0	25803.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085255.1	tblastn	M	M		25811	26491	+	ok_rescued	1.0	99.6	456.8	M	25811.0	26491.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085255.1	tblastn	N	N		26503	27828	+	ok_rescued	1.0	99.8	896.3	N	26503.0	27828.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085269.1	tblastn	ORF1a	ORF1a		315	12668	+	ok_rescued	1.0	99.3	8450.1					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085269.1	tblastn	ORF1b	ORF1b		12833	20659	+	ok_rescued	1.0	99.9	5570.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085269.1	tblastn	S	S		20656	24816	+	ok_rescued	1.0	95.2	2698.7	S	20656.0	24816.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085269.1	tblastn	ORF3	ORF3		24816	25490	+	ok_rescued	1.0	99.6	451.1	ORF3	24816.0	25490.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085269.1	tblastn	E	E		25471	25701	+	ok_rescued	1.0	98.7	150.6	E	25471.0	25701.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085269.1	tblastn	M	M		25709	26389	+	ok_rescued	1.0	99.6	455.3	M	25709.0	26389.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085269.1	tblastn	N	N		26401	27726	+	ok_rescued	1.0	99.8	896.7	N	26401.0	27726.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085277.1	tblastn	ORF1a	ORF1a		378	12731	+	ok_rescued	1.0	98.7	8394.2					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085277.1	tblastn	ORF1b	ORF1b		186	20722	+	invalid_boundaries	1.0	98.9	5549.9				S	0.0002	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085277.1	tblastn	S	S		20719	24879	+	ok_rescued	1.0	95.2	2700.6	S	20719.0	24879.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085277.1	tblastn	ORF3	ORF3		24879	25553	+	ok_rescued	1.0	100.0	453.0	ORF3	24879.0	25553.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085277.1	tblastn	E	E		25534	25764	+	ok_rescued	1.0	98.7	150.6	E	25534.0	25764.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085277.1	tblastn	M	M		25772	26452	+	ok_rescued	1.0	99.6	456.4	M	25772.0	26452.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085277.1	tblastn	N	N		26464	27789	+	ok_rescued	1.0	98.6	887.5	N	26464.0	27789.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085278.1	tblastn	ORF1a	ORF1a		407	12760	+	ok_rescued	1.0	98.7	8394.2					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085278.1	tblastn	ORF1b	ORF1b		12925	20751	+	ok_rescued	1.0	99.5	5549.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085278.1	tblastn	S	S		20748	24908	+	ok_rescued	1.0	95.2	2701.0	S	20748.0	24908.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085278.1	tblastn	ORF3	ORF3		24908	25582	+	ok_rescued	1.0	100.0	453.0	ORF3	24908.0	25582.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085278.1	tblastn	E	E		25563	25793	+	ok_rescued	1.0	98.7	150.6	E	25563.0	25793.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085278.1	tblastn	M	M		25801	26481	+	ok_rescued	1.0	99.6	456.4	M	25801.0	26481.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085278.1	tblastn	N	N		26493	27818	+	ok_rescued	1.0	98.6	887.5	N	26493.0	27818.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085279.1	tblastn	ORF1a	ORF1a		280	12633	+	ok_rescued	1.0	98.7	8394.2					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085279.1	tblastn	ORF1b	ORF1b		12798	20624	+	ok_rescued	1.0	99.5	5549.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085279.1	tblastn	S	S		20621	24781	+	ok_rescued	1.0	95.2	2701.0	S	20621.0	24781.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085279.1	tblastn	ORF3	ORF3		24781	25455	+	ok_rescued	1.0	100.0	453.0	ORF3	24781.0	25455.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085279.1	tblastn	E	E		25436	25666	+	ok_rescued	1.0	98.7	150.6	E	25436.0	25666.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085279.1	tblastn	M	M		25674	26354	+	ok_rescued	1.0	99.6	456.4	M	25674.0	26354.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085279.1	tblastn	N	N		26366	27691	+	ok_rescued	1.0	98.6	887.5	N	26366.0	27691.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085281.1	tblastn	ORF1a	ORF1a		417	12770	+	ok_rescued	1.0	99.1	8429.3					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085281.1	tblastn	ORF1b	ORF1b		12935	20761	+	ok_rescued	1.0	99.5	5556.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085281.1	tblastn	S	S		20758	24918	+	ok_rescued	1.0	94.6	2612.8	S	20758.0	24918.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085281.1	tblastn	ORF3	ORF3		24918	25592	+	ok_rescued	1.0	100.0	453.0	ORF3	24918.0	25592.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085281.1	tblastn	E	E		25573	25803	+	ok_rescued	1.0	100.0	152.1	E	25573.0	25803.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085281.1	tblastn	M	M		25811	26491	+	ok_rescued	1.0	100.0	457.2	M	25811.0	26491.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085281.1	tblastn	N	N		26503	27828	+	ok_rescued	1.0	100.0	899.0	N	26503.0	27828.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085283.1	tblastn	ORF1a	ORF1a		313	12666	+	ok_rescued	1.0	99.1	8425.5					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085283.1	tblastn	ORF1b	ORF1b		12831	20657	+	ok_rescued	1.0	99.5	5556.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085283.1	tblastn	S	S		20654	24814	+	ok_rescued	1.0	94.5	2610.5	S	20654.0	24814.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085283.1	tblastn	ORF3	ORF3		24814	25488	+	ok_rescued	1.0	100.0	453.0	ORF3	24814.0	25488.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085283.1	tblastn	E	E		25469	25699	+	ok_rescued	1.0	100.0	152.1	E	25469.0	25699.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085283.1	tblastn	M	M		25707	26387	+	ok_rescued	1.0	100.0	457.2	M	25707.0	26387.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085283.1	tblastn	N	N		26399	27724	+	ok_rescued	1.0	100.0	899.0	N	26399.0	27724.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085297.1	tblastn	ORF1a	ORF1a		279	12626	+	ok_rescued	1.0	98.6	8384.2					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085297.1	tblastn	ORF1b	ORF1b		12791	20617	+	ok_rescued	1.0	99.6	5561.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085297.1	tblastn	S	S		20614	24771	+	ok_rescued	1.0	94.0	2601.6	S	20614.0	24771.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085297.1	tblastn	ORF3	ORF3		24771	25445	+	ok_rescued	1.0	97.3	439.9	ORF3	24771.0	25445.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085297.1	tblastn	E	E		25426	25656	+	ok_rescued	1.0	98.7	149.8	E	25426.0	25656.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085297.1	tblastn	M	M		25664	26344	+	ok_rescued	1.0	100.0	457.2	M	25664.0	26344.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085297.1	tblastn	N	N		26356	27681	+	ok_rescued	1.0	99.8	897.1	N	26356.0	27681.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085300.1	tblastn	ORF1a	ORF1a		368	12721	+	ok_rescued	1.0	98.5	8381.5					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085300.1	tblastn	ORF1b	ORF1b		12886	20712	+	ok_rescued	1.0	99.5	5554.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085300.1	tblastn	S	S		20709	24869	+	ok_rescued	1.0	93.2	2569.7	S	20709.0	24869.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085300.1	tblastn	ORF3	ORF3		24869	25543	+	ok_rescued	1.0	96.9	438.0	ORF3	24869.0	25543.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085300.1	tblastn	E	E		25524	25754	+	ok_rescued	1.0	98.7	150.6	E	25524.0	25754.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085300.1	tblastn	M	M		25762	26439	+	ok_rescued	0.9956	96.9	446.4	M	25762.0	26439.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085300.1	tblastn	N	N		26451	27776	+	ok_rescued	1.0	97.3	878.6	N	26451.0	27776.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085304.1	tblastn	ORF1a	ORF1a		375	12728	+	ok_rescued	1.0	98.6	8385.0					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085304.1	tblastn	ORF1b	ORF1b		12893	20719	+	ok_rescued	1.0	99.6	5558.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085304.1	tblastn	S	S		20716	24873	+	ok_rescued	1.0	93.4	2568.9	S	20716.0	24873.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085304.1	tblastn	ORF3	ORF3		24873	25547	+	ok_rescued	1.0	96.9	438.0	ORF3	24873.0	25547.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085304.1	tblastn	E	E		25528	25758	+	ok_rescued	1.0	100.0	152.1	E	25528.0	25758.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085304.1	tblastn	M	M		25766	26446	+	ok_rescued	1.0	98.2	453.0	M	25766.0	26446.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085304.1	tblastn	N	N		26458	27783	+	ok_rescued	1.0	96.8	874.8	N	26458.0	27783.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085308.1	tblastn	ORF1a	ORF1a		370	12723	+	ok_rescued	1.0	98.6	8382.3					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR085308.1	tblastn	ORF1b	ORF1b		12888	20714	+	ok_rescued	1.0	99.6	5558.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR085308.1	tblastn	S	S		20711	24868	+	ok_rescued	1.0	93.4	2572.3	S	20711.0	24868.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085308.1	tblastn	ORF3	ORF3		24868	25542	+	ok_rescued	1.0	96.9	438.0	ORF3	24868.0	25542.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085308.1	tblastn	E	E		25523	25753	+	ok_rescued	1.0	100.0	152.1	E	25523.0	25753.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085308.1	tblastn	M	M		25761	26441	+	ok_rescued	1.0	98.2	453.0	M	25761.0	26441.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR085308.1	tblastn	N	N		26453	27778	+	ok_rescued	1.0	97.3	878.6	N	26453.0	27778.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP987385.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.5	8455.9					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PP987385.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.8	5568.8	ORF1b	12811.0	20637.0	ORF1b	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP987385.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	95.4	2703.3	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP987385.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP987385.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	100.0	152.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP987385.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP987385.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	99.8	897.5	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PQ682538.1	tblastn	ORF1a	ORF1a		341	12694	+	ok_rescued	1.0	98.6	8389.2					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PQ682538.1	tblastn	ORF1b	ORF1b		12859	20685	+	ok_rescued	1.0	99.8	5571.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PQ682538.1	tblastn	S	S		20682	24839	+	ok_rescued	1.0	94.2	2606.2	S	20682.0	24839.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PQ682538.1	tblastn	ORF3	ORF3		24839	25513	+	ok_rescued	1.0	97.3	441.0	ORF3	24839.0	25513.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PQ682538.1	tblastn	E	E		25494	25724	+	ok_rescued	1.0	100.0	152.1	E	25494.0	25724.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PQ682538.1	tblastn	M	M		25732	26412	+	ok_rescued	1.0	98.2	453.0	M	25732.0	26412.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PQ682538.1	tblastn	N	N		26424	27749	+	ok_rescued	1.0	98.6	890.2	N	26424.0	27749.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PQ878525.1	tblastn	ORF1a	ORF1a		294	12647	+	ok_rescued	1.0	99.5	8454.0				ORF1b	0.0023	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PQ878525.1	tblastn	ORF1b	ORF1b		12812	20638	+	ok_rescued	1.0	99.8	5570.0	ORF1b	12602.0	20638.0	ORF1b	0.9739	0.9739	True	True	False	Boundary offset
+ref_2	PV974486.1	PQ878525.1	tblastn	S	S		20635	24783	+	ok_rescued	1.0	97.8	2782.7	S	20635.0	24783.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PQ878525.1	tblastn	ORF3	ORF3		24783	25457	+	ok_rescued	1.0	100.0	453.0	ORF3	24783.0	25457.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PQ878525.1	tblastn	E	E		25438	25668	+	ok_rescued	1.0	98.7	151.8	E	25438.0	25668.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PQ878525.1	tblastn	M	M		25676	26356	+	ok_rescued	1.0	100.0	457.2	M	25676.0	26356.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PQ878525.1	tblastn	N	N		26368	27693	+	ok_rescued	1.0	99.5	896.7	N	26368.0	27693.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV036765.1	tblastn	ORF1a	ORF1a		306	12659	+	ok_rescued	1.0	98.9	8403.9					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV036765.1	tblastn	ORF1b	ORF1b		12824	20650	+	ok_rescued	1.0	99.6	5555.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV036765.1	tblastn	S	S		20647	24804	+	ok_rescued	1.0	93.4	2573.1	S	20647.0	24804.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV036765.1	tblastn	ORF3	ORF3		24804	25478	+	ok_rescued	1.0	96.9	438.3	ORF3	24804.0	25478.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV036765.1	tblastn	E	E		25459	25689	+	ok_rescued	1.0	100.0	152.1	E	25459.0	25689.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV036765.1	tblastn	M	M		25697	26377	+	ok_rescued	1.0	99.1	454.5	M	25697.0	26377.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV036765.1	tblastn	N	N		26389	27714	+	ok_rescued	1.0	98.2	884.0	N	26389.0	27714.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536067.1	tblastn	ORF1a	ORF1a		294	28147	+	invalid_boundaries	1.0	99.1	8425.8				S	0.1494	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536067.1	tblastn	ORF1b	ORF1b		12833	20659	+	ok_rescued	1.0	99.8	5567.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536067.1	tblastn	S	S		20656	24816	+	ok_rescued	1.0	94.7	2619.3	S	20656.0	24816.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536067.1	tblastn	ORF3	ORF3		24816	25490	+	ok_rescued	1.0	99.6	451.4	ORF3	24816.0	25490.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536067.1	tblastn	E	E		25471	25701	+	ok_rescued	1.0	100.0	152.1	E	25471.0	25701.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536067.1	tblastn	M	M		25709	26389	+	ok_rescued	1.0	99.6	454.5	M	25709.0	26389.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536067.1	tblastn	N	N		26401	27726	+	ok_rescued	1.0	99.3	894.8	N	26401.0	27726.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536074.1	tblastn	ORF1a	ORF1a		290	12643	+	ok_rescued	1.0	99.7	8461.7					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536074.1	tblastn	ORF1b	ORF1b		12808	20634	+	ok_rescued	1.0	99.8	5569.6				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536074.1	tblastn	S	S		20631	24779	+	ok_rescued	1.0	98.0	2789.2	S	20631.0	24779.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536074.1	tblastn	ORF3	ORF3		24779	25453	+	ok_rescued	1.0	99.6	451.1	ORF3	24779.0	25453.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536074.1	tblastn	E	E		25434	25664	+	ok_rescued	1.0	100.0	152.1	E	25434.0	25664.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536074.1	tblastn	M	M		25672	26352	+	ok_rescued	1.0	100.0	457.2	M	25672.0	26352.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536074.1	tblastn	N	N		26364	27689	+	ok_rescued	1.0	99.8	897.5	N	26364.0	27689.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536079.1	tblastn	ORF1a	ORF1a		363	12716	+	ok_rescued	1.0	98.6	8383.5					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536079.1	tblastn	ORF1b	ORF1b		12881	20707	+	ok_rescued	1.0	99.6	5558.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536079.1	tblastn	S	S		20704	24861	+	ok_rescued	1.0	93.4	2568.9	S	20704.0	24861.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536079.1	tblastn	ORF3	ORF3		24861	25535	+	ok_rescued	1.0	96.9	438.0	ORF3	24861.0	25535.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536079.1	tblastn	E	E		25516	25746	+	ok_rescued	1.0	100.0	152.1	E	25516.0	25746.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536079.1	tblastn	M	M		25754	26434	+	ok_rescued	1.0	98.2	453.0	M	25754.0	26434.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536079.1	tblastn	N	N		26446	27771	+	ok_rescued	1.0	96.8	874.8	N	26446.0	27771.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536082.1	tblastn	ORF1a	ORF1a		314	12667	+	ok_rescued	1.0	99.2	8427.8					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536082.1	tblastn	ORF1b	ORF1b		12832	20658	+	ok_rescued	1.0	99.6	5555.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536082.1	tblastn	S	S		20655	24815	+	ok_rescued	1.0	95.0	2615.9	S	20655.0	24815.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536082.1	tblastn	ORF3	ORF3		24815	25489	+	ok_rescued	1.0	99.6	451.4	ORF3	24815.0	25489.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536082.1	tblastn	E	E		25470	25700	+	ok_rescued	1.0	100.0	152.1	E	25470.0	25700.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536082.1	tblastn	M	M		25708	26388	+	ok_rescued	1.0	99.1	455.3	M	25708.0	26388.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536082.1	tblastn	N	N		26400	27725	+	ok_rescued	1.0	99.5	894.8	N	26400.0	27725.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536087.1	tblastn	ORF1a	ORF1a		2	12732	+	invalid_boundaries	1.0	99.4	8447.0					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536087.1	tblastn	ORF1b	ORF1b		12897	20723	+	ok_rescued	1.0	99.8	5570.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536087.1	tblastn	S	S		20720	24880	+	ok_rescued	1.0	95.0	2690.6	S	20720.0	24880.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536087.1	tblastn	ORF3	ORF3		24880	25554	+	ok_rescued	1.0	100.0	453.0	ORF3	24880.0	25554.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536087.1	tblastn	E	E		25535	25765	+	ok_rescued	1.0	100.0	152.1	E	25535.0	25765.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536087.1	tblastn	M	M		25773	26453	+	ok_rescued	1.0	99.1	455.3	M	25773.0	26453.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536087.1	tblastn	N	N		26465	27790	+	ok_rescued	1.0	99.5	895.2	N	26465.0	27790.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536089.1	tblastn	ORF1a	ORF1a		408	12761	+	ok_rescued	1.0	99.1	8440.9					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536089.1	tblastn	ORF1b	ORF1b		12926	20752	+	ok_rescued	1.0	99.7	5568.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536089.1	tblastn	S	S		20749	24909	+	ok_rescued	1.0	95.0	2690.6	S	20749.0	24909.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536089.1	tblastn	ORF3	ORF3		24909	25583	+	ok_rescued	1.0	100.0	453.0	ORF3	24909.0	25583.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536089.1	tblastn	E	E		25564	25794	+	ok_rescued	1.0	100.0	152.1	E	25564.0	25794.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536089.1	tblastn	M	M		25802	26482	+	ok_rescued	1.0	99.1	455.3	M	25802.0	26482.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536089.1	tblastn	N	N		26494	27819	+	ok_rescued	1.0	99.5	895.2	N	26494.0	27819.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536091.1	tblastn	ORF1a	ORF1a		308	12661	+	ok_rescued	1.0	99.2	8433.5					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536091.1	tblastn	ORF1b	ORF1b		12826	20652	+	ok_rescued	1.0	99.9	5573.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536091.1	tblastn	S	S		20649	24800	+	ok_rescued	1.0	97.0	2758.4	S	20649.0	24800.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536091.1	tblastn	ORF3	ORF3		24800	25474	+	ok_rescued	1.0	99.6	452.2	ORF3	24800.0	25474.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536091.1	tblastn	E	E		25455	25685	+	ok_rescued	1.0	100.0	152.1	E	25455.0	25685.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536091.1	tblastn	M	M		25693	26373	+	ok_rescued	1.0	99.6	453.8	M	25693.0	26373.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536091.1	tblastn	N	N		26385	27710	+	ok_rescued	1.0	99.8	895.6	N	26385.0	27710.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536097.1	tblastn	ORF1a	ORF1a		295	12648	+	ok_rescued	1.0	99.1	8422.4					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536097.1	tblastn	ORF1b	ORF1b		12813	20639	+	ok_rescued	1.0	99.8	5569.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536097.1	tblastn	S	S		20636	24793	+	ok_rescued	1.0	94.2	2597.8	S	20636.0	24793.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536097.1	tblastn	ORF3	ORF3		24793	25467	+	ok_rescued	1.0	96.9	439.1	ORF3	24793.0	25467.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536097.1	tblastn	E	E		25448	25678	+	ok_rescued	1.0	100.0	152.1	E	25448.0	25678.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536097.1	tblastn	M	M		25686	26366	+	ok_rescued	1.0	98.2	453.0	M	25686.0	26366.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536097.1	tblastn	N	N		26378	27703	+	ok_rescued	1.0	98.4	888.3	N	26378.0	27703.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536098.1	tblastn	ORF1a	ORF1a		453	12806	+	ok_rescued	1.0	99.2	8440.1					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536098.1	tblastn	ORF1b	ORF1b		12971	20797	+	ok_rescued	1.0	99.8	5568.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536098.1	tblastn	S	S		2	24954	+	invalid_boundaries	1.0	94.5	2692.5	S	20794.0	24954.0	S	0.1668	0.1668	True	False	False	Wrong coords
+ref_2	PV974486.1	PV536098.1	tblastn	ORF3	ORF3		24954	25628	+	ok_rescued	1.0	100.0	453.0	ORF3	24954.0	25628.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536098.1	tblastn	E	E		25609	25839	+	ok_rescued	1.0	100.0	152.1	E	25609.0	25839.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536098.1	tblastn	M	M		25847	26527	+	ok_rescued	1.0	100.0	457.2	M	25847.0	26527.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536098.1	tblastn	N	N		26539	27864	+	ok_rescued	1.0	100.0	899.0	N	26539.0	27864.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536099.1	tblastn	ORF1a	ORF1a		518	12871	+	ok_rescued	1.0	99.1	8432.4					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536099.1	tblastn	ORF1b	ORF1b		13036	20862	+	ok_rescued	1.0	99.8	5570.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536099.1	tblastn	S	S		20859	25007	+	ok_rescued	1.0	98.1	2788.4	S	20859.0	25007.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536099.1	tblastn	ORF3	ORF3		25007	25681	+	ok_rescued	1.0	100.0	453.0	ORF3	25007.0	25681.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536099.1	tblastn	E	E		25662	25892	+	ok_rescued	1.0	100.0	152.1	E	25662.0	25892.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536099.1	tblastn	M	M		25900	26580	+	ok_rescued	1.0	100.0	457.2	M	25900.0	26580.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536099.1	tblastn	N	N		26592	27917	+	ok_rescued	1.0	99.8	897.1	N	26592.0	27917.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536108.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.8	8406.6					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536108.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.4	5551.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536108.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	94.1	2603.6	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536108.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	99.1	449.1	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536108.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	100.0	152.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536108.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	97.3	450.7	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536108.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	98.0	880.9	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536110.1	tblastn	ORF1a	ORF1a		289	12642	+	ok_rescued	1.0	99.0	8415.4					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536110.1	tblastn	ORF1b	ORF1b		12807	20633	+	ok_rescued	1.0	99.7	5560.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536110.1	tblastn	S	S		20630	24790	+	ok_rescued	1.0	94.5	2604.7	S	20630.0	24790.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536110.1	tblastn	ORF3	ORF3		24790	25464	+	ok_rescued	1.0	96.0	436.0	ORF3	24790.0	25464.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536110.1	tblastn	E	E		25445	25675	+	ok_rescued	1.0	100.0	152.1	E	25445.0	25675.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536110.1	tblastn	M	M		25683	26363	+	ok_rescued	1.0	100.0	457.6	M	25683.0	26363.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536110.1	tblastn	N	N		26375	27700	+	ok_rescued	1.0	99.8	896.7	N	26375.0	27700.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536111.1	tblastn	ORF1a	ORF1a		359	12712	+	ok_rescued	1.0	99.0	8415.4					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536111.1	tblastn	ORF1b	ORF1b		12877	20703	+	ok_rescued	1.0	99.7	5560.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536111.1	tblastn	S	S		20700	24860	+	ok_rescued	1.0	94.5	2604.7	S	20700.0	24860.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536111.1	tblastn	ORF3	ORF3		24860	25534	+	ok_rescued	1.0	96.0	436.0	ORF3	24860.0	25534.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536111.1	tblastn	E	E		25515	25745	+	ok_rescued	1.0	100.0	152.1	E	25515.0	25745.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536111.1	tblastn	M	M		25753	26433	+	ok_rescued	1.0	100.0	457.6	M	25753.0	26433.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536111.1	tblastn	N	N		26445	27770	+	ok_rescued	1.0	99.8	896.7	N	26445.0	27770.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536112.1	tblastn	ORF1a	ORF1a		196	28314	+	invalid_boundaries	1.0	98.5	8428.9				S	0.1479	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536112.1	tblastn	ORF1b	ORF1b		13037	20863	+	ok_rescued	1.0	99.5	5558.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536112.1	tblastn	S	S		20860	25017	+	ok_rescued	1.0	93.6	2588.1	S	20860.0	25017.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536112.1	tblastn	ORF3	ORF3		25017	25691	+	ok_rescued	1.0	96.9	439.1	ORF3	25017.0	25691.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536112.1	tblastn	E	E		25672	25902	+	ok_rescued	1.0	100.0	152.1	E	25672.0	25902.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536112.1	tblastn	M	M		25910	26590	+	ok_rescued	1.0	99.1	454.9	M	25910.0	26590.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536112.1	tblastn	N	N		26602	27921	+	ok_rescued	1.0	98.6	882.5	N	26602.0	27921.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536113.1	tblastn	ORF1a	ORF1a		499	12852	+	ok_rescued	1.0	98.9	8428.9					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536113.1	tblastn	ORF1b	ORF1b		13017	20843	+	ok_rescued	1.0	99.5	5558.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536113.1	tblastn	S	S		20840	24997	+	ok_rescued	1.0	93.6	2588.1	S	20840.0	24997.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536113.1	tblastn	ORF3	ORF3		24997	25671	+	ok_rescued	1.0	96.9	439.1	ORF3	24997.0	25671.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536113.1	tblastn	E	E		25652	25882	+	ok_rescued	1.0	100.0	152.1	E	25652.0	25882.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536113.1	tblastn	M	M		25890	26570	+	ok_rescued	1.0	99.1	454.9	M	25890.0	26570.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536113.1	tblastn	N	N		26582	27901	+	ok_rescued	1.0	98.6	882.5	N	26582.0	27901.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536114.1	tblastn	ORF1a	ORF1a		364	12717	+	ok_rescued	1.0	99.1	8428.9					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536114.1	tblastn	ORF1b	ORF1b		12882	20708	+	ok_rescued	1.0	99.5	5558.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536114.1	tblastn	S	S		20705	24862	+	ok_rescued	1.0	93.6	2588.1	S	20705.0	24862.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536114.1	tblastn	ORF3	ORF3		24862	25536	+	ok_rescued	1.0	96.9	439.1	ORF3	24862.0	25536.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536114.1	tblastn	E	E		25517	25747	+	ok_rescued	1.0	100.0	152.1	E	25517.0	25747.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536114.1	tblastn	M	M		25755	26435	+	ok_rescued	1.0	99.1	454.9	M	25755.0	26435.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536114.1	tblastn	N	N		26447	27766	+	ok_rescued	1.0	98.6	882.5	N	26447.0	27766.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536121.1	tblastn	ORF1a	ORF1a		454	12798	+	ok_rescued	1.0	98.5	8374.2					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV536121.1	tblastn	ORF1b	ORF1b		12963	20789	+	ok_rescued	1.0	99.6	5561.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV536121.1	tblastn	S	S		20786	24943	+	ok_rescued	1.0	93.9	2597.0	S	20786.0	24943.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536121.1	tblastn	ORF3	ORF3		24943	25617	+	ok_rescued	1.0	97.3	439.9	ORF3	24943.0	25617.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536121.1	tblastn	E	E		25598	25828	+	ok_rescued	1.0	98.7	149.8	E	25598.0	25828.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536121.1	tblastn	M	M		25836	26516	+	ok_rescued	1.0	100.0	457.2	M	25836.0	26516.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV536121.1	tblastn	N	N		26528	27853	+	ok_rescued	1.0	99.8	897.1	N	26528.0	27853.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV974486.1	tblastn	ORF1a	ORF1a		271	12624	+	ok_rescued	1.0	100.0	8486.7	ORF1a	271.0	12624.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV974486.1	tblastn	ORF1b	ORF1b		12789	20615	+	ok_rescued	1.0	100.0	5578.8	ORF1b	12594.0	20615.0	ORF1b	0.9757	0.9757	True	True	False	Boundary offset
+ref_2	PV974486.1	PV974486.1	tblastn	S	S		20612	24760	+	ok_rescued	1.0	100.0	2840.8	S	20612.0	24760.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV974486.1	tblastn	ORF3	ORF3		24760	25434	+	ok_rescued	1.0	100.0	453.0	ORF3	24760.0	25434.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV974486.1	tblastn	E	E		25415	25645	+	ok_rescued	1.0	100.0	152.1	E	25415.0	25645.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV974486.1	tblastn	M	M		25653	26333	+	ok_rescued	1.0	100.0	457.2	M	25653.0	26333.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV974486.1	tblastn	N	N		26345	27670	+	ok_rescued	1.0	100.0	899.0	N	26345.0	27670.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX146708.1	tblastn	ORF1a	ORF1a		294	12647	+	ok_rescued	1.0	99.0	8418.1	ORF1a	294.0	12647.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX146708.1	tblastn	ORF1b	ORF1b		12603	20642	+	ok_rescued	0.9989	99.8	5296.1	ORF1b	12812.0	20257.0	ORF1b	0.9261	0.9261	True	True	False	Boundary offset
+ref_2	PV974486.1	PX146708.1	tblastn	S	S		20639	24799	+	ok_rescued	1.0	94.5	2622.4	S	20639.0	24799.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX146708.1	tblastn	ORF3	ORF3		24799	25473	+	ok_rescued	1.0	99.6	449.5	ORF3	24799.0	25473.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX146708.1	tblastn	E	E		25454	25684	+	ok_rescued	1.0	98.7	151.8	E	25454.0	25684.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX146708.1	tblastn	M	M		25692	26372	+	ok_rescued	1.0	100.0	457.2	M	25692.0	26372.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX146708.1	tblastn	N	N		26384	27709	+	ok_rescued	1.0	99.3	894.8	N	26384.0	27709.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV125746.1	tblastn	ORF1a	ORF1a		330	12683	+	ok_rescued	1.0	98.8	8400.0	ORF1a	330.0	12683.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV125746.1	tblastn	ORF1b	ORF1b		12848	20674	+	ok_rescued	1.0	99.8	5570.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV125746.1	tblastn	S	S		20671	24831	+	ok_rescued	1.0	94.9	2631.3	S	20671.0	24831.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV125746.1	tblastn	ORF3	ORF3		24831	25505	+	ok_rescued	1.0	100.0	453.0	ORF3	24831.0	25505.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV125746.1	tblastn	E	E		25486	25716	+	ok_rescued	1.0	98.7	148.3	E	25486.0	25716.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV125746.1	tblastn	M	M		25724	26404	+	ok_rescued	1.0	100.0	457.2	M	25724.0	26404.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV125746.1	tblastn	N	N		26416	27741	+	ok_rescued	1.0	99.3	894.4	N	26416.0	27741.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV533621.1	tblastn	ORF1a	ORF1a		346	12699	+	ok_rescued	1.0	99.1	8428.5					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PV533621.1	tblastn	ORF1b	ORF1b		12864	20690	+	ok_rescued	1.0	99.7	5564.6				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV533621.1	tblastn	S	S		20687	24844	+	ok_rescued	1.0	94.1	2590.1	S	20687.0	24844.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV533621.1	tblastn	ORF3	ORF3		24844	25504	+	invalid_boundaries	0.933	88.8	247.3	ORF3	24844.0	25092.0	ORF3	0.3767	0.3767	True	False	False	Wrong coords
+ref_2	PV974486.1	PV533621.1	tblastn	E	E		25398	25628	+	ok_rescued	1.0	100.0	152.1	E	25398.0	25628.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV533621.1	tblastn	M	M		25636	26316	+	ok_rescued	1.0	97.8	450.3	M	25636.0	26316.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV533621.1	tblastn	N	N		26328	27653	+	ok_rescued	1.0	98.2	886.3	N	26328.0	27653.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX475711.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.3	8441.6					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PX475711.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.7	5562.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PX475711.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	94.6	2602.8	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX475711.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0				E	0.0226	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PX475711.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	100.0	152.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX475711.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.1	454.9	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX475711.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	99.8	897.1	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV982377.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.8	8395.8	ORF1a	293.0	12646.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV982377.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.8	5569.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PV982377.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	95.0	2618.6	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV982377.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV982377.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	98.7	150.6	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV982377.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	100.0	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PV982377.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	99.3	892.5	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482648.1	tblastn	ORF1a	ORF1a		332	12685	+	ok_rescued	1.0	98.8	8401.2	ORF1a	332.0	12685.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482648.1	tblastn	ORF1b	ORF1b		12850	20676	+	ok_rescued	1.0	99.9	5574.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PX482648.1	tblastn	S	S		20673	24833	+	ok_rescued	1.0	95.5	2703.3	S	20673.0	24833.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482648.1	tblastn	ORF3	ORF3		24833	25507	+	ok_rescued	1.0	100.0	453.0	ORF3	24833.0	25507.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482648.1	tblastn	E	E		25488	25718	+	ok_rescued	1.0	100.0	152.1	E	25488.0	25718.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482648.1	tblastn	M	M		25726	26406	+	ok_rescued	1.0	100.0	457.2	M	25726.0	26406.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482648.1	tblastn	N	N		26418	27743	+	ok_rescued	1.0	99.5	894.4	N	26418.0	27743.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482650.1	tblastn	ORF1a	ORF1a		281	12631	+	ok_rescued	1.0	99.2	8437.0	ORF1a	281.0	12631.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482650.1	tblastn	ORF1b	ORF1b		12796	20622	+	ok_rescued	1.0	99.8	5565.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PX482650.1	tblastn	S	S		20619	24779	+	ok_rescued	1.0	94.8	2613.9	S	20619.0	24779.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482650.1	tblastn	ORF3	ORF3		24779	25453	+	ok_rescued	1.0	100.0	453.0	ORF3	24779.0	25453.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482650.1	tblastn	E	E		25434	25664	+	ok_rescued	1.0	100.0	152.1	E	25434.0	25664.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482650.1	tblastn	M	M		25672	26352	+	ok_rescued	1.0	100.0	457.2	M	25672.0	26352.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482650.1	tblastn	N	N		26364	27689	+	ok_rescued	1.0	99.8	897.5	N	26364.0	27689.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482651.1	tblastn	ORF1a	ORF1a		462	12815	+	ok_rescued	1.0	98.6	8390.8	ORF1a	462.0	12815.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482651.1	tblastn	ORF1b	ORF1b		12980	20806	+	ok_rescued	1.0	99.8	5569.6				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PX482651.1	tblastn	S	S		20803	24960	+	ok_rescued	1.0	93.6	2586.2	S	20803.0	24960.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482651.1	tblastn	ORF3	ORF3		24960	25634	+	ok_rescued	1.0	97.3	439.9	ORF3	24960.0	25634.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482651.1	tblastn	E	E		25615	25845	+	ok_rescued	1.0	98.7	150.6	E	25615.0	25845.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482651.1	tblastn	M	M		25853	26533	+	ok_rescued	1.0	97.8	451.1	M	25853.0	26533.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482651.1	tblastn	N	N		26545	27870	+	ok_rescued	1.0	97.7	881.3	N	26545.0	27870.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482652.1	tblastn	ORF1a	ORF1a		335	12688	+	ok_rescued	1.0	99.2	8426.6	ORF1a	335.0	12688.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482652.1	tblastn	ORF1b	ORF1b		12853	20679	+	ok_rescued	1.0	99.9	5572.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PX482652.1	tblastn	S	S		20676	24833	+	ok_rescued	1.0	94.4	2602.4	S	20676.0	24833.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482652.1	tblastn	ORF3	ORF3		24833	25507	+	ok_rescued	1.0	99.1	449.1	ORF3	24833.0	25507.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482652.1	tblastn	E	E		25488	25718	+	ok_rescued	1.0	98.7	151.0	E	25488.0	25718.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482652.1	tblastn	M	M		25726	26406	+	ok_rescued	1.0	99.6	457.2	M	25726.0	26406.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482652.1	tblastn	N	N		26418	27743	+	ok_rescued	1.0	99.3	891.7	N	26418.0	27743.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482653.1	tblastn	ORF1a	ORF1a		473	12826	+	ok_rescued	1.0	99.3	8450.1	ORF1a	473.0	12826.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482653.1	tblastn	ORF1b	ORF1b		12991	20817	+	ok_rescued	1.0	99.8	5568.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PX482653.1	tblastn	S	S		20814	24974	+	ok_rescued	1.0	94.9	2616.7	S	20814.0	24974.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482653.1	tblastn	ORF3	ORF3		24974	25648	+	ok_rescued	1.0	100.0	453.0	ORF3	24974.0	25648.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482653.1	tblastn	E	E		25629	25859	+	ok_rescued	1.0	98.7	151.8	E	25629.0	25859.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482653.1	tblastn	M	M		25867	26547	+	ok_rescued	1.0	100.0	457.2	M	25867.0	26547.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482653.1	tblastn	N	N		26559	27884	+	ok_rescued	1.0	99.8	896.3	N	26559.0	27884.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482655.1	tblastn	ORF1a	ORF1a		274	12624	+	ok_rescued	1.0	99.2	8426.6	ORF1a	274.0	12624.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482655.1	tblastn	ORF1b	ORF1b		12789	20615	+	ok_rescued	1.0	99.8	5569.6				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PX482655.1	tblastn	S	S		20612	24772	+	ok_rescued	1.0	95.1	2697.5	S	20612.0	24772.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482655.1	tblastn	ORF3	ORF3		24772	25446	+	ok_rescued	1.0	99.6	448.7	ORF3	24772.0	25446.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482655.1	tblastn	E	E		25427	25657	+	ok_rescued	1.0	98.7	151.8	E	25427.0	25657.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482655.1	tblastn	M	M		25665	26345	+	ok_rescued	1.0	100.0	457.2	M	25665.0	26345.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PX482655.1	tblastn	N	N		26357	27682	+	ok_rescued	1.0	99.8	896.0	N	26357.0	27682.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PZ188955.1	tblastn	ORF1a	ORF1a		312	12665	+	ok_rescued	1.0	99.4	8452.8					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PZ188955.1	tblastn	ORF1b	ORF1b		12830	20656	+	ok_rescued	1.0	99.8	5568.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PZ188955.1	tblastn	S	S		20653	24813	+	ok_rescued	1.0	94.9	2633.2	S	20653.0	24813.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PZ188955.1	tblastn	ORF3	ORF3		24813	25487	+	ok_rescued	1.0	99.6	449.5	ORF3	24813.0	25487.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PZ188955.1	tblastn	E	E		25468	25698	+	ok_rescued	1.0	98.7	151.8	E	25468.0	25698.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PZ188955.1	tblastn	M	M		25706	26386	+	ok_rescued	1.0	100.0	457.2	M	25706.0	26386.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PZ188955.1	tblastn	N	N		26398	27723	+	ok_rescued	1.0	99.1	892.1	N	26398.0	27723.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PZ105934.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.1	8417.8	ORF1a	293.0	12646.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PZ105934.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.8	5567.3	ORF1b	12811.0	20637.0	ORF1b	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PZ105934.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	94.6	2610.5	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PZ105934.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PZ105934.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	98.7	151.8	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PZ105934.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	100.0	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PZ105934.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	100.0	899.0	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	AF353511.1	tblastn	ORF1a	ORF1a		297	12650	+	ok_rescued	1.0	97.5	8309.5					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	AF353511.1	tblastn	ORF1b	ORF1b		12815	20641	+	ok_rescued	1.0	99.3	5548.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	AF353511.1	tblastn	S	S		20638	24789	+	ok_rescued	1.0	94.2	2608.2	S	20638.0	24789.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	AF353511.1	tblastn	ORF3	ORF3		24789	25463	+	ok_rescued	1.0	96.4	440.3	ORF3	24789.0	25463.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	AF353511.1	tblastn	E	E		25444	25674	+	ok_rescued	1.0	98.7	150.2	E	25444.0	25674.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	AF353511.1	tblastn	M	M		25682	26362	+	ok_rescued	1.0	98.2	452.6	M	25682.0	26362.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	AF353511.1	tblastn	N	N		26374	27699	+	ok_rescued	1.0	96.6	867.5	N	26374.0	27699.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	JX112709.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.7	8398.1					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	JX112709.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.6	5558.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	JX112709.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	93.9	2586.6	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	JX112709.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	96.4	436.0	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	JX112709.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	100.0	152.1	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	JX112709.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	97.3	449.9	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	JX112709.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	97.1	875.9	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	JX489155.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.1	8422.0					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	JX489155.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.7	5563.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	JX489155.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	94.2	2600.5	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	JX489155.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	97.3	439.9	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	JX489155.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	100.0	152.1	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	JX489155.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	98.2	453.0	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	JX489155.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	97.1	876.7	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KC210147.1	tblastn	ORF1a	ORF1a		292	12645	+	ok_rescued	1.0	99.5	8455.1					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KC210147.1	tblastn	ORF1b	ORF1b		12810	20636	+	ok_rescued	1.0	99.7	5566.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KC210147.1	tblastn	S	S		20633	24793	+	ok_rescued	1.0	95.1	2698.3	S	20633.0	24793.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KC210147.1	tblastn	ORF3	ORF3		24793	25467	+	ok_rescued	1.0	100.0	453.0	ORF3	24793.0	25467.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KC210147.1	tblastn	E	E		25448	25678	+	ok_rescued	1.0	100.0	152.1	E	25448.0	25678.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KC210147.1	tblastn	M	M		25686	26366	+	ok_rescued	1.0	99.6	457.2	M	25686.0	26366.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KC210147.1	tblastn	N	N		26378	27703	+	ok_rescued	1.0	99.3	893.3	N	26378.0	27703.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM609208.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.2	8439.7					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KM609208.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.7	5568.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KM609208.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	94.1	2595.8	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM609208.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	98.7	445.7	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM609208.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	97.4	149.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM609208.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.1	455.7	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM609208.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	99.1	892.5	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM609213.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.8	8399.3					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KM609213.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.8	5566.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KM609213.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	94.8	2617.8	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM609213.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM609213.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	100.0	152.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM609213.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM609213.1	tblastn	N	N		26379	27704	+	ok_rescued	1.0	100.0	899.0	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LT898413.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	99.3	8443.6					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	LT898413.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.6	5562.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	LT898413.1	tblastn	S	S		20634	24785	+	ok_rescued	1.0	96.9	2756.5	S	20634.0	24785.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LT898413.1	tblastn	ORF3	ORF3		24785	25459	+	ok_rescued	1.0	99.6	451.8				E	0.0226	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	LT898413.1	tblastn	E	E		25440	25670	+	ok_rescued	1.0	100.0	152.1	E	25440.0	25670.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LT898413.1	tblastn	M	M		25678	26358	+	ok_rescued	1.0	99.6	457.2	M	25678.0	26358.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	LT898413.1	tblastn	N	N		26370	27695	+	ok_rescued	1.0	99.8	896.3	N	26370.0	27695.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF737355.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.8	8407.7					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	MF737355.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.7	5567.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	MF737355.1	tblastn	S	S		20634	24794	+	ok_rescued	1.0	92.9	2582.8	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF737355.1	tblastn	ORF3	ORF3		24794	25468	+	ok_rescued	1.0	99.1	449.1	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF737355.1	tblastn	E	E		25449	25679	+	ok_rescued	1.0	98.7	150.2	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF737355.1	tblastn	M	M		25687	26367	+	ok_rescued	1.0	98.2	452.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF737355.1	tblastn	N	N		26379	27704	+	ok_rescued	0.9977	98.0	882.1	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OL762457.1	tblastn	ORF1a	ORF1a		293	12643	+	ok_rescued	1.0	99.5	8442.0	ORF1a	293.0	12643.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OL762457.1	tblastn	ORF1b	ORF1b		12808	20634	+	ok_rescued	1.0	99.9	5572.7	ORF1b	12808.0	20634.0	ORF1b	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OL762457.1	tblastn	S	S		20631	24791	+	ok_rescued	1.0	95.5	2704.5	S	20631.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OL762457.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	93.8	422.6	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OL762457.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	100.0	152.1	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OL762457.1	tblastn	M	M		25684	26364	+	ok_rescued	1.0	100.0	457.2	M	25684.0	26364.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OL762457.1	tblastn	N	N		26376	27701	+	ok_rescued	1.0	99.5	893.6	N	26376.0	27701.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR234022.1	tblastn	ORF1a	ORF1a		293	12646	+	ok_rescued	1.0	98.6	8389.6					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	OR234022.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok_rescued	1.0	99.6	5554.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	OR234022.1	tblastn	S	S		20634	24791	+	ok_rescued	1.0	93.7	2583.9	S	20634.0	24791.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR234022.1	tblastn	ORF3	ORF3		24791	25465	+	ok_rescued	1.0	97.3	439.9	ORF3	24791.0	25465.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR234022.1	tblastn	E	E		25446	25676	+	ok_rescued	1.0	97.4	148.3	E	25446.0	25676.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR234022.1	tblastn	M	M		25684	26379	+	ok_rescued	1.0	96.1	447.2	M	25684.0	26379.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	OR234022.1	tblastn	N	N		26391	27716	+	ok_rescued	1.0	98.6	890.2	N	26391.0	27716.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP107944.1	tblastn	ORF1a	ORF1a		299	12649	+	ok_rescued	1.0	98.9	8399.3	ORF1a	299.0	12649.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP107944.1	tblastn	ORF1b	ORF1b		12814	20640	+	ok_rescued	1.0	99.7	5568.4					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	PP107944.1	tblastn	S	S		20637	24806	+	ok_rescued	1.0	92.6	2561.6				ORF3	0.0002	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	PP107944.1	tblastn	ORF3	ORF3		24806	25480	+	ok_rescued	1.0	99.6	449.1	ORF3	24806.0	25480.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP107944.1	tblastn	E	E		25461	25691	+	ok_rescued	1.0	98.7	148.3	E	25461.0	25691.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP107944.1	tblastn	M	M		25699	26379	+	ok_rescued	1.0	98.7	454.1	M	25699.0	26379.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	PP107944.1	tblastn	N	N		26391	27716	+	ok_rescued	1.0	98.9	888.3	N	26391.0	27716.0	N	1.0	1.0	True	True	True	Correct

@@ -1,0 +1,5 @@
+virus	field	total	canonical	ambiguous	ignored	unresolved	coverage_pct	actionable_total	actionable_coverage_pct
+FMD	product	1278	1178	0	100	0	92.18	1178	100.0
+PRRS	gene	183	183	0	0	0	100.0	183	100.0
+PRRS	note	728	648	52	26	2	89.01	702	92.31
+PRRS	product	848	778	27	42	1	91.75	806	96.53

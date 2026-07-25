@@ -1,0 +1,2 @@
+virus	method	total	exact	coord_correct	mean_iou	exact_pct	coord_pct
+PRRS	direct	833	783	783	0.9415	94.0	94.0

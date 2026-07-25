@@ -1,0 +1,6 @@
+raw_value	expected_action	expected_canonical	llm_action	llm_canonical_name	llm_confidence	llm_reason	action_correct
+101-bp deletion results in frameshift and premature termination	ignore		ignore		high	Broad descriptive consequence of a mutation, not a reusable gene alias.	True
+1a polyprotein and 1b polyprotein	save_alias	ORF1ab	save_alias	ORF1ab	high	Combined ORF1a and ORF1b wording clearly refers to ORF1ab, which is available.	True
+contains ORF1a and ORF1b	save_alias	ORF1ab	save_alias	ORF1ab	high	Explicitly indicates both ORF1a and ORF1b, so it should map to ORF1ab.	True
+truncated hypothetical protein	ignore		ignore		high	Generic protein descriptor, too broad to serve as a reusable alias.	True
+mp	move_to_ambiguous		move_to_ambiguous		high	The raw name 'mp' is shared across multiple genes and should be handled as ambiguous.	True

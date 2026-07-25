@@ -1,0 +1,6 @@
+virus	record_id	method	ref_name	pred_name	source_name	pred_start	pred_end	strand	status	coverage	identity	score	has_start_codon	has_stop_codon	in_frame	raw_start	raw_end	n_term_missing_aa	rescue_target	rescue_offset	rescue_action	truth_name	truth_start	truth_end	best_overlap_name	best_iou	iou	name_match	codon_valid	codon_required	within_bp_tolerance	coord_correct	exact_match	pred_len	truth_len	pred_minus_truth_len	delta_start	delta_end	failure_mode	ref_len	pred_minus_ref_len	truth_minus_ref_len
+fmd	AY687334.1	tblastn	VP4	VP4		1684	1938	+	ok	1.0	96.5	165.2				1684.0	1938.0	0.0							VP2	0.2673	0.0	False	True	False	False	False	False	255					Possible overlap	255	0	
+fmd	DQ989316.1	tblastn	VP3	VP3		2694	2927	+	low_coverage	0.3591	74.7	128.6				2694.0	2927.0	0.0								0.0	0.0	False	True	False	False	False	False	234					Not in truth	660	-426	
+fmd	DQ989316.1	tblastn	VP1	VP1		3510	3977	+	ok	0.7488	70.3	234.2				3510.0	3977.0	53.0								0.0	0.0	False	True	False	False	False	False	468					Not in truth	633	-165	
+fmd	MT863268.1	tblastn	3B	3B		5760	5972	+	ok	1.0	90.1	129.8				5760.0	5972.0	0.0							3B2	0.338	0.0	False	True	False	False	False	False	213					Possible overlap	213	0	
+fmd	MT863269.1	tblastn	3B	3B		5427	5639	+	ok	1.0	88.7	129.4				5427.0	5639.0	0.0							3B2	0.338	0.0	False	True	False	False	False	False	213					Possible overlap	213	0	

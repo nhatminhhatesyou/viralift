@@ -1,0 +1,141 @@
+ref	ref_record	record_id	method	ref_name	pred_name	source_name	pred_start	pred_end	strand	status	coverage	identity	score	truth_name	truth_start	truth_end	best_overlap_name	best_iou	iou	name_match	coord_correct	exact_match	failure_mode
+ref_1	PZ105934.1	EF185992.1	tblastn	ORF1a	ORF1a		297	12650	+	ok	1.0	96.9	8240.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	EF185992.1	tblastn	ORF1b	ORF1b		12815	20641	+	ok	1.0	99.1	5397.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	EF185992.1	tblastn	S	S		20638	24789	+	ok	1.0	91.8	2522.3	S	20638.0	24789.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	EF185992.1	tblastn	ORF3	ORF3		24789	25463	+	ok	1.0	94.6	429.9	ORF3	24789.0	25463.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	EF185992.1	tblastn	E	E		25444	25674	+	ok	1.0	94.7	119.4	E	25444.0	25674.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	EF185992.1	tblastn	M	M		25682	26362	+	ok	1.0	96.5	440.3	M	25682.0	26362.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	EF185992.1	tblastn	N	N		26374	27699	+	ok	1.0	96.1	864.0	N	26374.0	27699.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM189367.2	tblastn	ORF1a	ORF1a		293	12646	+	ok	1.0	98.8	8395.8					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KM189367.2	tblastn	ORF1b	ORF1b		12811	20637	+	ok	1.0	99.7	5425.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KM189367.2	tblastn	S	S		20634	24794	+	ok	1.0	98.3	2808.5	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM189367.2	tblastn	ORF3	ORF3		24794	25468	+	ok	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM189367.2	tblastn	E	E		25449	25679	+	ok	1.0	98.7	151.8	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM189367.2	tblastn	M	M		25687	26367	+	ok	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KM189367.2	tblastn	N	N		26379	27704	+	ok	1.0	99.3	893.3	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KP765609.1	tblastn	ORF1a	ORF1a		293	12646	+	ok	1.0	98.6	8371.9					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KP765609.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok	1.0	99.6	5420.9				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KP765609.1	tblastn	S	S		20634	24800	+	ok	1.0	96.7	2754.2	S	20634.0	24770.0	S	0.9928	0.9928	True	True	False	Boundary offset
+ref_1	PZ105934.1	KP765609.1	tblastn	ORF3	ORF3		24800	25474	+	ok	1.0	96.4	435.3	ORF3	24800.0	25474.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KP765609.1	tblastn	E	E		25455	25685	+	ok	1.0	97.4	148.7	E	25455.0	25685.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KP765609.1	tblastn	M	M		25693	26373	+	ok	1.0	98.2	453.0	M	25693.0	26373.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KP765609.1	tblastn	N	N		26385	27710	+	ok	1.0	97.1	875.5	N	26385.0	27710.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KU252649.1	tblastn	ORF1a	ORF1a		314	12667	+	ok	1.0	98.8	8393.1					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KU252649.1	tblastn	ORF1b	ORF1b		12832	20658	+	ok	1.0	99.8	5429.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KU252649.1	tblastn	S	S		20655	24815	+	ok	1.0	98.8	2819.7	S	20655.0	24815.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KU252649.1	tblastn	ORF3	ORF3		24815	25489	+	ok	1.0	100.0	453.0	ORF3	24815.0	25489.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KU252649.1	tblastn	E	E		25470	25700	+	ok	1.0	98.7	151.8	E	25470.0	25700.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KU252649.1	tblastn	M	M		25708	26388	+	ok	1.0	99.6	457.2	M	25708.0	26388.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KU252649.1	tblastn	N	N		26400	27725	+	ok	1.0	99.8	897.1	N	26400.0	27725.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX981440.1	tblastn	ORF1a	ORF1a		284	12637	+	ok	1.0	98.6	8374.6					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KX981440.1	tblastn	ORF1b	ORF1b		12802	20628	+	ok	1.0	99.9	5435.1				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KX981440.1	tblastn	S	S		20625	24779	+	ok	1.0	97.3	2782.7	S	20625.0	24779.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX981440.1	tblastn	ORF3	ORF3		24779	25453	+	ok	1.0	100.0	453.0	ORF3	24779.0	25453.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX981440.1	tblastn	E	E		25434	25664	+	ok	1.0	98.7	151.8	E	25434.0	25664.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX981440.1	tblastn	M	M		25672	26352	+	ok	1.0	99.6	457.2	M	25672.0	26352.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX981440.1	tblastn	N	N		26364	27689	+	ok	1.0	100.0	899.0	N	26364.0	27689.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX550281.1	tblastn	ORF1a	ORF1a		293	12646	+	ok	1.0	99.0	8406.2				ORF1b	0.6072	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KX550281.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok	1.0	99.8	5427.1	ORF1b	293.0	20637.0	ORF1b	0.3847	0.3847	True	False	False	Wrong coords
+ref_1	PZ105934.1	KX550281.1	tblastn	S	S		20634	24794	+	ok	1.0	98.1	2808.9	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX550281.1	tblastn	ORF3	ORF3		24794	25468	+	ok	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX550281.1	tblastn	E	E		25449	25679	+	ok	1.0	98.7	151.8	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX550281.1	tblastn	M	M		25687	26367	+	ok	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KX550281.1	tblastn	N	N		26379	27704	+	ok	1.0	99.8	896.3	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY928065.1	tblastn	ORF1a	ORF1a		293	12613	+	ok	0.9966	98.1	8309.1					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KY928065.1	tblastn	ORF1b	ORF1b		12810	20636	+	ok	1.0	99.8	5429.4				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KY928065.1	tblastn	S	S		20633	24790	+	ok	1.0	97.6	2783.4	S	20633.0	24790.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY928065.1	tblastn	ORF3	ORF3		24790	25464	+	ok	1.0	96.4	438.0	ORF3	24790.0	25464.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY928065.1	tblastn	E	E		25445	25675	+	ok	1.0	98.7	151.8	E	25445.0	25675.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY928065.1	tblastn	M	M		25683	26363	+	ok	1.0	98.2	453.0	M	25683.0	26363.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY928065.1	tblastn	N	N		26375	27700	+	ok	1.0	98.0	881.7	N	26375.0	27700.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY963963.1	tblastn	ORF1a	ORF1a		293	12646	+	ok	1.0	98.5	8370.0					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	KY963963.1	tblastn	ORF1b	ORF1b		12811	20637	+	ok	1.0	99.5	5414.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	KY963963.1	tblastn	S	S		20634	24809	+	ok	1.0	97.4	2787.7	S	20634.0	24809.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY963963.1	tblastn	ORF3	ORF3		24809	25483	+	ok	1.0	99.6	450.7	ORF3	24809.0	25483.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY963963.1	tblastn	E	E		25464	25694	+	ok	1.0	98.7	151.8	E	25464.0	25694.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY963963.1	tblastn	M	M		25702	26382	+	ok	1.0	99.6	457.2	M	25702.0	26382.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	KY963963.1	tblastn	N	N		26394	27719	+	ok	1.0	98.4	886.3	N	26394.0	27719.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF577027.1	tblastn	ORF1a	ORF1a		292	12645	+	ok	1.0	97.2	8263.3	ORF1a	292.0	12645.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF577027.1	tblastn	ORF1b	ORF1b		12810	20636	+	ok	1.0	98.6	5382.0	ORF1b	12675.0	20636.0	ORF1b	0.983	0.983	True	True	False	Boundary offset
+ref_1	PZ105934.1	MF577027.1	tblastn	S	S		20702	24751	+	invalid_boundaries	0.982	59.4	1574.7	S	20633.0	24751.0	S	0.9832	0.9832	True	True	False	Boundary offset
+ref_1	PZ105934.1	MF577027.1	tblastn	ORF3	ORF3		24751	25425	+	ok	1.0	98.7	448.7	ORF3	24751.0	25425.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF577027.1	tblastn	E	E		25406	25636	+	ok	1.0	94.7	148.3	E	25406.0	25636.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF577027.1	tblastn	M	M		25644	26324	+	ok	1.0	97.3	449.1	M	25644.0	26324.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF577027.1	tblastn	N	N		26336	27640	+	ok	1.0	94.1	837.4	N	26336.0	27640.0	N	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF462814.1	tblastn	ORF1a	ORF1a		301	12645	+	ok	1.0	99.0	8395.4					0.0	0.0	False	False	False	Not in truth
+ref_1	PZ105934.1	MF462814.1	tblastn	ORF1b	ORF1b		12810	20636	+	ok	1.0	99.8	5429.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_1	PZ105934.1	MF462814.1	tblastn	S	S		20633	24793	+	ok	1.0	98.0	2795.4	S	20633.0	24793.0	S	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF462814.1	tblastn	ORF3	ORF3		24793	25451	+	invalid_boundaries	0.9777	99.1	335.1	ORF3	24793.0	25425.0	ORF3	0.9605	0.9605	True	True	False	Boundary offset
+ref_1	PZ105934.1	MF462814.1	tblastn	E	E		25432	25662	+	ok	1.0	97.4	150.2	E	25432.0	25662.0	E	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF462814.1	tblastn	M	M		25670	26350	+	ok	1.0	99.1	455.3	M	25670.0	26350.0	M	1.0	1.0	True	True	True	Correct
+ref_1	PZ105934.1	MF462814.1	tblastn	N	N		26362	27687	+	ok	1.0	99.1	891.3	N	26362.0	27687.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	EF185992.1	tblastn	ORF1a	ORF1a		297	12650	+	ok	1.0	97.3	8277.1					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	EF185992.1	tblastn	ORF1b	ORF1b		12606	20641	+	invalid_boundaries	1.0	99.1	5535.7				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	EF185992.1	tblastn	S	S		20638	24789	+	ok	1.0	93.3	2577.0	S	20638.0	24789.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	EF185992.1	tblastn	ORF3	ORF3		24789	25463	+	ok	1.0	94.6	429.9	ORF3	24789.0	25463.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	EF185992.1	tblastn	E	E		25444	25674	+	ok	1.0	96.1	119.8	E	25444.0	25674.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	EF185992.1	tblastn	M	M		25682	26362	+	ok	1.0	96.5	440.3	M	25682.0	26362.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	EF185992.1	tblastn	N	N		26374	27699	+	ok	1.0	96.1	864.0	N	26374.0	27699.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM189367.2	tblastn	ORF1a	ORF1a		293	12646	+	ok	1.0	99.2	8437.0					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KM189367.2	tblastn	ORF1b	ORF1b		12602	20637	+	invalid_boundaries	1.0	99.7	5566.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KM189367.2	tblastn	S	S		20634	24794	+	ok	1.0	94.7	2611.2	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM189367.2	tblastn	ORF3	ORF3		24794	25468	+	ok	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM189367.2	tblastn	E	E		25449	25679	+	ok	1.0	100.0	152.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM189367.2	tblastn	M	M		25687	26367	+	ok	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KM189367.2	tblastn	N	N		26379	27704	+	ok	1.0	99.3	893.3	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KP765609.1	tblastn	ORF1a	ORF1a		293	12646	+	ok	1.0	99.0	8403.9					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KP765609.1	tblastn	ORF1b	ORF1b		12602	20637	+	invalid_boundaries	1.0	99.6	5563.8				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KP765609.1	tblastn	S	S		20634	24800	+	ok	1.0	93.1	2580.1	S	20634.0	24770.0	S	0.9928	0.9928	True	True	False	Boundary offset
+ref_2	PV974486.1	KP765609.1	tblastn	ORF3	ORF3		24800	25474	+	ok	1.0	96.4	435.3	ORF3	24800.0	25474.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KP765609.1	tblastn	E	E		25455	25685	+	ok	1.0	98.7	149.1	E	25455.0	25685.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KP765609.1	tblastn	M	M		25693	26373	+	ok	1.0	98.2	453.0	M	25693.0	26373.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KP765609.1	tblastn	N	N		26385	27710	+	ok	1.0	97.1	875.5	N	26385.0	27710.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KU252649.1	tblastn	ORF1a	ORF1a		314	12667	+	ok	1.0	99.1	8434.7					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KU252649.1	tblastn	ORF1b	ORF1b		12623	20658	+	invalid_boundaries	1.0	99.9	5571.5				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KU252649.1	tblastn	S	S		20655	24815	+	ok	1.0	95.2	2701.0	S	20655.0	24815.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KU252649.1	tblastn	ORF3	ORF3		24815	25489	+	ok	1.0	100.0	453.0	ORF3	24815.0	25489.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KU252649.1	tblastn	E	E		25470	25700	+	ok	1.0	100.0	152.1	E	25470.0	25700.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KU252649.1	tblastn	M	M		25708	26388	+	ok	1.0	99.6	457.2	M	25708.0	26388.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KU252649.1	tblastn	N	N		26400	27725	+	ok	1.0	99.8	897.1	N	26400.0	27725.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX981440.1	tblastn	ORF1a	ORF1a		284	12637	+	ok	1.0	98.9	8412.4					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KX981440.1	tblastn	ORF1b	ORF1b		12593	20628	+	invalid_boundaries	1.0	99.9	5574.2				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KX981440.1	tblastn	S	S		20625	24779	+	ok	1.0	94.5	2615.9	S	20625.0	24779.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX981440.1	tblastn	ORF3	ORF3		24779	25453	+	ok	1.0	100.0	453.0	ORF3	24779.0	25453.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX981440.1	tblastn	E	E		25434	25664	+	ok	1.0	100.0	152.1	E	25434.0	25664.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX981440.1	tblastn	M	M		25672	26352	+	ok	1.0	99.6	457.2	M	25672.0	26352.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX981440.1	tblastn	N	N		26364	27689	+	ok	1.0	100.0	899.0	N	26364.0	27689.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX550281.1	tblastn	ORF1a	ORF1a		293	12646	+	ok	1.0	99.4	8452.4				ORF1b	0.6072	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KX550281.1	tblastn	ORF1b	ORF1b		12602	20637	+	invalid_boundaries	1.0	99.8	5569.2	ORF1b	293.0	20637.0	ORF1b	0.395	0.395	True	False	False	Wrong coords
+ref_2	PV974486.1	KX550281.1	tblastn	S	S		20634	24794	+	ok	1.0	95.0	2629.7	S	20634.0	24794.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX550281.1	tblastn	ORF3	ORF3		24794	25468	+	ok	1.0	100.0	453.0	ORF3	24794.0	25468.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX550281.1	tblastn	E	E		25449	25679	+	ok	1.0	100.0	152.1	E	25449.0	25679.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX550281.1	tblastn	M	M		25687	26367	+	ok	1.0	99.6	457.2	M	25687.0	26367.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KX550281.1	tblastn	N	N		26379	27704	+	ok	1.0	99.8	896.3	N	26379.0	27704.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY928065.1	tblastn	ORF1a	ORF1a		293	12613	+	ok	0.9966	98.4	8341.1					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KY928065.1	tblastn	ORF1b	ORF1b		12601	20636	+	invalid_boundaries	1.0	99.7	5562.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KY928065.1	tblastn	S	S		20633	24790	+	ok	1.0	93.9	2592.0	S	20633.0	24790.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY928065.1	tblastn	ORF3	ORF3		24790	25464	+	ok	1.0	96.4	438.0	ORF3	24790.0	25464.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY928065.1	tblastn	E	E		25445	25675	+	ok	1.0	100.0	152.1	E	25445.0	25675.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY928065.1	tblastn	M	M		25683	26363	+	ok	1.0	98.2	453.0	M	25683.0	26363.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY928065.1	tblastn	N	N		26375	27700	+	ok	1.0	98.0	881.7	N	26375.0	27700.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY963963.1	tblastn	ORF1a	ORF1a		293	12646	+	ok	1.0	98.9	8407.7					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	KY963963.1	tblastn	ORF1b	ORF1b		12602	20637	+	invalid_boundaries	1.0	99.5	5557.3				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	KY963963.1	tblastn	S	S		20634	24809	+	ok	1.0	93.7	2599.3	S	20634.0	24809.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY963963.1	tblastn	ORF3	ORF3		24809	25483	+	ok	1.0	99.6	450.7	ORF3	24809.0	25483.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY963963.1	tblastn	E	E		25464	25694	+	ok	1.0	100.0	152.1	E	25464.0	25694.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY963963.1	tblastn	M	M		25702	26382	+	ok	1.0	99.6	457.2	M	25702.0	26382.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	KY963963.1	tblastn	N	N		26394	27719	+	ok	1.0	98.4	886.3	N	26394.0	27719.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF577027.1	tblastn	ORF1a	ORF1a		292	12645	+	ok	1.0	97.5	8299.5	ORF1a	292.0	12645.0	ORF1a	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF577027.1	tblastn	ORF1b	ORF1b		12601	20636	+	invalid_boundaries	1.0	98.7	5522.6	ORF1b	12675.0	20636.0	ORF1b	0.9908	0.9908	True	True	False	Boundary offset
+ref_2	PV974486.1	MF577027.1	tblastn	S	S		20702	24751	+	invalid_boundaries	0.9819	60.1	1590.1	S	20633.0	24751.0	S	0.9832	0.9832	True	True	False	Boundary offset
+ref_2	PV974486.1	MF577027.1	tblastn	ORF3	ORF3		24751	25425	+	ok	1.0	98.7	448.7	ORF3	24751.0	25425.0	ORF3	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF577027.1	tblastn	E	E		25406	25636	+	ok	1.0	96.1	148.7	E	25406.0	25636.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF577027.1	tblastn	M	M		25644	26324	+	ok	1.0	97.3	449.1	M	25644.0	26324.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF577027.1	tblastn	N	N		26336	27640	+	ok	1.0	94.1	837.4	N	26336.0	27640.0	N	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF462814.1	tblastn	ORF1a	ORF1a		301	12645	+	ok	1.0	99.3	8436.6					0.0	0.0	False	False	False	Not in truth
+ref_2	PV974486.1	MF462814.1	tblastn	ORF1b	ORF1b		12601	20636	+	invalid_boundaries	1.0	99.8	5570.0				S	0.0003	0.0	False	False	False	Possible overlap
+ref_2	PV974486.1	MF462814.1	tblastn	S	S		20633	24793	+	ok	1.0	94.3	2599.7	S	20633.0	24793.0	S	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF462814.1	tblastn	ORF3	ORF3		24793	25451	+	invalid_boundaries	0.9777	99.1	335.1	ORF3	24793.0	25425.0	ORF3	0.9605	0.9605	True	True	False	Boundary offset
+ref_2	PV974486.1	MF462814.1	tblastn	E	E		25432	25662	+	ok	1.0	98.7	150.6	E	25432.0	25662.0	E	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF462814.1	tblastn	M	M		25670	26350	+	ok	1.0	99.1	455.3	M	25670.0	26350.0	M	1.0	1.0	True	True	True	Correct
+ref_2	PV974486.1	MF462814.1	tblastn	N	N		26362	27687	+	ok	1.0	99.1	891.3	N	26362.0	27687.0	N	1.0	1.0	True	True	True	Correct

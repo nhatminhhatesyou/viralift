@@ -1,0 +1,3 @@
+dataset	total	canonical	ignored	ambiguous	unresolved	canonical_pct	actionable_total	actionable_coverage_pct
+query_100	1077	976	95	2	4	90.62	982	99.39
+reference	28	27	1	0	0	96.43	27	100.0

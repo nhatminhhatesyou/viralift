@@ -1,0 +1,6 @@
+dataset	field	total	canonical	ignored	ambiguous	unresolved	canonical_pct
+query_100	gene	408.0	401.0	5.0	2.0	0.0	98.28
+query_100	note	68.0	65.0	0.0	0.0	3.0	95.59
+query_100	product	601.0	510.0	90.0	0.0	1.0	84.86
+reference	gene	14.0	14.0	0.0	0.0	0.0	100.0
+reference	product	14.0	13.0	1.0	0.0	0.0	92.86

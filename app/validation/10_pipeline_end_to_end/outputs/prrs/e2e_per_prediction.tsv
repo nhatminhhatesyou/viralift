@@ -1,0 +1,834 @@
+virus	record_id	method	pred_name	source_name	pred_start	pred_end	strand	status	coverage	identity	score	truth_name	truth_start	truth_end	best_overlap_name	best_iou	iou	name_match	coord_correct	exact_match	failure_mode
+PRRS	AF184212.1	direct	ORF1a	ORF1a	191	7810	+	ok	1.0			ORF1a	191.0	7810.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	direct	ORF1b	ORF1b	7789	12180	+	ok	1.0			ORF1b	7789.0	12180.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	direct	ORF2a	ORF2	12182	12952	+	ok	1.0			ORF2a	12182.0	12952.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	direct	ORF3	ORF3	12805	13569	+	ok	1.0			ORF3	12805.0	13569.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	direct	ORF4	ORF4	13350	13886	+	ok	1.0			ORF4	13350.0	13886.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	direct	ORF5	ORF5	13897	14499	+	ok	1.0			ORF5	13897.0	14499.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	direct	ORF6	ORF6	14484	15008	+	ok	1.0			ORF6	14484.0	15008.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF184212.1	direct	ORF7	ORF7	14998	15369	+	ok	1.0			ORF7	14998.0	15369.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	direct	ORF1a	polyprotein ORF1a	166	7677	+	ok	1.0			ORF1a	166.0	7677.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	direct	ORF1b	polyprotein ORF1b	7656	12047	+	ok	1.0			ORF1b	7656.0	12047.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	direct	ORF2a	glycosylated envelope protein GP2	12049	12819	+	ok	1.0			ORF2a	12049.0	12819.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	direct	ORF3	glycosylated envelope protein GP3	12672	13436	+	ok	1.0			ORF3	12672.0	13436.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	direct	ORF4	glycosylated envelope protein GP4	13217	13753	+	ok	1.0			ORF4	13217.0	13753.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	direct	ORF5	glycosylated envelope protein GP5	13764	14366	+	ok	1.0			ORF5	13764.0	14366.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	direct	ORF6	membrane protein M	14351	14875	+	ok	1.0			ORF6	14351.0	14875.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF159149.1	direct	ORF7	nucleocapsid protein N	14865	15236	+	ok	1.0			ORF7	14865.0	15236.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	direct	ORF1b	RNA polymerase	191	7699	+	ok	1.0			ORF1b	191.0	7699.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	direct	ORF1b	RNA polymerase	7678	12069	+	ok	1.0			ORF1b	191.0	7699.0	ORF1b	1.0	0.0019	True	False	False	Wrong coords
+PRRS	AF331831.1	direct	ORF2a	envelope protein GP2	12071	12841	+	ok	1.0			ORF2a	12071.0	12841.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	direct	ORF3	envelope protein GP3	12694	13458	+	ok	1.0			ORF3	12694.0	13458.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	direct	ORF4	envelope protein GP4	13239	13775	+	ok	1.0			ORF4	13239.0	13775.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	direct	ORF2b	envelope protein E	13786	14388	+	ok	1.0			ORF2b	13786.0	14388.0	ORF2b	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	direct	ORF6	matrix protein M	14373	14897	+	ok	1.0			ORF6	14373.0	14897.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF331831.1	direct	ORF7	nucleocapsid protein N	14887	15258	+	ok	1.0			ORF7	14887.0	15258.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	direct	ORF1a	ORF1a polyprotein	168	7679	+	ok	1.0			ORF1a	168.0	7679.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	direct	ORF1b	ORF1b polyprotein	7658	12049	+	ok	1.0			ORF1b	7658.0	12049.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	direct	ORF2a	GP2 glycosylated envelope protein	12051	12821	+	ok	1.0			ORF2a	12051.0	12821.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	direct	ORF3	GP3 envelope protein	12674	13438	+	ok	1.0			ORF3	12674.0	13438.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	direct	ORF4	GP4 protein	13219	13755	+	ok	1.0			ORF4	13219.0	13755.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	direct	ORF5	GP5 glycosylated envelope protein	13766	14368	+	ok	1.0			ORF5	13766.0	14368.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	direct	ORF6	membrane protein M	14353	14877	+	ok	1.0			ORF6	14353.0	14877.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF325691.1	direct	ORF7	nucleocapsid protein N	14867	15238	+	ok	1.0			ORF7	14867.0	15238.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	direct	ORF1a	ORF1a	191	7702	+	ok	1.0			ORF1a	191.0	7702.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	direct	ORF1b	ORF1b	7699	12072	+	ok	1.0			ORF1b	7699.0	12072.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	direct	ORF2a	ORF2	12074	12844	+	ok	1.0			ORF2a	12074.0	12844.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	direct	ORF3	ORF3	12697	13461	+	ok	1.0			ORF3	12697.0	13461.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	direct	ORF4	ORF4	13242	13778	+	ok	1.0			ORF4	13242.0	13778.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	direct	ORF5	ORF5	13789	14391	+	ok	1.0			ORF5	13789.0	14391.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	direct	ORF6	ORF6	14376	14900	+	ok	1.0			ORF6	14376.0	14900.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY032626.1	direct	ORF7	ORF7	14890	15261	+	ok	1.0			ORF7	14890.0	15261.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	direct	ORF1a	polypeptide precursor of non-structural proteins NSP1 through NSP8	192	7685	+	ok	1.0			ORF1a	192.0	7685.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	direct	ORF1b	polypeptide precursor of non-structural proteins NSP9 through NSP12	7673	12055	+	ok	1.0			ORF1b	7673.0	12055.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	direct	ORF2a	glycosylated membrane protein	12057	12827	+	ok	1.0			ORF2a	12057.0	12827.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	direct	ORF2b	unknown protein	12062	12283	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AF494042.1	direct	ORF3	glycosylated membrane protein	12680	13444	+	ok	1.0			ORF3	12680.0	13444.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	direct	ORF4	glycosylated membrane protein	13225	13761	+	ok	1.0			ORF4	13225.0	13761.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	direct	ORF5	major envelope glycoprotein	13772	14374	+	ok	1.0			ORF5	13772.0	14374.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	direct	ORF6	non-glycosylated membrane protein	14359	14883	+	ok	1.0			ORF6	14359.0	14883.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF494042.1	direct	ORF7	nucleocapsid protein	14873	15244	+	ok	1.0			ORF7	14873.0	15244.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	direct	ORF1a	ORF1a	190	7701	+	ok	1.0			ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	direct	ORF1b	ORF1b	7680	12071	+	ok	1.0			ORF1b	7680.0	12071.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	direct	ORF2a	envelope protein	12073	12843	+	ok	1.0			ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	direct	ORF2b	ORF2b	12078	12299	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AF176348.2	direct	ORF3	envelope protein	12696	13460	+	ok	1.0			ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	direct	ORF4	envelope protein	13241	13777	+	ok	1.0			ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	direct	ORF5	envelope protein	13788	14390	+	ok	1.0			ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	direct	ORF6	envelope protein	14375	14899	+	ok	1.0			ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF176348.2	direct	ORF7	nucleocapsid protein	14889	15260	+	ok	1.0			ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	direct	ORF1a	ORF1a	190	7701	+	ok	1.0			ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	direct	ORF1b	ORF1b	7689	12071	+	ok	1.0			ORF1b	7689.0	12071.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	direct	ORF2a	ORF2a	12073	12843	+	ok	1.0			ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	direct	ORF2b	ORF2b	12078	12299	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY150312.1	direct	ORF3	ORF3	12696	13460	+	ok	1.0			ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	direct	ORF4	ORF4	13241	13777	+	ok	1.0			ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY150312.1	direct	ORF5	ORF5	13788	14390	+	ok	1.0			ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY150564.1	direct	ORF1a	nonstructural proteins ORF1a	191	7702	+	ok	1.0			ORF1a	191.0	7702.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY150564.1	direct	ORF1b	nonstructural proteins ORF1b	7699	12072	+	ok	1.0			ORF1b	7699.0	12072.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AY150564.1	direct	ORF2a	envelope glycoprotein GP2	12074	12844	+	ok	1.0			ORF2a	12074.0	12844.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY150564.1	direct	ORF3	envelope glycoprotein GP3	12697	13461	+	ok	1.0			ORF3	12697.0	13461.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY150564.1	direct	ORF4	envelope glycoprotein GP4	13242	13778	+	ok	1.0			ORF4	13242.0	13778.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY150564.1	direct	ORF5	envelope protein GP5	13789	14391	+	ok	1.0			ORF5	13789.0	14391.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY150564.1	direct	ORF6	membrane protein GP6	14376	14900	+	ok	1.0			ORF6	14376.0	14900.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY150564.1	direct	ORF7	nucleocapsid protein	14890	15261	+	ok	1.0			ORF7	14890.0	15261.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	direct	ORF1a	proteinase	191	7666	+	ok	1.0			ORF1a	191.0	7666.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	direct	ORF1b	RNA-dependent RNA polymerase/helicase	7645	12036	+	ok	1.0			ORF1b	7645.0	12036.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	direct	ORF2a	GP2a	12038	12808	+	ok	1.0			ORF2a	12038.0	12808.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	direct	ORF2b	ORF2b structual protein	12043	12264	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY262352.1	direct	ORF3	GP3	12661	13422	+	ok	1.0			ORF3	12661.0	13422.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	direct	ORF4	GP4	13203	13739	+	ok	1.0			ORF4	13203.0	13739.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	direct	ORF5	GP5	13750	14352	+	ok	1.0			ORF5	13750.0	14352.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	direct	ORF6	M	14337	14861	+	ok	1.0			ORF6	14337.0	14861.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY262352.1	direct	ORF7	N	14851	15222	+	ok	1.0			ORF7	14851.0	15222.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY366525.1	direct	ORF1a	ORF1A	222	7361	+	ok	1.0			ORF1a	222.0	7361.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY366525.1	direct	ORF1b	ORF1B	7358	11734	+	ok	1.0			ORF1b	7358.0	11734.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AY366525.1	direct	ORF2a	ORF2a	11745	12494	+	ok	1.0			ORF2a	11745.0	12494.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY366525.1	direct	ORF2b	ORF2b	11750	11962	+	ok	1.0						ORF2a	0.284	0.0	False	False	False	Possible overlap
+PRRS	AY366525.1	direct	ORF3	ORF3	12353	13150	+	ok	1.0			ORF3	12353.0	13150.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY366525.1	direct	ORF4	ORF4	12895	13446	+	ok	1.0			ORF4	12895.0	13446.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY366525.1	direct	ORF5	ORF5	13443	14048	+	ok	1.0			ORF5	13443.0	14048.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY366525.1	direct	ORF6	ORF6	14036	14557	+	ok	1.0			ORF6	14036.0	14557.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY366525.1	direct	ORF7	ORF7	14547	14933	+	ok	1.0			ORF7	14547.0	14933.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY457635.1	direct	ORF1a	ORF1a	189	7700	+	ok	1.0			ORF1a	189.0	7700.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY457635.1	direct	ORF1b	ORF1b	7679	12070	+	ok	1.0			ORF1b	7679.0	12070.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AY457635.1	direct	ORF2a	ORF2	12072	12842	+	ok	1.0			ORF2a	12072.0	12842.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY457635.1	direct	ORF3	ORF3	12695	13459	+	ok	1.0			ORF3	12695.0	13459.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY457635.1	direct	ORF4	ORF4	13240	13776	+	ok	1.0			ORF4	13240.0	13776.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY457635.1	direct	ORF5	ORF5	13787	14389	+	ok	1.0			ORF5	13787.0	14389.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY457635.1	direct	ORF6	ORF6	14374	14898	+	ok	1.0			ORF6	14374.0	14898.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY457635.1	direct	ORF7	ORF7	14888	15259	+	ok	1.0			ORF7	14888.0	15259.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	direct	ORF1a	ORF1a	192	7703	+	ok	1.0			ORF1a	192.0	7703.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	direct	ORF1b	ORF1b	7700	12073	+	ok	1.0			ORF1b	7700.0	12073.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	direct	ORF2a	ORF2a	12075	12845	+	ok	1.0			ORF2a	12075.0	12845.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	direct	ORF2b	ORF2b	12080	12301	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY424271.1	direct	ORF3	ORF3	12698	13462	+	ok	1.0			ORF3	12698.0	13462.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	direct	ORF4	ORF4	13243	13779	+	ok	1.0			ORF4	13243.0	13779.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	direct	ORF5	ORF5	13790	14392	+	ok	1.0			ORF5	13790.0	14392.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	direct	ORF6	ORF6	14377	14901	+	ok	1.0			ORF6	14377.0	14901.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY424271.1	direct	ORF7	ORF7	14891	15262	+	ok	1.0			ORF7	14891.0	15262.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	direct	ORF1a	ORF1a polyprotein	192	7703	+	ok	1.0			ORF1a	192.0	7703.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	direct	ORF1b	ORF1b polyprotein	7682	12073	+	ok	1.0			ORF1b	7682.0	12073.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	direct	ORF2a	GP2 glycosylated envelope protein	12075	12845	+	ok	1.0			ORF2a	12075.0	12845.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	direct	ORF3	GP3 envelope protein	12698	13462	+	ok	1.0			ORF3	12698.0	13462.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	direct	ORF4	GP4 protein	13243	13779	+	ok	1.0			ORF4	13243.0	13779.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	direct	ORF5	GP5 glycosylated envelope protein	13790	14392	+	ok	1.0			ORF5	13790.0	14392.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	direct	ORF6	membrane protein M	14377	14901	+	ok	1.0			ORF6	14377.0	14901.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY545985.1	direct	ORF7	nucleocapsid protein N	14891	15262	+	ok	1.0			ORF7	14891.0	15262.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	direct	ORF1a	ORF1a	190	7701	+	ok	1.0			ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	direct	ORF1b	ORF1b	7698	12071	+	ok	1.0			ORF1b	7698.0	12071.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	direct	ORF2a	ORF2a	12073	12843	+	ok	1.0			ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	direct	ORF2b	ORF2b	12078	12299	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY585241.1	direct	ORF3	ORF3	12696	13460	+	ok	1.0			ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	direct	ORF4	ORF4	13241	13777	+	ok	1.0			ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	direct	ORF5	ORF5	13788	14390	+	ok	1.0			ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	direct	ORF6	ORF6	14375	14899	+	ok	1.0			ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY585241.1	direct	ORF7	ORF7	14889	15260	+	ok	1.0			ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	direct	ORF1a	ORF1a	190	7701	+	ok	1.0			ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	direct	ORF1b	ORF1b	7698	12071	+	ok	1.0			ORF1b	7698.0	12071.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	direct	ORF2a	ORF2a	12073	12843	+	ok	1.0			ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	direct	ORF2b	ORF2b	12078	12299	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	AY612613.1	direct	ORF3	ORF3	12696	13460	+	ok	1.0			ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	direct	ORF4	ORF4	13241	13777	+	ok	1.0			ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	direct	ORF5	ORF5	13788	14390	+	ok	1.0			ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	direct	ORF6	ORF6	14375	14899	+	ok	1.0			ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AY612613.1	direct	ORF7	ORF7	14889	15260	+	ok	1.0			ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	direct	ORF1a	ORF1a	190	7701	+	ok	1.0			ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	direct	ORF1b	ORF1b	7680	12071	+	ok	1.0			ORF1b	7680.0	12071.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	direct	ORF2a	ORF2	12073	12843	+	ok	1.0			ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	direct	ORF3	ORF3	12696	13460	+	ok	1.0			ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	direct	ORF4	ORF4	13241	13777	+	ok	1.0			ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	direct	ORF5	ORF5	13788	14390	+	ok	1.0			ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	direct	ORF6	ORF6	14375	14899	+	ok	1.0			ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ056373.1	direct	ORF7	ORF7	14889	15260	+	ok	1.0			ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AF066183.4	direct	ORF1ab	replicase polyprotein	191	7702	+	not_in_reference	1.0			ORF1ab	191.0	7702.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	AF066183.4	direct	ORF1b	RNA-dependent RNA polymerase	7699	12072	+	ok	1.0			ORF1b	7699.0	12072.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AF066183.4	direct	ORF2a	GP2 envelope protein	12074	12844	+	ok	1.0			ORF2a	12074.0	12844.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AF066183.4	direct	ORF3	GP3 envelope protein	12697	13461	+	ok	1.0			ORF3	12697.0	13461.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AF066183.4	direct	ORF4	GP4 envelope protein	13242	13778	+	ok	1.0			ORF4	13242.0	13778.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AF066183.4	direct	ORF5	GP5 envelope protein	13789	14391	+	ok	1.0			ORF5	13789.0	14391.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AF066183.4	direct	ORF6	M matrix protein	14376	14900	+	ok	1.0			ORF6	14376.0	14900.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AF066183.4	direct	ORF7	N nucleocapsid protein	14890	15261	+	ok	1.0			ORF7	14890.0	15261.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ176019.1	direct	ORF1ab	ORF1ab	191	11679	+	not_in_reference	1.0			ORF1ab	191.0	11679.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	DQ176019.1	direct	ORF2a	ORF2a	11681	12451	+	ok	1.0			ORF2a	11681.0	12451.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ176019.1	direct	ORF2b	ORF2b	11686	11907	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ176019.1	direct	ORF3	ORF3	12304	13068	+	ok	1.0			ORF3	12304.0	13068.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ176019.1	direct	ORF4	ORF4	12849	13385	+	ok	1.0			ORF4	12849.0	13385.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ176019.1	direct	ORF5	ORF5	13396	13998	+	ok	1.0			ORF5	13396.0	13998.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ176019.1	direct	ORF6	ORF6	13983	14507	+	ok	1.0			ORF6	13983.0	14507.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ176019.1	direct	ORF7	ORF7	14497	14868	+	ok	1.0			ORF7	14497.0	14868.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ176020.1	direct	ORF1ab	ORF1ab	191	11679	+	not_in_reference	1.0			ORF1ab	191.0	11679.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	DQ176020.1	direct	ORF2a	ORF2a	11681	12451	+	ok	1.0			ORF2a	11681.0	12451.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ176020.1	direct	ORF2b	ORF2b	11686	11907	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ176020.1	direct	ORF3	ORF3	12304	13068	+	ok	1.0			ORF3	12304.0	13068.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ176020.1	direct	ORF4	ORF4	12849	13385	+	ok	1.0			ORF4	12849.0	13385.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ176020.1	direct	ORF5	ORF5	13396	13998	+	ok	1.0			ORF5	13396.0	13998.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ176020.1	direct	ORF6	ORF6	13983	14507	+	ok	1.0			ORF6	13983.0	14507.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ176020.1	direct	ORF7	ORF7	14497	14868	+	ok	1.0			ORF7	14497.0	14868.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ176021.1	direct	ORF1ab	ORF1ab	190	12071	+	not_in_reference	1.0			ORF1ab	190.0	12071.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	DQ176021.1	direct	ORF2a	ORF2a	12073	12843	+	ok	1.0			ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ176021.1	direct	ORF2b	ORF2b	12078	12299	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ176021.1	direct	ORF3	ORF3	12696	13460	+	ok	1.0			ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ176021.1	direct	ORF4	ORF4	13241	13777	+	ok	1.0			ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ176021.1	direct	ORF5	ORF5	13788	14390	+	ok	1.0			ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ176021.1	direct	ORF6	ORF6	14375	14899	+	ok	1.0			ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ176021.1	direct	ORF7	ORF7	14889	15260	+	ok	1.0			ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ217415.1	direct	ORF1ab	replicase polyprotein	176	12057	+	not_in_reference	1.0			ORF1ab	176.0	12057.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	DQ217415.1	direct	ORF2a	N-glycosylated envelope protein GP2	12059	12829	+	ok	1.0			ORF2a	12059.0	12829.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ217415.1	direct	ORF2b	unglycosylated envelope protein	12064	12285	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ217415.1	direct	ORF3	N-glycosylated envelope protein GP3	12682	13446	+	ok	1.0			ORF3	12682.0	13446.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ217415.1	direct	ORF4	N-glycosylated envelope protein GP4	13227	13763	+	ok	1.0			ORF4	13227.0	13763.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ217415.1	direct	ORF5	N-glycosylated envelope protein GP5	13774	14376	+	ok	1.0			ORF5	13774.0	14376.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ217415.1	direct	ORF6	membrane protein	14361	14885	+	ok	1.0			ORF6	14361.0	14885.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ217415.1	direct	ORF7	nucleocapsid protein	14875	15246	+	ok	1.0			ORF7	14875.0	15246.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	direct	ORF1a	papain-like cysteine protease	190	7701	+	ok	1.0			ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	direct	ORF1b	RNA-dependent RNA polymerase	7698	12071	+	ok	1.0			ORF1b	7698.0	12071.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	direct	ORF2a	GP2 envelope protein	12073	12843	+	ok	1.0			ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	direct	ORF3	GP3 envelope protein	12696	13460	+	ok	1.0			ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	direct	ORF4	GP4 envelope protein	13241	13777	+	ok	1.0			ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	direct	ORF5	GP5 envelope protein	13788	14390	+	ok	1.0			ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	direct	ORF6	M matrix protein	14375	14899	+	ok	1.0			ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ459471.1	direct	ORF7	N protein	14889	15260	+	ok	1.0			ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	direct	ORF1a	ORF1a	190	7701	+	ok	1.0			ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	direct	ORF1b	ORF1b	7698	12071	+	ok	1.0			ORF1b	7698.0	12071.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	direct	ORF2a	ORF2	12073	12843	+	ok	1.0			ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	direct	ORF2b	ORF2b	12078	12299	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ473474.1	direct	ORF3	ORF3	12696	13460	+	ok	1.0			ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	direct	ORF4	ORF4	13241	13777	+	ok	1.0			ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	direct	ORF5	ORF5	13788	14390	+	ok	1.0			ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	direct	ORF6	ORF6	14375	14899	+	ok	1.0			ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ473474.1	direct	ORF7	ORF7	14889	15260	+	ok	1.0			ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ489311.1	direct	ORF1a	replicase polyprotein 1A	222	7361	+	ok	1.0			ORF1a	222.0	7361.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	DQ489311.1	direct	ORF1b	replicase polyprotein 1B	7358	11734	+	ok	1.0			ORF1b	7358.0	11734.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	DQ489311.1	direct	ORF2a	GP2	11745	12494	+	ok	1.0			ORF2a	11745.0	12494.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ489311.1	direct	ORF2b	2b	11750	11962	+	ok	1.0						ORF2a	0.284	0.0	False	False	False	Possible overlap
+PRRS	DQ489311.1	direct	ORF3	GP3	12353	13150	+	ok	1.0			ORF3	12353.0	13150.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ489311.1	direct	ORF4	GP4	12895	13446	+	ok	1.0			ORF4	12895.0	13446.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ489311.1	direct	ORF5	GP5	13443	14048	+	ok	1.0			ORF5	13443.0	14048.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ489311.1	direct	ORF6	M	14036	14557	+	ok	1.0			ORF6	14036.0	14557.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ489311.1	direct	ORF7	N	14547	14933	+	ok	1.0			ORF7	14547.0	14933.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	direct	ORF1a	ORF1a polyprotein	191	7797	+	ok	1.0			ORF1a	191.0	7797.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	direct	ORF1b	ORF1b polyprotein	7870	12180	+	ok	1.0			ORF1b	7870.0	12180.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	direct	ORF2a	GP2 glycosylated envelope protein	12182	12952	+	ok	1.0			ORF2a	12182.0	12952.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	direct	ORF3	GP3 envelope protein	12805	13569	+	ok	1.0			ORF3	12805.0	13569.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	direct	ORF4	GP4 protein	13350	13886	+	ok	1.0			ORF4	13350.0	13886.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	direct	ORF5	GP5 glycosylated envelope protein	13897	14499	+	ok	1.0			ORF5	13897.0	14499.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	direct	ORF6	membrane protein M	14484	15008	+	ok	1.0			ORF6	14484.0	15008.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ779791.1	direct	ORF7	nucleocapsid protein N	14998	15369	+	ok	1.0			ORF7	14998.0	15369.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ864705.1	direct	ORF1a	ORF1a	145	7335	+	ok	1.0			ORF1a	145.0	7335.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	DQ864705.1	direct	ORF1b	ORF1b	7317	11708	+	ok	1.0			ORF1b	7317.0	11708.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	DQ864705.1	direct	ORF2a	ORF2	11719	12468	+	ok	1.0			ORF2a	11719.0	12468.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ864705.1	direct	ORF3	ORF3	12327	13124	+	ok	1.0			ORF3	12327.0	13124.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ864705.1	direct	ORF4	ORF4	12869	13420	+	ok	1.0			ORF4	12869.0	13420.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ864705.1	direct	ORF5	ORF5	13417	14022	+	ok	1.0			ORF5	13417.0	14022.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ864705.1	direct	ORF6	ORF6	14010	14531	+	ok	1.0			ORF6	14010.0	14531.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ864705.1	direct	ORF7	ORF7	14521	14907	+	ok	1.0			ORF7	14521.0	14907.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	DQ988080.1	direct	ORF1a	ORF1a	192	7703	+	ok	1.0			ORF1a	192.0	7703.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	DQ988080.1	direct	ORF1b	ORF1b	7700	12073	+	ok	1.0			ORF1b	7700.0	12073.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	DQ988080.1	direct	ORF2a	ORF2a	12075	12845	+	ok	1.0			ORF2a	12075.0	12845.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	DQ988080.1	direct	ORF2b	ORF2b	12080	12301	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	DQ988080.1	direct	ORF3	GP3	12698	13462	+	ok	1.0			ORF3	12698.0	13462.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	DQ988080.1	direct	ORF4	GP4	13243	13779	+	ok	1.0			ORF4	13243.0	13779.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	DQ988080.1	direct	ORF5	GP5	13790	14392	+	ok	1.0			ORF5	13790.0	14392.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	DQ988080.1	direct	ORF6	M	14377	14901	+	ok	1.0			ORF6	14377.0	14901.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	DQ988080.1	direct	ORF7	N	14891	15262	+	ok	1.0			ORF7	14891.0	15262.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	direct	ORF1a	non-structural protein	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	direct	ORF2a	envelope protein	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	direct	ORF3	glycosylated membrane protein	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	direct	ORF4	glycosylated membrane protein	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	direct	ORF5	glycosylated membrane protein	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	direct	ORF6	matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF075945.1	direct	ORF7	nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF112445.1	direct	ORF1a	ORF1a	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF112445.1	direct	ORF1b	ORF1b	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF112445.1	direct	ORF2a	ORF2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF112445.1	direct	ORF3	ORF3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF112445.1	direct	ORF4	ORF4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF112445.1	direct	ORF5	ORF5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF112445.1	direct	ORF6	ORF6	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF112445.1	direct	ORF7	ORF7	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF112446.1	direct	ORF1a	ORF1a	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF112446.1	direct	ORF1b	ORF1b	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF112446.1	direct	ORF2a	ORF2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF112446.1	direct	ORF3	ORF3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF112446.1	direct	ORF4	ORF4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF112446.1	direct	ORF5	ORF5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF112446.1	direct	ORF6	ORF6	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF112446.1	direct	ORF7	ORF7	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF112447.1	direct	ORF1a	ORF1a	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF112447.1	direct	ORF1b	ORF1b	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF112447.1	direct	ORF2a	ORF2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF112447.1	direct	ORF3	ORF3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF112447.1	direct	ORF4	ORF4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF112447.1	direct	ORF5	ORF5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF112447.1	direct	ORF6	ORF6	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF112447.1	direct	ORF7	ORF7	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF153486.1	direct	ORF1ab	replicase polyprotein	190	7701	+	not_in_reference	1.0			ORF1ab	190.0	7701.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF153486.1	direct	ORF1b	RNA-dependent RNA polymerase	7698	12071	+	ok	1.0			ORF1b	7698.0	12071.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF153486.1	direct	ORF2a	GP2 envelope protein	12073	12843	+	ok	1.0			ORF2a	12073.0	12843.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF153486.1	direct	ORF3	GP3 envelope protein	12696	13460	+	ok	1.0			ORF3	12696.0	13460.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF153486.1	direct	ORF4	GP4 envelope protein	13241	13777	+	ok	1.0			ORF4	13241.0	13777.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF153486.1	direct	ORF5	GP5 envelope protein	13788	14390	+	ok	1.0			ORF5	13788.0	14390.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF153486.1	direct	ORF6	M matrix protein	14375	14899	+	ok	1.0			ORF6	14375.0	14899.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF153486.1	direct	ORF7	N nucleocapsid protein	14889	15260	+	ok	1.0			ORF7	14889.0	15260.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF484031.1	direct	ORF1ab	ORF1ab	191	11679	+	not_in_reference	1.0			ORF1ab	191.0	11679.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF484031.1	direct	ORF1ab	ORF1ab	191	7309	+	not_in_reference	1.0			ORF1ab	191.0	11679.0	ORF1ab	0.6196	0.6196	True	False	False	Wrong coords
+PRRS	EF484031.1	direct	ORF2a	ORF2a	11681	12451	+	ok	1.0			ORF2a	11681.0	12451.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF484031.1	direct	ORF2b	ORF2b	11686	11907	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF484031.1	direct	ORF3	ORF3	12304	13068	+	ok	1.0			ORF3	12304.0	13068.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF484031.1	direct	ORF4	ORF4	12849	13385	+	ok	1.0			ORF4	12849.0	13385.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF484031.1	direct	ORF5	ORF5	13396	13998	+	ok	1.0			ORF5	13396.0	13998.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF484031.1	direct	ORF6	ORF6	13983	14507	+	ok	1.0			ORF6	13983.0	14507.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF484031.1	direct	ORF7	ORF7	14497	14868	+	ok	1.0			ORF7	14497.0	14868.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF484033.1	direct	ORF1ab	ORF1ab	191	12072	+	not_in_reference	1.0			ORF1ab	191.0	12072.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF484033.1	direct	ORF1ab	ORF1ab	191	7702	+	not_in_reference	1.0			ORF1ab	191.0	12072.0	ORF1ab	0.6322	0.6322	True	False	False	Wrong coords
+PRRS	EF484033.1	direct	ORF2a	ORF2a	12074	12844	+	ok	1.0			ORF2a	12074.0	12844.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF484033.1	direct	ORF2b	ORF2b	12079	12300	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF484033.1	direct	ORF3	ORF3	12697	13461	+	ok	1.0			ORF3	12697.0	13461.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF484033.1	direct	ORF4	ORF4	13242	13778	+	ok	1.0			ORF4	13242.0	13778.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF484033.1	direct	ORF5	ORF5	13789	14391	+	ok	1.0			ORF5	13789.0	14391.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF484033.1	direct	ORF6	ORF6	14376	14900	+	ok	1.0			ORF6	14376.0	14900.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF484033.1	direct	ORF7	ORF7	14890	15261	+	ok	1.0			ORF7	14890.0	15261.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	direct	ORF1a	ORF1a	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	direct	ORF1b	ORF1b	7590	11981	+	ok	1.0			ORF1b	7590.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	direct	ORF2a	ORF2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	direct	ORF3	ORF3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	direct	ORF4	ORF4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	direct	ORF5	ORF5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	direct	ORF6	ORF6	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF488048.1	direct	ORF7	ORF7	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF488739.1	direct	ORF1ab	ORF1ab polyprotein	191	11679	+	not_in_reference	1.0			ORF1ab	191.0	11679.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF488739.1	direct	ORF2a	GP2a	11681	12451	+	ok	1.0			ORF2a	11681.0	12451.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF488739.1	direct	ORF2b	GP2b	11686	11907	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF488739.1	direct	ORF3	GP3	12304	13068	+	ok	1.0			ORF3	12304.0	13068.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF488739.1	direct	ORF4	GP4	12849	13385	+	ok	1.0			ORF4	12849.0	13385.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF488739.1	direct	ORF5	GP5	13396	13998	+	ok	1.0			ORF5	13396.0	13998.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF488739.1	direct	ORF6	structural membrane protein	13983	14507	+	ok	1.0			ORF6	13983.0	14507.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF488739.1	direct	ORF7	nucleocapsid protein	14497	14868	+	ok	1.0			ORF7	14497.0	14868.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	direct	ORF1a	proteinase	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	direct	ORF2a	GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	direct	ORF6	matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF635006.1	direct	ORF7	nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF641008.1	direct	ORF1a	non-structural protein	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF641008.1	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF641008.1	direct	ORF2a	GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF641008.1	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF641008.1	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF641008.1	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF641008.1	direct	ORF6	matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF641008.1	direct	ORF7	nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF517962.1	direct	ORF1a	non-structural protein	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EF517962.1	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF517962.1	direct	ORF2a	ORF2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF517962.1	direct	ORF3	ORF3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF517962.1	direct	ORF4	ORF4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF517962.1	direct	ORF5	ORF5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF517962.1	direct	ORF6	ORF6	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF517962.1	direct	ORF7	ORF7	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532801.1	direct	ORF1ab	replicase polyprotein	1	7512	+	not_in_reference	1.0			ORF1ab	1.0	7512.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532801.1	direct	ORF1b	RNA-dependent RNA polymerase	7509	11882	+	ok	1.0			ORF1b	7509.0	11882.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532801.1	direct	ORF2a	GP2a envelope protein	11884	12654	+	ok	1.0			ORF2a	11884.0	12654.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532801.1	direct	ORF2b	GP2b envelope protein	11889	12110	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532801.1	direct	ORF3	GP3 envelope protein	12507	13271	+	ok	1.0			ORF3	12507.0	13271.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532801.1	direct	ORF4	GP4 envelope protein	13052	13588	+	ok	1.0			ORF4	13052.0	13588.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532801.1	direct	ORF5	GP5 envelope protein	13599	14201	+	ok	1.0			ORF5	13599.0	14201.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532801.1	direct	ORF6	matrix protein	14186	14710	+	ok	1.0			ORF6	14186.0	14710.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532801.1	direct	ORF7	nucleocapsid protein	14700	15071	+	ok	1.0			ORF7	14700.0	15071.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532802.1	direct	ORF1ab	replicase polyprotein	22	7140	+	not_in_reference	1.0			ORF1ab	22.0	7140.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532802.1	direct	ORF1b	RNA-dependent RNA polymerase	7137	11510	+	ok	1.0			ORF1b	7137.0	11510.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532802.1	direct	ORF2a	GP2a envelope protein	11512	12282	+	ok	1.0			ORF2a	11512.0	12282.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532802.1	direct	ORF2b	GP2b envelope protein	11517	11738	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532802.1	direct	ORF3	GP3 envelope protein	12135	12899	+	ok	1.0			ORF3	12135.0	12899.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532802.1	direct	ORF4	GP4 envelope protein	12680	13216	+	ok	1.0			ORF4	12680.0	13216.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532802.1	direct	ORF5	GP5 envelope protein	13227	13829	+	ok	1.0			ORF5	13227.0	13829.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532802.1	direct	ORF6	matrix protein	13814	14338	+	ok	1.0			ORF6	13814.0	14338.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532802.1	direct	ORF7	nucleocapsid protein	14328	14699	+	ok	1.0			ORF7	14328.0	14699.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532803.1	direct	ORF1ab	replicase polyprotein	1	7116	+	not_in_reference	1.0			ORF1ab	1.0	7116.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532803.1	direct	ORF1b	RNA-dependent RNA polymerase	7113	11486	+	ok	1.0			ORF1b	7113.0	11486.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532803.1	direct	ORF2a	GP2a envelope protein	11488	12258	+	ok	1.0			ORF2a	11488.0	12258.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532803.1	direct	ORF2b	GP2b envelope protein	11493	11714	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532803.1	direct	ORF3	GP3 envelope protein	12111	12875	+	ok	1.0			ORF3	12111.0	12875.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532803.1	direct	ORF4	GP4 envelope protein	12656	13192	+	ok	1.0			ORF4	12656.0	13192.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532803.1	direct	ORF5	GP5 envelope protein	13203	13805	+	ok	1.0			ORF5	13203.0	13805.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532803.1	direct	ORF6	matrix protein	13790	14314	+	ok	1.0			ORF6	13790.0	14314.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532803.1	direct	ORF7	nucleocapsid protein	14304	14675	+	ok	1.0			ORF7	14304.0	14675.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532804.1	direct	ORF1ab	replicase polyprotein	1	7119	+	not_in_reference	1.0			ORF1ab	1.0	7119.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532804.1	direct	ORF1b	RNA-dependent RNA polymerase	7116	11489	+	ok	1.0			ORF1b	7116.0	11489.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532804.1	direct	ORF2a	GP2a envelope protein	11491	12261	+	ok	1.0			ORF2a	11491.0	12261.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532804.1	direct	ORF2b	GP2b envelope protein	11496	11717	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532804.1	direct	ORF3	GP3 envelope protein	12114	12878	+	ok	1.0			ORF3	12114.0	12878.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532804.1	direct	ORF4	GP4 envelope protein	12659	13195	+	ok	1.0			ORF4	12659.0	13195.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532804.1	direct	ORF5	GP5 envelope protein	13206	13808	+	ok	1.0			ORF5	13206.0	13808.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532804.1	direct	ORF6	matrix protein	13793	14317	+	ok	1.0			ORF6	13793.0	14317.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532804.1	direct	ORF7	nucleocapsid protein	14307	14678	+	ok	1.0			ORF7	14307.0	14678.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532805.1	direct	ORF1ab	replicase polyprotein	1	7506	+	not_in_reference	1.0			ORF1ab	1.0	7506.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532805.1	direct	ORF1b	RNA-dependent RNA polymerase	7503	11876	+	ok	1.0			ORF1b	7503.0	11876.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532805.1	direct	ORF2a	GP2a envelope protein	11878	12648	+	ok	1.0			ORF2a	11878.0	12648.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532805.1	direct	ORF2b	GP2b envelope protein	11883	12104	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532805.1	direct	ORF3	GP3 envelope protein	12501	13265	+	ok	1.0			ORF3	12501.0	13265.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532805.1	direct	ORF4	GP4 envelope protein	13046	13582	+	ok	1.0			ORF4	13046.0	13582.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532805.1	direct	ORF5	GP5 envelope protein	13593	14195	+	ok	1.0			ORF5	13593.0	14195.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532805.1	direct	ORF6	matrix protein	14180	14704	+	ok	1.0			ORF6	14180.0	14704.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532805.1	direct	ORF7	nucleocapsid protein	14694	15065	+	ok	1.0			ORF7	14694.0	15065.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532806.1	direct	ORF1ab	replicase polyprotein	1	7119	+	not_in_reference	1.0			ORF1ab	1.0	7119.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532806.1	direct	ORF1b	RNA-dependent RNA polymerase	7116	11489	+	ok	1.0			ORF1b	7116.0	11489.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532806.1	direct	ORF2a	GP2a envelope protein	11491	12261	+	ok	1.0			ORF2a	11491.0	12261.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532806.1	direct	ORF2b	GP2b envelope protein	11496	11717	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532806.1	direct	ORF3	GP3 envelope protein	12114	12878	+	ok	1.0			ORF3	12114.0	12878.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532806.1	direct	ORF4	GP4 envelope protein	12659	13195	+	ok	1.0			ORF4	12659.0	13195.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532806.1	direct	ORF5	GP5 envelope protein	13206	13808	+	ok	1.0			ORF5	13206.0	13808.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532806.1	direct	ORF6	matrix protein	13793	14317	+	ok	1.0			ORF6	13793.0	14317.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532806.1	direct	ORF7	nucleocapsid protein	14307	14678	+	ok	1.0			ORF7	14307.0	14678.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532807.1	direct	ORF1ab	replicase polyprotein	61	7179	+	not_in_reference	1.0			ORF1ab	61.0	7179.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532807.1	direct	ORF1b	RNA-dependent RNA polymerase	7176	11549	+	ok	1.0			ORF1b	7176.0	11549.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532807.1	direct	ORF2a	GP2a envelope protein	11551	12321	+	ok	1.0			ORF2a	11551.0	12321.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532807.1	direct	ORF2b	GP2b envelope protein	11556	11777	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532807.1	direct	ORF3	GP3 envelope protein	12174	12938	+	ok	1.0			ORF3	12174.0	12938.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532807.1	direct	ORF4	GP4 envelope protein	12719	13255	+	ok	1.0			ORF4	12719.0	13255.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532807.1	direct	ORF5	GP5 envelope protein	13266	13868	+	ok	1.0			ORF5	13266.0	13868.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532807.1	direct	ORF6	matrix protein	13853	14377	+	ok	1.0			ORF6	13853.0	14377.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532807.1	direct	ORF7	nucleocapsid protein	14367	14738	+	ok	1.0			ORF7	14367.0	14738.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532808.1	direct	ORF1ab	replicase polyprotein	28	7533	+	not_in_reference	1.0			ORF1ab	28.0	7533.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532808.1	direct	ORF1b	RNA-dependent RNA polymerase	7530	11903	+	ok	1.0			ORF1b	7530.0	11903.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532808.1	direct	ORF2a	GP2a envelope protein	11905	12675	+	ok	1.0			ORF2a	11905.0	12675.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532808.1	direct	ORF2b	GP2b envelope protein	11910	12131	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532808.1	direct	ORF3	GP3 envelope protein	12528	13292	+	ok	1.0			ORF3	12528.0	13292.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532808.1	direct	ORF4	GP4 envelope protein	13073	13609	+	ok	1.0			ORF4	13073.0	13609.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532808.1	direct	ORF5	GP5 envelope protein	13620	14222	+	ok	1.0			ORF5	13620.0	14222.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532808.1	direct	ORF6	matrix protein	14207	14731	+	ok	1.0			ORF6	14207.0	14731.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532808.1	direct	ORF7	nucleocapsid protein	14721	15092	+	ok	1.0			ORF7	14721.0	15092.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532809.1	direct	ORF1ab	replicase polyprotein	1	7506	+	not_in_reference	1.0			ORF1ab	1.0	7506.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532809.1	direct	ORF1b	RNA-dependent RNA polymerase	7503	11876	+	ok	1.0			ORF1b	7503.0	11876.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532809.1	direct	ORF2a	GP2a envelope protein	11878	12648	+	ok	1.0			ORF2a	11878.0	12648.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532809.1	direct	ORF2b	GP2b envelope protein	11883	12104	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532809.1	direct	ORF3	GP3 envelope protein	12501	13265	+	ok	1.0			ORF3	12501.0	13265.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532809.1	direct	ORF4	GP4 envelope protein	13046	13582	+	ok	1.0			ORF4	13046.0	13582.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532809.1	direct	ORF5	GP5 envelope protein	13593	14195	+	ok	1.0			ORF5	13593.0	14195.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532809.1	direct	ORF6	matrix protein	14180	14704	+	ok	1.0			ORF6	14180.0	14704.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532809.1	direct	ORF7	nucleocapsid protein	14694	15065	+	ok	1.0			ORF7	14694.0	15065.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532810.1	direct	ORF1ab	replicase polyprotein	28	7146	+	not_in_reference	1.0			ORF1ab	28.0	7146.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532810.1	direct	ORF1b	RNA-dependent RNA polymerase	7143	11516	+	ok	1.0			ORF1b	7143.0	11516.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532810.1	direct	ORF2a	GP2a envelope protein	11518	12288	+	ok	1.0			ORF2a	11518.0	12288.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532810.1	direct	ORF2b	GP2b envelope protein	11523	11744	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532810.1	direct	ORF3	GP3 envelope protein	12141	12905	+	ok	1.0			ORF3	12141.0	12905.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532810.1	direct	ORF4	GP4 envelope protein	12686	13222	+	ok	1.0			ORF4	12686.0	13222.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532810.1	direct	ORF5	GP5 envelope protein	13233	13835	+	ok	1.0			ORF5	13233.0	13835.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532810.1	direct	ORF6	matrix protein	13820	14344	+	ok	1.0			ORF6	13820.0	14344.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532810.1	direct	ORF7	nucleocapsid protein	14334	14705	+	ok	1.0			ORF7	14334.0	14705.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532811.1	direct	ORF1ab	replicase polyprotein	27	7145	+	not_in_reference	1.0			ORF1ab	27.0	7145.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532811.1	direct	ORF1b	RNA-dependent RNA polymerase	7142	11515	+	ok	1.0			ORF1b	7142.0	11515.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532811.1	direct	ORF2a	GP2a envelope protein	11517	12287	+	ok	1.0			ORF2a	11517.0	12287.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532811.1	direct	ORF2b	GP2b envelope protein	11522	11743	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532811.1	direct	ORF3	GP3 envelope protein	12140	12904	+	ok	1.0			ORF3	12140.0	12904.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532811.1	direct	ORF4	GP4 envelope protein	12685	13221	+	ok	1.0			ORF4	12685.0	13221.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532811.1	direct	ORF5	GP5 envelope protein	13232	13834	+	ok	1.0			ORF5	13232.0	13834.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532811.1	direct	ORF6	matrix protein	13819	14343	+	ok	1.0			ORF6	13819.0	14343.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532811.1	direct	ORF7	nucleocapsid protein	14333	14704	+	ok	1.0			ORF7	14333.0	14704.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532812.1	direct	ORF1ab	replicase polyprotein	6	7049	+	not_in_reference	1.0			ORF1ab	6.0	7049.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532812.1	direct	ORF1b	RNA-dependent RNA polymerase	7046	11419	+	ok	1.0			ORF1b	7046.0	11419.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532812.1	direct	ORF2a	GP2a envelope protein	11421	12191	+	ok	1.0			ORF2a	11421.0	12191.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532812.1	direct	ORF2b	GP2b envelope protein	11426	11647	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532812.1	direct	ORF3	GP3 envelope protein	12044	12808	+	ok	1.0			ORF3	12044.0	12808.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532812.1	direct	ORF4	GP4 envelope protein	12589	13125	+	ok	1.0			ORF4	12589.0	13125.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532812.1	direct	ORF5	GP5 envelope protein	13136	13738	+	ok	1.0			ORF5	13136.0	13738.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532812.1	direct	ORF6	matrix protein	13723	14247	+	ok	1.0			ORF6	13723.0	14247.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532812.1	direct	ORF7	nucleocapsid protein	14237	14608	+	ok	1.0			ORF7	14237.0	14608.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532813.1	direct	ORF1ab	replicase polyprotein	60	7571	+	not_in_reference	1.0			ORF1ab	60.0	7571.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532813.1	direct	ORF1b	RNA-dependent RNA polymerase	7568	11941	+	ok	1.0			ORF1b	7568.0	11941.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532813.1	direct	ORF2a	GP2a envelope protein	11943	12713	+	ok	1.0			ORF2a	11943.0	12713.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532813.1	direct	ORF2b	GP2b envelope protein	11948	12169	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532813.1	direct	ORF3	GP3 envelope protein	12566	13330	+	ok	1.0			ORF3	12566.0	13330.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532813.1	direct	ORF4	GP4 envelope protein	13111	13647	+	ok	1.0			ORF4	13111.0	13647.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532813.1	direct	ORF5	GP5 envelope protein	13658	14260	+	ok	1.0			ORF5	13658.0	14260.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532813.1	direct	ORF6	matrix protein	14245	14769	+	ok	1.0			ORF6	14245.0	14769.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532813.1	direct	ORF7	nucleocapsid protein	14759	15130	+	ok	1.0			ORF7	14759.0	15130.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532814.1	direct	ORF1ab	replicase polyprotein	30	7112	+	not_in_reference	1.0			ORF1ab	30.0	7112.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532814.1	direct	ORF1b	RNA-dependent RNA polymerase	7109	11485	+	ok	1.0			ORF1b	7109.0	11485.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532814.1	direct	ORF2a	GP2a envelope protein	11482	12252	+	ok	1.0			ORF2a	11482.0	12252.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532814.1	direct	ORF2b	GP2b envelope protein	11487	11708	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532814.1	direct	ORF3	GP3 envelope protein	12105	12869	+	ok	1.0			ORF3	12105.0	12869.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532814.1	direct	ORF4	GP4 envelope protein	12650	13186	+	ok	1.0			ORF4	12650.0	13186.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532814.1	direct	ORF5	GP5 envelope protein	13197	13799	+	ok	1.0			ORF5	13197.0	13799.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532814.1	direct	ORF6	matrix protein	13784	14308	+	ok	1.0			ORF6	13784.0	14308.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532814.1	direct	ORF7	nucleocapsid protein	14298	14669	+	ok	1.0			ORF7	14298.0	14669.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532815.1	direct	ORF1ab	replicase polyprotein	30	7109	+	not_in_reference	1.0			ORF1ab	30.0	7109.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532815.1	direct	ORF1b	RNA-dependent RNA polymerase	7106	11479	+	ok	1.0			ORF1b	7106.0	11479.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532815.1	direct	ORF2a	GP2a envelope protein	11481	12251	+	ok	1.0			ORF2a	11481.0	12251.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532815.1	direct	ORF2b	GP2b envelope protein	11486	11707	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532815.1	direct	ORF3	GP3 envelope protein	12104	12868	+	ok	1.0			ORF3	12104.0	12868.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532815.1	direct	ORF4	GP4 envelope protein	12649	13185	+	ok	1.0			ORF4	12649.0	13185.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532815.1	direct	ORF5	GP5 envelope protein	13196	13798	+	ok	1.0			ORF5	13196.0	13798.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532815.1	direct	ORF6	matrix protein	13783	14307	+	ok	1.0			ORF6	13783.0	14307.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532815.1	direct	ORF7	nucleocapsid protein	14297	14668	+	ok	1.0			ORF7	14297.0	14668.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532816.1	direct	ORF1ab	replicase polyprotein	6	7517	+	not_in_reference	1.0			ORF1ab	6.0	7517.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532816.1	direct	ORF1b	RNA-dependent RNA polymerase	7514	11887	+	ok	1.0			ORF1b	7514.0	11887.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532816.1	direct	ORF2a	GP2a envelope protein	11889	12659	+	ok	1.0			ORF2a	11889.0	12659.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532816.1	direct	ORF2b	GP2b envelope protein	11894	12115	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532816.1	direct	ORF3	GP3 envelope protein	12512	13276	+	ok	1.0			ORF3	12512.0	13276.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532816.1	direct	ORF4	GP4 envelope protein	13057	13593	+	ok	1.0			ORF4	13057.0	13593.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532816.1	direct	ORF5	GP5 envelope protein	13604	14206	+	ok	1.0			ORF5	13604.0	14206.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532816.1	direct	ORF6	matrix protein	14191	14715	+	ok	1.0			ORF6	14191.0	14715.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532816.1	direct	ORF7	nucleocapsid protein	14705	15076	+	ok	1.0			ORF7	14705.0	15076.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532817.1	direct	ORF1ab	replicase polyprotein	21	7139	+	not_in_reference	1.0			ORF1ab	21.0	7139.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532817.1	direct	ORF1b	RNA-dependent RNA polymerase	7136	11509	+	ok	1.0			ORF1b	7136.0	11509.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532817.1	direct	ORF2a	GP2a envelope protein	11511	12281	+	ok	1.0			ORF2a	11511.0	12281.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532817.1	direct	ORF2b	GP2b envelope protein	11516	11737	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532817.1	direct	ORF3	GP3 envelope protein	12134	12898	+	ok	1.0			ORF3	12134.0	12898.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532817.1	direct	ORF4	GP4 envelope protein	12679	13215	+	ok	1.0			ORF4	12679.0	13215.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532817.1	direct	ORF5	GP5 envelope protein	13226	13828	+	ok	1.0			ORF5	13226.0	13828.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532817.1	direct	ORF6	matrix protein	13813	14337	+	ok	1.0			ORF6	13813.0	14337.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532817.1	direct	ORF7	nucleocapsid protein	14327	14698	+	ok	1.0			ORF7	14327.0	14698.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532818.1	direct	ORF1ab	replicase polyprotein	21	7139	+	not_in_reference	1.0			ORF1ab	21.0	7139.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532818.1	direct	ORF1b	RNA-dependent RNA polymerase	7136	11509	+	ok	1.0			ORF1b	7136.0	11509.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532818.1	direct	ORF2a	GP2a envelope protein	11511	12281	+	ok	1.0			ORF2a	11511.0	12281.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532818.1	direct	ORF2b	GP2b envelope protein	11516	11737	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532818.1	direct	ORF3	GP3 envelope protein	12134	12898	+	ok	1.0			ORF3	12134.0	12898.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532818.1	direct	ORF4	GP4 envelope protein	12679	13215	+	ok	1.0			ORF4	12679.0	13215.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532818.1	direct	ORF5	GP5 envelope protein	13226	13828	+	ok	1.0			ORF5	13226.0	13828.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532818.1	direct	ORF6	matrix protein	13813	14337	+	ok	1.0			ORF6	13813.0	14337.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532818.1	direct	ORF7	nucleocapsid protein	14327	14698	+	ok	1.0			ORF7	14327.0	14698.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF532819.1	direct	ORF1ab	replicase polyprotein	1	7113	+	not_in_reference	1.0			ORF1ab	1.0	7113.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF532819.1	direct	ORF1b	RNA-dependent RNA polymerase	7110	11483	+	ok	1.0			ORF1b	7110.0	11483.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EF532819.1	direct	ORF2a	GP2a envelope protein	11485	12255	+	ok	1.0			ORF2a	11485.0	12255.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF532819.1	direct	ORF2b	GP2b envelope protein	11490	11711	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF532819.1	direct	ORF3	GP3 envelope protein	12108	12872	+	ok	1.0			ORF3	12108.0	12872.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF532819.1	direct	ORF4	GP4 envelope protein	12653	13189	+	ok	1.0			ORF4	12653.0	13189.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF532819.1	direct	ORF5	GP5 envelope protein	13200	13802	+	ok	1.0			ORF5	13200.0	13802.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF532819.1	direct	ORF6	matrix protein	13787	14311	+	ok	1.0			ORF6	13787.0	14311.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF532819.1	direct	ORF7	nucleocapsid protein	14301	14672	+	ok	1.0			ORF7	14301.0	14672.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU076704.1	direct	ORF1a	ORF1a	222	7412	+	ok	1.0			ORF1a	222.0	7412.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU076704.1	direct	ORF1b	ORF1b	7394	11785	+	ok	1.0			ORF1b	7394.0	11785.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU076704.1	direct	ORF2a	ORF2a	11796	12545	+	ok	1.0			ORF2a	11796.0	12545.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU076704.1	direct	ORF2b	ORF2b	11801	12013	+	ok	1.0						ORF2a	0.284	0.0	False	False	False	Possible overlap
+PRRS	EU076704.1	direct	ORF3	ORF3	12404	13177	+	ok	1.0			ORF3	12404.0	13177.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU076704.1	direct	ORF4	ORF4	12946	13473	+	ok	1.0			ORF4	12946.0	13473.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU076704.1	direct	ORF5	ORF5	13470	14075	+	ok	1.0			ORF5	13470.0	14075.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU076704.1	direct	ORF6	ORF6	14063	14584	+	ok	1.0			ORF6	14063.0	14584.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU076704.1	direct	ORF7	ORF7	14574	14960	+	ok	1.0			ORF7	14574.0	14960.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	direct	ORF1a	ORF1a polyprotein	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	direct	ORF1b	ORF1b polyprotein	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	direct	ORF2a	GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	direct	ORF6	matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU097706.1	direct	ORF7	nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU097707.1	direct	ORF1a	ORF1a polyprotein	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU097707.1	direct	ORF1b	ORF1b polyprotein	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU097707.1	direct	ORF2a	GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU097707.1	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU097707.1	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU097707.1	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU097707.1	direct	ORF6	matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU097707.1	direct	ORF7	nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF535999.1	direct	ORF1ab	polyprotein	30	11518	+	not_in_reference	1.0			ORF1ab	30.0	11518.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF535999.1	direct	ORF2a	GP2a envelope protein	11520	12290	+	ok	1.0			ORF2a	11520.0	12290.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF535999.1	direct	ORF2b	GP2b envelope protein	11525	11746	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF535999.1	direct	ORF3	GP3 envelope protein	12143	12907	+	ok	1.0			ORF3	12143.0	12907.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF535999.1	direct	ORF4	GP4 envelope protein	12688	13224	+	ok	1.0			ORF4	12688.0	13224.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF535999.1	direct	ORF5	GP5 envelope protein	13235	13837	+	ok	1.0			ORF5	13235.0	13837.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF535999.1	direct	ORF6	M matrix protein	13822	14346	+	ok	1.0			ORF6	13822.0	14346.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF535999.1	direct	ORF7	N nucleocapsid protein	14336	14707	+	ok	1.0			ORF7	14336.0	14707.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF536000.1	direct	ORF1ab	polyprotein	25	11906	+	not_in_reference	1.0			ORF1ab	25.0	11906.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF536000.1	direct	ORF2a	GP2a envelope protein	11908	12678	+	ok	1.0			ORF2a	11908.0	12678.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF536000.1	direct	ORF2b	GP2b envelope protein	11913	12134	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF536000.1	direct	ORF3	GP3 envelope protein	12531	13295	+	ok	1.0			ORF3	12531.0	13295.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF536000.1	direct	ORF4	GP4 envelope protein	13076	13612	+	ok	1.0			ORF4	13076.0	13612.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF536000.1	direct	ORF5	GP5 envelope protein	13623	14225	+	ok	1.0			ORF5	13623.0	14225.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF536000.1	direct	ORF6	M matrix protein	14210	14734	+	ok	1.0			ORF6	14210.0	14734.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF536000.1	direct	ORF7	N nucleocapsid protein	14724	15095	+	ok	1.0			ORF7	14724.0	15095.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF536001.1	direct	ORF1ab	polyprotein	20	11901	+	not_in_reference	1.0			ORF1ab	20.0	11901.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF536001.1	direct	ORF2a	GP2a envelope protein	11903	12673	+	ok	1.0			ORF2a	11903.0	12673.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF536001.1	direct	ORF2b	GP2b envelope protein	11908	12129	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF536001.1	direct	ORF3	GP3 envelope protein	12526	13290	+	ok	1.0			ORF3	12526.0	13290.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF536001.1	direct	ORF4	GP4 envelope protein	13071	13607	+	ok	1.0			ORF4	13071.0	13607.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF536001.1	direct	ORF5	GP5 envelope protein	13618	14220	+	ok	1.0			ORF5	13618.0	14220.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF536001.1	direct	ORF6	M matrix protein	14205	14729	+	ok	1.0			ORF6	14205.0	14729.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF536001.1	direct	ORF7	N nucleocapsid protein	14719	15090	+	ok	1.0			ORF7	14719.0	15090.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF536002.1	direct	ORF1ab	polyprotein	25	11906	+	not_in_reference	1.0			ORF1ab	25.0	11906.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF536002.1	direct	ORF2a	GP2a envelope protein	11908	12678	+	ok	1.0			ORF2a	11908.0	12678.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF536002.1	direct	ORF2b	GP2b envelope protein	11913	12134	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF536002.1	direct	ORF3	GP3 envelope protein	12531	13295	+	ok	1.0			ORF3	12531.0	13295.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF536002.1	direct	ORF4	GP4 envelope protein	13076	13612	+	ok	1.0			ORF4	13076.0	13612.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF536002.1	direct	ORF5	GP5 envelope protein	13623	14225	+	ok	1.0			ORF5	13623.0	14225.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF536002.1	direct	ORF6	M matrix protein	14210	14734	+	ok	1.0			ORF6	14210.0	14734.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF536002.1	direct	ORF7	N nucleocapsid protein	14724	15095	+	ok	1.0			ORF7	14724.0	15095.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EF536003.1	direct	ORF1ab	polyprotein	20	11901	+	not_in_reference	1.0			ORF1ab	20.0	11901.0	ORF1ab	1.0	1.0	True	True	True	Correct
+PRRS	EF536003.1	direct	ORF2a	GP2a envelope protein	11903	12673	+	ok	1.0			ORF2a	11903.0	12673.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EF536003.1	direct	ORF2b	GP2b envelope protein	11908	12129	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EF536003.1	direct	ORF3	GP3 envelope protein	12526	13290	+	ok	1.0			ORF3	12526.0	13290.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EF536003.1	direct	ORF4	GP4 envelope protein	13071	13607	+	ok	1.0			ORF4	13071.0	13607.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EF536003.1	direct	ORF5	GP5 envelope protein	13618	14220	+	ok	1.0			ORF5	13618.0	14220.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EF536003.1	direct	ORF6	M matrix protein	14205	14729	+	ok	1.0			ORF6	14205.0	14729.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EF536003.1	direct	ORF7	N nucleocapsid protein	14719	15090	+	ok	1.0			ORF7	14719.0	15090.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU106888.1	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU106888.1	direct	ORF2a	envelope protein GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU106888.1	direct	ORF3	glycosylated membrane protein GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU106888.1	direct	ORF4	glycosylated membrane protein GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU106888.1	direct	ORF5	glycosylated membrane protein GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU106888.1	direct	ORF6	M matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU106888.1	direct	ORF7	N nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU109502.1	direct	ORF1a	proteinase	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU109502.1	direct	ORF1b	RNA dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU109502.1	direct	ORF2a	GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU109502.1	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU109502.1	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU109502.1	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU109502.1	direct	ORF6	M	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU109502.1	direct	ORF7	N	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU109503.1	direct	ORF1a	proteinase	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU109503.1	direct	ORF1b	RNA dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU109503.1	direct	ORF2a	GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU109503.1	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU109503.1	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU109503.1	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU109503.1	direct	ORF6	M	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU109503.1	direct	ORF7	N	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU144079.1	direct	ORF1a	proteinase	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU144079.1	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU144079.1	direct	ORF2a	GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU144079.1	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU144079.1	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU144079.1	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU144079.1	direct	ORF6	matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU144079.1	direct	ORF7	nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU187484.1	direct	ORF1a	non-structural protein	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU187484.1	direct	ORF1b	RNA dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU187484.1	direct	ORF2a	GP2 envelope protein	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU187484.1	direct	ORF3	glycosylated membrane protein GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU187484.1	direct	ORF4	glycosylated membrane protein GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU187484.1	direct	ORF5	glycosylated membrane protein GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU187484.1	direct	ORF6	matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU187484.1	direct	ORF7	nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	direct	ORF1a	non-structural protein	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	direct	ORF2a	GP2 envelope protein	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	direct	ORF6	M	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU200961.1	direct	ORF7	N	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU200962.1	direct	ORF1a	non-structural protein	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU200962.1	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU200962.1	direct	ORF2a	GP2 envelope protein	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU200962.1	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU200962.1	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU200962.1	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU200962.1	direct	ORF6	M	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU200962.1	direct	ORF7	N	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU236259.1	direct	ORF1b	RNA dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU236259.1	direct	ORF2a	GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU236259.1	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU236259.1	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU236259.1	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU236259.1	direct	ORF6	M matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU236259.1	direct	ORF7	N nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU360128.1	direct	ORF1a	non-structural protein	191	7699	+	ok	1.0			ORF1a	191.0	7699.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU360128.1	direct	ORF1b	RNA-dependent RNA polymerase	7696	12069	+	ok	1.0			ORF1b	7696.0	12069.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU360128.1	direct	ORF2a	GP2 envelope protein	12071	12841	+	ok	1.0			ORF2a	12071.0	12841.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU360128.1	direct	ORF2b	envelope protein GP2b	12076	12297	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU360128.1	direct	ORF3	GP3 envelope protein	12694	13458	+	ok	1.0			ORF3	12694.0	13458.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU360128.1	direct	ORF4	GP4 envelope protein	13239	13775	+	ok	1.0			ORF4	13239.0	13775.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU360128.1	direct	ORF5	GP5 envelope protein	13786	14388	+	ok	1.0			ORF5	13786.0	14388.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU360128.1	direct	ORF6	matrix protein M	14373	14897	+	ok	1.0			ORF6	14373.0	14897.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU360128.1	direct	ORF7	nucleocapsid protein N	14887	15258	+	ok	1.0			ORF7	14887.0	15258.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	direct	ORF1a	non-structural protein	191	7636	+	ok	1.0			ORF1a	191.0	7636.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	direct	ORF1b	RNA-dependent RNA polymerase	7633	12006	+	ok	1.0			ORF1b	7633.0	12006.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	direct	ORF2a	GP2 envelope protein	12008	12778	+	ok	1.0			ORF2a	12008.0	12778.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	direct	ORF2b	envelope protein GP2b	12013	12234	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU360129.1	direct	ORF3	GP3 envelope protein	12631	13395	+	ok	1.0			ORF3	12631.0	13395.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	direct	ORF4	GP4 envelope protein	13176	13712	+	ok	1.0			ORF4	13176.0	13712.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	direct	ORF5	GP5 envelope protein	13723	14325	+	ok	1.0			ORF5	13723.0	14325.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	direct	ORF6	matrix protein M	14310	14834	+	ok	1.0			ORF6	14310.0	14834.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU360129.1	direct	ORF7	nucleocapsid protein N	14824	15195	+	ok	1.0			ORF7	14824.0	15195.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	direct	ORF1a	non-structural protein	190	7701	+	ok	1.0			ORF1a	190.0	7701.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	direct	ORF1b	RNA-dependent RNA polymerase	7698	12068	+	ok	1.0			ORF1b	7698.0	12068.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	direct	ORF2a	GP2 envelope protein	12070	12840	+	ok	1.0			ORF2a	12070.0	12840.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	direct	ORF2b	envelope protein GP2b	12075	12296	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU360130.1	direct	ORF3	GP3 envelope protein	12693	13457	+	ok	1.0			ORF3	12693.0	13457.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	direct	ORF4	GP4 envelope protein	13238	13774	+	ok	1.0			ORF4	13238.0	13774.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	direct	ORF5	GP5 envelope protein	13785	14387	+	ok	1.0			ORF5	13785.0	14387.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	direct	ORF6	matrix protein M	14372	14896	+	ok	1.0			ORF6	14372.0	14896.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU360130.1	direct	ORF7	nucleocapsid protein N	14886	15257	+	ok	1.0			ORF7	14886.0	15257.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	direct	ORF1a	ORF1a	190	7497	+	ok	1.0			ORF1a	190.0	7497.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	direct	ORF1b	ORF1b	7485	11867	+	ok	1.0			ORF1b	7485.0	11867.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	direct	ORF2a	GP2	11869	12639	+	ok	1.0			ORF2a	11869.0	12639.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	direct	ORF3	GP3	12492	13256	+	ok	1.0			ORF3	12492.0	13256.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	direct	ORF4	GP4	13037	13573	+	ok	1.0			ORF4	13037.0	13573.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	direct	ORF5	GP5	13584	14186	+	ok	1.0			ORF5	13584.0	14186.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	direct	ORF6	M	14171	14695	+	ok	1.0			ORF6	14171.0	14695.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU262603.1	direct	ORF7	N	14685	15056	+	ok	1.0			ORF7	14685.0	15056.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	direct	ORF1a	papain-like cysteine protease	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	direct	ORF1b	RNA dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	direct	ORF2a	envelope protein GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	direct	ORF2b	envelope protein E	11988	12209	+	ok	1.0						ORF2a	0.2879	0.0	False	False	False	Possible overlap
+PRRS	EU624117.1	direct	ORF3	envelope protein GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	direct	ORF4	envelope protein GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	direct	ORF5	envelope protein GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	direct	ORF6	matrix protein M	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU624117.1	direct	ORF7	nucleocapsid protein N	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU708726.1	direct	ORF1a	cysteine/serine protease	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU708726.1	direct	ORF1b	RNA-dependent RNA polymerase	7590	11981	+	ok	1.0			ORF1b	7590.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU708726.1	direct	ORF2a	GP2 glycosylated envelope protein	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU708726.1	direct	ORF3	GP3 envelope protein	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU708726.1	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU708726.1	direct	ORF5	GP5 glycosylated envelope protein	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU708726.1	direct	ORF6	membrane protein M	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU708726.1	direct	ORF7	nucleocapsid protein N	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AB288356.1	direct	ORF1a	ORF1a	189	7691	+	ok	1.0			ORF1a	189.0	7691.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AB288356.1	direct	ORF1b	ORF1b	7688	12061	+	ok	1.0			ORF1b	7688.0	12061.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AB288356.1	direct	ORF2a	ORF2	12063	12830	+	ok	1.0			ORF2a	12063.0	12830.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AB288356.1	direct	ORF3	ORF3	12686	13450	+	ok	1.0			ORF3	12686.0	13450.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AB288356.1	direct	ORF4	ORF4	13231	13767	+	ok	1.0			ORF4	13231.0	13767.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AB288356.1	direct	ORF5	ORF5	13778	14380	+	ok	1.0			ORF5	13778.0	14380.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AB288356.1	direct	ORF6	ORF6	14365	14889	+	ok	1.0			ORF6	14365.0	14889.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AB288356.1	direct	ORF7	ORF7	14879	15250	+	ok	1.0			ORF7	14879.0	15250.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU825723.1	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU825723.1	direct	ORF2a	envelope protein GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU825723.1	direct	ORF3	glycosylated membrane protein GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU825723.1	direct	ORF4	glycosylated membrane protein GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU825723.1	direct	ORF5	glycosylated membrane protein GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU825723.1	direct	ORF6	matrix protein M	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU825723.1	direct	ORF7	nucleocapsid protein N	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU825724.1	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU825724.1	direct	ORF2a	envelope protein GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU825724.1	direct	ORF3	glycosylated membrane protein GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU825724.1	direct	ORF4	glycosylated membrane protein GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU825724.1	direct	ORF5	glycosylated membrane protein GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU825724.1	direct	ORF6	matrix protein M	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU825724.1	direct	ORF7	nucleocapsid protein N	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU860248.1	direct	ORF1a	non-structural protein	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU860248.1	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU860248.1	direct	ORF2a	GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU860248.1	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU860248.1	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU860248.1	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU860248.1	direct	ORF6	M matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU860248.1	direct	ORF7	N nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU860249.1	direct	ORF1a	non-structural protein	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU860249.1	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU860249.1	direct	ORF2a	GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU860249.1	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU860249.1	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU860249.1	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU860249.1	direct	ORF6	M matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU860249.1	direct	ORF7	N nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	direct	NSP2	nsp2	1340	4276	+	not_in_reference	1.0			NSP2	1340.0	4276.0	NSP2	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	direct	NSP3	nsp3	4277	5614	+	not_in_reference	1.0			NSP3	4277.0	5614.0	NSP3	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	direct	NSP4	nsp4	5615	6226	+	not_in_reference	1.0			NSP4	5615.0	6226.0	NSP4	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	direct	NSP5	nsp5	6227	6736	+	not_in_reference	1.0			NSP5	6227.0	6736.0	NSP5	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	direct	NSP6	nsp6	6737	6784	+	not_in_reference	1.0			NSP6	6737.0	6784.0	NSP6	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	direct	NSP8	nsp8	7562	7696	+	not_in_reference	1.0			NSP8	7562.0	7696.0	NSP8	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	direct	NSP9	nsp9	7696	9615	+	not_in_reference	1.0			NSP9	7696.0	9615.0	NSP9	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	direct	NSP10	nsp10	9616	10935	+	not_in_reference	1.0			NSP10	9616.0	10935.0	NSP10	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	direct	NSP11	nsp11	10936	11607	+	not_in_reference	1.0			NSP11	10936.0	11607.0	NSP11	1.0	1.0	True	True	True	Correct
+PRRS	EU807840.1	direct	NSP12	nsp12	11608	12066	+	not_in_reference	1.0			NSP12	11608.0	12066.0	NSP12	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	direct	ORF1a	non-structural protein	190	7506	+	ok	1.0			ORF1a	190.0	7506.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	direct	ORF1b	RNA-dependent RNA polymerase	7494	11876	+	ok	1.0			ORF1b	7494.0	11876.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	direct	ORF2a	GP2 envelope protein	11878	12648	+	ok	1.0			ORF2a	11878.0	12648.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	direct	ORF3	glycosylated membrane protein	12501	13265	+	ok	1.0			ORF3	12501.0	13265.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	direct	ORF4	glycosylated membrane protein	13046	13582	+	ok	1.0			ORF4	13046.0	13582.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	direct	ORF5	glycosylated membrane protein	13593	14195	+	ok	1.0			ORF5	13593.0	14195.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	direct	ORF6	matrix protein	14180	14704	+	ok	1.0			ORF6	14180.0	14704.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU864231.1	direct	ORF7	nucleocapsid protein	14694	15065	+	ok	1.0			ORF7	14694.0	15065.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	direct	ORF1a	non-structural protein	191	7702	+	ok	1.0			ORF1a	191.0	7702.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	direct	ORF1b	RNA-dependent RNA polymerase	7699	12072	+	ok	1.0			ORF1b	7699.0	12072.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	direct	ORF2a	GP2 envelope protein	12074	12844	+	ok	1.0			ORF2a	12074.0	12844.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	direct	ORF3	glycosylated membrane protein	12697	13461	+	ok	1.0			ORF3	12697.0	13461.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	direct	ORF4	glycosylated membrane protein	13242	13778	+	ok	1.0			ORF4	13242.0	13778.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	direct	ORF5	glycosylated membrane protein	13789	14391	+	ok	1.0			ORF5	13789.0	14391.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	direct	ORF6	matrix protein	14376	14900	+	ok	1.0			ORF6	14376.0	14900.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU864232.1	direct	ORF7	nucleocapsid protein	14890	15261	+	ok	1.0			ORF7	14890.0	15261.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	direct	ORF1a	non-structural protein	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	direct	ORF2a	GP2 envelope protein	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	direct	ORF3	glycosylated membrane protein	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	direct	ORF4	glycosylated membrane protein	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	direct	ORF5	glycosylated membrane protein	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	direct	ORF6	matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU864233.1	direct	ORF7	nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU880431.2	direct	ORF1a	proteinase	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU880431.2	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU880431.2	direct	ORF2a	GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU880431.2	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU880431.2	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU880431.2	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU880431.2	direct	ORF6	matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU880431.2	direct	ORF7	nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU880432.2	direct	ORF1a	proteinase	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU880432.2	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU880432.2	direct	ORF2a	GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU880432.2	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU880432.2	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU880432.2	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU880432.2	direct	ORF6	matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU880432.2	direct	ORF7	nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU880433.2	direct	ORF1a	proteinase	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU880433.2	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU880433.2	direct	ORF2a	GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU880433.2	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU880433.2	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU880433.2	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU880433.2	direct	ORF6	matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU880433.2	direct	ORF7	nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU880434.2	direct	ORF1a	proteinase	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU880434.2	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU880434.2	direct	ORF2a	GP2	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU880434.2	direct	ORF3	GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU880434.2	direct	ORF4	GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU880434.2	direct	ORF5	GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU880434.2	direct	ORF6	matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU880434.2	direct	ORF7	nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	EU678352.2	direct	ORF1a	nonstructural protein	190	7611	+	ok	1.0			ORF1a	190.0	7611.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	EU678352.2	direct	ORF1b	RNA-dependent RNA polymerase	7599	11981	+	ok	1.0			ORF1b	7599.0	11981.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	EU678352.2	direct	ORF2a	GP2 envelope protein	11983	12753	+	ok	1.0			ORF2a	11983.0	12753.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	EU678352.2	direct	ORF3	glycosylated membrane protein GP3	12606	13370	+	ok	1.0			ORF3	12606.0	13370.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	EU678352.2	direct	ORF4	glycosylated membrane protein GP4	13151	13687	+	ok	1.0			ORF4	13151.0	13687.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	EU678352.2	direct	ORF5	glycosylated membrane protein GP5	13698	14300	+	ok	1.0			ORF5	13698.0	14300.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	EU678352.2	direct	ORF6	matrix protein	14285	14809	+	ok	1.0			ORF6	14285.0	14809.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	EU678352.2	direct	ORF7	nucleocapsid protein	14799	15170	+	ok	1.0			ORF7	14799.0	15170.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AB811785.1	direct	ORF1a	ORF1a polyprotein	164	7666	+	ok	1.0			ORF1a	164.0	7666.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AB811785.1	direct	ORF1b	ORF1b polyprotein	7663	12036	+	ok	1.0			ORF1b	7663.0	12036.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AB811785.1	direct	ORF2a	GP2 glycosylated envelope protein	12038	12805	+	ok	1.0			ORF2a	12038.0	12805.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AB811785.1	direct	ORF3	GP3 envelope protein	12661	13425	+	ok	1.0			ORF3	12661.0	13425.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AB811785.1	direct	ORF4	GP4 protein	13206	13742	+	ok	1.0			ORF4	13206.0	13742.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AB811785.1	direct	ORF5	GP5 glycosylated envelope protein	13753	14355	+	ok	1.0			ORF5	13753.0	14355.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AB811785.1	direct	ORF6	M membrane protein	14340	14864	+	ok	1.0			ORF6	14340.0	14864.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AB811785.1	direct	ORF7	N nucleocapsid protein	14854	15225	+	ok	1.0			ORF7	14854.0	15225.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	direct	ORF1a	ORF1a polyprotein	165	7667	+	ok	1.0			ORF1a	165.0	7667.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	direct	ORF1b	ORF1b polyprotein	7664	12037	+	ok	1.0			ORF1b	7664.0	12037.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	direct	ORF2a	GP2 glycosylated envelope protein	12039	12809	+	ok	1.0			ORF2a	12039.0	12809.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	direct	ORF3	GP3 envelope protein	12662	13426	+	ok	1.0			ORF3	12662.0	13426.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	direct	ORF4	GP4 protein	13207	13743	+	ok	1.0			ORF4	13207.0	13743.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	direct	ORF5	GP5 glycosylated envelope protein	13754	14356	+	ok	1.0			ORF5	13754.0	14356.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	direct	ORF6	M membrane protein	14341	14865	+	ok	1.0			ORF6	14341.0	14865.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AB811786.1	direct	ORF7	N nucleocapsid protein	14855	15226	+	ok	1.0			ORF7	14855.0	15226.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	direct	ORF1a	ORF1a polyprotein	165	7667	+	ok	1.0			ORF1a	165.0	7667.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	direct	ORF1b	ORF1b polyprotein	7664	12037	+	ok	1.0			ORF1b	7664.0	12037.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	direct	ORF2a	GP2 glycosylated envelope protein	12039	12809	+	ok	1.0			ORF2a	12039.0	12809.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	direct	ORF3	GP3 envelope protein	12662	13426	+	ok	1.0			ORF3	12662.0	13426.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	direct	ORF4	GP4 protein	13207	13743	+	ok	1.0			ORF4	13207.0	13743.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	direct	ORF5	GP5 glycosylated envelope protein	13754	14353	+	ok	1.0			ORF5	13754.0	14353.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	direct	ORF6	M membrane protein	14338	14862	+	ok	1.0			ORF6	14338.0	14862.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AB811787.1	direct	ORF7	N nucleocapsid protein	14852	15223	+	ok	1.0			ORF7	14852.0	15223.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	direct	ORF1a	ORF1a polyprotein	166	7668	+	ok	1.0			ORF1a	166.0	7668.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	direct	ORF1b	ORF1b polyprotein	7665	12038	+	ok	1.0			ORF1b	7665.0	12038.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	direct	ORF2a	GP2 glycosylated envelope protein	12040	12810	+	ok	1.0			ORF2a	12040.0	12810.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	direct	ORF3	GP3 envelope protein	12663	13427	+	ok	1.0			ORF3	12663.0	13427.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	direct	ORF4	GP4 protein	13208	13744	+	ok	1.0			ORF4	13208.0	13744.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	direct	ORF5	GP5 glycosylated envelope protein	13755	14357	+	ok	1.0			ORF5	13755.0	14357.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	direct	ORF6	M membrane protein	14342	14866	+	ok	1.0			ORF6	14342.0	14866.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AB811788.1	direct	ORF7	N nucleocapsid protein	14856	15227	+	ok	1.0			ORF7	14856.0	15227.0	ORF7	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	direct	ORF1a	ORF1a polyprotein	166	7647	+	ok	1.0			ORF1a	166.0	7647.0	ORF1a	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	direct	ORF1b	ORF1b polyprotein	7644	12017	+	ok	1.0			ORF1b	7644.0	12017.0	ORF1b	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	direct	ORF2a	GP2 glycosylated envelope protein	12019	12786	+	ok	1.0			ORF2a	12019.0	12786.0	ORF2a	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	direct	ORF3	GP3 envelope protein	12642	13406	+	ok	1.0			ORF3	12642.0	13406.0	ORF3	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	direct	ORF4	GP4 protein	13187	13723	+	ok	1.0			ORF4	13187.0	13723.0	ORF4	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	direct	ORF5	GP5 glycosylated envelope protein	13734	14336	+	ok	1.0			ORF5	13734.0	14336.0	ORF5	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	direct	ORF6	M membrane protein	14321	14845	+	ok	1.0			ORF6	14321.0	14845.0	ORF6	1.0	1.0	True	True	True	Correct
+PRRS	AB811789.1	direct	ORF7	N nucleocapsid protein	14835	15203	+	ok	1.0			ORF7	14835.0	15203.0	ORF7	1.0	1.0	True	True	True	Correct

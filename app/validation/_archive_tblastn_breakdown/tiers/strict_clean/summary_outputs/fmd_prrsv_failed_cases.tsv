@@ -1,0 +1,23 @@
+virus	record_id	method	ref_name	pred_name	source_name	pred_start	pred_end	strand	status	coverage	identity	score	truth_name	truth_start	truth_end	best_overlap_name	best_iou	iou	name_match	coord_correct	exact_match	failure_mode	virus_summary
+FMD	AY687334.1	tblastn	VP2	VP2		1939.0	2592.0	+	ok	1.0	84.9	385.2	VP2	1639.0	2592.0	VP2	0.6855	0.6855	True	False	False	Wrong coords	FMD
+FMD	AY687333.1	tblastn	2A	2A		3881.0	3934.0	+	ok	1.0	88.9	39.3	2A	3887.0	3934.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	AY687334.1	tblastn	2A	2A		3877.0	3930.0	+	ok	1.0	88.9	38.5	2A	3883.0	3930.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	FJ175666.1	tblastn	2A	2A				+	no_hit	0.0			2A	3986.0	4039.0		0.0	0.0	True	False	False	Not lifted	FMD
+FMD	LC036265.1	tblastn	2A	2A		3903.0	3956.0	+	ok_extrapolated	0.9444	100.0	38.9	2A	3909.0	3956.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	MG372727.1	tblastn	2A	2A		3868.0	3921.0	+	ok	1.0	94.4	39.3	2A	3874.0	3921.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	MG372728.1	tblastn	2A	2A		3860.0	3913.0	+	ok	1.0	100.0	40.4	2A	3866.0	3913.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	MG372729.1	tblastn	2A	2A		3842.0	3895.0	+	ok	1.0	100.0	41.2	2A	3848.0	3895.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	MG372730.1	tblastn	2A	2A		3843.0	3896.0	+	ok	1.0	100.0	40.8	2A	3849.0	3896.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	MG372731.1	tblastn	2A	2A		3920.0	3973.0	+	ok	1.0	94.4	39.3	2A	3926.0	3973.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	MG372732.1	tblastn	2A	2A		3416.0	3469.0	+	ok	1.0	100.0	41.2	2A	3422.0	3469.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	MK088170.1	tblastn	2A	2A		3904.0	3957.0	+	ok	1.0	100.0	40.8	2A	3910.0	3957.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	MN366244.1	tblastn	2A	2A		3886.0	3939.0	+	ok	1.0	94.4	39.3	2A	3892.0	3939.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	OP957418.1	tblastn	2A	2A		3906.0	3959.0	+	ok	1.0	100.0	41.2	2A	3912.0	3959.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	PV805280.1	tblastn	2A	2A		3905.0	3958.0	+	ok	1.0	100.0	41.2	2A	3911.0	3958.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	PV805281.1	tblastn	2A	2A		3904.0	3957.0	+	ok	1.0	100.0	41.2	2A	3910.0	3957.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	PV805282.1	tblastn	2A	2A		3909.0	3962.0	+	ok	1.0	100.0	41.2	2A	3915.0	3962.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	PV805283.1	tblastn	2A	2A		3906.0	3959.0	+	ok	1.0	100.0	41.2	2A	3912.0	3959.0	2A	0.8889	0.8889	True	False	False	Wrong coords	FMD
+FMD	MG372730.1	tblastn	3A	3A		5313.0	5630.0	+	ok	0.7582	73.3	164.9	3A	5313.0	5741.0	3A	0.7413	0.7413	True	False	False	Wrong coords	FMD
+PRRS	AY366525.1	tblastn	ORF7	ORF7		14595.0	14933.0	+	ok_rescued	0.8943	64.5	151.0	ORF7	14547.0	14933.0	ORF7	0.876	0.876	True	False	False	Wrong coords	PRRSV
+PRRS	DQ489311.1	tblastn	ORF7	ORF7		14595.0	14933.0	+	ok_rescued	0.8943	64.5	151.4	ORF7	14547.0	14933.0	ORF7	0.876	0.876	True	False	False	Wrong coords	PRRSV
+PRRS	DQ864705.1	tblastn	ORF7	ORF7		14569.0	14907.0	+	ok_rescued	0.8943	64.5	151.0	ORF7	14521.0	14907.0	ORF7	0.876	0.876	True	False	False	Wrong coords	PRRSV
