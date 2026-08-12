@@ -1,9 +1,20 @@
 __pycache__/
 *.pyc
 .DS_Store
+**/.DS_Store
 .env
-.venv/
 .claude/
+# Virtual environments
+.venv/
+venv/
+venv311/
+venv*/
+env/
+ENV/
+# Caches / tooling
+.pytest_cache/
+.ipynb_checkpoints/
+.streamlit/secrets.toml
 # Python build artifacts
 build/
 dist/
