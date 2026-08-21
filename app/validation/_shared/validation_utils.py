@@ -198,6 +198,31 @@ def best_overlap(pred_row: Dict, truth_features: Sequence[Dict]) -> Tuple[Option
     return best_feature, best_iou
 
 
+def dedupe_truth_by_name(truth_features: Sequence[Dict]) -> List[Dict]:
+    """Collapse truth features that share a name, keeping the longest.
+
+    `compare_predictions_to_truth` already resolves truth by name this way (see its
+    `truth_by_name` loop): at most ONE truth feature per name can ever be matched. A
+    truth-anchored harness that counts every raw truth feature therefore inflates its own
+    denominator whenever a record annotates the same gene twice -- the duplicate is an
+    automatic miss for every tool, by construction rather than by performance.
+
+    Real case: PRRSV `AF331831.1` labels BOTH ORF1a and ORF1b "RNA polymerase", so ORF1b
+    appears twice in truth after alias resolution. Counting it twice made the comparison
+    denominator 797 where the accuracy harness (which counts (record, gene) presence via
+    `build_truth_presence`) counts 796.
+
+    Use this in truth-anchored harnesses that build their denominator from the truth list, so
+    the denominator matches what the comparator can actually match.
+    """
+    best: Dict[str, Dict] = {}
+    for feature in truth_features:
+        existing = best.get(feature["name"])
+        if existing is None or (feature["end"] - feature["start"]) > (existing["end"] - existing["start"]):
+            best[feature["name"]] = feature
+    return [feature for feature in truth_features if best.get(feature["name"]) is feature]
+
+
 def compare_predictions_to_truth(
     predictions: Sequence[Dict],
     truth_features: Sequence[Dict],

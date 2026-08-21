@@ -1,4 +1,26 @@
-# 05 — Tool comparison: Liftoff (quantitative) + GATU (baseline)
+# 05 — Tool comparison: LiftOn + Liftoff + GATU
+
+Three external annotation-transfer tools are compared against ViraLift, all scored with the
+identical shared metric (coordinate-only, IoU >= 0.90 or +-6 bp, codon check off for every tool,
+truth-anchored `R ∩ truth` denominator). `CONSISTENCY_unit05.md` records how the notebooks were
+aligned with each other and with `../02_lifting_accuracy/`; `LIFTON_research.md` covers the LiftOn
+positioning and its first PRRSV results.
+
+| Tool | Engine | Status |
+|---|---|---|
+| **LiftOn** (Chao & Salzberg 2025) | Liftoff + miniprot + protein-maximisation | strongest modern baseline — 3 viruses x 100 records, `lifton_compare.ipynb` |
+| **Liftoff** (Shumate & Salzberg 2021) | minimap2, DNA only | 3 viruses x 100 records — `liftoff_compare.ipynb` |
+| **GATU** (Tcherepanov 2006) | reference-protein BLAST, interactive Java GUI | 50 PRRSV records run by hand — `outputs/gatu_50case/` |
+
+Headline: **ViraLift and LiftOn are tied above ~70 % protein identity** (FMDV 99.83 % vs 99.83 %,
+PEDV 99.80 % vs 99.41 %, PRRSV 99.75 % vs 95.35 %); below it LiftOn drops to **0 %** and ViraLift
+holds **100 %** (4 PRRSV-1 records at ~65 % identity, where LiftOn emits nothing). LiftOn *does*
+handle FMDV `mat_peptide` — there is no capability gap there. Report this as **operating range**,
+not average accuracy. Liftoff (DNA only) is the weaker engine baseline: FMDV 76.79 %, of which
+22.7 % of truth genes are never emitted. GATU: 88.05 % on 50 PRRSV records.
+
+---
+
 
 Two external annotation-transfer tools are compared against ViraLift here.
 

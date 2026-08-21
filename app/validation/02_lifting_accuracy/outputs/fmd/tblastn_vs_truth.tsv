@@ -155,7 +155,7 @@ fmd	DQ989313.1	tblastn	3A	3A		5447	5902	+	ok	1.0	90.2	279.6				5447.0	5902.0	0.0
 fmd	DQ989313.1	tblastn	3B	3B		5903	6115	+	ok	1.0	91.5	130.2				5903.0	6115.0	0.0				3B	5903.0	6115.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	DQ989313.1	tblastn	3Cpro	3Cpro		6116	6754	+	ok	1.0	98.1	441.0				6116.0	6754.0	0.0				3Cpro	6116.0	6754.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	DQ989313.1	tblastn	3Dpol	3Dpol		6755	8164	+	ok	1.0	98.7	976.5				6755.0	8164.0	0.0				3Dpol	6755.0	8164.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	DQ989314.1	tblastn	Lpro	Lpro		1182	1784	+	ok	1.0	95.0	410.2				1182.0	1784.0	0.0				Lpro	1182.0	1784.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	DQ989314.1	tblastn	Lpro	Lpro		1182	1784	+	ok_extrapolated	0.9801	94.9	400.6				1194.0	1784.0	4.0				Lpro	1182.0	1784.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	DQ989314.1	tblastn	VP4	VP4		1785	2039	+	ok	1.0	96.5	166.0				1785.0	2039.0	0.0				VP4	1785.0	2039.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	DQ989314.1	tblastn	VP2	VP2		2040	2693	+	ok	1.0	84.9	386.3				2040.0	2693.0	0.0				VP2	2040.0	2693.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	DQ989314.1	tblastn	VP3	VP3		2694	3350	+	ok	1.0	82.7	388.7				2694.0	3350.0	0.0				VP3	2694.0	3350.0	VP3	1.0	1.0	True	True	False	True	True	True	657	657.0	0.0	0.0	0.0	Correct
@@ -204,7 +204,7 @@ fmd	DQ989317.1	tblastn	3B	3B		5907	6119	+	ok	1.0	95.8	134.4				5907.0	6119.0	0.0
 fmd	DQ989317.1	tblastn	3Cpro	3Cpro		6120	6758	+	ok	1.0	98.6	441.4				6120.0	6758.0	0.0				3Cpro	6120.0	6758.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	DQ989317.1	tblastn	3Dpol	3Dpol		6759	8168	+	ok	1.0	98.5	975.7				6759.0	8168.0	0.0				3Dpol	6759.0	8168.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
 fmd	DQ989318.1	tblastn	Lpro	Lpro		1178	1780	+	ok_extrapolated	0.9801	93.9	398.3				1190.0	1780.0	4.0				Lpro	1178.0	1780.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
-fmd	DQ989318.1	tblastn	VP4	VP4		1781	2035	+	ok	1.0	95.3	165.2				1781.0	2035.0	0.0				VP4	1781.0	2035.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
+fmd	DQ989318.1	tblastn	VP4	VP4		1781	2035	+	ok	1.0	95.3	142.9				1781.0	2035.0	0.0				VP4	1781.0	2035.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	DQ989318.1	tblastn	VP2	VP2		2036	2689	+	ok	1.0	83.5	378.6				2036.0	2689.0	0.0				VP2	2036.0	2689.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	DQ989318.1	tblastn	VP3	VP3		2690	3346	+	ok	1.0	82.7	389.0				2690.0	3346.0	0.0				VP3	2690.0	3346.0	VP3	1.0	1.0	True	True	False	True	True	True	657	657.0	0.0	0.0	0.0	Correct
 fmd	DQ989318.1	tblastn	VP1	VP1		3347	3973	+	ok	1.0	69.7	305.1				3347.0	3973.0	0.0				VP1	3347.0	3973.0	VP1	1.0	1.0	True	True	False	True	True	True	627	627.0	0.0	0.0	0.0	Correct
@@ -215,7 +215,7 @@ fmd	DQ989318.1	tblastn	3A	3A		5444	5902	+	ok	1.0	93.5	295.8				5444.0	5902.0	0.0
 fmd	DQ989318.1	tblastn	3B	3B		5903	6115	+	ok	1.0	97.2	135.2				5903.0	6115.0	0.0				3B	5903.0	6115.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	DQ989318.1	tblastn	3Cpro	3Cpro		6116	6754	+	ok	1.0	98.1	438.3				6116.0	6754.0	0.0				3Cpro	6116.0	6754.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	DQ989318.1	tblastn	3Dpol	3Dpol		6755	8164	+	ok	1.0	98.3	972.6				6755.0	8164.0	0.0				3Dpol	6755.0	8164.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	DQ989319.1	tblastn	Lpro	Lpro		1182	1784	+	ok	1.0	95.0	411.8				1182.0	1784.0	0.0				Lpro	1182.0	1784.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	DQ989319.1	tblastn	Lpro	Lpro		1182	1784	+	ok_extrapolated	0.9801	94.9	402.5				1194.0	1784.0	4.0				Lpro	1182.0	1784.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	DQ989319.1	tblastn	VP4	VP4		1785	2039	+	ok	1.0	96.5	166.0				1785.0	2039.0	0.0				VP4	1785.0	2039.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	DQ989319.1	tblastn	VP2	VP2		2040	2693	+	ok	1.0	84.9	386.7				2040.0	2693.0	0.0				VP2	2040.0	2693.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	DQ989319.1	tblastn	VP3	VP3		2694	3350	+	ok	1.0	82.3	386.3				2694.0	3350.0	0.0				VP3	2694.0	3350.0	VP3	1.0	1.0	True	True	False	True	True	True	657	657.0	0.0	0.0	0.0	Correct
@@ -227,8 +227,8 @@ fmd	DQ989319.1	tblastn	3A	3A		5448	5906	+	ok	1.0	94.1	296.6				5448.0	5906.0	0.0
 fmd	DQ989319.1	tblastn	3B	3B		5907	6119	+	ok	1.0	97.2	135.6				5907.0	6119.0	0.0				3B	5907.0	6119.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	DQ989319.1	tblastn	3Cpro	3Cpro		6120	6758	+	ok	1.0	97.7	439.1				6120.0	6758.0	0.0				3Cpro	6120.0	6758.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	DQ989319.1	tblastn	3Dpol	3Dpol		6759	8168	+	ok	1.0	98.9	978.8				6759.0	8168.0	0.0				3Dpol	6759.0	8168.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	DQ989320.1	tblastn	Lpro	Lpro		1182	1784	+	ok	1.0	95.5	414.5				1182.0	1784.0	0.0				Lpro	1182.0	1784.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
-fmd	DQ989320.1	tblastn	VP4	VP4		1785	2039	+	ok	1.0	95.3	164.5				1785.0	2039.0	0.0				VP4	1785.0	2039.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
+fmd	DQ989320.1	tblastn	Lpro	Lpro		1182	1784	+	ok_extrapolated	0.9801	95.4	405.2				1194.0	1784.0	4.0				Lpro	1182.0	1784.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	DQ989320.1	tblastn	VP4	VP4		1785	2039	+	ok	1.0	95.3	142.5				1785.0	2039.0	0.0				VP4	1785.0	2039.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	DQ989320.1	tblastn	VP2	VP2		2040	2693	+	ok	1.0	83.0	377.5				2040.0	2693.0	0.0				VP2	2040.0	2693.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	DQ989320.1	tblastn	VP3	VP3		2694	3350	+	ok	1.0	82.3	388.3				2694.0	3350.0	0.0				VP3	2694.0	3350.0	VP3	1.0	1.0	True	True	False	True	True	True	657	657.0	0.0	0.0	0.0	Correct
 fmd	DQ989320.1	tblastn	VP1	VP1		3351	3977	+	ok	1.0	68.7	297.0				3351.0	3977.0	0.0				VP1	3351.0	3977.0	VP1	1.0	1.0	True	True	False	True	True	True	627	627.0	0.0	0.0	0.0	Correct
@@ -239,7 +239,7 @@ fmd	DQ989320.1	tblastn	3A	3A		5448	5906	+	ok	1.0	94.8	298.5				5448.0	5906.0	0.0
 fmd	DQ989320.1	tblastn	3B	3B		5907	6119	+	ok	1.0	95.8	131.7				5907.0	6119.0	0.0				3B	5907.0	6119.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	DQ989320.1	tblastn	3Cpro	3Cpro		6120	6758	+	ok	1.0	97.2	434.9				6120.0	6758.0	0.0				3Cpro	6120.0	6758.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	DQ989320.1	tblastn	3Dpol	3Dpol		6759	8168	+	ok	1.0	98.1	971.1				6759.0	8168.0	0.0				3Dpol	6759.0	8168.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	DQ989321.1	tblastn	Lpro	Lpro		1182	1784	+	ok	1.0	95.5	414.5				1182.0	1784.0	0.0				Lpro	1182.0	1784.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	DQ989321.1	tblastn	Lpro	Lpro		1182	1784	+	ok	1.0	95.5	413.3				1182.0	1784.0	0.0				Lpro	1182.0	1784.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	DQ989321.1	tblastn	VP4	VP4		1785	2039	+	ok	1.0	96.5	166.0				1785.0	2039.0	0.0				VP4	1785.0	2039.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	DQ989321.1	tblastn	VP2	VP2		2040	2693	+	ok	1.0	84.9	386.7				2040.0	2693.0	0.0				VP2	2040.0	2693.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	DQ989321.1	tblastn	VP3	VP3		2694	3350	+	ok	1.0	81.8	382.1				2694.0	3350.0	0.0				VP3	2694.0	3350.0	VP3	1.0	1.0	True	True	False	True	True	True	657	657.0	0.0	0.0	0.0	Correct
@@ -251,7 +251,7 @@ fmd	DQ989321.1	tblastn	3A	3A		5448	5906	+	ok	1.0	94.8	298.5				5448.0	5906.0	0.0
 fmd	DQ989321.1	tblastn	3B	3B		5907	6119	+	ok	1.0	97.2	135.6				5907.0	6119.0	0.0				3B	5907.0	6119.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	DQ989321.1	tblastn	3Cpro	3Cpro		6120	6758	+	ok	1.0	98.1	438.0				6120.0	6758.0	0.0				3Cpro	6120.0	6758.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	DQ989321.1	tblastn	3Dpol	3Dpol		6759	8168	+	ok	1.0	98.3	974.5				6759.0	8168.0	0.0				3Dpol	6759.0	8168.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	DQ989322.1	tblastn	Lpro	Lpro		1182	1784	+	ok	1.0	95.0	413.7				1182.0	1784.0	0.0				Lpro	1182.0	1784.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	DQ989322.1	tblastn	Lpro	Lpro		1182	1784	+	ok_extrapolated	0.9801	94.9	404.4				1194.0	1784.0	4.0				Lpro	1182.0	1784.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	DQ989322.1	tblastn	VP4	VP4		1785	2039	+	ok	1.0	96.5	166.0				1785.0	2039.0	0.0				VP4	1785.0	2039.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	DQ989322.1	tblastn	VP2	VP2		2040	2693	+	ok	1.0	83.5	378.3				2040.0	2693.0	0.0				VP2	2040.0	2693.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	DQ989322.1	tblastn	VP3	VP3		2694	3350	+	ok	1.0	79.1	367.5				2694.0	3350.0	0.0				VP3	2694.0	3350.0	VP3	1.0	1.0	True	True	False	True	True	True	657	657.0	0.0	0.0	0.0	Correct
@@ -263,7 +263,7 @@ fmd	DQ989322.1	tblastn	3A	3A		5448	5906	+	ok	1.0	94.8	298.9				5448.0	5906.0	0.0
 fmd	DQ989322.1	tblastn	3B	3B		5907	6119	+	ok	1.0	95.8	134.0				5907.0	6119.0	0.0				3B	5907.0	6119.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	DQ989322.1	tblastn	3Cpro	3Cpro		6120	6758	+	ok	1.0	98.1	439.5				6120.0	6758.0	0.0				3Cpro	6120.0	6758.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	DQ989322.1	tblastn	3Dpol	3Dpol		6759	8168	+	ok	1.0	98.1	971.5				6759.0	8168.0	0.0				3Dpol	6759.0	8168.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	DQ989323.1	tblastn	Lpro	Lpro		1182	1784	+	ok	1.0	95.0	412.5				1182.0	1784.0	0.0				Lpro	1182.0	1784.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	DQ989323.1	tblastn	Lpro	Lpro		1182	1784	+	ok_extrapolated	0.9801	94.9	403.3				1194.0	1784.0	4.0				Lpro	1182.0	1784.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	DQ989323.1	tblastn	VP4	VP4		1785	2039	+	ok	1.0	96.5	166.0				1785.0	2039.0	0.0				VP4	1785.0	2039.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	DQ989323.1	tblastn	VP2	VP2		2040	2693	+	ok	1.0	83.9	382.5				2040.0	2693.0	0.0				VP2	2040.0	2693.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	DQ989323.1	tblastn	VP3	VP3		2694	3350	+	ok	1.0	81.8	386.3				2694.0	3350.0	0.0				VP3	2694.0	3350.0	VP3	1.0	1.0	True	True	False	True	True	True	657	657.0	0.0	0.0	0.0	Correct
@@ -384,7 +384,7 @@ fmd	GU931682.1	tblastn	3B	3B		5818	6030	+	ok	1.0	95.8	134.0				5818.0	6030.0	0.0
 fmd	GU931682.1	tblastn	3Cpro	3Cpro		6031	6669	+	ok	1.0	97.2	437.6				6031.0	6669.0	0.0				3Cpro	6031.0	6669.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	GU931682.1	tblastn	3Dpol	3Dpol		6670	8079	+	ok	1.0	98.5	977.2				6670.0	8079.0	0.0				3Dpol	6670.0	8079.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
 fmd	DQ533483.2	tblastn	Lpro	Lpro		1094	1696	+	ok	1.0	90.5	391.0				1094.0	1696.0	0.0				Lpro	1094.0	1696.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
-fmd	DQ533483.2	tblastn	VP4	VP4		1697	1951	+	ok	1.0	94.1	162.2				1697.0	1951.0	0.0				VP4	1697.0	1951.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
+fmd	DQ533483.2	tblastn	VP4	VP4		1697	1951	+	ok	1.0	94.1	133.7				1697.0	1951.0	0.0				VP4	1697.0	1951.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	DQ533483.2	tblastn	VP2	VP2		1952	2605	+	ok	1.0	81.7	377.5				1952.0	2605.0	0.0				VP2	1952.0	2605.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	DQ533483.2	tblastn	VP3	VP3		2606	3262	+	ok	1.0	82.7	390.2				2606.0	3262.0	0.0				VP3	2606.0	3262.0	VP3	1.0	1.0	True	True	False	True	True	True	657	657.0	0.0	0.0	0.0	Correct
 fmd	DQ533483.2	tblastn	VP1	VP1		3263	3889	+	ok	1.0	71.1	310.5				3263.0	3889.0	0.0				VP1	3263.0	3889.0	VP1	1.0	1.0	True	True	False	True	True	True	627	627.0	0.0	0.0	0.0	Correct
@@ -527,7 +527,7 @@ fmd	MK088171.1	tblastn	3A	3A		5377	5835	+	ok	1.0	94.8	296.2				5377.0	5835.0	0.0
 fmd	MK088171.1	tblastn	3B	3B		5836	6048	+	ok	1.0	95.8	134.0				5836.0	6048.0	0.0				3B	5836.0	6048.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	MK088171.1	tblastn	3Cpro	3Cpro		6049	6687	+	ok	1.0	97.7	438.0				6049.0	6687.0	0.0				3Cpro	6049.0	6687.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MK088171.1	tblastn	3Dpol	3Dpol		6688	8097	+	ok	1.0	97.4	966.1				6688.0	8097.0	0.0				3Dpol	6688.0	8097.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	MN095354.1	tblastn	Lpro	Lpro		1097	1699	+	ok	1.0	95.0	414.8				1097.0	1699.0	0.0				Lpro	1097.0	1699.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	MN095354.1	tblastn	Lpro	Lpro		1097	1699	+	ok_extrapolated	0.9801	94.9	405.2				1109.0	1699.0	4.0				Lpro	1097.0	1699.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	MN095354.1	tblastn	VP4	VP4		1700	1954	+	ok	1.0	98.8	168.7				1700.0	1954.0	0.0				VP4	1700.0	1954.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN095354.1	tblastn	VP2	VP2		1955	2608	+	ok	1.0	97.2	446.0				1955.0	2608.0	0.0				VP2	1955.0	2608.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	MN095354.1	tblastn	VP3	VP3		2609	3268	+	ok	1.0	98.6	455.3				2609.0	3268.0	0.0				VP3	2609.0	3268.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -647,7 +647,7 @@ fmd	MN095363.1	tblastn	3A	3A		5347	5805	+	ok	1.0	94.1	295.0				5347.0	5805.0	0.0
 fmd	MN095363.1	tblastn	3B	3B		5806	6018	+	ok	1.0	97.2	135.6				5806.0	6018.0	0.0				3B	5806.0	6018.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	MN095363.1	tblastn	3Cpro	3Cpro		6019	6657	+	ok	1.0	98.1	440.7				6019.0	6657.0	0.0				3Cpro	6019.0	6657.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN095363.1	tblastn	3Dpol	3Dpol		6658	8067	+	ok	1.0	98.9	979.9				6658.0	8067.0	0.0				3Dpol	6658.0	8067.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	MN095364.1	tblastn	Lpro	Lpro		1097	1699	+	ok	1.0	95.5	416.4				1097.0	1699.0	0.0				Lpro	1097.0	1699.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	MN095364.1	tblastn	Lpro	Lpro		1097	1699	+	ok_extrapolated	0.9801	95.4	405.6				1109.0	1699.0	4.0				Lpro	1097.0	1699.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	MN095364.1	tblastn	VP4	VP4		1700	1954	+	ok	1.0	98.8	168.7				1700.0	1954.0	0.0				VP4	1700.0	1954.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN095364.1	tblastn	VP2	VP2		1955	2608	+	ok	1.0	97.7	446.4				1955.0	2608.0	0.0				VP2	1955.0	2608.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	MN095364.1	tblastn	VP3	VP3		2609	3268	+	ok	1.0	98.6	455.3				2609.0	3268.0	0.0				VP3	2609.0	3268.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -659,7 +659,7 @@ fmd	MN095364.1	tblastn	3A	3A		5372	5830	+	ok	1.0	94.1	293.9				5372.0	5830.0	0.0
 fmd	MN095364.1	tblastn	3B	3B		5831	6043	+	ok	1.0	95.8	134.0				5831.0	6043.0	0.0				3B	5831.0	6043.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	MN095364.1	tblastn	3Cpro	3Cpro		6044	6682	+	ok	1.0	98.1	441.0				6044.0	6682.0	0.0				3Cpro	6044.0	6682.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN095364.1	tblastn	3Dpol	3Dpol		6683	8092	+	ok	1.0	98.5	975.3				6683.0	8092.0	0.0				3Dpol	6683.0	8092.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	MN095365.1	tblastn	Lpro	Lpro		1096	1698	+	ok	1.0	95.5	416.4				1096.0	1698.0	0.0				Lpro	1096.0	1698.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	MN095365.1	tblastn	Lpro	Lpro		1096	1698	+	ok_extrapolated	0.9801	95.4	406.4				1108.0	1698.0	4.0				Lpro	1096.0	1698.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	MN095365.1	tblastn	VP4	VP4		1699	1953	+	ok	1.0	98.8	168.7				1699.0	1953.0	0.0				VP4	1699.0	1953.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN095365.1	tblastn	VP2	VP2		1954	2607	+	ok	1.0	97.7	444.1				1954.0	2607.0	0.0				VP2	1954.0	2607.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	MN095365.1	tblastn	VP3	VP3		2608	3267	+	ok	1.0	98.6	455.7				2608.0	3267.0	0.0				VP3	2608.0	3267.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -671,7 +671,7 @@ fmd	MN095365.1	tblastn	3A	3A		5371	5829	+	ok	1.0	94.1	293.9				5371.0	5829.0	0.0
 fmd	MN095365.1	tblastn	3B	3B		5830	6042	+	ok	1.0	95.8	134.0				5830.0	6042.0	0.0				3B	5830.0	6042.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	MN095365.1	tblastn	3Cpro	3Cpro		6043	6681	+	ok	1.0	98.1	441.0				6043.0	6681.0	0.0				3Cpro	6043.0	6681.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN095365.1	tblastn	3Dpol	3Dpol		6682	8091	+	ok	1.0	98.7	975.7				6682.0	8091.0	0.0				3Dpol	6682.0	8091.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	MN095366.1	tblastn	Lpro	Lpro		1073	1675	+	ok	1.0	95.5	416.4				1073.0	1675.0	0.0				Lpro	1073.0	1675.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	MN095366.1	tblastn	Lpro	Lpro		1073	1675	+	ok_extrapolated	0.9801	95.4	405.6				1085.0	1675.0	4.0				Lpro	1073.0	1675.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	MN095366.1	tblastn	VP4	VP4		1676	1930	+	ok	1.0	98.8	168.7				1676.0	1930.0	0.0				VP4	1676.0	1930.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN095366.1	tblastn	VP2	VP2		1931	2584	+	ok	1.0	98.2	448.7				1931.0	2584.0	0.0				VP2	1931.0	2584.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	MN095366.1	tblastn	VP3	VP3		2585	3244	+	ok	1.0	98.6	455.7				2585.0	3244.0	0.0				VP3	2585.0	3244.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -683,7 +683,7 @@ fmd	MN095366.1	tblastn	3A	3A		5348	5806	+	ok	1.0	94.1	293.9				5348.0	5806.0	0.0
 fmd	MN095366.1	tblastn	3B	3B		5807	6019	+	ok	1.0	95.8	134.0				5807.0	6019.0	0.0				3B	5807.0	6019.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	MN095366.1	tblastn	3Cpro	3Cpro		6020	6658	+	ok	1.0	98.1	441.0				6020.0	6658.0	0.0				3Cpro	6020.0	6658.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN095366.1	tblastn	3Dpol	3Dpol		6659	8068	+	ok	1.0	98.7	975.7				6659.0	8068.0	0.0				3Dpol	6659.0	8068.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	MN095367.1	tblastn	Lpro	Lpro		1072	1674	+	ok	1.0	95.5	416.4				1072.0	1674.0	0.0				Lpro	1072.0	1674.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	MN095367.1	tblastn	Lpro	Lpro		1072	1674	+	ok_extrapolated	0.9801	95.4	405.6				1084.0	1674.0	4.0				Lpro	1072.0	1674.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	MN095367.1	tblastn	VP4	VP4		1675	1929	+	ok	1.0	98.8	168.7				1675.0	1929.0	0.0				VP4	1675.0	1929.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN095367.1	tblastn	VP2	VP2		1930	2583	+	ok	1.0	98.2	448.7				1930.0	2583.0	0.0				VP2	1930.0	2583.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	MN095367.1	tblastn	VP3	VP3		2584	3243	+	ok	1.0	98.6	455.7				2584.0	3243.0	0.0				VP3	2584.0	3243.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -695,7 +695,7 @@ fmd	MN095367.1	tblastn	3A	3A		5347	5805	+	ok	1.0	94.1	293.9				5347.0	5805.0	0.0
 fmd	MN095367.1	tblastn	3B	3B		5806	6018	+	ok	1.0	95.8	134.0				5806.0	6018.0	0.0				3B	5806.0	6018.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	MN095367.1	tblastn	3Cpro	3Cpro		6019	6657	+	ok	1.0	98.1	441.0				6019.0	6657.0	0.0				3Cpro	6019.0	6657.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN095367.1	tblastn	3Dpol	3Dpol		6658	8067	+	ok	1.0	98.7	975.7				6658.0	8067.0	0.0				3Dpol	6658.0	8067.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	MN095368.1	tblastn	Lpro	Lpro		1087	1689	+	ok	1.0	95.5	416.4				1087.0	1689.0	0.0				Lpro	1087.0	1689.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	MN095368.1	tblastn	Lpro	Lpro		1087	1689	+	ok_extrapolated	0.9801	95.4	405.6				1099.0	1689.0	4.0				Lpro	1087.0	1689.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	MN095368.1	tblastn	VP4	VP4		1690	1944	+	ok	1.0	98.8	168.7				1690.0	1944.0	0.0				VP4	1690.0	1944.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN095368.1	tblastn	VP2	VP2		1945	2598	+	ok	1.0	98.2	448.7				1945.0	2598.0	0.0				VP2	1945.0	2598.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	MN095368.1	tblastn	VP3	VP3		2599	3258	+	ok	1.0	98.6	455.7				2599.0	3258.0	0.0				VP3	2599.0	3258.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -707,7 +707,7 @@ fmd	MN095368.1	tblastn	3A	3A		5362	5820	+	ok	1.0	94.1	293.9				5362.0	5820.0	0.0
 fmd	MN095368.1	tblastn	3B	3B		5821	6033	+	ok	1.0	95.8	134.0				5821.0	6033.0	0.0				3B	5821.0	6033.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	MN095368.1	tblastn	3Cpro	3Cpro		6034	6672	+	ok	1.0	98.1	441.0				6034.0	6672.0	0.0				3Cpro	6034.0	6672.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN095368.1	tblastn	3Dpol	3Dpol		6673	8082	+	ok	1.0	98.7	975.7				6673.0	8082.0	0.0				3Dpol	6673.0	8082.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	MN095369.1	tblastn	Lpro	Lpro		1072	1674	+	ok	1.0	95.5	416.4				1072.0	1674.0	0.0				Lpro	1072.0	1674.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	MN095369.1	tblastn	Lpro	Lpro		1072	1674	+	ok_extrapolated	0.9801	95.4	405.6				1084.0	1674.0	4.0				Lpro	1072.0	1674.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	MN095369.1	tblastn	VP4	VP4		1675	1929	+	ok	1.0	98.8	168.7				1675.0	1929.0	0.0				VP4	1675.0	1929.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN095369.1	tblastn	VP2	VP2		1930	2583	+	ok	1.0	98.2	448.7				1930.0	2583.0	0.0				VP2	1930.0	2583.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	MN095369.1	tblastn	VP3	VP3		2584	3243	+	ok	1.0	98.6	455.7				2584.0	3243.0	0.0				VP3	2584.0	3243.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -719,7 +719,7 @@ fmd	MN095369.1	tblastn	3A	3A		5347	5805	+	ok	1.0	94.1	293.9				5347.0	5805.0	0.0
 fmd	MN095369.1	tblastn	3B	3B		5806	6018	+	ok	1.0	95.8	134.0				5806.0	6018.0	0.0				3B	5806.0	6018.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	MN095369.1	tblastn	3Cpro	3Cpro		6019	6657	+	ok	1.0	98.1	441.0				6019.0	6657.0	0.0				3Cpro	6019.0	6657.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN095369.1	tblastn	3Dpol	3Dpol		6658	8067	+	ok	1.0	98.7	975.7				6658.0	8067.0	0.0				3Dpol	6658.0	8067.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	MN095370.1	tblastn	Lpro	Lpro		1079	1681	+	ok	1.0	95.5	416.4				1079.0	1681.0	0.0				Lpro	1079.0	1681.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	MN095370.1	tblastn	Lpro	Lpro		1079	1681	+	ok_extrapolated	0.9801	95.4	405.6				1091.0	1681.0	4.0				Lpro	1079.0	1681.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	MN095370.1	tblastn	VP4	VP4		1682	1936	+	ok	1.0	98.8	168.7				1682.0	1936.0	0.0				VP4	1682.0	1936.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN095370.1	tblastn	VP2	VP2		1937	2590	+	ok	1.0	98.2	448.7				1937.0	2590.0	0.0				VP2	1937.0	2590.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	MN095370.1	tblastn	VP3	VP3		2591	3250	+	ok	1.0	98.6	455.7				2591.0	3250.0	0.0				VP3	2591.0	3250.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -731,7 +731,7 @@ fmd	MN095370.1	tblastn	3A	3A		5354	5812	+	ok	1.0	94.1	293.9				5354.0	5812.0	0.0
 fmd	MN095370.1	tblastn	3B	3B		5813	6025	+	ok	1.0	95.8	134.0				5813.0	6025.0	0.0				3B	5813.0	6025.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	MN095370.1	tblastn	3Cpro	3Cpro		6026	6664	+	ok	1.0	98.1	441.0				6026.0	6664.0	0.0				3Cpro	6026.0	6664.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN095370.1	tblastn	3Dpol	3Dpol		6665	8074	+	ok	1.0	98.7	975.7				6665.0	8074.0	0.0				3Dpol	6665.0	8074.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	MN095371.1	tblastn	Lpro	Lpro		1080	1682	+	ok	1.0	95.5	416.4				1080.0	1682.0	0.0				Lpro	1080.0	1682.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	MN095371.1	tblastn	Lpro	Lpro		1080	1682	+	ok_extrapolated	0.9801	95.4	405.6				1092.0	1682.0	4.0				Lpro	1080.0	1682.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	MN095371.1	tblastn	VP4	VP4		1683	1937	+	ok	1.0	98.8	168.7				1683.0	1937.0	0.0				VP4	1683.0	1937.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN095371.1	tblastn	VP2	VP2		1938	2591	+	ok	1.0	98.2	448.7				1938.0	2591.0	0.0				VP2	1938.0	2591.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	MN095371.1	tblastn	VP3	VP3		2592	3251	+	ok	1.0	98.6	455.7				2592.0	3251.0	0.0				VP3	2592.0	3251.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -743,7 +743,7 @@ fmd	MN095371.1	tblastn	3A	3A		5355	5813	+	ok	1.0	94.1	293.9				5355.0	5813.0	0.0
 fmd	MN095371.1	tblastn	3B	3B		5814	6026	+	ok	1.0	95.8	134.0				5814.0	6026.0	0.0				3B	5814.0	6026.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	MN095371.1	tblastn	3Cpro	3Cpro		6027	6665	+	ok	1.0	98.1	441.0				6027.0	6665.0	0.0				3Cpro	6027.0	6665.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN095371.1	tblastn	3Dpol	3Dpol		6666	8075	+	ok	1.0	98.7	975.7				6666.0	8075.0	0.0				3Dpol	6666.0	8075.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	MK088170.1	tblastn	Lpro	Lpro		1099	1701	+	ok	1.0	96.0	416.0				1099.0	1701.0	0.0				Lpro	1099.0	1701.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	MK088170.1	tblastn	Lpro	Lpro		1099	1701	+	ok	1.0	96.0	414.8				1099.0	1701.0	0.0				Lpro	1099.0	1701.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	MK088170.1	tblastn	VP4	VP4		1702	1956	+	ok	1.0	98.8	168.3				1702.0	1956.0	0.0				VP4	1702.0	1956.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MK088170.1	tblastn	VP2	VP2		1957	2610	+	ok	1.0	97.2	445.3				1957.0	2610.0	0.0				VP2	1957.0	2610.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	MK088170.1	tblastn	VP3	VP3		2611	3270	+	ok	1.0	99.1	456.8				2611.0	3270.0	0.0				VP3	2611.0	3270.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -756,7 +756,7 @@ fmd	MK088170.1	tblastn	3B	3B		5833	6045	+	ok	1.0	97.2	135.2				5833.0	6045.0	0.0
 fmd	MK088170.1	tblastn	3Cpro	3Cpro		6046	6684	+	ok	1.0	97.7	438.7				6046.0	6684.0	0.0				3Cpro	6046.0	6684.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MK088170.1	tblastn	3Dpol	3Dpol		6685	8094	+	ok	1.0	97.9	969.9				6685.0	8094.0	0.0				3Dpol	6685.0	8094.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
 fmd	MN275118.1	tblastn	Lpro	Lpro		1077	1673	+	ok	1.0	68.2	293.5				1077.0	1673.0	0.0				Lpro	1077.0	1673.0	Lpro	1.0	1.0	True	True	False	True	True	True	597	597.0	0.0	0.0	0.0	Correct
-fmd	MN275118.1	tblastn	VP4	VP4		1674	1928	+	ok	1.0	95.3	161.0				1674.0	1928.0	0.0				VP4	1674.0	1928.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
+fmd	MN275118.1	tblastn	VP4	VP4		1674	1928	+	ok	1.0	95.3	161.4				1674.0	1928.0	0.0				VP4	1674.0	1928.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN275118.1	tblastn	VP2	VP2		1929	2585	+	ok	1.0	71.2	298.1				1929.0	2585.0	0.0				VP2	1929.0	2585.0	VP2	1.0	1.0	True	True	False	True	True	True	657	657.0	0.0	0.0	0.0	Correct
 fmd	MN275118.1	tblastn	VP3	VP3		2586	3248	+	ok	1.0	62.6	290.8				2586.0	3248.0	0.0				VP3	2586.0	3248.0	VP3	1.0	1.0	True	True	False	True	True	True	663	663.0	0.0	0.0	0.0	Correct
 fmd	MN275118.1	tblastn	VP1	VP1		3249	3902	+	ok	1.0	50.9	194.9				3249.0	3902.0	0.0				VP1	3249.0	3902.0	VP1	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
@@ -768,7 +768,7 @@ fmd	MN275118.1	tblastn	3B	3B		5829	6041	+	ok	1.0	77.5	112.8				5829.0	6041.0	0.0
 fmd	MN275118.1	tblastn	3Cpro	3Cpro		6042	6680	+	ok	1.0	83.1	382.5				6042.0	6680.0	0.0				3Cpro	6042.0	6680.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN275118.1	tblastn	3Dpol	3Dpol		6681	8090	+	ok	1.0	93.2	926.4				6681.0	8090.0	0.0				3Dpol	6681.0	8090.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
 fmd	MN275119.1	tblastn	Lpro	Lpro		1077	1673	+	ok	1.0	68.2	293.5				1077.0	1673.0	0.0				Lpro	1077.0	1673.0	Lpro	1.0	1.0	True	True	False	True	True	True	597	597.0	0.0	0.0	0.0	Correct
-fmd	MN275119.1	tblastn	VP4	VP4		1674	1928	+	ok	1.0	95.3	161.0				1674.0	1928.0	0.0				VP4	1674.0	1928.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
+fmd	MN275119.1	tblastn	VP4	VP4		1674	1928	+	ok	1.0	95.3	161.4				1674.0	1928.0	0.0				VP4	1674.0	1928.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN275119.1	tblastn	VP2	VP2		1929	2585	+	ok	1.0	71.2	298.1				1929.0	2585.0	0.0				VP2	1929.0	2585.0	VP2	1.0	1.0	True	True	False	True	True	True	657	657.0	0.0	0.0	0.0	Correct
 fmd	MN275119.1	tblastn	VP3	VP3		2586	3248	+	ok	1.0	62.6	290.8				2586.0	3248.0	0.0				VP3	2586.0	3248.0	VP3	1.0	1.0	True	True	False	True	True	True	663	663.0	0.0	0.0	0.0	Correct
 fmd	MN275119.1	tblastn	VP1	VP1		3249	3902	+	ok	1.0	50.9	194.9				3249.0	3902.0	0.0				VP1	3249.0	3902.0	VP1	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
@@ -780,7 +780,7 @@ fmd	MN275119.1	tblastn	3B	3B		5829	6041	+	ok	1.0	77.5	112.8				5829.0	6041.0	0.0
 fmd	MN275119.1	tblastn	3Cpro	3Cpro		6042	6680	+	ok	1.0	83.1	382.5				6042.0	6680.0	0.0				3Cpro	6042.0	6680.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN275119.1	tblastn	3Dpol	3Dpol		6681	8090	+	ok	1.0	93.2	926.4				6681.0	8090.0	0.0				3Dpol	6681.0	8090.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
 fmd	MN275120.1	tblastn	Lpro	Lpro		1077	1673	+	ok	1.0	68.2	293.5				1077.0	1673.0	0.0				Lpro	1077.0	1673.0	Lpro	1.0	1.0	True	True	False	True	True	True	597	597.0	0.0	0.0	0.0	Correct
-fmd	MN275120.1	tblastn	VP4	VP4		1674	1928	+	ok	1.0	95.3	161.0				1674.0	1928.0	0.0				VP4	1674.0	1928.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
+fmd	MN275120.1	tblastn	VP4	VP4		1674	1928	+	ok	1.0	95.3	161.4				1674.0	1928.0	0.0				VP4	1674.0	1928.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN275120.1	tblastn	VP2	VP2		1929	2585	+	ok	1.0	71.2	298.1				1929.0	2585.0	0.0				VP2	1929.0	2585.0	VP2	1.0	1.0	True	True	False	True	True	True	657	657.0	0.0	0.0	0.0	Correct
 fmd	MN275120.1	tblastn	VP3	VP3		2586	3248	+	ok	1.0	62.6	290.8				2586.0	3248.0	0.0				VP3	2586.0	3248.0	VP3	1.0	1.0	True	True	False	True	True	True	663	663.0	0.0	0.0	0.0	Correct
 fmd	MN275120.1	tblastn	VP1	VP1		3249	3902	+	ok	1.0	50.9	194.9				3249.0	3902.0	0.0				VP1	3249.0	3902.0	VP1	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
@@ -792,7 +792,7 @@ fmd	MN275120.1	tblastn	3B	3B		5829	6041	+	ok	1.0	77.5	112.8				5829.0	6041.0	0.0
 fmd	MN275120.1	tblastn	3Cpro	3Cpro		6042	6680	+	ok	1.0	83.1	382.5				6042.0	6680.0	0.0				3Cpro	6042.0	6680.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN275120.1	tblastn	3Dpol	3Dpol		6681	8090	+	ok	1.0	93.2	926.4				6681.0	8090.0	0.0				3Dpol	6681.0	8090.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
 fmd	MN275121.1	tblastn	Lpro	Lpro		1077	1673	+	ok	1.0	68.2	293.5				1077.0	1673.0	0.0				Lpro	1077.0	1673.0	Lpro	1.0	1.0	True	True	False	True	True	True	597	597.0	0.0	0.0	0.0	Correct
-fmd	MN275121.1	tblastn	VP4	VP4		1674	1928	+	ok	1.0	95.3	161.0				1674.0	1928.0	0.0				VP4	1674.0	1928.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
+fmd	MN275121.1	tblastn	VP4	VP4		1674	1928	+	ok	1.0	95.3	161.4				1674.0	1928.0	0.0				VP4	1674.0	1928.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN275121.1	tblastn	VP2	VP2		1929	2585	+	ok	1.0	71.2	298.1				1929.0	2585.0	0.0				VP2	1929.0	2585.0	VP2	1.0	1.0	True	True	False	True	True	True	657	657.0	0.0	0.0	0.0	Correct
 fmd	MN275121.1	tblastn	VP3	VP3		2586	3248	+	ok	1.0	62.6	290.8				2586.0	3248.0	0.0				VP3	2586.0	3248.0	VP3	1.0	1.0	True	True	False	True	True	True	663	663.0	0.0	0.0	0.0	Correct
 fmd	MN275121.1	tblastn	VP1	VP1		3249	3902	+	ok	1.0	50.9	194.9				3249.0	3902.0	0.0				VP1	3249.0	3902.0	VP1	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
@@ -803,7 +803,7 @@ fmd	MN275121.1	tblastn	3A	3A		5373	5828	+	ok	1.0	79.1	241.1				5373.0	5828.0	0.0
 fmd	MN275121.1	tblastn	3B	3B		5829	6041	+	ok	1.0	77.5	112.8				5829.0	6041.0	0.0				3B	5829.0	6041.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	MN275121.1	tblastn	3Cpro	3Cpro		6042	6680	+	ok	1.0	83.1	382.5				6042.0	6680.0	0.0				3Cpro	6042.0	6680.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN275121.1	tblastn	3Dpol	3Dpol		6681	8090	+	ok	1.0	93.2	926.4				6681.0	8090.0	0.0				3Dpol	6681.0	8090.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	MN983152.1	tblastn	Lpro	Lpro		1085	1687	+	ok	1.0	95.0	414.1				1085.0	1687.0	0.0				Lpro	1085.0	1687.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	MN983152.1	tblastn	Lpro	Lpro		1085	1687	+	ok	1.0	95.0	412.9				1085.0	1687.0	0.0				Lpro	1085.0	1687.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	MN983152.1	tblastn	VP4	VP4		1688	1942	+	ok	1.0	98.8	168.7				1688.0	1942.0	0.0				VP4	1688.0	1942.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN983152.1	tblastn	VP2	VP2		1943	2596	+	ok	1.0	98.6	450.3				1943.0	2596.0	0.0				VP2	1943.0	2596.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	MN983152.1	tblastn	VP3	VP3		2597	3256	+	ok	1.0	98.2	455.7				2597.0	3256.0	0.0				VP3	2597.0	3256.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -815,7 +815,7 @@ fmd	MN983152.1	tblastn	3A	3A		5360	5818	+	ok	1.0	92.2	291.6				5360.0	5818.0	0.0
 fmd	MN983152.1	tblastn	3B	3B		5819	6031	+	ok	1.0	97.2	135.6				5819.0	6031.0	0.0				3B	5819.0	6031.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	MN983152.1	tblastn	3Cpro	3Cpro		6032	6670	+	ok	1.0	98.6	441.4				6032.0	6670.0	0.0				3Cpro	6032.0	6670.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN983152.1	tblastn	3Dpol	3Dpol		6671	8080	+	ok	1.0	98.9	978.4				6671.0	8080.0	0.0				3Dpol	6671.0	8080.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	MN983153.1	tblastn	Lpro	Lpro		1078	1680	+	ok	1.0	95.5	416.4				1078.0	1680.0	0.0				Lpro	1078.0	1680.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	MN983153.1	tblastn	Lpro	Lpro		1078	1680	+	ok_extrapolated	0.9801	95.4	406.8				1090.0	1680.0	4.0				Lpro	1078.0	1680.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	MN983153.1	tblastn	VP4	VP4		1681	1935	+	ok	1.0	98.8	168.7				1681.0	1935.0	0.0				VP4	1681.0	1935.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN983153.1	tblastn	VP2	VP2		1936	2589	+	ok	1.0	97.7	448.4				1936.0	2589.0	0.0				VP2	1936.0	2589.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	MN983153.1	tblastn	VP3	VP3		2590	3249	+	ok	1.0	99.1	458.4				2590.0	3249.0	0.0				VP3	2590.0	3249.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -827,7 +827,7 @@ fmd	MN983153.1	tblastn	3A	3A		5353	5811	+	ok	1.0	94.1	296.2				5353.0	5811.0	0.0
 fmd	MN983153.1	tblastn	3B	3B		5812	6024	+	ok	1.0	97.2	135.2				5812.0	6024.0	0.0				3B	5812.0	6024.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	MN983153.1	tblastn	3Cpro	3Cpro		6025	6663	+	ok	1.0	98.1	440.7				6025.0	6663.0	0.0				3Cpro	6025.0	6663.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN983153.1	tblastn	3Dpol	3Dpol		6664	8073	+	ok	1.0	98.9	978.8				6664.0	8073.0	0.0				3Dpol	6664.0	8073.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	MN983154.1	tblastn	Lpro	Lpro		1089	1691	+	ok	1.0	95.5	416.8				1089.0	1691.0	0.0				Lpro	1089.0	1691.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	MN983154.1	tblastn	Lpro	Lpro		1089	1691	+	ok_extrapolated	0.9801	95.4	407.9				1101.0	1691.0	4.0				Lpro	1089.0	1691.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	MN983154.1	tblastn	VP4	VP4		1692	1946	+	ok	1.0	98.8	168.7				1692.0	1946.0	0.0				VP4	1692.0	1946.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN983154.1	tblastn	VP2	VP2		1947	2600	+	ok	1.0	97.2	445.3				1947.0	2600.0	0.0				VP2	1947.0	2600.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	MN983154.1	tblastn	VP3	VP3		2601	3260	+	ok	1.0	98.6	458.0				2601.0	3260.0	0.0				VP3	2601.0	3260.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -839,7 +839,7 @@ fmd	MN983154.1	tblastn	3A	3A		5364	5822	+	ok	1.0	94.1	294.7				5364.0	5822.0	0.0
 fmd	MN983154.1	tblastn	3B	3B		5823	6035	+	ok	1.0	95.8	133.7				5823.0	6035.0	0.0				3B	5823.0	6035.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	MN983154.1	tblastn	3Cpro	3Cpro		6036	6674	+	ok	1.0	98.1	440.3				6036.0	6674.0	0.0				3Cpro	6036.0	6674.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	MN983154.1	tblastn	3Dpol	3Dpol		6675	8084	+	ok	1.0	98.9	978.8				6675.0	8084.0	0.0				3Dpol	6675.0	8084.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	MN983155.1	tblastn	Lpro	Lpro		1091	1693	+	ok	1.0	95.5	416.8				1091.0	1693.0	0.0				Lpro	1091.0	1693.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	MN983155.1	tblastn	Lpro	Lpro		1091	1693	+	ok_extrapolated	0.9801	95.4	407.1				1103.0	1693.0	4.0				Lpro	1091.0	1693.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	MN983155.1	tblastn	VP4	VP4		1694	1948	+	ok	1.0	98.8	168.7				1694.0	1948.0	0.0				VP4	1694.0	1948.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	MN983155.1	tblastn	VP2	VP2		1949	2602	+	ok	1.0	97.2	443.4				1949.0	2602.0	0.0				VP2	1949.0	2602.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	MN983155.1	tblastn	VP3	VP3		2603	3262	+	ok	1.0	98.6	456.4				2603.0	3262.0	0.0				VP3	2603.0	3262.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -1103,7 +1103,7 @@ fmd	OK318541.1	tblastn	3A	3A		5285	5743	+	ok	1.0	88.9	281.6				5285.0	5743.0	0.0
 fmd	OK318541.1	tblastn	3B	3B		5744	5956	+	ok	1.0	90.1	128.3				5744.0	5956.0	0.0				3B	5744.0	5956.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	OK318541.1	tblastn	3Cpro	3Cpro		5957	6595	+	ok	1.0	98.1	438.3				5957.0	6595.0	0.0				3Cpro	5957.0	6595.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	OK318541.1	tblastn	3Dpol	3Dpol		6596	8005	+	ok	1.0	97.7	968.0				6596.0	8005.0	0.0				3Dpol	6596.0	8005.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	OP957418.1	tblastn	Lpro	Lpro		1101	1703	+	ok	1.0	95.5	415.6				1101.0	1703.0	0.0				Lpro	1101.0	1703.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	OP957418.1	tblastn	Lpro	Lpro		1101	1703	+	ok	1.0	95.5	414.5				1101.0	1703.0	0.0				Lpro	1101.0	1703.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	OP957418.1	tblastn	VP4	VP4		1704	1958	+	ok	1.0	98.8	168.3				1704.0	1958.0	0.0				VP4	1704.0	1958.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	OP957418.1	tblastn	VP2	VP2		1959	2612	+	ok	1.0	98.2	448.4				1959.0	2612.0	0.0				VP2	1959.0	2612.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	OP957418.1	tblastn	VP3	VP3		2613	3272	+	ok	1.0	97.7	453.4				2613.0	3272.0	0.0				VP3	2613.0	3272.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -1115,7 +1115,7 @@ fmd	OP957418.1	tblastn	3A	3A		5376	5834	+	ok	1.0	96.1	300.8				5376.0	5834.0	0.0
 fmd	OP957418.1	tblastn	3B	3B		5835	6047	+	ok	1.0	97.2	135.2				5835.0	6047.0	0.0				3B	5835.0	6047.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	OP957418.1	tblastn	3Cpro	3Cpro		6048	6686	+	ok	1.0	98.6	441.4				6048.0	6686.0	0.0				3Cpro	6048.0	6686.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	OP957418.1	tblastn	3Dpol	3Dpol		6687	8096	+	ok	1.0	98.9	978.0				6687.0	8096.0	0.0				3Dpol	6687.0	8096.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	PV805280.1	tblastn	Lpro	Lpro		1100	1702	+	ok	1.0	95.5	416.0				1100.0	1702.0	0.0				Lpro	1100.0	1702.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	PV805280.1	tblastn	Lpro	Lpro		1100	1702	+	ok	1.0	95.5	414.8				1100.0	1702.0	0.0				Lpro	1100.0	1702.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	PV805280.1	tblastn	VP4	VP4		1703	1957	+	ok	1.0	98.8	168.3				1703.0	1957.0	0.0				VP4	1703.0	1957.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	PV805280.1	tblastn	VP2	VP2		1958	2611	+	ok	1.0	96.8	437.2				1958.0	2611.0	0.0				VP2	1958.0	2611.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	PV805280.1	tblastn	VP3	VP3		2612	3271	+	ok	1.0	98.2	454.5				2612.0	3271.0	0.0				VP3	2612.0	3271.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -1139,7 +1139,7 @@ fmd	PV805281.1	tblastn	3A	3A		5374	5832	+	ok	1.0	96.1	300.8				5374.0	5832.0	0.0
 fmd	PV805281.1	tblastn	3B	3B		5833	6045	+	ok	1.0	97.2	135.2				5833.0	6045.0	0.0				3B	5833.0	6045.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	PV805281.1	tblastn	3Cpro	3Cpro		6046	6684	+	ok	1.0	98.6	441.4				6046.0	6684.0	0.0				3Cpro	6046.0	6684.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	PV805281.1	tblastn	3Dpol	3Dpol		6685	8094	+	ok	1.0	98.9	978.0				6685.0	8094.0	0.0				3Dpol	6685.0	8094.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	PV805282.1	tblastn	Lpro	Lpro		1101	1703	+	ok	1.0	95.5	416.0				1101.0	1703.0	0.0				Lpro	1101.0	1703.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	PV805282.1	tblastn	Lpro	Lpro		1101	1703	+	ok	1.0	95.5	414.1				1101.0	1703.0	0.0				Lpro	1101.0	1703.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	PV805282.1	tblastn	VP4	VP4		1704	1958	+	ok	1.0	91.8	120.9				1704.0	1958.0	0.0				VP4	1704.0	1958.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	PV805282.1	tblastn	VP2	VP2		1959	2612	+	ok	1.0	96.8	436.4				1959.0	2612.0	0.0				VP2	1959.0	2612.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	PV805282.1	tblastn	VP3	VP3		2613	3275	+	ok	1.0	89.6	414.8				2613.0	3275.0	0.0				VP3	2613.0	3275.0	VP3	1.0	1.0	True	True	False	True	True	True	663	663.0	0.0	0.0	0.0	Correct
@@ -1151,7 +1151,7 @@ fmd	PV805282.1	tblastn	3A	3A		5379	5837	+	ok	1.0	96.1	301.2				5379.0	5837.0	0.0
 fmd	PV805282.1	tblastn	3B	3B		5838	6050	+	ok	1.0	97.2	135.2				5838.0	6050.0	0.0				3B	5838.0	6050.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	PV805282.1	tblastn	3Cpro	3Cpro		6051	6689	+	ok_extrapolated	0.9812	97.6	430.3				6063.0	6689.0	4.0				3Cpro	6051.0	6689.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	PV805282.1	tblastn	3Dpol	3Dpol		6690	8099	+	ok	1.0	98.1	966.5				6690.0	8099.0	0.0				3Dpol	6690.0	8099.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	PV805283.1	tblastn	Lpro	Lpro		1101	1703	+	ok	1.0	95.5	416.0				1101.0	1703.0	0.0				Lpro	1101.0	1703.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	PV805283.1	tblastn	Lpro	Lpro		1101	1703	+	ok	1.0	95.5	414.8				1101.0	1703.0	0.0				Lpro	1101.0	1703.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	PV805283.1	tblastn	VP4	VP4		1704	1958	+	ok	1.0	98.8	168.3				1704.0	1958.0	0.0				VP4	1704.0	1958.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	PV805283.1	tblastn	VP2	VP2		1959	2612	+	ok	1.0	98.2	446.0				1959.0	2612.0	0.0				VP2	1959.0	2612.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	PV805283.1	tblastn	VP3	VP3		2613	3272	+	ok	1.0	98.2	454.1				2613.0	3272.0	0.0				VP3	2613.0	3272.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
@@ -1163,7 +1163,7 @@ fmd	PV805283.1	tblastn	3A	3A		5376	5834	+	ok	1.0	96.1	300.8				5376.0	5834.0	0.0
 fmd	PV805283.1	tblastn	3B	3B		5835	6047	+	ok_extrapolated	0.9859	97.1	133.7				5835.0	6044.0	0.0				3B	5835.0	6047.0	3B	1.0	1.0	True	True	False	True	True	True	213	213.0	0.0	0.0	0.0	Correct
 fmd	PV805283.1	tblastn	3Cpro	3Cpro		6048	6686	+	ok_extrapolated	0.9812	98.1	431.8				6060.0	6686.0	4.0				3Cpro	6048.0	6686.0	3Cpro	1.0	1.0	True	True	False	True	True	True	639	639.0	0.0	0.0	0.0	Correct
 fmd	PV805283.1	tblastn	3Dpol	3Dpol		6687	8096	+	ok	1.0	98.9	978.0				6687.0	8096.0	0.0				3Dpol	6687.0	8096.0	3Dpol	1.0	1.0	True	True	False	True	True	True	1410	1410.0	0.0	0.0	0.0	Correct
-fmd	PV446528.1	tblastn	Lpro	Lpro		1099	1701	+	ok	1.0	95.5	416.8				1099.0	1701.0	0.0				Lpro	1099.0	1701.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
+fmd	PV446528.1	tblastn	Lpro	Lpro		1099	1701	+	ok	1.0	95.5	416.0				1099.0	1701.0	0.0				Lpro	1099.0	1701.0	Lpro	1.0	1.0	True	True	False	True	True	True	603	603.0	0.0	0.0	0.0	Correct
 fmd	PV446528.1	tblastn	VP4	VP4		1702	1956	+	ok	1.0	96.5	164.9				1702.0	1956.0	0.0				VP4	1702.0	1956.0	VP4	1.0	1.0	True	True	False	True	True	True	255	255.0	0.0	0.0	0.0	Correct
 fmd	PV446528.1	tblastn	VP2	VP2		1957	2610	+	ok	1.0	98.2	448.4				1957.0	2610.0	0.0				VP2	1957.0	2610.0	VP2	1.0	1.0	True	True	False	True	True	True	654	654.0	0.0	0.0	0.0	Correct
 fmd	PV446528.1	tblastn	VP3	VP3		2611	3270	+	ok	1.0	97.7	453.8				2611.0	3270.0	0.0				VP3	2611.0	3270.0	VP3	1.0	1.0	True	True	False	True	True	True	660	660.0	0.0	0.0	0.0	Correct
