@@ -1,0 +1,4 @@
+virus,ref_accession,n_records,n_ref_features,feature_type
+PRRS,PQ623173.1,100,9,CDS
+FMD,FJ175661.1,100,12,mat_peptide
+PED,PZ105934.1,100,7,CDS

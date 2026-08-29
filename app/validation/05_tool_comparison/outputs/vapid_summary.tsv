@@ -1,0 +1,7 @@
+virus	tool	truth_genes	correct	exact	coord_pct	exact_pct
+FMD	VAPiD	1172	1171	1139	99.91	97.18
+FMD	ViraLift	1172	1170	1138	99.83	97.1
+PED	VAPiD	505	504	500	99.8	99.01
+PED	ViraLift	505	504	500	99.8	99.01
+PRRS	VAPiD	796	789	695	99.12	87.31
+PRRS	ViraLift	796	794	706	99.75	88.69
