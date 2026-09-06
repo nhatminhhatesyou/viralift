@@ -50,3 +50,4 @@ ENV/
 *.egg-info/
 .python-version
 venv*/
+repro_strand_bug.py

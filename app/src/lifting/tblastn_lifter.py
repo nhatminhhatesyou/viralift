@@ -126,16 +126,35 @@ def translate_feature(feature: Dict, ref_record: SeqRecord) -> Optional[str]:
 # HSP merging → genome coordinates
 # ---------------------------------------------------------------------------
 
+def _hsp_strand(hsp) -> str:
+    """Subject (genome) strand of a tblastn HSP.
+
+    Biopython's NCBIXML reports sbjct_start <= sbjct_end even for minus-strand
+    subject hits — the coordinates are always low->high, and the real strand lives
+    in hsp.frame == (query_frame, subject_frame), where a negative subject frame
+    means the hit is on the genome's minus strand. Inferring strand from the order
+    of sbjct_start/sbjct_end therefore mislabels EVERY minus-strand hit as "+",
+    which silently breaks reverse-complement-deposited genomes (all genes come out
+    "+", extracted antisense → internal stops → invalid boundaries). Fall back to
+    coordinate order only if the frame attribute is unavailable.
+    """
+    frame = getattr(hsp, "frame", None)
+    if isinstance(frame, (tuple, list)) and len(frame) >= 2 and frame[1] is not None:
+        return "-" if frame[1] < 0 else "+"
+    return "+" if hsp.sbjct_start <= hsp.sbjct_end else "-"
+
+
 def _hsp_to_genome_coords(hsp) -> Tuple[int, int, str]:
     """
     Convert a tblastn HSP to 1-based genome coordinates and strand.
 
-    tblastn sbjct coords are 1-based. Strand determined by sbjct_start vs sbjct_end.
+    Coordinates are the low->high genomic span. Strand comes from the HSP frame
+    (see _hsp_strand), NOT from the order of sbjct_start/sbjct_end — Biopython always
+    reports those low->high, so coordinate order cannot distinguish strand.
     """
-    if hsp.sbjct_start <= hsp.sbjct_end:
-        return hsp.sbjct_start, hsp.sbjct_end, "+"
-    else:
-        return hsp.sbjct_end, hsp.sbjct_start, "-"
+    start = min(hsp.sbjct_start, hsp.sbjct_end)
+    end = max(hsp.sbjct_start, hsp.sbjct_end)
+    return start, end, _hsp_strand(hsp)
 
 
 # An HSP implies a gene origin: subtract its offset along the reference protein
@@ -161,7 +180,7 @@ def _count_n_term_missing_aa(hsps: List, strand: str) -> Optional[int]:
     try:
         relevant = [
             h for h in hsps
-            if (h.sbjct_start <= h.sbjct_end) == (strand == "+")
+            if _hsp_strand(h) == strand
         ] or list(hsps)
         return max(0, min(min(h.query_start, h.query_end) for h in relevant) - 1)
     except (AttributeError, TypeError, ValueError):
@@ -261,12 +280,12 @@ def merge_hsps(hsps: List, protein_length: int) -> Tuple[int, int, str, float, f
     if not hsps:
         raise ValueError("No HSPs to merge")
 
-    # Strand vote
-    plus_len = sum(abs(h.sbjct_end - h.sbjct_start) + 1 for h in hsps if h.sbjct_start <= h.sbjct_end)
-    minus_len = sum(abs(h.sbjct_end - h.sbjct_start) + 1 for h in hsps if h.sbjct_start > h.sbjct_end)
+    # Strand vote (from HSP frame, not coordinate order — see _hsp_strand)
+    plus_len = sum(abs(h.sbjct_end - h.sbjct_start) + 1 for h in hsps if _hsp_strand(h) == "+")
+    minus_len = sum(abs(h.sbjct_end - h.sbjct_start) + 1 for h in hsps if _hsp_strand(h) == "-")
     strand = "+" if plus_len >= minus_len else "-"
 
-    relevant = [h for h in hsps if (h.sbjct_start <= h.sbjct_end) == (strand == "+")]
+    relevant = [h for h in hsps if _hsp_strand(h) == strand]
     if not relevant:
         relevant = hsps
 
@@ -329,7 +348,7 @@ def extrapolate_terminal_boundaries(
     if coverage < min_coverage or protein_length <= 0 or not hsps:
         return start, end, 0, 0
 
-    relevant = [h for h in hsps if (h.sbjct_start <= h.sbjct_end) == (strand == "+")]
+    relevant = [h for h in hsps if _hsp_strand(h) == strand]
     if not relevant:
         relevant = hsps
 
@@ -512,6 +531,10 @@ def _build_lifted_from_hsps(
         hsps,
         protein_length=protein_length,
     )
+    # Report the strand of the QUERY match, not the reference feature's strand.
+    # They differ when the query genome is a reverse-complement deposit: the gene
+    # is then on the query's minus strand even though the reference annotates it "+".
+    base["strand"] = strand
     # Diagnostics: raw merged-HSP coords (pre-rescue) + unaligned N-terminal ref
     # residues. Purely informational, so never let it break a real lift: HSP
     # objects come from an external parser and may not expose these attributes.
