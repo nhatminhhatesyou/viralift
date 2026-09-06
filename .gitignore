@@ -40,3 +40,13 @@ app/validation/**/*.pyc
 aegis_trial/
 gbcrawler_out/
 gbcrawler_ledger.txt
+
+# virtual environments (any name)
+venv/
+env/
+ENV/
+.venv/
+.env
+*.egg-info/
+.python-version
+venv*/
