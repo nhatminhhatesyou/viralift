@@ -64,12 +64,12 @@ The three modes form one seamless flow:
 ### Option 1 — Docker (recommended)
 
 ```bash
+git clone https://github.com/cookingminh/viralift
 cd viralift
-cp .env.example .env  # optional: fill OPENAI_API_KEY to enable LLM alias review
 docker compose up        # first build ~2 min
 ```
 
-Open **http://localhost:8501**. Rebuild after code changes: `docker compose up --build`.
+Open **http://localhost:8501**. Rebuild after code changes: `docker compose up --build`. No `.env` is needed to run; add one only to enable the optional LLM alias review (see below).
 
 ### Option 2 — Run locally
 
